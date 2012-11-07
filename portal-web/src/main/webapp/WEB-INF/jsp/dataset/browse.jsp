@@ -2,9 +2,9 @@
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/></h2>
 	<gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}"/>
+	<a href="${pageContext.request.contextPath}/datasets"><spring:message code="dataset.list.showall"/></a>
 </div>
-
-<h2 id="selectedChar">${selectedChar}</h2>
+<c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no data resources/providers within the system.</c:when>
 	<c:otherwise>
