@@ -82,50 +82,55 @@
 		<load-on-startup>6</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>datasetDispatcher</servlet-name>
+		<servlet-name>departmentDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>7</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>mapLayerDispatcher</servlet-name>
+		<servlet-name>datasetDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>8</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>registrationDispatcher</servlet-name>
+		<servlet-name>mapLayerDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>9</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>userDispatcher</servlet-name>
+		<servlet-name>registrationDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>10</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>userDispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>11</load-on-startup>
 	</servlet>	
 	<servlet>
 		<servlet-name>imageDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>11</load-on-startup>
+		<load-on-startup>12</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>feedbackDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>12</load-on-startup>
+		<load-on-startup>13</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>tutorialDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>13</load-on-startup>
+		<load-on-startup>14</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>downloadDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>14</load-on-startup>
+		<load-on-startup>15</load-on-startup>
 	</servlet>	
 	<!-- This is work in prgress to replace the maplayers with something more WMS compliant -->
 	<servlet>
 		<servlet-name>densityDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>15</load-on-startup>
+		<load-on-startup>16</load-on-startup>
 	</servlet>	
 
 	<!-- The Servlet that will dispatch to the webservices -->
@@ -181,6 +186,10 @@
 	<servlet-mapping>
 		<servlet-name>geographyDispatcher</servlet-name>
 		<url-pattern>/countries/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>departmentDispatcher</servlet-name>
+		<url-pattern>/departments/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>datasetDispatcher</servlet-name>

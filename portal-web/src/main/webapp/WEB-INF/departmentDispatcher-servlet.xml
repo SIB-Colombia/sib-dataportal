@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--  Application context definition for Geography DispatcherServlet -->
+<beans>
+
+  <!--  Define how the dispatcher will select the contollers -->
+  <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="interceptors">
+      <list>
+        <ref bean="localeChangeInterceptor" />
+        <ref bean="geographyDataAgreementInterceptor" />
+        <ref bean="sessionHistoryInterceptor" />
+      </list>
+    </property>
+    <property name="mappings">
+      <props>
+        <prop key="/">departmentBrowserController</prop>
+        <prop key="/browse/*">departmentBrowserController</prop>
+      </props>
+    </property>
+  </bean>
+
+  <!--Browse Controller for Departments-->
+  <bean id="departmentBrowserController" class="net.sibcolombia.portal.web.controller.department.DepartmentBrowserController">
+    <property name="departmentManager" ref="departmentManager" />
+    <property name="urlRoot" value="departments" />
+    <property name="modelViewName" value="departmentsBrowse" />
+    <property name="defaultView" value="/welcome.htm" />
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>searchMethod</value>
+          <value>searchString</value>
+        </list>
+      </list>
+    </property>
+  </bean>
+
+</beans>
