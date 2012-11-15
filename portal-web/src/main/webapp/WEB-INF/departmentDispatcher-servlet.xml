@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<!--  Application context definition for Geography DispatcherServlet -->
+<!--  Application context definition for Department DispatcherServlet -->
 <beans>
 
   <!--  Define how the dispatcher will select the contollers -->
@@ -8,7 +8,7 @@
     <property name="interceptors">
       <list>
         <ref bean="localeChangeInterceptor" />
-        <ref bean="geographyDataAgreementInterceptor" />
+        <ref bean="departmentDataAgreementInterceptor" />
         <ref bean="sessionHistoryInterceptor" />
       </list>
     </property>
@@ -24,7 +24,7 @@
   <bean id="departmentBrowserController" class="net.sibcolombia.portal.web.controller.department.DepartmentBrowserController">
     <property name="departmentManager" ref="departmentManager" />
     <property name="urlRoot" value="departments" />
-    <property name="modelViewName" value="departmentsBrowse" />
+    <property name="modelViewName" value="departmentBrowse" />
     <property name="defaultView" value="/welcome.htm" />
     <property name="supportedPatterns">
       <list>
@@ -33,6 +33,27 @@
           <value>searchString</value>
         </list>
       </list>
+    </property>
+  </bean>
+  
+  <!-- GeographyDataAgreementInterceptor - Ignore urls for bypassing security agreement  -->
+  <bean id="departmentDataAgreementInterceptor"
+    class="org.gbif.portal.web.controller.user.CookieAndSessionCheckInterceptor">
+    <property name="ignoreUrlPatterns">
+      <list>
+        <value>/ajax</value>
+        <value>/overviewMap.png</value>
+        <value>/overviewmap.png</value>
+        <value>/mapWidget</value>
+        <value>/nameSearch</value>
+        <value>/speciesSearch</value>
+      </list>
+    </property>
+    <!-- uppercase -->
+    <property name="robotsAgentsAllowedToBypassCookies">
+      <set>
+        <value>GOOGLEBOT</value>
+      </set>
     </property>
   </bean>
 

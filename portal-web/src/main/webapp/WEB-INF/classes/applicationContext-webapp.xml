@@ -37,6 +37,7 @@
 			<set>
 				<value>datasets/browse</value>
 				<value>countries/browse</value>
+				<value>departments/browse</value>
 			</set>
 		</property>
 	</bean>					

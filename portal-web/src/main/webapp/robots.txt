@@ -5,5 +5,6 @@ Disallow: /ws
 Allow: /
 Allow: /species
 Allow: /countries
+Allow: /departments
 Allow: /datasets
 Allow: /tutorial
