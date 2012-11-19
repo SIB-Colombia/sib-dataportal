@@ -22,8 +22,6 @@ import org.gbif.portal.service.ServiceException;
 import org.gbif.portal.web.controller.AlphabetBrowserController;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,30 +53,6 @@ public class DatasetBrowserController extends AlphabetBrowserController {
   /** Whether to hide the nub provider/resources from the view */
   protected boolean hideNub = true;
 
-  private static Comparator<ResourceNetworkDTO> COMPARERESOURCENETWORK = new Comparator<ResourceNetworkDTO>() {
-
-    @Override
-    public int compare(ResourceNetworkDTO o1, ResourceNetworkDTO o2) {
-      return o1.getName().compareTo(o2.getName());
-    }
-  };
-
-  private static Comparator<DataResourceDTO> COMPARERESOURCES = new Comparator<DataResourceDTO>() {
-
-    @Override
-    public int compare(DataResourceDTO o1, DataResourceDTO o2) {
-      return o1.getName().compareTo(o2.getName());
-    }
-  };
-
-  private static Comparator<DataProviderDTO> COMPAREPROVIDERS = new Comparator<DataProviderDTO>() {
-
-    @Override
-    public int compare(DataProviderDTO o1, DataProviderDTO o2) {
-      return o1.getName().compareTo(o2.getName());
-    }
-  };
-
   /**
    * @see org.gbif.portal.web.controller.AlphabetBrowserController#alphabetSearch(char,
    *      org.springframework.web.servlet.ModelAndView)
@@ -88,13 +62,8 @@ public class DatasetBrowserController extends AlphabetBrowserController {
   public ModelAndView alphabetSearch(char searchChar, ModelAndView mav, HttpServletRequest request,
     HttpServletResponse response) {
     SearchResultsDTO resourceResultsDTO = null;
-    if (searchChar != '0') {
-      resourceResultsDTO =
-        dataResourceManager
-          .findDatasets(String.valueOf(searchChar), true, false, false, new SearchConstraints(0, null));
-    } else {
-      resourceResultsDTO = dataResourceManager.findDatasets("", true, false, false, new SearchConstraints(0, null));
-    }
+    resourceResultsDTO =
+      dataResourceManager.findDatasets(String.valueOf(searchChar), true, false, false, new SearchConstraints(0, null));
     List<Object> resourceMatches = resourceResultsDTO.getResults();
 
     List<DataProviderDTO> providers = new ArrayList<DataProviderDTO>();
@@ -112,9 +81,6 @@ public class DatasetBrowserController extends AlphabetBrowserController {
     if (hideNub) {
       removeNubProviderAndResources(providers, resources);
     }
-    Collections.sort(resourceNetworks, COMPARERESOURCENETWORK);
-    Collections.sort(resources, COMPARERESOURCES);
-    Collections.sort(providers, COMPAREPROVIDERS);
     mav.addObject(datasetMatchesModelKey, resourceResultsDTO);
     mav.addObject(resourceNetworksModelKey, resourceNetworks);
     mav.addObject(dataProviderModelKey, providers);

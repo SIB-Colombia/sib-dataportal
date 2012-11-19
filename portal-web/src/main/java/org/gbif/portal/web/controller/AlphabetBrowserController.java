@@ -128,8 +128,7 @@ public abstract class AlphabetBrowserController extends RestController {
       if (logger.isDebugEnabled())
         logger.debug("Char to search with: " + searchChar + ", unicode value:" + searchChar);
     } else if (alphabet != null && !alphabet.isEmpty()) {
-      // searchChar = alphabet.get(0);
-      searchChar = '0';
+      searchChar = alphabet.get(0);
     }
     mav.addObject(selectedCharModelKey, searchChar);
     return alphabetSearch(searchChar, mav, request, response);

@@ -82,15 +82,21 @@
 		<load-on-startup>6</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>departmentDispatcher</servlet-name>
+		<servlet-name>departmentDispatcherSibColombia</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>7</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>datasetDispatcher</servlet-name>
+		<servlet-name>datasetDispatcherSibColombia</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>8</load-on-startup>
 	</servlet>
+	<!-- Servlet replaced with datasetDispatcherSibColombia
+	<servlet>
+		<servlet-name>datasetDispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>8</load-on-startup>
+	</servlet>-->
 	<servlet>
 		<servlet-name>mapLayerDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -187,16 +193,27 @@
 		<servlet-name>geographyDispatcher</servlet-name>
 		<url-pattern>/countries/*</url-pattern>
 	</servlet-mapping>
+	<!-- Servlet used to display information about colombian departments -->
 	<servlet-mapping>
-		<servlet-name>departmentDispatcher</servlet-name>
+		<servlet-name>departmentDispatcherSibColombia</servlet-name>
 		<url-pattern>/departments/*</url-pattern>
 	</servlet-mapping>
+	<!-- This servlet has been replaced with datasetDispatcherSibColombia to support all list datasets
 	<servlet-mapping>
 		<servlet-name>datasetDispatcher</servlet-name>
 		<url-pattern>/dataset/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>datasetDispatcher</servlet-name>
+		<url-pattern>/datasets/*</url-pattern>
+	</servlet-mapping>-->
+	<!-- This servlet supports all list display datasets -->
+	<servlet-mapping>
+		<servlet-name>datasetDispatcherSibColombia</servlet-name>
+		<url-pattern>/dataset/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>datasetDispatcherSibColombia</servlet-name>
 		<url-pattern>/datasets/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
