@@ -42,4 +42,18 @@ public class DepartmentManagerImplementation implements DepartmentManager {
     return departmentDTOFactory.createDTOList(departments);
   }
 
+  /**
+   * @param departmentDAO the departmentDAO to set
+   */
+  public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+    this.departmentDAO = departmentDAO;
+  }
+
+  /**
+   * @param departmentDTOFactory the departmentDTOFactory to set
+   */
+  public void setDepartmentDTOFactory(DepartmentDTOFactory departmentDTOFactory) {
+    this.departmentDTOFactory = departmentDTOFactory;
+  }
+
 }
