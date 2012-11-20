@@ -32,6 +32,10 @@
 		<!-- USAGE and FEEDBACK NEEDS INFO!!! -->
 		<priority value="INFO"/>
 	</category>
+	<category name="net.sibcolombia">
+		<!-- USAGE and FEEDBACK NEEDS INFO!!! -->
+		<priority value="INFO"/>
+	</category>
 	<category name="org">
 		<priority value="ERROR"/>
 	</category>
@@ -52,7 +56,7 @@
 	</category>
 	<root>
 		<!-- For live we use file logging -->
-		<!--appender-ref ref="CONSOLE"/-->
+		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="DATABASE"/>
 		<appender-ref ref="FILE"/>
 	</root>

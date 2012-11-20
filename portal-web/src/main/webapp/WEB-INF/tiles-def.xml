@@ -462,7 +462,14 @@
 		<put name="subtitle" value="/WEB-INF/jsp/geography/browseSubtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/geography/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/geography/gbifWMSMap.jsp"/>
-	</definition>	
+	</definition>
+	
+	<!-- Department Tiles -->
+	<definition name="departmentBrowse" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/department/browseSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/department/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/department/browse.jsp"/>
+	</definition>
 	
 	<!-- Mapping tiles -->
 	<!-- the main map tile -->

@@ -76,7 +76,6 @@ public abstract class AlphabetBrowserController extends RestController {
   public static void sortChars(List<Character> listOfChars) {
     Collections.sort(listOfChars, new Comparator<Character>() {
 
-      @Override
       public int compare(Character o1, Character o2) {
         return o1.compareTo(o2);
       }

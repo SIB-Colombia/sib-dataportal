@@ -40,7 +40,6 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
 
   private static Comparator<ResourceNetworkDTO> COMPARERESOURCENETWORK = new Comparator<ResourceNetworkDTO>() {
 
-    @Override
     public int compare(ResourceNetworkDTO o1, ResourceNetworkDTO o2) {
       return o1.getName().compareTo(o2.getName());
     }
@@ -48,7 +47,6 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
 
   private static Comparator<DataResourceDTO> COMPARERESOURCES = new Comparator<DataResourceDTO>() {
 
-    @Override
     public int compare(DataResourceDTO o1, DataResourceDTO o2) {
       return o1.getName().compareTo(o2.getName());
     }
@@ -56,7 +54,6 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
 
   private static Comparator<DataProviderDTO> COMPAREPROVIDERS = new Comparator<DataProviderDTO>() {
 
-    @Override
     public int compare(DataProviderDTO o1, DataProviderDTO o2) {
       return o1.getName().compareTo(o2.getName());
     }

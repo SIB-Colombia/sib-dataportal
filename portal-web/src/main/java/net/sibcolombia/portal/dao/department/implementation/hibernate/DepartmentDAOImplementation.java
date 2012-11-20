@@ -7,8 +7,6 @@ import java.util.List;
 import net.sibcolombia.portal.dao.department.DepartmentDAO;
 import net.sibcolombia.portal.model.Department;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
@@ -25,10 +23,8 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
   /** The list of currently support locales - dynamically loaded on application start up */
   protected List<String> supportedLocales = null;
 
-  protected static Log logger = LogFactory.getLog(DepartmentDAOImplementation.class);
-
-  @SuppressWarnings("unchecked")
   @Override
+  @SuppressWarnings("unchecked")
   public List<Character> getDepartmentAlphabet() {
     HibernateTemplate template = getHibernateTemplate();
     List<String> departmentChars = (List<String>) template.execute(new HibernateCallback() {
@@ -56,40 +52,24 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
    */
   @Override
   @SuppressWarnings("unchecked")
-  public List getDepartmentsFor(final Character theChar) {
+  public List<Department> getDepartmentsFor(final Character theChar) {
     HibernateTemplate template = getHibernateTemplate();
     return (List<Department>) template.execute(new HibernateCallback() {
 
       @Override
       public Object doInHibernate(Session session) {
-
-        /*
-         * Query query =
-         * session.createQuery("SELECT raw_occurrence_record.state_province AS department, "
-         * + "Count(raw_occurrence_record.state_province) AS ocurrenceCount, "
-         * + "Count(raw_occurrence_record.latitude) AS ocurrenceCoordinateCount, "
-         * + "occurrence_record.iso_department_code AS department_code " + "FROM raw_occurrence_record "
-         * + "INNER JOIN occurrence_record ON occurrence_record.id = raw_occurrence_record.id "
-         * + "WHERE occurrence_record.iso_country_code = 'CO' "
-         * + "AND raw_occurrence_record.state_province IS NOT NULL "
-         * + "AND raw_occurrence_record.state_province LIKE 'A%' GROUP BY raw_occurrence_record.state_province "
-         * + "ORDER BY department ASC");
-         */
-
         Query query =
           session
-            .createQuery("SELECT rw.state_province AS departmentName, Count(rw.state_province) AS ocurrenceCount, Count(rw.latitude) AS ocurrenceCoordinateCount, ro.iso_department_code AS departmentCode FROM OcurrenceRecord ro INNER JOIN ro.rawOccurrenceRecord rw WHERE ro.iso_country_code = 'CO' AND rw.state_province IS NOT NULL AND rw.state_province LIKE 'A%' GROUP BY rw.state_province ORDER BY departmentName ASC");
-        /*
-         * String searchString;
-         * if (theChar != null) {
-         * searchString = theChar + "%";
-         * } else {
-         * searchString = "%";
-         * }
-         * query.setString("name", searchString);
-         */
-        logger.info("Query es: " + query.getQueryString());
+            .createQuery("SELECT rw.stateOrProvince AS departmentName, Count(rw.stateOrProvince) AS occurrenceCount, Count(rw.latitude) AS occurrenceCoordinateCount, ro.isoDepartmentCode AS departmentCode FROM OccurrenceRecord ro INNER JOIN ro.rawOccurrenceRecord rw WHERE ro.isoCountryCode = 'CO' AND ro.geospatialIssue = 0 AND rw.stateOrProvince IS NOT NULL AND rw.stateOrProvince LIKE :name GROUP BY rw.stateOrProvince ORDER BY rw.stateOrProvince ASC");
+        String searchString;
+        if (theChar != null) {
+          searchString = theChar + "%";
+        } else {
+          searchString = "%";
+        }
+        query.setString("name", searchString);
         query.setCacheable(true);
+        logger.debug("Query debug: " + query.getQueryString());
         return query.list();
       }
     });

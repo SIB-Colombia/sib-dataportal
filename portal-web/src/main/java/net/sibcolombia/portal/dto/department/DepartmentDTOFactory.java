@@ -3,40 +3,35 @@ package net.sibcolombia.portal.dto.department;
 import org.gbif.portal.dto.BaseDTOFactory;
 
 import net.sibcolombia.portal.model.Department;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 
 
 public class DepartmentDTOFactory extends BaseDTOFactory {
+
+  protected static Log logger = LogFactory.getLog(DepartmentDTOFactory.class);
 
   @Override
   public Object createDTO(Object modelObject) {
     if (modelObject == null)
       return null;
     Object[] departmentModel = (Object[]) modelObject;
-    Department department = (Department) departmentModel[0];
+    Department department = new Department();
+    department.setDepartmentName((String) departmentModel[0]);
+    department.setOccurrenceCount(Integer.valueOf(Long.toString((long) departmentModel[1], 0)));
+    department.setOccurrenceCoordinateCount(Integer.valueOf(Long.toString((long) departmentModel[2], 0)));
+    department.setIsoDepartmentCode((String) departmentModel[3]);
 
-
-    String[] ignores = new String[] {"key", "name"};
+    String[] ignores = new String[] {"key"};
     DepartmentDTO departmentDTO = new DepartmentDTO();
     BeanUtils.copyProperties(department, departmentDTO, ignores);
-    departmentDTO.setKey(department.getDepartmentCode());
-    departmentDTO.setName(department.getDepartmentName());
-    departmentDTO.setIsoDepartmentCode(department.getDepartmentCode());
-    departmentDTO.setOccurrenceCount(department.getOcurrenceCount());
-    departmentDTO.setOccurrenceCoordinateCount(department.getOcurrenceCoordinateCount());
+    departmentDTO.setKey(department.getDepartmentName());
 
-
-    if (departmentModel[1] instanceof Department) {
-      Department departmentName = (Department) departmentModel[1];
-      departmentDTO.setName(departmentName.getDepartmentName());
-    } else if (departmentModel[1] instanceof String) {
-      departmentDTO.setName((String) departmentModel[1]);
-    }
-    if (departmentModel.length > 2) {
-      departmentDTO.setInterpretedFrom((String) departmentModel[2]);
-    }
     if (departmentDTO.getOccurrenceCoordinateCount() == null)
       departmentDTO.setOccurrenceCoordinateCount(0);
+    if (departmentDTO.getIsoDepartmentCode() == null)
+      departmentDTO.setIsoDepartmentCode("Código no determinado");
 
     return departmentDTO;
   }

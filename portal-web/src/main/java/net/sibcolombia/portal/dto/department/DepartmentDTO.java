@@ -16,10 +16,10 @@ public class DepartmentDTO {
   protected String key;
 
   /** The iso department code for this department and country */
-  protected String departmentCode;
+  protected String isoDepartmentCode;
 
   /** The locale specific name for this department */
-  protected String department;
+  protected String departmentName;
 
   /** The number of occurrences records this data resource provides */
   protected Integer occurrenceCount;
@@ -32,18 +32,10 @@ public class DepartmentDTO {
 
 
   /**
-   * @return the department
+   * @return the departmentName
    */
-  public String getDepartment() {
-    return department;
-  }
-
-
-  /**
-   * @return the isoDepartmentCode
-   */
-  public String getDepartmentCode() {
-    return this.departmentCode;
+  public String getDepartmentName() {
+    return departmentName;
   }
 
 
@@ -54,20 +46,18 @@ public class DepartmentDTO {
     return interpretedFrom;
   }
 
+  /**
+   * @return the isoDepartmentCode
+   */
+  public String getIsoDepartmentCode() {
+    return isoDepartmentCode;
+  }
 
   /**
    * @return the key
    */
   public String getKey() {
     return key;
-  }
-
-
-  /**
-   * @return the name
-   */
-  public String getName() {
-    return this.department;
   }
 
   /**
@@ -84,19 +74,14 @@ public class DepartmentDTO {
     return occurrenceCount;
   }
 
-  /**
-   * @param department the department to set
-   */
-  public void setDepartment(String department) {
-    this.department = department;
-  }
 
   /**
-   * @param departmentCode the departmentCode to set
+   * @param departmentName the departmentName to set
    */
-  public void setDepartmentCode(String departmentCode) {
-    this.departmentCode = departmentCode;
+  public void setDepartmentName(String departmentName) {
+    this.departmentName = departmentName;
   }
+
 
   /**
    * @param interpretedFrom the interpretedFrom to set
@@ -105,12 +90,14 @@ public class DepartmentDTO {
     this.interpretedFrom = interpretedFrom;
   }
 
+
   /**
    * @param isoDepartmentCode the isoDepartmentCode to set
    */
-  public void setIsoDepartmentCode(String departmentCode) {
-    this.departmentCode = departmentCode;
+  public void setIsoDepartmentCode(String isoDepartmentCode) {
+    this.isoDepartmentCode = isoDepartmentCode;
   }
+
 
   /**
    * @param key the key to set
@@ -119,12 +106,6 @@ public class DepartmentDTO {
     this.key = key;
   }
 
-  /**
-   * @param name the name to set
-   */
-  public void setName(String department) {
-    this.department = department;
-  }
 
   /**
    * @param occurrenceCoordinateCount the occurrenceCoordinateCount to set

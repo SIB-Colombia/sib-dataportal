@@ -11,12 +11,15 @@ public class Department {
 
   // Department name
   private String departmentName;
+
   // Department code
-  private String departmentCode;
+  private String isoDepartmentCode;
+
   // Ocurrence count
-  private int ocurrenceCount;
+  private int occurrenceCount;
+
   // Ocurrence Coordinate Count
-  private int ocurrenceCoordinateCount;
+  private int occurrenceCoordinateCount;
 
   /**
    * Returns true if object is an instance of BaseObject and
@@ -29,20 +32,13 @@ public class Department {
   public boolean equals(Object object) {
     if (object instanceof Department) {
       Department other = (Department) object;
-      if (this.getDepartmentCode() != null) {
-        return this.getDepartmentCode().equals(other.getDepartmentCode());
+      if (this.getDepartmentName() != null) {
+        return this.getDepartmentName().equals(other.getDepartmentName());
       } else if (this == object) {
         return true;
       }
     }
     return false;
-  }
-
-  /**
-   * @return the departmentCode
-   */
-  public String getDepartmentCode() {
-    return departmentCode;
   }
 
   /**
@@ -53,24 +49,26 @@ public class Department {
   }
 
   /**
+   * @return the isoDepartmentCode
+   */
+  public String getIsoDepartmentCode() {
+    return isoDepartmentCode;
+  }
+
+
+  /**
    * @return the ocurrenceCoordinateCount
    */
-  public int getOcurrenceCoordinateCount() {
-    return ocurrenceCoordinateCount;
+  public int getOccurrenceCoordinateCount() {
+    return occurrenceCoordinateCount;
   }
+
 
   /**
    * @return the ocurrenceCount
    */
-  public int getOcurrenceCount() {
-    return ocurrenceCount;
-  }
-
-  /**
-   * @param departmentCode the departmentCode to set
-   */
-  public void setDepartmentCode(String departmentCode) {
-    this.departmentCode = departmentCode;
+  public int getOccurrenceCount() {
+    return occurrenceCount;
   }
 
   /**
@@ -81,17 +79,24 @@ public class Department {
   }
 
   /**
+   * @param isoDepartmentCode the isoDepartmentCode to set
+   */
+  public void setIsoDepartmentCode(String isoDepartmentCode) {
+    this.isoDepartmentCode = isoDepartmentCode;
+  }
+
+  /**
    * @param ocurrenceCoordinateCount the ocurrenceCoordinateCount to set
    */
-  public void setOcurrenceCoordinateCount(int ocurrenceCoordinateCount) {
-    this.ocurrenceCoordinateCount = ocurrenceCoordinateCount;
+  public void setOccurrenceCoordinateCount(int ocurrenceCoordinateCount) {
+    this.occurrenceCoordinateCount = ocurrenceCoordinateCount;
   }
 
   /**
    * @param ocurrenceCount the ocurrenceCount to set
    */
-  public void setOcurrenceCount(int ocurrenceCount) {
-    this.ocurrenceCount = ocurrenceCount;
+  public void setOccurrenceCount(int ocurrenceCount) {
+    this.occurrenceCount = ocurrenceCount;
   }
 
   /**

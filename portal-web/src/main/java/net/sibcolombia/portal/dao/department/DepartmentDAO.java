@@ -2,6 +2,8 @@ package net.sibcolombia.portal.dao.department;
 
 import java.util.List;
 
+import net.sibcolombia.portal.model.Department;
+
 /**
  * The DAO for the Department model object.
  * 
@@ -22,6 +24,6 @@ public interface DepartmentDAO {
    * @param theChar
    * @return List of departments with ocurrence and ocurrence coordinate count
    */
-  public List getDepartmentsFor(Character theChar);
+  public List<Department> getDepartmentsFor(Character theChar);
 
 }
