@@ -19,8 +19,8 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
     Object[] departmentModel = (Object[]) modelObject;
     Department department = new Department();
     department.setDepartmentName((String) departmentModel[0]);
-    department.setOccurrenceCount(Integer.valueOf(Long.toString((long) departmentModel[1], 0)));
-    department.setOccurrenceCoordinateCount(Integer.valueOf(Long.toString((long) departmentModel[2], 0)));
+    department.setOccurrenceCount((int) ((long) departmentModel[1]));
+    department.setOccurrenceCoordinateCount((int) ((long) departmentModel[2]));
     department.setIsoDepartmentCode((String) departmentModel[3]);
 
     String[] ignores = new String[] {"key"};

@@ -12,7 +12,7 @@
 	<c:otherwise>
 	<display:table name="departments" export="false" class="statistics" id="department">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
-		  ${department.departmentName}"
+		  ${department.departmentName}
 	  </display:column>	  
 	  <display:column titleKey="dataset.list.occurrence.count" class="countrycount">
 	  	<c:if test="${department.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/departments/search.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"></c:if><fmt:formatNumber value="${department.occurrenceCount}" pattern="###,###"/><c:if test="${department.occurrenceCount>0}"></a></c:if>
