@@ -25,18 +25,15 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    * (non-Javadoc)
    * @see net.sibcolombia.portal.service.DepartmentManager#getDepartmentAlphabet()
    */
-  @Override
   public List<Character> getDepartmentAlphabet() {
     return departmentDAO.getDepartmentAlphabet();
   }
 
-  @Override
   public DepartmentDTO getDepartmentFor(String departmentKey) {
     // TODO Auto-generated method stub
     return null;
   }
 
-  @Override
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar) {
     List<Department> departments = departmentDAO.getDepartmentsFor(firstChar);
     return departmentDTOFactory.createDTOList(departments);

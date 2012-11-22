@@ -12,7 +12,6 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
 
   protected static Log logger = LogFactory.getLog(DepartmentDTOFactory.class);
 
-  @Override
   public Object createDTO(Object modelObject) {
     if (modelObject == null)
       return null;
