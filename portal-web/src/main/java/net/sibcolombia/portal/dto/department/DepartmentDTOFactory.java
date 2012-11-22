@@ -17,13 +17,7 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
       return null;
     Object[] departmentModel = (Object[]) modelObject;
     Department department = new Department();
-    logger.info("Valor 0: " + departmentModel[0]);
-    logger.info("Valor 1: " + departmentModel[1]);
-    logger.info("Valor 2: " + departmentModel[2]);
-    logger.info("Valor 3: " + departmentModel[3]);
-    logger.info("Valor 4: " + departmentModel[4]);
-    logger.info("Valor 5: " + departmentModel[5]);
-    // department.setDepartmentId((Long) departmentModel[0]);
+    department.setId((Long) departmentModel[0]);
     department.setDepartmentName((String) departmentModel[1]);
     department.setIsoDepartmentCode((String) departmentModel[2]);
     department.setOccurrenceCount((Integer) departmentModel[3]);
