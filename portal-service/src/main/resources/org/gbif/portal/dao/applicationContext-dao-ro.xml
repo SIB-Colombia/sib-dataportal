@@ -150,7 +150,7 @@
 			</entry>				
 		</map>
 	</property>
-  </bean>	
+  </bean>
   
   <bean id="geoRegionDAORO" class="org.gbif.portal.dao.geospatial.impl.hibernate.GeoRegionDAOImpl" parent="baseDAORO"/>
   <bean id="harvestingCountryDAORO" class="org.gbif.portal.dao.geospatial.impl.hibernate.CountryDAOImpl" parent="baseHarvestingDAORO">

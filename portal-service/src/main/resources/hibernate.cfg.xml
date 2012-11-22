@@ -11,6 +11,7 @@
     <mapping resource="org/gbif/portal/model/geospatial/CellDensity.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/CentiCellDensity.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/Country.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/Department.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/CountryName.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/IPCountry.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/log/LogMessage.hbm.xml"/>
