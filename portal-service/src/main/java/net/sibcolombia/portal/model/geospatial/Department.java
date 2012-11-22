@@ -12,6 +12,8 @@
  ***************************************************************************/
 package net.sibcolombia.portal.model.geospatial;
 
+import org.gbif.portal.model.BaseObject;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
@@ -25,7 +27,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @hibernate.class
  *                  table="department"
  */
-public class Department {
+public class Department extends BaseObject {
 
   /**
    * Department name
@@ -33,8 +35,6 @@ public class Department {
    * /** The ISO department Code for this model. Used as the identifier in this model object
    */
   protected String isoDepartmentCode;
-  /** The department id - internal id */
-  protected Long departmentId;
   /** The department name */
   protected String departmentName;
 
@@ -55,35 +55,6 @@ public class Department {
   protected Float minLongitude;
   /** The maximum longitude for this department */
   protected Float maxLongitude;
-
-  /**
-   * Returns true if object is an instance of BaseObject and
-   * the identifier value is equal.
-   * Required by ORMS for caching/collections performance.
-   * 
-   * @see java.lang.Object#equals(Object)
-   */
-  @Override
-  public boolean equals(Object object) {
-    if (object instanceof Department) {
-      Department other = (Department) object;
-      if (getIsoDepartmentCode() != null) {
-        return getIsoDepartmentCode().equals(other.getIsoDepartmentCode());
-      } else if (this == object) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * @hibernate.property
-   *                     column="id"
-   * @return the id
-   */
-  public Long getDepartmentId() {
-    return departmentId;
-  }
 
   /**
    * @return the departmentName
@@ -164,13 +135,6 @@ public class Department {
    */
   public Integer getSpeciesCount() {
     return speciesCount;
-  }
-
-  /**
-   * @param id the id to set
-   */
-  public void setDepartmentId(Long id) {
-    this.departmentId = id;
   }
 
   /**

@@ -3,11 +3,11 @@
 
 <hibernate-mapping>
   <class table="department" name="net.sibcolombia.portal.model.geospatial.Department">
-    <id unsaved-value="null" name="isoDepartmentCode" column="iso_department_code">
-      <generator class="assigned"/>
+    <id unsaved-value="null" name="id" column="id">
+        <generator class="native"/>
     </id>
-    <property name="departmentId" column="id"/>
     <property name="departmentName" column="department_name"/>
+    <property name="isoDepartmentCode" column="iso_department_code"/>
     <property name="occurrenceCoordinateCount" column="occurrence_coordinate_count"/>
     <property name="occurrenceCount" column="occurrence_count"/>
     <property name="speciesCount" column="species_count"/>
