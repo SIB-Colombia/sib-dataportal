@@ -208,7 +208,7 @@
     <dependency>
       <groupId>portal</groupId>
       <artifactId>portal-service</artifactId>
-      <version>1.0</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>swtgraphics2d</groupId>

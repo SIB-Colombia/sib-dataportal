@@ -47,7 +47,8 @@
   	<property name="proxyInterfaces" value="net.sibcolombia.portal.service.DepartmentManager"/>
   </bean>
   
-  <bean id="departmentDAORO" class="net.sibcolombia.portal.dao.department.implementation.hibernate.DepartmentDAOImplementation" parent="baseDAORO">
+  <!-- Bean implementation DAO department classes SiB Colombia -->
+  <bean id="departmentDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.DepartmentDAOImplementation" parent="baseDAORO">
   	<property name="supportedLocales">
   		<list>
   			<value>en</value>
