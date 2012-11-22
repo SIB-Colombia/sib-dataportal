@@ -12,12 +12,15 @@
 	<c:otherwise>
 	<display:table name="departments" export="false" class="statistics" id="department">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
-		  ${department.departmentName}
+	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
 	  </display:column>	  
 	  <display:column titleKey="dataset.list.occurrence.count" class="countrycount">
 	  	<c:if test="${department.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/departments/search.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"></c:if><fmt:formatNumber value="${department.occurrenceCount}" pattern="###,###"/><c:if test="${department.occurrenceCount>0}"></a></c:if>
 	  	(<c:if test="${department.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/departments/search.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${department.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${department.occurrenceCoordinateCount>0}"></a></c:if>)
 	  </display:column>
+	  <display:column titleKey="dataset.speciesCount" class="countrycount">
+	  	<c:if test="${department.speciesCount>0}"><a href="${pageContext.request.contextPath}/departments/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"></c:if><fmt:formatNumber value="${department.speciesCount}" pattern="###,###"/><c:if test="${department.speciesCount>0}"></a></c:if>
+  	  </display:column>
 	  <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
 	  <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 	</display:table>

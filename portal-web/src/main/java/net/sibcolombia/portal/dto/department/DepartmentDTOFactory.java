@@ -23,7 +23,7 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
     logger.info("Valor 3: " + departmentModel[3]);
     logger.info("Valor 4: " + departmentModel[4]);
     logger.info("Valor 5: " + departmentModel[5]);
-    department.setDepartmentId((Long) departmentModel[0]);
+    // department.setDepartmentId((Long) departmentModel[0]);
     department.setDepartmentName((String) departmentModel[1]);
     department.setIsoDepartmentCode((String) departmentModel[2]);
     department.setOccurrenceCount((Integer) departmentModel[3]);
