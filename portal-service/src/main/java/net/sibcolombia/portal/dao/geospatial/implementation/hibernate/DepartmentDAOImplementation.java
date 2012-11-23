@@ -57,7 +57,6 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
         }
         query.setString("name", searchString);
         query.setCacheable(true);
-        logger.info("Query debug: " + query.getQueryString());
         return query.list();
       }
     });
