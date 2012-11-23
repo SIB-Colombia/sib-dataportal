@@ -27,7 +27,7 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
       public Object doInHibernate(Session session) {
         Query query =
           session
-            .createSQLQuery("SELECT DISTINCT(SUBSTRING(state_province,1,1)) FROM raw_occurrence_record WHERE raw_occurrence_record.state_province IS NOT NULL AND raw_occurrence_record.deleted IS NULL ORDER BY raw_occurrence_record.state_province ASC");
+            .createSQLQuery("SELECT DISTINCT(SUBSTRING(department.department_name,1,1)) FROM department ORDER BY department.department_name ASC");
         return query.list();
       }
     });
@@ -57,7 +57,7 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
         }
         query.setString("name", searchString);
         query.setCacheable(true);
-        logger.debug("Query debug: " + query.getQueryString());
+        logger.info("Query debug: " + query.getQueryString());
         return query.list();
       }
     });
