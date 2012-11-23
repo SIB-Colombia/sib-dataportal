@@ -1,4 +1,4 @@
-body {  color: #333; background: #FEFEFE url(images/bodyBG.gif) repeat-x top left;
+body {  color: #333; background: #FEFEFE url("images/bodyBG.gif") repeat-x top left;
 	    font: 0.81em Verdana, Arial, Helvetica, sans-serif;	text-align: left;
 		padding: 0 10px 0 40px; margin: 0; min-width: 990px;
 	}
@@ -38,7 +38,7 @@ img.standalone { display: block; margin: 0.5em auto; width: auto; max-width: 100
 
 h1 {
 	margin: 0 0 0 -40px ; padding: 13px 0 0 53px; height: 58px; min-height: 58px; color: #FFF;
-	background: transparent url(images/h1BG.jpg) no-repeat top left;
+	background: transparent url("images/h1BG.jpg") no-repeat top left;
 }
 
 

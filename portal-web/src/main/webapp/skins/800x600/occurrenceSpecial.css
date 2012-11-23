@@ -1,6 +1,6 @@
 #twopartheader { margin: 15px 0 0 2px; min-height: 35px; padding: 0;  background: url('images/occurrenceIcoBig.gif') no-repeat left 2px ; min-height:70px;}
 #twopartheader h2 { padding: 0 0 0 76px; margin: 0; font-size: 1em; color: #872f2f; }
-#twopartheader h3 { padding: 7px 0 0 76px ; margin: 0; font-size: 0.8em; font-weight: normal; }
+#twopartheader h3 { padding: 7px 0 0 76px ; margin: 0; font-size: 1.1em; font-weight: normal; }
 
 #content h1 { margin: 0; padding: 4px 0 0 96px; font-size: 1.1em ; color: #872f2f; }
 #content h4 { margin: 20px 0 5px 0; padding: 0 ; font-size: 1.1em ; color: #872f2f; }
@@ -35,7 +35,7 @@ th.sortable a { color: #872f2f; border-bottom: none; }
 
 /* wizards */
 div.datasetWizard { background-color:#d4ecf5; width:625px; padding:10px; padding-left:20px; }
-div.taxonomyWizard { background-color:#fbe7fa; padding:10px; padding-left:20px; width:625px; }
+div.taxonomyWizard { background-color:#F8CEBC; padding:10px; padding-left:20px; width:625px; }
 #dataResourceWizard { margin-top:20px; padding-top:20px; }
 #dataResourceWizard #dataProviderId { width:580px; margin-bottom:40px; }
 #dataResourceWizard #dataResourceId { width:580px; margin-bottom:20px; }
@@ -46,9 +46,9 @@ a.treeNodeLinkTentative .conceptLink { background: url('../standard/images/plusS
 
 /* Downloads */
 h5#datasetFieldsTitle { margin-top:0px; /* color: #6abbe3;*/ }
-h5#taxonomyFieldsTitle { margin-top:0px; /* color: #8425a6;*/ }
+h5#taxonomyFieldsTitle { margin-top:0px; /* color: #34BCE0;*/ }
 h5#geospatialFieldsTitle { margin-top:0px; /* color: #f19d5d;*/ }
-#downloadFields { border: 1px solid #CCCCCC; padding:10px; margin-bottom:10px; clear: none; }
+#downloadFields {  padding:10px; margin-bottom:10px; clear: none; }
 #downloadFields h5 { margin-top:20px; }
 #downloadFields h5#formatOptions { margin-top:0px; }
 #downloadFields input { margin-left:10px; }
@@ -63,7 +63,7 @@ h5#geospatialFieldsTitle { margin-top:0px; /* color: #f19d5d;*/ }
 /* Added by Tim */
 .feedback { background: url('../../images/feedbackLink.gif') no-repeat 0px 0px; padding-left:40px; }
 
-.taxonomyFilterHelp { background-color:#fbe7fa; padding:10px; width:635px; }
+.taxonomyFilterHelp { background-color:#F8CEBC; padding:10px; width:635px; }
 .geospatialFilterHelp { background-color:#f9e5d8; padding:10px; width:635px; }
 .datasetFilterHelp { background-color:#d4ecf5; padding:10px; width:635px; }
 

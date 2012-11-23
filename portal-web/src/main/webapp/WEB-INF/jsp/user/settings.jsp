@@ -5,13 +5,13 @@
 </div>
 <form method="post" action="${pageContext.request.contextPath}/settings.htm" style="margin-bottom:20px;">	
 <spring:bind path="settings">
-<h4><spring:message code="settings.lookandfeel"/></h4>
+<!--<h4><spring:message code="settings.lookandfeel"/></h4>
 <p>
 <input type="radio" name="theme" value="standard" <c:if test="${settings.theme=='standard'}">checked="true"</c:if>/><spring:message code="settings.theme.standard"/>
 </p>
 <p> 
 <input type="radio" name="theme" value="800x600" <c:if test="${settings.theme=='800x600'}">checked="true"</c:if>/><spring:message code="settings.theme.800x600"/>
-</p>
+</p> -->
 
 <h4><spring:message code="settings.language"/></h4>
 <p>

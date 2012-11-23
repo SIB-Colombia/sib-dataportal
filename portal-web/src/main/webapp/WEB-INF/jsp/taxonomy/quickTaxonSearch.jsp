@@ -14,7 +14,7 @@
 	    		<tr>
     				<c:set var="placeholder"><spring:message code="quick.taxon.search"/></c:set>
 	   				<td style="width:290px;" valign="top">
-  	 					<input id="statesinput" style="width:280px; padding:0; padding-left:3px; color:#AAAAAA;" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/> 
+  	 					<input id="statesinput" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/> 
 			      		<div id="statescontainer" style="margin-left:3px;width:200px;"></div>
    					</td>	
 		       	<td style="width:60px; valign:top;" valign="top"><input type="submit" onclick="javascript:findBrowseUrl(document.getElementById('statesinput').value, null, null);" value="<spring:message code="search"/>"></td>

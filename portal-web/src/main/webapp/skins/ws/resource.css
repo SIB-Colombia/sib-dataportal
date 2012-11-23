@@ -1,5 +1,5 @@
 h2.leftIcon {
- background: transparent url(images/dataIcon.gif) no-repeat;
+ background: transparent url("images/dataIcon.gif") no-repeat;
 }
 
 th {

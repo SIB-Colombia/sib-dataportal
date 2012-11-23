@@ -1,5 +1,5 @@
 
-<div id="map" style="height:300px; width:600px; border: 1px solid #cccccc; margin-top:50px;"></div>
+<div id="map" style="height:300px; width:600px;  margin-top:50px;"></div>
 
 <script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
 

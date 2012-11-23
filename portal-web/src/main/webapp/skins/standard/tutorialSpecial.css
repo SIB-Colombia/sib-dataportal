@@ -1,21 +1,77 @@
-h1 , h2 , h3 { margin: 0 0 0 96px; padding: 20px 0 0 0 ; font-size: 1.1em ; }
-h4 , h5 , h6 { margin: 0 0 0 96px; padding: 20px 0 0 0 ; font-size: 1.0em ; }
-
-
-#twopartheader { margin: 22px 0 0 0; padding: 0; background: url('images/aboutIcoBig.gif') no-repeat left top ; min-height:70px;}
-#twopartheader h2 { margin: 0; padding: 4px 0 0 94px; font-size: 1.1em ;  }
-#twopartheader h3 { padding: 7px 0 0 94px ; margin: 0 ; font-size: 1.1em; font-weight: normal; }
-
-
-#content p { margin: 5px 50px 0 94px;}
-#content ul, ol { margin: 10px 300px -10px 110px; padding: 0 10px 5px 14px ; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
-#content ul.breadcrumblist { margin-left:0px; padding-left:0px; }
-
-#content textarea { margin: 5px 0 0 94px; }
-#content ul.noBorder { border: none; }
-
-.deeplinks {width: 720px; height:100px; }
-#deepLinkingScreenshot { margin: 5px 0 0 94px; border:1px solid #CCCCCC; width:720px;}
-#content iframe { margin: 5px 0 0 88px; padding:0;}
-
-#content ol ol { margin: 10px 0px -10px 10px; padding: 0 10px 5px 14px ; border: none; }
+h1, h2, h3 {
+	margin: 0 0 0 96px;
+	padding: 20px 0 0 0;
+	font-size: 1.1em;
+}
+h4, h5, h6 {
+	margin: 0 0 0 96px;
+	padding: 20px 0 0 0px;
+	font-size: 1.6em;
+	color:rgba(0,0,0,0.6);
+}
+h4{
+	font-size: 2em;
+	padding: 20px 0 0 0px;
+}
+#twopartheader {
+	margin: 20px 0 0px 0;
+	padding: 0 0 0 85px;
+	min-height: 70px;
+	background: url('images/ico_help.png') no-repeat left top;
+}
+#twopartheader h2 {
+	color: #34BCE0;
+	padding: 5px 0 0 0;
+	margin: 0;
+	font-size: 2.3em;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+#twopartheader h3 {
+	padding: 7px 0 0 0;
+	margin: 0;
+	font-size: 1.1em;
+	font-weight: 700;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	color:#231f1c;
+}
+#content p {
+	margin: 5px 50px 10px 94px;
+	line-height:1.2em;
+}
+#content ul, ol {
+	margin: 10px 300px -10px 110px;
+	padding: 0 10px 5px 14px;
+}
+#content li{
+	padding:3px 0;
+	line-height:1.2em;
+}
+#content ul.breadcrumblist {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+#content textarea {
+	margin: 5px 0 0 94px;
+}
+#content ul.noBorder {
+	border: none;
+}
+.deeplinks {
+	width: 720px;
+	height: 100px;
+}
+#deepLinkingScreenshot {
+	margin: 5px 0 0 94px;
+	border: 1px solid #CCCCCC;
+	width: 720px;
+}
+#content iframe {
+	margin: 5px 0 0 88px;
+	padding: 0;
+}
+#content ol ol {
+	margin: 10px 0px -10px 10px;
+	padding: 0 10px 5px 14px;
+	border: none;
+}

@@ -1,4 +1,4 @@
-#downloadFields { border: 1px solid #CCCCCC; padding:10px; margin-bottom:10px; clear: none; }
+#downloadFields {  padding:10px; margin-bottom:10px; clear: none; }
 #downloadFields h5 { margin-top:20px; }
 #downloadFields h5#formatOptions { margin-top:0px; }
 #downloadFields input { margin-left:10px; }

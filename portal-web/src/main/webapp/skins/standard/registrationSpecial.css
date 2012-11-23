@@ -1,4 +1,5 @@
-#twopartheader { margin: 20px 0 10px 0; padding: 0 0 0 95px; min-height:63px; background: url('../standard/images/registrationIconBig.gif') no-repeat left top ;  }
+#twopartheader {
+	margin: 0px 0 10px 0; padding: 0 0 0 95px; min-height:63px; background: url('../standard/images/registrationIconBig.gif') no-repeat left top ;  }
 #twopartheader h2 {  color: #5f822c; padding: 5px 0 0 0 ; margin: 0; font-size: 1.1em; font-weight: bold; }
 #twopartheader h3 { padding: 7px 0 0 0 ; margin: 0 ; font-size: 1.1em; font-weight: normal; }
 .warningMessage { color:#FF0000; font-weight: bold; }
@@ -14,8 +15,8 @@ fieldset { margin:0 0 20px 0; }
 input { padding-left:2px; }
 textarea { padding:2px; }
 select { padding-left:2px; }
-.providerDetails input { width: 250px; border: 1px solid #CCCCCC; }
-.providerDetails textarea { width: 250px; border: 1px solid #CCCCCC; }
+.providerDetails input { width: 250px;  }
+.providerDetails textarea { width: 250px;  }
 .providerDetails select { width: 250px; }
 .dateRange input.yearInput { width:80px; }
 .dateRange select.daySelect { width:50px; }
@@ -29,7 +30,7 @@ select { padding-left:2px; }
 .resourceForm textarea[readonly] { background: #ffeeee; color: gray; }
 .resourceForm select { width: 300px; font-size:1.0em;}
 .resourceForm .smallValue { width:120px; }
-.resourceForm .smalltree { border: 1px solid #CCCCCC; background-color:#F6F6F6; width:460px; padding-top:5px; margin-top:5px; margin-left:5px; }
+.resourceForm .smalltree {  background-color:#F6F6F6; width:460px; padding-top:5px; margin-top:5px; margin-left:5px; }
 .resourceForm .relatedCountries { width:200px; }
 .resourceForm .resourceNotes { border-bottom: 1px solid gray; margin-bottom:10px;padding-bottom:10px; }
 

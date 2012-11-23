@@ -1,5 +1,5 @@
 h2.leftIcon {
- background: transparent url(images/countriesIcon.gif) no-repeat;
+ background: transparent url("images/countriesIcon.gif") no-repeat;
 }
 
 th {

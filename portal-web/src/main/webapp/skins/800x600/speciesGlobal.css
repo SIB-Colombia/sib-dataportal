@@ -4,8 +4,8 @@ body {  color: #494949; background: #FDFDFD url('images/speciesBodyBG.gif') repe
 	}
 
 /* -- The Generic Defs --*/
-a:link { color: #333366;text-decoration: none; border-bottom: 1px dashed gray; }
-a:visited {	color: #333366;	text-decoration: none; border-bottom: 1px dashed gray; }
+a:link { color: #007FC9;text-decoration: none; border-bottom: 0px dashed transparent; }
+a:visited {	color: #007FC9;	text-decoration: none; border-bottom: 0px dashed transparent; }
 a:hover { text-decoration: underline; border: 0; }
 
 a img {border: none;}
@@ -67,7 +67,7 @@ img.standalone { display: block; margin: 0.5em auto; width: auto; max-width: 100
 #container>#topmenu { margin-right: 39px; }
 #topmenu ul { margin: 0 ; padding: 7px 10px 9px 3px; background: url('images/MenuTopBGRight.gif') no-repeat bottom right; }
 #topmenu ul li { display: inline; list-style: none; padding-left: 9px; padding-bottom: 1px; background: url('images/menuTopList.gif') no-repeat 5px 6px;  }
-#topmenu a { border: 0; color: #3342E7; text-decoration: none; font-weight: bold; }
+#topmenu a { border: 0; color: #3342E7; text-decoration: none; }
 
 #content { margin: -20px 10px 0 10px; padding: 0 }
 #container>#content { margin: -20px 10px 0 10px ;  }
@@ -76,7 +76,7 @@ img.standalone { display: block; margin: 0.5em auto; width: auto; max-width: 100
 
 #footer { font-size: 0.8em; clear: both; height: 27px; margin: 10px 0 0 0; padding: 0; background: url("images/footerBG.gif") repeat-x;  }
 #footer #copyright { color: #888; float: left; height: 27px; margin: 0 ; padding: 6px 0 0 37px; background: url('images/copyrBG.gif') no-repeat;  }
-#footer #contact_webmaster { color: #FFFFFF; float: right; height: 27px; margin: 0; padding: 6px 70px 0 0; background: url(images/contactusBG.gif) no-repeat top right }
+#footer #contact_webmaster { color: #FFFFFF; float: right; height: 27px; margin: 0; padding: 6px 70px 0 0; background: url("images/contactusBG.gif") no-repeat top right }
 #contact_webmaster a { }
 
 #skipNav { position: absolute; left: -9999px; font-size: small; }
@@ -106,10 +106,10 @@ div#warnings h4 { color:#000000; margin-top:5px; margin-left:5px; }
 div#warnings p { margin-left:10px; }
 div#warnings ul { margin-left:10px; }
 
-p.resultsDetails { padding:0px;	margin:5px;	margin-left:30px; font-size:11px; color:#AAAAAA; }
-p.resultsDetails a { color:#AAAAAA; }
+p.resultsDetails { padding:0px;	margin:5px;	margin-left:30px;  color:#546268; }
+p.resultsDetails a { color:#546268; }
 
-p.notApplicable { padding:0px; font-size:11px; color:#AAAAAA; white-space: nowrap; }
+p.notApplicable { padding:0px; font-size:11px; color:#546268; white-space: nowrap; }
 
 /* Breadcrumbs */
 #breadcrumbs { padding-top:5px; } 

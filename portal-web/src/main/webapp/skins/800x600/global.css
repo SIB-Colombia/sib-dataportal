@@ -1,11 +1,18 @@
-body {  color: #353535; background: url('images/bodyBG.gif') repeat-x top left;
-	    font: 0.72em Verdana, Arial, Helvetica, sans-serif;	text-align: left;
-		padding: 0; margin: 0; min-width: 705px;
+body {
+		font-size: 70%;
+		color:#333;
+		background: #f2eee3 url(/images/noise1.png") repeat 0 0;
+		font-family:Verdana, Helvetica, Arial;
+	    font: 0.72em Helvetica, Verdana, Arial, sans-serif;
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		min-width: 705px;
 	}
 
 /* -- The Generic Defs --*/
-a:link { color: #333366;text-decoration: none; border-bottom: 1px dashed gray; }
-a:visited {	color: #333366;	text-decoration: none; border-bottom: 1px dashed gray; }
+a:link { color: #007FC9;text-decoration: none; border-bottom: 0px dashed transparent; }
+a:visited {	color: #007FC9;	text-decoration: none; border-bottom: 0px dashed transparent; }
 a:hover { text-decoration: underline; border: 0; }
 
 a img {border: none;}
@@ -48,8 +55,8 @@ img.standalone { display: block; margin: 0.5em auto; width: auto; max-width: 100
 #header h1 a {  }
 /* ---- END Top Header ---- */
 
-#blurb { float: left; margin: 33px 0 0 189px; padding: 0; color: #0091CD; font: 0.78em Helvetica, Arial, Verdana, sans-serif; letter-spacing: 3px; }
-#header>#blurb { margin-left: 370px; }
+#blurb { float: left; margin: 33px 0 0 189px; padding: 0; color: #0091CD; font: 0.78em Helvetica, Arial, Verdana, sans-serif; letter-spacing: 3px;  display: none;}
+#header>#blurb { margin-left: 370px;  display: none;}
 
 
 /* -- search form -- */

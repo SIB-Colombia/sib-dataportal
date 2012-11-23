@@ -1,14 +1,15 @@
 /** copied from occurrenceSpecial.css **/
 
-h1 { margin: 0; padding: 4px 0 0 96px; font-size: 1.3em ; color: #8425a6 }
-h2 { margin: 0; padding: 4px 0 0 96px; font-size: 1.2em ; color: #8425a6 }
-h4 { margin: 20px 0 5px 0; padding: 0 ; font-size: 1.1em ; color: #8425a6 }
+h1 { margin: 0; padding: 4px 0 0 96px; font-size: 1.3em ; color: #34BCE0 }
+h2 { margin: 0; padding: 4px 0 0 96px; font-size: 1.2em ; color: #34BCE0 }
+h4 { margin: 20px 0 5px 0; padding: 0 ; font-size: 1.1em ; color: #34BCE0 }
 
 p , div {	padding: 0; margin: 0; }
 
 table { margin: 0px 0 5px 0; padding: 0; }
 
-#twopartheader { margin: 20px 0 10px 0; padding: 0 0 0 95px; min-height:63px; background: url('images/searchResultsIcoBig.gif') no-repeat left top ;  }
+#twopartheader {
+	margin: 0px 0 10px 0; padding: 0 0 0 95px; min-height:63px; background: url('images/searchResultsIcoBig.gif') no-repeat left top ;  }
 #twopartheader h2 { color: #222; padding: 5px 0 0 0 ; margin: 0; font-size: 1.1em; font-weight: normal; }
 #twopartheader ul { padding: 9px 0 0 0 ; margin: 0 ; font-size: 1em; font-weight: normal; list-style: none; }
 #twopartheader ul li { display: inline; padding-right: 15px; }
@@ -37,7 +38,7 @@ ul.scResults li {  color: #AAA; }
 ul.scResults li a {  font-weight: bold; }
 
 
-li.scNames a { color: #8425a6; }
+li.scNames a { color: #34BCE0; }
 li.scDatasets a { color: #6abbe3;}
 li.scCountries a { color: #f19d5d;}
 

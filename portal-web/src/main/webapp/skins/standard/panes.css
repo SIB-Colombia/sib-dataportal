@@ -1,55 +1,84 @@
 #panes {
-	border: 0; width: 764px; margin-top: 25px;
+	border: 0; width: 970px; margin: 25px auto 0;
 }
-#content>#panes { width: 758px; }
+#content>#panes { width: 970px; margin: 25px auto 0;}
 
 #panes a:hover {
 	text-decoration: none;
-	border-bottom: 1px solid #CCC;
 }
 
 
 .panes_div {
-	margin: 0; padding: 0 0 0 10px;
-	height: 28em;
-	width:237px;
+	margin: 0;
+	padding: 0;
+	width:320px;
 	border: 0;
+	background:#F9F8F2;
+	display:inline-block;
+	vertical-align:top;
+}
+.panes_div p:first-child{
+	display:block;
+	text-transform:uppercase;
+	background:white;
 }
 
 
+.panes_div div{
+	padding:20px;
+	display:block;
+}
+
 #panes h2 {
-	margin: 10px 0 0 -10px;
-	padding: 55px 20px 11px 39px;
-	font: bold 1.2em Arial, Helvetica, sans-serif;	text-align:left;
+	margin: -30px 0 0 0;
+	padding: 45px 85px 10px 20px;
+	font: bold 2.7em 'Economica', Arial, Helvetica, sans-serif;
+	text-align:left;
+	line-height:0.8em;
+	width:200px;
+	position:relative;
+}
+#panes a{
+	color:#4A3D32;
 }
 
 #panes h2 a {
 	text-decoration:none;
-	font-size:1.1em;
 	border: 0;
+	color:#4A3D32;
 }
 
 #panes h3 {
-	color:	#333366;
-	font-size: 1em;
+	color:	#fff;
+	font-size: 1.7em;
 	text-decoration: none;
-	padding-bottom: 0px;
-	margin-bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+	font-family:'Economica', Helvetica, Arial, sans-serif;
+}
+#panes p{
+	margin:0px;
+}
+#panes h2+p{
+	margin:5px 20px 15px !important;
 }
 
-#taxonomypane	{ float: left; margin-left: 3px; }
-#taxonomypane h2 { color: #A76CC7; background: url("images/taxonomy_bg.gif") no-repeat ; }
-#taxonomypane h2 a { color: #A76CC7; }
-#taxonomypane h2 a:hover { text-decoration: underline ;}
+#taxonomypane	{}
+#taxonomypane h2 {background:url("images/ico_especies.png") no-repeat right top;}
+#taxonomypane h2 a:hover { }
+#taxonomypane div { background:#9CCBCE;}
 
 
-#datasetpane { float: right; }
-#datasetpane h2 { color: #1F8EA8; background: url("images/datasets_bg.gif") no-repeat ; }
-#datasetpane h2 a { color: #1F8EA8;  }
-#datasetpane h2 a:hover { text-decoration: underline ; }
+#datasetpane {}
+#datasetpane h2 {background:url("images/ico_dataset.png") no-repeat right top;}
+#datasetpane h2 a:hover { }
+#datasetpane div { background:#B6CA7A;}
 
-#geographypane	{ float: right; margin-right: 12px; }
-#panes>#geographypane	{ margin-right: 9px; }
-#geographypane h2 {	color: #C76106; background: url("images/geography_bg.gif") no-repeat ; }
-#geographypane h2 a { color: #C76106;  }
-#geographypane h2 a:hover {	text-decoration: underline ; }
+#geographypane	{}
+#geographypane h2 {background:url("images/ico_departamentos.png") no-repeat right top;}
+#geographypane h2 a:hover {}
+#geographypane div { background:#ED9748;}
+
+.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important;}
+ 
+.panes_div > div:nth-of-type(1) a { color:white !important;}
