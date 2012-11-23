@@ -1,7 +1,5 @@
 package net.sibcolombia.portal.web.controller.department;
 
-import org.gbif.portal.web.controller.AlphabetBrowserController;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Valentina Grajales
  * @author {@link "mailto:valegrajales@gmail.com"}
  */
-public class DepartmentBrowserController extends AlphabetBrowserController {
+public class DepartmentBrowserController extends net.sibcolombia.portal.web.controller.AlphabetBrowserController {
 
   /** Manager providing department information */
   protected DepartmentManager departmentManager;

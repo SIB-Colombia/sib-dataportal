@@ -26,6 +26,7 @@
     <property name="urlRoot" value="departments" />
     <property name="modelViewName" value="departmentBrowse" />
     <property name="defaultView" value="/welcome.htm" />
+    <property name="messageSource" ref="messageSource" />
     <property name="supportedPatterns">
       <list>
         <list>
