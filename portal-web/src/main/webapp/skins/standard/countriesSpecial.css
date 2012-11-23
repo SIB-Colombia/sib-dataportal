@@ -89,7 +89,8 @@ ul.flatlist li a{
     border-radius: 5px;
 	padding:7px;
 	display:inline-block;
-	width:15px;
+	/* Comentado para permitir opción todas sea visible */ 
+	/* width:15px; */
 	text-align:center;
 	font-weight:700;
 	color:white;
@@ -100,7 +101,8 @@ ul.flatlist #chosen {
     border-radius: 5px;
 	padding:7px;
 	display:inline-block;
-	width:12px;
+	/* Comentado para permitir opción todas sea visible */ 
+	/* width:12px; */
 	text-align:center;
 	}
 #furtherActions {
