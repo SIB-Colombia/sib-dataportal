@@ -10,8 +10,34 @@
 <c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no departments within the system.</c:when>
 	<c:otherwise>
+	<table id="country" class="statistics">
+		<thead>
+			<tr>
+				<th><spring:message code="departments.country.list.main.title"/></th>
+				<th><spring:message code="dataset.list.occurrence.count"/></th>
+				<th><spring:message code="dataset.speciesCount"/></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="odd">
+				<td class="name">
+					<img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${country.isoCountryCode}</string:lowerCase>.gif"/>&nbsp;<a href="${pageContext.request.contextPath}/countries/${country.isoCountryCode}"><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></a>
+				</td>
+				<td class="countrycount">
+					<c:if test="${country.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.occurrenceCount}" pattern="###,###"/><c:if test="${country.occurrenceCount>0}"></a></c:if>
+					(<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>)
+				</td>
+				<td class="countrycount">
+					<c:if test="${country.speciesCount>0}"><a href="${pageContext.request.contextPath}/occurrences/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.speciesCount}" pattern="###,###"/><c:if test="${country.speciesCount>0}"></a></c:if>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}"/>
+	</p>
 	<display:table name="departments" export="false" class="statistics" id="department">
-	  <display:column titleKey="departments.drilldown.main.title" class="name">
+	  <display:column titleKey="deparments.drilldown.main.title" class="name">
 	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
 	  </display:column>	  
 	  <display:column titleKey="dataset.list.occurrence.count" class="countrycount">
