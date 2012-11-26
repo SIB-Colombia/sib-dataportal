@@ -471,16 +471,20 @@ public class DataResourceDAOImpl extends HibernateDaoSupport implements DataReso
         return query.list();
       }
     });
-
-    List<String> resourceNetworksChars = (List<String>) template.execute(new HibernateCallback() {
-
-      public Object doInHibernate(Session session) {
-        Query query =
-          session
-            .createSQLQuery("select distinct(SUBSTRING(name,1,1)) from resource_network where name is not null order by name");
-        return query.list();
-      }
-    });
+    /*
+     * SIB Colombia Edit, do not search resourceNetworks
+     */
+    /*
+     * List<String> resourceNetworksChars = (List<String>) template.execute(new HibernateCallback() {
+     * public Object doInHibernate(Session session) {
+     * Query query =
+     * session
+     * .createSQLQuery("select distinct(SUBSTRING(name,1,1)) from resource_network where name is not null order by name")
+     * ;
+     * return query.list();
+     * }
+     * });
+     */
 
     ArrayList<Character> chars = new ArrayList<Character>();
     for (String result : dataResourceChars) {
@@ -494,13 +498,18 @@ public class DataResourceDAOImpl extends HibernateDaoSupport implements DataReso
           chars.add(theChar);
       }
     }
-    for (String result : resourceNetworksChars) {
-      if (StringUtils.isNotEmpty(result)) {
-        Character theChar = new Character(Character.toUpperCase(result.charAt(0)));
-        if (!chars.contains(theChar))
-          chars.add(theChar);
-      }
-    }
+    /*
+     * SIB Colombia Edit, do not search resourceNetworks
+     */
+    /*
+     * for (String result : resourceNetworksChars) {
+     * if (StringUtils.isNotEmpty(result)) {
+     * Character theChar = new Character(Character.toUpperCase(result.charAt(0)));
+     * if (!chars.contains(theChar))
+     * chars.add(theChar);
+     * }
+     * }
+     */
 
     Collections.sort(chars);
     return chars;
