@@ -32,7 +32,7 @@
     <spring:message code="geography.intro.seedatafor"/>
   </h3>
    <a href="${pageContext.request.contextPath}/departments/CO-AMA">
-      <spring:message code="department.CO-AMA" text="Amazonas"/>
+      <spring:message code="department.CO-AMA" text="Amazonas"/></a>
   <!-- This was commented since it must be a recognition of the userDepartment in Colombia  
   <c:choose>
     <c:when test="${not empty userCountry}">
