@@ -238,7 +238,7 @@ div#header a{
 	font-family :'Economica', Arial, Helvetica, sans-serif;
 	text-transform : uppercase;
 	text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);
-	width:650px;
+	width:750px;
 	text-align:right;
 	position:relative;
 	z-index:500;
@@ -250,7 +250,7 @@ div#header a{
 #topmenu ul {
 	margin: 0;
 	padding: 0;
-	width:650px;
+	width:750px;
 }
 #topmenu ul li {
 	display: inline;
