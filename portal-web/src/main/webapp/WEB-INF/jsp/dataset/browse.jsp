@@ -7,6 +7,7 @@
 	<c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no data resources/providers within the system.</c:when>
 	<c:otherwise>
+
 <display:table name="resourceNetworks" export="false" class="statistics" id="resourceNetwork">
   <display:column titleKey="dataset.networks.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/network/${resourceNetwork.key}"><gbiftag:resourceNetworkPrint resourceNetwork="${resourceNetwork}"/></a>

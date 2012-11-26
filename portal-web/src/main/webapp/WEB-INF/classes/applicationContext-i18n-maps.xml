@@ -15,6 +15,45 @@
 		<property name="geospatialManager" ref="geospatialManager"/>		
 	</bean-->
 	
+	<!-- SIB Colombia Departments support -->
+	<!--ISO Colombian departments codes i18n key -->	
+	<util:map id="iso-department-codes">
+	    <entry key="CO-AMA" value="department.amazonas"/>
+		<entry key="CO-ANT" value="department.antioquia"/>
+		<entry key="CO-ARA" value="department.arauca"/>
+		<entry key="CO-ATL" value="department.atlantico"/>
+		<entry key="CO-BOL" value="department.bolivar"/>		
+		<entry key="CO-BOY" value="department.boyaca"/>
+		<entry key="CO-CAL" value="department.caldas"/>
+		<entry key="CO-CAQ" value="department.caqueta"/>
+		<entry key="CO-CAS" value="department.casanare"/>
+		<entry key="CO-CAU" value="department.cauca"/>	
+		<entry key="CO-CES" value="department.cesar"/>
+		<entry key="CO-CHO" value="department.choco"/>
+		<entry key="CO-COR" value="department.cordoba"/>
+		<entry key="CO-CUN" value="department.cundinamarca"/>
+		<entry key="CO-DC" value="department.bogota"/>		
+		<entry key="CO-GUA" value="department.guainia"/>
+		<entry key="CO-GUV" value="department.guaviare"/>
+		<entry key="CO-HUI" value="department.huila"/>
+		<entry key="CO-LAG" value="department.guajira"/>
+		<entry key="CO-MAG" value="department.magdalena"/>
+		<entry key="CO-MET" value="department.meta"/>
+		<entry key="CO-NAR" value="department.narino"/>	
+		<entry key="CO-NSA" value="department.nortesantander"/>
+		<entry key="CO-PUT" value="department.putumayo"/>
+		<entry key="CO-QUI" value="department.quindio"/>
+		<entry key="CO-RIS" value="department.risaralda"/>
+		<entry key="CO-SAN" value="department.sanandres"/>		
+		<entry key="CO-SAP" value="department.santander"/>
+		<entry key="CO-SUC" value="department.sucre"/>
+		<entry key="CO-TOL" value="department.tolima"/>
+		<entry key="CO-VAC" value="department.valledelcauca"/>
+		<entry key="CO-VAU" value="department.vaupes"/>
+		<entry key="CO-VID" value="department.vichada"/>
+	</util:map>
+	<!-- End SIB Colombia Departments support -->
+	
 	<!--ISO country codes to country i18n key -->	
 	<util:map id="iso-country-codes">
 		<entry key="AF" value="country.AF"/>

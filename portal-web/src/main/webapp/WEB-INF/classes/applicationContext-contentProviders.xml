@@ -36,6 +36,10 @@
 		<property name="boundingBoxOccurrenceFilter" ref="boundingBoxFilter"/>						
 		<property name="classificationOccurrenceFilter" ref="classificationFilter"/>						
 		<property name="countryOccurrenceFilter" ref="countryFilter"/>
+		
+		<!-- ocurrence filter for Colombian Departments (SIB Colombia) -->
+		<property name="departmentOccurrenceFilter" ref="departmentFilter"/>
+		
 		<property name="geoConsistencyOccurrenceFilter" ref="geoConsistencyFilter"/>		
 		<property name="georeferencedOccurrenceFilter" ref="georeferencedFilter"/>		
 		<property name="regionOccurrenceFilter" ref="regionFilter"/>		

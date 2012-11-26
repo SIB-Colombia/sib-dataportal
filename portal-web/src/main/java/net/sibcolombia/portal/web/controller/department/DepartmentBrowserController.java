@@ -1,6 +1,10 @@
 package net.sibcolombia.portal.web.controller.department;
 
+import org.gbif.portal.dto.geospatial.CountryDTO;
+import org.gbif.portal.service.GeospatialManager;
+
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sibcolombia.portal.dto.department.DepartmentDTO;
 import net.sibcolombia.portal.service.DepartmentManager;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  * Controller for browsing departments in Colombia
@@ -20,8 +25,14 @@ public class DepartmentBrowserController extends net.sibcolombia.portal.web.cont
   /** Manager providing department information */
   protected DepartmentManager departmentManager;
 
+  /** Manager providing country information */
+  protected GeospatialManager geospatialManager;
+
   /** The Model Key for the retrieve list of departments */
   protected String departmentsModelKey = "departments";
+
+  /** The Model Key for the retrieve list of departments */
+  protected String countryModelKey = "country";
 
   @Override
   public ModelAndView alphabetSearch(char searchChar, ModelAndView mav, HttpServletRequest request,
@@ -31,9 +42,12 @@ public class DepartmentBrowserController extends net.sibcolombia.portal.web.cont
     if (searchChar == '0') {
       searchForChar = null;
     }
+    Locale locale = RequestContextUtils.getLocale(request);
     List<DepartmentDTO> departments = departmentManager.getDepartmentsFor(searchForChar);
+    CountryDTO country = geospatialManager.getCountryForIsoCountryCode("CO", locale);
     mav.addObject(selectedCharModelKey, searchChar);
     mav.addObject(departmentsModelKey, departments);
+    mav.addObject(countryModelKey, country);
     return mav;
   }
 
@@ -55,6 +69,13 @@ public class DepartmentBrowserController extends net.sibcolombia.portal.web.cont
    */
   public void setDepartmentsModelKey(String departmentsModelKey) {
     this.departmentsModelKey = departmentsModelKey;
+  }
+
+  /**
+   * @param geospatialManager the geospatialManager to set
+   */
+  public void setGeospatialManager(GeospatialManager geospatialManager) {
+    this.geospatialManager = geospatialManager;
   }
 
   /**

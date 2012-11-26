@@ -596,6 +596,10 @@
     <property name="occurrenceFilters" ref="occurrenceFilters" />
     <property name="dataResourceFilter" ref="dataResourceFilter" />
     <property name="countryFilter" ref="countryFilter" />
+    
+    <!-- New filter for Colombia Departments (SIB Colombia) -->
+    <property name="departmentFilter" ref="departmentFilter" />
+    
     <property name="scientificNameFilter" ref="scientificNameFilter" />
     <property name="dataResourceIdFilter" ref="dataResourceIdFilter" />
     <property name="dataProviderIdFilter" ref="dataProviderIdFilter" />

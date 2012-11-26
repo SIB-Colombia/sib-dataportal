@@ -21,6 +21,10 @@
 				<ref bean="isTypeStatusFilter"/>
 				<!-- geospatial filters-->
 				<ref bean="countryFilter"/>
+				
+				<!-- Filter for Colombian Departments (SIB Colombia) -->
+				<ref bean="departmentFilter"/>
+				
 				<ref bean="regionFilter"/>
 				<ref bean="boundingBoxFilter"/>
 				<ref bean="latitudeFilter"/>
@@ -210,6 +214,24 @@
 		<property name="dropDownValues" ref="iso-country-codes"/>
 		<property name="helpView" value="/occurrence/countryHelp.htm"/>
 	</bean>
+	
+	<!-- Department filter class to show Colombian Departments (SIB Colombia) select list -->
+	<bean id="departmentFilter" parent="baseGeospatialFilter">
+		<property name="id" value="100"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.department"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-department-codes"/>
+		<property name="helpView" value="/occurrence/departmentHelp.htm"/>
+	</bean>
+	<!-- End of department filter class to show Colombian Departments (SIB Colombia) select list -->
+	
 	<!--taxonomic ranks-->
 	<bean id="kingdomFilter" parent="baseTaxonRankFilter">
 		<property name="id" value="6"/>

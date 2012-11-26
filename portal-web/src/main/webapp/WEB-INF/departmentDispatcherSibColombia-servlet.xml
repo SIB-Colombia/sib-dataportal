@@ -23,6 +23,7 @@
   <!--Browse Controller for Departments-->
   <bean id="departmentBrowserController" class="net.sibcolombia.portal.web.controller.department.DepartmentBrowserController">
     <property name="departmentManager" ref="departmentManager" />
+    <property name="geospatialManager" ref="geospatialManager" />
     <property name="urlRoot" value="departments" />
     <property name="modelViewName" value="departmentBrowse" />
     <property name="defaultView" value="/welcome.htm" />
