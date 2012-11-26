@@ -8,7 +8,7 @@
 	<c:when test="${fn:length(alphabet)==0}">Currently no data resources/providers within the system.</c:when>
 	<c:otherwise>
 
-<display:table name="resourceNetworks" export="false" class="statistics" id="resourceNetwork">
+<% /* <display:table name="resourceNetworks" export="false" class="statistics" id="resourceNetwork">
   <display:column titleKey="dataset.networks.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/network/${resourceNetwork.key}"><gbiftag:resourceNetworkPrint resourceNetwork="${resourceNetwork}"/></a>
   </display:column>	  
@@ -18,7 +18,8 @@
 	</display:column>	  
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
-</display:table>
+</display:table>*/
+%>
 
 <display:table name="dataProviders" export="false" class="statistics" id="dataProvider">
   <display:column titleKey="dataset.providers.list.title" class="name">
