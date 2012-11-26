@@ -11,7 +11,7 @@
 	<c:when test="${fn:length(alphabet)==0}">Currently no departments within the system.</c:when>
 	<c:otherwise>
 	<display:table name="departments" export="false" class="statistics" id="department">
-	  <display:column titleKey="deparments.drilldown.main.title" class="name">
+	  <display:column titleKey="departments.drilldown.main.title" class="name">
 	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
 	  </display:column>	  
 	  <display:column titleKey="dataset.list.occurrence.count" class="countrycount">

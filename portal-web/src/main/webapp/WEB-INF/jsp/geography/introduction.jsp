@@ -1,16 +1,16 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<a href="${pageContext.request.contextPath}/countries/">
+<a href="${pageContext.request.contextPath}/departments/">
 <img src="skins/standard/images/mariposas.jpg" width="320" height="215" alt="MARIPOSAS" />
 <h2>
-  <spring:message code="geography.intro.heading"/>
+  <spring:message code="departments.intro.heading"/>
   </h2>
 <p>
-  <spring:message code="geography.intro.description"/>
+  <spring:message code="departments.intro.description"/>
 </p>
 <div>
   <h3>
-    <spring:message code="geography.intro.summary"/>
+    <spring:message code="departments.intro.summary"/>
   </h3>
   <p>
     <c:set var="a0">
@@ -31,6 +31,9 @@
   <h3>
     <spring:message code="geography.intro.seedatafor"/>
   </h3>
+   <a href="${pageContext.request.contextPath}/departments/CO-AMA">
+      <spring:message code="department.CO-AMA" text="Amazonas"/>
+  <!-- This was commented since it must be a recognition of the userDepartment in Colombia  
   <c:choose>
     <c:when test="${not empty userCountry}">
       </p>
@@ -41,4 +44,5 @@
       <spring:message code="country.FR"/>
       </a> </c:otherwise>
   </c:choose>
+  -->
 </div>
