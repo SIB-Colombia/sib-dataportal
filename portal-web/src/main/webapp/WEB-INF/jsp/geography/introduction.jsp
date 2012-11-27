@@ -33,4 +33,16 @@
   </h3>
    <a href="${pageContext.request.contextPath}/departments/CO-AMA">
       <spring:message code="department.CO-AMA" text="Amazonas"/></a>
+  <%-- This was commented since it must be a recognition of the userDepartment in Colombia  
+  <c:choose>
+    <c:when test="${not empty userCountry}">
+      </p>
+      <a href="${pageContext.request.contextPath}/countries/${userCountry.isoCountryCode}">
+      <spring:message code="country.${userCountry.isoCountryCode}"/>
+      </a> </c:when>
+    <c:otherwise> <a href="${pageContext.request.contextPath}/countries/FR">
+      <spring:message code="country.FR"/>
+      </a> </c:otherwise>
+  </c:choose>
+  --%>
 </div>
