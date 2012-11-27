@@ -34,7 +34,7 @@
 		</tbody>
 	</table>
 	<p>
-		<spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}"/>
+		<spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}/countries/"/>
 	</p>
 	<display:table name="departments" export="false" class="statistics" id="department">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
