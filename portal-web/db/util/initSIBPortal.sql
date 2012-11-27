@@ -1,3 +1,23 @@
+-- Table department DDL definition
+-- ----------------------------
+--  Table structure for `department`
+-- ----------------------------
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE `department` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `iso_department_code` char(8) DEFAULT NULL,
+  `department_name` varchar(255) DEFAULT NULL,
+  `concept_count` int(10) DEFAULT NULL,
+  `species_count` int(10) DEFAULT NULL,
+  `occurrence_count` int(10) DEFAULT NULL,
+  `occurrence_coordinate_count` int(10) DEFAULT NULL,
+  `min_latitude` float DEFAULT NULL,
+  `max_latitude` float DEFAULT NULL,
+  `min_longitude` float DEFAULT NULL,
+  `max_longitude` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 -- Include department key in lookup_cell_density_type table
 insert into lookup_cell_density_type (cd_key, cd_value) values (7,'department')
 
