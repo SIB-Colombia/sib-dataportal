@@ -22,7 +22,7 @@
 	<c:choose>
 		<c:when test="${not empty concepts}">
 			<div id="furtherActions">
-				<h4><spring:message code='actions.for'/> <gbif:capitalize>${country.name}</gbif:capitalize></h4>
+				<%-- title hidden <h4><spring:message code='actions.for'/> <gbif:capitalize>${country.name}</gbif:capitalize></h4> --%>
 				<table cellspacing="1" class="actionsList">
 					<tbody>
 						<tr valign="top">

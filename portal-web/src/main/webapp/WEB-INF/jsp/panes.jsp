@@ -14,7 +14,8 @@
 </div><!-- End panes-->	
 
 <div id="announce">
-<h3><spring:message code="welcome.tip.of.the.day.title"/></h3>
+<%-- welcome message hidden since it is now on the footer
+<h3><spring:message code="welcome.tip.of.the.day.title"/></h3>--%>
 <c:set var="link1">
 	<em><a href="${pageContext.request.contextPath}/tutorial/introduction"><spring:message code="topmenu.about"/></a></em>
 </c:set>

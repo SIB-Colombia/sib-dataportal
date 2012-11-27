@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:if test="${country.occurrenceCount>0}">	
 <div id="furtherActions">
-	<h4><spring:message code='actions.for'/> <gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/>	</gbif:capitalize></h4>
+	<%-- title hidden  <h4><spring:message code='actions.for'/> <gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/>	</gbif:capitalize></h4> --%>
 	<table cellspacing="1" class="actionsList">
 		<tbody>
 			<tr valign="top">

@@ -27,7 +27,7 @@
 
 	<c:if test="${taxonConcept!=null}">
 		<div id="furtherActions">
-			<h4><spring:message code='actions.for'/> <string:capitalize><spring:message code="taxonrank.${taxonConcept.rank}"/></string:capitalize>: <gbif:taxonPrint concept="${taxonConcept}"/> ${taxonConcept.author}</h4>
+			<%-- title hidden <h4><spring:message code='actions.for'/> <string:capitalize><spring:message code="taxonrank.${taxonConcept.rank}"/></string:capitalize>: <gbif:taxonPrint concept="${taxonConcept}"/> ${taxonConcept.author}</h4> --%>
 			<table cellspacing="1" class="actionsList">
 				<tbody>
 					<c:set var="conceptKey" value="${taxonConcept.isNubConcept ? taxonConcept.key : taxonConcept.partnerConceptKey}"/>

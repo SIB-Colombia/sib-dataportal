@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:if test="${dataProvider.occurrenceCount>0 || (not empty dataResources && dataResources[0].sharedTaxonomy)}">	
 <div id="furtherActions">
-	<h4><spring:message code='actions.for'/> ${dataProvider.name}</h4>
+	<%-- title hidden <h4><spring:message code='actions.for'/> ${dataProvider.name}</h4> --%>
 	<table cellspacing="1" class="actionsList">
 		<tbody>
 			<tr valign="top">

@@ -15,7 +15,7 @@
 		<put name="header" value="/WEB-INF/jsp/header.jsp"/>
 		<put name="topmenu" value="/WEB-INF/jsp/menu/topMenu.jsp"/>
 		<put name="content" value=""/>
-		<put name="breadcrumbs" value="/WEB-INF/jsp/user/breadcrumbs.jsp"/>
+		<put name="breadcrumbs" value=""/>
 		<put name="footer" value="/common/footer.jsp"/>
 	</definition>
 	
@@ -45,7 +45,7 @@
 		<put name="results" value=""/>
 		<put name="header" value="/WEB-INF/jsp/header.jsp"/>
 		<put name="topmenu" value="/WEB-INF/jsp/menu/topMenu.jsp"/>
-		<put name="breadcrumbs" value="/WEB-INF/jsp/user/breadcrumbs.jsp"/>
+		<put name="breadcrumbs" value=""/>
 		<put name="footer" value="/common/footer.jsp"/>
 		<put name="viewName" value=""/>
 	</definition>

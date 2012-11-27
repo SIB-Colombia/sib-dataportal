@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:if test="${resourceNetwork.occurrenceCount>0}">
 <div id="furtherActions">
-	<h4><spring:message code='actions.for'/> ${resourceNetwork.name}</h4>
+	<%-- title hidden <h4><spring:message code='actions.for'/> ${resourceNetwork.name}</h4>--%>
 	<table cellspacing="1" class="actionsList">
 		<tbody>
 			<tr valign="top">

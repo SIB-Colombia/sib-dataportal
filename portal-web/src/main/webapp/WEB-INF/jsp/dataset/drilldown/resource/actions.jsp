@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="furtherActions">
-	<h4><spring:message code='actions.for'/> ${dataResource.name}</h4>
+	<%-- title hidden <h4><spring:message code='actions.for'/> ${dataResource.name}</h4> --%>
 	<table cellspacing="1" class="actionsList">
 		<tbody>
 			<tr valign="top">

@@ -11,7 +11,7 @@
 		null); 	
 </script>		
 <div id="furtherActions">
-	<h4><spring:message code='actions.for'/> <gbif:taxonPrint concept="${taxonConcept}"/></h4>
+	<%-- title hidden <h4><spring:message code='actions.for'/> <gbif:taxonPrint concept="${taxonConcept}"/></h4> --%>
 	<table cellspacing="1" class="actionsList">
 		<tbody>
 			<tr valign="top">
