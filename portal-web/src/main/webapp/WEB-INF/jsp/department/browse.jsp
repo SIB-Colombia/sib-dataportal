@@ -1,4 +1,23 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+     var rows=[];
+ 	<c:forEach items="${departments}" var="department">
+ 		rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCount}"/>"), parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>")]);
+ 	</c:forEach>
+ 	google.load('visualization', '1', {'packages': ['geochart']});
+    google.setOnLoadCallback(drawMarkersMap);
+      function drawMarkersMap() {
+    	var table = new google.visualization.DataTable();  
+    	table.addColumn('string', 'DEPARTAMENTO', 'Departamento');
+		table.addColumn('number', 'Registros Biológicos', 'Registros Biológicos');
+		table.addColumn('number', 'Registros Biológicos Georeferenciados', 'Registros Biológicos Georeferenciados');
+    	table.addRows(rows);
+        var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#C2EBF6', colors: ['#FFFFFF', '#fcd360']};   //, displayMode: 'markers'
+        var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+        chart.draw(table, options);
+    };
+</script>
 <div id="twopartheader">	
 	<h2><spring:message code="departments.list.main.title"/></h2>
 	<gbif:alphabetLink rootUrl="/departments/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
@@ -52,3 +71,8 @@
 	</display:table>
 	</c:otherwise>
 </c:choose>
+
+<div id="container"style="width: 750px; height: 468px; ">
+	<h4>Número de registros por departamentos</h4>
+	<div id="chart_div" style="width: 750px; height: 468px;  margin-left: -375px; left: 50%"></div>
+</div>
