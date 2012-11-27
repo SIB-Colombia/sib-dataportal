@@ -20,8 +20,8 @@
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>*/
 %>
-
-<display:table name="dataProviders" export="false" class="statistics" id="dataProvider">
+<fmt:setLocale value="en_US"/>
+<display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider">
   <display:column titleKey="dataset.providers.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
@@ -30,13 +30,31 @@
 		</p>  				
 		</c:if>
   </display:column>	  
-  <display:column titleKey="dataset.list.occurrence.count" class="singlecount">
+  <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="singlecount">
     <c:choose>
       <c:when test="${dataProvider.occurrenceCount>0}">
       	<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>"><fmt:formatNumber value="${dataProvider.occurrenceCount}" pattern="###,###"/></a>
+      </c:when>
+	  <c:otherwise>
+	    <p class="notApplicable">
+		  	<c:choose>
+		  	  <c:when test="${dataProvider.conceptCount>0}">
+		  	  	<spring:message code="dataset.not.applicable"/>
+		  	  </c:when>
+		  	  <c:otherwise>
+		  	  	<spring:message code="dataset.not.yet.indexed"/>
+		  	  </c:otherwise>
+		  	</c:choose>
+		 </p>
+	  </c:otherwise>
+	</c:choose>
+	</display:column>
+	<display:column titleKey="dataset.list.occurrence.count.georeferenced" class="singlecount">
+    <c:choose>
+      <c:when test="${dataProvider.occurrenceCount>0}">
       	<c:choose>
-      	  <c:when test="${dataProvider.occurrenceCoordinateCount>0}">(<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataProvider.occurrenceCoordinateCount}" pattern="###,###"/></a>)</c:when>
-      	  <c:otherwise>(0)</c:otherwise>
+      	  <c:when test="${dataProvider.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataProvider.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
+      	  <c:otherwise>0</c:otherwise>
       	</c:choose>
       </c:when>
 	  <c:otherwise>
@@ -52,23 +70,41 @@
 		 </p>
 	  </c:otherwise>
 	</c:choose>
-	</display:column>	  
+	</display:column>  
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>
 
-<display:table name="dataResources" export="false" class="statistics" id="dataResource">
+<display:table name="dataResources" export="false" class="statistics sortable" id="dataResource">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/resource/${dataResource.key}">${dataResource.name}</a>
   	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/datasets/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>
   </display:column>
-  <display:column titleKey="dataset.list.occurrence.count" class="bigcount">
+  <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="bigcount">
     <c:choose>
       <c:when test="${dataResource.occurrenceCount>0}">
   	    <a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>"><fmt:formatNumber value="${dataResource.occurrenceCount}" pattern="###,###"/></a>
+		  </c:when>
+		  <c:otherwise>
+		    <p class="notApplicable">
+			  	<c:choose>
+			  	  <c:when test="${dataResource.conceptCount>0}">
+			  	  	<spring:message code="dataset.not.applicable"/>
+			  	  </c:when>
+			  	  <c:otherwise>
+			  	  	<spring:message code="dataset.not.yet.indexed"/>
+			  	  </c:otherwise>
+			  	</c:choose>
+			 </p>
+		  </c:otherwise>
+		</c:choose>
+  </display:column>
+  <display:column titleKey="dataset.list.occurrence.count.georeferenced" class="bigcount">
+    <c:choose>
+      <c:when test="${dataResource.occurrenceCount>0}">
       	<c:choose>
-      	  <c:when test="${dataResource.occurrenceCoordinateCount>0}">(<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataResource.occurrenceCoordinateCount}" pattern="###,###"/></a>)</c:when>
-      	  <c:otherwise>(0)</c:otherwise>
+      	  <c:when test="${dataResource.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataResource.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
+      	  <c:otherwise>0</c:otherwise>
       	</c:choose>
 		  </c:when>
 		  <c:otherwise>
@@ -84,7 +120,7 @@
 			 </p>
 		  </c:otherwise>
 		</c:choose>
-  </display:column>   
+  </display:column> 
   <display:column titleKey="dataset.list.taxonconcept.count" class="count">
      <c:if test="${dataResource.conceptCount>0}">
   	 	<fmt:formatNumber value="${dataResource.conceptCount}" pattern="###,###"/>

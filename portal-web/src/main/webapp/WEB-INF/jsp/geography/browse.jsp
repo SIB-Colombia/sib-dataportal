@@ -11,15 +11,18 @@
 <c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no countries within the system.</c:when>
 	<c:otherwise>
-	<display:table name="countries" export="false" class="statistics" id="country">
+	<fmt:setLocale value="en_US"/>
+	<display:table name="countries" export="false" class="statistics sortable" id="country">
 	  <display:column titleKey="geography.drilldown.main.title" class="name">
 		  <img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${country.isoCountryCode}</string:lowerCase>.gif"/>&nbsp;<a href="${pageContext.request.contextPath}/countries/${country.isoCountryCode}"><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize>
 		  </a>
 	  </display:column>	  
-	  <display:column titleKey="dataset.list.occurrence.count" class="countrycount">
+	  <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="countrycount">
 	  	<c:if test="${country.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.occurrenceCount}" pattern="###,###"/><c:if test="${country.occurrenceCount>0}"></a></c:if>
-	  	(<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>)
-	  </display:column>	  
+	  </display:column>
+	  <display:column titleKey="dataset.list.occurrence.count.georeferenced" class="countrycount">
+	  	<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>
+	  </display:column>	 
 	  <display:column titleKey="dataset.speciesCount" class="countrycount">
 	  	<c:if test="${country.speciesCount>0}"><a href="${pageContext.request.contextPath}/occurrences/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.speciesCount}" pattern="###,###"/><c:if test="${country.speciesCount>0}"></a></c:if>
   	  </display:column>
