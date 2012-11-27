@@ -79,7 +79,7 @@
 </c:choose>
 
 <div id="container"style="width: 750px; height: 468px; ">
-	<h4>Número de registros por departamentos</h4>
+	<h4><spring:message text="Mapa de registros por departamentos"/></h4>
 	<div id="chart_div" style="width: 750px; height: 468px;  margin-left: -375px; left: 50%"></div>
 </div>
-<br/>
+<br></br>
