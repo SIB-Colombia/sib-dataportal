@@ -1,6 +1,7 @@
+--Add column iso_department_code for departments
 alter table occurrence_record add iso_department_code CHAR(8) after iso_country_code;
 
--- populate iso_department_code
+-- populate iso_department_code according to differents possible names.
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital de bogotá');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá, d.c.');
