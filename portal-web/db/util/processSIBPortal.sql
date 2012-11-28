@@ -2,7 +2,7 @@
 -- This update fills departments of Colombia data
 
 -- populate the centi_cell_density for department
--- 7 is department lookup_cell_density_type
+-- 8 is department lookup_cell_density_type
 select concat('Building centi cells for department: ', now()) as debug;
 insert into centi_cell_density 
 select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
@@ -33,7 +33,7 @@ update department d set occurrence_count =
 -- set occurrence record coordinate count for department table
 select concat('Starting department occurrence coordinate count: ', now()) as debug;
 update department d set occurrence_coordinate_count =   
-(select sum(cd.count) from cell_density cd where cd.entity_id=d.id and cd.type=7);
+(select sum(cd.count) from cell_density cd where cd.entity_id=d.id and cd.type=8);
 
 -- set species count per department
 -- this used to be species and lower concepts as well - changed 12.8.08
