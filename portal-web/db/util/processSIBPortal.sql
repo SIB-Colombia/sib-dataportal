@@ -8,7 +8,7 @@
 delete from gbif_log_message where event_id=1008 and occurrence_id  in 
 (select id from occurrence_record where geospatial_issue=32);
 -- removing geospatial_issue
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32
+update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 
 
 -- This update fills departments of Colombia data
