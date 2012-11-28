@@ -24,6 +24,7 @@
   <bean id="departmentBrowserController" class="net.sibcolombia.portal.web.controller.department.DepartmentBrowserController">
     <property name="departmentManager" ref="departmentManager" />
     <property name="geospatialManager" ref="geospatialManager" />
+    <property name="mapContentProvider" ref="mapContentProvider" />
     <property name="urlRoot" value="departments" />
     <property name="modelViewName" value="departmentBrowse" />
     <property name="defaultView" value="/welcome.htm" />
@@ -38,7 +39,32 @@
     </property>
   </bean>
   
-  <!-- GeospatialManager -->
+  <!-- Controller for Department Views -->
+  <!-- <bean id="departmentController" class="net.sibcolombia.portal.web.controller.department.DepartmentController">
+    <property name="geospatialManager" ref="departmentManager" />
+    <property name="mapContentProvider" ref="mapContentProvider" />
+    <property name="urlRoot" value="departments" />
+    <property name="viewNamePrefix" value="departmentView" />
+    <property name="defaultView" value="/departments/" />
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>key</value>
+        </list>
+        <list>
+          <value>key</value>
+          <value>view</value>
+        </list>
+      </list>
+    </property>
+    <property name="supportedSubViews">
+      <list>
+        <value>mapWidget</value>
+      </list>
+    </property>
+  </bean> -->
+  
+  <!-- DepartmentManager -->
   <bean id="departmentManager" class="org.springframework.aop.framework.ProxyFactoryBean">
   	<property name="target">
   		<bean class="net.sibcolombia.portal.service.implementation.DepartmentManagerImplementation">

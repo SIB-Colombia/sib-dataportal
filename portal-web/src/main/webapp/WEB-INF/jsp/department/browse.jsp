@@ -1,4 +1,5 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
+<% /* SIB Colombia Commenting code to show map at the bottom
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <script type='text/javascript'>
      var rows=[];
@@ -17,45 +18,28 @@
         var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
         chart.draw(table, options);
     };
-</script>
+</script> */ %>
 <div id="twopartheader">	
-	<h2><spring:message code="departments.list.main.title"/></h2>
-	<gbif:alphabetLink rootUrl="/departments/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
+	<h2><spring:message code="departments.list.main.title"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span></h2>
+	<p style="padding-left: 10px;">
+	<spring:message code="departments.list.iso.explaination"/>
+	</p>
+	<% // SIB Colombia, disable show alphabet option %>
+	<% //<gbif:alphabetLink rootUrl="/departments/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/> %>
 </div>
-<p>
-<spring:message code="departments.list.iso.explaination"/>
-</p>
-<c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
+<c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise></c:otherwise></c:choose>
 <c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no departments within the system.</c:when>
 	<c:otherwise>
+	
+	<% // SIB Colombia, details of Colombia %>
+	<tiles:insert page="actions.jsp"/>
+	
+	<div class="subcontainer">
+		<tiles:insert page="occurrences.jsp"/>
+	</div>
+	
 	<fmt:setLocale value="en_US"/>
-	<table id="country" class="statistics">
-		<thead>
-			<tr>
-				<th><spring:message code="departments.country.list.main.title"/></th>
-				<th><spring:message code="dataset.list.occurrence.count.nongeoreferenced"/></th>
-				<th><spring:message code="dataset.list.occurrence.count.georeferenced"/></th>
-				<th><spring:message code="dataset.speciesCount"/></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="odd">
-				<td class="name">
-					<img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${country.isoCountryCode}</string:lowerCase>.gif"/>&nbsp;<a href="${pageContext.request.contextPath}/countries/${country.isoCountryCode}"><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></a>
-				</td>
-				<td class="countrycount">
-					<c:if test="${country.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.occurrenceCount}" pattern="###,###"/><c:if test="${country.occurrenceCount>0}"></a></c:if>
-				</td>
-				<td class="countrycount">
-					<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>
-				</td>
-				<td class="countrycount">
-					<c:if test="${country.speciesCount>0}"><a href="${pageContext.request.contextPath}/occurrences/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.speciesCount}" pattern="###,###"/><c:if test="${country.speciesCount>0}"></a></c:if>
-				</td>
-			</tr>
-		</tbody>
-	</table>
 	<p>
 		<spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}/countries/"/>
 	</p>
@@ -77,9 +61,10 @@
 	</display:table>
 	</c:otherwise>
 </c:choose>
+<br></br>
 
-<div id="container"style="width: 750px; height: 468px; ">
+<% /* SIB Colombia Commenting code to show map at the bottom
+<div id="container"style="width: 750px; height: 468px; margin-bottom: 30px;">
 	<h4><spring:message text="Mapa de registros por departamentos"/></h4>
 	<div id="chart_div" style="width: 750px; height: 468px;  margin-left: -375px; left: 50%"></div>
-</div>
-<br></br>
+</div> */ %>

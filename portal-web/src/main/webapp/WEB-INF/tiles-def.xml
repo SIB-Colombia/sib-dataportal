@@ -464,11 +464,13 @@
 		<put name="content" value="/WEB-INF/jsp/geography/gbifWMSMap.jsp"/>
 	</definition>
 	
+	<!-- SIB Colombia -->
 	<!-- Department Tiles -->
 	<definition name="departmentBrowse" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/department/browseSubtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/department/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/department/browse.jsp"/>
+		<put name="overviewMap" value="geographyOverviewMap" />
 	</definition>
 	
 	<!-- Mapping tiles -->

@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="twopartheader">	
-	<h2><spring:message code="geography.list.main.title"/></h2>
+	<h2><spring:message code="geography.drilldown.list.resource.search"/></h2>
 		<c:set var="ignores"><spring:message code="country.alphabet.skips"/></c:set>
 		<gbif:alphabetLink rootUrl="/countries/browse/" selected="${selectedChar}" listClass="flatlist" ignores="${ignores}" letters="${alphabet}"/>
 </div>

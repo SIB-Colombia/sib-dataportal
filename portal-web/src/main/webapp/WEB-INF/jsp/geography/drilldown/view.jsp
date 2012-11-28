@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="twopartheader">
-	<h2><spring:message code="geography.drilldown.main.title"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span></h2>
+	<h2><spring:message code="geography.drilldown.list.resource.search"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span></h2>
 	<c:if test="${not empty country.region}"><h3><spring:message code="region.${country.region}"/></h3></c:if>
 </div>	
 
