@@ -1,67 +1,147 @@
 /** copied from occurrenceSpecial.css **/
 
-h1 { margin: 0; padding: 4px 0 0 96px; font-size: 1.3em ; color: #34BCE0 }
-h2 { margin: 0; padding: 4px 0 0 96px; font-size: 1.2em ; color: #34BCE0 }
-h4 { margin: 20px 0 5px 0; padding: 0 ; font-size: 1.1em ; color: #34BCE0 }
-
-p , div {	padding: 0; margin: 0; }
-
-table { margin: 0px 0 5px 0; padding: 0; }
-
+p, div {
+	padding: 0;
+	margin: 0;
+}
+table {
+	margin: 0px 0 5px 0;
+	padding: 0;
+}
 #twopartheader {
-	margin: 0px 0 10px 0; padding: 0 0 0 95px; min-height:63px; background: url('images/searchResultsIcoBig.gif') no-repeat left top ;  }
-#twopartheader h2 { color: #222; padding: 5px 0 0 0 ; margin: 0; font-size: 1.1em; font-weight: normal; }
-#twopartheader ul { padding: 9px 0 0 0 ; margin: 0 ; font-size: 1em; font-weight: normal; list-style: none; }
-#twopartheader ul li { display: inline; padding-right: 15px; }
-
+	margin: 0px 0 10px 0;
+	padding: 0 0 0 85px;
+	min-height: 80px;
+	background:url('../standard/images/ico_search.png') no-repeat left top;
+}
+#twopartheader h2 {
+	color: #34BCE0;
+	padding: 15px 0 0 0;
+	margin: 0;
+	font-size: 2.3em;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+#twopartheader ul {
+	padding: 9px 0 0 0;
+	margin: 0;
+	font-size: 1em;
+	font-weight: normal;
+	list-style: none;
+}
+#twopartheader ul li {
+	display: inline;
+	padding-right: 15px;
+}
 h2.scNames {
-	padding: 4px 4px 4px 8px;
-	margin: 20px 0 0 0;
-  border-bottom: 1px solid #cda2d7;
+	padding: 4px 4px 4px 38px;
+	margin: 25px 0 5px 0;
+	/*border-bottom: 1px solid #cda2d7;*/
+	background:url(images/ico_especies_s.png) no-repeat center left;
 }
-
 h2.scCountries {
-	padding: 4px 4px 4px 8px;
-	margin: 20px 0 0 0;
-  border-bottom: 1px solid #ffbd8b ;
-	color: #f19d5d ;
+	padding: 4px 4px 4px 38px;
+	margin: 25px 0 5px 0;
+	/*border-bottom: 1px solid #ffbd8b;*/
+	background:url(images/ico_departamentos_s.png) no-repeat center left;
+	
 }
-
 h2.scDatasets {
-	padding: 4px 4px 4px 8px;
-	margin: 20px 0 0 0;
-  border-bottom: 1px solid #a2c5d7;
-	color: #6abbe3 ;
+	padding: 4px 4px 4px 38px;
+	margin: 25px 0 5px 0;
+	/*border-bottom: 1px solid #a2c5d7;*/
+	background:url(images/ico_dataset_s.png) no-repeat center left;
+	
 }
-
-ul.scResults li {  color: #AAA; }
-ul.scResults li a {  font-weight: bold; }
-
-
-li.scNames a { color: #34BCE0; }
-li.scDatasets a { color: #6abbe3;}
-li.scCountries a { color: #f19d5d;}
-
-
+ul.scResults li {
+	color: #AAA;
+}
+ul.scResults li a:hover {
+	background:#fff;
+	color:#eeeedd;
+	
+}
+ul.scResults li a {
+	color:#34BCE0;
+	background-color:transparent;
+	font-weight: bold;
+	padding:4px 7px;
+	-webkit-border-radius:7px;
+    border-radius:7px;
+}
+li.scNames a {
+	color: #34BCE0;
+}
+li.scDatasets a {
+	color: #6abbe3;
+}
+li.scCountries a {
+	color: #34BCE0;
+}
 td {
 	padding: 4px 6px 6px 6px;
-	margin:0px;
+	margin: 0px;
 	border-bottom: 1px solid #EEE;
 }
-
-td.tdColumn1 { width: 10% ; color: #AAA ; }
-td.tdColumn2 { width: 40% ; color: #AAA ;}
-td.tdColumn3 {  color: #AAA; font-size: 0.9em ; }
-
-
-.moreMatches {
-    margin: 0 0 0 6px; font-weight:bold;
+td.tdColumn1 {
+	width: 15%;
+	color: #888;
 }
-
-.interpretedFrom { color: #000000 }
-
-ul.searchResults { margin-bottom:10px; margin-left:30px; }
-ul.searchResults li { padding-bottom:5px; padding-left:10px; }
-
-.soundex { padding:5px 0px 10px 0px; }
-.didyoumean { color:#FF0000 }
+td.tdColumn2 {
+	width: 40%;
+	color: #888;
+}
+td.tdColumn3 {
+	color: #888;
+	font-size: 0.9em;
+}
+.moreMatches {
+	margin: 5px 0 0 15px;
+	font-weight: bold;
+	/*text-align:right;
+	display:block;*/
+}
+.interpretedFrom {
+	color: #000000
+}
+ul.searchResults {
+	margin-bottom: 10px;
+	margin-left: 30px;
+}
+ul.searchResults li {
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+.soundex {
+	padding: 5px 0px 10px 0px;
+}
+.didyoumean {
+	color: #FF0000
+}
+.white_rounded_bg{
+	/*background:none repeat scroll 0 0 rgba(255, 255, 255, 0.5);*/
+	-webkit-border-radius:20px;
+    border-radius:20px;
+	margin:3px 0 10px 0;
+}
+.white_rounded_bg td{
+	vertical-align:middle;
+}
+.white_rounded_bg tr:nth-child(odd) {
+	padding:8px;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	background:rgba(53, 188, 224, 0.1);
+}
+.white_rounded_bg tr:nth-child(even) {
+	padding:8px;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	background:rgba(53, 188, 224, 0.2);
+}
+.white_rounded_bg tr td:first-child {
+	padding:10px 5px 5px 15px;
+}
+tbody:empty{
+	display:none;
+}
