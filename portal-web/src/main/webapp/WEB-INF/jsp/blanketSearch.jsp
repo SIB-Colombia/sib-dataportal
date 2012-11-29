@@ -3,7 +3,7 @@
 <p><spring:message code="blanket.search.hint"/></p> -->
 <form name="quickSearchForm" method="get" onsubmit="return submitQuickSearch(false);" action="${pageContext.request.contextPath}/search/blanketSearch.htm">
 	<fieldset>
-		<input id="query" type="search" name="keyword" <c:if test="${not empty searchString}">value="${searchString}"</c:if> placeholder="<spring:message code="blanket.search.placeholder"/>" autosave="gbif.blanketsearch" results="5" tabindex="1"/>
+		<input id="query" name="keyword" <c:if test="${not empty searchString}">value="${searchString}"</c:if> placeholder="<spring:message code="blanket.search.placeholder"/>" autosave="gbif.blanketsearch" results="5" tabindex="1"/>
 		<a href="javascript:submitFromLinkQuickSearch();" id="go"><!--<spring:message code="blanket.search.go"/>--></a>
 	</fieldset>	
 </form>
