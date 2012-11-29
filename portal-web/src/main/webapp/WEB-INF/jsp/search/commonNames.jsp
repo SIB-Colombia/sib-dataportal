@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <a name="Names2"><h2 class="scNames"><spring:message code="blanket.search.common.names.title" text="Common names"/></h2></a>
-<table cellspacing="1" width="100%">
+<table cellspacing="1" width="100%" class="white_rounded_bg">
 	<tbody>
 
 	<% // Display exact Common Name matches first %>

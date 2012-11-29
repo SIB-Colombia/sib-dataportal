@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <a name="Countries"><h2 class="scCountries"><spring:message code="blanket.search.geographical.areas.title"/></h2></a>
-<table cellspacing="1" width="100%">
+<table cellspacing="1" width="100%" class="white_rounded_bg">
 	<tbody>
 	<c:set var="searchResults" value="${countryMatches}" scope="request"/>
 	<tiles:insert page="countriesList.jsp"/>
