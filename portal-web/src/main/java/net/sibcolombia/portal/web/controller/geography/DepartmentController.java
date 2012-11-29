@@ -48,7 +48,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class DepartmentController extends RestController {
 
 	/** GeospatialManager for department queries */
-	protected DepartmentManager departmentManager;  //hacer uno para departamento
+	protected DepartmentManager departmentManager;  
 	/** Map Content Provider for map utilities */ 
 	protected MapContentProvider mapContentProvider;  //*****
 	
@@ -65,26 +65,27 @@ public class DepartmentController extends RestController {
 	/**
 	 * @see org.gbif.portal.web.controller.RestController#handleRequest(java.util.List, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
+	/*
 	@Override
 	public ModelAndView handleRequest(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//String countryKey = properties.get(keyRequestKey);
+		
 		String departmentKey = properties.get(keyRequestKey);
 		if(StringUtils.isNotEmpty(departmentKey)){
-			//CountryDTO country = null;
 			DepartmentDTO department = null;
 			Locale locale = RequestContextUtils.getLocale(request);  //?
 			if(departmentManager.isValidISODepartmentCode(departmentKey))
-				department = departmentManager.getDepartmentForIsoDepartmentCode(departmentKey, locale); //?
+				department = departmentManager.getDepartmentForIsoDepartmentCode(departmentKey); 
 			} else if (departmentManager.isValidDepartmentKey(departmentKey)){
 				department =departmentManager.getDepartmentFor(departmentKey);
 			} else {
-				SearchResultsDTO searchResultsDTO = departmentManager.findDepartments(departmentKey, false, false, true, locale, new SearchConstraints(0, 1));
+				SearchResultsDTO searchResultsDTO = departmentManager.findDepartments(departmentKey, false, false, true, new SearchConstraints(0, 1));
 				List results = searchResultsDTO.getResults();
 				if(results!=null && results.size()==1)
 					department = (DepartmentDTO) results.get(0);
 			}
 			
 			if(department!=null){
+				/*
 				//sort counts into descending order
 				List<CountDTO> resourceCounts = departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartemntCode(), true);
 				List<CountDTO> departmentCounts = departmentManager.getDepartmentCountsForDepartement(department.getIsoDepartmentCode(), true, locale);
@@ -92,6 +93,7 @@ public class DepartmentController extends RestController {
 				List<CountDTO> nonResourceCounts = departmentManager.getDataResourceCountsForDepartement(country.getIsoDepartmentCode(), false);
 				departmentManager.synchronizeLists(resourceCounts, nonResourceCounts);
 				departmentManager.synchronizeLists(departmentCounts, nonDepartmentCounts);
+				
 				if(sortResourcesByCount){
 					Collections.sort(resourceCounts, new Comparator<CountDTO>(){
 						public int compare(CountDTO o1, CountDTO o2) {
@@ -108,20 +110,24 @@ public class DepartmentController extends RestController {
 						}
 					});
 				}
-				
+				*/
+	/*
 				boolean showHosted = ServletRequestUtils.getBooleanParameter(request, hostedModelKey, false);
 				EntityType entityType = null;
 				
 				entityType=EntityType.TYPE_DEPARTMENT;
 				
 				ModelAndView mav = resolveAndCreateView(properties, request, false);
+				
 				mav = resolveAndCreateView(properties, request, false);
+				/*
 				mav.addObject(departmentModelKey, department);
 				mav.addObject(resourceCountsModelKey, resourceCounts);
 				mav.addObject(nonResourceCountsModelKey, nonResourceCounts);
 				mav.addObject(departmentCountsModelKey, departmentCounts);
 				mav.addObject(nonDepartmentCountsModelKey, nonDepartmentCounts);
-				
+				*/
+	/*
 				if(logger.isDebugEnabled())
 					logger.debug("Returning details of:"+department);
 				
@@ -142,6 +148,7 @@ public class DepartmentController extends RestController {
 			}
 		
 		return redirectToDefaultView();
+		
 	}
 
 	/**

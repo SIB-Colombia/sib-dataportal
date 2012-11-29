@@ -7,6 +7,7 @@ import net.sibcolombia.portal.dto.department.DepartmentDTO;
 import org.gbif.portal.dto.CountDTO;
 import org.gbif.portal.dto.SearchResultsDTO;
 import org.gbif.portal.dto.util.SearchConstraints;
+import org.gbif.portal.service.ServiceException;
 
 
 
@@ -24,7 +25,7 @@ public interface DepartmentManager {
    * @return List of first character of departments names.
    */
   public List<Character> getDepartmentAlphabet();
-
+/*
   /**
    * Retrieves the department information for the Department with the supplied key, if supplied key is null return without
    * filter.
@@ -33,8 +34,9 @@ public interface DepartmentManager {
    * @param locale the locale to use for retrieving locale specific information
    * @return DepartmentDTO holding details of this department, null if there isnt a department for the specified key.
    */
+  /*
   public DepartmentDTO getDepartmentFor(String departmentKey);
-
+*/
   /**
    * Retrieves a distinct list of the departments with the name starting with the supplied char.
    * Additional sorting involves including departments in a resultset that do not have names that start with
@@ -64,8 +66,9 @@ public interface DepartmentManager {
    * @param locale the locale to use for retrieving locale specific information
    * @return DepartmentDTO holding details of this Department, null if there isnt a Department for the specified key.
    */
-  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode, Locale locale);
-  
+  /*
+  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode);
+  */
     /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied
@@ -86,9 +89,10 @@ public interface DepartmentManager {
    * @param searchConstraints
    * @return SearchResultsDTO
    */
+  /*
   public SearchResultsDTO findDepartments(String nameStub, boolean fuzzy, boolean anyOccurrence,
     boolean onlySearchInLocale, Locale locale, SearchConstraints searchConstraints);
-	
+	*/
 	  /**
    * Returns a list of occurrence record counts for data resources in the supplied department.
    * 
@@ -97,6 +101,8 @@ public interface DepartmentManager {
    * @return List<CountDTO> containing data resource id, data resource name, data provider name and count
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
+  
+  /*
   public List<CountDTO> getDataResourceCountsForDepartment(String isoDepartmentCode, boolean georeferencedOnly)
     throws ServiceException;
 	
@@ -110,6 +116,7 @@ public interface DepartmentManager {
    * @return List<CountDTO> containing iso department code, department name and count
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
+  /*
   public List<CountDTO> getDepartmentCountsForDepartment(String isoDepartmentCode, boolean geoRefOnly, Locale locale) throws ServiceException;
 	
 	
@@ -125,6 +132,7 @@ public interface DepartmentManager {
    * @param georeferenced The list with georeferenced counts
    * @param nonGeoreferenced The list with non georeferenced counts.
    */
+  /*
   public void synchronizeLists(List<CountDTO> georeferenced, List<CountDTO> nonGeoreferenced);
-
+*/
 }
