@@ -1,14 +1,12 @@
 package net.sibcolombia.portal.service;
 
+import org.gbif.portal.dto.CountDTO;
+import org.gbif.portal.service.ServiceException;
+
 import java.util.List;
 import java.util.Locale;
 
 import net.sibcolombia.portal.dto.department.DepartmentDTO;
-import org.gbif.portal.dto.CountDTO;
-import org.gbif.portal.dto.SearchResultsDTO;
-import org.gbif.portal.dto.util.SearchConstraints;
-import org.gbif.portal.service.ServiceException;
-
 
 
 /**
@@ -20,23 +18,52 @@ import org.gbif.portal.service.ServiceException;
 public interface DepartmentManager {
 
   /**
+   * Returns a list of occurrence record counts for data resources in the supplied country.
+   * 
+   * @param isoDepartmentCode The department key
+   * @param georeferencedOnly Whether to only count georeferenced points
+   * @return List<CountDTO> containing data resource id, data resource name, data provider name and count
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<CountDTO> getDataResourceCountsForDepartment(String isoDepartmentCode, boolean georeferencedOnly)
+    throws ServiceException;
+
+  /**
    * Retrieves the departments alphabet information
    * 
    * @return List of first character of departments names.
    */
   public List<Character> getDepartmentAlphabet();
-/*
+
   /**
-   * Retrieves the department information for the Department with the supplied key, if supplied key is null return without
-   * filter.
+   * Returns a list of occurrence record counts for departments providing data for an country
+   * 
+   * @param isoDepartmentCode The department key
+   * @param geoRefOnly Whether to only count georeferenced points
+   * @param locale current locale of the webapps
+   * @return List<CountDTO> containing iso department code, department name and count
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<CountDTO> getDepartmentCountsForDepartment(String isoDepartmentCode, boolean geoRefOnly, Locale locale)
+    throws ServiceException;
+
+  /**
+   * Retrieves the department information for the department with the supplied key.
    * 
    * @param departmentKey the system key for this department
-   * @param locale the locale to use for retrieving locale specific information
    * @return DepartmentDTO holding details of this department, null if there isnt a department for the specified key.
    */
-  /*
   public DepartmentDTO getDepartmentFor(String departmentKey);
-*/
+
+  /**
+   * Retrieves the department information for the department with the supplied iso department code.
+   * 
+   * @param isoDepartmentCode the iso department code to use
+   * @param locale the locale to use for retrieving locale specific information
+   * @return DepartmentDTO holding details of this Department, null if there isnt a Department for the specified key.
+   */
+  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode);
+
   /**
    * Retrieves a distinct list of the departments with the name starting with the supplied char.
    * Additional sorting involves including departments in a resultset that do not have names that start with
@@ -48,28 +75,8 @@ public interface DepartmentManager {
    * @return list of departments
    */
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar);
-  
-    /**
-   * Returns true if the supplied string could be a valid ISO Department Code Key. This
-   * method does not verify a data resource exists for this key, merely that the supplied
-   * key is of the correct format.
-   * 
-   * @see getDepartmentFor(String)
-   * @return true if the supplied key is a valid ISO Department Code
-   */
-  public boolean isValidISODepartmentCode(String isoDepartmentCode);
-  
+
   /**
-   * Retrieves the department information for the department with the supplied iso department code.
-   * 
-   * @param isoDepartmentCode the iso department code to use
-   * @param locale the locale to use for retrieving locale specific information
-   * @return DepartmentDTO holding details of this Department, null if there isnt a Department for the specified key.
-   */
-  /*
-  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode);
-  */
-    /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied
    * key is of the correct format.
@@ -78,50 +85,19 @@ public interface DepartmentManager {
    * @return true if the supplied key is a valid key
    */
   public boolean isValidDepartmentKey(String departmentKey);
-  
-    /**
-   * Find departments with names matching the supplied name stub.
+
+  /**
+   * Returns true if the supplied string could be a valid ISO Department Code Key. This
+   * method does not verify a data resource exists for this key, merely that the supplied
+   * key is of the correct format.
    * 
-   * @param nameStub
-   * @param fuzzy
-   * @param anyOccurrence
-   * @param locale
-   * @param searchConstraints
-   * @return SearchResultsDTO
+   * @see getDepartmentFor(String)
+   * @return true if the supplied key is a valid ISO Department Code
    */
-  /*
-  public SearchResultsDTO findDepartments(String nameStub, boolean fuzzy, boolean anyOccurrence,
-    boolean onlySearchInLocale, Locale locale, SearchConstraints searchConstraints);
-	*/
-	  /**
-   * Returns a list of occurrence record counts for data resources in the supplied department.
-   * 
-   * @param departmentKey The department key
-   * @param georeferencedOnly Whether to only count georeferenced points
-   * @return List<CountDTO> containing data resource id, data resource name, data provider name and count
-   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
-   */
-  
-  /*
-  public List<CountDTO> getDataResourceCountsForDepartment(String isoDepartmentCode, boolean georeferencedOnly)
-    throws ServiceException;
-	
-	  /**
-   * Returns a list of occurrence record counts for department providing data for an Department
-   * 
-   * 
-   * @param isoDepartmentCode The department key
-   * @param geoRefOnly Whether to only count georeferenced points
-   * @param locale current locale of the webapps
-   * @return List<CountDTO> containing iso department code, department name and count
-   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
-   */
-  /*
-  public List<CountDTO> getDepartmentCountsForDepartment(String isoDepartmentCode, boolean geoRefOnly, Locale locale) throws ServiceException;
-	
-	
-	  /**
-   * Syncronize both lists of "occurrence record counts for data resources in the supplied Department".
+  public boolean isValidISODepartmentCode(String isoDepartmentCode);
+
+  /**
+   * Syncronize both lists of "occurrence record counts for data resources in the supplied department".
    * The new lists will depend of the records that have the two lists, using the following rules:
    * - If a record exists in the georef list but not in the nonGeoref list. The record will be added to the
    * nonGeoref list with a value of 0 in its count attribute.
@@ -132,7 +108,5 @@ public interface DepartmentManager {
    * @param georeferenced The list with georeferenced counts
    * @param nonGeoreferenced The list with non georeferenced counts.
    */
-  /*
   public void synchronizeLists(List<CountDTO> georeferenced, List<CountDTO> nonGeoreferenced);
-*/
 }
