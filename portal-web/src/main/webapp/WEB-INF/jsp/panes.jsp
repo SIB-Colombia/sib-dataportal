@@ -30,3 +30,12 @@
 <spring:message code="welcome.tip.of.the.day.3" arguments="${link2}"/><br/>
 <a href="version.htm"><spring:message code="version" text="Version"/> <gbif:propertyLoader bundle="portal" property="version"/></a></p>
 </div>
+
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/lBPZH9vrbtDdBpMQsEctag.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
