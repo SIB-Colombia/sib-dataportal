@@ -490,7 +490,12 @@
 		<put name="subtitle" value="/WEB-INF/jsp/department/drilldown/departmentSubtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/department/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/department/drilldown/view.jsp"/>	
-		<!-- <put name="overviewMap" value="geographyOverviewMap" /> -->
+		<put name="overviewMapDepartment" value="departmentOverviewMap" />
+	</definition>
+	
+	<definition name="departmentOverviewMap" page="/WEB-INF/jsp/department/overviewMapWithLinks.jsp">
+		<put name="mapLinks" value="/WEB-INF/jsp/department/drilldown/mapLinks.jsp" />						
+		<put name="urlRoot" value="departments"/>		
 	</definition>
 
 	<!-- map for departments tile -->
