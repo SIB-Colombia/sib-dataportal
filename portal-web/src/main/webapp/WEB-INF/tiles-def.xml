@@ -19,6 +19,19 @@
 		<put name="footer" value="/common/footer.jsp"/>
 	</definition>
 	
+	<!-- Main Layout Definition  -->
+	<definition name="frontmainLayout" path="/layouts/frontPageMainLayout.jsp">
+		<put name="title" value="portal.title"/>
+		<put name="subtitle" value="/WEB-INF/jsp/frontPageStats.jsp"/>
+		<put name="keywords" value=""/>		
+		<put name="headcontent" value=""/>
+		<put name="header" value="/WEB-INF/jsp/frontPageHeader.jsp"/>
+		<put name="topmenu" value="/WEB-INF/jsp/menu/frontPageTopMenu.jsp"/>
+		<put name="content" value=""/>
+		<put name="breadcrumbs" value=""/>
+		<put name="footer" value="/common/frontPageFooter.jsp"/>
+	</definition>
+	
 	<!-- Layout for admin pages -->
 	<definition name="adminLayout" path="/layouts/adminLayout.jsp">
 		<put name="title" value="portal.title"/>
@@ -81,8 +94,8 @@
 	<!-- =======================================================  -->
 	
 	<!--Welcome Page Tile-->
-	<definition name="welcome" extends="mainLayout">
-		<put name="headcontent" value="/WEB-INF/jsp/headcontent.jsp"/>
+	<definition name="welcome" extends="frontmainLayout">
+		<put name="headcontent" value="/WEB-INF/jsp/frontPageHeadContent.jsp"/>
 		<put name="topmenu" value="/WEB-INF/jsp/menu/frontPageTopMenu.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/panes.jsp"/>
 		<put name="breadcrumbs" value=""/>				
@@ -477,7 +490,7 @@
 		<put name="subtitle" value="/WEB-INF/jsp/department/drilldown/departmentSubtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/department/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/department/drilldown/view.jsp"/>	
-		<!--<put name="overviewMap" value="geographyOverviewMap" />-->
+		<!-- <put name="overviewMap" value="geographyOverviewMap" /> -->
 	</definition>
 
 	<!-- map for departments tile -->

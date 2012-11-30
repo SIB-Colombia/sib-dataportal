@@ -40,6 +40,10 @@
     </property>
   </bean>
   
+  <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="useDefaultSuffixPattern" value="false" />
+</bean>
+  
   <!-- Controller for Department Views -->
   <bean id="departmentController" class="net.sibcolombia.portal.web.controller.geography.DepartmentController">
     <property name="departmentManager" ref="departmentManager" />

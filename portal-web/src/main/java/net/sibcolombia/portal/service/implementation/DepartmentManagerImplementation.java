@@ -86,7 +86,7 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    */
   public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {
     Object department = departmentDAO.getDepartmentForIsoDepartmentCode(isoDepartmentCode);
-    return (DepartmentDTO) departmentDTOFactory.createDTO(department);
+    return (DepartmentDTO) departmentDTOFactory.createDTOSingle(department);
   }
 
 
@@ -107,7 +107,7 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidISODepartmentCode(java.lang.String)
    */
   public boolean isValidISODepartmentCode(String isoDepartmentCode) {
-    if (isoDepartmentCode != null && isoDepartmentCode.length() == 2) {
+    if (isoDepartmentCode != null && (isoDepartmentCode.length() == 6 || isoDepartmentCode.length() == 5)) {
       if (!NumberUtils.isNumber(isoDepartmentCode))
         return true;
     }

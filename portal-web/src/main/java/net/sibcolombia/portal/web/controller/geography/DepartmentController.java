@@ -12,30 +12,21 @@
  ***************************************************************************/
 package net.sibcolombia.portal.web.controller.geography;
 
-import org.gbif.portal.dto.CountDTO;
 import org.gbif.portal.dto.util.BoundingBoxDTO;
 import org.gbif.portal.dto.util.EntityType;
 import org.gbif.portal.web.content.map.MapContentProvider;
 import org.gbif.portal.web.controller.RestController;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sibcolombia.portal.dto.department.DepartmentDTO;
-import net.sibcolombia.portal.dto.department.DepartmentDTOFactory;
 import net.sibcolombia.portal.service.DepartmentManager;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  * A Rest controller for geographic areas and countries.
@@ -58,8 +49,6 @@ public class DepartmentController extends RestController {
   protected String nonDepartmentCountsModelKey = "nonDepartmentCounts";
   protected String hostedModelKey = "hosted";
   protected boolean sortResourcesByCount = false;
-  
-  protected static Log logger = LogFactory.getLog(DepartmentController.class);
 
   /**
    * @see org.gbif.portal.web.controller.RestController#handleRequest(java.util.List,
@@ -70,10 +59,11 @@ public class DepartmentController extends RestController {
     HttpServletResponse response) throws Exception {
 
     String departmentKey = properties.get(keyRequestKey);
-    logger.info("Departmenr iso code "+departmentKey);
+    logger.info("Department Key: " + departmentKey);
+
     if (StringUtils.isNotEmpty(departmentKey)) {
       DepartmentDTO department = null;
-      Locale locale = RequestContextUtils.getLocale(request); // ?
+      // Locale locale = RequestContextUtils.getLocale(request);
       if (departmentManager.isValidISODepartmentCode(departmentKey)) {
         department = departmentManager.getDepartmentForIsoDepartmentCode(departmentKey);
       } else if (departmentManager.isValidDepartmentKey(departmentKey)) {
@@ -82,35 +72,35 @@ public class DepartmentController extends RestController {
 
       if (department != null) {
         // sort counts into descending order
-        List<CountDTO> resourceCounts =
-          departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartmentCode(), true);
+        // List<CountDTO> resourceCounts =
+        // departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartmentCode(), true);
         // List<CountDTO> departmentCounts =
         // departmentManager.getDepartmentCountsForDepartment(department.getIsoDepartmentCode(), true, locale);
         // List<CountDTO> nonDepartmentCounts =
         // departmentManager.getDepartmentCountsForDepartment(department.getIsoDepartmentCode(), false, locale);
-        List<CountDTO> nonResourceCounts =
-          departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartmentCode(), false);
-        departmentManager.synchronizeLists(resourceCounts, nonResourceCounts);
+        // List<CountDTO> nonResourceCounts =
+        // departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartmentCode(), false);
+        // departmentManager.synchronizeLists(resourceCounts, nonResourceCounts);
         // departmentManager.synchronizeLists(departmentCounts, nonDepartmentCounts);
 
-        if (sortResourcesByCount) {
-          Collections.sort(resourceCounts, new Comparator<CountDTO>() {
-
-            public int compare(CountDTO o1, CountDTO o2) {
-              if (o1 == null || o2 == null || o1.getCount() == null || o2.getCount() == null)
-                return -1;
-              return o1.getCount().compareTo(o2.getCount()) * -1;
-            }
-          });
-          Collections.sort(nonResourceCounts, new Comparator<CountDTO>() {
-
-            public int compare(CountDTO o1, CountDTO o2) {
-              if (o1 == null || o2 == null || o1.getCount() == null || o2.getCount() == null)
-                return -1;
-              return o1.getCount().compareTo(o2.getCount()) * -1;
-            }
-          });
-        }
+        /*
+         * if (sortResourcesByCount) {
+         * Collections.sort(resourceCounts, new Comparator<CountDTO>() {
+         * public int compare(CountDTO o1, CountDTO o2) {
+         * if (o1 == null || o2 == null || o1.getCount() == null || o2.getCount() == null)
+         * return -1;
+         * return o1.getCount().compareTo(o2.getCount()) * -1;
+         * }
+         * });
+         * Collections.sort(nonResourceCounts, new Comparator<CountDTO>() {
+         * public int compare(CountDTO o1, CountDTO o2) {
+         * if (o1 == null || o2 == null || o1.getCount() == null || o2.getCount() == null)
+         * return -1;
+         * return o1.getCount().compareTo(o2.getCount()) * -1;
+         * }
+         * });
+         * }
+         */
 
         boolean showHosted = ServletRequestUtils.getBooleanParameter(request, hostedModelKey, false);
         EntityType entityType = null;
@@ -120,8 +110,8 @@ public class DepartmentController extends RestController {
         ModelAndView mav = resolveAndCreateView(properties, request, false);
 
         mav = resolveAndCreateView(properties, request, false);
+        mav.addObject(departmentModelKey, department);
         /*
-         * mav.addObject(departmentModelKey, department);
          * mav.addObject(resourceCountsModelKey, resourceCounts);
          * mav.addObject(nonResourceCountsModelKey, nonResourceCounts);
          * mav.addObject(departmentCountsModelKey, departmentCounts);
