@@ -9,6 +9,10 @@
 				<prop key="/all/**/*">allMapLayerController</prop>
 				<prop key="/taxon/**/*">taxonMapLayerController</prop>
 				<prop key="/country/**/*">countryMapLayerController</prop>
+				
+				<!-- SIB Colombia Department map layer support -->
+				<prop key="/department/**/*">departmentMapLayerController</prop>
+				
 				<prop key="/homeCountry/**/*">homeCountryMapLayerController</prop>
 				<prop key="/network/**/*">networkMapLayerController</prop>
 				<prop key="/provider/**/*">providerMapLayerController</prop>
@@ -25,6 +29,11 @@
 	<bean id="countryMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="2"/>
 		<property name="urlRoot" value="country"/>
+	</bean>
+	<!-- SIB Colombia Department map layer support -->
+	<bean id="departmentMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="8"/>
+		<property name="urlRoot" value="department"/>
 	</bean>
 	<bean id="providerMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="3"/>
