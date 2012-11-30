@@ -1,0 +1,1 @@
+<%@ include file="/common/taglibs.jsp"%><gbif:capitalize><string:lowerCase>${department.departmentName}</string:lowerCase></gbif:capitalize>

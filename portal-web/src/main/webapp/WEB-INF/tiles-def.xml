@@ -473,6 +473,16 @@
 		<put name="overviewMap" value="geographyOverviewMap" />
 	</definition>
 	
+	<definition name="departmentView" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/department/drilldown/departmentSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/department/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/department/drilldown/view.jsp"/>	
+		<!--<put name="overviewMap" value="geographyOverviewMap" />-->
+	</definition>
+
+	<!-- map for departments tile -->
+	<definition name="overviewMapDepartment" page="/WEB-INF/jsp/department/gbifMap.jsp"/>
+
 	<!-- Mapping tiles -->
 	<!-- the main map tile -->
 	<definition name="overviewMap" page="/WEB-INF/jsp/geography/gbifMap.jsp"/>		

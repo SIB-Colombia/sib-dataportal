@@ -28,8 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sibcolombia.portal.dto.department.DepartmentDTO;
+import net.sibcolombia.portal.dto.department.DepartmentDTOFactory;
 import net.sibcolombia.portal.service.DepartmentManager;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -55,6 +58,8 @@ public class DepartmentController extends RestController {
   protected String nonDepartmentCountsModelKey = "nonDepartmentCounts";
   protected String hostedModelKey = "hosted";
   protected boolean sortResourcesByCount = false;
+  
+  protected static Log logger = LogFactory.getLog(DepartmentController.class);
 
   /**
    * @see org.gbif.portal.web.controller.RestController#handleRequest(java.util.List,
@@ -65,6 +70,7 @@ public class DepartmentController extends RestController {
     HttpServletResponse response) throws Exception {
 
     String departmentKey = properties.get(keyRequestKey);
+    logger.info("Departmenr iso code "+departmentKey);
     if (StringUtils.isNotEmpty(departmentKey)) {
       DepartmentDTO department = null;
       Locale locale = RequestContextUtils.getLocale(request); // ?

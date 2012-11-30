@@ -16,6 +16,7 @@
       <props>
         <prop key="/">departmentBrowserController</prop>
         <prop key="/browse/*">departmentBrowserController</prop>
+        <prop key="/**/*">departmentController</prop>
       </props>
     </property>
   </bean>
@@ -40,8 +41,8 @@
   </bean>
   
   <!-- Controller for Department Views -->
-  <!-- <bean id="departmentController" class="net.sibcolombia.portal.web.controller.department.DepartmentController">
-    <property name="geospatialManager" ref="departmentManager" />
+  <bean id="departmentController" class="net.sibcolombia.portal.web.controller.geography.DepartmentController">
+    <property name="departmentManager" ref="departmentManager" />
     <property name="mapContentProvider" ref="mapContentProvider" />
     <property name="urlRoot" value="departments" />
     <property name="viewNamePrefix" value="departmentView" />
@@ -62,7 +63,7 @@
         <value>mapWidget</value>
       </list>
     </property>
-  </bean> -->
+  </bean> 
   
   <!-- DepartmentManager -->
   <bean id="departmentManager" class="org.springframework.aop.framework.ProxyFactoryBean">
