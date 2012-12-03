@@ -1,24 +1,24 @@
 #twopartheader {
-	margin: 0px 0 10px 0;
+	margin: 0px 0 20px 0;
 	padding: 0 0 0 85px;
 	min-height: 80px;
 	background:url('../standard/images/ico_especies.png') no-repeat left top;
 }
 #twopartheader h2 {
 	color: #34BCE0;
-	padding: 15px 0 0 0;
+	padding: 5px 0 0 0;
 	margin: 0;
 	font-size: 2.3em;
 	font-weight: normal;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 0;
+	padding: 7px 0 0 0px;
 	margin: 0;
-	font-size: 1.1em;
-	font-weight: 700;
+	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:#231f1c;
+	color:rgba(0, 0, 0, 0.4);
+	font-size:1em;
 }
 /** copied from occurrenceSpecial.css **/
 #content h1 {
@@ -60,9 +60,14 @@ table.results th {
 }
 /* Added By Dave */
 #furtherActions {
-	margin-top: 10px;
+	margin: 10px 0;
 	padding:5px;
 	background-color: rgba( 204, 233, 242, 0.7);
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#furtherActions td{
+	padding:6px;
 }
 #furtherActions h4 {
 	padding: 0px;
@@ -149,3 +154,15 @@ h4#addSearchFilter, h4#currentSearch {
 	border-bottom: none;
 }
 
+.results tr{
+	background-color:rgba(166,180,98, 0.2);
+}
+.results .odd td{
+	background-color:rgba(166,180,98, 0.3);
+}
+.results th{
+	background-color:rgba(166,180,98, 0.3);
+}
+input[type="submit"], button{
+	background-color:#34BCE0;
+}

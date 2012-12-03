@@ -13,10 +13,12 @@
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 0;
+	padding: 7px 0 0 76px;
 	margin: 0;
-	font-size: 1.1em;
-	font-weight: normal;
+	font-weight: 400;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	color:rgba(0, 0, 0, 0.4);
+	font-size:1em;
 }
 #content {
 	padding:15px 30px !important;

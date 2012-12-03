@@ -3,8 +3,8 @@ div.smalltree {
 	padding: 0 10px 5px 5px;
 	padding:11px 7px 6px 10px;
 	background: rgba(255,255,255, 0.5) ;
-	-webkit-border-radius: 15px;
-    border-radius: 15px;
+	-webkit-border-radius: 12px;
+    border-radius: 12px;
 }
 div.smalltree a {
 	border-bottom: none;
@@ -29,10 +29,10 @@ div.smalltree div.list {
 }
 div.smalltree p {
 	margin: 3px;
-	padding: 5px !important;
-	background-color:rgba(255,255,255,0.7);
-	-webkit-border-radius: 10px;
-    border-radius: 10px;
+	padding: 8px !important;
+	background-color:rgba(255,255,255,0.3);
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 div.smalltree p.selected, div.smalltree p.selectedTentative {
 	font-weight: bold;
@@ -44,7 +44,7 @@ div.smalltree p.selected, div.smalltree p.selectedTentative {
 	font-size:1.3em;
 }
 .rank, .taxon {
-	color: #34BCE0;
+	color: #007FC9;
 }
 .taxon {
 	color: #000000;
@@ -134,7 +134,7 @@ a.taxonOverviewLink:hover, a.taxonOverviewLinkTentative:hover {
 }
 a.taxonOverviewLink {
 	/*background: rgba(22, 138, 203, 0.6);*/
-	color: #34BCE0;
+	color: #1888C9;
 	border: none;
 }
 a.taxonOverviewLink:visited {

@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <a href="${pageContext.request.contextPath}/departments/">
-<img src="skins/standard/images/mariposas.jpg" width="320" height="215" alt="MARIPOSAS" />
+<img src="skins/standard/images/mariposas.jpg" width="320" height="217" alt="MARIPOSAS" />
 <h2>
   <spring:message code="departments.intro.heading"/>
   </h2>

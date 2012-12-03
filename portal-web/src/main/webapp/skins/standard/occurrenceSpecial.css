@@ -13,12 +13,12 @@
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 10px;
+	padding: 7px 0 0 0px;
 	margin: 0;
-	font-size: 1.1em;
-	font-weight: 700;
+	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:#231f1c;
+	color:rgba(0, 0, 0, 0.4);
+	font-size:1em;
 }
 
 #content h1 {
@@ -187,4 +187,17 @@ fieldset p {
 .lastModified {
 	color: gray;
 	font-size: 0.81em;
+}
+.results tr, .statistics tr{
+	background-color:rgba(248, 206, 188, 0.2);
+}
+.results .odd td, .statistics .odd td{
+	background-color:rgba(248, 206, 188, 0.3);
+}
+.results th, .statistics th{
+	background-color:rgba(104, 60, 12, 0.2);
+}
+input[type="submit"], button{
+	background-color:#683C0C;
+	color:white;
 }

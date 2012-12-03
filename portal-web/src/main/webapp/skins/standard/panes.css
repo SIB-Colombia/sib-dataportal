@@ -1,8 +1,6 @@
 #panes {
-	border: 0; width: 970px; margin: 25px auto 0;
+	border: 0; max-width: 970px; margin:0px auto 0;
 }
-#content>#panes { width: 970px; margin: 25px auto 0;}
-
 #panes a:hover {
 	text-decoration: none;
 }
@@ -27,6 +25,10 @@
 .panes_div div{
 	padding:20px;
 	display:block;
+}
+
+.panes_div > a > div{
+	height:90px;
 }
 
 #panes h2 {
@@ -79,6 +81,6 @@
 #geographypane h2 a:hover {}
 #geographypane div { background:#ED9748;}
 
-.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important;}
+.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important; min-height:70px;}
  
 .panes_div > div:nth-of-type(1) a { color:white !important;}

@@ -18,13 +18,13 @@ table.results th {
 	text-align:left;
 	padding: 5px 5px 5px 5px;
 	font-family:'Economica',Helvetica,Arial;
-	font-size:1.5em;
+	font-size:1.3em;
 	line-height:1em;
-	padding: 5px 7px;
+	padding: 6px 7px;
 }
 
 table.results td {
-	padding: 5px 7px;
+	padding: 6px 7px;
 	vertical-align:center;
 	text-align:left;
 }
@@ -44,11 +44,9 @@ table.results td.lastColumn {
 }
 
 table.results tr {
-	font-weight: normal;
-	background:rgba(53, 188, 224, 0.1);
 }
 table.results .odd{
-	background:rgba(53, 188, 224, 0.2);
+
 }
 
 table.results th.sortable a {
@@ -72,13 +70,16 @@ table.results th.sortable a:hover {
 table.statistics {
 	border:0px;
 	width:100%;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
 }
 
 table.statistics th {
 	text-align: left;
-	font-size:1.7em;
+	font-size:1.4em;
 	font-family:'Economica', Helvetica, Arial;
 	padding:4px 8px;
+	line-height:1.1em;
 }
 
 table.statistics td.name {
@@ -110,13 +111,13 @@ table.statistics tr {
 	font-weight: normal;
 }
 table.statistics td {
-	padding:8px;
-	border-radius: 15px;
-	-webkit-border-radius: 15px;
-	background:rgba(53, 188, 224, 0.1);
+	padding:8px 8px 4px 8px;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	/*background:rgba(53, 188, 224, 0.1);*/
 }
-table.statistics .odd{
-	background:rgba(53, 188, 224, 0.2);
+table.statistics .odd td{
+	/*background:rgba(53, 188, 224, 0.2);*/
 	border-radius: 8px;
 	-webkit-border-radius: 8px;
 }

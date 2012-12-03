@@ -1,0 +1,164 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<!-- GBIF Portal Version: 1.2.6 -->	
+	<head>
+    	
+<link rel="stylesheet" href="/portal/skins/standard/speciesGlobal.css"/>
+<link rel="stylesheet" href="/portal/skins/standard/settingsSpecial.css"/>
+<link rel="stylesheet" href="/portal/skins/shared/tables.css"/>	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		 		
+		
+		
+		<title>
+			Data Use Agreement
+				- 			
+			
+			GBIF Portal 
+		</title>
+				
+	</head>
+	<body>
+	    <div id="skipNav">
+			<ul title="Accessibility options">
+	  		<li><a href="#mainContent" accesskey="C">Skip to Content</a></li>
+	  		<li><a href="#sidebar" accesskey="S">Skip to Sidebar</a></li>
+			</ul> 
+	    </div>
+		<div id="cocoon">
+			<div id="container">	
+				
+<div id="header">
+<a href="#"><img src="skins/standard/images/logo.png" width="350" height="104" alt="PORTAL DE DATOS - SIB COLOMBIA" /></a>
+
+	<!--<h3 id="blurb">... free and open access to biodiversity data</h3> -->
+	<div id="quickSearch">
+		
+<h3>search</h3>
+<p>species/country/dataset</p>
+<form name="quickSearchForm" method="get" onsubmit="return submitQuickSearch(false);" action="/portal/search/blanketSearch.htm">
+	<fieldset>
+		<input id="query" type="search" name="keyword"  placeholder="Start new search" autosave="gbif.blanketsearch" results="5" tabindex="1"/>
+		<a href="javascript:submitFromLinkQuickSearch();" id="go">Search</a>
+	</fieldset>	
+</form>
+<script type="text/javascript">
+	document.getElementById("query").focus();
+	
+	function submitQuickSearch(formSubmit){
+		//check for empty value
+		var textValue = document.getElementById('query').value;
+		if(textValue!=null && textValue.length>0){
+			if(formSubmit)
+				document.quickSearchForm.submit();
+			return true;
+		}
+		return false;
+	}
+	
+	function submitFromLinkQuickSearch(){
+		//check for empty value
+		var textValue = document.getElementById('query').value;
+		if(textValue!=null && textValue.length>0){
+				document.quickSearchForm.submit();
+		}
+	}	
+	
+</script>
+	</div>
+</div> <!-- End header-->
+				
+<div id="topmenu">
+<ul>
+<li><a href="/portal/">Home</a></li>		
+
+<li><a href="/portal/species/" title="Find a species within a classification">Species</a></li>
+<li><a href="/portal/countries/" title="Find a country, territory or island (based on the ISO 3166 standard)  ">Countries</a></li>
+<li><a href="/portal/datasets/" title="Find a dataset, data publisher or data network">Datasets</a></li>
+<li><a href="/portal/occurrences/" title="Search for occurrence records">Occurrences</a></li>
+<li><a href="/portal/settings.htm" title="Adjust your settings for this portal">Settings</a></li>
+<li><a href="/portal/tutorial/" title="About this portal">About</a></li>
+</ul>
+</div><!-- End topmenu-->
+				<div id="content">
+       				
+					
+<div id="twopartheader">
+	<h2>Data Use Agreement</h2>
+</div>
+
+<h4>Background</h4>
+<p>The goals and principles of making biodiversity data openly and universally available have been defined in the Memorandum of Understanding on GBIF, paragraph 8 (see the relevant excerpts in the attached Annex).</p>
+
+<p>The Participants who have signed the MoU have expressed their willingness to make biodiversity data available through their nodes to foster scientific research development internationally and to support the public use of these data.</p>
+
+<p>GBIF data sharing should take place within a framework of due attribution.</p>
+
+<p>Therefore, using data available through the GBIF network requires agreeing with the following:</p>
+
+<h4>1. Data Use Agreements</h4>
+<ol>
+   <li>The quality and completeness of data cannot be guaranteed. Users employ these data at their own risk.</li>
+   <li>Users shall respect restrictions of access to sensitive data.</li>
+   <li>In order to make attribution of use for owners of the data possible, the identifier of ownership of data must be retained with every data record.</li>
+   <li>Users must publicly acknowledge, in conjunction with the use of the data, the data publishers whose biodiversity data they have used.  Data publishers may require additional attribution of specific collections within their institution.</li>
+   <li>Users must comply with additional terms and conditions of use set by the data publisher. Where these exist they will be available through the metadata associated with the data.</li>
+</ol>
+
+<h4>2. Citing Data</h4>
+<p>Use the following format to cite data retrieved from the GBIF network:</p>  
+<p><em>Biodiversity occurrence data published by: (Accessed through GBIF Data Portal, data.gbif.org, YYYY-MM-DD)</em></p>
+<p>For example:</p>
+<p><em>Biodiversity occurrence data published by: Field Museum of Natural History, Museum of Vertebrate Zoology, University of Washington Burke Museum, and University of Turku (Accessed through GBIF Data Portal, data.gbif.org, 2007-02-22)</em></p>
+
+<h4>3. Definitions</h4>
+<ul>
+   <li>GBIF Participant: Signatory of the GBIF-establishing Memorandum of Understanding (MoU).</li>
+   <li>GBIF Secretariat: Legal entity empowered by the GBIF Participants to enter into contracts, execute the Work Programme, and maintain the central services for the GBIF network.</li>
+   <li>GBIF network: The infrastructure consisting of the central services of the GBIF Secretariat, Participant Nodes and data publishers. Making data available through GBIF network means registering and advertising the pertinent services via the GBIF central services.</li>
+   <li>Node: A data publisher designated by a GBIF Participant that maintains a stable computer gateway that makes data available through the GBIF network.</li>
+   <li>Participant node: An organisational unit designated by the GBIF Participant to coordinate activities in its domain. It may also provide data.</li>
+   <li>Biodiversity data:  Primary data on specimens, observations, names, taxonomic concepts, and sites, and other related data on biological diversity.</li>
+   <li>Metadata: Data describing the attributes and combinations of biodiversity data.</li>
+   <li>Data:  Biodiversity data and metadata.</li>
+   <li>Data publisher: A custodian of data making it technically available. This may or may not be the data owner. If not they will have declared to GBIF that they have permission to make the data available.</li>
+   <li>Data sharing: The process of and agreements for making data freely and universally available on the Internet.</li>
+   <li>User:  Anyone who uses the Internet to access data through the GBIF network.</li>
+   <li>Owner of data: The legal entity possessing the right resulting from the act of creating a digital record. The record may be a product derived from another, possibly non-digital product, which may affect the right.</li>
+   <li>Sensitive data: Any data that the Node does not want to make available,  e.g. precise localities of endangered species.</li>
+</ul><br/>
+
+<p>Also see the <a href="/portal/tutorial/datasharingagreement">GBIF Data Sharing Agreement</a> for the data publishers.</p>
+
+<form method="post" action="terms.htm" form="acceptForm" class="acceptForm">
+  <input type="hidden" name="forwardUrl" value="http://localhost:8080/portal/species/"/>
+  <input type="submit" name="acceptedTerms" value="Accept terms"/>
+  <input type="submit" name="refuseTerms" value="Cancel"/>
+</form>
+
+<p>Depending on your browser settings, a cookie may be stored to acknowledge your acceptance of these terms.</p>
+					
+					
+				</div><!--End content -->				
+				
+
+<div class="footer">
+<!--<div class="menuAux">	<ul>	<li id="mh"><a title="Inicio" href="/web/sib/">Inicio</a></li><li id="mm"><a title="Mapa del sitio" href="/web/sib/mapa-del-sitio">Mapa del sitio</a></li><li id="mg"><a title="Glosario" href="http://www.humboldt.org.co/chmcolombia/servicios/jsp/glosario/">Glosario</a></li><li id="mc"><a title="ContÃ¡ctenos" href="/web/sib/contactenos">ContÃ¡ctenos</a></li>	</ul></div>-->
+
+<div class="sponsor">	<div id="s_one">	<ul>	<li class="l_one"><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="43" height="47" alt="Humboldt" src="../images/logos_cut/humboldt.jpg"></a>	</li></ul><p>Entidad Coordinadora</p>	</div><div id="s_two">	<ul>	<li><a title="SINCHI" target="_blank" href="http://www.sinchi.org.co"><img width="30" height="47" alt="SINCHI" src="images/logos_cut/sinchi.jpg"></a></li><li><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="43" height="47" alt="Humboldt" src="images/logos_cut/humboldt.jpg"></a></li><li><a title="IDEAM" target="_blank" href="http://www.ideam.gov.co"><img width="36" height="47" alt="IDEAM" src="images/logos_cut/ideam.jpg"></a></li><li><a title="INVEMAR" target="_blank" href="http://www.invemar.org.co"><img width="41" height="47" alt="INVEMAR" src="images/logos_cut/invemar.jpg"></a></li><li><a title="IIAP" target="_blank" href="http://www.iiap.org.co"><img width="52" height="47" alt="IIAP" src="images/logos_cut/iiap.jpg"></a></li><li><a title="ICN" target="_blank" href="http://www.icn.unal.edu.co"><img width="99" height="47" alt="ICN" src="images/logos_cut/unal.jpg"></a></li><li><a title="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" target="_blank" href="http://www.minambiente.gov.co"><img width="112" height="47" alt="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" src="images/logos_cut/mads.jpg"></a></li></ul><p>ComitÃ© tÃ©cnico directivo</p>	</div><div id="s_five">	<ul>	<li><a title="Global Biodiversity Information Facility" target="_blank" href="http://www.gbif.org"><img width="50" height="47" alt="Global Biodiversity Information Facility" src="images/logos_cut/gbif.jpg"></a></li><li><a title="Red Interamericana de InformaciÃ³n sobre Biodiversidad" target="_blank" href="http://www.iabin.net"><img width="90" height="47" alt="Red Interamericana de Informaci&amp;oacute;n sobre Biodiversidad" src="images/logos_cut/iabin.jpg"></a></li></ul><p>Iniciativas relacionadas con el SiB</p>	</div><div>	<ul>	<li><a title="Gobierno en lÃ­nea" target="_blank" href="http://www.gobiernoenlinea.gov.co"><img width="55" height="47" alt="Gobierno en l&amp;iacute;nea" src="images/logos_cut/gob-linea.jpg"></a></li></ul></div></div><div class="content_footer">	<address>	<strong>Sistema de informaciÃ³n sobre biodiversidad de Colombia</strong><br>	Sede Principal Calle 28A No. 15-09 / PBX 57(1) 320 2767 / BogotÃ¡ D.C., Colombia<br>	<strong>Horario de atenciÃ³n:</strong> 8:30 am - 5:30 pm	</address>	<ul>	<li class="creative"><a title="Algunos derechos reservados" target="_black" href="http://creativecommons.org/licenses/by-nc-sa/2.5/es/">Algunos derechos reservados</a></li><!--<li><a href="#" title="C&oacute;mo citar el SIB">C&oacute;mo citar el SIB</a></li><li><a href="#" title="T&eacute;rminos y condiciones">T&eacute;rminos y condiciones</a></li>-->	</ul><a href="http://www.e-gattaca.com" target="_blank" title="Desarrollado por Gattaca" class="logoGtk">Desarrollador por Gattaca</a>	</div></div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2571261-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<!-- End footer -->
+			</div><!-- End container-->
+		</div><!-- End cocoon-->		
+	</body>
+</html>

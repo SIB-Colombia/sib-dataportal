@@ -11,7 +11,7 @@ body {
 }
 /* -- The Generic Defs --*/
 
-a {
+a{
 	-webkit-transition: all 600ms ease;
 	-moz-transition: all 600ms ease;
     -ms-transition: all 600ms ease;
@@ -26,7 +26,7 @@ a:visited {
 	color: #007FC9;
 	text-decoration: none;
 }
-a:hover {
+a:hover, input[type=submit]:hover  {
 	-webkit-transition: all 600ms ease;
 	-moz-transition: all 600ms ease;
     -ms-transition: all 600ms ease;
@@ -138,7 +138,7 @@ body>#cocoon {
 div#header {
 	position: relative;
 	padding:20px;
-	background-image: url("images/portal_bg.png"), url("images/shadow_top.png");
+	background-image: url("images/flower_top.png"), url("images/shadow_top.png");
 	background-repeat:no-repeat, no-repeat;
 	background-position: center -40px, bottom center;
 	margin:0 auto;
@@ -172,42 +172,67 @@ div#header a{
 }
 /* -- search form -- */
 #quickSearch {
-	float: right;
-	margin: -20px 0 0 0;
-	padding: 10px;
+	margin: 0 auto 10px auto;
+	padding: 15px;
 	background-color:#1888c9;
 	-webkit-border-radius:0 0 20px 20px;
     border-radius:0 0 20px 20px;
+	position:relative;
+	height:40px;
+	text-align:center;
 }
-
+#quickSearch h1{
+	margin:0px;
+	color:white;
+	display:inline;
+	vertical-align:middle;
+}
 #quickSearch fieldset, #quickSearch form {
-	margin: 0;
+	margin: 0 5px;
 	padding: 0;
 	border: 0;
+	width:340px;
+	display:inline;
+	vertical-align:middle;
 }
 #quickSearch form a {
 	border: 0;
 }
+#quickSearch > a{
+	display:inline-block;
+	vertical-align:middle;
+	background:#b3dcea;
+	padding:7px;
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
+	color:#1888c9;
+	line-height:0.9em;
+}
 #quickSearch #query {
-	padding: 7px;
+	padding: 11px;
 	-webkit-border-radius: 15px;
     border-radius: 15px;
+	background-color:#fffff;
 	background:rgba(255,255,255,0.8);
 	border:0px;
 	margin: 0px;
-	width: 280px;
+	width: 320px;
 	font-size: 1em;
 	-webkit-box-shadow: inset 3px 3px 2px 0px rgba(0, 0, 0, 0.2);
      box-shadow: inset 3px 3px 2px 0px rgba(0, 0, 0, 0.2);
-	 background-color:#fffff;
+	 
 }
+#quickSearch input{
+	color:#1888c9;
+}
+
 #quickSearch #go {
 	display: inline-block;
-	margin: 2px 0 0 -35px;
-	padding: 13px;
+	margin: 2px 0 0 -37px;
+	padding: 17px;
 	color: #FFF;
 	text-decoration: none;
-	background:url(images/lupa.png) no-repeat center center ;
+	background:url(images/lupa2.png) no-repeat center center ;
 	border: 0;
 	position:absolute;
 }
@@ -246,6 +271,7 @@ div#header a{
 	right:0px;
 	float:right;
 	color: #FFF;
+	display:none;
 }
 #topmenu ul {
 	margin: 0;
@@ -279,7 +305,7 @@ div#header a{
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 100%;
-	padding:5px 30px 20px 0;
+	padding:0px 30px 20px 0;
 	/*box-shadow:0 5px 30px 2px rgba(0, 0, 0, 0.4);*/
 }
 #announce {
@@ -301,7 +327,7 @@ div#header a{
 	text-transform:uppercase;
 }
 .footer {
-	background-image: url("images/portal_bg.png"), url("images/shadow_botom.png");
+	background-image: url("images/flower_bottom.png"), url("images/shadow_botom.png");
 	background-repeat:no-repeat, no-repeat;
 	background-position:center bottom, top center;
 	margin:0px;
@@ -406,29 +432,18 @@ padding:0;
 	padding:5px 0;
 }
 
-.sponsor span{
-/*position:absolute;*/
-}
-
 #s_one{
-/*background:url("../images/theme/bgS1.jpg") no-repeat 0 0;*/
 height:80px;
 margin:0 6px 0 0;
 width:75px;
 position:relative;
 }
 
-#s_one a{
-
-}
-
 #s_one .l_one a{
 margin:9px 0 0 13px;
-background:url("../images/theme/logoHumboldt.jpg") no-repeat 0 0;
 }
 
 #s_two{
-/*background:url("../images/theme/bgS2.jpg") no-repeat 0 0;*/
 height:64px;
 margin:0 8px 0 0;
 position:relative;
@@ -444,70 +459,31 @@ display:block;
 margin:0 5px;
 }
 
-#s_two .l_one a{
-background:url("../images/theme/logos_cut/sinchi.jpg") no-repeat 0 0;
-}
-
-#s_two .l_two a{
-background:url("../images/theme/logos_cut/humboldt.jpg") no-repeat 0 0;
-}
-
-#s_two .l_three a{
-background:url("../images/theme/logos_cut/ideam.jpg") no-repeat 0 0;
-}
-
-#s_two .l_four a{
-background:url("../images/theme/logos_cut/invemar.jpg") no-repeat 0 0;
-}
-
-#s_two .l_five a{
-background:url("../images/theme/logos_cut/iiap.jpg") no-repeat 0 0;
-}
-
-#s_two .l_six a{
-background:url("../images/theme/logos_cut/unal.jpg") no-repeat 0 0;
-}
-
-#s_two .l_seven a{
-background:url("../images/theme/logos_cut/mads.jpg") no-repeat 0 0;
-}
 
 #s_three{
-/*background:url("../images/theme/bgS3.jpg") no-repeat 0 0;*/
 height:73px;
 margin:0 6px 0 0;
 width:55px;
 position:relative;
 }
 
-#s_three a{
-
-}
 
 #s_three .l_one a{
 margin:9px 0 0 11px;
-background:url("../images/theme/logoRedes.jpg") no-repeat 0 0;
 }
 
 #s_four{
-/*background:url("../images/theme/bgS4.jpg") no-repeat 0 0;*/
 height:73px;
 margin:0 7px 0 0;
 width:54px;
 position:relative;
 }
 
-#s_four a{
-
-}
-
 #s_four .l_one a{
 margin:9px 0 0 11px;
-background:url("../images/theme/logoAsesores.jpg") no-repeat 0 0;
 }
 
 #s_five{
-/*background:url("../images/theme/bgS5.jpg") no-repeat 0 0;*/
 height:73px;
 margin:0 7px 0 0;
 width:180px;
@@ -518,42 +494,19 @@ position:relative;
 padding:0 0 0 10px;
 }
 
-#s_five a{
-
-
-}
-
-#s_five .l_one a{
-background:url("../images/theme/logoGlobal.jpg") no-repeat 0 0;
-}
-
-#s_five .l_two a{
-background:url("../images/theme/logoInteramericana.jpg") no-repeat 0 0;
-}
-
-#s_five .l_three a{
-background:url("../images/theme/logoRedMundial.jpg") no-repeat 0 0;
-}
 
 #s_six{
-/*background:url("../images/theme/bgS6.jpg") no-repeat 0 0;*/
 height:73px;
 margin:0 48px 0 0;
 width:54px;
 position:relative;
 }
 
-#s_six a{
-
-}
-
 #s_six .l_one a{
 margin:9px 0 0 11px;
-background:url("../images/theme/logos_cut/logoCHM.jpg") no-repeat 0 0;
 }
 
 #s_seven{
-/*background:url("../images/theme/bgS7.jpg") no-repeat 0 0;*/
 height:73px;
 margin:0 8px 0 0;
 width:138px;
@@ -572,21 +525,11 @@ height:33px;
 width:33px;
 }
 
-#s_seven .l_one a{
-background:url("../images/theme/logoS1.jpg") no-repeat 0 0;
-}
-
-#s_seven .l_two a{
-background:url("../images/theme/logoS2.jpg") no-repeat 0 0;
-}
-
 #s_seven .l_three a{
-background:url("../images/theme/logoS3.jpg") no-repeat 0 0;
 width:50px !important;
 }
 
 #s_eight{
-/*background:url("../images/theme/bgS8.jpg") no-repeat 0 0;*/
 height:48px;
 width:96px;
 position:relative;
@@ -600,7 +543,6 @@ display:block;
 
 #s_eight .l_one a{
 margin:9px 0 0 9px;
-background:url("../images/theme/logos_cut/gob-linea.jpg") no-repeat 0 0;
 }
 
 .content_footer{
@@ -630,7 +572,7 @@ float:left;
 display:inline;
 }
 .footer .content_footer .creative a{
-background:url("../images/theme/cc.png") no-repeat center 0;
+background:url("images/cc.png") no-repeat center 0;
 display:block;
 font-size:0.8em;
 line-height:1.2em;
@@ -640,7 +582,7 @@ width:95px;
 }
 
 .footer .content_footer li a{
-background:url("../images/theme/footerBullet.png") no-repeat 0 6px;
+background:url("images/footerBullet.png") no-repeat 0 6px;
 font:bold 11px arial;
 display:block;
 padding:2px 0 2px 10px;

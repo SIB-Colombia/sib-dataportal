@@ -10,9 +10,9 @@
 	</c:choose>
 	<div id="statesmod">
 	    <div id="statesautocomplete">
-	    	<table style="width:800px; margin-bottom:0px;">
+	    	<table style="width:800px; margin-bottom:0px;" cellpadding="2">
 	    		<tr>
-    				<c:set var="placeholder"><spring:message code="quick.taxon.search"/></c:set>
+    				<strong><c:set var="placeholder"><spring:message code="quick.taxon.search"/></c:set></strong>
 	   				<td style="width:290px;" valign="top">
   	 					<input id="statesinput" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/> 
 			      		<div id="statescontainer" style="margin-left:3px;width:200px;"></div>

@@ -7,22 +7,20 @@
   <head>
     <title>GBIF - Access Denied</title>
     <style>
-      body {
+       body {
         margin: 0px;
-        padding: 0px;
-        font: 0.81em Verdana, Arial, Helvetica, sans-serif;
+        padding: 20px;
+        color: #333;
+	background: #f2eee3 url("images/noise1.png") repeat 0 0;
+	font-family: Helvetica, Verdana, Helvetica, Arial;
       }
       h1 {
-        background: url("${pageContext.request.contextPath}/skins/standard/images/speciesHeaderBG.jpg") no-repeat;
-        height: 80px;
-        color: white;
         font-size: 14pt;
-        padding-left: 680px;
         padding-top: 40px;
         margin: 0px;
       }
       h2 {
-        font-size: 14pt;
+        font-size: 1.6em;
         margin: 0px;
       }
       h3 {
@@ -41,8 +39,6 @@
     </style>
   </head>
   <body>
-    <h1>Access Denied</h1>
-    
     <div id="content">
       <h2>Access Denied</h2>
       <p>

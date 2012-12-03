@@ -28,12 +28,12 @@ h4{
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 0;
+	padding: 7px 0 0 0px;
 	margin: 0;
-	font-size: 1.1em;
-	font-weight: 700;
+	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:#231f1c;
+	color:rgba(0, 0, 0, 0.4);
+	font-size:1em;
 }
 #content p {
 	margin: 5px 50px 10px 94px;

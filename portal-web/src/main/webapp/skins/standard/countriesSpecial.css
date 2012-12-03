@@ -14,12 +14,12 @@
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 10px;
+	padding: 7px 0 0 76px;
 	margin: 0;
-	font-size: 1.1em;
-	font-weight: 700;
+	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:#231f1c;
+	color:rgba(0, 0, 0, 0.4);
+	font-size:1em;
 }
 .subject {
 	font-weight: bold;
@@ -68,7 +68,7 @@
 thead {
 	color: #9d4c05;
 }
-table.results th {
+/*table.results th {
 	background-color: #FFF;
 }
 table.statistics tr:hover {
@@ -79,7 +79,7 @@ table.statistics tr:hover {
 }
 table.statistics thead tr:hover {
 	background-color: #FDFDFD;
-}
+}*/
 ul.flatlist {
 	margin: 8px 0 0 0px;
 	padding: 0;
@@ -108,7 +108,7 @@ ul.flatlist #chosen {
 #furtherActions {
 	margin-top: 10px;
 	padding:5px;
-	background-color: rgba( 254, 215, 67, 0.4);
+	/*background-color: rgba( 254, 215, 67, 0.4);*/
 }
 #furtherActions h4 {
     font-size: 1.5em;
@@ -229,3 +229,18 @@ h5#noGeoreferencedPoints {
 	width: 100%;
 	font-size: 1.1em;
 }
+
+.results tr, actionsList tr, .statistics tr{
+	background-color:rgba(254, 215, 67, 0.1);
+}
+.results .odd td, actionsList .odd td, .statistics  .odd td{
+	background-color:rgba(254, 215, 67, 0.1);
+}
+.results th, actionsList th, .statistics th{
+	background-color:rgba(254, 215, 67, 0.4);
+}
+input[type="submit"], button{
+	background-color:#6E331E;
+	color:white;
+}
+

@@ -95,10 +95,12 @@ div#constructedFilters {
 	height: 100%;
 }
 div#constructedFilters ul {
-	padding: 5px;
-	margin-top: 10px;
+	padding: 2px 8px;
+	margin-top: 5px;
 	color: #000000;
 	list-style: none;
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 div#constructedFilters ul a {
 	border-bottom: none;
@@ -126,7 +128,8 @@ select{
 	padding:3px;
 }
 ul.taxonomy {
-	background-color: #F8CEBC;
+	/*background-color: #F8CEBC;*/
+	background-color:rgba(104, 60, 12, 0.2);
 }
 ul.datasets {
 	background-color: #d4ecf5;
@@ -135,27 +138,13 @@ ul.geospatial {
 	background-color: #f9e5d8;
 }
 .taxonomyFilterHelp {
-	background-color: rgba( 248, 206, 188, 0.8);
-	padding: 10px;
-	min-width: 620px;
-	width:80%;
-	-webkit-border-radius: 15px;
-    border-radius: 15px;
 }
 .geospatialFilterHelp {
-	background-color: #f9e5d8;
-	padding: 10px;
-	width: 635px;
 }
 .datasetFilterHelp {
-	background-color: #d4ecf5;
-	padding: 10px;
-	width: 635px;
 }
 .otherDetailsFilterHelp {
-	background-color: #ffffcc;
-	padding: 10px;
-	width: 635px;
+
 }
 /* wizards */
 div.datasetWizard {

@@ -1,0 +1,172 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<!-- GBIF Portal Version: 1.2.6 -->	
+	<head>
+    	<link rel="stylesheet" href="/skins/standard/global.css"/>
+<link rel="stylesheet" href="/skins/standard/panes.css"/>
+<link href="http://fonts.googleapis.com/css?family=Economica:400,700" rel="stylesheet" type="text/css">	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		 		
+		
+		
+		<title>
+			
+
+
+
+	Welcome
+
+
+				- 			
+			
+			GBIF Portal 
+		</title>
+				
+	</head>
+	<body>
+	    <div id="skipNav">
+			<ul title="Accessibility options">
+	  		<li><a href="#mainContent" accesskey="C">Skip to Content</a></li>
+	  		<li><a href="#sidebar" accesskey="S">Skip to Sidebar</a></li>
+			</ul> 
+	    </div>
+		<div id="cocoon">
+			<div id="container">	
+				
+<div id="header">
+<a href="#"><img src="skins/standard/images/logo.png" width="350" height="104" alt="PORTAL DE DATOS - SIB COLOMBIA" /></a>
+    <h1 id="header" title="Global Biodiversity Information Facility"><a href="http://www.gbif.org">Global Biodiversity Information Facility</a></h1>
+	<!--<h3 id="blurb">... free and open access to biodiversity data</h3> -->
+	<div id="quickSearch">
+	  <form name="quickSearchForm" method="get" onsubmit="return submitQuickSearch(false);" action="/portal/search/blanketSearch.htm">
+	    <fieldset>
+		<input id="query" type="search" name="keyword"  placeholder="Start new search" autosave="gbif.blanketsearch" results="5" tabindex="1"/>
+		<a href="javascript:submitFromLinkQuickSearch();" id="go">Search</a>
+	</fieldset>	
+</form>
+<script type="text/javascript">
+	document.getElementById("query").focus();
+	
+	function submitQuickSearch(formSubmit){
+		//check for empty value
+		var textValue = document.getElementById('query').value;
+		if(textValue!=null && textValue.length>0){
+			if(formSubmit)
+				document.quickSearchForm.submit();
+			return true;
+		}
+		return false;
+	}
+	
+	function submitFromLinkQuickSearch(){
+		//check for empty value
+		var textValue = document.getElementById('query').value;
+		if(textValue!=null && textValue.length>0){
+				document.quickSearchForm.submit();
+		}
+	}	
+	
+</script>
+	</div>
+</div> <!-- End header-->
+				
+<div id="topmenu">
+	<ul>
+		
+<li><a href="/portal/species/" title="Find a species within a classification">Species</a></li>
+<li><a href="/portal/countries/" title="Find a country, territory or island (based on the ISO 3166 standard)  ">Countries</a></li>
+<li><a href="/portal/datasets/" title="Find a dataset, data publisher or data network">Datasets</a></li>
+<li><a href="/portal/occurrences/" title="Search for occurrence records">Occurrences</a></li>
+<li><a href="/portal/settings.htm" title="Adjust your settings for this portal">Settings</a></li>
+<li><a href="/portal/tutorial/" title="About this portal">About</a></li>
+	</ul>
+</div><!-- End topmenu-->
+				<div id="content">
+       				
+					
+<div id="announce">
+<h3>Welcome to the GBIF Data Portal</h3>
+
+
+<p>
+
+
+Access 0 data records (0 with coordinates) shared via the GBIF network.<br/>
+To learn how to use this site, please see <em><a href="/portal/tutorial/introduction">About</a></em>.<br/>
+To tune this site for smaller displays, see <em><a href="/portal/settings.htm">Settings</a></em>.<br/>
+<a href="version.htm">Version 1.2.6</a></p>
+</div>
+<div id="panes">
+	<div id="taxonomypane" class="panes_div">
+    <img src="skins/standard/images/rana.jpg" width="320" height="218" alt="ESPECIES" />
+		
+<h2><a href="/portal/species/">Explore Species</a></h2>
+<p>Find data for a species or other group of organisms. </p>
+
+<div><h3>Species</h3>
+<p>Information on species and other groups of plants, animals, fungi and micro-organisms, including species occurrence records, as well as classifications and scientific and common names.   </p></div>
+
+<div><h3>Example species: </h3>
+<a href="/portal/species/species/Puma_concolor"><i>Puma concolor</i> (Linnaeus, 1771)</a></div>
+	</div>
+	<div id ="datasetpane"  class="panes_div">
+    <img src="skins/standard/images/playa.jpg" width="320" height="217" alt="DEPARTAMENTOS" />
+		
+<h2><a href="/portal/datasets/">Explore Datasets</a></h2>
+<p>Find data from a data publisher, dataset or data network.</p>
+
+<div><h3>Datasets</h3>
+<p>
+
+Information on the data publishers, datasets and data networks that share data through GBIF, including summary information on <div class="subject"></div> datasets from <div class="subject"></div> data publishers.
+
+</div>
+	</div>	
+	<div id ="geographypane"  class="panes_div">
+    <img src="skins/standard/images/mariposas.jpg" width="320" height="215" alt="MARIPOSAS" />
+		
+<h2><a href="/portal/countries/">Explore Countries</a></h2>
+<p>Find data on the species recorded in a particular country, territory or island.</p>
+
+<div>
+<h3>Countries</h3>
+<p>
+
+
+Information on the species recorded in each country, including records shared by publishers from throughout the GBIF network.
+</div>
+<div>
+<h3>See data for: </h3>
+
+
+
+<a href="/portal/countries/FR">France</a>
+
+
+</div>
+	</div>
+	<hr class="hr_clear" />
+</div><!-- End panes-->	
+					
+					
+				</div><!--End content -->				
+				
+<div id="footer">
+<div class="sponsor">	<div id="s_one">	<ul>	<li class="l_one"><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="44" height="47" alt="Humboldt" src="../images/logos_cut/humboldt.jpg"></a>	</li></ul><p>Entidad Coordinadora</p>	</div><div id="s_two">	<ul>	<li><a title="SINCHI" target="_blank" href="http://www.sinchi.org.co"><img width="30" height="47" alt="SINCHI" src="/SIB-theme/images/theme/logos_cut/sinchi.jpg"></a></li><li><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="43" height="47" alt="Humboldt" src="/SIB-theme/images/theme/logos_cut/humboldt.jpg"></a></li><li><a title="IDEAM" target="_blank" href="http://www.ideam.gov.co"><img width="36" height="47" alt="IDEAM" src="/SIB-theme/images/theme/logos_cut/ideam.jpg"></a></li><li><a title="INVEMAR" target="_blank" href="http://www.invemar.org.co"><img width="41" height="47" alt="INVEMAR" src="/SIB-theme/images/theme/logos_cut/invemar.jpg"></a></li><li><a title="IIAP" target="_blank" href="http://www.iiap.org.co"><img width="52" height="47" alt="IIAP" src="/SIB-theme/images/theme/logos_cut/iiap.jpg"></a></li><li><a title="ICN" target="_blank" href="http://www.icn.unal.edu.co"><img width="99" height="47" alt="ICN" src="/SIB-theme/images/theme/logos_cut/unal.jpg"></a></li><li><a title="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" target="_blank" href="http://www.minambiente.gov.co"><img width="112" height="47" alt="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" src="/SIB-theme/images/theme/logos_cut/mads.jpg"></a></li></ul>
+<p>Comités Directivo y Técnico </p>	</div><div id="s_five">	<ul>	<li><a title="Global Biodiversity Information Facility" target="_blank" href="http://www.gbif.org"><img width="50" height="47" alt="Global Biodiversity Information Facility" src="/SIB-theme/images/theme/logos_cut/gbif.jpg"></a></li><li><a title="Red Interamericana de Información sobre Biodiversidad" target="_blank" href="http://www.iabin.net"><img width="90" height="47" alt="Red Interamericana de Informaci&amp;oacute;n sobre Biodiversidad" src="/SIB-theme/images/theme/logos_cut/iabin.jpg"></a></li></ul><p>Iniciativas relacionadas con el SiB</p>	</div><div>	<ul>	<li><a title="Gobierno en línea" target="_blank" href="http://www.gobiernoenlinea.gov.co"><img width="55" height="47" alt="Gobierno en l&amp;iacute;nea" src="/SIB-theme/images/theme/logos_cut/gob-linea.jpg"></a></li></ul></div></div><div class="content_footer">	<address>	<strong>Sistema de información sobre biodiversidad de Colombia</strong><br>	Sede Principal Calle 28A No. 15-09 / PBX 57(1) 320 2767 / Bogotá D.C., Colombia<br>	<strong>Horario de atención:</strong> 8:30 am - 5:30 pm	</address>	<ul>	<li class="creative"><a title="Algunos derechos reservados" target="_black" href="http://creativecommons.org/licenses/by-nc-sa/2.5/es/">Algunos derechos reservados</a></li><!--<li><a href="#" title="C&oacute;mo citar el SIB">C&oacute;mo citar el SIB</a></li><li><a href="#" title="T&eacute;rminos y condiciones">T&eacute;rminos y condiciones</a></li>-->	</ul>
+</div></div> 
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2571261-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<!-- End footer -->
+			</div><!-- End container-->
+		</div><!-- End cocoon-->		
+	</body>
+</html>
