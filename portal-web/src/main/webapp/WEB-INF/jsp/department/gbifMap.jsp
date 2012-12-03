@@ -109,17 +109,17 @@
 					name="${mapTitle} occurrences distribution map" 
 					title="${mapTitle} occurrences distribution map" 
 					<c:if test="${zoom==1}">
-					src="${geoServerUrl}?request=GetMap&bgcolor=0xacdcef&styles=,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
+					src="${geoServerUrl}?request=GetMap&bgcolor=0x2ca8b5&styles=,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
 					</c:if>
 					<%-- Ignoring bluemarble layer
 					<c:if test="${zoom>1 && zoom<6}">
-					src="${geoServerUrl}?request=GetMap&bgcolor=0xacdcef&styles=,,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
+					src="${geoServerUrl}?request=GetMap&bgcolor=0x2ca8b5&styles=,,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
 					</c:if>		
 					<c:if test="${zoom==6}">
-					src="${geoServerUrl}?request=GetMap&bgcolor=0xacdcef&styles=,,country_borders_black,country_names_blue&layers=bluemarble,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
+					src="${geoServerUrl}?request=GetMap&bgcolor=0x2ca8b5&styles=,,country_borders_black,country_names_blue&layers=bluemarble,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
 					</c:if>	 --%> 
 					<c:if test="${zoom>1 && zoom<=6}">
-					src="${geoServerUrl}?request=GetMap&bgcolor=0xacdcef&styles=,,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
+					src="${geoServerUrl}?request=GetMap&bgcolor=0x2ca8b5&styles=,,,&layers=gbif:country_fill,gbif:tabDensityLayer,gbif:country_borders,gbif:country_names&srs=EPSG:4326&filter=()(<Filter><PropertyIsEqualTo><PropertyName>url</PropertyName><Literal><![CDATA[${mapLayerUrl}]]></Literal></PropertyIsEqualTo></Filter>)()()&width=${mapWidth}&height=${mapHeight}&Format=image/png&bbox=${minMapLong},${minMapLat},${maxMapLong},${maxMapLat}"
 					</c:if>
 					<%-- src="${mapServerUrl}?dtype=box&imgonly=1&path=${mapLayerUrl}&extent=${extent}&mode=browse&refresh=Refresh&layer=countryborders<c:if test="${zoom>1}">&layer=countrylabels</c:if><c:if test="${zoom==6}">&degree=0.1</c:if>" --%> 
 					<c:choose>
