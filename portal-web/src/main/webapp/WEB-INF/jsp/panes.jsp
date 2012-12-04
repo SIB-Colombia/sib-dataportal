@@ -6,7 +6,7 @@
   <div id="quickSearch">
     <h1>Encuentra</h1>
             <tiles:insert page="blanketSearch.jsp"/>
-          <a href="#">B&uacute;squeda<br />
+          <a href="${pageContext.request.contextPath}/occurrences">B&uacute;squeda<br />
           avanzada</a>
     </div>
 	<div id="taxonomypane" class="panes_div">
