@@ -95,6 +95,29 @@ public class ZoomLevel {
 		if(selectedZoomLevel.level>3)selectedZoomLevel=ZOOM_LEVEL_3;
 			return selectedZoomLevel;
 	}
+	
+	/**
+	 * Get the correct zoom level for the supplied max/min lat/long values.
+	 * @param minLatitude
+	 * @param maxLatitude
+	 * @param minLongitude
+	 * @param maxLongitude
+	 * @return ZoomLvel
+	 */
+	public static ZoomLevel getZoomLevelDepartment(float minLongitude, float minLatitude, float maxLongitude, float maxLatitude){
+
+		float latRange=maxLatitude-minLatitude;
+		float longRange=maxLongitude-minLongitude;
+		ZoomLevel selectedZoomLevel = ZoomLevel.ZOOM_LEVEL_1; 
+		for(ZoomLevel zoomLevel: ZoomLevel.levelsDescending){
+			if(latRange<=zoomLevel.getLatitudeRange() && longRange<=zoomLevel.getLongitudeRange()){
+				selectedZoomLevel = zoomLevel;	
+				break;
+			}
+		}
+		if(selectedZoomLevel.level>5)selectedZoomLevel=ZOOM_LEVEL_5;
+			return selectedZoomLevel;
+	}
 
 	/**
 	 * @return the level

@@ -86,7 +86,7 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    */
   public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {
     Object department = departmentDAO.getDepartmentForIsoDepartmentCode(isoDepartmentCode);
-    return (DepartmentDTO) departmentDTOFactory.createDTOSingle(department);
+    return (DepartmentDTO) departmentDTOFactory.createDTOSingleId(department);
   }
 
 

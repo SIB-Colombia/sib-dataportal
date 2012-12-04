@@ -55,4 +55,23 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
 
     return departmentDTO;
   }
+  
+  public Object createDTOSingleId(Object modelObject) {
+	    if (modelObject == null)
+	      return null;
+
+	    Department department = (Department) modelObject;
+
+	    String[] ignores = new String[] {"key"};
+	    DepartmentDTO departmentDTO = new DepartmentDTO();
+	    BeanUtils.copyProperties(department, departmentDTO, ignores);
+	    departmentDTO.setKey(Long.toString(department.getId()));
+
+	    if (departmentDTO.getOccurrenceCoordinateCount() == null)
+	      departmentDTO.setOccurrenceCoordinateCount(0);
+	    if (departmentDTO.getIsoDepartmentCode() == null)
+	      departmentDTO.setIsoDepartmentCode("Código no determinado");
+
+	    return departmentDTO;
+	  }
 }

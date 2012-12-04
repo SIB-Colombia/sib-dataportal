@@ -250,6 +250,42 @@ public class MapContentProvider implements ContentProvider {
 	
 	/**
 	 * Adds map content to the request. This methods just uses supplied min/max lat/long to calculate the zoom level required.
+	 * Useful when the zoom level required is not based on the cell densities retrieved - e.g. Department
+	 * 
+	 * @param request
+	 * @param mapLayerPathRoot
+	 * @param key
+	 * @param minLongitude
+	 * @param minLatitude
+	 * @param maxLongitude
+	 * @param maxLatitude
+	 */
+	public void addMapContentDepartment(HttpServletRequest request, String mapLayerPathRoot, String idOrQuery, float minLongitude, float minLatitude, float maxLongitude, float maxLatitude) {
+		ZoomLevel zoomLevel = ZoomLevel.getZoomLevelDepartment(minLongitude, minLatitude, maxLongitude, maxLatitude);
+		//calculate geospatial centre
+		float longCentre = (maxLongitude + minLongitude)/2;		
+		float latCentre = (maxLatitude + minLatitude)/2;
+		LatLongBoundingBox llbb = getBoundingBoxForZoomLevel(zoomLevel, longCentre, latCentre);
+		roundLatLongValues(llbb);
+		logger.debug(llbb);
+		//construct the extent
+		String extent = createExtent(llbb.getMinLong(), llbb.getMinLat(), llbb.getMaxLong(), llbb.getMaxLat());
+		//add request attributes
+		request.setAttribute(extentRequestKey, extent.toString());
+		request.setAttribute(zoomRequestKey, zoomLevel.getLevel());					
+		request.setAttribute(minMapLongRequestKey, (int) llbb.getMinLong());
+		request.setAttribute(minMapLatRequestKey, (int) llbb.getMinLat());
+		request.setAttribute(maxMapLongRequestKey, (int) llbb.getMaxLong());
+		request.setAttribute(maxMapLatRequestKey,  (int) llbb.getMaxLat());	
+		//adds the map server and map layer details
+		//addMapServerDetails2Request(request, mapLayerPathRoot, idOrQuery, (int) llbb.getMinLong(), (int) llbb.getMinLat(), zoomLevel.getLevel());
+		//adds the geo server details
+		addGeoServerDetails2Request(request, mapLayerPathRoot, idOrQuery, (int) llbb.getMinLong(), (int) llbb.getMinLat(), zoomLevel.getLevel());
+	}
+	
+	
+	/**
+	 * Adds map content to the request. This methods just uses supplied min/max lat/long to calculate the zoom level required.
 	 * Useful when the zoom level required is not based on the cell densities retrieved - e.g. Country
 	 * 
 	 * @param request

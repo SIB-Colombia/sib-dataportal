@@ -60,7 +60,6 @@ public class DepartmentController extends RestController {
 
     String departmentKey = properties.get(keyRequestKey);
     logger.info("Department Key: " + departmentKey);
-
     if (StringUtils.isNotEmpty(departmentKey)) {
       DepartmentDTO department = null;
       // Locale locale = RequestContextUtils.getLocale(request);
@@ -69,7 +68,7 @@ public class DepartmentController extends RestController {
       } else if (departmentManager.isValidDepartmentKey(departmentKey)) {
         department = departmentManager.getDepartmentFor(departmentKey);
       }
-
+      logger.info("Department not null");
       if (department != null) {
         // sort counts into descending order
         // List<CountDTO> resourceCounts =
@@ -101,7 +100,7 @@ public class DepartmentController extends RestController {
          * });
          * }
          */
-
+    	  
         boolean showHosted = ServletRequestUtils.getBooleanParameter(request, hostedModelKey, false);
         EntityType entityType = null;
 
@@ -118,15 +117,16 @@ public class DepartmentController extends RestController {
          * mav.addObject(nonDepartmentCountsModelKey, nonDepartmentCounts);
          */
 
-        if (logger.isDebugEnabled())
-          logger.debug("Returning details of:" + department);
+        //if (logger.isDebugEnabled())
+          //logger.debug("Returning details of:" + department);
 
         // if zoom level not specified, jump to correct zoom level for this department
         if (!MapContentProvider.zoomLevelSpecified(request) && !showHosted && department.getMinLongitude() != null
           && department.getMinLatitude() != null && department.getMaxLongitude() != null
           && department.getMaxLatitude() != null) {
           // zoom to the correct level for this department
-          mapContentProvider.addMapContent(request, entityType.getName(), department.getKey(),
+        	//logger.info("zoom to the correct level for this department");
+          mapContentProvider.addMapContentDepartment(request, entityType.getName(), department.getKey(),
             department.getMinLongitude(), department.getMinLatitude(), department.getMaxLongitude(),
             department.getMaxLatitude());
           mapContentProvider.addPointsTotalsToRequest(request, entityType, department.getKey(),
@@ -134,6 +134,7 @@ public class DepartmentController extends RestController {
               department.getMaxLatitude()));
         } else {
           // zoom to the level specified in the request
+        	//logger.info("zoom to the level specified in the request");
           mapContentProvider.addMapContent(request, entityType.getName(), department.getKey());
           mapContentProvider.addPointsTotalsToRequest(request, entityType, department.getKey(), null);
         }
