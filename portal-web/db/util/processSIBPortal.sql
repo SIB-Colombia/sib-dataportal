@@ -23,19 +23,6 @@ inner join department d on oc.iso_department_code=d.iso_department_code
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
--- clear the cell densities
--- Query OK, 0 rows affected (0.28 sec)
-select concat('Clearing cells: ', now()) as debug;
-truncate table cell_density;
-
--- build the cell_densities
--- Query OK, 13623180 rows affected (18 min 0.63 sec)
--- Records: 13623180  Duplicates: 0  Warnings: 0
-select concat('Building cell densities: ', now()) as debug;
-insert ignore into cell_density 
-select type,entity_id,cell_id,sum(count)
-from centi_cell_density
-group by 1,2,3;
 
 -- sets the departments count
 select concat('Starting department occurrence count: ', now()) as debug;
