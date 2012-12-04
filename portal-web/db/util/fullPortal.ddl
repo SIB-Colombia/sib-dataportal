@@ -1430,6 +1430,7 @@ SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `taxon_concept`
+-- Previous default value was 100, now we use 20 because all taxon concepts are confirmed by default.
 --
 
 DROP TABLE IF EXISTS `taxon_concept`;
@@ -1452,7 +1453,7 @@ CREATE TABLE `taxon_concept` (
   `is_accepted` tinyint(1) default '1',
   `is_nub_concept` tinyint(1) default '0',
   `partner_concept_id` int(10) unsigned default NULL,
-  `priority` smallint(6) NOT NULL default '100',
+  `priority` smallint(6) NOT NULL default '20',
   `is_secondary` tinyint(1) default '0',
   `created` timestamp NULL default NULL,
   `modified` timestamp NULL default NULL,
