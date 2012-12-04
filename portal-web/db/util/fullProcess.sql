@@ -146,8 +146,6 @@ update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 -- Addition by SiB Colombia
 -- Assigns all possible occurrences for department names to the corresponding ISO-CODE
 -- ***********************************
---Add column iso_department_code for departments
-alter table occurrence_record add iso_department_code CHAR(8) after iso_country_code;
 
 -- populate iso_department_code according to differents possible names.
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital de bogotá');
@@ -814,3 +812,8 @@ select concat('Rollover complete: ', now()) as debug;
 inner join taxon_concept p on c.parent_concept_id=p.id
 set c.parent_concept_id=null
 where p.rank>=c.rank; */
+
+
+-- ignoring geospatial_issue=32 since that validation is not quite accurate
+delete from gbif_log_message where event_id=1008 and occurrence_id in (select id from occurrence_record where geospatial_issue=32);
+update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
