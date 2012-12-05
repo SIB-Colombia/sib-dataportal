@@ -498,6 +498,9 @@
 		<put name="urlRoot" value="departments"/>		
 	</definition>
 
+	<!-- map chart for departments tile -->
+	<definition name="departmentChart" page="/WEB-INF/jsp/department/chart.jsp"/>
+	
 	<!-- map for departments tile -->
 	<definition name="overviewMapDepartment" page="/WEB-INF/jsp/department/gbifMap.jsp"/>
 
