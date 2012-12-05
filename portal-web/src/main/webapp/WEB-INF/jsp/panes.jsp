@@ -6,8 +6,7 @@
   <div id="quickSearch">
     <h1>Encuentra</h1>
             <tiles:insert page="blanketSearch.jsp"/>
-          <a href="${pageContext.request.contextPath}/occurrences">B&uacute;squeda<br />
-          avanzada</a>
+          <a href="${pageContext.request.contextPath}/occurrences"><spring:message code="topmenu.occurrences"/></a>
     </div>
 	<div id="taxonomypane" class="panes_div">
 		<tiles:insert page="/WEB-INF/jsp/taxonomy/introduction.jsp"/>

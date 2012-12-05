@@ -5,7 +5,7 @@
 
 <html>
   <head>
-    <title>GBIF - Page not found</title>
+    <title>SIB Colombia - Page not found</title>
     <style>
       body {
         margin: 0px;
@@ -50,7 +50,7 @@
       </ul>
      </p>
      <p>To report this please send an email supplying the url for this page to 
-        <a href="mailto:portal@gbif.org">portal@gbif.org</a>.
+        <a href="mailto:sib+dataportal@humboldt.org.co">sib+dataportal@humboldt.org.co</a>.
      </p> 
      <p>
           <a href="${pageContext.request.contextPath}">Click here</a> to continue.
