@@ -30,7 +30,7 @@
 #content h4 {
 	margin: 20px 0 5px 0;
 	padding: 0;
-	font-size: 1.7em;
+	font-size: 1.9em;
 	color: #34BCE0;
 }
 #content h5 {
@@ -49,7 +49,6 @@ thead {
 	color: #34BCE0;
 }
 table.results th {
-	background-color: #F8CEBC;
 }
 .prev_next, a.prev_next {
 	color: #A6A6A6
@@ -62,7 +61,7 @@ table.results th {
 #furtherActions {
 	margin: 10px 0;
 	padding:5px;
-	background-color: rgba( 204, 233, 242, 0.7);
+	/*background-color: rgba( 204, 233, 242, 0.7);*/
 	-webkit-border-radius: 10px;
     border-radius: 10px;
 }
@@ -94,6 +93,12 @@ table.results th {
 #classificationTop {
 	margin-top: 10px;
 	font-size: 11px;
+	background-color:rgba(255,255,255,0.5);
+	margin:10px;
+	padding:2px 2px 4px 10px;
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
+	font-size:1em;
 }
 .taxonImage {
 	margin-top: 10px;
@@ -162,6 +167,8 @@ h4#addSearchFilter, h4#currentSearch {
 }
 .results th{
 	background-color:rgba(166,180,98, 0.3);
+	color:white;
+	font-size:1.6em;
 }
 input[type="submit"], button{
 	background-color:#34BCE0;

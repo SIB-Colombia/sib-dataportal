@@ -178,7 +178,7 @@ div#header a{
 	-webkit-border-radius:0 0 20px 20px;
     border-radius:0 0 20px 20px;
 	position:relative;
-	height:40px;
+	height:38px;
 	text-align:center;
 }
 #quickSearch h1{
@@ -191,7 +191,7 @@ div#header a{
 	margin: 0 5px;
 	padding: 0;
 	border: 0;
-	width:340px;
+	width:370px;
 	display:inline;
 	vertical-align:middle;
 }
@@ -331,7 +331,7 @@ div#header a{
 	background-repeat:no-repeat, no-repeat;
 	background-position:center bottom, top center;
 	margin:0px;
-	padding: 20px 20px 0 20px;
+	padding: 20px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .6)
 }
 .footer #copyright {

@@ -176,6 +176,6 @@ a.taxonOverviewLinkTentative:hover {
 }
 .classificationCondensed li {
 	display: inline;
-	padding: 0 3px 0 13px;
-	background: url('images/0020-00BB-0020.gif') no-repeat 4px 4px;
+	padding: 0 5px 0 15px;
+	background: url('images/arrows.png') no-repeat top left;
 }

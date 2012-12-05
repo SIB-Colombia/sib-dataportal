@@ -108,6 +108,7 @@ ul.flatlist #chosen {
 #furtherActions {
 	margin-top: 10px;
 	padding:5px;
+	background:none repeat scroll 0 0 rgba(250, 214, 95, 0.2);
 	/*background-color: rgba( 254, 215, 67, 0.4);*/
 }
 #furtherActions h4 {
@@ -234,7 +235,7 @@ h5#noGeoreferencedPoints {
 	background-color:rgba(254, 215, 67, 0.1);
 }
 .results .odd td, actionsList .odd td, .statistics  .odd td{
-	background-color:rgba(254, 215, 67, 0.1);
+	background-color:rgba(212, 181, 80, 0.3);
 }
 .results th, actionsList th, .statistics th{
 	background-color:rgba(254, 215, 67, 0.4);
@@ -243,4 +244,15 @@ input[type="submit"], button{
 	background-color:#6E331E;
 	color:white;
 }
-
+table.actionsList td {
+	padding:6px;
+	vertical-align: top;
+	background:rgba(250, 214, 95, 0.2);
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+table.actionsList tr:nth-child(odd) td{
+	background:rgba(212, 181, 80, 0.3);
+	-webkit-border-radius: 8px;
+    border-radius: 8px;
+}

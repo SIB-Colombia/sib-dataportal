@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Economica:400,700);
+
 body {
 	font-size: 80%;
 	color: #333;
@@ -156,7 +158,8 @@ img.standalone {
 	margin:0px;
 	padding:0px;
 	max-width:1300px;
-		margin:0 auto;
+	min-width:1024px;
+	margin:0 auto;
 }
 /* ---- Top Header ---- */
 #header {
@@ -207,11 +210,12 @@ img.standalone {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	width:340px;
 }
 #quickSearch #query {
 	margin: 0px;
 	padding: 7px;
-	width: 280px;
+	width: 320px;
 	font-size: 1em;
 	-webkit-border-radius: 15px;
     border-radius: 15px;
@@ -344,6 +348,7 @@ img.standalone {
 
 .genera {
 	font-style: italic;
+	text-transform:none !important;
 }
 /** furtherActions is intended to a consistent style reused in various places - Im not sure this is the best place...please move **/
 #furtherActions {
@@ -478,6 +483,7 @@ div.subcontainer {
 }
 .subject {
 	font-weight: bold;
+	text-transform:!important;
 }
 .generaSubject {
 	font-weight: bold;
