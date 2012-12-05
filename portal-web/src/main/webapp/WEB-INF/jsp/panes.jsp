@@ -4,7 +4,7 @@
 <div id="panes">
 
   <div id="quickSearch">
-    <h1>Encuentra</h1>
+    <h1><spring:message code="find"/></h1>
             <tiles:insert page="blanketSearch.jsp"/>
           <a href="${pageContext.request.contextPath}/occurrences"><spring:message code="topmenu.occurrences"/></a>
     </div>
