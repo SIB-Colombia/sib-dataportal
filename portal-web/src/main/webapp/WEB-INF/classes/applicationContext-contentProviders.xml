@@ -61,6 +61,7 @@
 				<!-- other entity types -->				
         <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="homeCountry"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="country"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="department"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.RESOURCENETWORKID" value="network"/>				

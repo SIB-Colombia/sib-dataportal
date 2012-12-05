@@ -8,13 +8,13 @@
 				<td>	
 					<ul class="actionsListInline">
 						<li>
-							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="explore.occurrences"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="explore.occurrences"/></a>
 						</li>						
 						<li>
 							<c:set var="a0">
 								<span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span>
 							</c:set>
-							<a href="${pageContext.request.contextPath}/species/browse/country/${department.isoDepartmentCode}"><spring:message code="geography.drilldown.view.taxonomy" text="Explore species recorded in "/> <span class="subject"><spring:message code="department.${department.isoDepartmentCode}"/></span></a>
+							<a href="${pageContext.request.contextPath}/species/browse/department/${department.isoDepartmentCode}"><spring:message code="geography.drilldown.view.taxonomy" text="Explore species recorded in "/> <span class="subject"><spring:message code="department.${department.isoDepartmentCode}"/></span></a>
 						</li>
 					</ul>
 				</td>
@@ -27,7 +27,7 @@
 							<c:set var="a0">
 								<span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span>
 							</c:set>
-							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="5" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="geography.drilldown.list.resources" arguments="${a0}"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="geography.drilldown.list.resources" arguments="${a0}"/></a>
 						</li>
 					</ul>
 				</td>

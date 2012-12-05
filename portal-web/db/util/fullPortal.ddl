@@ -1493,6 +1493,23 @@ CREATE TABLE `taxon_country` (
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `taxon_department`
+--
+
+DROP TABLE IF EXISTS `taxon_department`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_department` (
+  `taxon_concept_id` int(11) NOT NULL,
+  `iso_department_code` char(10) NOT NULL,
+  `count` int(11) default NULL,
+  PRIMARY KEY  (`taxon_concept_id`,`iso_department_code`),
+  KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+  KEY `IX_iso_department_codes` (`iso_department_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `taxon_name`
 --
 

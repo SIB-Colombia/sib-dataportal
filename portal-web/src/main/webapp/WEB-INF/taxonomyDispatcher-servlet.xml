@@ -29,6 +29,7 @@
 				<prop key="/browse/resource/**/*">taxonomyBrowseController</prop>
 				<prop key="/browse/provider/**/*">taxonomyBrowseController</prop>				
 				<prop key="/browse/country/**/*">countryTaxonomyBrowseController</prop>								
+				<prop key="/browse/department/**/*">departmentTaxonomyBrowseController</prop>
 				<prop key="/commonName/*">commonNameResolvingController</prop>
 				<prop key="/taxonName/ajax/**/**">taxonNameSearchController</prop>
 				<prop key="/*/overviewMap.png">taxonWidgetResolvingController</prop>

@@ -217,7 +217,7 @@
 	
 	<!-- Department filter class to show Colombian Departments (SIB Colombia) select list -->
 	<bean id="departmentFilter" parent="baseGeospatialFilter">
-		<property name="id" value="100"/>
+		<property name="id" value="38"/>
 		<property name="displayName" value="occurrence.search.filter.geospatial.department"/>
 		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE"/>
 		<property name="predicates">
