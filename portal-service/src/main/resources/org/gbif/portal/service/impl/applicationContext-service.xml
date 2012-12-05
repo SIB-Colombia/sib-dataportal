@@ -159,6 +159,29 @@
     <property name="interceptorNames" value="daoExceptionInterceptor,taxonomyEternalCacheAdvisor,rawHibernateInterceptor,firstArgKeyParserAdvisor,searchConstraintsCheckerAdvisor"/>
   </bean>	
 
+  <!-- DepartmentManager -->
+  <bean id="departmentManager" class="org.springframework.aop.framework.ProxyFactoryBean">
+  	<property name="target">
+  		<bean class="net.sibcolombia.portal.service.implementation.DepartmentManagerImplementation">
+  			<property name="departmentDAO" ref="departmentDAORO"/>
+  			<property name="departmentDTOFactory" ref="departmentDTOFactory"/>
+  		</bean>
+  	</property>
+  	<property name="proxyInterfaces" value="net.sibcolombia.portal.service.DepartmentManager"/>
+  </bean>
+  
+  <!-- Bean implementation DAO department classes SiB Colombia -->
+  <bean id="departmentDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.DepartmentDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
+  
+  <bean id="departmentDTOFactory" class="net.sibcolombia.portal.dto.department.DepartmentDTOFactory"/>
+  
   <!-- GeospatialManager -->
   <bean id="geospatialManager" class="org.springframework.aop.framework.ProxyFactoryBean">
   	<property name="target">
@@ -594,7 +617,9 @@
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COUNTRY" value="country"/>	  				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.CONTINENTCODE" value="continentCode"/>	  				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.REGIONCODE" value="regionCode"/>	  								
-				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="isoCountryCode"/>	        
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="isoCountryCode"/>
+        <!-- Department filter class to show Colombian Departments (SIB Colombia) select list -->
+        <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="isoDepartmentCode"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="hostCountry"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCE" value="dataResource"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="dataResource"/>				        							

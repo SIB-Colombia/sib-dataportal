@@ -56,5 +56,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="iso_country_code" class="org.gbif.portal.model.geospatial.Country"/>
     </set>
+    <set lazy="true" name="departments" table="taxon_department">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="iso_department_code" class="net.sibcolombia.portal.model.geospatial.Department"/>
+    </set>
   </class>
 </hibernate-mapping>

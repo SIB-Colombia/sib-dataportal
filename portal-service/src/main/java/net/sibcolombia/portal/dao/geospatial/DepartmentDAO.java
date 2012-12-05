@@ -39,6 +39,14 @@ public interface DepartmentDAO {
   public List<Object[]> getDepartmentCountsForDepartment(String isoDepartmentCode, boolean geoRefOnly, Locale locale);
 
   /**
+   * Use the taxon_department table to retrieve the departments with data for this taxon.
+   * 
+   * @param taxonConceptId
+   * @return
+   */
+  public List<Object[]> getDepartmentCountsForTaxonConcept(long taxonConceptId);
+
+  /**
    * Retrieve the department for the supplied Id.
    * 
    * @param departmentId the internal system id for this department

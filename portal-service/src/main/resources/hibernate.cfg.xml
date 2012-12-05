@@ -46,6 +46,7 @@
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonName.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonConceptLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonCountry.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonDepartment.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonNameLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/CommonName.hbm.xml"/>
   </session-factory>

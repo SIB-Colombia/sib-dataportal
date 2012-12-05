@@ -119,6 +119,31 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
   }
 
   /**
+   * @see net.sibcolombia.portal.dao.taxonomy.TaxonConceptDAO#getDepartmentCountsForTaxonConcept(java.lang.Long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<Object[]> getDepartmentCountsForTaxonConcept(final long taxonConceptId) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        SQLQuery query =
+          session
+            .createSQLQuery("select tc.iso_department_code the_iso_department_code, "
+              + " tc.iso_department_code the_iso_department_code2, dn.department_name as dn_department_name, tc.count as the_count from taxon_department tc"
+              + " inner join department dn on tc.iso_department_code=dn.iso_department_code"
+              + " where tc.taxon_concept_id=:taxonConceptId order by dn_department_name");
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.addScalar("the_iso_country_code", Hibernate.STRING);
+        query.addScalar("the_iso_country_code2", Hibernate.STRING);
+        query.addScalar("the_count", Hibernate.INTEGER);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+
+  /**
    * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getDepartmentFor(long)
    */
   public Object getDepartmentFor(final long departmentId) {

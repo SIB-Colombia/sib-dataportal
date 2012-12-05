@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class table="taxon_department" name="net.sibcolombia.portal.model.taxonomy.TaxonDepartment">
+    <composite-id name="key" class="net.sibcolombia.portal.model.taxonomy.TaxonDepartmentId">
+      <key-property name="taxonConceptId" column="taxon_concept_id"/>
+      <key-property name="isoDepartmentCode" column="iso_department_code"/>
+    </composite-id>
+    <property name="count" column="count" not-null="true"/>
+    <many-to-one column="taxon_concept_id" not-null="true" name="taxonConceptLite" update="false" insert="false"/>		
+  </class>
+</hibernate-mapping>

@@ -184,6 +184,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.CONTINENTCODE" value="oc.country.continentCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.REGIONCODE" value="oc.country.region"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="oc.isoCountryCode"/>
+                <!-- Department filter class to show Colombian Departments (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="oc.isoDepartmentCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="oc.dataProvider.isoCountryCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="oc.dataResourceId"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="oc.dataProviderId"/>
