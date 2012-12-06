@@ -343,6 +343,7 @@
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.RANK" value="tc.rank"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ACCEPTED" value="tc.isAccepted"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISOCOUNTRYCODE" value="tc.countries.isoCountryCode"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISODEPARTMENTCODE" value="tc.departments.isoDepartmentCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.KINGDOM" value="tc.kingdomConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.PHYLUM" value="tc.phylumConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.CLASS" value="tc.classConcept.taxonNameLite.canonical"/>

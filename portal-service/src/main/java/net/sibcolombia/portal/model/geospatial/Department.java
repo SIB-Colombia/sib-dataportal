@@ -41,20 +41,35 @@ public class Department extends BaseObject {
   /** The number of occurrences records this data resource provides */
   protected Integer occurrenceCount;
 
+  /** The department id - internal Id */
+  protected Long departmentId;
 
   /** The number of occurrences records with geo reference data this data resource provides */
   protected Integer occurrenceCoordinateCount;
 
+
   /** The number of species this data resource provides */
   protected Integer speciesCount;
+
   /** The minimum latitude for this department */
   protected Float minLatitude;
+
+
   /** The maximum latitude for this department */
   protected Float maxLatitude;
+
   /** The minimum longitude for this department */
   protected Float minLongitude;
+
   /** The maximum longitude for this department */
   protected Float maxLongitude;
+
+  /**
+   * @return the departmentId
+   */
+  public Long getDepartmentId() {
+    return departmentId;
+  }
 
   /**
    * @return the departmentName
@@ -135,6 +150,13 @@ public class Department extends BaseObject {
    */
   public Integer getSpeciesCount() {
     return speciesCount;
+  }
+
+  /**
+   * @param departmentId the departmentId to set
+   */
+  public void setDepartmentId(Long departmentId) {
+    this.departmentId = departmentId;
   }
 
   /**
