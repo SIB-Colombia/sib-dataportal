@@ -19,7 +19,7 @@
 		table.addColumn('number', 'Registros Biológicos', 'Registros Biológicos');
 		
     	table.addRows(rows);
-        var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#C2EBF6', colors: ['#FFFFFF', '#fcd360']};   //, , datalessRegionColor:'#ff0000', legend:'none', height:'375', width:'375'
+        var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#f2ddb0', '#ec7532'] , datalessRegionColor:'#a6b361', legend:'none', height:'450', width:'450'};
         var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
         google.visualization.events.addListener(chart, 'select', function() {
             var selection = chart.getSelection();

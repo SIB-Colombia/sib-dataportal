@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Economica:400,700);
-
 body {
 	font-size: 80%;
 	color: #333;
@@ -202,12 +201,14 @@ div#header a{
 #quickSearch > a{
 	display:inline-block;
 	vertical-align:middle;
-	background:#b3dcea;
-	padding:7px;
+	background:#cbe09d;
+	padding:8px 9px;
 	-webkit-border-radius: 8px;
     border-radius: 8px;
 	color:#1888c9;
 	line-height:0.9em;
+	font-family:'Economica';
+	font-size:1.5em;
 }
 #quickSearch #query {
 	padding: 11px;
@@ -332,7 +333,7 @@ div#header a{
 	background-repeat:no-repeat, no-repeat;
 	background-position:center bottom, top center;
 	margin:0px;
-	padding: 20px;
+	padding: 20px 30px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .6)
 }
 .footer #copyright {
@@ -389,7 +390,6 @@ div#header a{
 /*background:url("../images/theme/bgfooter.jpg") repeat-x 0 0;*/
 /*background:url("../images/theme/r_search_bottom.jpg") repeat-x 0 0;*/
 margin:0;
-padding:20px 0 0 0;
 text-shadow:0 1px 0 rgba(255, 255, 255, .6)
 }
 
@@ -397,7 +397,7 @@ text-shadow:0 1px 0 rgba(255, 255, 255, .6)
 height:101px;
 margin:0 auto;
 padding:5px 0 0;
-width:930px;
+width:960px;
 text-align:center;
 clear:both;
 display:block;
@@ -595,3 +595,12 @@ text-decoration:none;
 color:#000;
 text-decoration:underline;
 }
+#footer .content_footer .gob_linea a{
+display:block;
+font-size:0.8em;
+line-height:1.2em;
+padding:0px;
+text-align:center;
+width:95px;
+}
+

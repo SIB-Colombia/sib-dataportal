@@ -617,14 +617,14 @@ div.subcontainer {
 	background-repeat:no-repeat, no-repeat;
 	background-position:center bottom, top center;
 	margin:0px;
-	padding: 20px 20px 0 20px;
+	padding: 20px 30px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .6)
 }
 .sponsor {
 	height: 101px;
 	margin: 0 auto;
 	padding: 5px 0 0;
-	width: 930px;
+	width:960px;
 	text-align: center;
 	clear: both;
 	display:block;
@@ -674,6 +674,7 @@ div.subcontainer {
 	height: 64px;
 	margin: 0 8px 0 0;
 	position: relative;
+	width:500px;
 }
 #s_two ul {
 	padding: 0 0 0 9px;
@@ -772,6 +773,9 @@ div.subcontainer {
 	font: 10px/12px Verdana, helvetica, arial;
 	margin: 20px 0 0;
 }
+.footer img{
+	text-align:center !important;
+}
 .footer .content_footer ul {
 	margin: 22px 0 0;
 	float: right;
@@ -803,6 +807,14 @@ div.subcontainer {
 .footer .content_footer li a:hover {
 	color: #000;
 	text-decoration: underline;
+}
+.footer .content_footer .gob_linea a{
+display:block;
+font-size:0.8em;
+line-height:1.2em;
+padding:0px;
+text-align:center;
+width:95px;
 }
 
 #quickConceptSearch{
