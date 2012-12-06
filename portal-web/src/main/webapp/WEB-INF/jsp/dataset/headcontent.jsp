@@ -5,5 +5,5 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='tables.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='tree.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='datasetsSpecial.css'/>"/>
-<link rel="Shortcut Icon" href="../favicon.ico" />
+<link rel="Shortcut Icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <tiles:insert page="/common/scripts.jsp"/>

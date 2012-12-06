@@ -2,4 +2,4 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='speciesGlobal.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='tutorialSpecial.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='tables.css'/>"/>
-<link rel="Shortcut Icon" href="../favicon.ico" />
+<link rel="Shortcut Icon" href="${pageContext.request.contextPath}/favicon.ico" />

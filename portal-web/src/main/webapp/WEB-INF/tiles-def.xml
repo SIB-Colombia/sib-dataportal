@@ -980,6 +980,9 @@
 	<definition name="countryTaxonHelp" extends="ajaxHtmlLayout"> 		 		
 		<put name="content" value="/WEB-INF/jsp/taxonomy/help/countryHelp.jsp"/>
 	</definition>
+	<definition name="departmentTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/departmentHelp.jsp"/>
+	</definition>
   	
 	<!-- Simple System Details Page -->
 	<definition name="systemDetails" extends="mainLayout">

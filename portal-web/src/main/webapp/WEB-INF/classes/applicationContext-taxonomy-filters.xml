@@ -27,6 +27,7 @@
 				<ref bean="dataResourceTaxonFilter"/>								
 				<ref bean="dataProviderTaxonFilter"/>			
 				<ref bean="countryTaxonFilter"/>	
+				<ref bean="departmentTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -198,7 +199,22 @@
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="iso-country-codes"/>
 		<property name="helpView" value="/taxonomy/countryTaxonHelp.htm"/>						
-	</bean>			
+	</bean>
+	
+	<bean id="departmentTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="13"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.department"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.ISODEPARTMENTCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-department-codes"/>
+		<property name="helpView" value="/taxonomy/departmentTaxonHelp.htm"/>						
+	</bean>	
 	
 	<!-- Filter helpers -->
 	<bean id="dataProviderTaxonPicklistHelper" class="org.gbif.portal.web.content.dataset.DataProviderTaxonPicklistHelper">

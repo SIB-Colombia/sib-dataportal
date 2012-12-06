@@ -664,7 +664,7 @@ group by 1,2;
 
 -- populate taxon_department
 select concat('Starting taxon_department species generation: ', now()) as debug;
-insert ignore into taxon_department 
+insert ignore into taxon_department
 select species_concept_id, iso_department_code, count(*)
 from occurrence_record 
 where species_concept_id is not null

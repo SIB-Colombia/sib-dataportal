@@ -8,8 +8,8 @@
 	<meta name="description" content="" />
 	<link rel="stylesheet" type="text/css" href="css/gbif.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
 	<link rel="alternate" type="application/rss+xml" title="GBIF Data Portal Design: revisions for CountryNameSearchAPI (RSS)" href="http://wiki.gbif.org/dadiwiki/wikka.php?wakka=CountryNameSearchAPI/revisions.xml" />
 	<link rel="alternate" type="application/rss+xml" title="GBIF Data Portal Design: recently edited pages (RSS)" href="http://wiki.gbif.org/dadiwiki/wikka.php?wakka=CountryNameSearchAPI/recentchanges.xml" />
 </head>
