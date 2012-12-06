@@ -30,7 +30,7 @@
 	<em><a href="${pageContext.request.contextPath}/settings.htm"><spring:message code="topmenu.settings"/></a></em>
 </c:set>
 <c:set var="link3">
-	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="topmenu.terms"/></a></em>
+	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="dataagreement.title"/></a></em>
 </c:set>
 <p>
 <fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
