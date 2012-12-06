@@ -25,7 +25,9 @@
 				<!-- Filter for Colombian Departments (SIB Colombia) -->
 				<ref bean="departmentFilter"/>
 				
-				<ref bean="regionFilter"/>
+				<!-- Disabled by SIB Colombia -->
+				<!-- <ref bean="regionFilter"/> -->
+				
 				<ref bean="boundingBoxFilter"/>
 				<ref bean="latitudeFilter"/>
 				<ref bean="longitudeFilter"/>
