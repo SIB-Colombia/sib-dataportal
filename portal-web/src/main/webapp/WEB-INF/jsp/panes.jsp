@@ -29,12 +29,16 @@
 <c:set var="link2">
 	<em><a href="${pageContext.request.contextPath}/settings.htm"><spring:message code="topmenu.settings"/></a></em>
 </c:set>
+<c:set var="link3">
+	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="topmenu.terms"/></a></em>
+</c:set>
 <p>
 <fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
 <fmt:formatNumber var="geoTotal" type="number" value="${totalGeoreferencedOccurrenceRecords}" />
 <spring:message code="welcome.tip.of.the.day.1" arguments="${total}%%%${geoTotal}" argumentSeparator="%%%"/><br/>
 <spring:message code="welcome.tip.of.the.day.2" arguments="${link1}"/><br/>
 <spring:message code="welcome.tip.of.the.day.3" arguments="${link2}"/><br/>
+<spring:message code="welcome.tip.of.the.day.4" arguments="${link3}"/><br/>
 <a href="version.htm"><spring:message code="version" text="Version"/> <gbif:propertyLoader bundle="portal" property="version"/></a></p>
 </div>
 

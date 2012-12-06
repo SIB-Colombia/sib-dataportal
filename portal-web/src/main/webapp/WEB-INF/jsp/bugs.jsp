@@ -3,6 +3,8 @@
 	<h2><spring:message code="version"/> <gbif:propertyLoader bundle="portal" property="version"/></h2>
 	<h3><spring:message code="bugs.fixes"/></h3>
 </div>
+
+<h4>Bug fixes in version 1.3.2</h4>
 <ul class="genericList">
   <li><a href="${pageContext.request.contextPath}/datasets/">Data Publishers</a> - Change all references of "Data Providers" to "Data Publishers"</li>
   <li><a href="${pageContext.request.contextPath}/species/">Species Browse Page</a> - Improved species classification browsing </li>		

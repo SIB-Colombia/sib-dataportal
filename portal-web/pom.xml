@@ -11,18 +11,18 @@
   <groupId>portal</groupId>
   <artifactId>portal-web</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>GBIF Portal Web Application</name>
-  <url>http://www.gbif.org</url>
+  <version>1.4-SNAPSHOT</version>
+  <name>SIB Portal Web Application</name>
+  <url>http://data.sibcolombia.net</url>
 
   <properties>
     <jdkLevel>1.5</jdkLevel>
   </properties>
 
   <scm>
-    <connection>scm:svn:http://gbif-dataportal.googlecode.com/svn/trunk/portal-web</connection>
-    <developerConnection>scm:svn:https://gbif-dataportal.googlecode.com/svn/trunk/portal-web</developerConnection>
-    <url>http://code.google.com/p/gbif-dataportal/source/browse/#svn/trunk/portal-web</url>
+    <connection>scm:svn:http://sib-dataportal.googlecode.com/svn/trunk/portal-web</connection>
+    <developerConnection>scm:svn:https://sib-dataportal.googlecode.com/svn/trunk/portal-web</developerConnection>
+    <url>http://code.google.com/p/sib-dataportal/source/browse/#svn/trunk/portal-web</url>
   </scm>
 
   <build>

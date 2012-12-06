@@ -4,6 +4,18 @@
 	<h3><spring:message code="version.features"/></h3>
 </div>
 
+<h4>Features added in version 1.4 (Published: December, 2012)</h4>
+<ul class="genericList">
+	<li><a href="${pageContext.request.contextPath}/departments/">Departments</a> menu created for search in the second administrative division of Colombia</li>
+	<li>A <a href="${pageContext.request.contextPath}/departments/chart">departments chart</a> for records count visualization</li>
+	<li>Enhanced visual interface in all pages as well in the maps</li>
+	<li>All tables sortable by just click in column header </li>
+	<li>Tomcat 7 compatible </li>
+</ul>
+<a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
+
+
+<h4>Features added in version 1.3.2</h4>
 <ul class="genericList">
 	<li><a href="${pageContext.request.contextPath}/datasets/">Data Publishers</a> - Change all references of "Data Providers" to "Data Publishers"</li>
 	<li><a href="${pageContext.request.contextPath}/species/">Species Browse Page</a> - Improved species classification browsing </li>
