@@ -36,7 +36,7 @@
 			<c:when test="${fullScreen}">style="width:1000px;height:500px;"</c:when>
 			<c:otherwise>style="width:700px;height:350px;"</c:otherwise>
 			</c:choose>	
-			src="${pageContext.request.contextPath}/images/globalMap.png"	
+			src="${pageContext.request.contextPath}/images/colombiaMap.png"	
 			onMouseOver="javascript:document.body.style.cursor='crosshair';" 			
 			onMouseOut="javascript:document.body.style.cursor='default';"					
 			onLoad="javascript:setOverlayDiv('boundingBoxMap', 'boundingBoxImg');<c:if test="${boundingBox!=null}">setBoundingBoxMarkerOnMap('boundingBoxImg', 'mapSelector', ${boundingBox.minLong}, ${boundingBox.minLat}, ${boundingBox.maxLong}, ${boundingBox.maxLat});</c:if>"
@@ -56,10 +56,10 @@
 </td><td align="right">
 <!-- map marker -->
 	<ul id="markerPosition">
-		<li id="northCoordinate">90</li>
-		<li id="westCoordinate">-180</li>
-		<li id="eastCoordinate">-180</li>
-		<li id="southCoordinate">-90</li>
+		<li id="northCoordinate">15</li>
+		<li id="westCoordinate">-94</li>
+		<li id="eastCoordinate">-54</li>
+		<li id="southCoordinate">-5</li>
 	</ul>	
 </td>	
 </tr>

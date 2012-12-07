@@ -82,8 +82,8 @@ function setBoundingBox(filterIndex){
 	//-4 is to account for the 2px border on the div
 	var mapHeight = document.getElementById(mapImgName).height;
 	var mapWidth= document.getElementById(mapImgName).width;
-	boxHeightInDegrees = Math.round((boxHeightInPx+4)/(mapHeight/180));
-	boxWidthInDegrees = Math.round((boxWidthInPx+4)/(mapWidth/360));		
+	boxHeightInDegrees = Math.round((boxHeightInPx+4)/(mapHeight/20));
+	boxWidthInDegrees = Math.round((boxWidthInPx+4)/(mapWidth/40));		
 	
 	//set the coordinates for the selector
 	setCoordinatesForMapSelector();
@@ -291,8 +291,8 @@ function changeSelectedArea(){
 	//-4 is to account for the 2px border on the div
 	var mapHeight = document.getElementById(mapImgName).height;
 	var mapWidth= document.getElementById(mapImgName).width;
-	boxHeightInDegrees = Math.round((boxHeightInPx+4)/(mapHeight/180));
-	boxWidthInDegrees = Math.round((boxWidthInPx+4)/(mapWidth/360));		
+	boxHeightInDegrees = Math.round((boxHeightInPx+4)/(mapHeight/20));
+	boxWidthInDegrees = Math.round((boxWidthInPx+4)/(mapWidth/40));		
 	
 	//set the coordinates for the selector
 	setCoordinatesForMapSelector();
@@ -315,31 +315,37 @@ function trackMouse(ev){
 function setLatLongTable(mousePos){
 	
 	var mapHeight = document.getElementById('boundingBoxMap').height;
+	//alert("Map Height" + mapHeight);
 	var mapWidth= document.getElementById('boundingBoxMap').width;
+	//alert("Map Width" + mapWidth);
 	var mapImg = document.getElementById('boundingBoxMap');
 	var mapPos = findPos(mapImg);
 	var mapLeft = mapPos.x;
+	//alert("Map Pos left" + mapLeft);
 	var mapTop = mapPos.y;
+	//alert("Map Pos top" + mapTop);
 
 	minX = mousePos.x-mapLeft;
+	//alert("Mouse pos min X" + minX);
 	minY = mousePos.y-mapTop;
+	//alert("Mouse pos min Y" + minY);
 
 	//set the currently selected lat/long
-	currentLatitude = Math.round(90-(minY/ (mapHeight/180) ));
-	currentLongitude = Math.round(-180+(minX/(mapWidth/360)));
+	currentLatitude = Math.round(15-(minY/ (mapHeight/20) ));
+	currentLongitude = Math.round(-94+(minX/(mapWidth/40)));
 
 	//sanity checks - latitude
-	if(currentLatitude>90){
-		currentLatitude=90;
-	} else if(currentLatitude<-90){
-			currentLatitude=-90;
+	if(currentLatitude>15){
+		currentLatitude=15;
+	} else if(currentLatitude<-5){
+			currentLatitude=-5;
 	}
 
 	//sanity checks - longitude
-	if(currentLongitude>180){
-		currentLongitude=180;
-	} else if(currentLongitude<-180){
-		currentLongitude=-180;
+	if(currentLongitude>-54){
+		currentLongitude=-54;
+	} else if(currentLongitude<-94){
+		currentLongitude=-94;
 	}
 	
 	//set the display values
@@ -607,8 +613,8 @@ function setWizardValuesFromDropdown(dropdownName){
          /******
           * select_innerHTML - corrige o bug do InnerHTML em selects no IE
           * Veja o problema em: http://support.microsoft.com/default.aspx?scid=kb;en-us;276228
-          * Vers‹o: 2.1 - 04/09/2007
-          * Autor: Micox - N‡iron JosŽ C. Guimar‹es - micoxjcg@yahoo.com.br
+          * Versï¿½o: 2.1 - 04/09/2007
+          * Autor: Micox - Nï¿½iron Josï¿½ C. Guimarï¿½es - micoxjcg@yahoo.com.br
           * @objeto(tipo HTMLobject): o select a ser alterado
           * @innerHTML(tipo string): o novo valor do innerHTML
           *******/ 
@@ -619,7 +625,7 @@ function setWizardValuesFromDropdown(dropdownName){
          document.body.appendChild(selTemp)
          selTemp = document.getElementById("micoxselect1")
          selTemp.style.display = "none"
-         if (innerHTML.toLowerCase().indexOf("<option") < 0) {//se n‹o Ž option eu converto
+         if (innerHTML.toLowerCase().indexOf("<option") < 0) {//se nï¿½o ï¿½ option eu converto
                  innerHTML = "<option>" + innerHTML + "</option>"
          }
          innerHTML = innerHTML.toLowerCase().replace(/<option/g, "<span").replace(
