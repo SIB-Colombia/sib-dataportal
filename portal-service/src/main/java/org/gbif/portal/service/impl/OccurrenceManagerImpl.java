@@ -53,6 +53,8 @@ import org.gbif.portal.model.taxonomy.TaxonConcept;
 import org.gbif.portal.service.OccurrenceManager;
 import org.gbif.portal.service.ServiceException;
 
+import net.sibcolombia.portal.dao.geospatial.*;
+
 /**
  * An implementation of the OccurrenceManager interface that makes use of the
  * DAO layer objects for data access.
@@ -66,6 +68,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	
 	/** DAOs */
 	protected CountryDAO countryDAO;
+	protected DepartmentDAO departmentDAO;
 	protected DataProviderDAO dataProviderDAO;
 	protected DataResourceDAO dataResourceDAO;
 	protected ResourceNetworkDAO resourceNetworkDAO;
@@ -143,7 +146,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	 */
 	public SearchResultsDTO findOccurrenceRecords(String dataProviderKey,
 			String dataResourceKey, String resourceNetworkKey, String taxonConceptKey,
-			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String basisOfRecordCode, 
+			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode, String basisOfRecordCode, 
 			String cellId, BoundingBoxDTO boundingBox,	TimePeriodDTO timePeriod, Date modifiedSince, 
 			boolean georeferencedOnly, SearchConstraints searchConstraints)
 			throws ServiceException {
@@ -200,6 +203,10 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 		if (originIsoCountryCode != null && countryDAO.getCountryForIsoCountryCode(originIsoCountryCode, null) == null ) {
 			throw new ServiceException("No country found for origin ISO code " + originIsoCountryCode);
 		}
+
+		if (originIsoDepartmentCode != null && departmentDAO.getDepartmentForIsoDepartmentCode(originIsoDepartmentCode) == null ) {
+			throw new ServiceException("No department found for origin ISO code " + originIsoDepartmentCode);
+		}
 		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
@@ -241,7 +248,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			endDate = timePeriod.getEndPeriod();
 		}
 		
-		List<OccurrenceRecord> occurrenceRecords = occurrenceRecordDAO.findOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly, searchConstraints);
+		List<OccurrenceRecord> occurrenceRecords = occurrenceRecordDAO.findOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly, searchConstraints);
 		if(logger.isDebugEnabled())
 			logger.debug("occurrenceRecords: "+occurrenceRecords.size());
 		return occurrenceRecordDTOFactory.createResultsDTO(occurrenceRecords, searchConstraints.getMaxResults());
@@ -285,7 +292,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	 */
 	public int countOccurrenceRecords(String dataProviderKey,
 			String dataResourceKey, String resourceNetworkKey, String taxonConceptKey,
-			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String basisOfRecordCode, 
+			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode, String basisOfRecordCode, 
 			String cellId, BoundingBoxDTO boundingBox,	TimePeriodDTO timePeriod, Date modifiedSince, boolean georeferencedOnly)
 			throws ServiceException {
 		
@@ -343,6 +350,10 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 		if (originIsoCountryCode != null && countryDAO.getCountryForIsoCountryCode(originIsoCountryCode, null) == null ) {
 			throw new ServiceException("No country found for origin ISO code " + originIsoCountryCode);
 		}
+
+		if (originIsoDepartmentCode != null && departmentDAO.getDepartmentForIsoDepartmentCode(originIsoDepartmentCode) == null ) {
+			throw new ServiceException("No department found for origin ISO code " + originIsoDepartmentCode);
+		}
 		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
@@ -384,7 +395,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			endDate = timePeriod.getEndPeriod();
 		}
 
-		Long recordCount = occurrenceRecordDAO.countOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly);
+		Long recordCount = occurrenceRecordDAO.countOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly);
 		if(logger.isDebugEnabled())
 			logger.debug("occurrenceRecords: "+recordCount);
 		return recordCount.intValue();
