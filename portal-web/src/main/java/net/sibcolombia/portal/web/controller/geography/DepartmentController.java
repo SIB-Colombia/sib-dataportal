@@ -64,12 +64,14 @@ public class DepartmentController extends RestController {
       DepartmentDTO department = null;
       // Locale locale = RequestContextUtils.getLocale(request);
       if (departmentManager.isValidISODepartmentCode(departmentKey)) {
+    	  logger.debug("departmentKey:"+departmentKey);
         department = departmentManager.getDepartmentForIsoDepartmentCode(departmentKey);
       } else if (departmentManager.isValidDepartmentKey(departmentKey)) {
         department = departmentManager.getDepartmentFor(departmentKey);
       }
       logger.info("Department not null");
       if (department != null) {
+    	  logger.debug("Department not null");
         // sort counts into descending order
         // List<CountDTO> resourceCounts =
         // departmentManager.getDataResourceCountsForDepartment(department.getIsoDepartmentCode(), true);
@@ -125,7 +127,7 @@ public class DepartmentController extends RestController {
           && department.getMinLatitude() != null && department.getMaxLongitude() != null
           && department.getMaxLatitude() != null) {
           // zoom to the correct level for this department
-        	//logger.info("zoom to the correct level for this department");
+        //logger.info("zoom to the correct level for this department");
           mapContentProvider.addMapContentDepartment(request, entityType.getName(), department.getKey(),
             department.getMinLongitude(), department.getMinLatitude(), department.getMaxLongitude(),
             department.getMaxLatitude());

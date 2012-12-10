@@ -37,19 +37,19 @@
 				<td>	
 					<ul class="actionsListInline">
 						<li>
-							<a href="${pageContext.request.contextPath}/occurrences/country/celldensity/country-celldensity-${department.isoDepartmentCode}.kml"><spring:message code="download.google.earth.celldensity"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/department/celldensity/department-celldensity-${department.isoDepartmentCode}.kml"><spring:message code="download.google.earth.celldensity"/></a>
 						</li>	
 						<li>
-							<a href="${pageContext.request.contextPath}/occurrences/country/placemarks/country-placemarks-${department.isoDepartmentCode}.kml"><spring:message code="download.google.earth.placemarks"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/department/placemarks/department-placemarks-${department.isoDepartmentCode}.kml"><spring:message code="download.google.earth.placemarks"/></a>
 						</li>	
 						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoCountryCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoDepartmentCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
 						</li>	
 						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoCountryCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoDepartmentCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
 						</li>	
 						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isocountrycode=${department.isoDepartmentCode}"><spring:message code="download.metadata.for.providers" text="Download metadata for data providers in "/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
+							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isoDepartmentcode=${department.isoDepartmentCode}"><spring:message code="download.metadata.for.providers" text="Download metadata for data providers in "/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
 						</li>
 					</ul>
 				</td>

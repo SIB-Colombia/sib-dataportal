@@ -4,6 +4,7 @@ import org.gbif.portal.dao.resources.DataResourceDAO;
 import org.gbif.portal.dto.CountDTO;
 import org.gbif.portal.dto.DTOFactory;
 import org.gbif.portal.service.ServiceException;
+import org.gbif.portal.webservices.actions.DensityAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +18,8 @@ import net.sibcolombia.portal.dto.department.DepartmentDTOFactory;
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.service.DepartmentManager;
 import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An implementation of the DepartmentManager interface that makes use of the
@@ -39,6 +42,8 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   /** DTO factories */
   /** DTO Factory for CountDTOs */
   protected DTOFactory countDTOFactory;
+  
+  public static Log log = LogFactory.getLog(DensityAction.class);
 
   protected static Long parseKey(String key) {
     Long parsedKey = null;
@@ -84,7 +89,8 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    * @see net.sibcolombia.portal.service.DepartmentManager#getDepartmentForIsoDepartmentCode(java.lang.String,
    *      java.util.Locale)
    */
-  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {
+  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {  
+	log.debug("isoDepartmentCode:" + isoDepartmentCode);  
     Object department = departmentDAO.getDepartmentForIsoDepartmentCode(isoDepartmentCode);
     return (DepartmentDTO) departmentDTOFactory.createDTOSingleId(department);
   }

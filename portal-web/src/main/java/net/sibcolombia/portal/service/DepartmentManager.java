@@ -71,7 +71,6 @@ public interface DepartmentManager {
    * 
    * @param firstChar
    * @param additionSorting whether to allow additional sorting
-   * @param locale
    * @return list of departments
    */
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar);

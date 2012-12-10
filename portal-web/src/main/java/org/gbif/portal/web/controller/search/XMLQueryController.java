@@ -56,7 +56,7 @@ public class XMLQueryController extends MultiActionController {
 	protected DataResourceManager dataResourceManager;
 	protected GeospatialManager geospatialManager;
 	protected QueryHelper queryHelper;
-	
+
 	/**
 	 * Performs a taxon search.
 	 * 
@@ -64,56 +64,71 @@ public class XMLQueryController extends MultiActionController {
 	 * @param response
 	 * @return
 	 */
-	public ModelAndView query(HttpServletRequest request, HttpServletResponse response){
-		
+	public ModelAndView query(HttpServletRequest request,
+			HttpServletResponse response) {
+
 		String query = request.getParameter("query");
 		String taxonConceptKey = null;
 		String scientificName = null;
 		boolean fuzzy = false;
 
 		try {
-			Integer taxonConceptId  = Integer.parseInt(query);
+			Integer taxonConceptId = Integer.parseInt(query);
 			taxonConceptKey = query;
-		} catch (NumberFormatException e){
-			//expected behaviour
+		} catch (NumberFormatException e) {
+			// expected behaviour
 			fuzzy = queryHelper.hasWildcards(query);
 			scientificName = queryHelper.removeWildcards(query);
-		}		
-		
-		int maxResults = ServletRequestUtils.getIntParameter(request,"maxResults", 10);
-		int startIndex = ServletRequestUtils.getIntParameter(request,"startIndex", 0);
-		
-		SearchConstraints sc = new SearchConstraints(startIndex,maxResults);
+		}
+
+		int maxResults = ServletRequestUtils.getIntParameter(request,
+				"maxResults", 10);
+		int startIndex = ServletRequestUtils.getIntParameter(request,
+				"startIndex", 0);
+
+		SearchConstraints sc = new SearchConstraints(startIndex, maxResults);
 		try {
-			
+
 			List modelObjects = null;
-			
-			if(taxonConceptKey==null){
-				DataProviderDTO dataProvider = dataResourceManager.getNubDataProvider();
-				SearchResultsDTO searchResults = taxonomyManager.findTaxonConcepts(scientificName, fuzzy, null, dataProvider.getKey(), null, null, null, null, null, false, false, sc);
+
+			if (taxonConceptKey == null) {
+				DataProviderDTO dataProvider = dataResourceManager
+						.getNubDataProvider();
+				SearchResultsDTO searchResults = taxonomyManager
+						.findTaxonConcepts(scientificName, fuzzy, null,
+								dataProvider.getKey(), null, null, null, null,
+								null, false, false, sc);
 				modelObjects = searchResults.getResults();
 			} else {
-				TaxonConceptDTO taxonConcept = taxonomyManager.getTaxonConceptFor(taxonConceptKey);
+				TaxonConceptDTO taxonConcept = taxonomyManager
+						.getTaxonConceptFor(taxonConceptKey);
 				modelObjects = new ArrayList<TaxonConceptDTO>();
-				if(taxonConcept!=null){
+				if (taxonConcept != null) {
 					modelObjects.add(taxonConcept);
 				}
 			}
-			
+
 			ModelAndView mav = new ModelAndView("xmlQuery");
-			
+
 			List<TaxonConceptStats> stats = new ArrayList<TaxonConceptStats>();
-			for(Object modelObject : modelObjects){
+			for (Object modelObject : modelObjects) {
 				BriefTaxonConceptDTO btcDTO = (BriefTaxonConceptDTO) modelObject;
 				Integer occurrenceCount = null;
-				if(TaxonRankType.isGenusOrLowerRank(btcDTO.getRank())){
-					occurrenceCount = occurrenceManager.countOccurrenceRecords(null, null, null, btcDTO.getKey(), null, null, null, null, null, (BoundingBoxDTO) null, (TimePeriodDTO) null, (Date) null, false);
+				if (TaxonRankType.isGenusOrLowerRank(btcDTO.getRank())) {
+					occurrenceCount = occurrenceManager.countOccurrenceRecords(
+							null, null, null, btcDTO.getKey(), null, null,
+							null, null, null, null, (BoundingBoxDTO) null,
+							(TimePeriodDTO) null, (Date) null, false);
 				}
-				int occurrenceGeoereferencedCount = geospatialManager.countGeoreferencedPointsFor(EntityType.TYPE_TAXON, btcDTO.getKey());
-				TaxonConceptStats tcStats = new TaxonConceptStats(btcDTO.getKey(), occurrenceCount, occurrenceGeoereferencedCount); 
+				int occurrenceGeoereferencedCount = geospatialManager
+						.countGeoreferencedPointsFor(EntityType.TYPE_TAXON,
+								btcDTO.getKey());
+				TaxonConceptStats tcStats = new TaxonConceptStats(
+						btcDTO.getKey(), occurrenceCount,
+						occurrenceGeoereferencedCount);
 				stats.add(tcStats);
 			}
-			
+
 			mav.addObject("searchResults", modelObjects);
 			mav.addObject("stats", stats);
 			return mav;
@@ -122,7 +137,7 @@ public class XMLQueryController extends MultiActionController {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Performs a occurrence search.
 	 * 
@@ -130,51 +145,60 @@ public class XMLQueryController extends MultiActionController {
 	 * @param response
 	 * @return
 	 */
-	public ModelAndView queryGIS(HttpServletRequest request, HttpServletResponse response){
-		
+	public ModelAndView queryGIS(HttpServletRequest request,
+			HttpServletResponse response) {
+
 		String query = request.getParameter("query");
 		String taxonConceptKey = null;
 		String scientificName = null;
 
 		try {
-			Integer taxonConceptId   = Integer.parseInt(query);
+			Integer taxonConceptId = Integer.parseInt(query);
 			taxonConceptKey = query;
-		} catch (NumberFormatException e){
-			//expected behaviour
+		} catch (NumberFormatException e) {
+			// expected behaviour
 			scientificName = queryHelper.removeWildcards(query);
 		}
-		
+
 		SearchResultsDTO searchResults = null;
 		try {
-			searchResults = occurrenceManager.findOccurrenceRecords(null, null, null, taxonConceptKey, scientificName, null, null, null, null, null, null, null, true, new SearchConstraints(0,10000));
-			List<OccurrenceRecordDTO> occurrenceRecords = searchResults.getResults();
-			Collections.sort(occurrenceRecords, new Comparator<OccurrenceRecordDTO>(){
-				public int compare(OccurrenceRecordDTO or1, OccurrenceRecordDTO or2) {
-					return or1.getNubTaxonConceptKey().compareTo(or2.getNubTaxonConceptKey());
-				}
-			});
-			
+			searchResults = occurrenceManager.findOccurrenceRecords(null, null,
+					null, taxonConceptKey, scientificName, null, null, null,
+					null, null, null, null, null, true, new SearchConstraints(
+							0, 10000));
+			List<OccurrenceRecordDTO> occurrenceRecords = searchResults
+					.getResults();
+			Collections.sort(occurrenceRecords,
+					new Comparator<OccurrenceRecordDTO>() {
+						public int compare(OccurrenceRecordDTO or1,
+								OccurrenceRecordDTO or2) {
+							return or1.getNubTaxonConceptKey().compareTo(
+									or2.getNubTaxonConceptKey());
+						}
+					});
+
 			List<TaxonConceptDTO> concepts = new ArrayList<TaxonConceptDTO>();
-			List<Integer> recordCounts = new ArrayList<Integer>(); 
+			List<Integer> recordCounts = new ArrayList<Integer>();
 			String currTaxonConceptKey = "";
 			int currentCount = 0;
-			for(OccurrenceRecordDTO orDTO: occurrenceRecords){
-				if(!currTaxonConceptKey.equals(orDTO.getNubTaxonConceptKey())){
-					TaxonConceptDTO taxonConcept = taxonomyManager.getTaxonConceptFor(orDTO.getNubTaxonConceptKey());
+			for (OccurrenceRecordDTO orDTO : occurrenceRecords) {
+				if (!currTaxonConceptKey.equals(orDTO.getNubTaxonConceptKey())) {
+					TaxonConceptDTO taxonConcept = taxonomyManager
+							.getTaxonConceptFor(orDTO.getNubTaxonConceptKey());
 					concepts.add(taxonConcept);
 					currTaxonConceptKey = taxonConcept.getKey();
 					recordCounts.add(new Integer(currentCount));
-					currentCount=0;
+					currentCount = 0;
 				}
 				currentCount++;
 			}
 			recordCounts.add(new Integer(currentCount));
-			
+
 			ModelAndView mav = new ModelAndView("xmlQueryGIS");
 			mav.addObject("searchResults", searchResults);
 			mav.addObject("concepts", concepts);
 			mav.addObject("recordCounts", recordCounts);
-			return mav;			
+			return mav;
 		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -182,35 +206,40 @@ public class XMLQueryController extends MultiActionController {
 	}
 
 	/**
-	 * @param taxonomyManager the taxonomyManager to set
+	 * @param taxonomyManager
+	 *            the taxonomyManager to set
 	 */
 	public void setTaxonomyManager(TaxonomyManager taxonomyManager) {
 		this.taxonomyManager = taxonomyManager;
 	}
 
 	/**
-	 * @param occurrenceManager the occurrenceManager to set
+	 * @param occurrenceManager
+	 *            the occurrenceManager to set
 	 */
 	public void setOccurrenceManager(OccurrenceManager occurrenceManager) {
 		this.occurrenceManager = occurrenceManager;
 	}
 
 	/**
-	 * @param dataResourceManager the dataResourceManager to set
+	 * @param dataResourceManager
+	 *            the dataResourceManager to set
 	 */
 	public void setDataResourceManager(DataResourceManager dataResourceManager) {
 		this.dataResourceManager = dataResourceManager;
 	}
 
 	/**
-	 * @param geospatialManager the geospatialManager to set
+	 * @param geospatialManager
+	 *            the geospatialManager to set
 	 */
 	public void setGeospatialManager(GeospatialManager geospatialManager) {
 		this.geospatialManager = geospatialManager;
 	}
 
 	/**
-	 * @param queryHelper the queryHelper to set
+	 * @param queryHelper
+	 *            the queryHelper to set
 	 */
 	public void setQueryHelper(QueryHelper queryHelper) {
 		this.queryHelper = queryHelper;

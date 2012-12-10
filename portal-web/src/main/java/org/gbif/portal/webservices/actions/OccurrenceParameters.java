@@ -761,7 +761,7 @@ public class OccurrenceParameters extends Parameters {
   }
 
   /**
-   * @return the originIsoCountryCode
+   * @return the originIsoDepartmentCode
    */
   public String[] getOriginIsoDepartmentCodes() {
     return originIsoDepartmentCodes;

@@ -26,6 +26,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import net.sibcolombia.portal.dto.department.DepartmentDTO;
+import net.sibcolombia.portal.service.DepartmentManager;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.gbif.portal.dto.geospatial.CellDensityDTO;
@@ -53,6 +56,8 @@ public class DensityAction extends Action {
 	 * @see org.gbif.portal.service.GeospatialManager
 	 */
 	protected GeospatialManager geospatialManager;
+	
+	protected DepartmentManager departmentManager;
 
 	protected DataResourceManager dataResourceManager;
 	
@@ -123,6 +128,18 @@ public class DensityAction extends Action {
 					key = null;
 				}
 			}
+			
+			if (params.getEntityType() == EntityType.TYPE_DEPARTMENT) {
+				try {
+					DepartmentDTO department = departmentManager.getDepartmentForIsoDepartmentCode(key);
+					if (department != null) {
+						key = department.getKey();
+					}
+				} catch (Exception e) {
+					key = null;
+					log.debug("department null");
+				}
+			}
 						
 			if (key != null) {
 			    densities = geospatialManager.get1DegCellDensities(params.getEntityType(), key);
@@ -145,7 +162,10 @@ public class DensityAction extends Action {
 				if (params.getEntityType() == EntityType.TYPE_COUNTRY) {
 					shortName = params.getKey();
 					name += " for country " + shortName;
-				} else if (params.getEntityType() == EntityType.TYPE_DATA_PROVIDER) {
+				}else if(params.getEntityType() == EntityType.TYPE_DEPARTMENT){
+					shortName = params.getKey();
+					name += " for department " + shortName;
+				}else if (params.getEntityType() == EntityType.TYPE_DATA_PROVIDER) {
 					DataProviderDTO provider = dataResourceManager.getDataProviderFor(params.getKey());
 					shortName = provider.getName();
 					name += " for data provider: " + shortName; 
@@ -342,6 +362,20 @@ public class DensityAction extends Action {
 	 */
 	public GeospatialManager getGeospatialManager() {
 		return geospatialManager;
+	}
+
+	/**
+	 * @param geospatialManager the geospatialManager to set
+	 */
+	public void setDepartmentManager(DepartmentManager departmentManager) {
+		this.departmentManager = departmentManager;
+	}
+	
+	/**
+	 * @return the geospatialManager
+	 */
+	public DepartmentManager getDepartmentManager() {
+		return departmentManager;
 	}
 
 	/**

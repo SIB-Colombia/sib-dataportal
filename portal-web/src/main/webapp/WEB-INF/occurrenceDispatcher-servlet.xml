@@ -50,6 +50,9 @@
         <prop key="/taxon/celldensity/taxon-celldensity-*.kml">taxonCellDensityKmlController</prop>
         <prop key="/country/placemarks/country-placemarks-*.kml">countryKmlController</prop>
         <prop key="/country/celldensity/country-celldensity-*.kml">countryCellDensityKmlController</prop>
+        <!-- For departments -->
+        <prop key="/department/placemarks/department-placemarks-*.kml">departmentKmlController</prop>
+        <prop key="/department/celldensity/department-celldensity-*.kml">departmentCellDensityKmlController</prop>
         <prop key="/resource/placemarks/resource-placemarks-*.kml">resourceKmlController</prop>
         <prop key="/resource/celldensity/resource-celldensity-*.kml">resourceCellDensityKmlController</prop>
         <prop key="/provider/placemarks/provider-placemarks-*.kml">providerKmlController</prop>
@@ -247,6 +250,21 @@
       </map>
     </property>
   </bean>
+  <!-- for department -->
+  <bean id="departmentKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>originisodepartmentcode</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="originisodepartmentcode" value="department-placemarks-" />
+      </map>
+    </property>
+  </bean>
 
   <!-- Controller that redirects to the occurrence cell density kml service -->
   <bean id="abstractOccurrenceCellDensityKmlController"
@@ -327,6 +345,21 @@
     <property name="patternPrefix">
       <map>
         <entry key="originisocountrycode" value="country-celldensity-" />
+      </map>
+    </property>
+  </bean>
+  <!-- For department -->
+  <bean id="departmentCellDensityKmlController" parent="abstractOccurrenceCellDensityKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>originisodepartmentcode</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="originisodepartmentcode" value="department-celldensity-" />
       </map>
     </property>
   </bean>

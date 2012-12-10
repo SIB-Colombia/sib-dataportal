@@ -38,7 +38,9 @@ public class DensityParameters extends Parameters {
 	public static final String KEY_DATARESOURCEKEY = "dataresourcekey";
 	public static final String KEY_RESOURCENETWORKKEY = "resourcenetworkkey";
 	public static final String KEY_ORIGINISOCOUNTRYCODE = "originisocountrycode";
-
+	//
+	public static final String KEY_ORIGINISODEPARTMENTCODE = "originisodepartmentcode";
+	
 	protected String key = null;
 	protected EntityType entityType = null;
 
@@ -85,6 +87,10 @@ public class DensityParameters extends Parameters {
 					key = (String) value;
 					entityType = EntityType.TYPE_COUNTRY;
 				}
+				else if (k.equals(KEY_ORIGINISODEPARTMENTCODE)) {
+					key = (String) value;
+					entityType = EntityType.TYPE_DEPARTMENT;
+				}
 			}
 			
 			if (requestType == Action.LIST && key == null) {
@@ -120,6 +126,8 @@ public class DensityParameters extends Parameters {
 				map.put(KEY_RESOURCENETWORKKEY, key);
 			} else if (entityType == EntityType.TYPE_TAXON) {
 				map.put(KEY_TAXONCONCEPTKEY, key);
+			} else if(entityType == EntityType.TYPE_DEPARTMENT){
+				map.put(KEY_ORIGINISODEPARTMENTCODE, key);
 			}
 			map.put(KEY_FORMAT, getFormatName());
 		}

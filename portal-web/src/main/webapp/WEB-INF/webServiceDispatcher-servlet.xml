@@ -230,6 +230,7 @@
 	
 	<bean id="densityAction"
 		class="org.gbif.portal.webservices.actions.DensityAction">
+		<property name="departmentManager" ref="departmentManager" />
 		<property name="geospatialManager" ref="geospatialManager" />
 		<property name="taxonomyManager" ref="taxonomyManager" />
 		<property name="dataResourceManager" ref="dataResourceManager"/>
