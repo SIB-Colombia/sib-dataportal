@@ -44,8 +44,8 @@
 		<entry key="CO-PUT" value="department.putumayo"/>
 		<entry key="CO-QUI" value="department.quindio"/>
 		<entry key="CO-RIS" value="department.risaralda"/>
-		<entry key="CO-SAN" value="department.sanandres"/>		
-		<entry key="CO-SAP" value="department.santander"/>
+		<entry key="CO-SAN" value="department.santander"/>		
+		<entry key="CO-SAP" value="department.sanandres"/>
 		<entry key="CO-SUC" value="department.sucre"/>
 		<entry key="CO-TOL" value="department.tolima"/>
 		<entry key="CO-VAC" value="department.valledelcauca"/>
