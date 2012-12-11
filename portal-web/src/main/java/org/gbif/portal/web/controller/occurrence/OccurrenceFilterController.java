@@ -521,6 +521,7 @@ public class OccurrenceFilterController extends MultiActionController {
 
     List<CellDensityDTO> cellDensities = null;
 
+
     if (bbDTO == null)
       cellDensities = geospatialManager.get1DegCellDensities(entityType, entityKeys);
     else
@@ -528,7 +529,11 @@ public class OccurrenceFilterController extends MultiActionController {
 
     // add the map layer information to the request.
     String criteriaUrl = CriteriaUtil.getUrl(criteria);
-    mapContentProvider.addMapContent(request, filterMapLayerRoot, criteriaUrl, cellDensities, bbDTO);
+    if (entityType.equals(EntityType.TYPE_DEPARTMENT)) {
+      mapContentProvider.addMapContentDepartment(request, filterMapLayerRoot, criteriaUrl, cellDensities, bbDTO);
+    } else {
+      mapContentProvider.addMapContent(request, filterMapLayerRoot, criteriaUrl, cellDensities, bbDTO);
+    }
   }
 
   /**

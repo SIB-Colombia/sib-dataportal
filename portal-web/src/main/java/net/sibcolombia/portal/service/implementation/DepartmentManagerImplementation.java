@@ -42,7 +42,7 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   /** DTO factories */
   /** DTO Factory for CountDTOs */
   protected DTOFactory countDTOFactory;
-  
+
   public static Log log = LogFactory.getLog(DensityAction.class);
 
   protected static Long parseKey(String key) {
@@ -81,7 +81,7 @@ public class DepartmentManagerImplementation implements DepartmentManager {
     if (departmentId == null)
       return getDepartmentForIsoDepartmentCode(departmentKey);
     Object department = departmentDAO.getDepartmentFor(departmentId);
-    return (DepartmentDTO) departmentDTOFactory.createDTO(department);
+    return (DepartmentDTO) departmentDTOFactory.createDTOSingle(department);
   }
 
 
@@ -89,8 +89,8 @@ public class DepartmentManagerImplementation implements DepartmentManager {
    * @see net.sibcolombia.portal.service.DepartmentManager#getDepartmentForIsoDepartmentCode(java.lang.String,
    *      java.util.Locale)
    */
-  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {  
-	log.debug("isoDepartmentCode:" + isoDepartmentCode);  
+  public DepartmentDTO getDepartmentForIsoDepartmentCode(String isoDepartmentCode) {
+    log.debug("isoDepartmentCode:" + isoDepartmentCode);
     Object department = departmentDAO.getDepartmentForIsoDepartmentCode(isoDepartmentCode);
     return (DepartmentDTO) departmentDTOFactory.createDTOSingleId(department);
   }

@@ -71,7 +71,9 @@
 
 	<!-- Helper for map related functions -->	
 	<bean id="mapContentProvider" class="org.gbif.portal.web.content.map.MapContentProvider">	
-		<property name="geospatialManager" ref="geospatialManager"/>		
+		<property name="geospatialManager" ref="geospatialManager"/>
+		<!-- SIB Colombia Departments support -->
+		<property name="departmentManager" ref="departmentManager"/>		
 		<property name="mapLayerServerURL" value="http://204.236.241.225/maplayer/"/>
 		<property name="defaultMapServerKey" value="map_server_url"/>	
 		<!-- defaultGeoServerValue is overwritten at portal.properties -->
