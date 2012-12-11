@@ -44,12 +44,6 @@
 						</li>	
 						<li>
 							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoDepartmentCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
-						</li>	
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoDepartmentCode=${department.isoDepartmentCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
-						</li>	
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isoDepartmentcode=${department.isoDepartmentCode}"><spring:message code="download.metadata.for.providers" text="Download metadata for data providers in "/> <span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span></a>
 						</li>
 					</ul>
 				</td>
