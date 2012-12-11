@@ -55,6 +55,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.model.geospatial.Department;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -81,6 +83,10 @@ public class GeospatialManagerImpl implements GeospatialManager {
   protected CentiCellDensityDAO centiCellDensityDAO;
   /** Country DAO for Country queries */
   protected CountryDAO countryDAO;
+
+  /** Department DAO for Department queries */
+  protected DepartmentDAO departmentDAO;
+
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
   /** Occurrence Record DAO */
@@ -543,6 +549,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
           keyAsLong = country.getCountryId();
         }
       }
+    } else if (type.equals(EntityType.TYPE_DEPARTMENT)) {
+      Object departmentAndName = departmentDAO.getDepartmentForIsoDepartmentCode(key);
+      if (departmentAndName != null) {
+        Department department = (Department) departmentAndName;
+        keyAsLong = department.getDepartmentId();
+      }
     }
     return keyAsLong;
   }
@@ -786,6 +798,13 @@ public class GeospatialManagerImpl implements GeospatialManager {
    */
   public void setDefaultISOLanguageCode(String defaultISOLanguageCode) {
     this.defaultISOLanguageCode = defaultISOLanguageCode;
+  }
+
+  /**
+   * @param departmentDAO the departmentDAO to set
+   */
+  public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+    this.departmentDAO = departmentDAO;
   }
 
   /**

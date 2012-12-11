@@ -187,6 +187,7 @@
   	<property name="target">
   		<bean class="org.gbif.portal.service.impl.GeospatialManagerImpl">
   			<property name="countryDAO" ref="countryDAORO"/>
+  			<property name="departmentDAO" ref="departmentDAORO"/>
   			<property name="cellDensityDAO" ref="cellDensityDAORO"/>
   			<property name="centiCellDensityDAO" ref="centiCellDensityDAORO"/>
   			<property name="occurrenceRecordDAO" ref="occurrenceRecordDAORO"/>
