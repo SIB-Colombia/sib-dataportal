@@ -58,6 +58,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -95,6 +96,8 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   protected DataResourceDAO dataResourceDAO;
   /** The DAO interface for accessing Countries */
   protected CountryDAO countryDAO;
+  /** The DAO interface for accessing Departments */
+  protected DepartmentDAO departmentDAO;
   /** The DAO interface for accessing Countries */
   protected ImageRecordDAO imageRecordDAO;
   /** The remote concept DAO */
@@ -723,6 +726,14 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
     return countDTOFactory.createDTOList(counts);
   }
 
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getCountryCountsForTaxonConcept(java.lang.String)
+   */
+  public List<CountDTO> getDepartmentCountsForTaxonConcept(String taxonConceptKey) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List counts = departmentDAO.getDepartmentCountsForTaxonConcept(taxonConceptId);
+    return countDTOFactory.createDTOList(counts);
+  }
 
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getNubTaxonConceptFor(java.lang.String)

@@ -357,6 +357,15 @@ public interface TaxonomyManager {
   public List<CountDTO> getCountryCountsForTaxonConcept(String taxonConceptKey, Locale locale) throws ServiceException;
 
   /**
+   * Retrieves a count against all departments for this taxon concept.
+   * 
+   * @param taxonConcept
+   * @return
+   * @throws ServiceException
+   */
+  public List<CountDTO> getDepartmentCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
+
+  /**
    * Returns the Nub Taxon Concepts for the specified TaxonConcept. This is the concept that is accepted as the
    * authoritive concept within this portal.
    * 

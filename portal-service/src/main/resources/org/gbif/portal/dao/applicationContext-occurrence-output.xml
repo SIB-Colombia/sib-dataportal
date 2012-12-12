@@ -112,7 +112,12 @@
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="isoCountryCode"/>
 							</bean>
-						</entry>	
+						</entry>
+						<entry key="isoDepartmentCode">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="isoDepartmentCode"/>
+							</bean>
+						</entry>
 						<entry key="latitude">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="latitude"/>
@@ -253,11 +258,6 @@
 						<entry key="rawStateOrProvince">
 							<bean parent="rawOccurrenceRecordProperty">
 								<property name="propertyName" value="stateOrProvince"/>
-							</bean>
-						</entry>
-						<entry key="rawCounty">
-							<bean parent="rawOccurrenceRecordProperty">
-								<property name="propertyName" value="county"/>
 							</bean>
 						</entry>
 						<entry key="rawLocality">

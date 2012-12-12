@@ -150,7 +150,7 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     return getHibernateTemplate().execute(new HibernateCallback() {
 
       public Object doInHibernate(Session session) {
-        Query query = session.createQuery("from Department d where d.id=:departmentId");
+        Query query = session.createQuery("from Department d where d.departmentId=:departmentId");
         query.setLong("departmentId", departmentId);
         return query.uniqueResult();
       }
@@ -188,6 +188,20 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
         return query.list();
       }
     });
+  }
+
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalDepartmentCount()
+   */
+  public int getTotalDepartmentCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(c.id) from Department c");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
   }
 
   /**

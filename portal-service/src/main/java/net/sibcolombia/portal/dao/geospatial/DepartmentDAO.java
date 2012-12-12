@@ -70,4 +70,12 @@ public interface DepartmentDAO {
    */
   public List<Department> getDepartmentsFor(Character theChar);
 
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of departments
+   * 
+   * @return count of the total number of departments
+   */
+  public int getTotalDepartmentCount();
+
 }

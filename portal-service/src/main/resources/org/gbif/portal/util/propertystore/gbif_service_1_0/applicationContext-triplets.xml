@@ -285,6 +285,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROVIDERCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.COUNTRYCOUNTS" value="distinct oc.isoCountryCode, oc.isoCountryCode, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.COUNTRYCOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DEPARTMENTCOUNTS" value="distinct oc.isoDepartmentCode, oc.isoDepartmentCode, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DEPARTMENTCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS" value="distinct oc.nubTaxonConceptId, oc.taxonName.canonical, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS.GROUPBY" value=""/>
 
