@@ -4,7 +4,7 @@
 
 	<!--<h3 id="blurb"><spring:message code="portal.header.subtitle"></spring:message></h3> -->
 
-    <a href="${pageContext.request.contextPath}" style="float:right; margin:-20px 20px 0 20px;" title="ir al portal del SiB Colombia" target="_blank"><img src="${pageContext.request.contextPath}/skins/standard/images/btn_sib.png" width="197" height="51" alt="PORTAL DE DATOS - SIB COLOMBIA" />
+    <a href="http://www.sibcolombia.net" style="float:right; margin:-20px 20px 0 20px;" title="Ir al portal del SiB Colombia" target="_blank"><img src="${pageContext.request.contextPath}/skins/standard/images/btn_sib.png" width="197" height="51" alt="PORTAL DE DATOS - SIB COLOMBIA" />
     </a>
 
 	<div id="quickSearch">
