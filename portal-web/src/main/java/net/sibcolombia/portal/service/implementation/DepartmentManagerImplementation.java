@@ -103,6 +103,13 @@ public class DepartmentManagerImplementation implements DepartmentManager {
 
 
   /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalDepartmentCount()
+   */
+  public int getTotalDepartmentCount() throws ServiceException {
+    return departmentDAO.getTotalDepartmentCount();
+  }
+
+  /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */
   public boolean isValidDepartmentKey(String departmentKey) {

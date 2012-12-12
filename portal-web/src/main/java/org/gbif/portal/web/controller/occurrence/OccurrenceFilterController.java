@@ -54,6 +54,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sibcolombia.portal.service.DepartmentManager;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -85,6 +86,7 @@ public class OccurrenceFilterController extends MultiActionController {
   protected TripletQueryManager countsQueryManager;
   protected TripletQueryManager mapLayerQueryManager;
   protected GeospatialManager geospatialManager;
+  protected DepartmentManager departmentManager;
   protected DataResourceManager dataResourceManager;
   protected TaxonomyManager taxonomyManager;
 
@@ -146,6 +148,7 @@ public class OccurrenceFilterController extends MultiActionController {
   protected String occurrenceFilterProviderCountsView = "occurrenceFilterProviderCounts";
   protected String occurrenceFilterResourceCountsView = "occurrenceFilterResourceCounts";
   protected String occurrenceFilterCountryCountsView = "occurrenceFilterCountryCounts";
+  protected String occurrenceFilterDepartmentCountsView = "occurrenceFilterDepartmentCounts";
   protected String occurrenceFilterSpeciesCountsView = "occurrenceFilterSpeciesCounts";
   protected String downloadSpreadsheetView = "occurrenceDownloadSpreadsheet";
   protected String downloadXMLView = "occurrenceDownloadXML";
@@ -713,6 +716,42 @@ public class OccurrenceFilterController extends MultiActionController {
   }
 
   /**
+   * Retrieves the counts against the departments for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchDepartments(HttpServletRequest request, HttpServletResponse response)
+    throws ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getDepartmentCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getDepartmentCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterDepartmentCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfDepartments = departmentManager.getTotalDepartmentCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DEPARTMENTCOUNTS",
+      occurrenceFilterDepartmentCountsView, new SearchConstraints(0, totalNoOfDepartments));
+  }
+
+  /**
    * Retrieves the counts against the providers for this set of criteria
    * 
    * @param request
@@ -1219,6 +1258,13 @@ public class OccurrenceFilterController extends MultiActionController {
    */
   public void setOccurrenceFilterCountryCountsView(String occurrenceFilterCountryCountsView) {
     this.occurrenceFilterCountryCountsView = occurrenceFilterCountryCountsView;
+  }
+
+  /**
+   * @param occurrenceFilterDepartmentCountsView the occurrenceFilterDepartmentCountsView to set
+   */
+  public void setOccurrenceFilterDepartmentCountsView(String occurrenceFilterDepartmentCountsView) {
+    this.occurrenceFilterDepartmentCountsView = occurrenceFilterDepartmentCountsView;
   }
 
   /**

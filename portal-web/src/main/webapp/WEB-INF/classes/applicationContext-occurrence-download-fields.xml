@@ -45,6 +45,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
+		<ref bean="isoDepartmentCode"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -111,6 +112,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
+		<ref bean="isoDepartmentCode"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -164,6 +166,12 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldI18nNameKey" value="occurrence.record.interpreted.country"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="country"/>
+	</bean>
+	<bean id="isoDepartmentCode" parent="downloadField">
+		<property name="fieldName" value="isoDepartmentCode"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.interpreted.department"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="department"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

@@ -76,6 +76,15 @@ public interface DepartmentManager {
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar);
 
   /**
+   * SIB Colombia New method
+   * Returns a count of the total number of departments
+   * 
+   * @return count of the total number of departments
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalDepartmentCount() throws ServiceException;
+
+  /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied
    * key is of the correct format.
