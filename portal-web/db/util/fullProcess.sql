@@ -148,98 +148,202 @@ update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 -- ***********************************
 
 -- populate iso_department_code according to differents possible names.
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital de bogot�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogot�, d.c.');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogota');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogot�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('santaf� de bogot�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogot�, distrito capital');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogot�, distrito capital');
+-- Bogotá, D.C
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital de bogotá') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('distrito capital') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá, d.c.') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá d.c.') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá, d.c') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogota, d.c.') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogota d.c.') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogota') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá')and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('santafé de bogotá') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá, distrito capital') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bogotá, distrito capital') and(lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-dc') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-DC' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='11') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-AMA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('amazonas');
+-- Amazonas
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-AMA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('amazonas') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-AMA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-ama') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-AMA' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='91') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ANT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('antioquia');
+-- Antioquia
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ANT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('antioquia') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ANT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-ant') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ANT' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='05' or raw_occurrence_record.state_province='5') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ARA' where raw_occurrence_record.id = occurrence_record.id and raw_occurrence_record.state_province=('Arauca');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ARA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('arauca');
+-- Arauca
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ARA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('arauca') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ARA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-ara') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ARA' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='81') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('atl�ntico');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('atlantico');
+-- Atlántico
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('atlántico') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('atlantico') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-atl') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-ATL' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='08' or raw_occurrence_record.state_province='8') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bol�var');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bolivar');
+-- Bolívar
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bolívar') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('bolivar') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-bol') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOL' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='13') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('boyac�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('boyaca');
+-- Boyacá
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('boyacá') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('boyaca') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-boy') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-BOY' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='15') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caldas');
+-- Caldas
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caldas') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cal') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAL' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='17') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caquet�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caqueta');
+-- Caquetá
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caquetá') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('caqueta')and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-caq')and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAQ' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='18') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('casanare');
+-- Casanare
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('casanare') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cas') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAS' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='85') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cauca');
+-- Cauca
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cauca') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cau') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CAU' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='19') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CES' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cesar');
+-- Cesar
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CES' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cesar') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CES' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-ces') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CES' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='20') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('c�rdoba');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cordoba');
+-- Córdoba
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('córdoba') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cordoba') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cor') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-COR' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='23') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CUN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cundinamarca');
+-- Cundinamarca
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CUN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('cundinamarca') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CUN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cun') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CUN' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='25') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('choc�');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('choco');
+-- Chocó
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('chocó') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('choco') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-cho') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-CHO' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='27') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guain�a');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guainia');
+-- Guainía
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guainía') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guainia') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-gua') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUA' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='94') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUV' where raw_occurrence_record.id = occurrence_record.id and lower(raw_occurrence_record.state_province)=('guaviare');
+-- Guaviare
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUV' where raw_occurrence_record.id = occurrence_record.id and lower(raw_occurrence_record.state_province)=('guaviare') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUV' where raw_occurrence_record.id = occurrence_record.id and lower(raw_occurrence_record.state_province)=('co-guv') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-GUV' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='95') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-HUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('huila');
+-- Huila
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-HUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('huila') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-HUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-hui') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-HUI' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='41') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('la guajira');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guajira');
+-- La Guajira
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('la guajira') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('guajira') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-lag') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-LAG' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='44') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('magdalena');
+-- Magdalena
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('magdalena') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MAG' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-mag') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MAG' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='47') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MET' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('meta');
- 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('nari�o');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('narino');
+-- Meta
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MET' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('meta') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MET' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-met') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-MET' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='50') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NSA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('norte de santander');
+-- Nariño
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('nariño') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('narino') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-nar') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NAR' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='52') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-PUT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('putumayo');
+-- Norte de Santander
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NSA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('norte de santander') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NSA' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-nsa') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-NSA' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='54') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('quind�o');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('quindio');
+-- Putumayo
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-PUT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('putumayo') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-PUT' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-put') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-PUT' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='86') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-RIS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('risaralda');
+-- Quindío
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('quindío') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('quindio') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-qui') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-QUI' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='63') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andr�s y providencia');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres y providencia');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipi�lago de san andr�s, providencia y santa catalina');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipielago de san andres, providencia y santa catalina');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andr�s');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andr�s, providencia y santa catalina');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres, providencia y santa catalina');
+-- Risaralda
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-RIS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('risaralda') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-RIS' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-ris') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-RIS' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='66') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('santander');
+-- Archipiélago de San Andrés, Providencia y Santa Catalina
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andrés y providencia') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres y providencia') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipiélago de san andrés, providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipiélago de san andrés providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipielago de san andres, providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('archipielago de san andres providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andrés') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andrés, providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('san andres, providencia y santa catalina') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-sap') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAP' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='88') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SUC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('sucre');
+-- Santander
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('santander') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAN' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-san') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SAN' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='68') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-TOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('tolima');
+-- Sucre
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SUC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('sucre') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SUC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-suc') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-SUC' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='70') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('valle del cauca');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('valle');
+-- Tolima
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-TOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('tolima') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-TOL' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-tol') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-TOL' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='73') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vaup�s');
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vaupes');
+-- Valle del Cauca
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('valle del cauca') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('valle') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-vac') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAC' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='76') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
-update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vichada');
+-- Vaupés
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vaupés') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vaupes') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-vau') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='97') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+
+-- Vichada
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vichada') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-vid') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
+update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='99') and (lower(raw_occurrence_record.country)='co' or lower(raw_occurrence_record.country)='colombia');
 
 -- populate the centi_cell_density for department
 -- 8 is department lookup_cell_density_type
