@@ -54,7 +54,7 @@
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-1418857-11']);
+  _gaq.push(['_setAccount', 'UA-1418857-10']);
   _gaq.push(['_setDomainName', 'sibcolombia.net']);
   _gaq.push(['_trackPageview']);
 
