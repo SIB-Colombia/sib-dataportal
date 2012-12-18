@@ -6,6 +6,6 @@
 <c:set var="occurrenceCount" value="${department.occurrenceCount}" scope="request"/>
 <c:set var="entityName" scope="request"><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></c:set>
 <c:set var="extraParams" scope="request"><gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/></c:set>
-
-<tiles:insert name="overviewMapDepartment"/>
+<tiles:insert name="overviewMap"/>
+<tiles:insert name="departmentOverviewMap"/>
 

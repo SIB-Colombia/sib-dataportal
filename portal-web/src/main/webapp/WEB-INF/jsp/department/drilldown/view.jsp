@@ -12,7 +12,7 @@
 	<c:set var="occurrenceSearchSubject" value="5" scope="request"/> 
     <c:set var="occurrenceSearchValue" value="${department.isoDepartmentCode}" scope="request"/>
 	<c:set var="showNonGeoreferencedCount" value="true" scope="request"/>
-	<!-- <tiles:insert page="dataRecord.jsp"/>-->
-	 <!--<tiles:insert page="countryCounts.jsp"/> -->
+	<tiles:insert page="dataRecord.jsp"/>
+	<tiles:insert page="countryCounts.jsp"/>
 	</div> 
 </div>
