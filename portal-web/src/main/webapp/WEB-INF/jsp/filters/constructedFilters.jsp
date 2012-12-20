@@ -15,9 +15,9 @@
 		// Added to encode and decode criteria values
 		if(request.getCharacterEncoding() == null) {
 			for(CriterionDTO criterionDTO : criteria) {
-				criterionDTO.setValue(URLEncoder.encode(criterionDTO.getValue(), "ISO-8859-1"));
+				criterionDTO.setValue(URLEncoder.encode(criterionDTO.getValue(), "UTF-8"));
 				criterionDTO.setValue(URLDecoder.decode(criterionDTO.getValue(), "UTF-8"));
-				criterionDTO.setDisplayValue(URLEncoder.encode(criterionDTO.getDisplayValue(), "ISO-8859-1"));
+				criterionDTO.setDisplayValue(URLEncoder.encode(criterionDTO.getDisplayValue(), "UTF-8"));
 				criterionDTO.setDisplayValue(URLDecoder.decode(criterionDTO.getDisplayValue(), "UTF-8"));
 			}
 		}
