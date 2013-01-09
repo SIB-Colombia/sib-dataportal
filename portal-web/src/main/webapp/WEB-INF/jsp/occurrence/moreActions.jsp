@@ -37,16 +37,16 @@
 				<td>	
 					<ul class="actionsListInline">
 						<li> 
-							<c:if test="${viewName!='resultsDownloadSpreadsheet'}"><a href="${pageContext.request.contextPath}/occurrences/downloadSpreadsheet.htm?<gbif:criteria criteria="${criteria}"/>"></c:if><spring:message code="occurrence.search.filter.action.download.spreadsheet"/><c:if test="${viewName!='resultsDownloadSpreadsheet'}"></a></c:if>
+							<c:if test="${viewName!='resultsDownloadSpreadsheet'}"><a href="${pageContext.request.contextPath}/occurrences/downloadSpreadsheet.htm?<gbif:criteria criteria="${criteria}"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'spreadsheet']);" ></c:if><spring:message code="occurrence.search.filter.action.download.spreadsheet"/><c:if test="${viewName!='resultsDownloadSpreadsheet'}"></a></c:if>
 						</li>
 						<li> 
-							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=brief&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>"><spring:message code="occurrence.record.download.format.darwin.brief" text="Darwin core (limited to 100,000)"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=brief&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'DwC']);"><spring:message code="occurrence.record.download.format.darwin.brief" text="Darwin core (limited to 100,000)"/></a>
 						</li>
 						<li> 
-							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=kml&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>"><spring:message code="occurrence.record.download.format.ge"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=kml&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'kml']);"><spring:message code="occurrence.record.download.format.ge"/></a>
 						</li>
 						<li> 
-							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>"><spring:message code="occurrence.record.download.format.species" text="Species in results"/></a>			
+							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'species']);"><spring:message code="occurrence.record.download.format.species" text="Species in results"/></a>			
 						</li>  
 					</ul>
 				</td>

@@ -27,13 +27,13 @@
 					<td>	
 						<ul class="actionsListInline">
 							<li>
-								<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?dataProviderKey=${dataProvider.key}&format=darwin"><spring:message code="download.darwin.core"/></a>
+								<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?dataProviderKey=${dataProvider.key}&format=darwin" onclick="_gaq.push(['_trackEvent', 'publisher', 'download', 'DwC']);"><spring:message code="download.darwin.core"/></a>
 							</li>	
 							<li>
-								<a href="${pageContext.request.contextPath}/occurrences/provider/celldensity/provider-celldensity-${dataProvider.key}.kml"><spring:message code="download.google.earth.celldensity"/></a>
+								<a href="${pageContext.request.contextPath}/occurrences/provider/celldensity/provider-celldensity-${dataProvider.key}.kml" onclick="_gaq.push(['_trackEvent', 'publisher', 'download', 'kml'])"><spring:message code="download.google.earth.celldensity"/></a>
 							</li>	
 							<li>
-								<a href="${pageContext.request.contextPath}/occurrences/provider/placemarks/provider-placemarks-${dataProvider.key}.kml"><spring:message code="download.google.earth.placemarks"/></a>
+								<a href="${pageContext.request.contextPath}/occurrences/provider/placemarks/provider-placemarks-${dataProvider.key}.kml" onclick="_gaq.push(['_trackEvent', 'publisher', 'download', 'kml']);" ><spring:message code="download.google.earth.placemarks"/></a>
 							</li>
 						</ul>
 					</td>
