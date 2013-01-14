@@ -4,6 +4,9 @@
 	<h3><spring:message code="version.features"/></h3>
 </div>
 
+<div><h4><img src="${pageContext.request.contextPath}/skins/standard/images/sib_logo_bola.png">
+SIB Colombia releases</h4></div>
+
 <h4>Features added in version 1.4 (Published: December, 2012)</h4>
 <ul class="genericList">
 	<li><a href="${pageContext.request.contextPath}/departments/">Departments</a> menu created for search in the second administrative division of Colombia</li>
@@ -14,6 +17,8 @@
 </ul>
 <a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
 
+<div><h4><img src="${pageContext.request.contextPath}/images/logos_cut/gbif.jpg">
+GBIF releases</h4></div>
 
 <h4>Features added in version 1.3.2</h4>
 <ul class="genericList">
