@@ -18,6 +18,8 @@
 		<tiles:insert page="/WEB-INF/jsp/geography/introduction.jsp"/>
 	</div>
 	<hr class="hr_clear" />
+    <small> <strong>Im&aacute;genes</strong> cortes&iacute;a del Banco de Im&aacute;genes Ambientales del Instituto Humboldt <a href="http://www.humboldt.org.co/upa/" target="_blank">http://www.humboldt.org.co/upa/</a> y 
+de la Biodiversity Heritage Library. <a href="http://www.biodiversitylibrary.org" target="_blank">http://www.biodiversitylibrary.org</a></small>
 </div><!-- End panes-->	
 
 <div id="announce">
@@ -40,6 +42,7 @@
 <spring:message code="welcome.tip.of.the.day.3" arguments="${link2}"/><br/>
 <spring:message code="welcome.tip.of.the.day.4" arguments="${link3}"/><br/>
 <a href="version.htm"><spring:message code="version" text="Version"/> <gbif:propertyLoader bundle="portal" property="version"/></a></p>
+
 </div>
 
 <script type="text/javascript">
