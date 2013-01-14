@@ -6,26 +6,26 @@
 <div class="sponsor">
     <div id="s_one">
       <ul>
-        <li class="l_one"><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="43" height="47" alt="Humboldt" src="${pageContext.request.contextPath}/images/logos_cut/humboldt.jpg"></a> </li>
+        <li class="l_one"><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img  alt="Humboldt" src="${pageContext.request.contextPath}/images/logos_cut/humboldt.png"></a> </li>
       </ul>
-      <p>Entidad Coordinadora</p>
+     <p style="margin-top:-5px">Entidad Coordinadora</p>
     </div>
     <div id="s_two">
       <ul>
-        <li><a title="SINCHI" target="_blank" href="http://www.sinchi.org.co"><img width="30" height="47" alt="SINCHI" src="${pageContext.request.contextPath}/images/logos_cut/sinchi.jpg"></a></li>
-        <li><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img width="43" height="47" alt="Humboldt" src="${pageContext.request.contextPath}/images/logos_cut/humboldt.jpg"></a></li>
-        <li><a title="IDEAM" target="_blank" href="http://www.ideam.gov.co"><img width="36" height="47" alt="IDEAM" src="${pageContext.request.contextPath}/images/logos_cut/ideam.jpg"></a></li>
-        <li><a title="INVEMAR" target="_blank" href="http://www.invemar.org.co"><img width="41" height="47" alt="INVEMAR" src="${pageContext.request.contextPath}/images/logos_cut/invemar.jpg"></a></li>
-        <li><a title="IIAP" target="_blank" href="http://www.iiap.org.co"><img width="52" height="47" alt="IIAP" src="${pageContext.request.contextPath}/images/logos_cut/iiap.jpg"></a></li>
-        <li><a title="ICN" target="_blank" href="http://www.icn.unal.edu.co"><img width="99" height="47" alt="ICN" src="${pageContext.request.contextPath}/images/logos_cut/unal.jpg"></a></li>
-        <li><a title="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" target="_blank" href="http://www.minambiente.gov.co"><img width="112" height="47" alt="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" src="${pageContext.request.contextPath}/images/logos_cut/mads.jpg"></a></li>
+        <li><a title="SINCHI" target="_blank" href="http://www.sinchi.org.co"><img  alt="SINCHI" src="${pageContext.request.contextPath}/images/logos_cut/sinchi.png"></a></li>
+        <li><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img  alt="Humboldt" src="${pageContext.request.contextPath}/images/logos_cut/humboldt.png"></a></li>
+        <li><a title="IDEAM" target="_blank" href="http://www.ideam.gov.co"><img  alt="IDEAM" src="${pageContext.request.contextPath}/images/logos_cut/ideam.png"></a></li>
+        <li><a title="INVEMAR" target="_blank" href="http://www.invemar.org.co"><img  alt="INVEMAR" src="${pageContext.request.contextPath}/images/logos_cut/invemar.png"></a></li>
+        <li><a title="IIAP" target="_blank" href="http://www.iiap.org.co"><img  alt="IIAP" src="${pageContext.request.contextPath}/images/logos_cut/iiap.png"></a></li>
+        <li><a title="ICN" target="_blank" href="http://www.icn.unal.edu.co"><img  alt="ICN" src="${pageContext.request.contextPath}/images/logos_cut/unal.png"></a></li>
+        <li><a title="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" target="_blank" href="http://www.minambiente.gov.co"><img  alt="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" src="${pageContext.request.contextPath}/images/logos_cut/mads.png"></a></li>
       </ul>
       <p>Comit&eacute; Directivo y T&eacute;cnico</p>
     </div>
     <div id="s_five">
       <ul>
-        <li><a title="Global Biodiversity Information Facility" target="_blank" href="http://www.gbif.org"><img width="50" height="47" alt="Global Biodiversity Information Facility" src="${pageContext.request.contextPath}/images/logos_cut/gbif.jpg"></a></li>
-        <li><a title="Red Interamericana de Información sobre Biodiversidad" target="_blank" href="http://www.iabin.net"><img width="90" height="47" alt="Red Interamericana de Informaci&amp;oacute;n sobre Biodiversidad" src="${pageContext.request.contextPath}/images/logos_cut/iabin.jpg"></a></li>
+        <li><a title="Global Biodiversity Information Facility" target="_blank" href="http://www.gbif.org"><img  alt="Global Biodiversity Information Facility" src="${pageContext.request.contextPath}/images/logos_cut/gbif.png"></a></li>
+        <li><a title="Red Interamericana de Información sobre Biodiversidad" target="_blank" href="http://www.iabin.net"><img  alt="Red Interamericana de Informaci&amp;oacute;n sobre Biodiversidad" src="${pageContext.request.contextPath}/images/logos_cut/iabin.png"></a></li>
       </ul>
       <p>Iniciativas relacionadas con el SiB</p>
     </div>
