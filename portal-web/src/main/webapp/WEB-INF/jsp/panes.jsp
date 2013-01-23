@@ -35,9 +35,16 @@ de la Biodiversity Heritage Library. <a href="http://www.biodiversitylibrary.org
 	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="dataagreement.title"/></a></em>
 </c:set>
 <p>
-<fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
 <fmt:formatNumber var="geoTotal" type="number" value="${totalGeoreferencedOccurrenceRecords}" />
-<spring:message code="welcome.tip.of.the.day.1" arguments="${total}%%%${geoTotal}" argumentSeparator="%%%"/><br/>
+<fmt:formatNumber var="speciesTotal" type="number" value="${totalSpecies}" />
+
+<fmt:formatNumber var="totalCO" type="number" value="${totalOcurrenceRecordsCO}" />
+<fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
+<fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
+<fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
+
+
+<spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/><br/>
 <spring:message code="welcome.tip.of.the.day.2" arguments="${link1}"/><br/>
 <spring:message code="welcome.tip.of.the.day.3" arguments="${link2}"/><br/>
 <spring:message code="welcome.tip.of.the.day.4" arguments="${link3}"/><br/>

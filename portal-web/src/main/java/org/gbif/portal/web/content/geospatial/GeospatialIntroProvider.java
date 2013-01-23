@@ -23,7 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.gbif.portal.dto.geospatial.CountryDTO;
 import org.gbif.portal.service.GeospatialManager;
-import org.gbif.portal.util.request.IPUtils;
+import org.gbif.portal.service.ServiceException;
 import org.gbif.portal.web.content.ContentProvider;
 import org.gbif.portal.web.content.ContentView;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -38,6 +38,7 @@ public class GeospatialIntroProvider implements ContentProvider {
 	protected Log logger = LogFactory.getLog(GeospatialIntroProvider.class);		
 	protected GeospatialManager geospatialManager;
 	protected String userCountryModelKey = "userCountry";
+	
 	/**
 	 * @see org.gbif.portal.web.content.ContentProvider#addContent(org.gbif.portal.web.content.ContentView)
 	 */
@@ -47,12 +48,18 @@ public class GeospatialIntroProvider implements ContentProvider {
 		if(logger.isDebugEnabled()){
 			logger.debug("Remote user address:"+ remoteAddr);
 		}
-		if(remoteAddr!=null && IPUtils.isValidRemoteAddress(remoteAddr)){
-			Locale locale = RequestContextUtils.getLocale(request);
-			CountryDTO country = geospatialManager.getCountryForIPAddress(remoteAddr, locale);
-			if(country!=null){
-				contentView.addObject(userCountryModelKey, country);
-			}
+		try{
+		Locale locale = RequestContextUtils.getLocale(request);
+		CountryDTO country = geospatialManager.getCountryForIsoCountryCode("CO", locale);
+		int speciesCountryCO = country.getSpeciesCount();
+		int totalOcurrenceRecordsCO = country.getOccurrenceCount();
+		contentView.addObject("totalOcurrenceRecordsCO",totalOcurrenceRecordsCO);
+		contentView.addObject("speciesCountryCO",speciesCountryCO);
+		}catch(Exception e){
+			logger.error("Occurrence count cannot be found for Colombia, setting to 0", e);
+			logger.error("Species count cannot be found for Colombia, setting to 0", e);
+			contentView.addObject("totalOcurrenceRecordsCO",0);
+			contentView.addObject("speciesCountryCO",0);
 		}
 	}
 
