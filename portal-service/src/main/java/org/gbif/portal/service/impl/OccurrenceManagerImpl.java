@@ -408,6 +408,13 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 		return occurrenceRecordDAO.getTotalOccurrenceRecordCount() - occurrenceRecordDAO.getTotalOccurrenceRecordCountForDeletedProviders();
 	}
 	
+	/**
+	 * @see org.gbif.portal.service.OccurrenceManager#getTotalSpeciesCount()
+	 */
+	public int getTotalSpeciesCount() throws ServiceException {
+		return occurrenceRecordDAO.getTotalSpeciesCount();
+	}
+	
   /**
    * @see org.gbif.portal.service.OccurrenceManager#getTotalGeoreferencedOccurrenceRecordCount()
    **/
@@ -607,5 +614,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	public void setKmlOccurrenceRecordDTOFactory(
 			DTOFactory kmlOccurrenceRecordDTOFactory) {
 		this.kmlOccurrenceRecordDTOFactory = kmlOccurrenceRecordDTOFactory;
-	}	
+	}
+	
+
 }

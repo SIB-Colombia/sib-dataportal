@@ -346,6 +346,27 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 		return 0;
 	}
 	
+	
+	  /**
+	   * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#getTotalSpeciesCount()
+	   */
+	public int getTotalSpeciesCount(){
+		HibernateTemplate template = getHibernateTemplate();
+		Object count = template.execute(new HibernateCallback() {
+		      public Object doInHibernate(Session session) {
+		        Query query = null;
+		        query = session.createQuery("select count(distinct oc.speciesConceptId) from OccurrenceRecord oc");
+		        query.setCacheable(true);
+		        return query.uniqueResult();
+		      }
+		    });
+		if (count instanceof Integer)
+			return ((Integer)count).intValue();
+		if (count instanceof Long)
+			return ((Long)count).intValue();
+		return 0;
+	}
+	
   /**
    * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#getTotalGeoreferencedOccurrenceRecordCount()
    */

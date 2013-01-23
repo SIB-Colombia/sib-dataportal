@@ -170,4 +170,11 @@ public interface OccurrenceRecordDAO {
 	 * @return The list of arrays containing the centiCellId and the count
 	 */
 	public List<CellDensity> getCentiCellDensitiesForResourceNetwork(long resourceNetworkId, int cellId);
+	
+	/**
+	 * Returns the total number of species. 
+	 * 
+	 * @return the total number of species. 
+	 */
+	public int getTotalSpeciesCount();
 }
