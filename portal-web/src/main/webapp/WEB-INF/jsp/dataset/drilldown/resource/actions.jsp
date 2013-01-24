@@ -37,10 +37,7 @@
 				<td><b><spring:message code="actions.download"/></b></td>
 				<td>	
 					<c:if test="${dataResource.occurrenceCount>0}">					
-					<ul class="actionsListInline">
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?dataResourceKey=${dataResource.key}&format=darwin"><spring:message code="download.darwin.core"/></a>
-						</li>	
+					<ul class="actionsListInline">	
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/resource/celldensity/resource-celldensity-${dataResource.key}.kml"><spring:message code="download.google.earth.celldensity"/></a>
 						</li>	
@@ -67,6 +64,16 @@
 					<ul class="actionsListInline">
 						<li>
 							<a class="feedback" href='javascript:feedback("${pageContext.request.contextPath}/feedback/resource/${dataResource.key}")'><spring:message code="feedback.to.provider.link"  arguments="${dataProvider.name}" argumentSeparator="|"/></a>
+						</li>	
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td><b><spring:message code="actions.webservice"/></b></td>
+				<td>	
+					<ul class="actionsListInline">
+						<li>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?dataResourceKey=${dataResource.key}&format=darwin"><spring:message code="download.darwin.core"/></a>
 						</li>	
 					</ul>
 				</td>

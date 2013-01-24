@@ -49,15 +49,23 @@
 				<td><b><spring:message code="actions.download"/></b></td>
 				<td>	
 					<ul class="actionsListInline">
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?taxonConceptKey=${taxonConcept.key}&format=darwin"><spring:message code="download.darwin.core"/></a>
-						</li>	
+	
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/taxon/celldensity/taxon-celldensity-${taxonConcept.key}.kml"><spring:message code="download.google.earth.celldensity"/></a>
 						</li>	
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/taxon/placemarks/taxon-placemarks-${taxonConcept.key}.kml"><spring:message code="download.google.earth.placemarks"/></a>
 						</li>	
+					</ul>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td><b><spring:message code="actions.webservice"/></b></td>
+					<td>
+					<ul class="actionsListInline">
+						<li>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?taxonConceptKey=${taxonConcept.key}&format=darwin"><spring:message code="download.darwin.core"/></a>
+						</li>
 					</ul>
 				</td>
 			</tr>

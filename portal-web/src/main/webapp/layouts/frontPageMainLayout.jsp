@@ -37,7 +37,8 @@
 				</div><!--End content -->				
 				<tiles:insert name="footer"/>
 			</div><!-- End container-->
-		</div><!-- End cocoon-->		
+		</div><!-- End cocoon-->	
+			
 	</body>
 </html>
 </c:if>

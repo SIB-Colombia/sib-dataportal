@@ -43,18 +43,26 @@
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/country/placemarks/country-placemarks-${country.isoCountryCode}.kml"><spring:message code="download.google.earth.placemarks"/></a>
 						</li>	
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
-						</li>	
-						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span></a>
-						</li>	
+	
 						<li>
 							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isocountrycode=${country.isoCountryCode}"><spring:message code="download.metadata.for.providers" text="Download metadata for data providers in "/> <span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span></a>
 						</li>
 					</ul>
 				</td>
 			</tr>
+				<tr valign="top">
+					<td><b><spring:message code="actions.webservice"/></b></td>
+						<td>
+						<ul class="actionsListInline">
+						<li>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
+						</li>	
+						<li>
+							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span></a>
+						</li>
+						</ul>
+					</td>
+				</tr>	
 		</tbody>
 	</table>
 </div>
