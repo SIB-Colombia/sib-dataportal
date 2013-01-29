@@ -86,6 +86,10 @@ public class FeedbackSubmitController extends RestController {
 		String userName = request.getParameter(submitterNameRequestKey);
 		String userEmail = request.getParameter(submitterEmailRequestKey);
 		
+		int indexUrl=request.getRequestURL().toString().indexOf("/feedback/");
+		String Url=request.getRequestURL().toString().substring(0, indexUrl);
+		logger.debug("URL of data portal: "+Url);
+		
 		LogGroup logGroup = logManager.startLogGroup();
 		try {
 			GbifLogMessage message = null;
@@ -113,11 +117,11 @@ public class FeedbackSubmitController extends RestController {
 			
 			//checks if user is verified, and decide if a verification or feedback msg should be sent
 			if(logManager.isVerifiedUser(userKey)) {
-				logManager.sendFeedbackOrVerificationMessages(message, true);
+				logManager.sendFeedbackOrVerificationMessages(message, true, Url);
 				return new ModelAndView(feedbackSuccessViewName, feedbackOnURLRequestKey, request.getParameter(feedbackOnURLRequestKey));
 			}
 			else {
-				logManager.sendFeedbackOrVerificationMessages(message, false);
+				logManager.sendFeedbackOrVerificationMessages(message, false, Url);
 				return new ModelAndView(feedbackVerificationViewName, feedbackOnURLRequestKey, request.getParameter(feedbackOnURLRequestKey));
 			}
 

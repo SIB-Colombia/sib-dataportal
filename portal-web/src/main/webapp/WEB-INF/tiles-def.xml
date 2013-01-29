@@ -510,6 +510,13 @@
 	<!-- map for departments tile -->
 	<definition name="overviewMapDepartment" page="/WEB-INF/jsp/department/gbifMap.jsp"/>
 
+	<!-- Tile for Stats page  -->
+	<definition name="statsView" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/stats/subtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/stats/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/stats/stats.jsp"/>
+	</definition>
+
 	<!-- Mapping tiles -->
 	<!-- the main map tile -->
 	<definition name="overviewMap" page="/WEB-INF/jsp/geography/gbifMap.jsp"/>		

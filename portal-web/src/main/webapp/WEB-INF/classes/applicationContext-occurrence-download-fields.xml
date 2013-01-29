@@ -309,7 +309,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	</bean>
 	<bean id="rawDepthPrecision" parent="downloadField">
 		<property name="fieldName" value="rawDepthPrecision"/>
-		<property name="fieldI18nNameKey" value="occurrence.record.raw.maxdepth"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.geospatial.depth.precision"/>
 	</bean>
 	<bean id="rawMinAltitude" parent="downloadField">
 		<property name="fieldName" value="rawMinAltitude"/>

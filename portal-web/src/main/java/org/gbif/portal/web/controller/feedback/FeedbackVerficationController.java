@@ -53,9 +53,14 @@ public class FeedbackVerficationController extends RestController {
 	 */
 	@SuppressWarnings("unchecked")
 	public ModelAndView handleRequest(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		int indexUrl=request.getRequestURL().toString().indexOf("/feedback/");
+		String Url=request.getRequestURL().toString().substring(0, indexUrl);
+		logger.debug("URL of data portal: "+Url);
+		
 		String userKey = properties.get(userKeyRequestKey);
 		String userCode = properties.get(userCodeRequestKey);
-		String userName = logManager.authoriseUser(userKey, userCode);
+		String userName = logManager.authoriseUser(userKey, userCode, Url);
 		if (userName != null) {
 			return new ModelAndView(verificationSuccessViewName, userNameRequestKey, userName);
 		} else {

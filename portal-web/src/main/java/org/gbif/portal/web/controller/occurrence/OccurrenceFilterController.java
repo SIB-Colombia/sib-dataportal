@@ -403,7 +403,7 @@ public class OccurrenceFilterController extends MultiActionController {
     UnsupportedEncodingException {
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
-    request.setCharacterEncoding("ISO-8859-1");
+    request.setCharacterEncoding("UTF-8");
     CriteriaUtil.fixEncoding(request, criteriaDTO);
     List<PropertyStoreTripletDTO> triplets =
       queryHelper.getTriplets(occurrenceFilters.getFilters(), criteriaDTO, request, response);

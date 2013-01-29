@@ -136,7 +136,9 @@ public class RegistrationController extends MultiActionController {
 
   public PasswordUtils passwordUtils = new PasswordUtils();
 
-  protected String adminEmail = "portal@gbif.org";
+  //protected String adminEmail = "portal@gbif.org";
+
+  protected String adminEmail = "oduque@humboldt.org.co";
 
   /** Message source for i18n */
   protected MessageSource messageSource;
