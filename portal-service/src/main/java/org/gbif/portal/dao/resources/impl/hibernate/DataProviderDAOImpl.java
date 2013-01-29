@@ -16,6 +16,7 @@ package org.gbif.portal.dao.resources.impl.hibernate;
 import org.gbif.portal.dao.resources.DataProviderDAO;
 import org.gbif.portal.model.resources.DataProvider;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -298,5 +299,25 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
     if (result instanceof Long)
       return ((Long) result).intValue();
     return 0;
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getOcurrencesPerMonth(){
+	  List<Object[]> dataOcurrences = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+                  Query query = session.createQuery("select concat(year(ror.created),'/',month(ror.created)), dt.name, count(distinct ror.id) from RawOccurrenceRecord ror, DataProvider dt" +
+                          " where ror.dataProviderId = dt.id" +
+                          " group by month(ror.created),ror.dataProviderId order by ror.created asc");
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> dataO = new ArrayList<String>();  
+
+      for (Object[] result: dataOcurrences) {
+    	  dataO.add(result[0].toString() + "|" + result[1].toString() + "|" + result[2].toString());
+    	}
+
+      return dataO;
   }
 }

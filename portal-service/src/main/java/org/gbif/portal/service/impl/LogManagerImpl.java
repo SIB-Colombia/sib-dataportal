@@ -186,7 +186,7 @@ public class LogManagerImpl implements LogManager {
 	 * The message is always logged
 	 * @return true if verification message was sent, otherwise false
 	 */
-	protected boolean sendFeedbackOrVerificationMessages(GbifLogMessage message) {
+	protected boolean sendFeedbackOrVerificationMessages(GbifLogMessage message, String url) {
 		boolean verificationSent = false;
 		
 		// we only send feedback for known users
@@ -196,10 +196,10 @@ public class LogManagerImpl implements LogManager {
 		User user = userDAO.getUserFor(message.getUserId());
 		if (user != null) {
 			if (!user.isVerified()) {
-				sendVerificationMessage(user);
+				sendVerificationMessage(user, url);
 				verificationSent = true;
 			} else {
-				sendFeedbackMessage(message, user);
+				sendFeedbackMessage(message, user, url);
 			}
 		}
 		return verificationSent;
@@ -209,7 +209,7 @@ public class LogManagerImpl implements LogManager {
 	 * @see org.gbif.portal.service.LogManager#sendFeedbackOrVerificationMessages(org.gbif.portal.util.log.GbifLogMessage, boolean)
 	 */
 	public void sendFeedbackOrVerificationMessages(GbifLogMessage message,
-			boolean isVerified) {
+			boolean isVerified, String url) {
 		// we only send feedback for known users
 		if (message.getUserId() == null || message.getUserId()< 1) {
 			logger.warn("Ignoring feedback since the user id is not set");
@@ -217,9 +217,9 @@ public class LogManagerImpl implements LogManager {
 		User user = userDAO.getUserFor(message.getUserId());
 		
 		if(isVerified)		
-			sendFeedbackMessage(message, user);
+			sendFeedbackMessage(message, user, url);
 		else
-			sendVerificationMessage(user);
+			sendVerificationMessage(user, url);
 	}
 	
 	/* (non-Javadoc)x
@@ -286,18 +286,20 @@ public class LogManagerImpl implements LogManager {
 	 *  
 	 * @param message GbifLogMessage 
 	 */
-	protected void sendFeedbackMessage(GbifLogMessage message, User user) {
+	protected void sendFeedbackMessage(GbifLogMessage message, User user, String url) {
 		// for safety
 		if (user == null) {
 			return;
 		}
 		
 		List<String> toEmailAddresses = new ArrayList<String>();
+		toEmailAddresses.add("sib+dataportal@humboldt.org.co");
 		List<String> ccEmailAddresses = new ArrayList<String>();
 		
 		if (message.getDataResourceId() != 0) {
 			String dataResourceKey = new Long(message.getDataResourceId()).toString();
 			List<DataResourceAgentDTO> agents = dataResourceManager.getAgentsForDataResource(dataResourceKey);
+			
 			if (agents != null) {
 				for (DataResourceAgentDTO agent : agents) {
 					if (agent.getAgentType() == AgentType.DATAADMINISTRATOR.getValue()) {
@@ -312,6 +314,7 @@ public class LogManagerImpl implements LogManager {
 					ccEmailAddresses = new ArrayList<String>();
 				}
 			}
+			
 		}
 		
 		if (toEmailAddresses.size() == 0 && message.getDataProviderId() != 0) {
@@ -351,10 +354,10 @@ public class LogManagerImpl implements LogManager {
 	        SimpleMailMessage userMessage = new SimpleMailMessage(userTemplateMessage);
 	        userMessage.setTo(user.getEmail());
 	        
-	        subjectBuffer.append("Feedback from GBIF Data Portal - ");
+	        subjectBuffer.append("Feedback from SIB Colombia Data Portal - ");
 
 	        StringBuffer textBuffer = new StringBuffer();
-	        textBuffer.append("The following message was submitted through the GBIF Data Portal.\n\n");
+	        textBuffer.append("The following message was submitted through the SIB Colombia Data Portal.\n\n");
 	        
 	        if (user != null) {
 		        textBuffer.append("  User: ");
@@ -370,8 +373,9 @@ public class LogManagerImpl implements LogManager {
 		        	textBuffer.append("  Data publisher: ");
 		        	textBuffer.append(dto.getName());
 			        textBuffer.append("\n");
-		        	
-		        	textBuffer.append("  Portal URL: http://data.gbif.org/datasets/provider/");
+		        	String portalUrl="  Portal URL: "+url+"/datasets/provider/";
+		        	//textBuffer.append("  Portal URL: http://data.gbif.org/datasets/provider/");
+		        	textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
 			        textBuffer.append("\n\n");
 	        	} catch(Exception e) {
@@ -385,8 +389,9 @@ public class LogManagerImpl implements LogManager {
 		        	textBuffer.append("  Data resource: ");
 		        	textBuffer.append(dto.getName());
 			        textBuffer.append("\n");
-		        	
-		        	textBuffer.append("  Portal URL: http://data.gbif.org/datasets/resource/");
+			        String portalUrl="  Portal URL: "+url+"/datasets/resource/";
+		        	//textBuffer.append("  Portal URL: http://data.gbif.org/datasets/resource/");
+			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
 			        textBuffer.append("\n\n");
 	        	} catch(Exception e) {
@@ -409,8 +414,9 @@ public class LogManagerImpl implements LogManager {
 		        	textBuffer.append(" / ");
 		        	textBuffer.append(dto.getCatalogueNumber());
 			        textBuffer.append("\n");
-		        	
-		        	textBuffer.append("  Portal URL: http://data.gbif.org/occurrences/");
+			        String portalUrl="  Portal URL: "+url+"/occurrences/";
+		        	//textBuffer.append("  Portal URL: http://data.gbif.org/occurrences/");
+			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
 			        textBuffer.append("\n\n");
 	        	} catch(Exception e) {
@@ -428,8 +434,9 @@ public class LogManagerImpl implements LogManager {
 	    	        textBuffer.append("  Taxon: ");
 		        	textBuffer.append(dto.getTaxonName());
 			        textBuffer.append("\n");
-		        	
-		        	textBuffer.append("  Portal URL: http://data.gbif.org/species/");
+			        String portalUrl="  Portal URL: "+url+"/species/";
+		        	//textBuffer.append("  Portal URL: http://data.gbif.org/species/");
+			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
 			        textBuffer.append("\n\n");
 	        	} catch(Exception e) {
@@ -464,14 +471,14 @@ public class LogManagerImpl implements LogManager {
 	 *  
 	 * @param user to send to 
 	 */
-	protected void sendVerificationMessage(User user) {
+	protected void sendVerificationMessage(User user, String url) {
 		if (user != null) {
 			SimpleMailMessage verificationMessage = new SimpleMailMessage(userTemplateMessage);
 			verificationMessage.setTo(user.getEmail());
-			verificationMessage.setSubject("Confirm e-mail address for GBIF Data Portal");
+			verificationMessage.setSubject("Confirm e-mail address for SIB Colombia Data Portal");
 			// todo
 			verificationMessage.setText("Please visit the following link to confirm your e-mail address:\n" +
-					"http://data.gbif.org/feedback/verification/" +
+					url + "/feedback/verification/" + 
 					user.getId() + "/" + UserUtils.getCodeFor(user.getName(), user.getEmail()));			
 			try{
 	            mailSender.send(verificationMessage);
@@ -560,7 +567,7 @@ public class LogManagerImpl implements LogManager {
 	/** 
 	 * @see org.gbif.portal.service.LogManager#authoriseUser(java.lang.String, java.lang.String)
 	 */
-	public String authoriseUser(String key, String code) {
+	public String authoriseUser(String key, String code, String url) {
 		User user = userDAO.getUserFor(parseKey(key));
 		if (user != null) {
 			boolean verifiedCode = UserUtils.isValidCodeCodeFor(user.getName(), user.getEmail(), code);
@@ -577,7 +584,7 @@ public class LogManagerImpl implements LogManager {
 							message.getTaxonConceptId(), message.getUserId(), message.getMessage(),
 							true, message.getCount().intValue(), message.getTimestamp());
 					logger.debug("Sending pending message");
-					sendFeedbackMessage(gbifMessage, user);
+					sendFeedbackMessage(gbifMessage, user, url);
 				}				
 			}
 			return user.getName();

@@ -405,4 +405,12 @@ public interface DataResourceManager {
    * @return true if the supplied key is a valid key
    */
   public boolean isValidDataResourceKey(String dataResourceKey);
+  
+  /**
+   * Returns the number of ocurrences entered in the data portal for a publisher per month.
+   * 
+   * @return number of ocurrences entered in the data portal for a publisher per month.
+   * 
+   */
+  public List<String> getOcurrencePerMonth();
 }

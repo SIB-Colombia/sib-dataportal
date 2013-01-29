@@ -240,7 +240,7 @@
         <property name="userTemplateMessage" ref="userTemplateMessage"/>
         <property name="portalEmailAddresses">
             <list>
-                <value>portal@gbif.org</value>
+                <value>oduque@humboldt.org.co</value>
             </list>
         </property>
     </bean>	
@@ -267,10 +267,17 @@
 
 	<!-- The Mail Sender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gbif.org"/>
+		<property name="host" value=""/>
 		<property name="username" value=""/>
 		<property name="password" value=""/>
-		<property name="port" value="25"/>
+		<property name="port" value=""/>
+
+    <property name="javaMailProperties">
+    <props>
+              <prop key="mail.smtp.auth">true</prop>
+              <prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
 	</bean>	
 
 	<!-- this is a template message that we can pre-load with default state -->

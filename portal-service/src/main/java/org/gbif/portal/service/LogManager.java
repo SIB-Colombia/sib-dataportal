@@ -301,7 +301,7 @@ public interface LogManager {
 	 * @param message
 	 * @param isVerified
 	 */
-	public void sendFeedbackOrVerificationMessages(GbifLogMessage message, boolean isVerified);
+	public void sendFeedbackOrVerificationMessages(GbifLogMessage message, boolean isVerified, String url);
 
 	/**
 	 * Close a log group
@@ -317,7 +317,7 @@ public interface LogManager {
 	 * @param code The code required for authorisation
 	 * @return The user name if successful, or null otherwise
 	 */
-	public String authoriseUser(String key, String code);
+	public String authoriseUser(String key, String code, String url);
 
 	/**
 	 * Retrieves the date for the earliest log message currently

@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.gbif.portal.model.resources.DataProvider;
+import org.gbif.portal.service.ServiceException;
 
 /**
  * DAO methods for the DataProvider entity.
@@ -123,4 +124,13 @@ public interface DataProviderDAO {
 	 * @return
 	 */
 	public List<DataProvider> getInternationalDataProviders(boolean withOccurrencesOnly);
+	
+	
+	  /**
+	   * Returns the number of ocurrences entered in the data portal for a publisher per month.
+	   * 
+	   * @return number of ocurrences entered in the data portal for a publisher per month.
+	   * 
+	   */
+	public List<String>getOcurrencesPerMonth();
 }

@@ -701,6 +701,14 @@ public class DataResourceManagerImpl implements DataResourceManager {
   public void setNubDataResourceId(long nubDataResourceId) {
     this.nubDataResourceId = nubDataResourceId;
   }
-	
+  
+  
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getOcurrencePerMonth()
+	 */
+  public List<String> getOcurrencePerMonth(){
+	  return dataProviderDAO.getOcurrencesPerMonth();
+  }
+
 	
 }
