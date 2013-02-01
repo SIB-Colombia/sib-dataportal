@@ -1,23 +1,23 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="quickConceptSearch">
-	<c:choose>
+	<h2><c:choose>
 		<c:when test="${not empty dataResource}">
 	    	<spring:message code="quick.taxon.search.explanation" arguments="${dataResource.name}" argumentSeparator="|"/>
 		</c:when>
 		<c:otherwise>
 	    	<spring:message code="quick.taxon.search.explanation.this.classification"/>
 		</c:otherwise>
-	</c:choose>
+	</c:choose></h2>
 	<div id="statesmod">
 	    <div id="statesautocomplete">
-	    	<table style="width:800px; margin-bottom:0px;" cellpadding="2">
+	    	<table >
 	    		<tr>
     				<strong><c:set var="placeholder"><spring:message code="quick.taxon.search"/></c:set></strong>
 	   				<td style="width:290px;" valign="top">
   	 					<input id="statesinput" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/> 
 			      		<div id="statescontainer" style="margin-left:3px;width:200px;"></div>
    					</td>	
-		       	<td style="width:60px; valign:top;" valign="top"><input type="submit" onclick="javascript:findBrowseUrl(document.getElementById('statesinput').value, null, null);" value="<spring:message code="search"/>"></td>
+		       	<td style="width:60px; valign:top;" valign="top"><input type="submit" onclick="javascript:findBrowseUrl(document.getElementById('statesinput').value, null, null);" value=" "></td>
 	    			<td><span id="noMatchesReport"></span></td>		       	
    				</tr>
 		    </table>

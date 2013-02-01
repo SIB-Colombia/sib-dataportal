@@ -1,15 +1,19 @@
 div#map {
-	margin-top: 20px;
+	margin: 15px;
 	border:0px solid #000000;		
 	width: 600px; 
 	height: 400px;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	display:inline-block;
+	vertical-align:top;
 }
 
 /* for Internet Explorer */
 /*\*/
 * html div#map {
-	width: 925px; 
-	height: 390px;
+	width: 600px; 
+	height: 400px;
 }
 /**/
 

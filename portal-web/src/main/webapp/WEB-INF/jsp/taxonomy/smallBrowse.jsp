@@ -28,13 +28,13 @@
 	<c:if test="${taxonConcept!=null}">
 		<div id="furtherActions">
 			<%-- title hidden <h4><spring:message code='actions.for'/> <string:capitalize><spring:message code="taxonrank.${taxonConcept.rank}"/></string:capitalize>: <gbif:taxonPrint concept="${taxonConcept}"/> ${taxonConcept.author}</h4> --%>
-			<table cellspacing="1" class="actionsList">
+			<table cellspacing="0" class="actionsList">
 				<tbody>
 					<c:set var="conceptKey" value="${taxonConcept.isNubConcept ? taxonConcept.key : taxonConcept.partnerConceptKey}"/>
 					<c:if test="${conceptKey!=null}">
 						<gbif:isMajorRank concept="${taxonConcept}">
 							<tr valign="top">
-								<td><b><spring:message code="actions.view"/></b></td>
+								<th><spring:message code="actions.view"/></th>
 								<td>
 									<ul class="actionsListInline">
 										<li>
@@ -46,7 +46,7 @@
 						</gbif:isMajorRank>
 					</c:if>
 					<tr valign="top">
-						<td><b><spring:message code="actions.explore"/></b></td>
+						<th><spring:message code="actions.explore"/></th>
 						<td>
 							<ul class="actionsListInline">
 								<gbif:isMajorRank concept="${taxonConcept}">
@@ -63,7 +63,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><b><spring:message code="actions.send"/></b></td>
+						<th><spring:message code="actions.send"/></th>
 						<td>
 							<ul class="actionsListInline">
 								<li>

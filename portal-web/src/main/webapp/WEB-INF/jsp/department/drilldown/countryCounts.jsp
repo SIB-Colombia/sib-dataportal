@@ -19,7 +19,7 @@ function toggleTables(firstTable, secondTable, visibleClass){
 <a href="javascript:toggleTables('sampleCountryTable', 'countryCount', 'results');" title="Show all countries"><spring:message code="show"/>/<spring:message code="hide"/></a>
 </c:if>
 
-<table id="sampleCountryTable" class="results" style="width: 720px;">
+<table id="sampleCountryTable" class="results" >
   <thead>
     <th><spring:message code="country"/></th>
     <th style="text-align: center;"><spring:message code="log.console.count"/></th>
@@ -30,7 +30,7 @@ function toggleTables(firstTable, secondTable, visibleClass){
   <tbody>
     <c:forEach items="${countryCounts}" var="countryCount" begin="0" end="3" varStatus="rowCounter">
     <tr>
-      <td style="width:450px;">
+      <td style="width:250px;">
       	<c:set var="countryName"><gbif:capitalize>${countryCount.name}</gbif:capitalize></c:set>
         <img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${countryCount.key}</string:lowerCase>.gif"/>&nbsp; <a href="${pageContext.request.contextPath}/countries/${countryCount.key}">${countryName}</a>
         <p class="resultsDetails">
@@ -70,7 +70,7 @@ function toggleTables(firstTable, secondTable, visibleClass){
 	<tbody>
     <c:forEach items="${countryCounts}" var="countryCount" begin="0" varStatus="rowCounter">
     <tr>
-      <td style="width:450px;">
+      <td style="width:250px;">
       	<c:set var="countryName"><gbif:capitalize>${countryCount.name}</gbif:capitalize></c:set>
         <img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${countryCount.key}</string:lowerCase>.gif"/>&nbsp; <a href="${pageContext.request.contextPath}/countries/${countryCount.key}">${countryName}</a>
         <p class="resultsDetails">

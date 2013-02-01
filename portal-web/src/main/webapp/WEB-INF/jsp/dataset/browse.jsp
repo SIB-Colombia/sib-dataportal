@@ -21,7 +21,7 @@
 </display:table>*/
 %>
 <fmt:setLocale value="en_US"/>
-<display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider">
+<display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
@@ -75,7 +75,7 @@
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>
 
-<display:table name="dataResources" export="false" class="statistics sortable" id="dataResource">
+<display:table name="dataResources" export="false" class="statistics sortable" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/datasets/resource/${dataResource.key}">${dataResource.name}</a>
   	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/datasets/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>

@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="occurrenceActions">
 	<h4><spring:message code="occurrence.search.filter.whattodo.title"/></h4>
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
 				<td><b><spring:message code="actions.view"/></b></td>

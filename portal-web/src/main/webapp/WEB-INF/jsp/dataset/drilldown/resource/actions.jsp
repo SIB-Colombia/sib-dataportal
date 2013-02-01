@@ -1,10 +1,10 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="furtherActions">
 	<%-- title hidden <h4><spring:message code='actions.for'/> ${dataResource.name}</h4> --%>
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
-				<td><b><spring:message code="actions.explore"/></b></td>
+				<th><spring:message code="actions.explore"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<c:if test="${dataResource.occurrenceCount>0}">
@@ -22,7 +22,7 @@
 			</tr>
 			<c:if test="${dataResource.occurrenceCount>0}">
 				<tr>
-					<td><b><spring:message code="actions.list"/></b></td>
+					<th><spring:message code="actions.list"/></th>
 					<td>	
 						<ul class="actionsListInline">
 							<li>
@@ -34,7 +34,7 @@
 				</tr>	
 			</c:if>					
 			<tr>
-				<td><b><spring:message code="actions.download"/></b></td>
+				<th><spring:message code="actions.download"/></th>
 				<td>	
 					<c:if test="${dataResource.occurrenceCount>0}">					
 					<ul class="actionsListInline">	
@@ -59,7 +59,7 @@
 				</td>
 			</tr>	
 			<tr>
-				<td><b><spring:message code="actions.send"/></b></td>
+				<th><spring:message code="actions.send"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li>

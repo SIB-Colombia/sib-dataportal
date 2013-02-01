@@ -2,7 +2,7 @@
 <h4><spring:message code="indexed.data"/></h4>
 <c:choose>
 	<c:when test="${dataResource.occurrenceCount>0}">
-		<table class="smallStatistics">
+		<table class="smallStatistics" cellspacing="0">
 		<tr><td class="property"><spring:message code="occurrences.indexed"/>:</td><td><fmt:formatNumber value="${dataResource.occurrenceCount}" pattern="###,###"/></td></tr>
 		<tr><td class="property"><spring:message code="provider.record.count"/>:</td><td><fmt:formatNumber value="${dataResource.providerRecordCount}" pattern="###,###"/></td></tr>
 		<tr><td class="property"><spring:message code="occurrences.georeferenced"/>:</td><td><fmt:formatNumber value="${dataResource.occurrenceCoordinateCount}" pattern="###,###"/></td></tr>
@@ -21,7 +21,7 @@
 	</c:when>
 	<c:otherwise>
 	
-		<table class="smallStatistics">
+		<table class="smallStatistics" cellspacing="0">
 		<tr><td colspan="2"><spring:message code="dataset.resource.no.records.indexed.yet"/></td></tr>
 		<c:if test="${dataResource.providerRecordCount>0}">
 			<tr><td class="property"><spring:message code="provider.record.count"/>:</td><td><fmt:formatNumber value="${dataResource.providerRecordCount}" pattern="###,###"/></td></tr>

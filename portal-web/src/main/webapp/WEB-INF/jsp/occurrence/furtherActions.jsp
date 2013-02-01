@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:if test="${fn:length(results) ge 1}">
-<h4 id="searchResultCount"><spring:message code="occurrence.search.filter.retrievingcount"/></h4>
+<div id="searchResultCount"><h4><spring:message code="occurrence.search.filter.retrievingcount"/></h4></div>
 <script type="text/javascript">
 	<% //retrieve the count %>
 	var countCallback = {
@@ -15,10 +15,10 @@
 
 <div id="furtherActions">
 	<h4><spring:message code="occurrence.search.filter.whattodo.title"/></h4>
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
-				<td><b><spring:message code="actions.view"/></b></td>
+				<th><spring:message code="actions.view"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li>
@@ -31,7 +31,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td><b><spring:message code="actions.specify"/></b></td>
+				<th><spring:message code="actions.specify"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li> 
@@ -47,7 +47,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td><b><spring:message code="actions.download"/></b></td>
+				<th><spring:message code="actions.download"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li> 
@@ -66,7 +66,7 @@
 				</td>
 			</tr>
       <tr valign="top">
-        <td><b><spring:message code="actions.create" text="Create:"/></b></td>
+        <th><spring:message code="actions.create" text="Create:"/></th>
         <td>  
           <ul class="actionsListInline">
           <c:choose>

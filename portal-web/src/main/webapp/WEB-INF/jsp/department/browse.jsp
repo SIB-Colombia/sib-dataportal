@@ -37,13 +37,14 @@
 	
 	<div class="subcontainer">
 		<tiles:insert page="occurrences.jsp"/>
+        <div class="menu_amarillo"><p>
+    <spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}/countries/"/>
+	</p></div>
 	</div>
 	
 	<fmt:setLocale value="en_US"/>
-	<p>
-		<spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}/countries/"/>
-	</p>
-	<display:table name="departments" export="false" class="statistics sortable" id="department">
+	
+	<display:table name="departments" export="false" class="statistics sortable" id="department" cellspacing="0">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
 	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
 	  </display:column>	  

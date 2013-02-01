@@ -18,10 +18,10 @@ function toggleTables(firstTable, secondTable, visibleClass){
 </script>
 
 <c:if test="${fn:length(resourceCounts)>4}">
-<a href="javascript:toggleTables('sampleTable', 'resourceCount', 'results');" title="Show all resources"><spring:message code="show"/>/<spring:message code="hide"/></a>
+<a href="javascript:toggleTables('sampleTable', 'resourceCount', 'results');" title="Mostrar todos los recursos"><spring:message code="show"/>/<spring:message code="hide"/></a>
 </c:if>
 
-<table id="sampleTable" class="results" style="width: 720px;">
+<table id="sampleTable" class="results">
   <thead>
     <th><spring:message code="dataset"/></th>
     <th style="text-align: center;"><spring:message code="log.console.count"/></th>
@@ -52,7 +52,7 @@ function toggleTables(firstTable, secondTable, visibleClass){
     <tr>
       <td colspan="3">
         <p class="showFullTable">      
-          <a href="javascript:toggleTables('sampleTable', 'resourceCount', 'results');">View ${fn:length(resourceCounts)-4 } more datasets... </a>
+          <a href="javascript:toggleTables('sampleTable', 'resourceCount', 'results');"><strong>Ver ${fn:length(resourceCounts)-4 } conjuntos de datos adicionales</strong> </a>
         </p>
       </td>
     </tr>    

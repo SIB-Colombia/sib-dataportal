@@ -25,9 +25,10 @@
 			</c:otherwise>
 		</c:choose>
 	</h3>
+    <tiles:insert page="hierarchy.jsp"/>
 </div>
 
-<tiles:insert page="hierarchy.jsp"/>
+
 
 <tiles:insert page="actions.jsp"/>
 

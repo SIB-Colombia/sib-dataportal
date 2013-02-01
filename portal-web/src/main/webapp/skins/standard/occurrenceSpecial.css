@@ -1,15 +1,18 @@
 #twopartheader {
 	margin: 0px 0 10px 0;
-	padding: 0 0 0 75px;
+	padding:20px 20px 20px  110px;
 	min-height: 80px;
-	background: url('images/ico_ocurrence.png') no-repeat left top;
+	background:rgba(250,249,243, 1) url('images/ico_ocurrence.png') no-repeat 20px 20px ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
 }
 #twopartheader h2 {
 	color: #7e4717;
-	padding: 5px 0 0 10px;
+	padding: 5px 0 0 0px;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
@@ -17,7 +20,8 @@
 	margin: 0;
 	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:rgba(0, 0, 0, 0.4);
+	color:black;
+line-height:1.3em;
 	font-size:1em;
 }
 
@@ -28,13 +32,8 @@
 	color: #7e4717;
 }
 #content h4 {
-	margin: 20px 0 5px 0;
-	padding: 0;
-	font-size: 1.7em;
-	color: #7e4717;
 }
 #content h5 {
-	color: #7e4717;
 }
 .lt, a.lt {
 	color: #BBB
@@ -56,7 +55,7 @@ th.sortable a {
 }
 .pagelinks strong {
 	color: #494949;
-	background-color: #ffeeee;
+	background-color: rgba(239, 107, 45, 0.4)
 }
 /* Added by Dave */
 .occurrenceFieldset p {
@@ -65,11 +64,6 @@ th.sortable a {
 #occurrenceActions {
 	-webkit-border-radius: 15px;
     border-radius: 15px;
-	background-color: #ffeeee;
-	padding: 5px;
-	margin-right: 10px;
-	margin-left: 0px;
-	background-color: #ffeeee;
 	padding: 5px;
 	margin-right: 10px;
 	margin-left: 0px;
@@ -87,6 +81,12 @@ th.sortable a {
 #occurrenceGeospatial {
 	margin-bottom: 10px;
 }
+#occurrenceGeospatial fieldset{
+	margin-bottom: 10px;
+	width:45%;
+	display:inline-block;
+	vertical-align:top;
+}
 #constructedFilters #warnings {
 	margin-top: 10px;
 }
@@ -101,7 +101,6 @@ th.sortable a {
 #furtherActions {
 	margin-top: 10px;
 	padding:5px;
-	background-color: rgba( 248, 206, 188, 0.4);
 }
 #furtherActions h4 {
 	padding: 0px;
@@ -109,17 +108,17 @@ th.sortable a {
 	margin-left: 5px;
 }
 #changeSearch {
-	background: url('images/tip1.jpg') no-repeat;
-	padding: 7px 0 10px 35px;
+	background: url('../../images/icons/idea_4.png') no-repeat;
+	padding: 7px 0 10px 40px;
 	border-bottom: none;
+	line-height:2em
 }
 /* classification wizard */
 .conceptLink {
 	margin: 0;
-	padding-left: 10px;
-	padding-right: 5px;
+	padding: 0 10px;
 	border: none;
-	background: url('../standard/images/plusSignBumpBG1.gif') no-repeat 8px 3px;
+	background: url('../../images/filter/plus.png') no-repeat left center;
 	border: none;
 }
 a.treeNodeLinkTentative .conceptLink {
@@ -147,8 +146,8 @@ h5#geospatialFieldsTitle {
 
 /* Added by Tim */
 .feedback {
-	background: url('../../images/feedbackLink.gif') no-repeat 0px 0px;
-	padding-left: 40px;
+	background: url('../../images/icons/mail.png') no-repeat 0px 0px;
+	padding: 4px 35px;
 }
 /* Searching */
 h4#addSearchFilter, h4#currentSearch {
@@ -188,16 +187,53 @@ fieldset p {
 	color: gray;
 	font-size: 0.81em;
 }
-.results tr, .statistics tr{
-	background-color:rgba(248, 206, 188, 0.2);
-}
-.results .odd td, .statistics .odd td{
-	background-color:rgba(248, 206, 188, 0.3);
-}
-.results th, .statistics th{
-	background-color:rgba(104, 60, 12, 0.2);
-}
+
+
 input[type="submit"], button{
 	background-color:#683C0C;
 	color:white;
+}
+
+#searchResultCount{
+	padding:50px 20px 20px 20px;
+	background: rgba(239, 107, 45, 0.6);
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	font-family: 'Economica', Helvetica, Arial, sans-serif;
+	margin-top:-50px;
+	font-size:2em;
+	font-style:italic;
+	font-weight:700;
+}
+#searchResultCount h4{
+	font-size:1em;
+	margin-top:10px;
+}
+
+.results tr:nth-child(odd) td,
+.statistics .odd td,
+table.actionsList tr:nth-child(odd) td,
+table.actionsList tr:nth-child(odd) th {
+	background-color:rgba(239, 107, 45, 0.1);
+}
+.results th,
+.results td,
+.actionsList th,
+.statistics th,
+.statistics td,
+.actionsList td,
+table.actionsList tr:nth-child(even) td,
+table.actionsList tr:nth-child(even) th{
+	background-color:rgba(239, 107, 45, 0.2);
+	padding:12px 14px;
+}
+
+table.actionsList tr:first-child th:first-child,
+table.actionsList tr:first-child td:first-child{
+	-webkit-border-radius: 15px 0 0 0 ;
+    border-radius:15px 0 0 0 ;
+}
+table.actionsList tr:first-child td:last-child{
+	-webkit-border-radius: 0 15px 0 0;
+    border-radius: 0 15px 0 0;
 }

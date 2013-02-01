@@ -15,16 +15,19 @@ h4{
 }
 #twopartheader {
 	margin: 20px 0 0px 0;
-	padding: 0 0 0 85px;
+	padding:20px 20px 20px 110px;
 	min-height: 70px;
-	background: url('images/ico_help.png') no-repeat left top;
+	background:rgba(250,249,243, 1) url('images/ico_help.png') no-repeat 20px 20px ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
 }
 #twopartheader h2 {
 	color: #34BCE0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
@@ -32,7 +35,7 @@ h4{
 	margin: 0;
 	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:rgba(0, 0, 0, 0.4);
+	º
 	font-size:1em;
 }
 #content p {

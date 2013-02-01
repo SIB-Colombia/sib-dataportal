@@ -4,16 +4,21 @@
 #panes a:hover {
 	text-decoration: none;
 }
-
+.panes_div p{
+	font-weight:bold;
+}
 
 .panes_div {
 	margin: 0;
 	padding: 0;
 	width:320px;
 	border: 0;
-	background:#F9F8F2;
 	display:inline-block;
 	vertical-align:top;
+	background-color:#F9F8F2;
+	background-color:rgba(250, 249, 243, 0.8);
+	-webkit-border-radius:20px;
+    border-radius:20px;
 }
 .panes_div p:first-child{
 	display:block;
@@ -28,7 +33,7 @@
 }
 
 .panes_div > a > div{
-	height:90px;
+	min-height:115px;
 }
 
 #panes h2 {
@@ -52,11 +57,14 @@
 
 #panes h3 {
 	color:	#fff;
-	font-size: 1.7em;
+	font-size: 1.6em;
 	text-decoration: none;
 	padding: 0px;
 	margin: 0px;
+	text-transform:uppercase;
 	font-family:'Economica', Helvetica, Arial, sans-serif;
+	font-style:italic;
+	margin-bottom:9px;
 }
 #panes p{
 	margin:0px;
@@ -65,7 +73,10 @@
 	margin:5px 20px 15px !important;
 }
 
-#taxonomypane	{}
+#taxonomypane img{
+	-webkit-border-radius:20px 0 0 0;
+    border-radius:20px 0 0 0;
+	}
 #taxonomypane h2 {background:url("images/ico_especies.png") no-repeat right top;}
 #taxonomypane h2 a:hover { }
 #taxonomypane div { background:#9CCBCE;}
@@ -76,11 +87,23 @@
 #datasetpane h2 a:hover { }
 #datasetpane div { background:#B6CA7A;}
 
-#geographypane	{}
+#geographypane img{
+	-webkit-border-radius:0 20px 0 0;
+    border-radius:0 20px 0 0;
+	}
 #geographypane h2 {background:url("images/ico_departamentos.png") no-repeat right top;}
 #geographypane h2 a:hover {}
 #geographypane div { background:#ED9748;}
 
-.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important; min-height:70px;}
+.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important; min-height:70px; }
  
 .panes_div > div:nth-of-type(1) a { color:white !important;}
+
+#taxonomypane > div:nth-of-type(1) {
+-webkit-border-radius:0 0 0 20px;
+    border-radius:0 0 0 20px;
+}
+#geographypane > div:nth-of-type(1) {
+-webkit-border-radius:0 0 20px 0 ;
+    border-radius:0 0 20px 0;
+}

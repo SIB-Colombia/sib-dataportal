@@ -12,10 +12,10 @@
 </script>		
 <div id="furtherActions">
 	<%-- title hidden <h4><spring:message code='actions.for'/> <gbif:taxonPrint concept="${taxonConcept}"/></h4> --%>
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
-				<td><b><spring:message code="actions.explore"/></b></td>
+				<th><spring:message code="actions.explore"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<gbif:isMajorRank concept="${taxonConcept}">					
@@ -32,7 +32,7 @@
 			<gbif:isMajorRank concept="${taxonConcept}">			
 			<c:if test="${taxonConcept.rank!='kingdom' && taxonConcept.rank!='phylum' && taxonConcept.rank!='class' && taxonConcept.rank!='order'}">
 				<tr valign="top">
-					<td><b><spring:message code="actions.list"/></b></td>
+					<th><spring:message code="actions.list"/></th>
 					<td>
 						<ul class="actionsListInline">
 							<li>
@@ -46,7 +46,7 @@
 				</tr>
 			</c:if>
 			<tr valign="top">
-				<td><b><spring:message code="actions.download"/></b></td>
+				<th><spring:message code="actions.download"/></th>
 				<td>	
 					<ul class="actionsListInline">
 	

@@ -3,7 +3,7 @@
 <div class="subcontainer">
 <c:choose>
 	<c:when test="${dataProvider.occurrenceCount>0}">
-		<table class="smallStatistics">
+		<table class="smallStatistics" cellspacing="0">
 		<tr><td class="property"><spring:message code="occurrences.resources" text="Data resources"/>:</td><td><fmt:formatNumber value="${dataProvider.dataResourceCount}" pattern="###,###"/></td></tr>
 		<tr><td class="property"><spring:message code="occurrences.indexed"/>:</td><td><fmt:formatNumber value="${dataProvider.occurrenceCount}" pattern="###,###"/></td></tr>
 		<tr><td class="property"><spring:message code="occurrences.georeferenced"/>:</td><td><fmt:formatNumber value="${dataProvider.occurrenceCoordinateCount}" pattern="###,###"/></td></tr>

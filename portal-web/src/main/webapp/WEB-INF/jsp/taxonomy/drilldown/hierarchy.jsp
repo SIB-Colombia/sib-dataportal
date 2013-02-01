@@ -3,5 +3,5 @@
 <c:if test="${taxonConcept.parentConceptKey!=null}">
 <div id="classificationTop">
 	<gbif:flattree classname="classificationCondensed" concepts="${concepts}" selectedConcept="${taxonConcept}" messageSource="${messageSource}"/>
-</div><br/>
+</div>
 </c:if>

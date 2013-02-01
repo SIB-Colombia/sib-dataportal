@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<a href="http://cumuseum.colorado.edu/"><img style="float:right;" src="${pageContext.request.contextPath}/images/uni_colorado.jpg"/></a>
+<div class="white_rounded_frame"><a href="http://cumuseum.colorado.edu/"><img style="float:right;" src="${pageContext.request.contextPath}/images/uni_colorado.jpg"/></a>
 <a href="http://www.cria.org.br/"><img style="float:right; right:200px; padding-right:30px;" src="${pageContext.request.contextPath}/images/logo_cria.gif"/></a>
 <h4>
 <c:choose>
@@ -20,7 +20,7 @@ This integration takes the occurrence points provided by your search, submits th
 and the layers selected to openModeller.<br/>
 openModeller then generates a probability distribution using the 
 <b><a href="http://openmodeller.sourceforge.net/index.php?option=com_content&task=view&id=61&Itemid=4">Envelope Score Algorithm</a></b>.
-</p>
+</p></div>
 <!-- 
 <p>
 In this model, any point can be classified as:<br/><br/>
@@ -33,7 +33,7 @@ Bioclim's categorical output is mapped to probabilities of 1.0, 0.5 and 0.0 resp
 
 <c:if test="${not empty param['img']}">
 <div id="generatedImage" style="margin-bottom:10px;">
-<table>
+<table class="white_rounded_frame">
 <tr>
 	<td>
 		<a href="${pageContext.request.contextPath}/download/${param['img']}" style="border:none;">
@@ -68,6 +68,7 @@ Bioclim's categorical output is mapped to probabilities of 1.0, 0.5 and 0.0 resp
 		<br/>    
   </p>
  -->  
+  <div class="caja_amarilla">
   <h5><spring:message code="model.select.environment"/></h5>
   <script type="text/javascript">
     function toggleLayers(showLayers, hideLayers){
@@ -96,7 +97,7 @@ Bioclim's categorical output is mapped to probabilities of 1.0, 0.5 and 0.0 resp
     <li id="landLayersSelector" class="${empty param['selectedLayers'] || param['selectedLayers']=='landLayers' ? 'selectedLayerSet' : 'nonSelectedLayerSet'}"><a href="javascript:toggleLayers('landLayers','marineLayers');"><spring:message code="model.environment.land"/></a></li>
     <li id="marineLayersSelector" class="${param['selectedLayers']=='marineLayers' ? 'selectedLayerSet' : 'nonSelectedLayerSet'}"><a href="javascript:toggleLayers('marineLayers','landLayers');"><spring:message code="model.environment.marine"/></a></li>
     <input id="selectedLayers" type="hidden" name="selectedLayers" value="${param['selectedLayers']}"/>
-  </ul>
+  </ul></div>
   
   <fieldset>
 	    <table id="landLayers" class="${empty param['selectedLayers'] || param['selectedLayers']=='landLayers' ? 'modellingLayers' : 'hidden'}">

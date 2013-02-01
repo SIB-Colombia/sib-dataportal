@@ -10,16 +10,17 @@ table {
 }
 #twopartheader {
 	margin: 0px 0 10px 0;
-	padding: 0 0 0 85px;
+	padding:20px 20px 20px 110px;
 	min-height: 80px;
-	background:url('../standard/images/ico_search.png') no-repeat left top;
+	background:url('../standard/images/ico_search.png') no-repeat 20px 20px ;
+	position:relative;
 }
 #twopartheader h2 {
 	color: #34BCE0;
 	padding: 15px 0 0 0;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader ul {

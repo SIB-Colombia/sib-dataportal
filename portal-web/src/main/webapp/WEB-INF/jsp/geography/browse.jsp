@@ -4,15 +4,15 @@
 		<c:set var="ignores"><spring:message code="country.alphabet.skips"/></c:set>
 		<gbif:alphabetLink rootUrl="/countries/browse/" selected="${selectedChar}" listClass="flatlist" ignores="${ignores}" letters="${alphabet}"/>
 </div>
-<p>
+<div class="menu_amarillo"><p>
 <spring:message code="geography.list.iso.explaination"/>
-</p>
+</p></div>
 <h2 id="selectedChar">${selectedChar}</h2>
 <c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no countries within the system.</c:when>
 	<c:otherwise>
 	<fmt:setLocale value="en_US"/>
-	<display:table name="countries" export="false" class="statistics sortable" id="country">
+	<display:table name="countries" export="false" class="statistics sortable" id="country" cellspacing="0">
 	  <display:column titleKey="geography.drilldown.main.title" class="name">
 		  <img src="${pageContext.request.contextPath}/images/flags/<string:lowerCase>${country.isoCountryCode}</string:lowerCase>.gif"/>&nbsp;<a href="${pageContext.request.contextPath}/countries/${country.isoCountryCode}"><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize>
 		  </a>

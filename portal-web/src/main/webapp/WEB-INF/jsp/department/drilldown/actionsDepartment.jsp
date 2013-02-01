@@ -1,10 +1,10 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:if test="${department.occurrenceCount>0}">	
 <div id="furtherActions">
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
-				<td><b><spring:message code="actions.explore"/></b></td>
+				<th><spring:message code="actions.explore"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li>
@@ -21,7 +21,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td><b><spring:message code="actions.list"/></b></td>
+				<th><spring:message code="actions.list"/></th>
 				<td>
 					<ul class="actionsListInline">
 						<li>
@@ -41,7 +41,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td><b><spring:message code="actions.download"/></b></td>
+				<th><spring:message code="actions.download"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li>
@@ -63,7 +63,7 @@
 				</td>
 			</tr>
 			<tr valign="top">
-				<td><b><spring:message code="actions.webservice"/></b></td>
+				<th><spring:message code="actions.webservice"/></th>
 				<td>
 					<ul class="actionsListInline">
 						<li>

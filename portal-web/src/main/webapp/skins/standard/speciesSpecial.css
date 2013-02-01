@@ -1,15 +1,18 @@
 #twopartheader {
 	margin: 0px 0 20px 0;
-	padding: 0 0 0 85px;
+	padding:20px 20px 20px 110px;
 	min-height: 80px;
-	background:url('../standard/images/ico_especies.png') no-repeat left top;
+	background:rgba(250,249,243, 1) url('../standard/images/ico_especies.png') no-repeat 20px 20px ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
 }
 #twopartheader h2 {
-	color: #34BCE0;
+	color: #1BC0E0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
@@ -17,7 +20,8 @@
 	margin: 0;
 	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:rgba(0, 0, 0, 0.4);
+	color:black;
+line-height:1.3em;
 	font-size:1em;
 }
 /** copied from occurrenceSpecial.css **/
@@ -28,16 +32,12 @@
 	color: #34BCE0;
 }
 #content h4 {
-	margin: 20px 0 5px 0;
-	padding: 0;
-	font-size: 1.9em;
-	color: #34BCE0;
 }
 #content h5 {
 	margin: 10px 0 2px 0;
 	padding: 0;
-	color: #34BCE0;
-	font-size: 1.0em;
+	font-style:italic;
+	font-size: 2em;
 }
 .lt, a.lt {
 	color: #BBB
@@ -58,21 +58,7 @@ table.results th {
 	background-color: #ffeeee;
 }
 /* Added By Dave */
-#furtherActions {
-	margin: 10px 0;
-	padding:5px;
-	/*background-color: rgba( 204, 233, 242, 0.7);*/
-	-webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-#furtherActions td{
-	padding:6px;
-}
-#furtherActions h4 {
-	padding: 0px;
-	margin-top: 5px;
-	margin-left: 5px;
-}
+
 #filterEditorPane #furtherActions {
 	
 	background-color: #F8CEBC;
@@ -91,13 +77,12 @@ table.results th {
 	margin-left: 5px;
 }
 #classificationTop {
-	margin-top: 10px;
+	margin: 20px 0 0 -90px;
 	font-size: 11px;
-	background-color:rgba(255,255,255,0.5);
-	margin:10px;
+	background-color:rgba(255,255,255,1);
 	padding:2px 2px 4px 10px;
-	-webkit-border-radius: 8px;
-    border-radius: 8px;
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
 	font-size:1em;
 }
 .taxonImage {
@@ -114,21 +99,10 @@ div.taxonFurtherActions {
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
-/* End of Added By Dave */
-h5#noGeoreferencedPoints {
-	color: #FFFFFF;
-	margin: 0px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	text-align: center;
-	valign: center;
-	background-color: #000000;
-	width: 100%;
-	font-size: 1.1em;
-}
+
 /* Added by Tim */
 .feedback {
-	background: url('../../images/feedbackLink.gif') no-repeat 0px 0px;
+	background: url('../../images/icons/mail.png')no-repeat 0px 0px;
 	padding-left: 40px;
 }
 td.label {
@@ -159,10 +133,10 @@ h4#addSearchFilter, h4#currentSearch {
 	border-bottom: none;
 }
 
-.results tr{
+.results tr td{
 	background-color:rgba(166,180,98, 0.2);
 }
-.results .odd td{
+.results  tr:nth-child(even) td{
 	background-color:rgba(166,180,98, 0.3);
 }
 .results th{
@@ -172,4 +146,15 @@ h4#addSearchFilter, h4#currentSearch {
 }
 input[type="submit"], button{
 	background-color:#34BCE0;
+}
+table.actionsList tr:nth-child(even) td,
+table.actionsList tr:nth-child(even) th{
+	background:rgba(53, 188, 224, 0.4);
+}
+table.actionsList tr:nth-child(odd) td,
+table.actionsList tr:nth-child(odd) th{
+	background:rgba(53, 188, 224, 0.2);
+}
+table.actionsList {
+	border-top:rgba(53, 188, 224, 0.2) 10px solid;
 }

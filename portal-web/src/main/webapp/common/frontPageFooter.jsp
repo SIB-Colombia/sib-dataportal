@@ -8,7 +8,8 @@
       <ul>
         <li class="l_one"><a title="Humboldt" target="_blank" href="http://www.humboldt.org.co"><img  alt="Humboldt" src="${pageContext.request.contextPath}/images/logos_cut/humboldt.png"></a> </li>
       </ul>
-     <p style="margin-top:-5px">Entidad Coordinadora</p>
+     <p style="margin-top:-5px">Entidad <br />
+      Coordinadora</p>
     </div>
     <div id="s_two">
       <ul>
@@ -32,8 +33,9 @@
     <div>
       <ul>
 				<li style="width:80px;" >
+                <p style=" margin:0px !important;">El SiB Colombia es componente tematico del SIAC</p>
 				<a href="https://www.siac.gov.co/" target="_blank" title="El SiB Colombia es componente tem&aacute;tico del SIAC"><img src="${pageContext.request.contextPath}/images/logos_cut/siac.png"alt="El SiB Colombia es componente tem&aacute;tico del SIAC" /></a>
-				<p>El SiB Colombia es componente tematico del SIAC</p>
+				
 				</li>
 			</ul>
     </div>

@@ -1,34 +1,39 @@
 #twopartheader {
-	margin: 0px 0 0 0;
+	margin: 0 0 20px;
 	min-height: 80px;
-	padding: 0;
-	background: url('images/ico_dataset.png') no-repeat left top;
+	padding:20px;
+	background:rgba(250,249,243, 1) url('images/ico_dataset.png') no-repeat 20px 20px ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
 }
 /* Added by Dave */
 #twopartheader h2 {
 	color: #81A647;
-	padding: 5px 0 0 90px;
+	padding: 0 0 0 90px;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 76px;
+	padding: 7px 0 0 90px;
 	margin: 0;
 	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:rgba(0, 0, 0, 0.4);
+	color:black;
+line-height:1.3em;
 	font-size:1em;
 }
 .subject {
-	font-weight: bold;
+	font-weight: normal;
+	line-height:0.9em;
+	display:inline !important;
 }
 img.logo {
-	position: absolute;
+	position: relative;
 	float: right;
-	top: 75px;
-	right: 13px;
+	margin:-120px 40px 0 0;
 }
 /* End of Added by Dave */
 
@@ -39,10 +44,12 @@ img.logo {
 	color: #81A647;
 }
 #content h4 {
-	margin: 20px 0 5px 0;
+	margin: 20px 0 5px 30px;
 	padding: 0;
-	font-size: 1.5em;
-	color: #81A647;
+	font-size: 1.9em;
+	color:#41372F;
+	text-transform:uppercase;
+	font-style:italic;
 }
 .lt, a.lt {
 	color: #BBB
@@ -69,7 +76,7 @@ thead {
 	color: #81A647;
 }
 table.results th {
-	background-color: #FFF;
+	background-color:#bad691;
 }
 table.statistics {
 	margin-bottom: 20px;
@@ -89,17 +96,25 @@ ul.flatlist {
 	margin: 8px 0 0 68px;
 	padding: 0;
 }
-ul.flatlist li a{
+ul.flatlist li{
 	-webkit-border-radius: 5px;
     border-radius: 5px;
 	padding:7px;
-	display:inline-block;
-	/* Comentado para permitir opción todas sea visible */ 
-	/* #width:15px; */
+	min-width:15px;
 	text-align:center;
 	font-weight:700;
 	color:white;
 	background:rgba(164, 200, 125, 0.9);
+}
+ul.flatlist li a{
+	display:inline-block;
+	text-align:center;
+	font-weight:700;
+	color:white;
+	padding:2px;
+}
+ul.flatlist li a:hover{
+	background:rgba(164, 200, 125, 1);
 }
 ul.flatlist #chosen {
 	-webkit-border-radius: 5px;
@@ -110,28 +125,34 @@ ul.flatlist #chosen {
 	/* width:12px; */
 	text-align:center;
 	}
+#furtherActions {
+	margin: -45px 0 10px 0;
+	padding:20px 5px 5px 5px;
+	/*background-color: rgba( 204, 233, 242, 0.7);*/
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#furtherActions td{
+	padding:6px;
+}
 #furtherActions h4 {
 	padding: 0px;
-	margin: 5px 10px;
-	font-size:1.8em;
-}
-#furtherActions {
-	background-color:rgba(212, 236, 245, 0.8);
-	padding:7px;
+	margin-top: 5px;
+	margin-left: 5px;
 }
 #initialActions td {
 	vertical-align: top;
 }
 .smallStatistics {
-	margin-left: 5px;
+	
 }
 .smallStatistics td {
 	padding-top: 5px;
 }
 /* Added by Tim */
 .feedback {
-	background: url('../../images/feedbackLink.gif') no-repeat 0px 0px;
-	padding-left: 40px;
+	background: url('../../images/icons/mail.png')no-repeat 0px 0px;
+	padding-left: 30px;
 }
 #resources li {
 	list-style: none;
@@ -161,15 +182,36 @@ h5#noGeoreferencedPoints {
 	width: 100%;
 	font-size: 1.1em;
 }
-table tr{
-	background-color:rgba(166,180,98, 0.1);
+table.statistics{
+	margin-top:0;
 }
-table .odd td{
-	background-color:rgba(166,180,98, 0.2);
+
+
+.results tr:nth-child(odd) td,
+.statistics .odd td,
+table.actionsList tr:nth-child(odd) td,
+table.actionsList tr:nth-child(odd) th {
+	background-color:rgba(197,223,157, 0.4);
 }
-table th{
-	background-color:rgba(166,180,98, 0.7);
-	color:white;
+table.statistics td,
+table.smallStatistics td,
+table.results td,
+table.actionsList td,
+table.actionsList th{
+	background-color:rgba(197,223,157, 0.4);
+}
+table.statistics .odd td,
+table.smallStatistics .odd td,
+table.results .odd td,
+table.actionsList tr:nth-child(2n) th,
+table.actionsList tr:nth-child(2n) td,
+table.smallStatistics tr:nth-child(2n) td{
+	background-color:rgba(197,223,157, 0.8);
+}
+table.statistics th,
+table.smallStatistics th{
+	background-color:#bad691;
+	height:50px;
 }
 input[type="submit"], button{
 	background-color:rgb(166,180,98);

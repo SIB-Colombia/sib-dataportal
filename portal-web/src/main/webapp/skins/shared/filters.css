@@ -4,7 +4,7 @@ div.filter {
 	height: 40px;
 }
 div.filter span.type {
-	float: left;
+	display:inline-block;
 	width: 160px;
 	height: 20px;
 }
@@ -13,7 +13,7 @@ div.filter span.type select {
 	width: 150px;
 }
 div.filter span.predicate {
-	float: left;
+	display:inline-block;
 	width: 120px;
 	height: 20px;
 }
@@ -21,17 +21,25 @@ div.filter span.predicate select {
 	margin-top: 0px;
 	width: 110px;
 }
+div.filter input{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border:0px;
+	padding:4px;
+}
 div.filter span.value {
 	height: 20px;
-	float: left;
+	display:inline-block;
 	width: 350px;
-	margin-right: 5px;
+	margin-right: 15px;
 	color: #000000;
 }
 div.filter span.value input {
+	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+     box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 	margin-top: 0px;
 	width: 275px;
-	padding-left: 3px;
+	padding: 7px 10px;
 }
 div.filter span.value select {
 	margin-top: 0px;
@@ -52,17 +60,24 @@ p.filterhelp {
 div#filterWizard {
 	float: left;
 	margin-right: 10px;
+	min-height:150px;
 }
+.helpList .subject{
+	font-weight: bold !important;
+	}
 a.wizardValue {
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 1em;
+	background:rgba(239, 107, 45, 0.3);
+	-webkit-border-radius: 15px;
+    border-radius: 15px;
+	padding:10px;
 }
 a.wizardValue:hover {
 	text-decoration: none;
 	border-bottom: none;
 }
 p.emptySearch {
-	font-style: italic;
 	margin: 10px 0px 10px 0px;
 }
 h4#currentSearch, h4#addSearchFilter {
@@ -74,6 +89,12 @@ h4#addSearchFilter {
 #filtersAndEditor {
 	width: 100%;
 	margin-top: 5px;
+	background:rgba(250,249,243, 1) ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
+	margin: 20px 0 20px 0;
+	padding:20px;
 }
 #filterEditorPane {
 	width: 700px;
@@ -84,23 +105,25 @@ h4#addSearchFilter {
 	width: 300px;
 	min-width: 250px;
 	vertical-align: top;
-	padding-left: 10px;
-	padding:12px;
-	background-color:rgba(255,255,255,0.5);
-	-webkit-border-radius: 15px;
-    border-radius: 15px;
+	padding:20px;
+	background-color:rgba(239, 107, 45, 0.3);
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+#constructedFiltersPane p{
+	color:#595045;
 }
 div#constructedFilters {
 	width: 100%;
 	height: 100%;
 }
 div#constructedFilters ul {
-	padding: 2px 8px;
+	padding: 6px 12px;
 	margin-top: 5px;
 	color: #000000;
 	list-style: none;
-	-webkit-border-radius: 8px;
-    border-radius: 8px;
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 div#constructedFilters ul a {
 	border-bottom: none;
@@ -124,43 +147,59 @@ div#actionsAndResults {
 	width: 100%;
 	height: 30%;
 }
+#actionsAndResults h4{
+}
 select{
-	padding:3px;
+	padding:5px;
 }
 ul.taxonomy {
 	/*background-color: #F8CEBC;*/
 	background-color:rgba(104, 60, 12, 0.2);
 }
 ul.datasets {
-	background-color: #d4ecf5;
+	background-color: rgba(255,255,255,0.6);
 }
 ul.geospatial {
-	background-color: #f9e5d8;
+	background-color: rgba(255,255,255,0.6);
 }
-.taxonomyFilterHelp {
+.taxonomyFilterHelp,
+.geospatialFilterHelp,
+.datasetFilterHelp,
+.otherDetailsFilterHelp {
+	background:url('../../images/icons/idea_1.png') no-repeat center left;
+	padding-left:55px;
+	height:40px;
+	color:#333;
 }
 .geospatialFilterHelp {
 }
 .datasetFilterHelp {
 }
-.otherDetailsFilterHelp {
+.otherDetailsFilterHelp input{
+	width:80px !important;
 
 }
 /* wizards */
 div.datasetWizard {
-	background-color: #d4ecf5;
 	width: 625px;
 	padding: 10px;
 	padding-left: 20px;
 }
 div.taxonomyWizard {
-	background-color: #F8CEBC;
 	padding: 10px;
 	padding-left: 20px;
 	width: 625px;
 }
+div.taxonomyWizard .smalltree{
+	font-size:75%;
+}
+div.taxonomyWizard .list p{
+	margin:0 0 5px 0 !important;
+}
+div.taxonomyWizard .ancestor{
+	margin:5px 0 0 20px;
+}
 div.countryProtectedAreaWizard {
-	background-color: #d4ecf5;
 	width: 625px;
 	padding: 10px;
 	padding-left: 20px;
@@ -201,5 +240,6 @@ div.countryProtectedAreaWizard {
 	margin-top: 20px;
 }
 #selectedFilterHelp p:first-child{
+	color:#595045;
 	font-weight:700;
 }

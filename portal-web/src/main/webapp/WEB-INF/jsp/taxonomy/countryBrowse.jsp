@@ -23,7 +23,7 @@
 		<c:when test="${not empty concepts}">
 			<div id="furtherActions">
 				<%-- title hidden <h4><spring:message code='actions.for'/> <gbif:capitalize>${country.name}</gbif:capitalize></h4> --%>
-				<table cellspacing="1" class="actionsList">
+				<table cellspacing="0" class="actionsList">
 					<tbody>
 						<tr valign="top">
 							<td><b><spring:message code="actions.explore"/></b></td>

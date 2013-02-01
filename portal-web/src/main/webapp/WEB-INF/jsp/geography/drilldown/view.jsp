@@ -8,7 +8,7 @@
 <div class="subcontainer">
 	<h4><spring:message code="occurrence.overview"/></h4>
 	<tiles:insert page="occurrences.jsp"/>
-	<div style="margin-left:30px;">
+	<div>
 	 <c:set var="occurrenceSearchSubject" value="5" scope="request"/> 
    <c:set var="occurrenceSearchValue" value="${country.isoCountryCode}" scope="request"/>
 	 <c:set var="showNonGeoreferencedCount" value="true" scope="request"/>

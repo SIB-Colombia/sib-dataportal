@@ -1,10 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="twopartheader">	
 	<h1><spring:message code="feedback.title"/></h1>
-</div>
-<p>
+    <p>
 	<spring:message code="feedback.blurb"/>
 </p>
+</div>
+
 <fieldset>
 	<form method="post" action="<c:url value="/feedback/submit/${type}/${conceptKey}"/>">
 		<p>

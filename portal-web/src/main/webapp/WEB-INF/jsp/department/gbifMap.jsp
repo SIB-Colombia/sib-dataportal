@@ -86,7 +86,7 @@
 				<a href="javascript:nudgeUp()" 
 					<c:if test="${zoom<6}">	title="<spring:message code="maps.move.fivedegree.north"/>"</c:if>
 					<c:if test="${zoom==6}">	title="<spring:message code="maps.move.onedegree.north"/>"</c:if>					
-					><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/up.gif"/></a>
+					><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/up.png"/></a>
 			</c:if>
 		</td>
 		<td align="right" class="labelRight">${maxMapLong}</td>
@@ -147,7 +147,7 @@
 				<a href="javascript:nudgeLeft()"  
 					<c:if test="${zoom<6}">	title="<spring:message code="maps.move.fivedegree.west"/>"</c:if>
 					<c:if test="${zoom==6}">	title="<spring:message code="maps.move.onedegree.west"/>"</c:if>					
-				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/left.gif"/></a>
+				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/left.png"/></a>
 			</c:if>
 		</td>				
 		<td class="right">
@@ -155,7 +155,7 @@
 				<a href="javascript:nudgeRight()"  
 					<c:if test="${zoom<6}">	title="<spring:message code="maps.move.fivedegree.east"/>"</c:if>
 					<c:if test="${zoom==6}">	title="<spring:message code="maps.move.onedegree.east"/>"</c:if>					
-				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/right.gif"/></a>
+				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/right.png"/></a>
 			</c:if>
 		</td>
 		<td>
@@ -197,7 +197,7 @@
 				<a href="javascript:nudgeDown()"  
 					<c:if test="${zoom<6}">	title="<spring:message code="maps.move.fivedegree.south"/>"</c:if>
 					<c:if test="${zoom==6}">	title="<spring:message code="maps.move.onedegree.south"/>"</c:if>					
-				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/down.gif"/></a>
+				><img src="${pageContext.request.contextPath}/<spring:theme code="shared.root"/>/images/icons/down.png"/></a>
 			</c:if>
 		</td>
 		<td class="labelRight">${maxMapLong}</td>

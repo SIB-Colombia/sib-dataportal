@@ -2,7 +2,7 @@
 <c:set var="georeferenced" value="${occurrenceRecord.latitude !=null && occurrenceRecord.latitude!=0}"/>
 <div id="furtherActions">
 	<h4><spring:message code="occurrence.search.filter.whattodo.title"/></h4>
-	<table cellspacing="1" class="actionsList">
+	<table cellspacing="0" class="actionsList">
 		<tbody>
 			<tr valign="top">
 				<td><b><spring:message code="actions.find"/></b></td>

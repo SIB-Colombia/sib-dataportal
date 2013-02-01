@@ -1,7 +1,11 @@
 #twopartheader {
-	margin: 0px 0 10px 0;
-	padding: 0 0 0 75px;
-	min-height: 80px;	background: url('images/ico_departamentos.png') no-repeat left top;
+	min-height: 80px;
+	background:rgba(250,249,243, 1) url('images/ico_departamentos.png') no-repeat 20px 20px ;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	position:relative;
+	margin: 0px 0 20px 0;
+	padding:20px 20px 20px 110px;
 }
 /* Added by Dave */
 
@@ -9,8 +13,8 @@
 	color: #9d4c05;
 	padding: 5px 0 0 10px;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: normal;
+	font-size: 2.6em;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 #twopartheader h3 {
@@ -18,7 +22,8 @@
 	margin: 0;
 	font-weight: 400;
 	font-family: Helvetica, Verdana, Arial, sans-serif;
-	color:rgba(0, 0, 0, 0.4);
+	color:black;
+line-height:1.3em;
 	font-size:1em;
 }
 .subject {
@@ -33,16 +38,12 @@
 	color: #9d4c05
 }
 #content h4 {
-	margin: 20px 0 5px 0;
-	padding: 0;
-	font-size: 1.3em;
-	color: #9d4c05
 }
 #content h5 {
-	margin: 10px 0 2px 0;
+	margin: 15px 0 2px 0;
 	padding: 0;
-	color: #9d4c05;
-	font-size: 1.0em;
+	font-size: 2em;
+	font-style:italic;
 }
 .lt, a.lt {
 	color: #BBB
@@ -81,20 +82,28 @@ table.statistics thead tr:hover {
 	background-color: #FDFDFD;
 }*/
 ul.flatlist {
-	margin: 8px 0 0 0px;
+	margin: 8px 0 0 0;
 	padding: 0;
 }
-ul.flatlist li a{
+ul.flatlist li{
 	-webkit-border-radius: 5px;
     border-radius: 5px;
 	padding:7px;
-	display:inline-block;
-	/* Comentado para permitir opción todas sea visible */ 
-	/* width:15px; */
+	min-width:15px;
 	text-align:center;
 	font-weight:700;
 	color:white;
-	background:rgba(104, 59, 16, 0.9);
+	background:rgba(104, 59, 16, 0.8);
+}
+ul.flatlist li a{
+	display:inline-block;
+	text-align:center;
+	font-weight:700;
+	color:white;
+	padding:2px;
+}
+ul.flatlist li a:hover{
+	background:rgba(104, 59, 16, 1);
 }
 ul.flatlist #chosen {
 	-webkit-border-radius: 5px;
@@ -103,14 +112,11 @@ ul.flatlist #chosen {
 	display:inline-block;
 	/* Comentado para permitir opción todas sea visible */ 
 	/* width:12px; */
+	background:rgba(104, 59, 16, 0.2);
 	text-align:center;
+	color:background:rgb(104, 59, 16, 1);
 	}
-#furtherActions {
-	margin-top: 10px;
-	padding:5px;
-	background:none repeat scroll 0 0 rgba(250, 214, 95, 0.2);
-	/*background-color: rgba( 254, 215, 67, 0.4);*/
-}
+
 #furtherActions h4 {
     font-size: 1.5em;
     margin: 5px 10px;
@@ -219,40 +225,29 @@ h2.printFriendly {
 #countryLinks {
 	margin-top: 20px;
 }
-h5#noGeoreferencedPoints {
-	color: #FFFFFF;
-	margin: 0px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	text-align: center;
-	valign: center;
-	background-color: #000000;
-	width: 100%;
-	font-size: 1.1em;
-}
 
-.results tr, actionsList tr, .statistics tr{
-	background-color:rgba(254, 215, 67, 0.1);
+.results tr:nth-child(odd) td,
+.statistics .odd td,
+table.actionsList tr:nth-child(odd) td,
+table.actionsList tr:nth-child(odd) th {
+	background-color:rgba(237, 191, 103, 0.3);
 }
-.results .odd td, actionsList .odd td, .statistics  .odd td{
-	background-color:rgba(212, 181, 80, 0.3);
-}
-.results th, actionsList th, .statistics th{
-	background-color:rgba(254, 215, 67, 0.4);
+.results th,
+.results td,
+.actionsList th,
+.statistics th,
+.statistics td,
+.actionsList td,
+table.actionsList tr:nth-child(even) td,
+table.actionsList tr:nth-child(even) th{
+	background-color:rgba(237, 191, 103, 0.6);
+	padding:12px 14px;
 }
 input[type="submit"], button{
 	background-color:#6E331E;
 	color:white;
 }
-table.actionsList td {
-	padding:6px;
-	vertical-align: top;
-	background:rgba(250, 214, 95, 0.2);
-	-webkit-border-radius: 8px;
-    border-radius: 8px;
+table.actionsList {
+	border-top:rgba(237, 191, 103, 0.3) 10px solid;
 }
-table.actionsList tr:nth-child(odd) td{
-	background:rgba(212, 181, 80, 0.3);
-	-webkit-border-radius: 8px;
-    border-radius: 8px;
-}
+

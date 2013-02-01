@@ -12,17 +12,6 @@ table.results {
 	margin-bottom: 10px;
 }
 
-table.results th {
-	font-weight: bold;
-	vertical-align:center;
-	text-align:left;
-	padding: 5px 5px 5px 5px;
-	font-family:'Economica',Helvetica,Arial;
-	font-size:1.3em;
-	line-height:1em;
-	padding: 6px 7px;
-}
-
 table.results td {
 	padding: 6px 7px;
 	vertical-align:center;
@@ -39,8 +28,15 @@ table.results td.include {
 }
 
 table.results td.lastColumn {
-	padding-right:3px;
 	text-align: center;
+}
+table.results td.lastColumn a {
+	background:url('../../images/icons/ver_doc.png') no-repeat center top;
+	padding-top:35px;
+	display:inline-block;
+	width:40px;
+	font-weight:700;
+	font-size:0.9em;
 }
 
 table.results tr {
@@ -74,16 +70,19 @@ table.statistics {
 	-webkit-border-radius: 8px;
 }
 
-table.statistics th {
+table.statistics th,
+table.results th{
 	text-align: left;
-	font-size:1.4em;
-	font-family:'Economica', Helvetica, Arial;
 	padding:4px 8px;
 	line-height:1.1em;
+	font-size:1.2em;
+	font-weight:bold;
+	color:black;
+	color:rgba(0,0,0,0.7);
 }
 
 table.statistics td.name {
-	width:60%;
+	width:50%;
 }
 
 table.statistics td.count {
@@ -102,28 +101,63 @@ table.statistics td.countrycount {
 }
 
 table.statistics td.singlecount {
-	width:40%;
-	padding-left:10px;
+	width:35%;
+}
+
+table.statistics tr:last-child td:first-child,
+table.smallStatistics tr:last-child td:first-child,
+table.results tr:last-child td:first-child{
+	-webkit-border-radius: 0 0 0 15px;
+    border-radius: 0 0 0 15px;
+}
+table.statistics tr:last-child td:last-child,
+table.smallStatistics tr:last-child td:last-child,
+table.results tr:last-child td:last-child{
+	-webkit-border-radius: 0 0 15px 0;
+    border-radius: 0 0 15px 0;
+}
+table.statistics tr:first-child th:first-child,
+table.smallStatistics tr:first-child td:first-child,
+table.results tr:first-child th:first-child{
+	-webkit-border-radius: 15px 0 0 0;
+    border-radius: 15px 0 0 0;
+}
+table.statistics tr:first-child th:last-child,
+table.smallStatistics tr:first-child td:last-child,
+table.results tr:first-child th:last-child{
+	-webkit-border-radius: 0 15px 0 0;
+    border-radius:  0 15px 0  0;
+}
+table.results tr:last-child td:only-child{
+	-webkit-border-radius: 0 0 15px 15px;
+    border-radius: 0 0 15px 15px;
 }
 
 table.statistics tr {
 	border: 0px; 
 	font-weight: normal;
 }
-table.statistics td {
-	padding:8px 8px 4px 8px;
-	border-radius: 8px;
-	-webkit-border-radius: 8px;
-	/*background:rgba(53, 188, 224, 0.1);*/
+table.statistics td,
+table.smallStatistics td,
+table.results td{
+	padding:13px 15px;
 }
+table.statistics th,
+table.results th {
+	padding:14px 15px;
+}
+table.results td,
+table.results th {
+	/*text-align:center;*/
+}
+
+
 table.statistics .odd td{
-	/*background:rgba(53, 188, 224, 0.2);*/
-	border-radius: 8px;
-	-webkit-border-radius: 8px;
 }
 
 table.smallStatistics {
 	padding-bottom:10px;
+	font-weight:700;
 }
 
 table.smallStatistics td.property {
@@ -133,6 +167,10 @@ table.smallStatistics td.property {
 /* to be moved to another home */
 fieldset {
 	border:0px;
+	margin: 10px 0;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+	padding:20px;
 }
 
 fieldset label {
@@ -141,15 +179,27 @@ fieldset label {
 	margin-bottom: 5px;
 	margin-right:5px;
 	text-align: left;
-	width: 150px;
+	width: 160px;
 	padding-right: 20px;
 	padding-bottom: 5px;	
 }
-
 fieldset br {
 	clear:left;
 }
 
+fieldset p{
+	border-bottom:1px solid #ded3cc;
+	padding-bottom:6px;
+	min-height:20px;
+	display:block;
+}
+fieldset p:last-child{
+	border-bottom:none 0px transparent;
+	padding-bottom:0px;
+}
+fieldset label{
+	font-weight:bold;
+}
 form.acceptForm {
 	margin: 10px 0px 10px 0px;
 }
@@ -170,3 +220,4 @@ table.datasheetItem td.datatable { width:300px; padding: 0 0 0 20px; }
 
 .indexingHistory { border-collapse: collapse; text-align:left;}
 .indexingHistory td, .indexingHistory th { border:1px solid #CCCCCC; padding: 5px 10px 5px 10px; }	
+
