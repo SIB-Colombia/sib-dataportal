@@ -38,7 +38,8 @@ div.filter span.value input {
 	-webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
      box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 	margin-top: 0px;
-	width: 275px;
+	/*width: 275px;*/
+	width:96%;
 	padding: 7px 10px;
 }
 div.filter span.value select {
@@ -230,7 +231,7 @@ div.countryProtectedAreaWizard {
 }
 #newFilterValue {
 	position: relative;
-	width: 280px;
+	width: 35%;
 	margin-bottom: 1em;
 }/* set width of widget here*/
 #newFilterValue {

@@ -204,6 +204,7 @@ input[type="submit"], button{
 	font-size:2em;
 	font-style:italic;
 	font-weight:700;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 #searchResultCount h4{
 	font-size:1em;

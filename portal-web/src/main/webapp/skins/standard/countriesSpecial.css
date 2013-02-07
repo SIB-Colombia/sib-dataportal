@@ -29,6 +29,9 @@ line-height:1.3em;
 .subject {
 	font-weight: bold;
 }
+h2 .subject {
+	font-weight: normal !important;
+}
 /* End of Added by Dave */
 
 #content h1 {

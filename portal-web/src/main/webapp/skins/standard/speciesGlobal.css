@@ -12,6 +12,7 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Economica', Helvetica, Arial, sans-serif;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 /* -- The Generic Defs --*/
 a:link {
@@ -476,7 +477,8 @@ div#warnings ul {
 #globalOverviewLinks {
 	margin: 0;
 	float: left;
-	width: 450px;
+	/*width: 450px;*/
+	width:60%;
 	padding-left: 20px;
 }
 #globalOverviewLinks span {
@@ -666,7 +668,7 @@ div.subcontainer {
 	background-position:center bottom, top center;
 	margin:0px;
 	padding: 20px 30px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, .6)
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 
