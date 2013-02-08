@@ -35,6 +35,7 @@
     
     <div class="white_rounded_frame">
     <img src="${pageContext.request.contextPath}/skins/standard/images/sib_logo_bola.png" alt="<spring:message code="portal.header.dataportal.title.alt"/>" style="float:left; margin-right:20px"/>
+    
 	<c:set var="link1">
 	<em><a href="${pageContext.request.contextPath}/tutorial/introduction"><spring:message code="topmenu.about"/></a></em>
 </c:set>
@@ -44,6 +45,7 @@
 <c:set var="link3">
 	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="dataagreement.title"/></a></em>
 </c:set>
+
 <p style="margin:25px 10px;">
 <fmt:formatNumber var="geoTotal" type="number" value="${totalGeoreferencedOccurrenceRecords}" />
 <fmt:formatNumber var="speciesTotal" type="number" value="${totalSpecies}" />
@@ -52,9 +54,7 @@
 <fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
 <fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
 <fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
-
-
-<strong><spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/></strong><br/>
+<spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/><br/>
 	</div>
     
     <small> <strong>Im&aacute;genes</strong> cortes&iacute;a del Banco de Im&aacute;genes Ambientales del Instituto Humboldt <a href="http://www.humboldt.org.co/upa/" target="_blank">http://www.humboldt.org.co/upa/</a> y 

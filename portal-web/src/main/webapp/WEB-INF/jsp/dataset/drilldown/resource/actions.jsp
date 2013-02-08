@@ -69,7 +69,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b><spring:message code="actions.webservice"/></b></td>
+				<th><spring:message code="actions.webservice"/></th>
 				<td>	
 					<ul class="actionsListInline">
 						<li>
