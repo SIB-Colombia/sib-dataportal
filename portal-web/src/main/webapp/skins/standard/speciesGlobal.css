@@ -679,7 +679,7 @@ margin:0 auto;
 padding:5px 0 0;
 text-align:center;
 clear:both;
-width:930px;
+width:950px;
 }
 
 .sponsor ul li, .sponsor div {
@@ -885,7 +885,7 @@ div:empty {
 	background:rgba(255, 224, 113, 0.7);
 	-webkit-border-radius: 20px;
     border-radius: 20px;
-	padding:8px 25%;
+	padding:8px 15%;
 	display:block;
 	font-weight:bold;
 	text-align:center;
@@ -898,7 +898,9 @@ div:empty {
 	line-height:2em;
 	margin:0px;
 	font-style:italic;
-	font-size:1.8em
+	font-size:1.8em;
+	width:500px;
+	display:inline;
 }
 #content h4 {
 	margin: 20px 0 5px 0;

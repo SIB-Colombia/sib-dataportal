@@ -33,7 +33,7 @@
 }
 
 .panes_div > a > div{
-	min-height:115px;
+	min-height:145px;
 }
 
 #panes h2 {
@@ -71,6 +71,7 @@
 }
 #panes h2+p{
 	margin:5px 20px 15px !important;
+	min-height:60px;
 }
 
 #taxonomypane img{
