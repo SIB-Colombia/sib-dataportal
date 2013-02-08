@@ -75,7 +75,7 @@ table.results th{
 	text-align: left;
 	padding:4px 8px;
 	line-height:1.1em;
-	font-size:1.2em;
+	font-size:1.1em;
 	font-weight:bold;
 	color:black;
 	color:rgba(0,0,0,0.7);
@@ -144,7 +144,7 @@ table.results td{
 }
 table.statistics th,
 table.results th {
-	padding:14px 15px;
+	padding:10px 15px;
 }
 table.results td,
 table.results th {

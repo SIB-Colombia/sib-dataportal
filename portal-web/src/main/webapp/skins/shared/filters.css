@@ -105,18 +105,18 @@ h4#addSearchFilter {
 #constructedFiltersPane {
 	width: 300px;
 	min-width: 250px;
-	vertical-align: top;
-	padding:20px;
-	background-color:rgba(239, 107, 45, 0.3);
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
+	
 }
 #constructedFiltersPane p{
 	color:#595045;
 }
 div#constructedFilters {
-	width: 100%;
 	height: 100%;
+	vertical-align: top;
+	padding:20px;
+	background-color:rgba(239, 107, 45, 0.3);
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
 }
 div#constructedFilters ul {
 	padding: 6px 12px;

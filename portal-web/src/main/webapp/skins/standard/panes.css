@@ -95,7 +95,7 @@
 #geographypane h2 a:hover {}
 #geographypane div { background:#ED9748;}
 
-.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important; min-height:70px; }
+.panes_div > div:nth-of-type(1) { background-color:#4A3D32 !important; min-height:100px; }
  
 .panes_div > div:nth-of-type(1) a { color:white !important;}
 
