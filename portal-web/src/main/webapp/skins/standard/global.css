@@ -1,9 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Economica:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
+
 body {
 	font-size: 80%;
 	color: #333;
 	background: #f2eee3 url("../../images/noise1.png") repeat 0 0;
-	font-family: Helvetica, Verdana, Helvetica, Arial;
+	font-family: 'Open sans', Helvetica, Verdana, Helvetica, Arial;
 	text-align: left;
 	padding: 0;
 	margin: 0;

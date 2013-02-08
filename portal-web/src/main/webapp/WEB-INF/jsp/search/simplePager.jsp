@@ -18,7 +18,7 @@
 </c:choose>
 
 <h2 class="${searchClass}"><spring:message code="${searchTitle}"/></h2>
-<table cellspacing="1" width="100%">
+<table cellspacing="0">
 	<tbody>
 		<c:set var="urlRoot"><tiles:getAsString name="urlRoot"/></c:set>
 		<tiles:insert name="list"/>

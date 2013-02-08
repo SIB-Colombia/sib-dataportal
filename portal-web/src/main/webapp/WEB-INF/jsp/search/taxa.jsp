@@ -2,7 +2,7 @@
 
 <a class="anchorHeading" name="Names1"><h2 class="scNames"><spring:message code="blanket.search.scientific.names.title" text="Scientific names"/></h2></a>
 
-<table cellspacing="1" width="100%" class="white_rounded_bg">
+<table cellspacing="0" class="white_rounded_bg">
 	<tbody>
 
 	<% // Display exact canonical matches first %>	

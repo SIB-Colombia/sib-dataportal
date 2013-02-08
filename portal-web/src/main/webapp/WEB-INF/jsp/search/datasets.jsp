@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <a name="Datasets"><h2 class="scDatasets"><spring:message code="blanket.search.data.resources.title"/></h2></a>
-<table cellspacing="1" width="100%" class="white_rounded_bg">
+<table cellspacing="0" class="">
 	<tbody>
 	<tiles:insert page="datasetsList.jsp"/>
 	</tbody>

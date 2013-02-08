@@ -159,9 +159,14 @@ $(function () {
                 vAxis: {title: "Registros"},
                 hAxis: {title: "Mes"},
                 seriesType: "bars",
-                fontSize: 8,
+                fontSize: 13,
                 axisTitlesPosition:'in',
-                chartArea:{width:"70%",height:"85%"}
+                chartArea:{width:"65%",height:"85%"},
+                colors:['#34bce0', '#a7b165', '#fed743', '#ef7f4a', '#6b3d11', '#1888c9', '#f5b22f', '#b55232', '#a4d8f2'],
+                legend:{position: 'right', textStyle: {color: '#444444', fontSize: 11}},
+				areaOpacity:0,
+				height:'300',
+				width:'700'
               };
         
         var chart = new google.visualization.ComboChart(document.getElementById('chart_stat'));
@@ -174,8 +179,8 @@ $(function () {
 
 
 <div class="subcontainer">
-<div id="chart_stat" style="width: 500px; height: 500px; float:left;"></div>
-<div id="pchart" style="width: 450px; height: 450px; float:left;"></div>
-<div id="chart_div" style="min-width: 400px; height: 150px; clear : both;"></div>
+<div id="chart_stat" style="width: 800px; height: 350px; display:inline-block;"></div>
+<div id="pchart" style="width: 450px; height: 450px; display:inline-block;"></div>
+<div id="chart_div" style="min-width: 400px; height: 150px;  display:inline-block;"></div>
 </div>
 

@@ -7,7 +7,7 @@ h4 , h5 , h6 { margin: 0 0 0 96px; padding: 20px 0 0 0 ; font-size: 1.0em ; }
 	padding: 7px 0 0 76px;
 	margin: 0;
 	font-weight: 400;
-	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 	color:rgba(0, 0, 0, 0.4);
 	font-size:1em;
 }

@@ -27,7 +27,7 @@
 	padding: 7px 0 0 76px;
 	margin: 0;
 	font-weight: 400;
-	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 	color:rgba(0, 0, 0, 0.4);
 	font-size:1em;
 }
@@ -90,6 +90,6 @@ table.statistics thead tr:hover {
 }
 /* Added by Tim */
 .feedback {
-	background: url('../../images/feedbackLink.gif') no-repeat 0px 0px;
+	background: url('../../images/icons/mail.png')no-repeat 0px 0px;
 	padding-left: 40px;
 }
