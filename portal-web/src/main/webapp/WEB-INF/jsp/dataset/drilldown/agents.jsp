@@ -1,5 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
-<h4><spring:message code="agents.title"/></h4>
+<!--<h4><spring:message code="agents.title"/></h4>-->
+<!--  
 <display:table
 	name="agents" 
 	class="results" 
@@ -16,7 +17,8 @@
 			<c:when test="${agent.agentType==2}">
 				<spring:message code="agents.role.technical"/>
 			</c:when>
-		</c:choose>  	
+		</c:choose> 
+		<c:if test="${not empty dataProvider.uuid}"><p><label><spring:message code="website"/>:</label><a href="${dataProvider.uuid}">${dataProvider.uuid}</a></p></c:if> 	
   </display:column>
   <display:column property="agentAddress" titleKey="address" />
   <display:column titleKey="email">
@@ -24,9 +26,15 @@
   </display:column>
   <display:column property="agentTelephone" titleKey="telephone" />
 </display:table>
+-->
 
+
+<!--<c:if test="${not empty dataProvider.uuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://gbrds.gbif.org/browse/agent?uuid=${dataProvider.uuid}">http://gbrds.gbif.org/browse/agent?uuid=${dataProvider.uuid}</a></p></c:if>-->
 <p class="termsHelp">
-<spring:message code="agents.role.administrative.description"/>
-<br/>
-<spring:message code="agents.role.technical.description"/>
-</p>
+
+
+
+
+
+
+
