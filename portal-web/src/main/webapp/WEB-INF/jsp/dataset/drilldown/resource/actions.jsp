@@ -26,8 +26,7 @@
 					<td>	
 						<ul class="actionsListInline">
 							<li>
-								<c:set var="a0">${dataResource.name}</c:set>
-								<a href="${pageContext.request.contextPath}/occurrences/searchCountries.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>"><spring:message code="dataset.list.countries" arguments="${a0}"/></a>
+								<a href="${pageContext.request.contextPath}/occurrences/searchCountries.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>"><spring:message code="dataset.list.countries.with.occurrences"/></a>
 							</li>
 						</ul>
 					</td>
@@ -49,7 +48,7 @@
 					<ul class="actionsListInline">
 						<c:if test="${dataResource.occurrenceCount>0}">
 						<li>
-							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0" urlEncode="true"/>"><spring:message code="dataset.list.species" arguments="${a0}"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0" urlEncode="true"/>"><spring:message code="dataset.list.species.with.occurrences"/></a>
 						</li>		
 						</c:if>
 						<li>
