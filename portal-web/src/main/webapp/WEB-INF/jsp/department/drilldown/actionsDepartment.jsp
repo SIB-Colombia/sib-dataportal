@@ -12,10 +12,10 @@
 						</li>	
 						
 						<li>
-							<a href="${pageContext.request.contextPath}/species/search.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>&<gbif:criterion subject="9" predicate="0" value="7000" index="1"/>"><spring:message code="taxonomy.browser.species.recorded.in" text="Species recorded in"/> <gbif:capitalize>${department.departmentName}</gbif:capitalize></a>						
+							<a href="${pageContext.request.contextPath}/species/search.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>&<gbif:criterion subject="9" predicate="0" value="7000" index="1"/>"><spring:message code="taxonomy.browser.species.recorded"/></a>						
 						</li>						
 						<li>
-							<a href="${pageContext.request.contextPath}/species/search.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>"><spring:message code="taxonomy.browser.taxa.recorded.in" text="Taxa recorded in"/> <gbif:capitalize>${department.departmentName}</gbif:capitalize></a>						
+							<a href="${pageContext.request.contextPath}/species/search.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>"><spring:message code="taxonomy.browser.taxa.recorded"/></a>						
 						</li>					
 					</ul>
 				</td>
@@ -25,16 +25,10 @@
 				<td>
 					<ul class="actionsListInline">
 						<li>
-							<c:set var="a0">
-								<span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span>
-							</c:set>
-							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="geography.drilldown.list.resources" arguments="${a0}"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="geography.drilldown.list.data.resources"/></a>
 						</li>
 						<li>
-							<c:set var="a0">
-								<span class='subject'><gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize></span>
-							</c:set>
-							<a href="${pageContext.request.contextPath}/species/browse/department/${department.isoDepartmentCode}"><spring:message code="geography.drilldown.view.taxonomy" text="Explore species recorded in "/> <span class="subject"><spring:message code="department.${department.isoDepartmentCode}"/></span></a>
+							<a href="${pageContext.request.contextPath}/species/browse/department/${department.isoDepartmentCode}"><spring:message code="geography.drilldown.view.taxonomy.registered"/></a>
 						</li>
 						
 					</ul>
@@ -53,10 +47,10 @@
 
 						
 						<li>
-							<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>&<gbif:criterion subject="9" predicate="0" value="7000" index="1"/>"><spring:message code="taxonomy.browser.species.recorded.in" text="Species recorded in"/> <gbif:capitalize>${department.departmentName}</gbif:capitalize></a>						
+							<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>&<gbif:criterion subject="9" predicate="0" value="7000" index="1"/>"><spring:message code="taxonomy.browser.species.recorded"/></a>						
 						</li>						
 						<li>
-							<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>"><spring:message code="taxonomy.browser.taxa.recorded.in" text="Taxa recorded in"/> <gbif:capitalize>${department.departmentName}</gbif:capitalize></a>						
+							<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>"><spring:message code="taxonomy.browser.taxa.recorded"/></a>						
 						</li>
 						
 					</ul>
