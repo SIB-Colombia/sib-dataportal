@@ -12,10 +12,7 @@
 							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"><spring:message code="explore.occurrences"/></a>
 						</li>						
 						<li>
-							<c:set var="a0">
-								<span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span>
-							</c:set>
-							<a href="${pageContext.request.contextPath}/species/browse/country/${country.isoCountryCode}"><spring:message code="geography.drilldown.view.taxonomy" text="Explore species recorded in "/> <span class="subject"><spring:message code="country.${country.isoCountryCode}"/></span></a>
+							<a href="${pageContext.request.contextPath}/species/browse/country/${country.isoCountryCode}"><spring:message code="geography.drilldown.view.taxonomy.registered"/></a>
 						</li>
 					</ul>
 				</td>
@@ -25,10 +22,7 @@
 				<td>
 					<ul class="actionsListInline">
 						<li>
-							<c:set var="a0">
-								<span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span>
-							</c:set>
-							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"><spring:message code="geography.drilldown.list.resources" arguments="${a0}"/></a>
+							<a href="${pageContext.request.contextPath}/occurrences/searchResources.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"><spring:message code="geography.drilldown.list.data.resources"/></a>
 						</li>
 					</ul>
 				</td>
@@ -45,7 +39,7 @@
 						</li>	
 	
 						<li>
-							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isocountrycode=${country.isoCountryCode}"><spring:message code="download.metadata.for.providers" text="Download metadata for data providers in "/> <span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span></a>
+							<a href="${pageContext.request.contextPath}/ws/rest/provider/list?isocountrycode=${country.isoCountryCode}"><spring:message code="download.metadata.for.publishers"/></a>
 						</li>
 					</ul>
 				</td>
@@ -57,9 +51,9 @@
 						<li>
 							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?originIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core"/></a>
 						</li>	
-						<li>
+						<%--<li>
 							<a href="${pageContext.request.contextPath}/ws/rest/occurrence/list/?hostIsoCountryCode=${country.isoCountryCode}&format=darwin"><spring:message code="download.darwin.core.from.served.by.providers"/> <span class='subject'><gbif:capitalize><spring:message code="country.${country.isoCountryCode}"/></gbif:capitalize></span></a>
-						</li>
+						</li>--%>
 						</ul>
 					</td>
 				</tr>	
