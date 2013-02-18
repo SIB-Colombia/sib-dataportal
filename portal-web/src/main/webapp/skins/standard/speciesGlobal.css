@@ -962,3 +962,24 @@ a[title="Mostrar todos los recursos"]{
 	display:inline-block;
 	color:white !important;
 }
+.subcontainer p{
+	 float:right;width:190px; margin-left:20px; vertical-align:top; color:#6B6B6B;
+}
+.subcontainer h4{
+	margin:0 0 15px 0 !important;
+}
+.subcontainer div{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box; 
+	display:inline-block; 
+	overflow:hidden;
+	-webkit-border-radius: 20px; border-radius: 20px;
+}
+.subcontainer > div{
+	background:rgba(255,255,255,0.8);
+	padding:20px;
+	width:980px;
+	display:block;
+	margin:10px auto;
+}

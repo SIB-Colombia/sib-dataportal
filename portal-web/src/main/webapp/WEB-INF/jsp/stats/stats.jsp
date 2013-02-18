@@ -22,7 +22,7 @@
 		table.addColumn('number', 'Registros Biológicos', 'Registros Biológicos');
 		
     	table.addRows(rows);
-        var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#f2ddb0', '#ec7532'] , datalessRegionColor:'#a6b361', legend:'none', height:'450', width:'450'};
+        var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#f2ddb0', '#ec7532'] , datalessRegionColor:'#a6b361', height:'500', width:'800'};
         var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
         google.visualization.events.addListener(chart, 'select', function() {
             var selection = chart.getSelection();
@@ -53,11 +53,17 @@ $(function () {
                 renderTo: 'pchart',
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: true
+                plotShadow: false,
+				borderRadius: 20,
+				height:350,
+				width:950,
+				style: {
+					fontFamily: '"Open Sans", Arial, Helvetica, sans-serif',
+					fontSize: '15px',
+				}
             },
-            title: {
-                text: 'Especies por publicador'
-            },
+			colors: ['#b55232', '#a4d8f2','#556116', '#ec5d2d', '#ffdd69', '#009bde', '#ef7f4a', '#a7b165', '#6dc8ef', '#34bce0','#fed743', '#3F7C8F', '#f5b22f', '#1888c9'],
+           // title: {text: 'Especies por publicador'},
             credits: {
                 enabled: false
             },
@@ -65,8 +71,36 @@ $(function () {
         	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
             	percentageDecimals: 1
             },
+			legend:{
+				borderWidth:0,
+				layout:'vertical',
+				align:'right',
+				verticalAlign:'middle',
+				itemMarginTop:2,
+				itemMarginBottom:2,
+				symbolWidth:20,
+				style: {
+					fontFamily: '"Open Sans", Arial, Helvetica, sans-serif',
+					color:'#6B6B6B',
+				},
+				itemStyle: {
+					fontSize: '13px',
+					color: '#6B6B6B',
+				},
+			},
+			title: {
+			   text: ''
+			},
             plotOptions: {
                 pie: {
+					size: '90%',
+					borderWidth:0,
+					shadow: false,
+					hover : {
+						brightness: 0.5,
+						enabled: true,
+						lineWidth: 0,
+					},
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
@@ -75,6 +109,7 @@ $(function () {
                     showInLegend: true
                 }
             },
+			
             series: [{
                 type: 'pie',
                 name: 'Porcentaje de Registros',
@@ -155,18 +190,21 @@ $(function () {
     	}
     	table.addRows(aNumO);
         var options = {
-                title : 'Registros publicados por cada publicador',
-                vAxis: {title: "Registros"},
-                hAxis: {title: "Mes"},
+                //title : 'Registros publicados por cada publicador',
+                vAxis: {title: "Registros", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#'},
+                hAxis: {title: "Mes", color:"#6B6B6B", textStyle:{color: '#6B6B6B'}},
                 seriesType: "bars",
-                fontSize: 13,
-                axisTitlesPosition:'in',
-                chartArea:{width:"65%",height:"85%"},
-                colors:['#34bce0', '#a7b165', '#fed743', '#ef7f4a', '#6b3d11', '#1888c9', '#f5b22f', '#b55232', '#a4d8f2'],
-                legend:{position: 'right', textStyle: {color: '#444444', fontSize: 11}},
+                fontSize: "13",
+				fontName: 'Open Sans',
+				bar: {groupWidth:'80%'},
+               // axisTitlesPosition:'in',
+                chartArea:{width:"60%",height:"85%", left:"120"},
+                colors:['#a7b165', '#fed743','#34bce0', '#ef7f4a', '#3F7C8F', '#6b3d11', '#1888c9', '#f5b22f', '#b55232', '#a4d8f2','#556116', '#ec5d2d', '#ffdd69', '#0098d9'],
+                legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
 				areaOpacity:0,
-				height:'300',
-				width:'700'
+				height:'450',
+				width:'950',
+				animation: {easing:'inAndOut' }
               };
         
         var chart = new google.visualization.ComboChart(document.getElementById('chart_stat'));
@@ -179,8 +217,23 @@ $(function () {
 
 
 <div class="subcontainer">
-<div id="chart_stat" style="width: 800px; height: 350px; display:inline-block;"></div>
-<div id="pchart" style="width: 450px; height: 450px; display:inline-block;"></div>
-<div id="chart_div" style="min-width: 400px; height: 150px;  display:inline-block;"></div>
+<div>
+	<h4>Registros biológicos por departamento</h4>
+	<div id="chart_div" style=" width:720px; float:left;"></div>
+     <p><img src="${pageContext.request.contextPath}/images/legend_map.png" /></p>
+    <p><strong>Haz click sobre el departamento de tu interés para ver los registros en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
+   
+    <p>El tamaño de los círculos es proporcional al total de registros por departamento. El color es indicativo del número de registros con coordenadas geográficas</p>
+   
+</div>
+
+<div><h4>Número de registros por publicador en los últimos meses</h4>
+	<div id="chart_stat"></div>
+</div>
+
+<!--<div><h4>Número de registros por publicador en los últimos meses</h4>
+	<div id="pchart"></div>
+</div> -->
+
 </div>
 
