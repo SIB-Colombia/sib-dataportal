@@ -216,7 +216,7 @@ $(function () {
 </script>
 
 
-<div class="subcontainer">
+<div class="subcontainer stats">
 <div>
 	<h4>Registros biológicos por departamento</h4>
 	<div id="chart_div" style=" width:720px; float:left;"></div>
