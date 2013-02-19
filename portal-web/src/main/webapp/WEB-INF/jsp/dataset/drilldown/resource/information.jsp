@@ -1,4 +1,108 @@
 <%@ include file="/common/taglibs.jsp"%>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script type='text/javascript'>
+ 
+
+ $(function(){
+	 var url1="http://gbrds.gbif.org/registry/resource/"+"${dataResource.gbifRUuid}"+".json";
+	  
+	 
+	 $.ajax({
+		    url: url1,
+		    dataType: 'jsonp',
+		    contentType: "application/json; charset=iso-8859-1",
+		    success: function(data){
+		    	alert(data.description);
+		    	alert("${dataResource.gbifRUuid}");
+		    	/*
+		    	url3 = data.homepageURL;
+		    	$('#webSite').append(url3);
+		    	
+		    	var name="${dataProvider.name}";
+		    	if((data.name!=undefined)&&(data.name.length!=0)){
+		    		$('#name').append(data.name);
+		    	}else if(name.length!=0){
+		    		$('#name').append(name);
+		    	}else {
+		    		$('#name').remove();
+		    	}
+		    	
+		    	var webUrl="${dataProvider.websiteUrl}";
+		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
+		    		$('#webSiteUrl').append('<a href="'+data.homepageURL+'">'+data.homepageURL+'</a>'); 
+		    	}else if(webUrl.length!=0){
+		    		$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
+		    	}else {
+		    		$('#webSiteUrl').remove();
+		    	}
+		    	
+		    	var nodeApprover="${dataProvider.gbifApprover}";
+		    	if((data.nodeName!=undefined)&&(data.nodeName.length!=0)){
+		    		$('#nodeApprover').append(data.nodeName); 
+		    	}else if(nodeApprover.length!=0){
+		    		$('#nodeApprover').append(nodeApprover);
+		    	}else {
+		    		$('#nodeApprover').remove();
+		    	}
+		    	
+		    	var descrp="${dataProvider.description}";
+		    	if((data.description!=undefined)&&(data.description.length!=0)){
+		    		$('#descr').append(data.description); 
+		    	}else if(descrp.length!=0){
+		    		$('#descr').append(descrp);
+		    	}else {
+		    		$('#descr').remove();
+		    	}
+		    	
+		    	var addr="${dataProvider.address}";
+		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
+		    		$('#addrs').append(data.primaryContactAddress); 
+		    	}else if(addr.length!=0){
+		    		$('#addrs').append(addr);
+		    	}else {
+		    		$('#addrs').remove();
+		    	}
+		    	
+		    	var addr="${dataProvider.address}";
+		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
+		    		$('#addrs').append(data.primaryContactAddress); 
+		    	}else if(addr.length!=0){
+		    		$('#addrs').append(addr);
+		    	}else {
+		    		$('#addrs').remove();
+		    	}
+		    	*/
+		    	/*
+		    	var mail="${dataProvider.email}";
+		    	if((data.primaryContactEmail!=undefined)&&(data.primaryContactEmail.length!=0)){
+		    		$('#eMail').append(data.primaryContactEmail); 
+		    		alert("1");
+		    	}else if(addr.length!=0){
+		    		$('#eMail').append(mail);
+		    		alert("2");
+		    	}else {
+		    		$('#eMail').remove();
+		    	}
+		    	*/
+		    	
+		    	/*
+		    	var tel="${dataProvider.telephone}";
+		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
+		    		$('#telph').append(data.primaryContactPhone); 
+		    	}else if(tel.length!=0){
+		    		$('#telph').append(tel);
+		    	}else {
+		    		$('#telph').remove();
+		    	}
+		    	*/
+		    }
+		});
+	 
+
+		 
+	});
+</script>
 <fieldset>
 <c:if test="${not empty dataResource.name}"><p><label><spring:message code="name"/>:</label>${dataResource.name}</p></c:if>
 <c:if test="${not empty dataResource.websiteUrl}"><p><label><spring:message code="website"/>:</label><a href="<c:if test="${fn:length(dataResource.websiteUrl)>6 && !fn:startsWith(dataResource.websiteUrl, 'http://')}">http://</c:if>${dataResource.websiteUrl}">${dataResource.websiteUrl}</a></p></c:if>
