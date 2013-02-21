@@ -1,8 +1,30 @@
 <%@ include file="/common/taglibs.jsp"%>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	//alert("<gbif:taxonPrint concept="${taxonConcept}"/>");	
+	var dpn="<gbif:taxonPrint concept="${taxonConcept}"/>";
+
+	var rot="species/1";
+	var urlt="http://data.sibcolombia.net/"+rot+"?utm_source="+dpn+"&utm_medium=twitter&utm_campaign=impacto_redes";
+	$(".twitter-share-button").attr("data-url", urlt);
+	$(".twitter-share-button").attr("data-text", dpn);
+	
+	if((dpn!="Animalia")&&(dpn!="Plantae")){
+		$(".twitter-share-button").remove();
+	}
+	
+	});
+</script>
 <div id="twopartheader">
 	<h2>
 		<string:capitalize><spring:message code="taxonrank.${taxonConcept.rank}" /></string:capitalize>: 
 		<span class="subject"><gbif:taxonPrint concept="${taxonConcept}"/> <c:if test="${not empty taxonConcept.author}">${taxonConcept.author}</c:if></span>
+		<!-- tweet-button-->
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es"  >Twittear</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
+		js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+		</script>
 	</h2>
 	<h3>
 		<c:choose>

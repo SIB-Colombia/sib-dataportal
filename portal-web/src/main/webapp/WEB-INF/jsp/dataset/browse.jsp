@@ -1,12 +1,19 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
 <div id="twopartheader">	
-<h2><spring:message code="dataset.list.main.title"/></h2>
+<h2><spring:message code="dataset.list.main.title"/>
+	<!-- tweet-button-->
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/datasets/?utm_source=&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
+	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
+</h2>
 	<gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
 </div>
 <c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
 	<c:when test="${fn:length(alphabet)==0}">Currently no data resources/providers within the system.</c:when>
 	<c:otherwise>
+	
 
 <% /* <display:table name="resourceNetworks" export="false" class="statistics" id="resourceNetwork">
   <display:column titleKey="dataset.networks.list.title" class="name">

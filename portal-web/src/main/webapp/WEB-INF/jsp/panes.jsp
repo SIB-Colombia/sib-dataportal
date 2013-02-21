@@ -55,7 +55,18 @@
 <fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
 <fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
 <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/><br/>
-	</div>
+	<!--  
+	<c:set var="req" value="${pageContext.request}" />
+	<c:set var="uri" value="${req.requestURI}" />
+	<c:set var="url">${req.requestURL}</c:set>
+	<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
+	<p>${urlt}</p>
+	--> 
+	<!-- tweet-button-->
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
+	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
     
     <small> <strong>Im&aacute;genes</strong> cortes&iacute;a del Banco de Im&aacute;genes Ambientales del Instituto Humboldt <a href="http://www.humboldt.org.co/upa/" target="_blank">http://www.humboldt.org.co/upa/</a> y 
 de la Biodiversity Heritage Library. <a href="http://www.biodiversitylibrary.org" target="_blank">http://www.biodiversitylibrary.org</a></small>
