@@ -188,19 +188,19 @@ public class BoundingBoxFilterHelper implements FilterHelper {
     */
     StringBuffer sb = new StringBuffer();
     sb.append("Lon ");
-    sb.append(llbb.getMinLong() > 0 ? '+' : '-');
+    sb.append(llbb.getMinLong() > 0 ? ' ' : '-');
     sb.append(Math.abs(llbb.getMinLong()));
     sb.append(", ");
     sb.append("Lat ");
-    sb.append(llbb.getMinLat() > 0 ? '+' : '-');
+    sb.append(llbb.getMinLat() > 0 ? ' ' : '-');
     sb.append(Math.abs(llbb.getMinLat()));
     sb.append(", ");
     sb.append("Lon ");
-    sb.append(llbb.getMaxLong() > 0 ? '+' : '-');
+    sb.append(llbb.getMaxLong() > 0 ? ' ' : '-');
     sb.append(Math.abs(llbb.getMaxLong()));
     sb.append(", ");
     sb.append("Lat ");
-    sb.append(llbb.getMaxLat() > 0 ? '+' : '-');
+    sb.append(llbb.getMaxLat() > 0 ? ' ' : '-');
     sb.append(Math.abs(llbb.getMaxLat()));
     return sb.toString();
   }
