@@ -22,7 +22,7 @@
 <div id="twopartheader">	
 	<h2><spring:message code="departments.list.main.title"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span>
 	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/departments/?utm_source=&utm_medium=twitter&utm_campaign=impacto_redes" data-text="Colombia - Portal de datos SIB Colombia" data-via="sibcolombia" data-lang="es">Twittear</a>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/departments/?utm_source=departments&utm_medium=twitter&utm_campaign=impacto_redes" data-text="Colombia - Portal de datos SIB Colombia" data-via="sibcolombia" data-lang="es">Twittear</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
 	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>

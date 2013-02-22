@@ -18,8 +18,8 @@
       function drawMarkersMap() {
     	var table = new google.visualization.DataTable();  
     	table.addColumn('string', 'DEPARTAMENTO', 'Departamento');
-    	table.addColumn('number', 'Registros Biológicos Georeferenciados', 'Registros Biológicos Georeferenciados');
-		table.addColumn('number', 'Registros Biológicos', 'Registros Biológicos');
+    	table.addColumn('number', 'Registros biológicos georreferenciados', 'Registros biológicos georreferenciados');
+		table.addColumn('number', 'Registros biológicos', 'Registros biológicos');
 		
     	table.addRows(rows);
         var options = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#f2ddb0', '#ec7532'] , datalessRegionColor:'#a6b361', height:'500', width:'800'};

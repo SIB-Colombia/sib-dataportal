@@ -1,4 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
+<div id="fb-root"></div>
+<div id="fb-root"></div>
+<div id="fb-root"></div>
 
 
 <div id="panes">
@@ -67,6 +70,19 @@
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
 	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
+	<!-- tweet-button-->
+	
+	<!-- facebok-button-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  	var js, fjs = d.getElementsByTagName(s)[0];
+  	if (d.getElementById(id)) return;
+  	js = d.createElement(s); js.id = id;
+  	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="fb-like" data-href="http://data.sibcolombia.net/welcome.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+	<!-- facebok-button-->
     
     <small> <strong>Im&aacute;genes</strong> cortes&iacute;a del Banco de Im&aacute;genes Ambientales del Instituto Humboldt <a href="http://www.humboldt.org.co/upa/" target="_blank">http://www.humboldt.org.co/upa/</a> y 
 de la Biodiversity Heritage Library. <a href="http://www.biodiversitylibrary.org" target="_blank">http://www.biodiversitylibrary.org</a></small>
