@@ -133,4 +133,16 @@ public interface DataProviderDAO {
 	   * 
 	   */
 	public List<String>getOcurrencesPerMonth();
+	
+	/**
+	 * Retrieve the total number of ocurrences.
+	 * @return a total
+	 */
+	public int getTotalOcurrenceCount();
+	
+	/**
+	 * Retrieve the total number of ocurrences with coordinate.
+	 * @return a total
+	 */
+	public int getTotalOcurrenceCoordinateCount();
 }

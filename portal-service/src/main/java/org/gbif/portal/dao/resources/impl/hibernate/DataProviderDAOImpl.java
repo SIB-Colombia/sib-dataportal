@@ -301,6 +301,50 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
     return 0;
   }
   
+  
+  /**
+   * @see org.gbif.portal.dao.resources.DataProviderDAO#getTotalOcurrenceCount()
+   */
+  @SuppressWarnings("unchecked")
+  public int getTotalOcurrenceCount(){
+	  HibernateTemplate template = getHibernateTemplate();
+	    Object result = template.execute(new HibernateCallback() {
+	        public Object doInHibernate(Session session) {
+	          Query query =
+	            session
+	              .createQuery("select sum(dp.occurrenceCount) from DataProvider dp");
+	          return query.uniqueResult();
+	        }
+	      });
+	    if (result instanceof Integer)
+	        return ((Integer) result).intValue();
+	      if (result instanceof Long)
+	        return ((Long) result).intValue();
+	      return 0;
+  }
+  
+  
+  /**
+   * @see org.gbif.portal.dao.resources.DataProviderDAO#getTotalOcurrenceCoordinateCount()
+   */
+  @SuppressWarnings("unchecked")
+  public int getTotalOcurrenceCoordinateCount(){
+	  HibernateTemplate template = getHibernateTemplate();
+	    Object result = template.execute(new HibernateCallback() {
+	        public Object doInHibernate(Session session) {
+	          Query query =
+	            session
+	              .createQuery("select sum(dp.occurrenceCoordinateCount) from DataProvider dp");
+	          return query.uniqueResult();
+	        }
+	      });
+	    if (result instanceof Integer)
+	        return ((Integer) result).intValue();
+	      if (result instanceof Long)
+	        return ((Long) result).intValue();
+	      return 0;
+  }
+  
   @SuppressWarnings("unchecked")
   public List<String> getOcurrencesPerMonth(){
 	  List<Object[]> dataOcurrences = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
@@ -321,3 +365,4 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
       return dataO;
   }
 }
+

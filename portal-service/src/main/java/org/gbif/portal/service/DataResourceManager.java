@@ -413,4 +413,20 @@ public interface DataResourceManager {
    * 
    */
   public List<String> getOcurrencePerMonth();
+  
+  /**
+   * Returns the total number of Ocurrences for provider.
+   * 
+   * @return number of Ocurrences.
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalOcurrenceCount() throws ServiceException;
+  
+  /**
+   *  Returns the total number of Ocurrences with coordonate for provider
+   * 
+   * @return number of Ocurrences with coordinate.
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalOcurrenceCoordinateCount() throws ServiceException;
 }

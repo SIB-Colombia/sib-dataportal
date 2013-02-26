@@ -99,6 +99,17 @@ public class DataResource extends BaseObject {
 	protected Set<ResourceRank> resourceRanks;
 	/** Override citation **/
 	protected boolean overrideCitation;
+	
+	/** the gbif registry uuid**/
+	protected String gbifRUuid; 
+
+	public String getGbifRUuid() {
+		return gbifRUuid;
+	}
+
+	public void setGbifRUuid(String gbifRUuid) {
+		this.gbifRUuid = gbifRUuid;
+	}
 
 	/**
 	 * Default Constructor.

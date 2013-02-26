@@ -86,6 +86,15 @@ public class DataResourceDTO implements Serializable {
 	/** Indicates if a default citation should override the data resource's citation **/
 	protected boolean overrideCitation;
 	
+	/** the gbif registry uuid**/
+	protected String gbifRUuid; 
+	
+	public String getGbifRUuid() {
+		return gbifRUuid;
+	}
+	public void setGbifRUuid(String gbifRUuid) {
+		this.gbifRUuid = gbifRUuid;
+	}
 	/**
 	 * @return the citation
 	 */

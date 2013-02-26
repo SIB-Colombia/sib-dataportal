@@ -258,7 +258,21 @@ public class DataResourceManagerImpl implements DataResourceManager {
 	 */
 	public int getTotalDataResourceCount() throws ServiceException {
 		return dataResourceDAO.getTotalDataResourceCount();
-	}	
+	}
+	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getTotalDataResourceCount()
+	 */
+	public int getTotalOcurrenceCount() throws ServiceException {
+		return dataProviderDAO.getTotalOcurrenceCount();
+	}
+	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getTotalDataResourceCount()
+	 */
+	public int getTotalOcurrenceCoordinateCount() throws ServiceException {
+		return dataProviderDAO.getTotalOcurrenceCoordinateCount();
+	}
 
 	/**
 	 * @see org.gbif.portal.service.DataResourceManager#findDatasets(java.lang.String, boolean, org.gbif.portal.dto.util.SearchConstraints)
