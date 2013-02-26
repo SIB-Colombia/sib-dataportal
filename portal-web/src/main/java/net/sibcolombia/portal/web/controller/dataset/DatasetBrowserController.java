@@ -31,6 +31,12 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
   protected String dataProviderModelKey = "dataProviders";
   /** Model Key for the data provider matches */
   protected String resourceNetworksModelKey = "resourceNetworks";
+  
+  /** total ocurrence count */
+  protected String totalOcurrenceCount="totalOcurrenceCount";
+  
+  /** total ocurrence coordinate count */
+  protected String totalOcurrenceCoordinateCount="totalOcurrenceCoordinateCount";
 
   protected DataProviderDTO nubDataProvider;
   protected List<DataResourceDTO> nubResources;
@@ -88,6 +94,8 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
       if (resourceMatch instanceof ResourceNetworkDTO)
         resourceNetworks.add((ResourceNetworkDTO) resourceMatch);
     }
+    
+    
 
     if (hideNub) {
       removeNubProviderAndResources(providers, resources);
@@ -99,6 +107,20 @@ public class DatasetBrowserController extends net.sibcolombia.portal.web.control
     mav.addObject(resourceNetworksModelKey, resourceNetworks);
     mav.addObject(dataProviderModelKey, providers);
     mav.addObject(dataResourceModelKey, resources);
+    //mav.addObject(totalnumber, 154);
+    try {
+		int ocurrenceCount = dataResourceManager.getTotalOcurrenceCount();
+		int ocurrenceCoordinateCount = dataResourceManager.getTotalOcurrenceCoordinateCount();
+		mav.addObject(totalOcurrenceCount, ocurrenceCount);
+		mav.addObject(totalOcurrenceCoordinateCount, ocurrenceCoordinateCount);
+	} catch (ServiceException e) {
+		logger.error("Total occurrence count cannot be found, setting to 0", e);
+		logger.error("Total occurrence with coordinate count cannot be found, setting to 0", e);
+		mav.addObject(totalOcurrenceCount, 0);
+		mav.addObject(totalOcurrenceCoordinateCount, 0);
+	}
+    
+    
     return mav;
   }
 

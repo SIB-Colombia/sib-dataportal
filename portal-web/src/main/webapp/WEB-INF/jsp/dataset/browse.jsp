@@ -1,4 +1,37 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var len="${totalOcurrenceCount}".length;
+		var lenc="${totalOcurrenceCoordinateCount}".length;
+		var numb="";
+		var numbc="";
+		var lent=$('#dataProvider >tbody >tr').length;
+		if(len>3){
+		numb="${totalOcurrenceCount}".substring(0,len-3)+","+"${totalOcurrenceCount}".substring(len-3,len);
+		}else{
+			numb="${totalOcurrenceCount}";
+		}
+		if(lenc>3){
+			numbc="${totalOcurrenceCoordinateCount}".substring(0,len-3)+","+"${totalOcurrenceCoordinateCount}".substring(len-3,len);
+			}else{
+				numbc="${totalOcurrenceCoordinateCount}";
+			}
+		if(lent%2==1){
+			$("#dataProvider").find('tbody')
+	    	.append($('<tr class="even">')
+	     	   .append($('<td>Total</td><td>'+numb+'</td><td>'+numbc+'</td>')
+	     	   )
+	    	);
+		}else{
+			$("#dataProvider").find('tbody')
+	    	.append($('<tr class="odd">')
+	     	   .append($('<td>Total</td><td>'+numb+'</td><td>'+numbc+'</td>')
+	     	   )
+	    	);
+		}
+	});
+</script>
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/>
 	<!-- tweet-button-->
