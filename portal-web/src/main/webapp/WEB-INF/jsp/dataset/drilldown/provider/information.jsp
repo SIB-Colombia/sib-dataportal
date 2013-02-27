@@ -2,26 +2,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 <script type='text/javascript'>
- //alert("${dataProvider.uuid}");
- var url="http://gbrds.gbif.org/registry/organisation/"+"${dataProvider.uuid}"+".json";
- 
- function getObjects(obj, key, val) {
-	    var objects = [];
-	    for (var i in obj) {
-	        if (!obj.hasOwnProperty(i)) continue;
-	        if (typeof obj[i] == 'object') {
-	            objects = objects.concat(getObjects(obj[i], key, val));
-	        } else if (i == key && obj[key] == val) {
-	            objects.push(obj);
-	        }
-	    }
-	    return objects;
-	}
- 
- var url3="";
- //$(function(){
-	 var url1="http://gbrds.gbif.org/registry/organisation/"+"${dataProvider.uuid}"+".json";
-	 var url2="http://gbrds.gbif.org/registry/organisation/"+"${dataProvider.uuid}"+".json?op=contacts"; 
+ var url='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json';
+
+ $(function(){
+	 var url1='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json';
+	 var url2='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json?op=contacts'; 
 	 
 	 $.ajax({
 		    url: url1,
@@ -30,7 +15,7 @@
 		    	url3 = data.homepageURL;
 		    	$('#webSite').append(url3);
 		    	
-		    	var name="${dataProvider.name}";
+		    	var name='${dataProvider.name}';
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
 		    		$('#name').append(data.name);
 		    	}else if(name.length!=0){
@@ -39,7 +24,7 @@
 		    		$('#name').remove();
 		    	}
 		    	
-		    	var webUrl="${dataProvider.websiteUrl}";
+		    	var webUrl='${dataProvider.websiteUrl}';
 		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
 		    		$('#webSiteUrl').append('<a href="'+data.homepageURL+'">'+data.homepageURL+'</a>'); 
 		    	}else if(webUrl.length!=0){
@@ -48,7 +33,7 @@
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
-		    	var nodeApprover="${dataProvider.gbifApprover}";
+		    	var nodeApprover='${dataProvider.gbifApprover}';
 		    	if((data.nodeName!=undefined)&&(data.nodeName.length!=0)){
 		    		$('#nodeApprover').append(data.nodeName); 
 		    	}else if(nodeApprover.length!=0){
@@ -57,7 +42,7 @@
 		    		$('#nodeApprover').remove();
 		    	}
 		    	
-		    	var descrp="${dataProvider.description}";
+		    	var descrp='${dataProvider.description}';
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
 		    		$('#descr').append(data.description); 
 		    	}else if(descrp.length!=0){
@@ -66,16 +51,7 @@
 		    		$('#descr').remove();
 		    	}
 		    	
-		    	var addr="${dataProvider.address}";
-		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
-		    		$('#addrs').append(data.primaryContactAddress); 
-		    	}else if(addr.length!=0){
-		    		$('#addrs').append(addr);
-		    	}else {
-		    		$('#addrs').remove();
-		    	}
-		    	
-		    	var addr="${dataProvider.address}";
+		    	var addr='${dataProvider.address}';
 		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
 		    		$('#addrs').append(data.primaryContactAddress); 
 		    	}else if(addr.length!=0){
@@ -97,7 +73,7 @@
 		    	}
 		    	*/
 		    	
-		    	var tel="${dataProvider.telephone}";
+		    	var tel='${dataProvider.telephone}';
 		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
 		    		$('#telph').append(data.primaryContactPhone); 
 		    	}else if(tel.length!=0){
@@ -105,30 +81,43 @@
 		    	}else {
 		    		$('#telph').remove();
 		    	}
+		    },
+		    error: function (xhr, ajaxOptions, thrownError) {
+		    	console.log(xhr.statusText);
+		    	console.log(thrownError);
+		    	$('#name').append('${dataProvider.name}');
+		    	var webUrl='${dataProvider.websiteUrl}';
+		    	$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
+		    	$('#nodeApprover').append('${dataProvider.gbifApprover}');
+		    	$('#descr').append('${dataProvider.description}');
+		    	$('#addrs').append('${dataProvider.address}');
+		    	$('#telph').append('${dataProvider.telephone}');
+		    		
 		    }
 		});
 	 
-	 var url2=encodeURI("http://gbrds.gbif.org/registry/organisation/15b278a8-1356-4f7b-ba32-3c733c3d0aac.json?op=contacts");
-	 //alert(encodeURI(url2));
-	 var url3=encodeURI(url2);
-	 function jsonpCallback(response){
-		 alert(JSON.stringify(response));
-		 alert("!");
-	 }
 	 
+	 /*
 	 $.ajax({ 
-		 url: encodeURI("http://gbrds.gbif.org/registry/organisation/15b278a8-1356-4f7b-ba32-3c733c3d0aac.json?op=contacts"),
-		 jsonp: false,
-		 dataType: 'jsonp', 
-		 type: 'GET',
-		 cache: 'true',
-		 success: jsonpCallback
+	     url: "http://gbrds.gbif.org/registry/organisation/15b278a8-1356-4f7b-ba32-3c733c3d0aac.json?op=contacts",
+	     jsonp: false,
+	     jsonpCallback: 'jsonCallback',
+	     cache: 'true',
+	     dataType : 'jsonp',
+	     type: "GET",
+	     crossDomain: true,
+	     jsonpCallback: "receive",
+	     async: false
 	 });
-	 	//complete: function(data){alert(url2); alert(JSON.stringify(data));}});
-		
-		 
 	 
-	//});
+	 function receive(saveData) {
+		    if (saveData == null) {
+		            alert("DATA IS UNDEFINED!");  // displays every time
+		    }
+		    alert("Success is " + saveData);  // 'Success is undefined'
+	}
+	 */
+	});
 </script>
 
 <h4><spring:message code="dataset.information"/></h4>
