@@ -16,18 +16,18 @@
 		    	$('#webSite').append(url3);
 		    	
 		    	
-		    	var name='${dataProvider.name}';
+		    	//var name='${dataProvider.name}';
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
-		    		$('#name').append(data.name);
+		    		$('#name').append(data.name.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
 		    	}else if(name.length!=0){
-		    		$('#name').append(name);
+		    		$('#name').append('${fn:escapeXml(dataProvider.name)}');
 		    	}else {
 		    		$('#name').remove();
 		    	}
 		    	
 		    	
 		    	
-		    	var webUrl='${dataProvider.websiteUrl}';
+		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
 		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
 		    		$('#webSiteUrl').append('<a href="'+data.homepageURL+'">'+data.homepageURL+'</a>'); 
 		    	}else if(webUrl.length!=0){
@@ -36,29 +36,31 @@
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
-		    	var nodeApprover='${dataProvider.gbifApprover}';
+		    	
 		    	if((data.nodeName!=undefined)&&(data.nodeName.length!=0)){
-		    		$('#nodeApprover').append(data.nodeName); 
+		    		$('#nodeApprover').append(data.nodeName.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(nodeApprover.length!=0){
-		    		$('#nodeApprover').append(nodeApprover);
+		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
 		    	}else {
 		    		$('#nodeApprover').remove();
 		    	}
 		    	
-		    	var descrp='${dataProvider.description}';
+		    	
+		    	
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
-		    		$('#descr').append(data.description); 
+		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(descrp.length!=0){
-		    		$('#descr').append(descrp);
+		    		$('#descr').append('${fn:escapeXml(dataProvider.description)}');
 		    	}else {
 		    		$('#descr').remove();
 		    	}
 		    	
-		    	var addr='${dataProvider.address}';
+		    	
+		    	
 		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
-		    		$('#addrs').append(data.primaryContactAddress); 
+		    		$('#addrs').append(data.primaryContactAddress.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(addr.length!=0){
-		    		$('#addrs').append(addr);
+		    		$('#addrs').append('${fn:escapeXml(dataProvider.address)}');
 		    	}else {
 		    		$('#addrs').remove();
 		    	}
@@ -76,11 +78,11 @@
 		    	}
 		    	*/
 		    	
-		    	var tel='${dataProvider.telephone}';
+		    	
 		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
-		    		$('#telph').append(data.primaryContactPhone); 
+		    		$('#telph').append(data.primaryContactPhone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(tel.length!=0){
-		    		$('#telph').append(tel);
+		    		$('#telph').append('${fn:escapeXml(dataProvider.telephone)}');
 		    	}else {
 		    		$('#telph').remove();
 		    	}
@@ -88,13 +90,13 @@
 		    error: function (xhr, ajaxOptions, thrownError) {
 		    	console.log(xhr.statusText);
 		    	console.log(thrownError);
-		    	$('#name').append('${dataProvider.name}');
-		    	var webUrl='${dataProvider.websiteUrl}';
+		    	$('#name').append('${fn:escapeXml(dataProvider.name)}');
+		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
 		    	$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
-		    	$('#nodeApprover').append('${dataProvider.gbifApprover}');
-		    	$('#descr').append('${dataProvider.description}');
-		    	$('#addrs').append('${dataProvider.address}');
-		    	$('#telph').append('${dataProvider.telephone}');
+		    	$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
+		    	$('#descr').append('${fn:escapeXml(dataProvider.description)}');
+		    	$('#addrs').append('${fn:escapeXml(dataProvider.address)}');
+		    	$('#telph').append('${fn:escapeXml(dataProvider.telephone)}');
 		    		
 		    }
 		});

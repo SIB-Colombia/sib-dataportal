@@ -21,13 +21,15 @@
 		    dataType: 'jsonp',
 		    success: function(data){
 		    	
+		    	
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
-		    		$('#name').append(data.name);
+		    		$('#name').append(data.name.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
 		    	}else if(name.length!=0){
-		    		$('#name').append('${dataResource.name}');
+		    		$('#name').append('${fn:escapeXml(dataResource.name)})');
 		    	}else {
 		    		$('#name').remove();
 		    	}
+		    	
 		    	
 		    	var webUrl='${dataResource.websiteUrl}';
 		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
@@ -39,39 +41,39 @@
 		    	}
 		    	
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
-		    		$('#descr').append(data.description); 
+		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(descrp.length!=0){
-		    		$('#descr').append('${dataResource.description}');
+		    		$('#descr').append('${fn:escapeXml(dataResource.description)}');
 		    	}else {
 		    		$('#descr').remove();
 		    	}
 		    	
 		    	var aName='';
 		    	if((data.primaryContactName!=undefined)&&(data.primaryContactName.length!=0)){
-		    		aName=data.primaryContactName; 
+		    		aName=data.primaryContactName.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
 		    	}else if((('${fn:length(agents)}')>0)&&('${agents[0].agentName}'.length!=0)){
-		    		aName='${agents[0].agentName}';
+		    		aName='${fn:escapeXml(agents[0].agentName)}';
 		    	}
 		    	
 		    	var aAddress='';
 		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
-		    		aAddress=data.primaryContactAddress; 
+		    		aAddress=data.primaryContactAddress.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
 		    	}else if('${agents[0].agentAddress}'.length!=0){
-		    		aAddress='${agents[0].agentAddress}';
+		    		aAddress='${fn:escapeXml(agents[0].agentAddress)}';
 		    	}
 		    	
 		    	var aEmail='';
 		    	if((data.primaryContactEmail!=undefined)&&(data.primaryContactEmail.length!=0)){
-		    		aEmail=data.primaryContactEmail; 
+		    		aEmail=data.primaryContactEmail.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
 		    	}else if('${agents[0].agentEmail}'.length!=0){
-		    		aEmail='${agents[0].agentEmail}';
+		    		aEmail='${fn:escapeXml(agents[0].agentEmail)}';
 		    	}
 		    	
 		    	var aTelephone='';
 		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
-		    		aTelephone=data.primaryContactPhone; 
+		    		aTelephone=data.primaryContactPhone.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
 		    	}else if('${agents[0].agentTelephone}'.length!=0){
-		    		aTelephone='${agents[0].agentTelephone}';
+		    		aTelephone='${fn:escapeXml(agents[0].agentTelephone)}';
 		    	}
 		    	
 		    	if(aName!=''){
@@ -89,14 +91,14 @@
 		    error: function (xhr, ajaxOptions, thrownError) {
 		    	console.log(xhr.statusText);
 		    	console.log(thrownError);
-		    	$('#name').append('${dataResource.name}');
-		    	var webUrl='${dataResource.websiteUrl}';
+		    	$('#name').append('${fn:escapeXml(dataResource.name)}');
+		    	var webUrl='${fn:escapeXml(dataResource.websiteUrl)}';
 		    	$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
-		    	$('#descr').append('${dataResource.description}');
-		    	var aName='${agents[0].agentName}';
-		    	var aAddress='${agents[0].agentAddress}';
-		    	var aEmail='${agents[0].agentEmail}';
-		    	var aTelephone='${agents[0].agentTelephone}';
+		    	$('#descr').append('${fn:escapeXml(dataResource.description)}');
+		    	var aName='${fn:escapeXml(agents[0].agentName)}';
+		    	var aAddress='${fn:escapeXml(agents[0].agentAddress)}';
+		    	var aEmail='${fn:escapeXml(agents[0].agentEmail)}';
+		    	var aTelephone='${fn:escapeXml(agents[0].agentTelephone)}';
 		    	if(aName!=''){
 					$('#agentTable').find('tbody')
 			    	.append($('<tr class="odd">')
