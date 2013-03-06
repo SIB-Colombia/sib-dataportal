@@ -15,6 +15,7 @@
 		    	url3 = data.homepageURL;
 		    	$('#webSite').append(url3);
 		    	
+		    	
 		    	var name='${dataProvider.name}';
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
 		    		$('#name').append(data.name);
@@ -23,6 +24,8 @@
 		    	}else {
 		    		$('#name').remove();
 		    	}
+		    	
+		    	
 		    	
 		    	var webUrl='${dataProvider.websiteUrl}';
 		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
@@ -96,27 +99,6 @@
 		    }
 		});
 	 
-	 
-	 /*
-	 $.ajax({ 
-	     url: "http://gbrds.gbif.org/registry/organisation/15b278a8-1356-4f7b-ba32-3c733c3d0aac.json?op=contacts",
-	     jsonp: false,
-	     jsonpCallback: 'jsonCallback',
-	     cache: 'true',
-	     dataType : 'jsonp',
-	     type: "GET",
-	     crossDomain: true,
-	     jsonpCallback: "receive",
-	     async: false
-	 });
-	 
-	 function receive(saveData) {
-		    if (saveData == null) {
-		            alert("DATA IS UNDEFINED!");  // displays every time
-		    }
-		    alert("Success is " + saveData);  // 'Success is undefined'
-	}
-	 */
 	});
 </script>
 
