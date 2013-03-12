@@ -1,5 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 	var dp=encodeURI('${dataResource.name}');	
@@ -21,11 +20,11 @@
 		    dataType: 'jsonp',
 		    success: function(data){
 		    	
-		    	
+		    	var name='${fn:escapeXml(dataResource.name)})';
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
 		    		$('#name').append(data.name.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
 		    	}else if(name.length!=0){
-		    		$('#name').append('${fn:escapeXml(dataResource.name)})');
+		    		$('#name').append(name);
 		    	}else {
 		    		$('#name').remove();
 		    	}
@@ -40,10 +39,11 @@
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
+		    	var descrp='${fn:escapeXml(dataResource.description)}';
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
 		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(descrp.length!=0){
-		    		$('#descr').append('${fn:escapeXml(dataResource.description)}');
+		    		$('#descr').append(descrp);
 		    	}else {
 		    		$('#descr').remove();
 		    	}

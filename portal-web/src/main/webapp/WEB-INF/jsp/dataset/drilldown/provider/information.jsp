@@ -1,6 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
 <script type='text/javascript'>
  var url='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json';
 
@@ -16,15 +14,14 @@
 		    	$('#webSite').append(url3);
 		    	
 		    	
-		    	//var name='${dataProvider.name}';
+		    	var name='${fn:escapeXml(dataProvider.name)}';
 		    	if((data.name!=undefined)&&(data.name.length!=0)){
 		    		$('#name').append(data.name.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
 		    	}else if(name.length!=0){
-		    		$('#name').append('${fn:escapeXml(dataProvider.name)}');
+		    		$('#name').append(name);
 		    	}else {
 		    		$('#name').remove();
 		    	}
-		    	
 		    	
 		    	
 		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
@@ -36,31 +33,30 @@
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
-		    	
+		    	var ndName='${fn:escapeXml(dataProvider.gbifApprover)}';
 		    	if((data.nodeName!=undefined)&&(data.nodeName.length!=0)){
 		    		$('#nodeApprover').append(data.nodeName.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
-		    	}else if(nodeApprover.length!=0){
+		    	}else if(ndName.length!=0){
 		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
 		    	}else {
 		    		$('#nodeApprover').remove();
 		    	}
 		    	
 		    	
-		    	
+		    	var descrp='${fn:escapeXml(dataProvider.description)}';
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
 		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(descrp.length!=0){
-		    		$('#descr').append('${fn:escapeXml(dataProvider.description)}');
+		    		$('#descr').append(descrp);
 		    	}else {
 		    		$('#descr').remove();
 		    	}
 		    	
-		    	
-		    	
+		    	var addr='${fn:escapeXml(dataProvider.address)}';
 		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
 		    		$('#addrs').append(data.primaryContactAddress.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(addr.length!=0){
-		    		$('#addrs').append('${fn:escapeXml(dataProvider.address)}');
+		    		$('#addrs').append(addr);
 		    	}else {
 		    		$('#addrs').remove();
 		    	}
@@ -78,11 +74,11 @@
 		    	}
 		    	*/
 		    	
-		    	
+		    	var tel='${fn:escapeXml(dataProvider.telephone)}';
 		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
 		    		$('#telph').append(data.primaryContactPhone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(tel.length!=0){
-		    		$('#telph').append('${fn:escapeXml(dataProvider.telephone)}');
+		    		$('#telph').append(tel);
 		    	}else {
 		    		$('#telph').remove();
 		    	}
