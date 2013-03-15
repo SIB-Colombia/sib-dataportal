@@ -71,7 +71,7 @@ insert into centi_cell_density
 select 2, c.id, cell_id, centi_cell_id, count(oc.id) 
 from occurrence_record oc 
 inner join country c on oc.iso_country_code=c.iso_country_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
 group by 1,2,3,4;
 
 -- populate the cell_density for home country
@@ -84,7 +84,7 @@ select 6, c.id, cell_id, centi_cell_id, count(oc.id)
 from occurrence_record oc 
 inner join data_provider dp on oc.data_provider_id=dp.id
 inner join country c on dp.iso_country_code=c.iso_country_code
-where oc.centi_cell_id is not null and oc.geospatial_issue=0
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
 group by 1,2,3,4;
 
 -- populate home country for international networks
@@ -95,7 +95,7 @@ insert into centi_cell_density
 select 6, 0, cell_id, centi_cell_id, count(oc.id) 
 from occurrence_record oc 
 inner join data_provider dp on oc.data_provider_id=dp.id
-where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0
+where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc. deleted is null
 group by 3,4;
 
 -- populate the centi_cell_density for provider
@@ -105,7 +105,7 @@ select concat('Building centi cells for provider: ', now()) as debug;
 insert into centi_cell_density
 select 3,data_provider_id,cell_id,centi_cell_id,count(id)
 from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0
+where centi_cell_id is not null and geospatial_issue=0 and deleted is null
 group by 1,2,3,4;
 
 -- populate the centi_cell_density for resource
@@ -126,7 +126,7 @@ insert into centi_cell_density
 select 5,nm.resource_network_id,cell_id,centi_cell_id,count(oc.id)
 from occurrence_record oc
 inner join network_membership nm on oc.data_resource_id=nm.data_resource_id
-where centi_cell_id is not null and oc.geospatial_issue=0
+where centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
 group by nm.resource_network_id, oc.cell_id, oc.centi_cell_id;
 
 -- ***********************************
@@ -351,7 +351,7 @@ insert into centi_cell_density
 select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
 from occurrence_record oc 
 inner join department d on oc.iso_department_code=d.iso_department_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
 group by 1,2,3,4;
 -- End of SiB Colombia addition
 -- --------------------------------------------
@@ -364,7 +364,7 @@ insert ignore into centi_cell_density
 select 1, ore.kingdom_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore
 where ore.kingdom_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- populate cell densities for all ORs on the denormalised nub id    
@@ -375,7 +375,7 @@ insert ignore into centi_cell_density
 select 1, ore.phylum_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.phylum_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
     
 -- populate cell densities for all ORs on the denormalised nub id
@@ -386,7 +386,7 @@ insert ignore into centi_cell_density
 select 1, ore.class_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.class_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- populate cell densities for all ORs on the denormalised nub id
@@ -397,7 +397,7 @@ insert ignore into centi_cell_density
 select 1, ore.order_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.order_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
     
 -- populate cell densities for all ORs on the denormalised nub id
@@ -408,7 +408,7 @@ insert ignore into centi_cell_density
 select 1, ore.family_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.family_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
     
 -- populate cell densities for all ORs on the denormalised nub id
@@ -419,7 +419,7 @@ insert ignore into centi_cell_density
 select 1, ore.genus_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.genus_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- populate cell densities for all ORs on the denormalised nub id
@@ -430,7 +430,7 @@ insert ignore into centi_cell_density
 select 1, ore.species_concept_id, ore.cell_id, ore.centi_cell_id, count(ore.id)
 from occurrence_record ore 
 where ore.species_concept_id is not null
-and ore.centi_cell_id is not null and ore.geospatial_issue=0
+and ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- populate the centi_cell_density for taxonomy RUN THIS AFTER THE DENORMALISED!!!
@@ -441,7 +441,7 @@ select concat('Building centi cells for nub concept: ', now()) as debug;
 insert ignore into centi_cell_density
 select 1, nub_concept_id,cell_id,centi_cell_id,count(id)
 from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0
+where centi_cell_id is not null and geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- populate for all things
@@ -451,7 +451,7 @@ select concat('Building centi cells for all things: ', now()) as debug;
 insert ignore into centi_cell_density
 select 0, 0,cell_id,centi_cell_id,count(id)
 from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0
+where centi_cell_id is not null and geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- clear the cell densities
@@ -475,7 +475,7 @@ group by 1,2,3;
 -- Rows matched: 243  Changed: 240  Warnings: 0
 select concat('Starting country occurrence count: ', now()) as debug;
 update country c set occurrence_count =
-(select count(id) from occurrence_record o where o.iso_country_code=c.iso_country_code);
+(select count(id) from occurrence_record o where o.iso_country_code=c.iso_country_code and o.deleted is null);
     
 -- set occurrence record coordinate count
 -- Query OK, 235 rows affected (0.05 sec)
@@ -490,7 +490,7 @@ update country c set occurrence_coordinate_count =
 -- Rows matched: 243  Changed: 238  Warnings: 0
 select concat('Starting country species count: ', now()) as debug;
 update country c set species_count = 
-(select count(distinct o.species_concept_id) from occurrence_record o where o.iso_country_code = c.iso_country_code);      
+(select count(distinct o.species_concept_id) from occurrence_record o where o.iso_country_code = c.iso_country_code and o.deleted is null);      
 /* was before update 12.8.08: (select count(distinct o.nub_concept_id) from occurrence_record o where o.iso_country_code = c.iso_country_code); */
 
 -- set occurrence record count
@@ -498,14 +498,14 @@ update country c set species_count =
 -- Rows matched: 2277  Changed: 662  Warnings: 0
 select concat('Starting resource occurrence count: ', now()) as debug;
 update data_resource dr set occurrence_count =   
-(select count(o.id) from occurrence_record o where o.data_resource_id=dr.id);
+(select count(o.id) from occurrence_record o where o.data_resource_id=dr.id and o.deleted is null);
 
 -- set occurrence record coordinate count
 -- Query OK, 642 rows affected (3 min 52.58 sec)
 -- Rows matched: 2277  Changed: 642  Warnings: 0
 select concat('Starting resource occurrence coordinate count: ', now()) as debug;
 update data_resource dr set occurrence_coordinate_count =   
-(select count(o.id) from occurrence_record o where o.data_resource_id=dr.id and o.cell_id is not null);
+(select count(o.id) from occurrence_record o where o.data_resource_id=dr.id and o.cell_id is not null and o.deleted is null);
 
 -- set occurrence record clean geospatial count
 -- Query OK, 656 rows affected (0.45 sec)
@@ -601,6 +601,7 @@ create table temp_resource_country_occ
 select oc.data_resource_id, oc.iso_country_code, count(oc.id) as occurrence_coordinate_count
 from occurrence_record oc 
 where oc.cell_id is not null
+and oc.deleted is null
 group by oc.data_resource_id, oc.iso_country_code;
 
 
