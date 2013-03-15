@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sibcolombia.portal.dto.department.DepartmentDTO;
 import net.sibcolombia.portal.service.DepartmentManager;
-import org.gbif.portal.service.OccurrenceManager;
+//import org.gbif.portal.service.OccurrenceManager;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -58,6 +58,7 @@ public class StatsController implements Controller {
   protected String departmentsModelKey = "departments";
   
   protected String dataModelKey = "dataDate";
+  protected String dataTreeModelkey="dataTree";
   
   protected DataProviderDTO nubDataProvider;
   protected List<DataResourceDTO> nubResources;
@@ -119,11 +120,39 @@ public class StatsController implements Controller {
     if (hideNub) {
       removeNubProviderAndResources(providers, resources);
     }
+    
+    
+    
     Collections.sort(resourceNetworks, COMPARERESOURCENETWORK);
     Collections.sort(resources, COMPARERESOURCES);
     Collections.sort(providers, COMPAREPROVIDERS);
     
     List<String> dataDate = dataResourceManager.getOcurrencePerMonth();
+    
+    List<String> resl =new ArrayList<String>();
+    List<DataResourceDTO> resourcesTemp = new ArrayList<DataResourceDTO>();
+    String resultp="";
+    String resultr="";
+    for(DataProviderDTO provider: providers){
+    	resultp="";
+    	provider.getKey();
+    	provider.getName();
+    	//resultp=provider.getName()+"|Publicadores|"+provider.getOccurrenceCount()+"|"+provider.getOccurrenceCoordinateCount();
+    	resultp=provider.getName()+"|Publicadores|"+provider.getOccurrenceCoordinateCount()+"|"+provider.getOccurrenceCount();
+    	resl.add(resultp);
+    	try {
+    		resourcesTemp=dataResourceManager.getDataResourcesForProvider(provider.getKey());
+    		resultr="";
+    		for(DataResourceDTO resource: resourcesTemp){
+    			//resultr=resource.getName()+" |"+provider.getName()+"|"+resource.getOccurrenceCount()+"|"+resource.getOccurrenceCoordinateCount();
+    			resultr=resource.getName()+" |"+provider.getName()+"|"+resource.getOccurrenceCoordinateCount()+"|"+resource.getOccurrenceCount();
+    			resl.add(resultr);
+    		}
+			
+		} catch (ServiceException err) {
+			logger.error("Error filling data for resources: "+err.getMessage());
+		}
+    }
 
     mav.addObject(departmentsModelKey, departments);
 	mav.addObject(datasetMatchesModelKey, resourceResultsDTO);
@@ -131,6 +160,8 @@ public class StatsController implements Controller {
     mav.addObject(dataProviderModelKey, providers);
     mav.addObject(dataResourceModelKey, resources);
     mav.addObject(dataModelKey, dataDate);
+    mav.addObject(dataTreeModelkey, resl);
+    
     return mav;
   }
   

@@ -212,7 +212,50 @@ $(function () {
 	}
 	
 	google.setOnLoadCallback(drawVisualization);
+</script>
+
+<!-- Tree map de google -->
+<script type="text/javascript">
+	var rowst=[];
+	rowst.push(['Publicadores',null,0,0]);
+	<c:forEach items="${dataTree}" var="dataTree">
+		var datat ='${dataTree}'.split("|");
+		//alert(datat.length);
+		rowst.push([datat[0],datat[1],parseInt(datat[2]),parseInt(datat[3])]);
+	</c:forEach>
 	
+	google.load("visualization", "1", {packages:["treemap"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var tableTree = new google.visualization.DataTable();
+		tableTree.addColumn('string', 'Nombre', 'Nombre');
+		tableTree.addColumn('string', 'Parent', 'Parent');
+		tableTree.addColumn('number', 'Registros biológicos', 'Registros biológicos');
+		tableTree.addColumn('number', 'Registros biológicos georreferenciados', 'Registros biológicos georreferenciados');
+		tableTree.addRows(rowst);
+		
+		var options = {
+                //title : 'Registros publicados por cada publicador',
+                minColor: '#A9E2F3',
+                midColor: '#ddd',
+                maxColor: '#01A9DB',
+                maxColorValue: '200000',
+                minColorValue: '500',
+                headerHeight: 20,
+                fontColor: 'black',
+                fontName: 'Open Sans',
+                showScale: true,
+                showTooltips: true
+                
+          };
+		
+		var tree = new google.visualization.TreeMap(document.getElementById('chart_tree'));
+		
+        google.visualization.events.addListener(tree, 'select', function() {
+          });
+		
+		tree.draw(tableTree, options);    
+	}
 </script>
 
 
@@ -229,6 +272,10 @@ $(function () {
 
 <div><h4>Número de registros por publicador en los últimos meses</h4>
 	<div id="chart_stat"></div>
+</div>
+
+<div>
+	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
 </div>
 
 <!--<div><h4>Número de registros por publicador en los últimos meses</h4>
