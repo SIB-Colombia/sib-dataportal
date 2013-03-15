@@ -354,13 +354,13 @@ public class LogManagerImpl implements LogManager {
 	        SimpleMailMessage userMessage = new SimpleMailMessage(userTemplateMessage);
 	        userMessage.setTo(user.getEmail());
 	        
-	        subjectBuffer.append("Feedback from SIB Colombia Data Portal - ");
+	        subjectBuffer.append("Comentarios desde el Portal de Datos del SIB Colombia - ");
 
 	        StringBuffer textBuffer = new StringBuffer();
-	        textBuffer.append("The following message was submitted through the SIB Colombia Data Portal.\n\n");
+	        textBuffer.append("El siguiente mensaje ha sido enviado a través del Portal del Datos del SIB Colombia.\n\n");
 	        
 	        if (user != null) {
-		        textBuffer.append("  User: ");
+		        textBuffer.append("  Usuario: ");
 		        textBuffer.append(user.getName());
 		        textBuffer.append(" (");
 		        textBuffer.append(user.getEmail());
@@ -370,10 +370,10 @@ public class LogManagerImpl implements LogManager {
 	        if (message.getDataProviderId()!=null &&  message.getDataProviderId()!=0) {
 	        	try {
 	        		DataProviderDTO dto = dataResourceManager.getDataProviderFor(new Long(message.getDataProviderId()).toString());
-		        	textBuffer.append("  Data publisher: ");
+		        	textBuffer.append("  Publicador de datos: ");
 		        	textBuffer.append(dto.getName());
 			        textBuffer.append("\n");
-		        	String portalUrl="  Portal URL: "+url+"/datasets/provider/";
+		        	String portalUrl="  URL en el portal: "+url+"/datasets/provider/";
 		        	//textBuffer.append("  Portal URL: http://data.gbif.org/datasets/provider/");
 		        	textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
@@ -386,10 +386,10 @@ public class LogManagerImpl implements LogManager {
 	        if (message.getDataResourceId() != null && message.getDataResourceId() != 0) {
 	        	try {
 	        		DataResourceDTO dto = dataResourceManager.getDataResourceFor(new Long(message.getDataResourceId()).toString());
-		        	textBuffer.append("  Data resource: ");
+		        	textBuffer.append("  Conjunto de datos: ");
 		        	textBuffer.append(dto.getName());
 			        textBuffer.append("\n");
-			        String portalUrl="  Portal URL: "+url+"/datasets/resource/";
+			        String portalUrl="  URL en el portal: "+url+"/datasets/resource/";
 		        	//textBuffer.append("  Portal URL: http://data.gbif.org/datasets/resource/");
 			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
@@ -414,7 +414,7 @@ public class LogManagerImpl implements LogManager {
 		        	textBuffer.append(" / ");
 		        	textBuffer.append(dto.getCatalogueNumber());
 			        textBuffer.append("\n");
-			        String portalUrl="  Portal URL: "+url+"/occurrences/";
+			        String portalUrl="  URL en el portal: "+url+"/occurrences/";
 		        	//textBuffer.append("  Portal URL: http://data.gbif.org/occurrences/");
 			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
@@ -434,7 +434,7 @@ public class LogManagerImpl implements LogManager {
 	    	        textBuffer.append("  Taxon: ");
 		        	textBuffer.append(dto.getTaxonName());
 			        textBuffer.append("\n");
-			        String portalUrl="  Portal URL: "+url+"/species/";
+			        String portalUrl="  URL en el portal: "+url+"/species/";
 		        	//textBuffer.append("  Portal URL: http://data.gbif.org/species/");
 			        textBuffer.append(portalUrl);
 		        	textBuffer.append(dto.getKey());
@@ -450,8 +450,8 @@ public class LogManagerImpl implements LogManager {
 	        providerMessage.setText(textBuffer.toString());
 	        
 	        userMessage.setSubject(subjectBuffer.toString());
-	        userMessage.setText("Thank you for your feedback.  The message has " +
-	        		            "been sent on your behalf to the appropriate data publisher.\n\n");
+	        userMessage.setText("Gracias por su comentario.  El mensaje ha sido" +
+	        		            " enviado en su nombre, al publicador de datos apropiado.\n\n");
 
 	        try{
 	            mailSender.send(providerMessage);
@@ -475,9 +475,9 @@ public class LogManagerImpl implements LogManager {
 		if (user != null) {
 			SimpleMailMessage verificationMessage = new SimpleMailMessage(userTemplateMessage);
 			verificationMessage.setTo(user.getEmail());
-			verificationMessage.setSubject("Confirm e-mail address for SIB Colombia Data Portal");
+			verificationMessage.setSubject("Confirme la dirección de correo electrónico para el Portal de Datos del SIB Colombia ");
 			// todo
-			verificationMessage.setText("Please visit the following link to confirm your e-mail address:\n" +
+			verificationMessage.setText("Por favor visite el siguiente enlace para confirmar su dirección de correo electrónico:\n" +
 					url + "/feedback/verification/" + 
 					user.getId() + "/" + UserUtils.getCodeFor(user.getName(), user.getEmail()));			
 			try{
