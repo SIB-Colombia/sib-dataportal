@@ -64,6 +64,7 @@
 <tr>
 <c:set var="count" value="0" scope="page" />
 <c:forEach items="${geospatialFields}" var="field" varStatus="fieldStatus">
+	<!-- the field continent.ocean is hidden with this condition -->
 	<c:if test="${field.fieldI18nNameKey !='occurrence.record.raw.continent.ocean'}">
 		<c:if test="${count mod 6==0 && count!=0}">
 			</tr><tr>
