@@ -62,11 +62,15 @@
 <gbiftag:selectAll fieldsetId="geospatialFields"/>
 <table id="geospatialFields">
 <tr>
+<c:set var="count" value="0" scope="page" />
 <c:forEach items="${geospatialFields}" var="field" varStatus="fieldStatus">
-	<c:if test="${fieldStatus.index mod 6==0 && fieldStatus.index!=0}">
-		</tr><tr>
+	<c:if test="${field.fieldI18nNameKey !='occurrence.record.raw.continent.ocean'}">
+		<c:if test="${count mod 6==0 && count!=0}">
+			</tr><tr>
+		</c:if>
+		<td><input type="checkbox" name="${field.fieldName}" checked="true"/> <spring:message code="${field.fieldI18nNameKey}" text="${field.fieldI18nNameKey}"/></td>
+		<c:set var="count" value="${count + 1}" scope="page"/>
 	</c:if>
-	<td><input type="checkbox" name="${field.fieldName}" checked="true"/> <spring:message code="${field.fieldI18nNameKey}" text="${field.fieldI18nNameKey}"/></td>
 </c:forEach>
 </tr>
 </table>
