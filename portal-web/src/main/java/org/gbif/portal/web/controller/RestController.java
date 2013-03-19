@@ -44,6 +44,8 @@ public class RestController implements Controller {
   protected String defaultView;
   /** The root of a url. e.g. "/taxonomy/" **/
   protected String urlRoot = "/";
+  /** The root secundary (spanish version) of a url. e.g. "/taxonomy/" **/
+  protected String urlRootES = "/";
   /** view name prefix for taxonConcept views. e.g. taxonConcept **/
   protected String viewNamePrefix;
   /** view name attribute to use to retrieve the subview name. e.g. the names part of the view name species.names **/
@@ -128,6 +130,13 @@ public class RestController implements Controller {
   public String getUrlRoot() {
     return urlRoot;
   }
+  
+  /**
+   * @return the urlRootES
+   */
+  public String getUrlRootES() {
+    return urlRootES;
+  }
 
   /**
    * @return the viewNamePrefix
@@ -148,6 +157,8 @@ public class RestController implements Controller {
   public final ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
     // Code added to verify the slash (/) in the URL.
     if (endsWith != null && request.getRequestURI().endsWith(endsWith)) {
+    if (logger.isDebugEnabled())
+    	logger.debug("HOLA MUNDO!!!!!!!!!!!");
       String URL = "/" + request.getRequestURI().substring(request.getRequestURI().indexOf(urlRoot)) + "/";
       return new ModelAndView(new RedirectView(URL, true));
     }
@@ -351,6 +362,13 @@ public class RestController implements Controller {
    */
   public void setUrlRoot(String urlRoot) {
     this.urlRoot = urlRoot;
+  }
+  
+  /**
+   * @param urlRootES the urlRootES to set
+   */
+  public void setUrlRootES(String urlRootES) {
+    this.urlRootES = urlRootES;
   }
 
   /**
