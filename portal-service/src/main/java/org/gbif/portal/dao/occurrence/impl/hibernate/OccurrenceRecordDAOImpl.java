@@ -332,9 +332,9 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 			public Object doInHibernate(Session session) {
 				Query query = null;
 				if(useCount)
-					query = session.createQuery("select count(oc.id) from OccurrenceRecord oc");
+					query = session.createQuery("select count(oc.id) from OccurrenceRecord oc where oc.deleted is null");
 				else
-					query = session.createQuery("select max(oc.id) from OccurrenceRecord oc");
+					query = session.createQuery("select max(oc.id) from OccurrenceRecord oc where oc.deleted is null");
 				query.setCacheable(true);
 				return query.uniqueResult();
 			}
@@ -355,7 +355,7 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 		Object count = template.execute(new HibernateCallback() {
 		      public Object doInHibernate(Session session) {
 		        Query query = null;
-		        query = session.createQuery("select count(distinct oc.speciesConceptId) from OccurrenceRecord oc");
+		        query = session.createQuery("select count(distinct oc.speciesConceptId) from OccurrenceRecord oc where oc.deleted is null");
 		        query.setCacheable(true);
 		        return query.uniqueResult();
 		      }
