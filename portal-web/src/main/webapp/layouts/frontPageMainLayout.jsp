@@ -14,6 +14,7 @@
 <spring:message code="sib.terms.dialog.accept" var="accept"/>
 <spring:message code="sib.terms.dialog.cancel" var="cancel"/>
 $(document).ready(function() {
+	/*
 	//alert(readCookies());
 	if(readCookie('GbifTermsAndConditions')===null){
 		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:''});
@@ -23,6 +24,7 @@ $(document).ready(function() {
         	console.log(":D");
         });
 	}
+	*/
 });
 </script>
 
