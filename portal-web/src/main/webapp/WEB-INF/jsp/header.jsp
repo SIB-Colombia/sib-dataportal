@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="header">
-<a href="${pageContext.request.contextPath}" title="<spring:message code="portal.header.dataportal.title"/>"><img src="${pageContext.request.contextPath}/skins/standard/images/logo.png" width="350" height="104" alt="<spring:message code="portal.header.dataportal.title.alt"/>" /></a>
+<a href="http://data.sibcolombia.net" title="<spring:message code="portal.header.dataportal.title"/>"><img src="${pageContext.request.contextPath}/skins/standard/images/logo.png" width="350" height="104" alt="<spring:message code="portal.header.dataportal.title.alt"/>" /></a>
 
 	<!--<h3 id="blurb"><spring:message code="portal.header.subtitle"></spring:message></h3> -->
 

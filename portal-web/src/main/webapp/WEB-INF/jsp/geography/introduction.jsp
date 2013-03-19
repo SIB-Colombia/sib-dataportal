@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<a href="${pageContext.request.contextPath}/departments/" class="confirm" >
+<a href="${pageContext.request.contextPath}/departamentos/" class="confirm" >
 <img src="skins/standard/images/mariposas.jpg" width="320" height="217" alt="MARIPOSAS" />
 <h2>
   <spring:message code="departments.intro.heading"/>

@@ -94,6 +94,13 @@
 	<!-- =======================================================  -->
 	
 	<!--Welcome Page Tile-->
+	<definition name="inicio" extends="frontmainLayout">
+		<put name="headcontent" value="/WEB-INF/jsp/frontPageHeadContent.jsp"/>
+		<put name="topmenu" value="/WEB-INF/jsp/menu/frontPageTopMenu.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/panes.jsp"/>
+		<put name="breadcrumbs" value=""/>				
+	</definition>
+
 	<definition name="welcome" extends="frontmainLayout">
 		<put name="headcontent" value="/WEB-INF/jsp/frontPageHeadContent.jsp"/>
 		<put name="topmenu" value="/WEB-INF/jsp/menu/frontPageTopMenu.jsp"/>

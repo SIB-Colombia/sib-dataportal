@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
-<li><a href="${pageContext.request.contextPath}/species/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a></li>
+<li><a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a></li>
 <%--<li><a href="${pageContext.request.contextPath}/countries/" title="<spring:message code='topmenu.countries.title'/>"><spring:message code='topmenu.countries'/></a></li>--%>
-<li><a href="${pageContext.request.contextPath}/datasets/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a></li>
-<li><a href="${pageContext.request.contextPath}/departments/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a></li>
-<li><a href="${pageContext.request.contextPath}/occurrences/" title="<spring:message code='topmenu.occurrences.title'/>"><spring:message code='topmenu.occurrences'/></a></li>
+<li><a href="${pageContext.request.contextPath}/conjuntos/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a></li>
+<li><a href="${pageContext.request.contextPath}/departamentos/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a></li>
+<li><a href="${pageContext.request.contextPath}/busqueda/" title="<spring:message code='topmenu.occurrences.title'/>"><spring:message code='topmenu.occurrences'/></a></li>
 <%--<li><a href="${pageContext.request.contextPath}/settings.htm" title="<spring:message code='topmenu.settings.title'/>"><spring:message code='topmenu.settings'/></a></li>
 <li><a href="${pageContext.request.contextPath}/tutorial/" title="<spring:message code='topmenu.about.title'/>"><spring:message code='topmenu.about'/></a></li>--%>

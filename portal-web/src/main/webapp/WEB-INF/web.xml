@@ -171,7 +171,7 @@
 	</servlet-mapping>	
 	<servlet-mapping>
 		<servlet-name>occurrenceDispatcher</servlet-name>
-		<url-pattern>/occurrences/*</url-pattern>
+		<url-pattern>/busqueda/*</url-pattern>
 	</servlet-mapping>	
 	<servlet-mapping>
 		<servlet-name>taxonomyDispatcher</servlet-name>
@@ -180,6 +180,10 @@
 	<servlet-mapping>
 		<servlet-name>taxonomyDispatcher</servlet-name>
 		<url-pattern>/species/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>taxonomyDispatcher</servlet-name>
+		<url-pattern>/especies/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>taxonDispatcher</servlet-name>
@@ -193,10 +197,18 @@
 		<servlet-name>geographyDispatcher</servlet-name>
 		<url-pattern>/countries/*</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>geographyDispatcher</servlet-name>
+		<url-pattern>/paises/*</url-pattern>
+	</servlet-mapping>
 	<!-- Servlet used to display information about colombian departments -->
 	<servlet-mapping>
 		<servlet-name>departmentDispatcherSibColombia</servlet-name>
 		<url-pattern>/departments/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>departmentDispatcherSibColombia</servlet-name>
+		<url-pattern>/departamentos/*</url-pattern>
 	</servlet-mapping>
 	<!-- This servlet has been replaced with datasetDispatcherSibColombia to support all list datasets
 	<servlet-mapping>
@@ -215,6 +227,10 @@
 	<servlet-mapping>
 		<servlet-name>datasetDispatcherSibColombia</servlet-name>
 		<url-pattern>/datasets/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>datasetDispatcherSibColombia</servlet-name>
+		<url-pattern>/conjuntos/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>searchDispatcher</servlet-name>

@@ -12,6 +12,7 @@
     </property>
     <property name="mappings">
       <props>
+        <prop key="/inicio.htm">frontPageController</prop>
         <prop key="/welcome.htm">frontPageController</prop>
         <prop key="/settings.htm">settingsController</prop>
         <prop key="/terms.htm">acceptTermsController</prop>
@@ -25,6 +26,7 @@
         <prop key="/bugs.htm">urlFilenameController</prop>
         <!-- Statistics page for SIB Dataportal -->
         <prop key="/stats.htm">statsController</prop>
+        <prop key="/cifras.htm">statsController</prop>
       </props>
     </property>
   </bean>
@@ -33,7 +35,7 @@
 
   <!-- The home Page -->
   <bean id="frontPageController" class="org.gbif.portal.web.controller.ConfigurableContentController">
-    <property name="viewName" value="welcome" />
+    <property name="viewName" value="inicio" />
     <property name="contentProviders">
       <list>
         <bean id="taxonomyIntroProvider" class="org.gbif.portal.web.content.taxonomy.TaxonomyIntroProvider">
@@ -52,7 +54,8 @@
       </list>
     </property>
   </bean>
-
+  
+ 
   <!-- The Settings Page -->
   <bean id="settingsController" class="org.gbif.portal.web.controller.user.SettingsController">
     <property name="themeResolver" ref="themeResolver" />
