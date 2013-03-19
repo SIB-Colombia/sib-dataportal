@@ -7,20 +7,8 @@
   <c:otherwise>Your Generated Niche Model</c:otherwise>
 </c:choose>
 </h4>
-<p>
-This tools provides an integration between <a href="http://openmodeller.sourceforge.net">openModeller</a>
-and the occurrence point data available within the portal.<br/>
-Its main purpose is to demonstrate the integration of GBIF-mediated occurrence data with other applications like modelling tools.<br/> 
-Please be aware that the significance of the modelling result varies greatly with the selection of meaningful parameters, 
-and also with volume, accuracy of georeferencing and geographical spread of the source data.
-<br/>
-</p>
-<p>
-This integration takes the occurrence points provided by your search, submits these points
-and the layers selected to openModeller.<br/>
-openModeller then generates a probability distribution using the 
-<b><a href="http://openmodeller.sourceforge.net/index.php?option=com_content&task=view&id=61&Itemid=4">Envelope Score Algorithm</a></b>.
-</p></div>
+	<spring:message code="select.model.layers"/>
+</div>
 <!-- 
 <p>
 In this model, any point can be classified as:<br/><br/>

@@ -8,6 +8,27 @@
 <%@ page import="org.apache.commons.lang.*" %>
 <%@ page import="org.gbif.portal.web.filter.*" %>
 <%@ page import="org.apache.taglibs.string.util.*" %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+ <script src="${pageContext.request.contextPath}/javascript/jconf.jquery.js" type="text/javascript" language="javascript"></script>
+
+
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set>
+<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
+
+
+<script type="text/javascript">
+<spring:message code="sib.terms.dialog.question" var="question"/>
+<spring:message code="sib.terms.dialog.accept" var="accept"/>
+<spring:message code="sib.terms.dialog.cancel" var="cancel"/>
+$(document).ready(function() {
+	if(readCookie('GbifTermsAndConditions')===null){
+		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:''});
+	}
+});
+</script>
 <c:set var="viewName" scope="request"><tiles:getAsString name="viewName"/></c:set>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">		
@@ -28,6 +49,14 @@
 		<tiles:insert name="headcontent"/>
 	</head>
 	<body>
+		<spring:message code="sib.terms.dialog.terms" var="terms"/>
+		
+		<!-- jquery dialog div-->
+		<!--  
+		<div id="dialog-confirm" class="some" title="${terms}"></div>
+		-->
+		<!-- jquery dialog div-->
+		
 	  <div id="skipNav">
 			<ul title="Accessibility options">
 	  		<li><a href="#mainContent" accesskey="C">Skip to Content</a></li>

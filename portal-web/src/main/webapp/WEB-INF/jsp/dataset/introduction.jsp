@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<a href="${pageContext.request.contextPath}/datasets/">
+<a href="${pageContext.request.contextPath}/datasets/" class="confirm">
 <img src="skins/standard/images/1649_ok.jpg" width="320" height="216" alt="DEPARTAMENTOS" />
 <h2>
   <spring:message code="dataset.intro.heading"/>

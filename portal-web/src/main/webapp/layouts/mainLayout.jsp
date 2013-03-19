@@ -1,4 +1,37 @@
-<%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" %><%@ include file="/common/taglibs.jsp"%>
+<%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" %>
+<%@ include file="/common/taglibs.jsp"%>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+ <script src="${pageContext.request.contextPath}/javascript/jconf.jquery.js" type="text/javascript" language="javascript"></script>
+
+ <c:set var="req" value="${pageContext.request}" />
+<c:set var="uri" value="${req.requestURI}" />
+<c:set var="url">${req.requestURL}</c:set> 
+<c:set var="cpth">${pageContext.request.contextPath}</c:set>
+<c:set var="pth">${requestScope['javax.servlet.forward.request_uri']}</c:set>
+<c:set var="pge">${fn:substring(pth,fn:length(cpth),fn:length(pth))}</c:set>
+<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
+<script type="text/javascript">
+<spring:message code="sib.terms.dialog.question" var="question"/>
+<spring:message code="sib.terms.dialog.accept" var="accept"/>
+<spring:message code="sib.terms.dialog.cancel" var="cancel"/>
+
+$(document).ready(function() {
+	
+	if(('${pge}'!='/terms.htm')&&('${pge}'!='/stats.htm')&&('${pge}'!='/settings.htm')){
+		
+		if(readCookie('GbifTermsAndConditions')===null){
+			
+			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
+			
+		}
+	}else{
+		$('#dialog-confirm').hide();
+	}
+});
+</script>
+
+<!-- -->
 <c:if test="${param['noHeaders']!=1}"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<!-- GBIF Portal Version: <gbif:propertyLoader bundle="portal" property="version"/> -->	
@@ -19,6 +52,14 @@
 		<c:set var="title" scope="request"><tiles:insert name="subtitle" flush="false"/></c:set>		
 	</head>
 	<body>
+		<spring:message code="sib.terms.dialog.terms" var="terms"/>
+		
+		<!-- jquery dialog div-->
+		<!--  
+		<div id="dialog-confirm" class="some" title="${terms}"></div>
+		-->
+		<!-- jquery dialog div-->
+	
 	    <div id="skipNav">
 			<ul title="<spring:message code="accessibility.title" text="Accessibility options"/>">
 	  		<li><a href="#mainContent" accesskey="C"><spring:message code="accessibility.skip.to.content" text="Skip to Content"/></a></li>
@@ -26,10 +67,11 @@
 			</ul> 
 	    </div>
 		<div id="cocoon">
-			<div id="container">	
+			<div id="container">
 				<tiles:insert name="header"/>
 				<tiles:insert name="topmenu"/>
 				<div id="content">
+				
 </c:if>       				
 					<tiles:insert name="content"/>
 <c:if test="${param['noHeaders']!=1}">					
@@ -46,6 +88,7 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 	  })();
 	</script>
+		
 	</body>
 </html>
 </c:if>

@@ -8,7 +8,10 @@
 				<td>	
 					<ul class="actionsListInline">
 						<li>
-							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="explore.occurrences"/></a>
+						<c:set var="a0">
+								<gbif:capitalize><spring:message code="department.${department.isoDepartmentCode}"/></gbif:capitalize>
+						</c:set>
+							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}" index="0"/>"><spring:message code="explore.occurrences.in" arguments="${a0}"/></a>
 						</li>	
 						
 						<li>

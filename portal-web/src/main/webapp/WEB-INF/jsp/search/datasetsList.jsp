@@ -21,7 +21,7 @@
             </td>
             <td class="tdColumn3" >
                 <p class="column3">
-					Resource network<c:if test="${resourceNetwork.dataResourceCount!=null}"> with ${resourceNetwork.dataResourceCount} resources</c:if>
+					<spring:message code="data.list.search.network"/><c:if test="${resourceNetwork.dataResourceCount!=null}">  ${resourceNetwork.dataResourceCount} <spring:message code="data.list.search.resources.country"/></c:if>
 				</p>
             </td>
         </tr>
@@ -48,7 +48,7 @@
             </td>
             <td class="tdColumn3" >
                 <p class="column3">
-					Data publisher<c:if test="${dataProvider.dataResourceCount!=null}"> with ${dataProvider.dataResourceCount} resources</c:if>
+					<spring:message code="data.list.search.result.publisher"/><c:if test="${dataProvider.dataResourceCount!=null}"> ${dataProvider.dataResourceCount} <spring:message code="data.list.search.resources"/></c:if>
 				</p>
             </td>
         </tr>
@@ -75,7 +75,7 @@
             </td>
             <td class="tdColumn3" >
                 <p class="column3">
-					Dataset from ${dataResource.dataProviderName}
+					<spring:message code="data.list.search.datasets"/> ${dataResource.dataProviderName}
 				</p>
             </td>
         </tr>

@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<a href="${pageContext.request.contextPath}/species/">
+<a href="${pageContext.request.contextPath}/species/" class="confirm" >
     <img src="skins/standard/images/19878.jpg" width="320" height="216" alt="ESPECIES" />
 <h2>
   <spring:message code="taxonomy.intro.heading"/>
