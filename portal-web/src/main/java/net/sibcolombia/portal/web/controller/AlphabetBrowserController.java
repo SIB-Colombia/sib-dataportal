@@ -41,7 +41,7 @@ public abstract class AlphabetBrowserController extends org.gbif.portal.web.cont
     mav.addObject(alphabetModelKey, alphabet);
     String searchString = properties.get(searchStringRequestKey);
     char searchChar = defaultSearchChar;
-    if (StringUtils.isNotEmpty(searchString)) {
+    if (StringUtils.isNotEmpty(searchString) && !searchString.contentEquals("conjuntos") && !searchString.contentEquals("departamentos")) {
       if (logger.isDebugEnabled())
         logger.debug("Search string before trim: " + searchString);
       searchString = searchString.trim();
