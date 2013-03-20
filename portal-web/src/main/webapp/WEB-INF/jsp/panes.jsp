@@ -15,7 +15,7 @@
     <div class="white_rounded_frame intro">
    <!--<h1><spring:message code="welcome.tip.of.the.day.title"/></h1> -->
    <img src="${pageContext.request.contextPath}/skins/standard/images/bienvenido.png" width=alt="<spring:message code="portal.header.dataportal.title.alt"/>" />
-   <p><strong>El portal de datos del SiB Colombia es un servicio que permite acceder &aacute;gilmente a registros biol&oacute;gicos que han sido publicados por nuestra red de socios</strong></p>
+   <p><strong><spring:message code="portal.header.dataportal.title.message"/></strong></p>
    
 <!--<spring:message code="welcome.tip.of.the.day.2" arguments="${link1}"/><br/>
  <spring:message code="welcome.tip.of.the.day.3" arguments="${link2}"/><br/>
