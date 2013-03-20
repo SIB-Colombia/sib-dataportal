@@ -589,7 +589,8 @@ where data_resource_id=1 and rank>1000 and priority>10 and priority<10000 and pa
 -- Query OK, 34749 rows affected, 1257 warnings (3 min 15.73 sec)
 -- Records: 34749  Duplicates: 0  Warnings: 1257
 select concat('Starting resource_country generation: ', now()) as debug;
-truncate table resource_country;
+-- truncate table resource_country;
+delete from resource_country;
 insert into resource_country 
       select data_resource_id, iso_country_code, count(id), 0 
       from occurrence_record 
@@ -623,7 +624,8 @@ drop table temp_resource_country_occ;
 -- Query OK, 1550 rows affected (3 min 42.20 sec)
 -- Records: 1550  Duplicates: 0  Warnings: 0
 select concat('Starting taxon_country kingdom generation: ', now()) as debug;
-truncate table taxon_country;
+-- truncate table taxon_country;
+delete from taxon_country;
 -- populate taxon_country
 insert ignore into taxon_country 
 select kingdom_concept_id, iso_country_code, count(*)
@@ -715,7 +717,8 @@ group by 1,2;
 -- ***********************************
 -- populate taxon_department
 select concat('Starting taxon_department kingdom generation: ', now()) as debug;
-truncate table taxon_department;
+-- truncate table taxon_department;
+delete from taxon_department;
 -- populate taxon_department
 insert ignore into taxon_department 
 select kingdom_concept_id, iso_department_code, count(*)
