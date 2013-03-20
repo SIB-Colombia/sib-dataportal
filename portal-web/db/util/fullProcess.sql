@@ -61,7 +61,8 @@ set
 -- clear the centi cells
 -- Query OK, 0 rows affected (54.06 sec)
 select concat('Clearing centi cells: ', now()) as debug;    
-truncate table centi_cell_density;
+-- truncate table centi_cell_density;
+delete from centi_cell_density;
 
 -- populate the centi_cell_density for country
 -- Query OK, 405400 rows affected (17 min 2.61 sec)
@@ -457,7 +458,9 @@ group by 1,2,3,4;
 -- clear the cell densities
 -- Query OK, 0 rows affected (0.28 sec)
 select concat('Clearing cells: ', now()) as debug;
-truncate table cell_density;
+-- truncate table cell_density;
+delete from cell_density;
+
 
 -- build the cell_densities
 -- Query OK, 13623180 rows affected (18 min 0.63 sec)
