@@ -235,7 +235,7 @@ div.countryProtectedAreaWizard {
 	margin-bottom: 1em;
 }/* set width of widget here*/
 #newFilterValue {
-	z-index: 9000
+	z-index: 1000
 } /* for IE z-index of absolute divs inside relative divs issue */
 #exampleSearches {
 	margin-top: 20px;

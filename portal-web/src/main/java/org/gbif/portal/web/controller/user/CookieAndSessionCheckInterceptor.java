@@ -84,6 +84,7 @@ public class CookieAndSessionCheckInterceptor extends HandlerInterceptorAdapter 
 				}
 			}
 		}
+		/*
 		logger.debug("Redirecting to terms page...");
 		//need to redirect to disclaimer page
 		StringBuffer requestedUrlBuffer = request.getRequestURL();
@@ -95,6 +96,8 @@ public class CookieAndSessionCheckInterceptor extends HandlerInterceptorAdapter 
 		String requestedUrl = URLEncoder.encode(requestedUrlBuffer.toString(), "UTF-8");
 		response.sendRedirect(request.getContextPath()+baseForwardUrl+forwardUrlRequestKey+"="+requestedUrl);
 		return false;
+		*/
+		return true;
 	}
 	
 	/**

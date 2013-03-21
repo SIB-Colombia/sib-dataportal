@@ -1,8 +1,9 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" %>
 <%@ include file="/common/taglibs.jsp"%>
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+ <script src="${pageContext.request.contextPath}/javascript/jquery-1.9.1.js" type="text/javascript" language="javascript"></script>
+ <script src="${pageContext.request.contextPath}/javascript/jquery-ui-1.10.2.custom.js" type="text/javascript" language="javascript"></script>
  <script src="${pageContext.request.contextPath}/javascript/jconf.jquery.js" type="text/javascript" language="javascript"></script>
+ 
 
  <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
@@ -17,12 +18,12 @@
 <spring:message code="sib.terms.dialog.cancel" var="cancel"/>
 
 $(document).ready(function() {
-	
+	//alert(readCookies());
 	if(('${pge}'!='/terms.htm')&&('${pge}'!='/stats.htm')&&('${pge}'!='/settings.htm')){
 		
 		if(readCookie('GbifTermsAndConditions')===null){
 			
-			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
+			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
 			
 		}
 	}else{
@@ -55,9 +56,9 @@ $(document).ready(function() {
 		<spring:message code="sib.terms.dialog.terms" var="terms"/>
 		
 		<!-- jquery dialog div-->
-		<!--  
+		 
 		<div id="dialog-confirm" class="some" title="${terms}"></div>
-		-->
+		
 		<!-- jquery dialog div-->
 	
 	    <div id="skipNav">

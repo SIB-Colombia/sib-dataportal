@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-<a href="${pageContext.request.contextPath}/departamentos/">
+<a href="${pageContext.request.contextPath}/departamentos/" class="confirm">
 <img src="skins/standard/images/mariposas.jpg" width="320" height="217" alt="MARIPOSAS" />
 <h2>
   <spring:message code="departments.intro.heading"/>
@@ -31,7 +31,7 @@
   <h3>
     <spring:message code="geography.intro.seedatafor"/>
   </h3>
-   <a href="${pageContext.request.contextPath}/departments/CO-AMA">
+   <a href="${pageContext.request.contextPath}/departments/CO-AMA" >
       <spring:message code="department.CO-AMA" text="Amazonas"/></a>
   <%-- This was commented since it must be a recognition of the userDepartment in Colombia  
   <c:choose>

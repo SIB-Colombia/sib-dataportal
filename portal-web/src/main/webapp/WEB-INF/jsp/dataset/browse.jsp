@@ -1,6 +1,8 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
 <script type="text/javascript">
+/*
 	$(function(){
+		if(($("#chosen").text()).length>1){
 		var len="${totalOcurrenceCount}".length;
 		var lenc="${totalOcurrenceCoordinateCount}".length;
 		var numb="";
@@ -29,7 +31,9 @@
 	     	   )
 	    	);
 		}
+	}
 	});
+	*/
 </script>
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/>

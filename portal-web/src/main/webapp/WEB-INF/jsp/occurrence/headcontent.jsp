@@ -9,5 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='wizards.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='download.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='occurrenceSpecial.css'/>"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='jquery-ui-1.10.2.custom.css'/>"/>
 <link rel="Shortcut Icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <tiles:insert page="/common/scripts.jsp"/>

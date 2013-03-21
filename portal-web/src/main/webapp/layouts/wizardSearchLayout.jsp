@@ -51,10 +51,8 @@ $(document).ready(function() {
 	<body>
 		<spring:message code="sib.terms.dialog.terms" var="terms"/>
 		
-		<!-- jquery dialog div-->
-		<!--  
+		<!-- jquery dialog div--> 
 		<div id="dialog-confirm" class="some" title="${terms}"></div>
-		-->
 		<!-- jquery dialog div-->
 		
 	  <div id="skipNav">

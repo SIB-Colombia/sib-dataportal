@@ -14,17 +14,10 @@
 <spring:message code="sib.terms.dialog.accept" var="accept"/>
 <spring:message code="sib.terms.dialog.cancel" var="cancel"/>
 $(document).ready(function() {
-	/*
 	//alert(readCookies());
 	if(readCookie('GbifTermsAndConditions')===null){
 		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:''});
-		$('a.newtab').bind('click', function(e) {
-        	e.preventDefault();
-        	nref = $(this).attr('href');
-        	console.log(":D");
-        });
 	}
-	*/
 });
 </script>
 
@@ -52,9 +45,8 @@ $(document).ready(function() {
 	<spring:message code="sib.terms.dialog.terms" var="terms"/>
 	
 	<!-- jquery dialog div-->
-	<!--  
+	 
 	<div id="dialog-confirm" class="some" title="${terms}"></div>
-	-->
 	<!-- jquery dialog div-->	
 		
 	</body>

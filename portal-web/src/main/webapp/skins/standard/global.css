@@ -537,3 +537,20 @@ width:95px;
 	text-align:center;
 	margin:-4px 0 7px 0 ;
 	font-size:1.9em;
+	}
+	
+button{
+	-webkit-border-radius: 12px;
+    border-radius: 12px;
+	padding:7px 10px;
+	border:0px none;
+	background:#34BCE0;
+	color:white;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:0.9em;
+}
+
+#ui-dialog-titlebar{
+	text-transform:uppercase;
+}

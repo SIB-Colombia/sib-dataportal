@@ -40,6 +40,7 @@ function eraseCookie(name) {
 
 $(document).ready(function () {
 (function($){
+	
 	jQuery.fn.jConfirmAction = function (options) {
 		var theOptions = jQuery.extend ({
 			question: "Are You Sure ?",
@@ -61,10 +62,10 @@ $(document).ready(function () {
 	                    btns[theOptions.yesAnswer]=function() {  
 	                            $( this ).dialog( "close" );                                    
 	                            if (thisHref!=null){
-	                            	createCookie('GbifTermsAndConditions', 'accepted', 1);
+	                            	createCookie('GbifTermsAndConditions', 'accepted', 100);
 	                            	window.location = thisHref;
 	                            }else{
-	                            	createCookie('GbifTermsAndConditions', 'accepted', 1);
+	                            	createCookie('GbifTermsAndConditions', 'accepted', 100);
 	                                submitBtn.click();
 	                            }
 	                    };
@@ -97,7 +98,8 @@ $(document).ready(function () {
 	                              duration: 1000
 	                        }, 
 	                        draggable: false,
-	                        //dialogClass: 'main-dialog-class'
+	                        position: { my: "center", at: "top", of: "#datasetpane" },
+	                        width: 400
 	                	});	
 	                    
 	                    $('a.newtab').bind('click', function(e) {
@@ -112,7 +114,6 @@ $(document).ready(function () {
 				
 			});
 		}else{
-			
 			if(readCookie('GbifTermsAndConditions')===null){
 				
 				var sta=null;
@@ -120,7 +121,7 @@ $(document).ready(function () {
                 btns[theOptions.yesAnswer]=function() {  
                 	sta=1;
                 	$( this ).dialog( "close" );
-                    createCookie('GbifTermsAndConditions', 'accepted', 1);
+                    createCookie('GbifTermsAndConditions', 'accepted', 100);
                     submitBtn.click();      
                 };
                 
@@ -149,6 +150,7 @@ $(document).ready(function () {
                         duration: 1000
                     }, 
                     draggable: false,
+                    width: 400,
                     close: function( event, ui ) {if(sta===null)window.location = theOptions.url;}
             	});
                 $('a.newtab').bind('click', function(e) {
