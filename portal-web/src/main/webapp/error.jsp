@@ -12,7 +12,7 @@
         padding: 20px;
         color: #333;
 	background: #f2eee3 url("images/noise1.png") repeat 0 0;
-	font-family: Helvetica, Verdana, Helvetica, Arial;
+	font-family: 'Open sans', Helvetica, Verdana, Helvetica, Arial;
       }
       h1 {
         font-size: 14pt;
