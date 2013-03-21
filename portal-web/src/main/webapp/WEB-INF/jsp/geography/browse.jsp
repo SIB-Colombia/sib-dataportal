@@ -2,7 +2,7 @@
 <div id="twopartheader">	
 	<h2><spring:message code="geography.drilldown.list.resource.search"/>
 		<!-- tweet-button-->
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/paises/?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
 		js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 		</script>
@@ -24,13 +24,13 @@
 		  </a>
 	  </display:column>	  
 	  <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="countrycount">
-	  	<c:if test="${country.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.occurrenceCount}" pattern="###,###"/><c:if test="${country.occurrenceCount>0}"></a></c:if>
+	  	<c:if test="${country.occurrenceCount>0}"><a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.occurrenceCount}" pattern="###,###"/><c:if test="${country.occurrenceCount>0}"></a></c:if>
 	  </display:column>
 	  <display:column titleKey="dataset.list.occurrence.count.georeferenced" class="countrycount">
-	  	<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>
+	  	<c:if test="${country.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"></c:if><fmt:formatNumber value="${country.occurrenceCoordinateCount}" pattern="###,###"/><c:if test="${country.occurrenceCoordinateCount>0}"></a></c:if>
 	  </display:column>	 
 	  <display:column titleKey="dataset.speciesCount" class="countrycount">
-	  	<c:if test="${country.speciesCount>0}"><a href="${pageContext.request.contextPath}/occurrences/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.speciesCount}" pattern="###,###"/><c:if test="${country.speciesCount>0}"></a></c:if>
+	  	<c:if test="${country.speciesCount>0}"><a href="${pageContext.request.contextPath}/busqueda/searchSpecies.htm?<gbif:criterion subject="5" predicate="0" value="${country.isoCountryCode}" index="0"/>"></c:if><fmt:formatNumber value="${country.speciesCount}" pattern="###,###"/><c:if test="${country.speciesCount>0}"></a></c:if>
   	  </display:column>
 	  <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
 	  <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  

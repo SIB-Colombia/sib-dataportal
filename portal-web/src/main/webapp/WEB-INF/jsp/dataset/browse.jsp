@@ -34,7 +34,7 @@
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/>
 	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/datasets/?utm_source=datasets&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="Conjuntos de datos" >Twittear</a>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/conjuntos/?utm_source=datasets&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="Conjuntos de datos" >Twittear</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
 	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
@@ -62,17 +62,17 @@
 <fmt:setLocale value="en_US"/>
 <display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
-  	<a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}">${dataProvider.name}</a>
+  	<a href="${pageContext.request.contextPath}/conjuntos/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
   	<p class="resultsDetails">
-			<a href="${pageContext.request.contextPath}/countries/${dataProvider.isoCountryCode}"><spring:message code="country.${dataProvider.isoCountryCode}" text=""/></a>
+			<a href="${pageContext.request.contextPath}/paises/${dataProvider.isoCountryCode}"><spring:message code="country.${dataProvider.isoCountryCode}" text=""/></a>
 		</p>  				
 		</c:if>
   </display:column>	  
   <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="singlecount">
     <c:choose>
       <c:when test="${dataProvider.occurrenceCount>0}">
-      	<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>"><fmt:formatNumber value="${dataProvider.occurrenceCount}" pattern="###,###"/></a>
+      	<a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>"><fmt:formatNumber value="${dataProvider.occurrenceCount}" pattern="###,###"/></a>
       </c:when>
 	  <c:otherwise>
 	    <p class="notApplicable">
@@ -92,7 +92,7 @@
     <c:choose>
       <c:when test="${dataProvider.occurrenceCount>0}">
       	<c:choose>
-      	  <c:when test="${dataProvider.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataProvider.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
+      	  <c:when test="${dataProvider.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="25" predicate="0" value="${dataProvider.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataProvider.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
       	  <c:otherwise>0</c:otherwise>
       	</c:choose>
       </c:when>
@@ -116,13 +116,13 @@
 
 <display:table name="dataResources" export="false" class="statistics sortable" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
-  	<a href="${pageContext.request.contextPath}/datasets/resource/${dataResource.key}">${dataResource.name}</a>
-  	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/datasets/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>
+  	<a href="${pageContext.request.contextPath}/conjuntos/resource/${dataResource.key}">${dataResource.name}</a>
+  	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/conjuntos/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>
   </display:column>
   <display:column titleKey="dataset.list.occurrence.count.nongeoreferenced" class="bigcount">
     <c:choose>
       <c:when test="${dataResource.occurrenceCount>0}">
-  	    <a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>"><fmt:formatNumber value="${dataResource.occurrenceCount}" pattern="###,###"/></a>
+  	    <a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>"><fmt:formatNumber value="${dataResource.occurrenceCount}" pattern="###,###"/></a>
 		  </c:when>
 		  <c:otherwise>
 		    <p class="notApplicable">
@@ -142,7 +142,7 @@
     <c:choose>
       <c:when test="${dataResource.occurrenceCount>0}">
       	<c:choose>
-      	  <c:when test="${dataResource.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataResource.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
+      	  <c:when test="${dataResource.occurrenceCoordinateCount>0}"><a href="${pageContext.request.contextPath}/busqueda/search.htm?<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0"/>&<gbif:criterion subject="28" predicate="0" value="0" index="1"/>"><fmt:formatNumber value="${dataResource.occurrenceCoordinateCount}" pattern="###,###"/></a></c:when>
       	  <c:otherwise>0</c:otherwise>
       	</c:choose>
 		  </c:when>
