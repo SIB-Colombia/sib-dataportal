@@ -175,7 +175,7 @@ img.standalone {
 /* ---- Top Header ---- */
 #header {
 	margin: 0;
-	padding: 20px;
+	padding: 20px 25px;
 	background-image: url("images/flower_top.png"), url("images/shadow_top.png");
 	background-repeat:no-repeat, no-repeat;
 	background-position:center -40px, bottom center;
@@ -221,12 +221,11 @@ img.standalone {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	width:340px;
 }
 #quickSearch #query {
 	margin: 0px;
 	padding: 7px;
-	width: 320px;
+	width: 340px;
 	font-size: 1em;
 	-webkit-border-radius: 15px;
     border-radius: 15px;
@@ -384,13 +383,15 @@ table.actionsList {
 	vertical-align: top;
 	width: 100%;
 }
+table{font-size:100%;}
+
 table.actionsList td,
 table.actionsList th {
 	padding:12px 14px;
 	vertical-align: middle;
 }
 table.actionsList th {
-	font-size:1.2em;
+	font-size:1em;
 	font-weight:bold;
 }
 
@@ -640,7 +641,7 @@ div.subcontainer {
 	width: 700px;
 }
 #topmenu ul li {
-	display: inline;
+	display: inline-block;
 	list-style: none;
 	padding-left: 6px;
 	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
@@ -685,7 +686,7 @@ width:950px;
 .sponsor ul li, .sponsor div {
 list-style:none;
 float:left;
-display:block;
+display:inline-block;
 }
 .sponsor > div{
 	margin:0 10px 0 0 !important;
@@ -821,7 +822,7 @@ input[type=search],input[type=text], textarea, #statesinput{
      box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.4);
 	 padding:9px 17px;
 	 color:#555;
-	 font-size:1em;
+	 font-size:0.9em;
 }
 input[type=search]{
 	/*background:rgba(255,255,255,0.8) url("images/lupa.png") no-repeat 10px center !important;
@@ -905,7 +906,7 @@ div:empty {
 #content h4 {
 	margin: 20px 0 5px 0;
 	padding: 0;
-	font-size: 1.9em;
+	font-size: 1.7em;
 	color:#41372F;
 	text-transform:uppercase;
 	font-style:italic;
@@ -982,4 +983,7 @@ a[title="Mostrar todos los recursos"]{
 	width:980px;
 	display:block;
 	margin:10px auto;
+}
+h2 .twitter-share-button{
+	float:right;
 }

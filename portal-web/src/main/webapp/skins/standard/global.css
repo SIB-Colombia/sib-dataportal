@@ -142,7 +142,7 @@ body>#cocoon {
 /* ---- Top Header ---- */
 div#header {
 	position: relative;
-	padding:20px;
+	padding:20px 40px;
 	background-image: url("images/flower_top.png"), url("images/shadow_top.png");
 	background-repeat:no-repeat, no-repeat;
 	background-position: center -40px, bottom center;
@@ -227,7 +227,7 @@ div#header a{
 	background:rgba(255,255,255,0.8);
 	border:0px;
 	margin: 0px;
-	width: 320px;
+	width: 340px;
 	font-size: 1em;
 	-webkit-box-shadow: inset 3px 3px 2px 0px rgba(0, 0, 0, 0.2);
      box-shadow: inset 3px 3px 2px 0px rgba(0, 0, 0, 0.2);
@@ -416,7 +416,8 @@ width:950px;
 .sponsor ul li, .sponsor div {
 list-style:none;
 float:left;
-display:block;
+display:inline-block;
+width:auto;
 }
 .sponsor > div{
 	margin:0 10px 0 0 !important;
