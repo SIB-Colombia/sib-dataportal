@@ -50,7 +50,7 @@
 	<em><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="dataagreement.title"/></a></em>
 </c:set>
 
-<p style="margin:25px 10px;">
+<p style="margin:0px 10px 10px 0; width:70%; display:inline-block">
 <fmt:formatNumber var="geoTotal" type="number" value="${totalGeoreferencedOccurrenceRecords}" />
 <fmt:formatNumber var="speciesTotal" type="number" value="${totalSpecies}" />
 
@@ -66,7 +66,7 @@
 	<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
 	<p>${urlt}</p>
 	--> 
-	
+	<div style="display:inline-block; vertical-align:top; margin:0px;">
 	<!-- tweet-button-->
 	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
@@ -85,7 +85,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<div class="fb-like" data-href="http://data.sibcolombia.net/welcome.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
 	<!-- facebok-button-->
-    
+    </div>
 <small> <strong>Im&aacute;genes</strong> cortes&iacute;a del Banco de Im&aacute;genes Ambientales del Instituto Humboldt <a href="http://www.humboldt.org.co/upa/" target="_blank">http://www.humboldt.org.co/upa/</a> y 
 de la Biodiversity Heritage Library. <a href="http://www.biodiversitylibrary.org" target="_blank">http://www.biodiversitylibrary.org</a></small>
 </div><!-- End panes-->	

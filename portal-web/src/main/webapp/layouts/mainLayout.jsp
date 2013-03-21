@@ -31,8 +31,8 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- -->
-<c:if test="${param['noHeaders']!=1}"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML >
+<c:if test="${param['noHeaders']!=1}">
 <html>
 	<!-- GBIF Portal Version: <gbif:propertyLoader bundle="portal" property="version"/> -->	
 	<head>
