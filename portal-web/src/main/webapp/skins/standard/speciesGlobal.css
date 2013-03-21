@@ -393,6 +393,7 @@ table.actionsList th {
 table.actionsList th {
 	font-size:1em;
 	font-weight:bold;
+	text-align:right;
 }
 
 table.actionsList tr:last-child th:first-child,
