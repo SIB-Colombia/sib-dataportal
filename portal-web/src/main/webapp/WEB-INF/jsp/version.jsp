@@ -18,14 +18,12 @@ SIB Colombia releases</h4></div>
 	<li>More friendly terms acceptation confirmation</li>
 	<li>Improving count numbers calculation</li>
 </ul>
-<a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
+<a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4.1RC1&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
 
 <h4>Features added in version 1.4.1 RC0 (Published: February 06, 2013)</h4>
 <ul class="genericList">
 	<li>Second round of visual interface enhancement</li>
 </ul>
-<a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
-
 
 <h4>Features added in version 1.4 (Published: December 06, 2012)</h4>
 <ul class="genericList">
