@@ -686,11 +686,12 @@ width:950px;
 
 .sponsor ul li, .sponsor div {
 list-style:none;
-float:left;
 display:inline-block;
+width:auto;
+vertical-align:top;
 }
 .sponsor > div{
-	margin:0 10px 0 0 !important;
+	margin:0 5px 0 0 !important;
        /* border:#F1F1F1 solid 2px;*/
         padding:10px;
         border-radius:8px;
@@ -698,11 +699,15 @@ display:inline-block;
         height:70px !important;
 		background-color:white;
         background:none repeat scroll 0 0 rgba(255, 255, 255, 0.6);
+        display:inline-block;
+        vertical-align:top;
 }
 
 .sponsor ul{
 margin:0;
 padding:0;
+display:block;
+vertical-align:top;
 }
 .sponsor ul li a{
 	margin:0 3px;
@@ -711,7 +716,6 @@ padding:0;
 }
 
 .sponsor p{
-	float:left;
 	line-height:1em;
 	font-size:0.7em;
 	font-weight:bold;
@@ -719,6 +723,8 @@ padding:0;
 	width:100%;
 	padding:8px 0;
 	margin:0px ;
+	display:block;
+	width:auto;
 }
 .content_footer{
 height:100px;
