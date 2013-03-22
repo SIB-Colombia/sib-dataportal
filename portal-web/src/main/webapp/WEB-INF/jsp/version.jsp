@@ -7,7 +7,20 @@
 <div><h4><img src="${pageContext.request.contextPath}/skins/standard/images/sib_logo_bola.png">
 SIB Colombia releases</h4></div>
 
-<h4>Features added in version 1.4.1 (Published: February 06, 2013)</h4>
+
+<h4>Features added in version 1.4.1 RC1 (Published: March 22, 2013)</h4>
+<ul class="genericList">
+	<li>More visual interface enhancements</li>
+	<li>Social networks buttons</li>
+	<li>More visual interface enhancements</li>
+	<li>Publishers and datasets information synchronised with GBIF Registry (GBRDS)</li>
+	<li>URL paths in Spanish</li>
+	<li>More friendly terms acceptation confirmation</li>
+	<li>Improving count numbers calculation</li>
+</ul>
+<a href="https://code.google.com/p/sib-dataportal/issues/list?can=1&q=label%3AMilestone-Release1.4&colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&cells=tiles">Click here</a> for a complete list of fixes/enhancements in this version
+
+<h4>Features added in version 1.4.1 RC0 (Published: February 06, 2013)</h4>
 <ul class="genericList">
 	<li>Second round of visual interface enhancement</li>
 </ul>
