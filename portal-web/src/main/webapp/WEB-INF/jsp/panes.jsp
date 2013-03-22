@@ -89,7 +89,7 @@
 <small> <spring:message code="portal.frontpage.images.credits"/></small>
 </div><!-- End panes-->	
 
-<!--  
+
 <script type="text/javascript">
   var uvOptions = {};
   (function() {
@@ -98,4 +98,4 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script>
--->
+
