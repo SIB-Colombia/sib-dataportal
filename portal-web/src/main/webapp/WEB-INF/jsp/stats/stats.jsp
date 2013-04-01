@@ -186,7 +186,14 @@ $(function () {
     	for(i=0;i<publishers.length;i++){
     		table.addColumn('number', publishers[i], publishers[i]);
     	}
-    	table.addRows(aNumO);
+    	lnt=aNumO.length;
+    	var arow= new Array();
+    	for(j=0;j<3;j++){
+    		arow.push(aNumO[(lnt)-(3-j)]);
+    	}
+    	table.addRows(arow);
+    	
+    	//table.addRows(aNumO);
         var options = {
                 //title : 'Registros publicados por cada publicador',
                 vAxis: {title: "Registros", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#'},
