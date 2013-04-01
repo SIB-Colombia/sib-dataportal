@@ -349,13 +349,13 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
   public List<String> getOcurrencesPerMonth(){
 	  List<Object[]> dataOcurrences = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
               public Object doInHibernate(Session session) {
-            	  Query query1= session.createSQLQuery("select concat(year(ror.created),'/',month(ror.created)), dt.name, count(distinct ror.id) from raw_occurrence_record ror, data_provider dt where ror.data_provider_id = dt.id and ror.created >= now()-interval 3 month group by month(ror.created),ror.data_provider_id order by ror.created asc;");
-            	  /*
+            	  //Query query1= session.createSQLQuery("select concat(year(ror.created),'/',month(ror.created)), dt.name, count(distinct ror.id) from raw_occurrence_record ror, data_provider dt where ror.data_provider_id = dt.id and ror.created >= now()-interval 3 month group by month(ror.created),ror.data_provider_id order by ror.created asc;");
+            	  
                   Query query = session.createQuery("select concat(year(ror.created),'/',month(ror.created)), dt.name, count(distinct ror.id) from RawOccurrenceRecord ror, DataProvider dt" +
                           " where ror.dataProviderId = dt.id" +
                           " group by month(ror.created),ror.dataProviderId order by ror.created asc");
-                          */
-                  return query1.list();
+                         
+                  return query.list();
               }
           });
 
