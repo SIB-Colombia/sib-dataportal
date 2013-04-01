@@ -5,7 +5,7 @@
 <meta property="og:description" content="El portal de datos del SiB Colombia es un servicio que permite acceder ágilmente a registros biológicos que han sido publicados por nuestra red de socios" />
 <meta property="og:url" content="http://data.sibcolombia.net/" />
 <meta property="og:image" content="http://data.sibcolombia.net/skins/standard/images/logo.png" />
-<meta property="og:site_name" content="SibColombia" />
+<meta property="og:site_name" content="Sib Colombia" />
 <meta property="og:locale" content="es_ES" />
 <META NAME="Keywords" CONTENT="portal de datos, sib colombia, informática de biodiversidad, búsqueda de especies, gbif colombia, conjunto de datos, dataset, especies de colombia, especies por departamento, 
 Sistema de información sobre biodiversidad de Colombia, biodiversidad, biodiversidad en colombia, especies amenazadas, especies amenazadas en colombia, catálogo de especies, biologia, conservacion, especies, nombre cientifico, biota, biota colombiana, especies en via de extincion, fauna colombiana, flora colombiana ">

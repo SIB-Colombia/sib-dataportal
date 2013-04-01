@@ -80,7 +80,7 @@
   	var js, fjs = d.getElementsByTagName(s)[0];
   	if (d.getElementById(id)) return;
   	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
   	fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<div class="fb-like" data-href="http://data.sibcolombia.net/inicio.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
