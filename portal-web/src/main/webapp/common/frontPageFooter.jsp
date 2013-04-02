@@ -19,7 +19,7 @@
         <li><a title="INVEMAR" target="_blank" href="http://www.invemar.org.co"><img  alt="INVEMAR" src="${pageContext.request.contextPath}/images/logos_cut/invemar.png"></a></li>
         <li><a title="IIAP" target="_blank" href="http://www.iiap.org.co"><img  alt="IIAP" src="${pageContext.request.contextPath}/images/logos_cut/iiap.png"></a></li>
         <li><a title="ICN" target="_blank" href="http://www.icn.unal.edu.co"><img  alt="ICN" src="${pageContext.request.contextPath}/images/logos_cut/unal.png"></a></li>
-        <li><a title="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" target="_blank" href="http://www.minambiente.gov.co"><img  alt="Ministerio de Ambiente, Vivienda y Desarrollo Territorial" src="${pageContext.request.contextPath}/images/logos_cut/mads.png"></a></li>
+        <li><a title="Ministerio de Ambiente y Desarrollo Sostenible" target="_blank" href="http://www.minambiente.gov.co"><img  alt="Ministerio de Ambiente y Desarrollo Sostenible" src="${pageContext.request.contextPath}/images/logos_cut/logo_mads_s.png"></a></li>
       </ul>
       <p>Comit&eacute; Directivo y T&eacute;cnico</p>
     </div>

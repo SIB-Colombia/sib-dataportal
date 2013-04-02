@@ -410,7 +410,7 @@ margin:0 auto;
 padding:5px 0 0;
 text-align:center;
 clear:both;
-width:950px;
+width:1020px;
 }
 
 .sponsor ul li, .sponsor div {
@@ -420,7 +420,7 @@ width:auto;
 vertical-align:top;
 }
 .sponsor > div{
-	margin:0 5px 0 0 !important;
+	margin:0 3px 0 0 !important;
        /* border:#F1F1F1 solid 2px;*/
         padding:10px;
         border-radius:8px;
