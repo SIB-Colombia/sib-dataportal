@@ -219,7 +219,7 @@ $(function () {
 	google.setOnLoadCallback(drawVisualization);
 </script>
 
-<!-- Tree map de google 
+Tree map de google 
 <script type="text/javascript">
 	var rowst=[];
 	rowst.push(['Publicadores',null,0,0]);
@@ -262,7 +262,6 @@ $(function () {
 		tree.draw(tableTree, options);    
 	}
 </script>
--->
 
 <div class="subcontainer stats">
 <div>
@@ -279,9 +278,11 @@ $(function () {
 	<div id="chart_stat"></div>
 </div>
 
-<!--<div>
+<div>
 	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
 </div>
+
+<!--
 <div><h4>Número de registros por publicador en los últimos meses</h4>
 	<div id="pchart"></div>
 </div> -->
