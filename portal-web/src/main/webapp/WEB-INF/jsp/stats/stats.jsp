@@ -219,7 +219,7 @@ $(function () {
 	google.setOnLoadCallback(drawVisualization);
 </script>
 
-Tree map de google 
+
 <script type="text/javascript">
 	var rowst=[];
 	rowst.push(['Publicadores',null,0,0]);
