@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" %><%@ include file="/common/taglibs.jsp"%>
 <META NAME="country" CONTENT="Colombia">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta property="og:title" content="Portal de Datos del Sistema de Información sobre Biodiversidad en Colombia" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="El portal de datos del SiB Colombia es un servicio que permite acceder ágilmente a registros biológicos que han sido publicados por nuestra red de socios" />
