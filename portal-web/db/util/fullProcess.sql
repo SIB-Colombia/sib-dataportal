@@ -451,8 +451,8 @@ group by 1,2,3,4;
 select concat('Building centi cells for all things: ', now()) as debug;
 insert ignore into centi_cell_density
 select 0, 0,cell_id,centi_cell_id,count(id)
-from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0 and ore.deleted is null
+from occurrence_record ore
+where ore.centi_cell_id is not null and ore.geospatial_issue=0 and ore.deleted is null
 group by 1,2,3,4;
 
 -- clear the cell densities
