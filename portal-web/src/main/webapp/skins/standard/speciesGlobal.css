@@ -972,18 +972,21 @@ a[title="Mostrar todos los recursos"]{
 	display:inline-block;
 	color:white !important;
 }
-.stats p{
+.stats p,
+.chart_stat p{
 	 float:right;width:190px; margin-left:20px; vertical-align:top; color:#6B6B6B;
 }
 .subcontainer h4{
 	margin:0 0 15px 0 !important;
 }
-.stats div{
+.stats div,
+.chart_stat div{
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box; 
 	display:inline-block; 
 	overflow:hidden;
+	float:left;
 	-webkit-border-radius: 20px; border-radius: 20px;
 }
 .stats > div{

@@ -221,11 +221,11 @@ $(function () {
 
 
 <script type="text/javascript">
+   
 	var rowst=[];
 	rowst.push(['Publicadores',null,0,0]);
 	<c:forEach items="${dataTree}" var="dataTree">
 		var datat ='${dataTree}'.split("|");
-		//alert(datat.length);
 		rowst.push([datat[0],datat[1],parseInt(datat[2]),parseInt(datat[3])]);
 	</c:forEach>
 	
@@ -241,16 +241,19 @@ $(function () {
 		
 		var options = {
                 //title : 'Registros publicados por cada publicador',
-                minColor: '#A9E2F3',
-                midColor: '#ddd',
-                maxColor: '#01A9DB',
-                maxColorValue: '200000',
-                minColorValue: '500',
-                headerHeight: 20,
-                fontColor: 'black',
+                minColor: '#ffdd69',
+                midColor: '#f0801e',
+                maxColor: '#ec642d',
+                maxColorValue: '80000',
+                minColorValue: '50',
+                headerHeight: 30,
+                fontColor: '#555555',
                 fontName: 'Open Sans',
+                fontSize: 13,
                 showScale: true,
-                showTooltips: true
+                showTooltips: true,
+                headerColor: '#ffffff',
+                maxHighlightColor:'#b3dff3'
                 
           };
 		
@@ -279,7 +282,11 @@ $(function () {
 </div>
 
 <div>
+	<h4>Conjuntos de datos por publicador</h4>
 	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
+	<p><img src="${pageContext.request.contextPath}/images/treemap_guide.png" /></p>
+	<p><strong>Haz click sobre un publicador para ver los conjuntos de datos que ha publicado</strong></p>
+	<p>El color más oscuro indica mayor cantidad de registros georeferenciados, y el tamaño del cuadro muestra la proporción de registros comparados con los demas publicadores, o publicaciones </p>
 </div>
 
 <!--
