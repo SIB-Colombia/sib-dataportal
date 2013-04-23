@@ -1,18 +1,45 @@
 #Ignore files build by Eclipse
 *.pydevproject
 .project
+portal-web/.project
+portal-service/.project
+portal-index/.project
 .metadata
+portal-web/.metadata
+portal-service/.metadata
+portal-index/.metadata
 bin/**
+portal-web/bin/**
+portal-service/bin/**
+portal-index/bin/**
 tmp/**
+portal-web/tmp/**
+portal-service/tmp/**
+portal-index/tmp/**
 tmp/**/*
+portal-web/tmp/**/*
+portal-service/tmp/**/*
+portal-index/tmp/**/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
+portal-web/local.properties
+portal-service/local.properties
+portal-index/local.properties
 .classpath
+portal-web/.classpath
+portal-service/.classpath
+portal-index/tmp/.classpath
 .settings/
+portal-web/.settings/
+portal-service/.settings/
+portal-index/.settings/
 .loadpath
+portal-web/.loadpath
+portal-service/.loadpath
+portal-index/.loadpath
 
 # External tool builders
 .externalToolBuilders/
