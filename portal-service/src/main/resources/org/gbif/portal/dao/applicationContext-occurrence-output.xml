@@ -260,6 +260,11 @@
 								<property name="propertyName" value="stateOrProvince"/>
 							</bean>
 						</entry>
+						<entry key="rawCounty">
+							<bean parent="rawOccurrenceRecordProperty">
+								<property name="propertyName" value="county"/>
+							</bean>
+						</entry>
 						<entry key="rawLocality">
 							<bean parent="rawOccurrenceRecordProperty">
 								<property name="propertyName" value="locality"/>
