@@ -429,4 +429,12 @@ public interface DataResourceManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public int getTotalOcurrenceCoordinateCount() throws ServiceException;
+  
+  /**
+   * Returns the number of data resources in the data portal for a publisher.
+   * 
+   * @return number of data resources in the data portal for a publisher.
+   * 
+   */
+  public int getTotalDataResourceCountPerProvider(String dataProviderKey) throws ServiceException;
 }

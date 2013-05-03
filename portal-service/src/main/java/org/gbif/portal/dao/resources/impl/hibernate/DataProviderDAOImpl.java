@@ -38,6 +38,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  * @author Dave Martin
  */
 public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProviderDAO {
+	
 
   /**
    * @see org.gbif.portal.dao.resources.DataProviderDAO#findDataProviders(java.lang.String, boolean, int, int)
@@ -367,6 +368,23 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
     	}
 
       return dataO;
+  }
+  
+  
+  public int getTotalDataResourceCountPerProvider(final String dataProviderKey){
+	  HibernateTemplate template = getHibernateTemplate();
+	    Object result = template.execute(new HibernateCallback() {
+	        public Object doInHibernate(Session session) {
+	          Query query = session.createQuery("select count(dr.id) from DataResource dr where dr.dataProviderId=:dataProviderKey");
+	          query.setParameter("dataProviderKey", Long.parseLong(dataProviderKey));
+	          return query.uniqueResult();
+	        }
+	      });
+	    if (result instanceof Integer)
+	        return ((Integer) result).intValue();
+	      if (result instanceof Long)
+	        return ((Long) result).intValue();
+	      return 0;
   }
 }
 

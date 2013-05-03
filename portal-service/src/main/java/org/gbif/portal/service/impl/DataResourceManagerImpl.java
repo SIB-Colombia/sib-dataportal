@@ -252,7 +252,7 @@ public class DataResourceManagerImpl implements DataResourceManager {
 	public int getTotalDataProviderCount() throws ServiceException {
 		return dataProviderDAO.getTotalDataProviderCount();
 	}
-
+	
 	/**
 	 * @see org.gbif.portal.service.DataResourceManager#getTotalDataResourceCount()
 	 */
@@ -723,6 +723,13 @@ public class DataResourceManagerImpl implements DataResourceManager {
   public List<String> getOcurrencePerMonth(){
 	  return dataProviderDAO.getOcurrencesPerMonth();
   }
+  
+  /**
+	 * @see org.gbif.portal.service.DataResourceManager#getTotalDataResourceCountPerProvider()
+	 */
+	public int getTotalDataResourceCountPerProvider(String dataProviderKey){
+		return dataProviderDAO.getTotalDataResourceCountPerProvider(dataProviderKey);
+	}
 
 	
 }

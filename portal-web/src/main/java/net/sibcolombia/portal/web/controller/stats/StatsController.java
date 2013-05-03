@@ -45,7 +45,8 @@ public class StatsController implements Controller {
   /** Provides the data resource/provider */
   protected DataResourceManager dataResourceManager;
   
-  
+  /** Number of resources per provider*/
+  protected String dataProvidersRes = "providersRes";
   protected String datasetMatchesModelKey = "datasetMatches";
   /** Model Key for the data resource matches */
   protected String dataResourceModelKey = "dataResources";
@@ -130,17 +131,21 @@ public class StatsController implements Controller {
     List<String> dataDate = dataResourceManager.getOcurrencePerMonth();
     
     List<String> resl =new ArrayList<String>();
+    List<String> publRes =new ArrayList<String>();
     List<DataResourceDTO> resourcesTemp = new ArrayList<DataResourceDTO>();
     String resultp="";
     String resultr="";
+    String resultNum="";
     for(DataProviderDTO provider: providers){
     	resultp="";
-    	provider.getKey();
-    	provider.getName();
+    	resultNum="";
     	//resultp=provider.getName()+"|Publicadores|"+provider.getOccurrenceCount()+"|"+provider.getOccurrenceCoordinateCount();
     	resultp=provider.getName()+"|Publicadores|"+provider.getOccurrenceCoordinateCount()+"|"+provider.getOccurrenceCount();
     	resl.add(resultp);
     	try {
+    		int num =dataResourceManager.getTotalDataResourceCountPerProvider(provider.getKey());
+    		resultNum=provider.getName()+"|"+dataResourceManager.getTotalDataResourceCountPerProvider(provider.getKey());
+    		publRes.add(resultNum);
     		resourcesTemp=dataResourceManager.getDataResourcesForProvider(provider.getKey());
     		resultr="";
     		for(DataResourceDTO resource: resourcesTemp){
@@ -149,7 +154,7 @@ public class StatsController implements Controller {
     			resl.add(resultr);
     		}
 			
-		} catch (ServiceException err) {
+		} catch (Exception err) {
 			logger.error("Error filling data for resources: "+err.getMessage());
 		}
     }
@@ -161,6 +166,7 @@ public class StatsController implements Controller {
     mav.addObject(dataResourceModelKey, resources);
     mav.addObject(dataModelKey, dataDate);
     mav.addObject(dataTreeModelkey, resl);
+    mav.addObject(dataProvidersRes, publRes);
     
     return mav;
   }

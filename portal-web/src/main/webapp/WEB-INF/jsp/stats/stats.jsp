@@ -38,15 +38,16 @@
     };
 </script>
 
+  
 <script type='text/javascript'>
-
 $(function () {
 	var rowst=[];
-	<c:forEach items="${dataProviders}" var="dataProviders">
- 		//rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCount}"/>"), parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>")]);
- 		rowst.push(["<c:out value="${dataProviders.name}"/>", parseInt("<c:out value="${dataProviders.occurrenceCount}"/>")]);
- 	</c:forEach>
-    var chart;
+	<c:forEach items="${providersRes}" var="providersRes">
+		var dataPR="${providersRes}".split("|");
+		//alert(dataPR[0]+" "+dataPR[1]);
+		rowst.push([dataPR[0], parseInt(dataPR[1])]);
+	</c:forEach>
+	var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
@@ -68,8 +69,10 @@ $(function () {
                 enabled: false
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-            	percentageDecimals: 1
+            	formatter: function() {
+                    return '<b>'+ this.point.name +
+                        '</b> : <b>'+ this.y +'</b>';
+                }
             },
 			legend:{
 				borderWidth:0,
@@ -117,9 +120,10 @@ $(function () {
             }]
         });
     });
-    
 });
 </script>
+
+
 
 <script type='text/javascript'>
 	
@@ -289,10 +293,10 @@ $(function () {
 	<p>El color más oscuro indica mayor cantidad de registros georeferenciados, y el tamaño del cuadro muestra la proporción de registros comparados con los demas publicadores, o publicaciones </p>
 </div>
 
-<!--
-<div><h4>Número de registros por publicador en los últimos meses</h4>
+
+<div><h4>Número de Conjuntos de datos por publicador</h4>
 	<div id="pchart"></div>
-</div> -->
+</div> 
 
 </div>
 
