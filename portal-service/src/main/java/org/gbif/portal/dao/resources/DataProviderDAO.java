@@ -135,6 +135,12 @@ public interface DataProviderDAO {
 	public List<String>getOcurrencesPerMonth();
 	
 	/**
+	 * Retrieve the total number of data resources for a publisher.
+	 * @return a total
+	 */
+	public int getTotalDataResourceCountPerProvider(String dataProviderKey);
+	
+	/**
 	 * Retrieve the total number of ocurrences.
 	 * @return a total
 	 */
