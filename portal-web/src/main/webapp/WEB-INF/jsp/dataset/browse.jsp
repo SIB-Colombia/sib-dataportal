@@ -20,13 +20,13 @@
 		if(lent%2==1){
 			$("#dataProvider").find('tbody')
 	    	.append($('<tr class="even">')
-	     	   .append($('<td>Total</td><td>'+numb+'</td><td>'+numbc+'</td>')
+	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
 	     	   )
 	    	);
 		}else{
 			$("#dataProvider").find('tbody')
 	    	.append($('<tr class="odd">')
-	     	   .append($('<td>Total</td><td>'+numb+'</td><td>'+numbc+'</td>')
+	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
 	     	   )
 	    	);
 		}
