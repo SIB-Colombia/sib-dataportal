@@ -18,13 +18,13 @@
 				numbc="${totalOcurrenceCoordinateCount}";
 			}
 		if(lent%2==1){
-			$("#dataProvider").find('tbody')
+			$("#dataProvider").find('tfoot')
 	    	.append($('<tr class="even">')
 	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
 	     	   )
 	    	);
 		}else{
-			$("#dataProvider").find('tbody')
+			$("#dataProvider").find('tfoot')
 	    	.append($('<tr class="odd">')
 	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
 	     	   )
@@ -112,6 +112,7 @@
 	  </c:otherwise>
 	</c:choose>
 	</display:column>  
+	<display:footer> </display:footer>
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>

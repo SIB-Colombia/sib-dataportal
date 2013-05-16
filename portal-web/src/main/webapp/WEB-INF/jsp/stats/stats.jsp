@@ -285,6 +285,10 @@ $(function () {
 	<div id="chart_stat"></div>
 </div>
 
+<div><h4>Número de Conjuntos de datos por publicador</h4>
+	<div id="pchart"></div>
+</div> 
+
 <div>
 	<h4>Conjuntos de datos por publicador</h4>
 	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
@@ -293,10 +297,6 @@ $(function () {
 	<p>El color más oscuro indica mayor cantidad de registros georeferenciados, y el tamaño del cuadro muestra la proporción de registros comparados con los demas publicadores, o publicaciones </p>
 </div>
 
-
-<div><h4>Número de Conjuntos de datos por publicador</h4>
-	<div id="pchart"></div>
-</div> 
 
 </div>
 
