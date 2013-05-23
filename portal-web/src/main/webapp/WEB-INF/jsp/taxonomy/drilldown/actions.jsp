@@ -22,10 +22,12 @@
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/search.htm?<gbif:criteria criteria="${occurrenceCriteria}"/>"><spring:message code="explore.occurrences"/> <span id="searchResultCount"></span></a>
 						</li>	
-						</gbif:isMajorRank>				
+						</gbif:isMajorRank>	
+						<!--			
 						<li>
 							<a href="${pageContext.request.contextPath}/species/browse/taxon/${taxonConcept.key}"><spring:message code="taxonconcept.drilldown.explore.names"/></a>
 						</li>
+						-->
 					</ul>
 				</td>
 			</tr>
