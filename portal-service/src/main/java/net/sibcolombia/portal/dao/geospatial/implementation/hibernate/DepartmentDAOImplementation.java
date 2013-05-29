@@ -176,7 +176,7 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
       public Object doInHibernate(Session session) {
         Query query =
           session
-            .createQuery("SELECT d.departmentId AS departmentId, d.departmentName AS departmentName, d.isoDepartmentCode AS isoDepartmentCode, d.occurrenceCount AS occurrenceCount, d.occurrenceCoordinateCount AS occurrenceCoordinateCount, d.speciesCount AS speciesCount FROM Department d WHERE d.departmentName LIKE :name ORDER BY departmentName ASC");
+            .createQuery("SELECT d.departmentId AS departmentId, d.departmentName AS departmentName, d.isoDepartmentCode AS isoDepartmentCode, d.occurrenceCount AS occurrenceCount, d.occurrenceCoordinateCount AS occurrenceCoordinateCount, d.speciesCount AS speciesCount, d.departmentLat AS departmentLat, d.departmentLng AS departmentLng FROM Department d WHERE d.departmentName LIKE :name ORDER BY departmentName ASC");
         String searchString;
         if (theChar != null) {
           searchString = theChar + "%";
