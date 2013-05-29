@@ -23,7 +23,7 @@ $(document).ready(function() {
 		
 		if(readCookie('GbifTermsAndConditions')===null){
 			
-			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
+			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/inicio.htm'});
 			
 		}
 	}else{
