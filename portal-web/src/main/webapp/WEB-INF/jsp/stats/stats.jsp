@@ -9,14 +9,17 @@
      var rows=[];
      var isoCodeDep=[];
  	<c:forEach items="${departments}" var="department">
+ 		
  		//rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCount}"/>"), parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>")]);
- 		rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>"), parseInt("<c:out value="${department.occurrenceCount}"/>")]);
+ 		rows.push([parseFloat("<c:out value="${department.departmentLat}"/>"),parseFloat("<c:out value="${department.departmentLng}"/>"),"<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>"), parseInt("<c:out value="${department.occurrenceCount}"/>")]);
  		isoCodeDep["${department.departmentName}"]="${department.isoDepartmentCode}";
  	</c:forEach>
  	google.load('visualization', '1', {'packages': ['geochart']});
     google.setOnLoadCallback(drawMarkersMap);
       function drawMarkersMap() {
     	var table = new google.visualization.DataTable();  
+    	table.addColumn('number', 'Lat');
+    	table.addColumn('number', 'Long');
     	table.addColumn('string', 'DEPARTAMENTO', 'Departamento');
     	table.addColumn('number', 'Registros biológicos georreferenciados', 'Registros biológicos georreferenciados');
 		table.addColumn('number', 'Registros biológicos', 'Registros biológicos');

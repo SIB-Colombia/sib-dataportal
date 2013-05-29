@@ -23,6 +23,8 @@ public class DepartmentDTOFactory extends BaseDTOFactory {
     department.setOccurrenceCount((Integer) departmentModel[3]);
     department.setOccurrenceCoordinateCount((Integer) departmentModel[4]);
     department.setSpeciesCount((Integer) departmentModel[5]);
+    department.setDepartmentLat((String)departmentModel[6]);
+    department.setDepartmentLng((String)departmentModel[7]);
 
     String[] ignores = new String[] {"key"};
     DepartmentDTO departmentDTO = new DepartmentDTO();

@@ -101,11 +101,13 @@ public class StatsController implements Controller {
     HttpServletResponse response) {
     List<DepartmentDTO> departments = departmentManager.getDepartmentsFor(null);
 	
+    
     SearchResultsDTO resourceResultsDTO = null;
 	resourceResultsDTO = dataResourceManager.findDatasets("", true, false, false, new SearchConstraints(0, null));
 	List<Object> resourceMatches = resourceResultsDTO.getResults();
 	
 	List<DataProviderDTO> providers = new ArrayList<DataProviderDTO>();
+	
 	
 	List<DataResourceDTO> resources = new ArrayList<DataResourceDTO>();
     List<ResourceNetworkDTO> resourceNetworks = new ArrayList<ResourceNetworkDTO>();

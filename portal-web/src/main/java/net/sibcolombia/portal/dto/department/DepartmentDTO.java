@@ -53,9 +53,14 @@ public class DepartmentDTO {
 
   /** The maximum longitude for this department */
   protected Float maxLongitude;
+  
+  /** The approximate latitude of department */
+  protected String departmentLat;
 
+  /** The approximate longitude of department */
+  protected String departmentLng;
 
-  /**
+   /**
    * @return the departmentName
    */
   public String getDepartmentName() {
@@ -216,7 +221,36 @@ public class DepartmentDTO {
   public void setSpeciesCount(Integer speciesCount) {
     this.speciesCount = speciesCount;
   }
-
+  
+  	
+  	/**
+  	 * @return the departmentLat
+  	 */
+	public String getDepartmentLat() {
+		return departmentLat;
+	}
+	
+	/**
+	* @param departmentLat the departmentLat to set
+	*/
+	public void setDepartmentLat(String departmentLat) {
+		this.departmentLat = departmentLat;
+	}
+	
+	/**
+  	 * @return the departmentLng
+  	 */
+	public String getDepartmentLng() {
+		return departmentLng;
+	}
+	
+	/**
+	* @param departmentLng the departmentLng to set
+	*/
+	public void setDepartmentLng(String departmentLng) {
+		this.departmentLng = departmentLng;
+	}
+  
   /**
    * @see java.lang.Object#toString()
    */
@@ -224,5 +258,7 @@ public class DepartmentDTO {
   public String toString() {
     return ToStringBuilder.reflectionToString(this);
   }
+
+  
 
 }
