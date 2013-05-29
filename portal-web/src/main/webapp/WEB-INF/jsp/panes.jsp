@@ -75,15 +75,7 @@
 	<!-- tweet-button-->
 	
 	<!-- facebok-button-->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-  	var js, fjs = d.getElementsByTagName(s)[0];
-  	if (d.getElementById(id)) return;
-  	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-  	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<div class="fb-like" data-href="http://data.sibcolombia.net/inicio.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+	<iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:140px; height:40px;" src="//www.facebook.com/plugins/follow.php?href=https%3A%2F%2Fwww.facebook.com%2FSibColombia&amp;layout=standard&amp;show_faces=false&amp;colorscheme=light&amp;locale=es_ES&amp;font=segoe+ui&amp;width=140&amp;height=35&amp;appId=191630764244997"></iframe>
 	<!-- facebok-button-->
     </div>
 <small> <spring:message code="portal.frontpage.images.credits"/></small>
