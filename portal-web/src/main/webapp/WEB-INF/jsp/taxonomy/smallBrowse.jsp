@@ -45,6 +45,7 @@
 							</tr>
 						</gbif:isMajorRank>
 					</c:if>
+					<!--
 					<tr valign="top">
 						<th><spring:message code="actions.explore"/></th>
 						<td>
@@ -62,6 +63,7 @@
 							</ul>
 						</td>
 					</tr>
+					-->
 					<tr>
 						<th><spring:message code="actions.send"/></th>
 						<td>
