@@ -173,26 +173,24 @@ img.standalone {
 	margin:0 auto;
 }
 /* ---- Top Header ---- */
-header nav {
-	display:inline-block;
-	vertical-align:top;
+#header {
+	margin: 0;
+	padding: 20px 25px;
+	background-image: url("images/flower_top.png"), url("images/shadow_top.png");
+	background-repeat:no-repeat, no-repeat;
+	background-position:center -40px, bottom center;
 }
-header.sib { background:#2b7fbc; height:53px; color:white; padding:12px; text-transform:uppercase; }
-header.sib a{ color:white; padding:0px; display:inline-block; vertical-align:top; 
-margin:0 10px;}
-header.sib .logo{
-	-webkit-border-radius: 0px 0px 15px 15px;
-        border-radius: 0px 0px 15px 15px;
-		background-color:#fffef3;
-		padding:13px;
-		display:inline-block;
-		}
-.share_icons { display:inline-block; }
-.share_icons a{ padding:5px; display: inline-block;}
-.share_icons span{
-	width:0px;
-	border:gray 1px solid;
-	margin:10px 0;
+#header h1 {
+	margin: 0;
+	padding: 0;
+	width: 863px;
+	height: 85px;
+}
+#header h1 a {
+	display: none
+}
+#header li a:hover {
+	color: #FF6633;
 }
 /* ---- END Top Header ---- */
 
@@ -988,6 +986,7 @@ a[title="Mostrar todos los recursos"]{
 	box-sizing: border-box; 
 	display:inline-block; 
 	overflow:hidden;
+	float:left;
 	-webkit-border-radius: 20px; border-radius: 20px;
 }
 .stats > div{
