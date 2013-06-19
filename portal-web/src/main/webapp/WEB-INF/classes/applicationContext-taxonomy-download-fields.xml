@@ -34,10 +34,8 @@
 	</util:list>
   <!-- mandatory download fields -->
 	<util:list id="mandatoryTaxonomyDownloadFields">	
-		<!--  
 		<ref bean="dataProviderName"/>
 		<ref bean="dataResourceName"/>
-		-->
 		<ref bean="canonical"/>		
 		<ref bean="rank"/>
 		<ref bean="author"/>		

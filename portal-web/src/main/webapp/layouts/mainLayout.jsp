@@ -23,7 +23,7 @@ $(document).ready(function() {
 		
 		if(readCookie('GbifTermsAndConditions')===null){
 			
-			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/inicio.htm'});
+			$().jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer :'${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
 			
 		}
 	}else{
@@ -67,10 +67,15 @@ $(document).ready(function() {
 	  		<li><a href="#sidebar" accesskey="S"><spring:message code="accessibility.skip.to.sidebar" text="Skip to Sidebar"/></a></li>
 			</ul> 
 	    </div>
+        <header class="sib">
+        <tiles:insert name="header"/>
+        <nav>
+		<tiles:insert name="topmenu"/>
+        </nav>
+        </header>
 		<div id="cocoon">
 			<div id="container">
-				<tiles:insert name="header"/>
-				<tiles:insert name="topmenu"/>
+				
 				<div id="content">
 				
 </c:if>       				

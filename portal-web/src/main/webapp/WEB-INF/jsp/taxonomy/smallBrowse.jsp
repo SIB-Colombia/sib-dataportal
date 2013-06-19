@@ -45,7 +45,6 @@
 							</tr>
 						</gbif:isMajorRank>
 					</c:if>
-					<!--
 					<tr valign="top">
 						<th><spring:message code="actions.explore"/></th>
 						<td>
@@ -63,13 +62,12 @@
 							</ul>
 						</td>
 					</tr>
-					-->
 					<tr>
 						<th><spring:message code="actions.send"/></th>
 						<td>
 							<ul class="actionsListInline">
 								<li>
-									<a class="feedback" href='javascript:feedback("${pageContext.request.contextPath}/feedback/taxon/${taxonConcept.key}")'><spring:message code="feedback.to.provider.on.classification.link"  /> <gbif:taxonPrint concept="${taxonConcept}"/></a>
+									<a class="feedback" href='javascript:feedback("${pageContext.request.contextPath}/feedback/taxon/${taxonConcept.key}")'><spring:message code="feedback.to.provider.on.classification.link"  arguments="${dataProvider.name}" argumentSeparator="|"/> <gbif:taxonPrint concept="${taxonConcept}"/></a>
 								</li>
 							</ul>
 						</td>
