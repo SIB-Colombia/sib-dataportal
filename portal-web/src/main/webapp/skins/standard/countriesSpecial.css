@@ -1,11 +1,11 @@
 #twopartheader {
 	min-height: 80px;
-	background:rgba(250,249,243, 1) url('images/ico_departamentos.png') no-repeat 20px 20px ;
+	background:rgba(250,249,243, 1) url('images/explorador_ico.png') no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	position:relative;
 	margin: 0px 0 20px 0;
-	padding:20px 20px 20px 110px;
+	padding:20px 20px 20px 60px;
 }
 /* Added by Dave */
 
@@ -22,7 +22,7 @@
 	margin: 0;
 	font-weight: 400;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	color:black;
+	color:#666;
 line-height:1.3em;
 	font-size:1em;
 }

@@ -18,7 +18,7 @@ table.results th { background-color:#F8CEBC; }
 
 
 /* Added by CIP to tree.css - moved to this new home */
-#twopartheader { margin: 15px 0 0 0; padding: 0 0 0 78px; min-height:35px; background: url('images/ico_especies.png') no-repeat 2px 2px ;  }
+#twopartheader { margin: 15px 0 0 0; padding: 0 0 0 60px; min-height:35px; background: url('images/esp_ico.png') no-repeat 2px 2px ;  }
 #twopartheader h2 { color: #34BCE0; padding: 0; margin: 0; font : 1em Verdana, Arial, Helvetica, sans-serif; font-weight: normal; }
 #twopartheader h3 {
 	padding: 7px 0 0 76px;

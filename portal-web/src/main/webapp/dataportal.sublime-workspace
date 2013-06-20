@@ -1,0 +1,656 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"im",
+				"important"
+			],
+			[
+				"font",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "skins/standard/speciesGlobal.css",
+			"settings":
+			{
+				"buffer_size": 19439,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "skins/shared/tables.css",
+			"settings":
+			{
+				"buffer_size": 4859,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "skins/standard/countriesSpecial.css",
+			"settings":
+			{
+				"buffer_size": 4529,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "skins/standard/datasetsSpecial.css",
+			"settings":
+			{
+				"buffer_size": 4227,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "skins/standard/speciesSpecial.css",
+			"settings":
+			{
+				"buffer_size": 3118,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 267.0,
+		"selected_items":
+		[
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/skins/800x600/speciesSpecial.css",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/dataportal.sublime-project",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/skins/800x600/countriesSpecial.css",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/skins/standard/panes.css",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/common/footer.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/publisher/introduction.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/classes/messages_es.properties",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/menu/mainMenu.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/frontPageHeader.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/WEB-INF/classes/messages_es.properties",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/taxonomy/introduction.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/common/frontPageFooter.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/publisher/headcontent.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/frontPageHeadContent.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/classes/theme-standard.properties",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/skins/standard/global.css",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/classes/messages.properties",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/geography/introduction.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/WEB-INF/jsp/geography/introduction.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/panes.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/WEB-INF/jsp/panes.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/jsp/blanketSearch.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/WEB-INF/jsp/blanketSearch.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/layouts/frontPageMainLayout.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/layouts/frontPageMainLayout.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/layouts/mainLayout.jsp",
+		"/Users/disenho/Documents/dataportal_junio19/layouts/mainLayout.jsp",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/tiles-def.xml",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/WEB-INF/datasetDispatcher-servlet.xml",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/images/colombiaMap.png",
+		"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp/home.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			"/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#twopartheader {",
+			"table.smallStatistics",
+			"#twopartheader h2",
+			"style=\"font-size: 1em",
+			"style=\"font-size: 1em;\"",
+			"#twopartheader h2",
+			"><img ",
+			"</a>",
+			"welcome.tip.of.the.day.1=",
+			"intro.heading",
+			"intro.description",
+			".intro.description",
+			"intro.heading",
+			".heading=Explorar ",
+			"explorar ",
+			"span",
+			"span class=\"subject\"",
+			"global.css",
+			"gloabl.css",
+			"explorar",
+			"explroar",
+			"publisher",
+			"\"quicksearch",
+			"quicksearch",
+			"css",
+			"global.css",
+			"global.css\"",
+			"\"global.css",
+			"global.css",
+			"glocal.css",
+			"footer",
+			"#footer",
+			"herita",
+			"heritage",
+			"cortes",
+			"imagenes",
+			"imá",
+			"small",
+			"facebook",
+			"aside",
+			"cifras",
+			"#geographypane",
+			".panes_div",
+			"#geographypane",
+			"#panes a",
+			"geographypane",
+			"hr",
+			"geographypane",
+			"panes",
+			"div",
+			"aside",
+			"panes.jsp",
+			";}",
+			"aside"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"footer"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "skins/standard/speciesGlobal.css",
+					"settings":
+					{
+						"buffer_size": 19439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4360,
+								4360
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "skins/shared/tables.css",
+					"settings":
+					{
+						"buffer_size": 4859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3030,
+								3030
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "skins/standard/countriesSpecial.css",
+					"settings":
+					{
+						"buffer_size": 4529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								569,
+								569
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "skins/standard/datasetsSpecial.css",
+					"settings":
+					{
+						"buffer_size": 4227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1812,
+								1812
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 985.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "skins/standard/speciesSpecial.css",
+					"settings":
+					{
+						"buffer_size": 3118,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								546,
+								546
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 12.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"mainme",
+				"WEB-INF/jsp/menu/mainMenu.jsp"
+			],
+			[
+				"header",
+				"WEB-INF/jsp/frontPageHeader.jsp"
+			],
+			[
+				"messa",
+				"WEB-INF/classes/messages_es.properties"
+			],
+			[
+				"introd",
+				"WEB-INF/jsp/taxonomy/introduction.jsp"
+			],
+			[
+				"front",
+				"common/frontPageFooter.jsp"
+			],
+			[
+				"introduc",
+				"WEB-INF/jsp/publisher/introduction.jsp"
+			],
+			[
+				"mess",
+				"WEB-INF/classes/messages_es.properties"
+			],
+			[
+				"panes",
+				"WEB-INF/jsp/panes.jsp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 235.0,
+	"status_bar_visible": true
+}

@@ -1,22 +1,21 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <a href="${pageContext.request.contextPath}/departamentos/" class="confirm">
-<img src="skins/standard/images/mariposas.jpg" width="320" height="217" alt="MARIPOSAS" />
-<h2>
-  <spring:message code="departments.intro.heading"/>
-  </h2>
-<p>
-  <spring:message code="departments.intro.description"/>
-</p>
-<div>
-  <h3>
+<span>
+    <h2>
+      <spring:message code="departments.intro.heading"/>
+      </h2>
+    <p>
+      <strong><spring:message code="departments.intro.heading"/></strong>
+    </p>
+
+ <!-- <h3>
     <spring:message code="departments.intro.summary"/>
-  </h3>
+  </h3> -->
   <p>
     <c:set var="a0">
-  <div class="subject">
+  <div class="subject"></div>
     <fmt:formatNumber value="${noOfCountries}" pattern="###,###"/>
-  </div>
   </c:set>
   <c:set var="a1">
   <div class="subject">0</div>
@@ -25,14 +24,16 @@
   <div class="subject">0</div>
   </c:set>
   <spring:message code="geography.intro.description1" arguments="${a0},${a1},${a2}"/>
-</div>
-</a>
-<div>
-  <h3>
+  </p>
+
+  <a href="${pageContext.request.contextPath}/departments/CO-AMA" >
+  <h4>
     <spring:message code="geography.intro.seedatafor"/>
-  </h3>
-   <a href="${pageContext.request.contextPath}/departments/CO-AMA" >
+  </h4>
+   
       <spring:message code="department.CO-AMA" text="Amazonas"/></a>
+</span>
+</a>
   <%-- This was commented since it must be a recognition of the userDepartment in Colombia  
   <c:choose>
     <c:when test="${not empty userCountry}">
@@ -45,4 +46,4 @@
       </a> </c:otherwise>
   </c:choose>
   --%>
-</div>
+

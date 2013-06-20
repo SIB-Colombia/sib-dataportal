@@ -1,7 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div id="topmenu">
-<ul>
-<li><a href="${pageContext.request.contextPath}/"><spring:message code='topmenu.home'/></a></li>		
+
+<a href="${pageContext.request.contextPath}/"><spring:message code='topmenu.home'/></a>	
 <tiles:insert page="mainMenu.jsp"/>
-</ul>
-</div><!-- End topmenu-->
+><!-- End topmenu-->
