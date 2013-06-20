@@ -38,7 +38,6 @@
 				<value>datasets/browse</value>
 				<value>countries/browse</value>
 				<value>departments/browse</value>
-				<value>publicadores/browse</value>
 			</set>
 		</property>
 	</bean>					

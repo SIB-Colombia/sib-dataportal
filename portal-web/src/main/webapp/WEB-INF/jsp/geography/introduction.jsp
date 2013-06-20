@@ -1,5 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-
 <a href="${pageContext.request.contextPath}/departamentos/" class="confirm">
 <span>
     <h2>

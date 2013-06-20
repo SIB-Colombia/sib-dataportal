@@ -1,5 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 
+
 <a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a>
 <%--<a href="${pageContext.request.contextPath}/countries/" title="<spring:message code='topmenu.countries.title'/>"><spring:message code='topmenu.countries'/></a>--%>
 <a href="${pageContext.request.contextPath}/conjuntos/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a>
@@ -17,7 +18,3 @@
 	 <a href="http://www.youtube.com/user/sibcolombia" target="_blank" ><img src="${pageContext.request.contextPath}/skins/standard/images/ico_youtube.png" /></a>
 
 </div>
-<%--<a href="${pageContext.request.contextPath}/settings.htm" title="<spring:message code='topmenu.settings.title'/>"><spring:message code='topmenu.settings'/></a>
-
-<a href="${pageContext.request.contextPath}/tutorial/" title="<spring:message code='topmenu.about.title'/>"><spring:message code='topmenu.about'/></a>
---%>

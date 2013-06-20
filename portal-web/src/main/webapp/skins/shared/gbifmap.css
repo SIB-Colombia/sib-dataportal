@@ -115,6 +115,10 @@ table.mapKey td.key {
 	margin:5px;
 }
 
+table.mapKey td {
+	padding:5px;
+}
+
 table.latlongs {
 	border: 1px solid #999999;
 	font-size: 9px;

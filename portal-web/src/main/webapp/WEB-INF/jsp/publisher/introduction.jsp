@@ -1,6 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-
 <a href="${pageContext.request.contextPath}/conjuntos/" class="confirm">
 <span>
   <h2>
@@ -33,3 +32,4 @@
 </h4>${latestResource.name}</a>
 </c:if>
 </div>
+

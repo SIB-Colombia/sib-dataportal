@@ -91,11 +91,6 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>8</load-on-startup>
 	</servlet>
-	<servlet>
-		<servlet-name>publishersDispatcherSibColombia</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>9</load-on-startup>
-	</servlet>
 	<!-- Servlet replaced with datasetDispatcherSibColombia
 	<servlet>
 		<servlet-name>datasetDispatcher</servlet-name>
@@ -105,43 +100,43 @@
 	<servlet>
 		<servlet-name>mapLayerDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>10</load-on-startup>
+		<load-on-startup>9</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>registrationDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>11</load-on-startup>
+		<load-on-startup>10</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>userDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>12</load-on-startup>
+		<load-on-startup>11</load-on-startup>
 	</servlet>	
 	<servlet>
 		<servlet-name>imageDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>13</load-on-startup>
+		<load-on-startup>12</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>feedbackDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>14</load-on-startup>
+		<load-on-startup>13</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>tutorialDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>15</load-on-startup>
+		<load-on-startup>14</load-on-startup>
 	</servlet>
 	<servlet>
 		<servlet-name>downloadDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>16</load-on-startup>
+		<load-on-startup>15</load-on-startup>
 	</servlet>	
 	<!-- This is work in prgress to replace the maplayers with something more WMS compliant -->
 	<servlet>
 		<servlet-name>densityDispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>17</load-on-startup>
+		<load-on-startup>16</load-on-startup>
 	</servlet>	
 
 	<!-- The Servlet that will dispatch to the webservices -->
@@ -227,11 +222,11 @@
 	<!-- This servlet supports all list display datasets -->
 	<servlet-mapping>
 		<servlet-name>datasetDispatcherSibColombia</servlet-name>
-		<url-pattern>/datasets/*</url-pattern>
+		<url-pattern>/dataset/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>publishersDispatcherSibColombia</servlet-name>
-		<url-pattern>/publicadores/*</url-pattern>
+		<servlet-name>datasetDispatcherSibColombia</servlet-name>
+		<url-pattern>/datasets/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>datasetDispatcherSibColombia</servlet-name>

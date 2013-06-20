@@ -25,7 +25,7 @@
 <spring:message code="sib.terms.dialog.cancel" var="cancel"/>
 $(document).ready(function() {
 	if(readCookie('GbifTermsAndConditions')===null){
-		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/inicio.htm'});
+		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
 	}
 });
 </script>
