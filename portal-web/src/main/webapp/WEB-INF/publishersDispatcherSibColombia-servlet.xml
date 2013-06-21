@@ -21,63 +21,60 @@
         <prop key="/speciesSearch/**/*">speciesDatasetSearchController</prop>        
         <prop key="/browse">datasetBrowserController</prop>
         <prop key="/browse/*">datasetBrowserController</prop>
-        <prop key="/resource/**/*">dataResourceController</prop>
-        <!--
+        <!--<prop key="/resource/**/*">dataResourceController</prop> -->
         <prop key="/provider/**/*">dataProviderController</prop>
-        -->
         <prop key="/network/**/*">resourceNetworkController</prop>
         <!-- Metacat harvest list -->
+        <!--
         <prop key="/resource/harvestList.xml">dataResourceBrowseController</prop>
         <prop key="/resource/harvestListGBIFProfile.xml">dataResourceBrowseController</prop>
+        -->
         <!-- logging -->
         <prop key="/logs/">logController</prop>
         <prop key="/logs/**/*">logController</prop>
         <prop key="/datatracking/logs/">harvestingLogController</prop>
         <prop key="/datatracking/logs/**/*">harvestingLogController</prop>
 
+        <!--
         <prop key="/resource/**/logs/">logController</prop>
         <prop key="/resource/**/logs/**/*">logController</prop>
-        <!--
+        -->
         <prop key="/provider/**/logs/">logController</prop>
         <prop key="/provider/**/logs/**/*">logController</prop>
-        -->
 
-        <prop key="/datatracking/resource/**/logs/">harvestingLogController</prop>
-        <prop key="/datatracking/resource/**/logs/**/*">harvestingLogController</prop>
+        <!--<prop key="/datatracking/resource/**/logs/">harvestingLogController</prop> -->
+        <!--<prop key="/datatracking/resource/**/logs/**/*">harvestingLogController</prop> -->
         <prop key="/datatracking/provider/**/logs/">harvestingLogController</prop>
         <prop key="/datatracking/provider/**/logs/**/*">harvestingLogController</prop>
 
-        <!--
-        <prop key="/provider/*/resource/*">dataResourceController</prop>
-        -->
+        <!--<prop key="/provider/*/resource/*">dataResourceController</prop>-->
         <prop key="/ajax/**/**">datasetNameController</prop>
 
         <!-- Indexing history -->
-        <!--
         <prop key="/provider/**/indexing/">indexingHistoryController</prop>
-        -->
-        <prop key="/resource/**/indexing/">indexingHistoryController</prop>
-        <!--
+        <!--<prop key="/resource/**/indexing/">indexingHistoryController</prop> -->
         <prop key="/provider/**/indexing/**">indexingHistoryController</prop>
-        -->
-        <prop key="/resource/**/indexing/**">indexingHistoryController</prop>
+        <!--<prop key="/resource/**/indexing/**">indexingHistoryController</prop> -->
 
         <!-- Providing views to the raw data -->
+        <!--
         <prop key="/resource/*/datatracking/">rawOccurrenceDataController</prop>
         <prop key="/resource/*/rawdata/">rawOccurrenceDataController</prop>
+        -->
+        
 
         <prop key="/indexing/">indexingHistoryController</prop>
         <prop key="/indexing/**">indexingHistoryController</prop>
 
         <!-- Widgets -->
+        <!--
         <prop key="/resource/*/overviewMap.png">resourceWidgetResolvingController</prop>
         <prop key="/resource/*/overviewmap.png">resourceWidgetResolvingController</prop>
         <prop key="/resource/*/overviewmap.png">resourceWidgetResolvingController</prop>
-        <!--
+        -->
         <prop key="/provider/*/overviewMap.png">providerWidgetResolvingController</prop>
         <prop key="/provider/*/overviewMap.png">providerWidgetResolvingController</prop>
         <prop key="/provider/*/overviewmap.png">providerWidgetResolvingController</prop>
-        -->
         <prop key="/network/*/overviewMap.png">networkWidgetResolvingController</prop>
         <prop key="/network/*/overviewmap.png">networkWidgetResolvingController</prop>
         <!--prop key="/**/*">datasetController</prop-->
@@ -387,9 +384,9 @@
   <!--Browse Controller for Datasets-->
   <bean id="datasetBrowserController" class="net.sibcolombia.portal.web.controller.dataset.DatasetBrowserController">
     <property name="dataResourceManager" ref="dataResourceManager" />
-    <property name="urlRoot" value="datasets" />
-    <property name="modelViewName" value="datasetBrowse" />
-    <property name="defaultView" value="/datasets/" />
+    <property name="urlRoot" value="publicadores" />
+    <property name="modelViewName" value="publisherBrowse" />
+    <property name="defaultView" value="/publicadores/" />
     <property name="messageSource" ref="messageSource" />
     <property name="supportedPatterns">
       <list>
