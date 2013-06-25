@@ -83,9 +83,10 @@ $(document).ready(function() {
 <c:if test="${param['noHeaders']!=1}">					
 					<tiles:insert name="breadcrumbs"/>
 				</div><!--End content -->				
-				<tiles:insert name="footer"/>
+				
 			</div><!-- End container-->
 		</div><!-- End cocoon-->	
+	<tiles:insert name="footer"/>
 	<script type="text/javascript">
 	  var uvOptions = {};
 	  (function() {
