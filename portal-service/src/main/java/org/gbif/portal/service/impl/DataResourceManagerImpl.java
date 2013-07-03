@@ -225,6 +225,14 @@ public class DataResourceManagerImpl implements DataResourceManager {
 		DataResource dataResource = dataResourceDAO.getLastDataResourceAdded();
 		return (DataResourceDTO) dataResourceDTOFactory.createDTO(dataResource);	
 	}
+	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getNewestDataProvider()
+	 */
+	public DataProviderDTO getNewestDataProvider() throws ServiceException {
+		DataProvider dataProvider = dataProviderDAO.getLastDataProviderAdded();
+		return (DataProviderDTO) dataProviderDTOFactory.createDTO(dataProvider);	
+	}
 
 	/**
 	 * @see org.gbif.portal.service.DataResourceManager#getDataProvidersOfferingTaxonomies()
