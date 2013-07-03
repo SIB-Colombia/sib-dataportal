@@ -53,7 +53,7 @@
 <fmt:setLocale value="en_US"/>
 <display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
-  	<a href="${pageContext.request.contextPath}/conjuntos/provider/${dataProvider.key}">${dataProvider.name}</a>
+  	<a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
   	<p class="resultsDetails">
 			<a href="${pageContext.request.contextPath}/paises/${dataProvider.isoCountryCode}"><spring:message code="country.${dataProvider.isoCountryCode}" text=""/></a>

@@ -1,38 +1,5 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
-<script type="text/javascript">
-	$(function(){
-		if(($("#chosen").text()).length>1){
-		var len="${totalOcurrenceCount}".length;
-		var lenc="${totalOcurrenceCoordinateCount}".length;
-		var numb="";
-		var numbc="";
-		var lent=$('#dataProvider >tbody >tr').length;
-		if(len>3){
-		numb="${totalOcurrenceCount}".substring(0,len-3)+","+"${totalOcurrenceCount}".substring(len-3,len);
-		}else{
-			numb="${totalOcurrenceCount}";
-		}
-		if(lenc>3){
-			numbc="${totalOcurrenceCoordinateCount}".substring(0,len-3)+","+"${totalOcurrenceCoordinateCount}".substring(len-3,len);
-			}else{
-				numbc="${totalOcurrenceCoordinateCount}";
-			}
-		if(lent%2==1){
-			$("#dataProvider").find('tbody')
-	    	.append($('<tr class="even">')
-	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
-	     	   )
-	    	);
-		}else{
-			$("#dataProvider").find('tbody')
-	    	.append($('<tr class="odd">')
-	     	   .append($('<td><b>Total</b></td><td><b>'+numb+'</b></td><td><b>'+numbc+'</b></td>')
-	     	   )
-	    	);
-		}
-	}
-	});
-</script>
+
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/>
 	<!-- tweet-button-->
@@ -62,6 +29,7 @@
 </display:table>*/
 %>
 <fmt:setLocale value="en_US"/>
+<!-- 
 <display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/conjuntos/provider/${dataProvider.key}">${dataProvider.name}</a>
@@ -115,6 +83,7 @@
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>
+-->
 
 <display:table name="dataResources" export="false" class="statistics sortable" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">

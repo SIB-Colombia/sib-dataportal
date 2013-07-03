@@ -1,17 +1,17 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 
-<a href="${pageContext.request.contextPath}/conjuntos/" class="confirm">
+<a href="${pageContext.request.contextPath}/publicadores/" class="confirm">
 <span><h2>
-  <spring:message code="dataset.intro.heading"/>
+  <spring:message code="publisher.intro.heading"/>
   </h2>
   <p>
-    <spring:message code="dataset.intro.description"/>
+    <spring:message code="publisher.intro.description"/>
   </p>
 </span>
 <div>
 <h3>
-  <spring:message code="dataset.intro.summary"/>
+  <spring:message code="publisher.intro.summary"/>
 </h3>
 <p>
   <c:set var="a0">
@@ -20,17 +20,17 @@
   <c:set var="a1">
   <strong class="subject">${dataProviderCount}</strong>
   </c:set>
-  <spring:message code="dataset.intro.description.counts" arguments="${a0},${a1}"/>
-  <c:if test="${latestResource!=null}">
+  <spring:message code="publisher.intro.description.counts" arguments="${a1}"/>
+  <c:if test="${latestProvider!=null}">
 </p>
 </div>
 </a>
 
 <div>
-<a href="${pageContext.request.contextPath}/datasets/resource/${latestResource.key}/"  >
+<a href="${pageContext.request.contextPath}/publicadores/provider/${latestProvider.key}/"  >
 <h3>
-  <spring:message code="dataset.intro.latestresourceadded"/>
+  <spring:message code="publisher.intro.latestresourceadded"/>
 </h3>
-${latestResource.name}</a>
+${latestProvider.name}</a>
 </c:if>
 </div>

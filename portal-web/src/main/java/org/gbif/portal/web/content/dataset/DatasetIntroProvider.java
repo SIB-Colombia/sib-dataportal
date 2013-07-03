@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gbif.portal.dto.resources.DataProviderDTO;
 import org.gbif.portal.dto.resources.DataResourceDTO;
 import org.gbif.portal.service.DataResourceManager;
 import org.gbif.portal.service.ServiceException;
@@ -41,6 +42,7 @@ public class DatasetIntroProvider implements ContentProvider {
 	public void addContent(ContentView contentView, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			DataResourceDTO lastDataResource = dataResourceManager.getNewestDataResource();
+			DataProviderDTO lastDataProvider = dataResourceManager.getNewestDataProvider();
 			long dataResourceCount = dataResourceManager.getTotalDataResourceCount();
 			long dataProviderCount = dataResourceManager.getTotalDataProviderCount();
 			
@@ -48,6 +50,9 @@ public class DatasetIntroProvider implements ContentProvider {
 			
 			if(lastDataResource!=null)
 				contentView.addObject("latestResource", lastDataResource);
+			
+			if(lastDataProvider!=null)
+				contentView.addObject("latestProvider", lastDataProvider);
 			
 			contentView.addObject("dataResourceCount",dataResourceCount);
 			contentView.addObject("dataProviderCount",dataProviderCount);
