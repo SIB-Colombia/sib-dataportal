@@ -51,7 +51,7 @@
 
 
 <fmt:setLocale value="en_US"/>
-<display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
+<display:table name="dataProviders" export="false" class="statistics" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
@@ -110,3 +110,29 @@
 
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript" charset="utf-8"> 
+$(document).ready(function() {
+    $('#dataProvider').dataTable( {
+        "iDisplayLength": 20,
+        "bLengthChange": false,
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "oLanguage": {
+            "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
+            "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
+            "sInfo": '<spring:message code="dataset.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="dataset.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="dataset.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sSearch": '<spring:message code="dataset.list.ssearch"/>',
+            "oPaginate": {
+                "sNext": '<spring:message code="dataset.list.snext"/>',
+                "sPrevious": '<spring:message code="dataset.list.sprevious" />'
+            }
+        }, 
+        "aoColumnDefs": [
+            { 'bSortable': true, 'aTargets': [ 0 ] }
+        ]
+    } );
+} );
+</script>

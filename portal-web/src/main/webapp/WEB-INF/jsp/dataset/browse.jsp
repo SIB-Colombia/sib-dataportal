@@ -85,7 +85,7 @@
 </display:table>
 -->
 
-<display:table name="dataResources" export="false" class="statistics sortable" id="dataResource" cellspacing="0">
+<display:table name="dataResources" export="false" class="statistics" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/conjuntos/resource/${dataResource.key}">${dataResource.name}</a>
   	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/conjuntos/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>
@@ -147,3 +147,29 @@
 
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript" charset="utf-8"> 
+$(document).ready(function() {
+    $('#dataResource').dataTable( {
+        "iDisplayLength": 20,
+        "bLengthChange": false,
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "oLanguage": {
+            "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
+            "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
+            "sInfo": '<spring:message code="dataset.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="dataset.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="dataset.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sSearch": '<spring:message code="dataset.list.ssearch"/>',
+            "oPaginate": {
+                "sNext": '<spring:message code="dataset.list.snext"/>',
+                "sPrevious": '<spring:message code="dataset.list.sprevious" />'
+            }
+        }, 
+        "aoColumnDefs": [
+            { 'bSortable': true, 'aTargets': [ 0 ] }
+        ]
+    } );
+} );
+</script>
