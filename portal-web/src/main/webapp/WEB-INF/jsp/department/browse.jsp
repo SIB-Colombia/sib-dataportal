@@ -72,7 +72,7 @@
 <script type="text/javascript" charset="utf-8"> 
 $(document).ready(function() {
     $('#department').dataTable( {
-        "iDisplayLength": 20,
+        "iDisplayLength": 100,
         "bLengthChange": false,
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],

@@ -17,7 +17,5 @@
 <script src="${pageContext.request.contextPath}/javascript/download.js" type="text/javascript" language="javascript"></script>
 <script src="${pageContext.request.contextPath}/javascript/registration.js" type="text/javascript" language="javascript"></script>
 <script src="${pageContext.request.contextPath}/javascript/request.js" type="text/javascript" language="javascript"></script>
-<!-- SIB Colombia: including sort tables support library, sorttable.js by Stuart Langridge -->
-<script src="${pageContext.request.contextPath}/javascript/sorttable.js" type="text/javascript" language="javascript"></script>
 <!-- SIB Colombia: including sort tables support library, datatable.js by Allan Jardine -->
 <script src="${pageContext.request.contextPath}/javascript/datatable.js" type="text/javascript" language="javascript"></script>

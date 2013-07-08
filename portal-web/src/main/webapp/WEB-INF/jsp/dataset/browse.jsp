@@ -8,7 +8,7 @@
 	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 </h2>
-	<gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
+	<% // <gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/> %>
 </div>
 <c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
@@ -148,10 +148,10 @@
 	</c:otherwise>
 </c:choose>
 
-<script type="text/javascript" charset="utf-8"> 
+<script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-    $('#dataResource').dataTable( {
-        "iDisplayLength": 20,
+	$('#dataResource').dataTable( {
+		"iDisplayLength": 100,
         "bLengthChange": false,
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
@@ -166,10 +166,10 @@ $(document).ready(function() {
                 "sNext": '<spring:message code="dataset.list.snext"/>',
                 "sPrevious": '<spring:message code="dataset.list.sprevious" />'
             }
-        }, 
+        },
         "aoColumnDefs": [
-            { 'bSortable': true, 'aTargets': [ 0 ] }
-        ]
+                         { 'bSortable': true, 'aTargets': [ 0 ] }
+                     ]
     } );
 } );
 </script>

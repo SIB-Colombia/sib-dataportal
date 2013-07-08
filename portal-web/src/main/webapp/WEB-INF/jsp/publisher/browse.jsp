@@ -41,7 +41,7 @@
 	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	</script>
 </h2>
-	<gbif:alphabetLink rootUrl="/publicadores/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
+	<% //<gbif:alphabetLink rootUrl="/publicadores/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>%>
 </div>
 <c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
@@ -114,7 +114,7 @@
 <script type="text/javascript" charset="utf-8"> 
 $(document).ready(function() {
     $('#dataProvider').dataTable( {
-        "iDisplayLength": 20,
+        "iDisplayLength": 100,
         "bLengthChange": false,
         "bAutoWidth": false,
         "aaSorting": [[ 0, "asc" ]],
