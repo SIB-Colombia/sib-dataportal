@@ -2,11 +2,6 @@
 
 <div id="twopartheader">	
 <h2><spring:message code="dataset.list.main.title"/>
-	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/conjuntos/?utm_source=datasets&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="Conjuntos de datos" >Twittear</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
 </h2>
 	<% // <gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/> %>
 </div>
@@ -150,7 +145,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-	$('#dataResource').dataTable( {
+	var oTable = $('#dataResource').dataTable( {
 		"iDisplayLength": 100,
         "bLengthChange": false,
         "bAutoWidth": false,
@@ -169,7 +164,13 @@ $(document).ready(function() {
         },
         "aoColumnDefs": [
                          { 'bSortable': true, 'aTargets': [ 0 ] }
-                     ]
+         ],"fnDrawCallback": function(){
+        	  if(this.fnSettings().fnRecordsDisplay()<=$('#dataResource tr').length){
+        		  $('#dataResource_paginate').hide();
+        	  }else{
+        		  $('#dataResource_paginate').show();  
+        	  } 
+        	}
     } );
 } );
 </script>

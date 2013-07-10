@@ -197,6 +197,11 @@
 				oCol.sSortingClass = oSettings.oClasses.sSortableNone;
 				oCol.sSortingClassJUI = "";
 			}
+			 else if ( oCol.bSortable ||($.inArray('asc', oCol.asSorting) == -1 && $.inArray('desc', oCol.asSorting) == -1) )
+		     {
+		       oCol.sSortingClass = oSettings.oClasses.sSortable;
+		       oCol.sSortingClassJUI = oSettings.oClasses.sSortJUI;
+	        }
 			else if ( $.inArray('asc', oCol.asSorting) == -1 && $.inArray('desc', oCol.asSorting) == -1 )
 			{
 				oCol.sSortingClass = oSettings.oClasses.sSortable;
@@ -3225,6 +3230,7 @@
 			o.nTable.insertBefore( nTheadSize, o.nTable.childNodes[0] );
 			anHeadToSize = o.nTHead.getElementsByTagName('tr');
 			anHeadSizers = nTheadSize.getElementsByTagName('tr');
+			$('th, td', nTheadSize).removeAttr('tabindex');
 			
 			if ( o.nTFoot !== null )
 			{
@@ -7409,7 +7415,7 @@
 		 */
 		"oSort": {},
 	
-	
+		
 		/**
 		 * Version string for plug-ins to check compatibility. Allowed format is
 		 * a.b.c.d.e where: a:int, b:int, c:int, d:string(dev|beta), e:int. d and

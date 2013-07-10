@@ -267,9 +267,13 @@ table.datasheetItem td.datatable { width:300px; padding: 0 0 0 20px; }
 	background: url('images/forward.png') no-repeat top right;
 }
 
+.dataTables_paginate .ui-state-disabled {
+     display:none;
+}
+
 /*Sorting*/
 .sorting_asc {
-    background: #bad691 url('images/sort_asc.png') no-repeat center left;
+    background: url('images/sort_asc.png') no-repeat center left;
 }
  
 .sorting_desc {
@@ -288,7 +292,13 @@ table.datasheetItem td.datatable { width:300px; padding: 0 0 0 20px; }
     background: url('images/sort_both.png') no-repeat center left;
 }
 
-
 input[type="submit"], button{
 	background-color:rgb(166,180,98);
+}
+
+.dataTables_filter {
+   width: 50%;
+   padding: 5px 5px 5px 5px;
+   float: right;
+   text-align: right;
 }
