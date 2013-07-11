@@ -1,12 +1,17 @@
 {
- "folders": [
-  {
-   "folder_exclude_patterns": [
-    "skins/800x600", 
-    "skins/shared", 
-    "skins/800x600"
-   ], 
-   "path": "/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp"
-  }
- ]
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"skins/800x600",
+				"skins/shared",
+				"skins/800x600"
+			],
+			"path": "/Users/disenho/Documents/SiB/sib-dataportal/portal-web/src/main/webapp"
+		},
+		{
+			"path": "skins/shared"
+		}
+	]
 }
