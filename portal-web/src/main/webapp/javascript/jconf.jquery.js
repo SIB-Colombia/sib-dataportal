@@ -98,7 +98,7 @@ $(document).ready(function () {
 	                              duration: 1000
 	                        }, 
 	                        draggable: false,
-	                        position: { my: "center", at: "top", of: "#datasetpane" },
+	                        position: { my: "center", of: window },
 	                        width: 400
 	                	});	
 	                    

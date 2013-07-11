@@ -19,7 +19,7 @@
 </div>
  </a>
 <div>
-  <a href="${pageContext.request.contextPath}/especies/Puma_concolor" >
+  <a href="${pageContext.request.contextPath}/especies/Puma_concolor" class="confirm" >
     <h4>
     <spring:message code="taxonomy.intro.latestspeciesadded"/>
   </h4>

@@ -25,7 +25,7 @@
   <spring:message code="geography.intro.description1" arguments="${a0},${a1},${a2}"/>
   </p>
 
-  <a href="${pageContext.request.contextPath}/departments/CO-AMA" >
+  <a href="${pageContext.request.contextPath}/departments/CO-AMA" class="confirm">
   <h4>
     <spring:message code="geography.intro.seedatafor"/>
   </h4>

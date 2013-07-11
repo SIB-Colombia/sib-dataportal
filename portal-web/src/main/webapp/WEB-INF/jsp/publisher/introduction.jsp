@@ -27,7 +27,7 @@
 </a>
 
 <div>
-<a href="${pageContext.request.contextPath}/publicadores/provider/${latestProvider.key}/"  >
+<a href="${pageContext.request.contextPath}/publicadores/provider/${latestProvider.key}/" class="confirm" >
 <h3>
   <spring:message code="publisher.intro.latestresourceadded"/>
 </h3>
