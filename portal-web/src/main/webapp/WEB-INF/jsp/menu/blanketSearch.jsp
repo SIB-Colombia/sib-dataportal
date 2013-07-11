@@ -6,6 +6,7 @@
 	<input id="query" name="keyword" <c:if test="${not empty searchString}">value="${searchString}"</c:if> placeholder="<spring:message code="blanket.search.placeholder"/>" autosave="gbif.blanketsearch" results="5" tabindex="1"/>
 	<a href="javascript:submitFromLinkQuickSearch();" id="go"><!--<spring:message code="blanket.search.go"/>--></a>
 	<a href="${pageContext.request.contextPath}/occurrences" class="adv_busqueda">
+		<img src="${pageContext.request.contextPath}/skins/standard/images/ico_lupita.png" />
   <spring:message code="topmenu.occurrences"/>
   </a>
 </form>

@@ -34,26 +34,25 @@
 
 <aside>
 <div> <a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/></a>
-  <h4>IR AL PORTAL GENERAL</br>SIB COLOMBIA</h4>
+  <h4>IR AL PORTAL GENERAL</h4>
   </div>
   <hr/>
   <div>
       <!-- tweet-button--> 
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/inicio.htm?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a> 
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script> 
-      <!-- tweet-button--> 
-      <span style=" margin-bottom:10px;">
+      <a href="https://twitter.com/sibcolombia" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @sibcolombia</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <br/>
+  <br/>
       <!-- facebok-button-->
-      <script>(function(d, s, id) {
-  	var js, fjs = d.getElementsByTagName(s)[0];
-  	if (d.getElementById(id)) return;
-  	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-  	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-      <div class="fb-like" data-href="http://data.sibcolombia.net/inicio.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+      <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=191630764244997";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+      <div class="fb-follow" data-href="https://www.facebook.com/SibColombia" data-layout="button_count" data-show-faces="false" data-width="300"></div>
       <!-- facebok-button--> 
 
   </div>

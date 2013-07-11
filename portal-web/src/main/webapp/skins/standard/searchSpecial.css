@@ -10,9 +10,9 @@ table {
 }
 #twopartheader {
 	margin: 0px 0 20px 0;
-	padding:20px 20px 20px 110px;
+	padding:20px 20px 20px 85px;
 	min-height: 80px;
-	background:rgba(250,249,243, 1) url('../standard/images/ico_search.png')  no-repeat 20px 20px ;
+	background:rgba(250,249,243, 1) url('../standard/images/ico_search_big.png')  no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	position:relative;
@@ -22,7 +22,7 @@ table {
 	color: #34BCE0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.6em;
+	font-size: 2em;
 	font-weight: normal;
 	text-transform: uppercase;
 }
@@ -35,7 +35,7 @@ table {
 }
 #twopartheader ul li {
 	display: inline;
-	padding-right: 15px;
+	padding-right: 5px;
 }
 h2.scNames {
 	padding: 4px 4px 4px 38px;
