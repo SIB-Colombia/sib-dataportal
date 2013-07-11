@@ -35,13 +35,8 @@
 </script>
 <div id="twopartheader">	
 <h2><spring:message code="publisher.list.main.title"/>
-	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/publicadores/?utm_source=datasets&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="Publicadores" >Twittear</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
 </h2>
-	<gbif:alphabetLink rootUrl="/publicadores/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
+	<% //<gbif:alphabetLink rootUrl="/publicadores/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>%>
 </div>
 <c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
@@ -51,7 +46,7 @@
 
 
 <fmt:setLocale value="en_US"/>
-<display:table name="dataProviders" export="false" class="statistics sortable" id="dataProvider" cellspacing="0">
+<display:table name="dataProviders" export="false" class="statistics" id="dataProvider" cellspacing="0">
   <display:column titleKey="dataset.providers.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}">${dataProvider.name}</a>
   	<c:if test='${dataProvider.isoCountryCode!=null}'>
@@ -110,3 +105,36 @@
 
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+    $('#dataProvider').dataTable( {
+        "iDisplayLength": 100,
+        "bLengthChange": false,
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "oLanguage": {
+            "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
+            "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
+            "sInfo": '<spring:message code="dataset.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="dataset.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="dataset.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sSearch": '<spring:message code="dataset.list.ssearch"/>',
+            "oPaginate": {
+                "sNext": '<spring:message code="dataset.list.snext"/>',
+                "sPrevious": '<spring:message code="dataset.list.sprevious" />'
+            }
+        }, 
+        "aoColumns": [null,
+                      { "sType": "num-html" },
+                      { "sType": "num-html" }
+                  ],"fnDrawCallback": function(){
+      	  if(this.fnSettings().fnRecordsDisplay()<=$('#dataProvider tr').length){
+    		  $('#dataProvider_paginate').hide();
+    	  }else{
+    		  $('#dataProvider_paginate').show();  
+    	  } 
+    	}
+    } );
+} );
+</script>

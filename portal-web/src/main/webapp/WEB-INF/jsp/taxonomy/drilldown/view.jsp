@@ -19,11 +19,6 @@
 	<h2>
 		<string:capitalize><spring:message code="taxonrank.${taxonConcept.rank}" /></string:capitalize>: 
 		<span class="subject"><gbif:taxonPrint concept="${taxonConcept}"/> <c:if test="${not empty taxonConcept.author}">${taxonConcept.author}</c:if></span>
-		<!-- tweet-button-->
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es"  >Twittear</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-		js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-		</script>
 	</h2>
 	<h3>
 		<c:choose>
