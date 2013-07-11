@@ -106,7 +106,7 @@
 	</c:otherwise>
 </c:choose>
 
-<script type="text/javascript" charset="utf-8"> 
+<script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
     $('#dataProvider').dataTable( {
         "iDisplayLength": 100,
@@ -125,9 +125,10 @@ $(document).ready(function() {
                 "sPrevious": '<spring:message code="dataset.list.sprevious" />'
             }
         }, 
-        "aoColumnDefs": [
-            { 'bSortable': true, 'aTargets': [ 0 ] }
-        ],"fnDrawCallback": function(){
+        "aoColumns": [null,
+                      { "sType": "num-html" },
+                      { "sType": "num-html" }
+                  ],"fnDrawCallback": function(){
       	  if(this.fnSettings().fnRecordsDisplay()<=$('#dataProvider tr').length){
     		  $('#dataProvider_paginate').hide();
     	  }else{

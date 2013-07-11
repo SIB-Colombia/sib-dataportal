@@ -83,7 +83,11 @@ $(document).ready(function() {
                 "sNext": '<spring:message code="dataset.list.snext"/>',
                 "sPrevious": '<spring:message code="dataset.list.sprevious" />'
             }
-        },"aoColumnDefs": [{ 'bSortable': true, 'aTargets': [ 0 ] }], 
+        },"aoColumns": [null,
+                        { "sType": "num-html" },
+                        { "sType": "num-html" },
+                        { "sType": "num-html" }
+                    ],
 		"fnDrawCallback": function(){
       	  if(this.fnSettings().fnRecordsDisplay()<=$('#department tr').length){
     		  $('#department_paginate').hide();

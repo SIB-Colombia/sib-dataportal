@@ -162,9 +162,12 @@ $(document).ready(function() {
                 "sPrevious": '<spring:message code="dataset.list.sprevious" />'
             }
         },
-        "aoColumnDefs": [
-                         { 'bSortable': true, 'aTargets': [ 0 ] }
-         ],"fnDrawCallback": function(){
+        "aoColumns": [null,
+                      { "sType": "num-html" },
+                      { "sType": "num-html" },
+                      { "sType": "num-html" },
+                      { "sType": "num-html" }
+                  ],"fnDrawCallback": function(){
         	  if(this.fnSettings().fnRecordsDisplay()<=$('#dataResource tr').length){
         		  $('#dataResource_paginate').hide();
         	  }else{
