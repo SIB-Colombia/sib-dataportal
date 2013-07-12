@@ -4,11 +4,11 @@
     <h2>
       <spring:message code="departments.intro.heading"/>
       </h2>
-    <p>
+<!-- <p>
       <strong><spring:message code="departments.intro.heading"/></strong>
     </p>
 
- <!-- <h3>
+ <h3>
     <spring:message code="departments.intro.summary"/>
   </h3> -->
   <p>

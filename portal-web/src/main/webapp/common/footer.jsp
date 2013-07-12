@@ -43,7 +43,9 @@
     <a title="<spring:message code="sib.on.pinterest"/>" target="_blank" href="http://pinterest.com/sibcolombia/pins/"><img  alt="SiB en Pinterest" src="${pageContext.request.contextPath}/images/logos_cut/pin_b.png"></a>
     <a title="<spring:message code="sib.on.youtube"/>" target="_blank" href="http://www.youtube.com/sibcolombia"><img  alt="SiB en Youtube" src="${pageContext.request.contextPath}/images/logos_cut/yt_b.png"></a>
   </span>
-  <nav><a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="data.use.agreements.foot"/></a> <a href="#"><spring:message code="copyright.foot"/></a> <a href="#"><spring:message code="site.map"/></a> <a href="#"><spring:message code="gobierno.linea"/></a> <a href="#"><spring:message code="help.foot"/></a></nav>
+   <nav>
+    <a href="${pageContext.request.contextPath}/terms.htm"><spring:message code="data.use.agreements.foot"/></a>  <a href="https://www.gobiernoenlinea.gov.co/" target="_blank"><spring:message code="gobierno.linea"/></a> <!--<<a href="#"><spring:message code="help.foot"/></a> <a href="#"><spring:message code="copyright.foot"/></a> <a href="#"><spring:message code="site.map"/></a>  -->
+  </nav>
 </section>
 
 

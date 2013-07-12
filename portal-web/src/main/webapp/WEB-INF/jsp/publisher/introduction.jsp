@@ -6,7 +6,7 @@
   <spring:message code="publisher.intro.heading"/>
   </h2>
   <p>
-    <spring:message code="publisher.intro.description"/>
+    <strong><spring:message code="publisher.intro.description"/></strong>
   </p>
 </span>
 <div>
