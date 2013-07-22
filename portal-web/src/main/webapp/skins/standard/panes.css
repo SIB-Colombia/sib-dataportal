@@ -71,7 +71,7 @@
 #datasetpane span {background-image:url("images/conjuntos_ico.png") , url("images/shadow_top.png"); background-repeat: no-repeat, no-repeat; background-position: 12px 14px, top center;padding:17px 17px 17px 70px;}
 #datasetpane div { background-color:rgba(139, 163, 87, 0.9);}
 
-#geographypane {background:url("images/explorador.jpg") no-repeat top center; width:803px; position: relative;}
+#geographypane {background:url("images/mapa_stats.jpg") no-repeat top center; width:803px; position: relative;}
 #geographypane > a:first-child { display: block;  width:100%; height: 235px;}
 #geographypane > a:last-child  { position: absolute; top:175px; right: 0px; width: 260px; padding:10px 20px 10px 70px; height: 60px; background-color: rgba(0,0,0,0.3);}
 #geographypane span {
