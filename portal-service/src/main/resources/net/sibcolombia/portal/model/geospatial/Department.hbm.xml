@@ -11,6 +11,10 @@
     <property name="occurrenceCoordinateCount" column="occurrence_coordinate_count"/>
     <property name="occurrenceCount" column="occurrence_count"/>
     <property name="speciesCount" column="species_count"/>
+    
+    <property name="departmentLat" column="lat"/>
+    <property name="departmentLng" column="lng"/>
+    
     <property name="minLongitude" column="min_longitude"/>
     <property name="maxLongitude" column="max_longitude"/>
     <property name="minLatitude" column="min_latitude"/>

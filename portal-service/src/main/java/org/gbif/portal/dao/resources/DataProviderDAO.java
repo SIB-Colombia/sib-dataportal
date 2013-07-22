@@ -151,4 +151,11 @@ public interface DataProviderDAO {
 	 * @return a total
 	 */
 	public int getTotalOcurrenceCoordinateCount();
+	
+	/**
+	 * Returns the last Data Provider added to the system.
+	 * 
+	 * @return the last Data Provider added to the system.
+	 */
+	public DataProvider getLastDataProviderAdded();
 }

@@ -1,8 +1,8 @@
 #twopartheader {
 	margin: 0px 0 20px 0;
-	padding:20px 20px 20px 110px;
+	padding:20px 20px 20px 85px;
 	min-height: 80px;
-	background:rgba(250,249,243, 1) url('../standard/images/ico_especies.png') no-repeat 20px 20px ;
+	background:rgba(250,249,243, 1) url('../standard/images/esp_ico.png') no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	position:relative;
@@ -11,16 +11,17 @@
 	color: #1BC0E0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.6em;
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: 300;
 	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
 	margin: 0;
 	font-weight: 400;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	color:black;
+	color:#666;
 line-height:1.3em;
 	font-size:1em;
 }
@@ -145,7 +146,7 @@ h4#addSearchFilter, h4#currentSearch {
 	font-size:1.6em;
 }
 input[type="submit"], button{
-	background-color:#34BCE0;
+	background-color:#34BCE0 !important;
 }
 table.actionsList tr:nth-child(even) td,
 table.actionsList tr:nth-child(even) th{

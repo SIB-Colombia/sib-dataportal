@@ -7,6 +7,16 @@
 <div><h4><img src="${pageContext.request.contextPath}/skins/standard/images/sib_logo_bola.png">
 SIB Colombia releases</h4></div>
 
+<h4>Features added in version 1.5 RC0 (Published: July 22, 2013)</h4>
+<ul class="genericList">
+	<li>Third round of visual interface enhancement</li>
+	<li>Coded in a GitHub repository <a href="https://github.com/SIB-Colombia/sib-dataportal/">https://github.com/SIB-Colombia/sib-dataportal</a></li>
+	<li>Separating "publishers" section from "data resource" section</li>
+	<li>Changing tables sorting with DataTables plugin, now tables can be filtered by keyword</li>
+	<li>Download bugs fixed</li>
+</ul>
+<a href="https://github.com/SIB-Colombia/sib-dataportal/issues?milestone=1&page=1&state=closed">Click here</a> for a complete list of fixes/enhancements in this version
+
 
 <h4>Features added in version 1.4.1 RC1 (Published: March 22, 2013)</h4>
 <ul class="genericList">

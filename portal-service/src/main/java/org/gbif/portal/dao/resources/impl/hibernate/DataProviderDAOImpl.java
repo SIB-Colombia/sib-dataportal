@@ -15,6 +15,7 @@ package org.gbif.portal.dao.resources.impl.hibernate;
 
 import org.gbif.portal.dao.resources.DataProviderDAO;
 import org.gbif.portal.model.resources.DataProvider;
+import org.gbif.portal.model.resources.DataResource;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -385,6 +386,24 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
 	      if (result instanceof Long)
 	        return ((Long) result).intValue();
 	      return 0;
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.resources.DataProviderDAO#getLastDataProviderAdded()
+   */
+  public DataProvider getLastDataProviderAdded() {
+    HibernateTemplate template = getHibernateTemplate();
+    return (DataProvider) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query =
+          session
+            .createQuery("from DataProvider dp where dp.deleted is null order by dp.created desc");
+        query.setMaxResults(1);
+        query.setCacheable(true);
+        return query.uniqueResult();
+      }
+    });
   }
 }
 

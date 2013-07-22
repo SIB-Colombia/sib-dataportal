@@ -399,6 +399,12 @@
 		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/dataset/browse.jsp"/>
 	</definition>
+	<!-- Publishers Browser -->
+	<definition name="publisherBrowse" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/publisher/browseSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/publisher/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/publisher/browse.jsp"/>
+	</definition>
 	<!-- Data Resource Tiles -->
 	<definition name="resource" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/dataset/drilldown/datasetSubtitle.jsp"/>

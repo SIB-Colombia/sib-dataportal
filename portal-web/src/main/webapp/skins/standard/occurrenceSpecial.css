@@ -1,8 +1,8 @@
 #twopartheader {
 	margin: 0px 0 10px 0;
-	padding:20px 20px 20px  110px;
+	padding:20px 20px 20px 80px;
 	min-height: 80px;
-	background:rgba(250,249,243, 1) url('images/ico_ocurrence.png') no-repeat 20px 20px ;
+	background:rgba(250,249,243, 1) url('images/ico_search_br_big.png') no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	position:relative;
@@ -11,9 +11,10 @@
 	color: #7e4717;
 	padding: 5px 0 0 0px;
 	margin: 0;
-	font-size: 2.6em;
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: 300;
 	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
@@ -88,13 +89,14 @@ th.sortable a {
 	vertical-align:top;
 }
 #constructedFilters #warnings {
-	margin-top: 10px;
+	margin: 10px;
 }
 #constructedFilters #warnings ul {
 	margin-top: 0px;
 	margin-left: 5px;
 	margin-bottom: 5px;
 }
+#constructedFilters{ margin-right: 20px;}
 .generaSubject {
 	font-weight: bold;
 }
@@ -200,10 +202,10 @@ input[type="submit"], button{
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	font-family: 'Economica', Helvetica, Arial, sans-serif;
-	margin-top:-50px;
-	font-size:2em;
+	margin-top:-30px;
+	font-size:1.7em;
 	font-style:italic;
-	font-weight:700;
+	font-weight:400;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 #searchResultCount h4{

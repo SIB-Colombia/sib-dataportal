@@ -294,6 +294,15 @@ public interface DataResourceManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public DataResourceDTO getNewestDataResource() throws ServiceException;
+  
+  /**
+   * Returns the Data Provider for last added to the system.
+   * 
+   * @return DataProviderDTO containing details of the latest dataProvider added to the system, null if system is
+   *         currently empty
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public DataProviderDTO getNewestDataProvider() throws ServiceException;
 
   /**
    * Returns the Data Provider that is providing the Nub Taxonomy for the system.

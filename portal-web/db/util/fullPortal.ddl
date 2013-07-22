@@ -476,6 +476,8 @@ CREATE TABLE `department` (
   `species_count` int(10) DEFAULT NULL,
   `occurrence_count` int(10) DEFAULT NULL,
   `occurrence_coordinate_count` int(10) DEFAULT NULL,
+  `lat` varchar(40) DEFAULT NULL,
+  `lng` varchar(40) DEFAULT NULL,
   `min_latitude` float DEFAULT NULL,
   `max_latitude` float DEFAULT NULL,
   `min_longitude` float DEFAULT NULL,

@@ -67,10 +67,15 @@ $(document).ready(function() {
 	  		<li><a href="#sidebar" accesskey="S"><spring:message code="accessibility.skip.to.sidebar" text="Skip to Sidebar"/></a></li>
 			</ul> 
 	    </div>
+        <header class="sib">
+        <tiles:insert name="header"/>
+        <nav>
+		<tiles:insert name="topmenu"/>
+        </nav>
+        </header>
 		<div id="cocoon">
 			<div id="container">
-				<tiles:insert name="header"/>
-				<tiles:insert name="topmenu"/>
+				
 				<div id="content">
 				
 </c:if>       				
@@ -78,9 +83,10 @@ $(document).ready(function() {
 <c:if test="${param['noHeaders']!=1}">					
 					<tiles:insert name="breadcrumbs"/>
 				</div><!--End content -->				
-				<tiles:insert name="footer"/>
+				
 			</div><!-- End container-->
 		</div><!-- End cocoon-->	
+	<tiles:insert name="footer"/>
 	<script type="text/javascript">
 	  var uvOptions = {};
 	  (function() {

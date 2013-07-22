@@ -8,7 +8,7 @@
 				<tiles:insert name="smallOverviewMap"/>
 			</div>	
 			<div id="globalOverviewLinks">
-				 <tiles:insert name="mapLinks"/>
+				 <p><tiles:insert name="mapLinks"/></p>
 			</div>
 			<div id="globalOverviewFooter">&nbsp;</div>			
 		</div>

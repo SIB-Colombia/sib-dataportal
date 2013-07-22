@@ -120,3 +120,6 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# Sublime project files
+portal-web/src/main/webapp/dataportal.sublime-project

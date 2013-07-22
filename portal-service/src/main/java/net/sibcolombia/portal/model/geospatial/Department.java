@@ -41,13 +41,18 @@ public class Department extends BaseObject {
   /** The number of occurrences records this data resource provides */
   protected Integer occurrenceCount;
 
-  /** The department id - internal Id */
+/** The department id - internal Id */
   protected Long departmentId;
 
   /** The number of occurrences records with geo reference data this data resource provides */
   protected Integer occurrenceCoordinateCount;
+  
+  /** Latitude */
+  protected String departmentLat;
 
-
+  /** Longitude  */
+  protected String departmentLng;
+  
   /** The number of species this data resource provides */
   protected Integer speciesCount;
 
@@ -65,7 +70,7 @@ public class Department extends BaseObject {
   protected Float maxLongitude;
 
   /**
-   * @return the departmentId
+   * @return the departmentId 
    */
   public Long getDepartmentId() {
     return departmentId;
@@ -221,6 +226,38 @@ public class Department extends BaseObject {
   public void setSpeciesCount(Integer speciesCount) {
     this.speciesCount = speciesCount;
   }
+  
+  /**
+   * @hibernate.property
+   *                     column="lat"
+   * @return the departmentLat
+   */
+  public String getDepartmentLat() {
+	return departmentLat;
+  }
+  
+  /**
+   * @param departmentLat the departmentLat to set
+   */
+  public void setDepartmentLat(String departmentLat) {
+	this.departmentLat = departmentLat;
+  }
+  
+  /**
+   * @hibernate.property
+   *                     column="lng"
+   * @return the departmentLng
+   */
+  public String getDepartmentLng() {
+	return departmentLng;
+  }
+
+  /**
+   * @param departmentLng the departmentLng to set
+   */
+  public void setDepartmentLng(String departmentLng) {
+	this.departmentLng = departmentLng;
+  }
 
   /**
    * @see java.lang.Object#toString()
@@ -229,4 +266,6 @@ public class Department extends BaseObject {
   public String toString() {
     return ToStringBuilder.reflectionToString(this);
   }
+
+  
 }
