@@ -221,6 +221,7 @@ header.sib .logo{
 		padding:10px 13px 13px 13px;
 		float: left;
 		position: absolute;
+		z-index:15000;
 		}
 		header.sib .logo:hover{
 			filter: alpha(opacity=100);
