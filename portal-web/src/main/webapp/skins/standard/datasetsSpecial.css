@@ -12,12 +12,14 @@
 	color: #81A647;
 	padding: 0 150px 0 60px;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: 300;
 	text-transform: uppercase;
+	line-height: 1.6em;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 90px;
+	padding: 7px 0 0 60px;
 	margin: 0;
 	font-weight: 400;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
@@ -27,7 +29,7 @@ line-height:1.3em;
 }
 .subject {
 	font-weight: normal;
-	line-height:0.9em;
+	line-height:0.7em;
 	display:inline !important;
 }
 img.logo {
@@ -215,4 +217,8 @@ table.smallStatistics th{
 }
 input[type="submit"], button{
 	background-color:rgb(166,180,98);
+}
+.dataTables_wrapper{
+	margin-top: 0px;
+	position: relative;
 }

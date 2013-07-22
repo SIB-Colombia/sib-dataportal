@@ -11,9 +11,10 @@
 	color: #1BC0E0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: 300;
 	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
@@ -145,7 +146,7 @@ h4#addSearchFilter, h4#currentSearch {
 	font-size:1.6em;
 }
 input[type="submit"], button{
-	background-color:#34BCE0;
+	background-color:#34BCE0 !important;
 }
 table.actionsList tr:nth-child(even) td,
 table.actionsList tr:nth-child(even) th{

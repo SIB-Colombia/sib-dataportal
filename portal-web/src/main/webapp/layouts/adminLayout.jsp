@@ -20,16 +20,22 @@
 	  		<li><a href="#sidebar" accesskey="S"><spring:message code="accessibility.skip.to.sidebar" text="Skip to Sidebar"/></a></li>
 			</ul> 
 	    </div>
+
+	    <header class="sib">
+        <tiles:insert name="header"/>
+        <nav>
+		<tiles:insert name="topmenu"/>
+        </nav>
+        </header>
 		<div id="cocoon">
 			<div id="container">	
-				<tiles:insert name="header"/>
-				<tiles:insert name="topmenu"/>
 				<div id="content">
 					<tiles:insert name="sidemenu"/>
 					<tiles:insert name="content"/>
 				</div><!--End content -->
-				<tiles:insert name="footer"/>
+				
 			</div><!-- End container-->
-		</div><!-- End cocoon-->		
+		</div><!-- End cocoon-->
+		<tiles:insert name="footer"/>		
 	</body>
 </html>

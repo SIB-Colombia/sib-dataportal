@@ -28,8 +28,8 @@ div.smalltree div.list {
 }
 
 #taxonomytree {
-	background:url('../standard/images/linea_sombra.png') top center no-repeat;
-	padding-top:40px;
+	/*background:url('../standard/images/linea_sombra.png') top center no-repeat;*/
+	padding-top:20px;
 	margin-top:10px;
 }
 #taxonomytree p:before {

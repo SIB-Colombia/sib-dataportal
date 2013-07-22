@@ -23,8 +23,9 @@ table {
 	padding: 5px 0 0 0;
 	margin: 0;
 	font-size: 2em;
-	font-weight: normal;
+	font-weight: 300;
 	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader ul {
 	padding: 9px 0 0 0;

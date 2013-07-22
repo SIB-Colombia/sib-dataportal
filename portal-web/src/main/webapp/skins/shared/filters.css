@@ -25,7 +25,7 @@ div.filter input{
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border:0px;
-	padding:4px;
+	padding:7px;
 }
 div.filter span.value {
 	height: 20px;
@@ -94,12 +94,13 @@ h4#addSearchFilter {
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	position:relative;
-	margin: 20px 0 20px 0;
+	margin: 20px 0 0px 0;
 	padding:20px;
 }
 #filterEditorPane {
 	width: 700px;
 	vertical-align: top;
+	padding: 20px;
 }
 
 #constructedFiltersPane {
@@ -111,12 +112,12 @@ h4#addSearchFilter {
 	color:#595045;
 }
 div#constructedFilters {
-	height: 100%;
 	vertical-align: top;
 	padding:20px;
 	background-color:rgba(239, 107, 45, 0.3);
 	-webkit-border-radius: 20px;
     border-radius: 20px;
+    display: inline-block;
 }
 div#constructedFilters ul {
 	padding: 6px 12px;
@@ -167,9 +168,9 @@ ul.geospatial {
 .geospatialFilterHelp,
 .datasetFilterHelp,
 .otherDetailsFilterHelp {
-	background:url('../../images/icons/idea_1.png') no-repeat center left;
+	background:url('../../skins/standard/images/ico_pink_bulb.png') no-repeat center left;
 	padding-left:55px;
-	height:40px;
+	height:55px;
 	color:#333;
 }
 .geospatialFilterHelp {

@@ -73,7 +73,7 @@ table.statistics {
 table.statistics th,
 table.results th{
 	text-align: left;
-	padding:4px 8px;
+	padding:10px 5px 10px 21px;
 	line-height:1.1em;
 	font-size:1.1em;
 	font-weight:bold;
@@ -142,10 +142,7 @@ table.smallStatistics td,
 table.results td{
 	padding:13px 15px;
 }
-table.statistics th,
-table.results th {
-	padding:10px 15px;
-}
+
 table.results td,
 table.results th {
 	/*text-align:center;*/
@@ -273,23 +270,23 @@ table.datasheetItem td.datatable { width:300px; padding: 0 0 0 20px; }
 
 /*Sorting*/
 .sorting_asc {
-    background: url('images/sort_asc.png') no-repeat center left;
+    background: url('images/sort_asc.png') no-repeat 0px center;
 }
  
 .sorting_desc {
-    background: url('images/sort_desc.png') no-repeat center left;
+    background: url('images/sort_desc.png') no-repeat 0px center;
 }
 
 .sorting_asc_disabled {
-    background: url('images/sort_asc_disabled.png') no-repeat center left;
+    background: url('images/sort_asc_disabled.png') no-repeat 0px center;
 }
  
 .sorting_desc_disabled {
-    background: url('images/sort_desc_disabled.png') no-repeat center left;
+    background: url('images/sort_desc_disabled.png') no-repeat 0px center;
 }
 
 .sorting {
-    background: url('images/sort_both.png') no-repeat center left;
+    background: url('images/sort_both.png') no-repeat 2px center;
 }
 
 input[type="submit"], button{
@@ -298,7 +295,19 @@ input[type="submit"], button{
 
 .dataTables_filter {
    width: 50%;
-   padding: 5px 5px 5px 5px;
+   padding: 0 15px 15px 15px;
    float: right;
    text-align: right;
-}
+   font-weight: 300;
+	text-transform: uppercase;
+	color: gray;
+	position: absolute;
+	right: 0px;
+	top: -93px;
+
+	}
+
+	.dataTables_filter input{
+		margin-left: 10px;
+	}
+

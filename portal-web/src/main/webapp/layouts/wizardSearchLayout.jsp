@@ -61,10 +61,16 @@ $(document).ready(function() {
 	  		<li><a href="#sidebar" accesskey="S">Skip to Sidebar</a></li>
 			</ul> 
 	  </div><!-- End skipNav -->
+
+	  <header class="sib">
+        <tiles:insert name="header"/>
+        <nav>
+		<tiles:insert name="topmenu"/>
+        </nav>
+        </header>
+
 		<div id="cocoon">
 			<div id="container">	
-				<tiles:insert name="header"/>
-				<tiles:insert name="topmenu"/>
 				<div id="content">
 					<tiles:insert page="/WEB-INF/jsp/filters/filterArrays.jsp"/>
 					<div id="twopartheader">					
@@ -115,9 +121,9 @@ $(document).ready(function() {
 					</div><!-- End filtersContainer -->
 					<tiles:insert name="breadcrumbs"/>				
 				</div><!--End content -->
-				<tiles:insert name="footer"/>
 			</div><!-- End container-->
-		</div><!-- End cocoon-->	
+		</div><!-- End cocoon-->
+		<tiles:insert name="footer"/>
 	<script type="text/javascript">
 	  var uvOptions = {};
 	  (function() {

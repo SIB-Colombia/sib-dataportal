@@ -14,8 +14,11 @@
 #statescontainer li.yui-ac-prehighlight { background:#FFFFCC; }
 
 #statesautocomplete input[type=submit]{
-	background:url("../../skins/standard/images/lupa.png") no-repeat scroll center center transparent;
-	margin-left:-20px;
+	background:url("../../skins/standard/images/lupa.png") no-repeat scroll center center ;
+	margin-left:-15px;
+	width: 35px;
+	-webkit-border-radius:35px;
+	border-radius:35px;
 }
 #noMatchesReport{
 	font-size:1.2em;
