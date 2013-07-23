@@ -294,7 +294,7 @@ $(function () {
 
 <div>
 	<h4>Conjuntos de datos por publicador</h4>
-	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
+	<div id="chart_tree" style="width: 720px; height: 500px; float:left;"></div>
 	<p><img src="${pageContext.request.contextPath}/images/treemap_guide.png" /></p>
 	<p><strong>Haz click sobre un publicador para ver los conjuntos de datos que ha publicado</strong></p>
 	<p>El color más oscuro indica mayor cantidad de registros georeferenciados, y el tamaño del cuadro muestra la proporción de registros comparados con los demas publicadores, o publicaciones </p>
