@@ -1004,3 +1004,37 @@ where p.rank>=c.rank; */
 -- ignoring geospatial_issue=32 since that validation is not quite accurate
 delete from gbif_log_message where event_id=1008 and occurrence_id in (select id from occurrence_record where geospatial_issue=32);
 update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
+
+-- ***********************************
+-- Addition by SiB Colombia
+-- Assigns all possible occurrences for basis of record ids to the corresponding DarwinCore
+-- ***********************************
+
+-- populate basis_of_record according to differents possible ids.
+-- Preserved Specimen
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='7' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%preservedspecimen%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='7' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%especimenpreservado%');
+-- Fossil Specimen
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='8' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%fossilspecimen%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='8' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%espcimenfosilizado%');
+-- Living Specimen
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='9' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%livingspecimen%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='9' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%espcimenvivo%');
+-- Human Observation
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='10' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%humanobservation%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='10' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%observacionhumana%');
+-- Machine Observation
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='11' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%machineobservation%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='11' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%observacionconmaquina%');
+-- Still Image
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='12' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%stillimage%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='12' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%imagenfija%');
+-- Moving Image
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='13' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%movingimage%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='13' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%imagenenmovimiento%');
+-- Sound Recording
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='14' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%soundrecording%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='14' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%grabaciondesonido%');
+-- Other Specimen
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='15' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%otherspecimen%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='15' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%otroespecimen%');
