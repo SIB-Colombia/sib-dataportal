@@ -916,3 +916,18 @@ h2 .twitter-share-button{
 	margin: 13px;
 	color: #777;
 }
+
+@media screen and (max-width:1120px){
+	header.sib nav {
+		min-width: 900px;
+	}
+	.share_icons{
+		width: 220px;
+	}
+	.share_icons a[href*=".com"] { 
+		display:none;
+	}
+	#quickSearch{
+		margin: 9px 180px 0 0;
+	}
+}
