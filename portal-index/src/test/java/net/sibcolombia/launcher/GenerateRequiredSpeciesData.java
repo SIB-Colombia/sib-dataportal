@@ -1,9 +1,11 @@
 package net.sibcolombia.launcher;
 
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.gbif.portal.harvest.taxonomy.TaxonomyUtils;
 import org.gbif.portal.model.DataResource;
-
-import java.util.List;
 
 import net.sibcolombia.portal.dao.DataResourceDAO;
 import org.apache.commons.logging.Log;
@@ -33,7 +35,7 @@ public class GenerateRequiredSpeciesData {
    * The spring context
    */
   protected ApplicationContext context;
-
+  
   /**
    * Hidden constructor forcing the setting of the required values
    */
@@ -53,40 +55,26 @@ public class GenerateRequiredSpeciesData {
     System.out.println("Iniciando generador de datos requeridos para consultar taxonomia de especies.");
     GenerateRequiredSpeciesData launcher = new GenerateRequiredSpeciesData();
     try {
-      launcher.launch();
+    	List<DataResource> dataResources = launcher.dataResourceDAO.getAllResources();
+    	ExecutorService es = Executors.newCachedThreadPool();
+		for(int i=0;i<dataResources.size();i++){
+			long id =(dataResources.get(i).getId());
+		    es.execute(new ImportTaxonomyThread(launcher.taxonomyUtils, launcher.dataResourceDAO, id));
+		}
+		es.shutdown();
+		while(!es.isTerminated()) {
+		   try {
+	            Thread.sleep(100);
+            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+       }
     } catch (Exception e) {
       System.out.println("Error ejecutando el generador.");
       e.printStackTrace();
-    }
-    System.out.println("Finalizado generador de datos requeridos para consultar taxonomia de especies.");
-  }
-
-  private void launch() throws Exception {
-    List<DataResource> dataResources = dataResourceDAO.getAllResources();
-
-    for (DataResource dataResource : dataResources) {
-      System.out.println("Llenando campo partner_concept_id en tabla taxon_concept, para recurso con id: "
-        + dataResource.getId());
-      long time = System.currentTimeMillis();
-      logger.info("Starting importing resource[" + dataResource.getId() + "]");
-      DataResource resource = dataResourceDAO.getById(dataResource.getId());
-      if (resource == null) {
-        throw new Exception("No resource for id:" + dataResource.getId());
-      }
-
-      // Only allow our highest taxonomic authorities to create kingdoms
-      boolean canCreateKingdoms = (resource.getTaxonomicPriority() <= 10);
-      taxonomyUtils.importTaxonomyFromDataResource(dataResource.getId(), 1, 1, canCreateKingdoms, false, false);
-      logger.info("Finished importing resource[" + dataResource.getId() + "] in "
-        + ((1 + System.currentTimeMillis() - time) / 1000) + " secs");
-    }
-    for (DataResource dataResource : dataResources) {
-      System.out
-        .println("Llenando ID de taxones, kingdom, campo partner_concep, phylum, ..., species para el recurso con id: "
-          + dataResource.getId());
-      logger.info("Starting taxonomy denormalisation of resource " + dataResource.getId());
-      taxonomyUtils.denormalisedTaxonomyForResource(dataResource.getId());
-      logger.info("Finished taxonomy denormalisation of resource " + dataResource.getId());
+    }finally{
+    	System.out.println("Los datos requeridos para consultar taxonomia de especies ya estan disponibles.");
+    	System.exit(0);
     }
   }
 }
