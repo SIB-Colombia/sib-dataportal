@@ -33,9 +33,9 @@
 
 
 <aside>
-<div> <a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/></a>
+<a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
   <h4>IR AL PORTAL GENERAL</h4>
-  </div>
+  </a>
   <hr/>
   <div>
       <!-- tweet-button--> 
@@ -57,22 +57,22 @@
 
   </div>
   <hr/>
-  <div class="cifras">
+  <a class="cifras" href="${pageContext.request.contextPath}/stats.htm" target="_blank">
   <img src="${pageContext.request.contextPath}/skins/standard/images/ico_cifras.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
     <c:set var="link1">
-    <em><a href="${pageContext.request.contextPath}/tutorial/introduction">
+    <em>
     <spring:message code="topmenu.about"/>
-    </a></em>
+    </em>
     </c:set>
     <c:set var="link2">
-    <em><a href="${pageContext.request.contextPath}/settings.htm">
+    <em>
     <spring:message code="topmenu.settings"/>
-    </a></em>
+    </em>
     </c:set>
     <c:set var="link3">
-    <em><a href="${pageContext.request.contextPath}/terms.htm">
+    <em>
     <spring:message code="dataagreement.title"/>
-    </a></em>
+    </em>
     </c:set>
     
     <p>
@@ -83,6 +83,7 @@
       <fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
       <fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
       <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/>
+    </p>
       <!--  
 	<c:set var="req" value="${pageContext.request}" />
 	<c:set var="uri" value="${req.requestURI}" />
@@ -90,7 +91,7 @@
 	<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
 	<p>${urlt}</p>
 	--> 
-	</div>
+	</a>
   <hr/> 
   </aside>
   
