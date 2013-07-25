@@ -1016,10 +1016,10 @@ update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_r
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='7' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%especimenpreservado%');
 -- Fossil Specimen
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='8' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%fossilspecimen%');
-update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='8' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%espcimenfosilizado%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='8' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%especimenfosilizado%');
 -- Living Specimen
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='9' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%livingspecimen%');
-update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='9' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%espcimenvivo%');
+update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='9' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%especimenvivo%');
 -- Human Observation
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='10' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%humanobservation%');
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='10' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%observacionhumana%');
