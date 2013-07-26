@@ -3,7 +3,7 @@
 
 function LatLonGraticule() {
 }
-LatLonGraticule.prototype = new GOverlay();
+LatLonGraticule.prototype = new google.maps.OverlayView();
 
 
 LatLonGraticule.prototype.initialize = function(map) {
@@ -39,7 +39,7 @@ LatLonGraticule.prototype.redraw = function(force) {
   this.remove();
 
   //best color for writing on the map
-  this.color_ = this.map_.getCurrentMapType().getTextColor();
+  this.color_ = this.map_.getMapTypeId().getTextColor();
 
   //determine graticule interval
   var bnds = this.map_.getBounds();
@@ -107,8 +107,8 @@ LatLonGraticule.prototype.redraw = function(force) {
   var i=0;//count inserted divs
 
   //min and max x and y pixel values for graticule lines
-  var pbl = this.map_.fromLatLngToDivPixel(new GLatLng(b,l));
-  var ptr = this.map_.fromLatLngToDivPixel(new GLatLng(t,r));
+  var pbl = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(b,l));
+  var ptr = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(t,r));
   
   this.maxX = ptr.x;
   this.maxY = pbl.y;
@@ -117,7 +117,7 @@ LatLonGraticule.prototype.redraw = function(force) {
   
   var x;//coord for label
   //labels on second column to avoid peripheral controls
-  var y = this.map_.fromLatLngToDivPixel(new GLatLng(b+dLat+dLat,l)).y + 2;//coord for label
+  var y = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(b+dLat+dLat,l)).y + 2;//coord for label
   
   //pane/layer to write on
   var mapDiv = this.map_.getPane(G_MAP_MARKER_SHADOW_PANE);
@@ -130,7 +130,7 @@ LatLonGraticule.prototype.redraw = function(force) {
   //vertical lines
   while(lo<=r){
 
-		 var p = this.map_.fromLatLngToDivPixel(new GLatLng(b,lo));
+		 var p = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(b,lo));
 
 		 //line
 		 this.divs_[i] = this.createVLine(p.x);
@@ -164,12 +164,12 @@ LatLonGraticule.prototype.redraw = function(force) {
   var j = 0;
       
   //labels on second row to avoid controls
-  x = this.map_.fromLatLngToDivPixel(new GLatLng(b,l+dLng+dLng)).x + 3;
+  x = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(b,l+dLng+dLng)).x + 3;
   
   //horizontal lines
   while(b<=t){
 
-		 var p = this.map_.fromLatLngToDivPixel(new GLatLng(b,l));
+		 var p = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(b,l));
 
 		 //line
 		 
@@ -317,8 +317,8 @@ LatLonGraticule.prototype.createHLine = function(y) {
 //to its left and right	  
 LatLonGraticule.prototype.createHLine3 = function(lat) {
 
-	var f = this.map_.fromLatLngToDivPixel(new GLatLng(lat,0));
-	var t = this.map_.fromLatLngToDivPixel(new GLatLng(lat,180));		
+	var f = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(lat,0));
+	var t = this.map_.fromLatLngToDivPixel(new google.maps.LatLng(lat,180));		
 
 	var div = document.createElement("DIV");
 	div.style.position = "absolute";
