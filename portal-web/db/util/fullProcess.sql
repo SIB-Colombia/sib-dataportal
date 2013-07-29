@@ -1038,3 +1038,9 @@ update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_r
 -- Other Specimen
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='15' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%otherspecimen%');
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='15' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%otroespecimen%');
+
+-- ignoring event_id = 1006 since that validation is not quite accurate
+delete from gbif_log_message where event_id=1006 and occurrence_id in (select id from occurrence_record where geospatial_issue=0 and basis_of_record!=0);
+
+-- delete warning 
+update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2
