@@ -6,7 +6,7 @@
 	if(dpn.length>80){
 		dpn=dpn.substring(0,80)+"...";
 	}
-	var rot="datasets/provider/"+"${dataProvider.key}";
+	var rot="publicadores/provider/"+"${dataProvider.key}";
 	var urlt="http://data.sibcolombia.net/"+rot+"?utm_source="+dp+"&utm_medium=twitter&utm_campaign=impacto_redes";
 	$(".twitter-share-button").attr("data-url", urlt);
 	$(".twitter-share-button").attr("data-text", dpn);
