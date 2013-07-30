@@ -389,13 +389,15 @@ footer aside{
 }
 footer section{ margin: 0 auto; max-width: 1100px; padding: 30px 0 !important;}
 footer section div{ display: inline-block; vertical-align: top;}
-footer section div:nth-child(3) div{ width: 30%;}
+footer section div:nth-child(3) div{ width: 24%;}
+footer section div:nth-child(3) div:nth-child(1){ width: 31%;}
+footer section div:nth-child(3) div:nth-child(3){ width: 19%;}
 footer section a{
 	color: #515254 !important;
 }
 footer section div a{ display: block; vertical-align: top} 
 footer section:nth-child(1){background: url("images/shadow_bottom_clear.png") no-repeat bottom center;}
-footer section div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
+footer section > div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
  footer .redes{ width: 26%; padding: 0 20px 0px 20px; margin: 20px 0 0 70px; }
 
 footer section > div:nth-child(3), footer nav{ width: 66%; padding: 0 20px 0px 20px !important; display: inline-block; border-left: 1px #cfcfcf solid;}
