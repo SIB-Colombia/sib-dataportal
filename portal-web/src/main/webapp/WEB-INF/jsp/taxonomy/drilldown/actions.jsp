@@ -61,6 +61,7 @@
 					</ul>
 				</td>
 			</tr>
+			<!--
 			<tr valign="top">
 				<th><spring:message code="actions.webservice"/></th>
 					<td>
@@ -71,6 +72,7 @@
 					</ul>
 				</td>
 			</tr>
+			-->
 			</gbif:isMajorRank>			
 		</tbody>
 	</table>
