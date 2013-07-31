@@ -16,9 +16,7 @@
       <props>
         <prop key="/">datasetBrowserController</prop>
         <prop key="/nameSearch">nameSearchController</prop>
-        <prop key="/nameSearch/**/*">nameSearchController</prop>
-        <prop key="/speciesSearch">speciesDatasetSearchController</prop>
-        <prop key="/speciesSearch/**/*">speciesDatasetSearchController</prop>        
+        <prop key="/nameSearch/**/*">nameSearchController</prop>       
         <prop key="/browse">datasetBrowserController</prop>
         <prop key="/browse/*">datasetBrowserController</prop>
         <!--<prop key="/resource/**/*">dataResourceController</prop> -->
@@ -47,7 +45,7 @@
         <prop key="/datatracking/provider/**/logs/">harvestingLogController</prop>
         <prop key="/datatracking/provider/**/logs/**/*">harvestingLogController</prop>
 
-        <!--<prop key="/provider/*/resource/*">dataResourceController</prop>-->
+        <prop key="/provider/*/resource/*">dataResourceController</prop>
         <prop key="/ajax/**/**">datasetNameController</prop>
 
         <!-- Indexing history -->
@@ -108,7 +106,7 @@
     <property name="logManager" ref="harvestingLogManager" />
     <property name="harvestingLogManager" ref="harvestingLogManager" />
     <property name="dataResourceManager" ref="harvestingDataResourceManager" />
-    <property name="urlRoot" value="datasets" />
+    <property name="urlRoot" value="publicadores" />
 	<property name="endsWith" value="indexing" />
 	<property name="defaultView" value="/indexing/" />
     <property name="supportedPatterns">
@@ -203,8 +201,8 @@
     <property name="mapContentProvider" ref="mapContentProvider" />
     <property name="userUtils" ref="userUtils" />
     <property name="urlRoot" value="provider" />
-    <property name="viewNamePrefix" value="provider" />
-    <property name="defaultView" value="/datasets/" />
+    <property name="viewNamePrefix" value="provider-publisher" />
+    <property name="defaultView" value="/publicadores/" />
     <property name="supportedPatterns">
       <list>
         <list>
@@ -240,7 +238,7 @@
         <property name="pageSize" value="100" />
       </bean>
     </property>
-    <property name="defaultView" value="/datasets/" />
+    <property name="defaultView" value="/publicadores/" />
     <property name="messageSource" ref="messageSource" />
     <property name="loggingLevels">
       <list>
@@ -284,15 +282,15 @@
   <!-- Log Controlller pointing at live DB -->
   <bean id="logController" parent="abstractLogController">
     <property name="logManager" ref="logManager" />
-    <property name="urlRoot" value="datasets" />
-    <property name="logView" value="logTable" />
+    <property name="urlRoot" value="publicadores" />
+    <property name="logView" value="logTable-publishers" />
   </bean>
 
   <!-- Log Controlller pointing at harvesting DB -->
   <bean id="harvestingLogController" parent="abstractLogController">
     <property name="logManager" ref="harvestingLogManager" />
     <property name="urlRoot" value="datatracking" />
-    <property name="logView" value="harvestingLogTable" />
+    <property name="logView" value="harvestingLogTable-publishers" />
   </bean>
 
   <!-- Controller for Data Resource Views -->
@@ -401,8 +399,8 @@
   <!-- AJAX Controller for Data Provider and Resource lists -->
   <bean id="datasetNameController" class="org.gbif.portal.web.controller.dataset.DatasetNameController">
     <property name="dataResourceManager" ref="dataResourceManager" />
-    <property name="urlRoot" value="datasets/ajax/" />
-    <property name="defaultView" value="/datasets/" />
+    <property name="urlRoot" value="publicadores/ajax/" />
+    <property name="defaultView" value="/publicadores/" />
     <property name="viewNamePrefix" value="resourceKeyValuePairs" />
     <property name="supportedPatterns">
       <list>

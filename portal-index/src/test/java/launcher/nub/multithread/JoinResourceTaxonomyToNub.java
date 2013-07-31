@@ -53,7 +53,7 @@ public class JoinResourceTaxonomyToNub {
 			for (List<TaxonConceptLite> classification : classifications) {
 				try {
 					//TaxonConceptLite nubConcept = taxonomyUtils.getJoinPoint(taxonomyUtils.toListOfTaxonName(classification), null, 1);
-					TaxonConceptLite nubConcept = taxonomyUtils.getTaxonConceptForClassification(1L, 1L, taxonomyUtils.toListOfTaxonName(classification), TaxonomyUtils.COMPARISON_THRESHOLD);
+					TaxonConceptLite nubConcept = taxonomyUtils.getTaxonConceptForClassification(null,taxonConceptDAO, 1L, 1L, taxonomyUtils.toListOfTaxonName(classification), TaxonomyUtils.COMPARISON_THRESHOLD);
 					if (nubConcept != null) {
 						taxonConceptDAO.updatePartnerConcept(classification.get(classification.size()-1).getId(), nubConcept.getId());
 					}

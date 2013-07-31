@@ -28,9 +28,10 @@ line-height:1.3em;
 	font-size:1em;
 }
 .subject {
-	font-weight: normal;
-	line-height:0.7em;
-	display:inline !important;
+	font-weight: 300;
+	line-height:1em;
+	display:block !important;
+	font-family: 'Economica', Helvetica, Verdana, Arial, sans-serif;
 }
 img.logo {
 	position: relative;

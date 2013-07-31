@@ -26,7 +26,7 @@
     strong { font-weight: bold; }   
       
     table { border-collapse: collapse; border-spacing: 0; }  
-    img { border: 0; max-width: 100%; }  
+    img { border: 0;}  
       
     p { font-size: 1em; line-height: 1.0em; color: #333; }  
 
@@ -221,6 +221,7 @@ header.sib .logo{
 		padding:10px 13px 13px 13px;
 		float: left;
 		position: absolute;
+		z-index:15000;
 		}
 		header.sib .logo:hover{
 			filter: alpha(opacity=100);
@@ -388,13 +389,15 @@ footer aside{
 }
 footer section{ margin: 0 auto; max-width: 1100px; padding: 30px 0 !important;}
 footer section div{ display: inline-block; vertical-align: top;}
-footer section div:nth-child(3) div{ width: 30%;}
+footer section div:nth-child(3) div{ width: 24%;}
+footer section div:nth-child(3) div:nth-child(1){ width: 31%;}
+footer section div:nth-child(3) div:nth-child(3){ width: 19%;}
 footer section a{
 	color: #515254 !important;
 }
 footer section div a{ display: block; vertical-align: top} 
 footer section:nth-child(1){background: url("images/shadow_bottom_clear.png") no-repeat bottom center;}
-footer section div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
+footer section > div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
  footer .redes{ width: 26%; padding: 0 20px 0px 20px; margin: 20px 0 0 70px; }
 
 footer section > div:nth-child(3), footer nav{ width: 66%; padding: 0 20px 0px 20px !important; display: inline-block; border-left: 1px #cfcfcf solid;}
@@ -914,4 +917,19 @@ h2 .twitter-share-button{
 .dataTables_info{
 	margin: 13px;
 	color: #777;
+}
+
+@media screen and (max-width:1120px){
+	header.sib nav {
+		min-width: 900px;
+	}
+	.share_icons{
+		width: 220px;
+	}
+	.share_icons a[href*=".com"] { 
+		display:none;
+	}
+	#quickSearch{
+		margin: 9px 180px 0 0;
+	}
 }

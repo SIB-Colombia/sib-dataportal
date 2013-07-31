@@ -98,6 +98,7 @@ h4#addSearchFilter {
 	padding:20px;
 }
 #filterEditorPane {
+	height: 400px;
 	width: 700px;
 	vertical-align: top;
 	padding: 20px;

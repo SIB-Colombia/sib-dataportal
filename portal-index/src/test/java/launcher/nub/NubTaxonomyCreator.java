@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gbif.portal.dao.RelationshipAssertionDAO;
 import org.gbif.portal.dao.TaxonConceptDAO;
 import org.gbif.portal.harvest.taxonomy.TaxonomyUtils;
 import org.gbif.portal.model.TaxonConceptLite;
@@ -83,7 +84,7 @@ public class NubTaxonomyCreator {
 				}
 				
 				for (List<TaxonConceptLite> classification : classifications) {
-					taxonomyUtils.synchroniseAtLowestJoinPoint(classification, nubProviderId, nubResourceId, true);
+					taxonomyUtils.synchroniseAtLowestJoinPoint(null, taxonConceptDAO, classification, nubProviderId, nubResourceId, true);
 				}				
 			}
 			logger.info("Finished resource id: " + id);

@@ -5,9 +5,8 @@
   <aside><img  alt="SiB Colombia" src="${pageContext.request.contextPath}/images/logos_cut/logo_sib_bn.png"></aside>
   <div>
     <h5>Sistema de información sobre <br/>Biodiversidad de Colombia</h5>
-    <strong><spring:message code="address"/></strong> Sede Principal Calle 28A No. 15-09 Bogotá D.C., Colombia. <br/>
+    <strong><spring:message code="address"/></strong> Calle 28A No. 15-09 Bogotá D.C., Colombia. <br/>
     <strong><spring:message code="telephone"/></strong> PBX 57(1) 320 2767<br/>
-    <strong><spring:message code="opening.hours"/></strong> 8:30 am - 5:30 pm<br/>
     <a href="mailto:sib@humboldt.org.co">sib@humboldt.org.co</a>
   </div>
   <div>
@@ -27,12 +26,15 @@
 
     <div><h5><spring:message code="sib.colombia"/></h5> 
         <a target="_blank" href="http://www.sibcolombia.net/web/sib/acerca-del-sib"><spring:message code="what.is.sib"/></a> 
-        <a target="_blank" href="http://www.sibcolombia.net/web/sib/equipo-coordinador"><spring:message code="coordinator.team"/></a> 
-        <!--<a target="_blank" href="http://www.sibcolombia.net/web/sib/unete-al-sib">Úšnete al SiB</a>!-->
+        <a target="_blank" href="http://www.sibcolombia.net/web/sib/equipo-coordinador"><spring:message code="coordinator.team"/></a>
+        <a target="_blank" href="http://www.sibcolombia.net/web/sib/comite-directivo"><spring:message code="director.board"/></a> 
+        <a target="_blank" href="http://www.sibcolombia.net/web/sib/nuestra-red"><spring:message code="our.network"/></a> 
+        <!--<a target="_blank" href="http://www.sibcolombia.net/web/sib/unete-al-sib">Úšnete al SiB</a>!--></div>
 
-    <h5><spring:message code="current.news.foot"/></h5> 
+    <div><h5><spring:message code="current.news.foot"/></h5> 
         <a target="_blank" href="http://www.sibcolombia.net/web/sib/linea-de-tiempo"><spring:message code="line.events"/></a> 
         <a target="_blank" href="http://www.sibcolombia.net/web/sib/eventos"><spring:message code="workshops.committees"/></a> 
+        <a target="_blank" href="http://www.sibcolombia.net/web/sib/reportesib"><spring:message code="sib.report"/></a>
         <!--<a target="_blank" href="#">Convocatorias</a>!--></div>
     
 

@@ -36,6 +36,7 @@
 						</ul>
 					</td>
 				</tr>
+				<!--
 				<tr valign="top">
 					<th><spring:message code="actions.webservice"/></th>
 						<td>
@@ -45,7 +46,8 @@
 							</li>
 						</ul>
 					</td>
-				</tr>	
+				</tr>
+				-->	
 			</c:if>	
 		</tbody>
 	</table>

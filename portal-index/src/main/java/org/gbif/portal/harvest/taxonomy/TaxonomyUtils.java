@@ -23,6 +23,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.lang.Thread;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -57,7 +60,6 @@ public class TaxonomyUtils {
 	 * This gives a total of 30/90 or 33. 
 	 */
 	public static final int COMPARISON_THRESHOLD = 33;
-
 	/**
 	 * DAOs
 	 */
@@ -233,7 +235,7 @@ public class TaxonomyUtils {
 	 * @return The most significant concept in the classification (regardless of whether it was newly created or not)
 	 */
 	public TaxonConceptLite synchroniseNames(List<TaxonName> classification, long dataProviderId, long dataResourceId, int taxonomicPriority) {
-		return synchronise(toTaxonConceptLiteList(classification, dataProviderId, dataResourceId, taxonomicPriority), dataProviderId, dataResourceId);
+		return synchronise(relationshipAssertionDAO, taxonConceptDAO, toTaxonConceptLiteList(classification, dataProviderId, dataResourceId, taxonomicPriority), dataProviderId, dataResourceId);
 	}
 	
 	/**
@@ -286,7 +288,7 @@ public class TaxonomyUtils {
 	 * @param dataResourceId That the classification is to be synchronised with
 	 * @return The most significant concept in the classification (regardless of whether it was newly created or not)
 	 */
-	public TaxonConceptLite synchronise(List<TaxonConceptLite> classification, long dataProviderId, long dataResourceId) {
+	public TaxonConceptLite synchronise(RelationshipAssertionDAO relationshipAssertionDAO, TaxonConceptDAO taxonConceptDAO, List<TaxonConceptLite> classification, long dataProviderId, long dataResourceId) {
 		logger.debug("Synchronising classification to dataResourceId[" + dataResourceId + "] dataProviderId[" + dataProviderId + "]");
 		if (classification == null || classification.size()==0) {
 			logger.warn("Received an empty classification");
@@ -321,7 +323,7 @@ public class TaxonomyUtils {
 			if (persisted.getId() == null || persisted.getId() < 1 
 					|| (taxonConcept.getDataResourceId() != null && taxonConcept.getDataResourceId().longValue() != dataResourceId)) {
 				// get any persisted concepts for the name and rank that have a parent concept equal to that already handled
-				persisted = getTaxonConceptForClassification(dataProviderId,
+				persisted = getTaxonConceptForClassification( relationshipAssertionDAO,taxonConceptDAO, dataProviderId,
 														     dataResourceId,
 														     classificationNames,
 														     COMPARISON_THRESHOLD);
@@ -438,23 +440,32 @@ public class TaxonomyUtils {
 	 * @param majorRanksOnly If this is set to true, then only major ranks will be imported
 	 * @param unpartneredOnly If this is set to true, then only concepts with no partner concept id will be imported
 	 * is not represented in the target taxonomy.  If set to true, then the kingdoms are imported from the source.  
+	 * @throws InterruptedException 
 	 */
-	public void importTaxonomyFromDataResource(long sourceDataResourceId, long targetDataResourceId, long targetDataProviderId, boolean allowCreateUnknownKingdoms, boolean majorRanksOnly, boolean unpartneredOnly) {
+	public void importTaxonomyFromDataResource(long sourceDataResourceId, long targetDataResourceId, long targetDataProviderId, boolean allowCreateUnknownKingdoms, boolean majorRanksOnly, boolean unpartneredOnly) throws InterruptedException {
+		
 		List<Integer> ranksToImport = null;
 		if (unpartneredOnly) {
 			ranksToImport = taxonConceptDAO.getUnpartneredRanksWithinResource(sourceDataResourceId);
 		} else {
 			ranksToImport = taxonConceptDAO.getRanksWithinResource(sourceDataResourceId);
 		}
-		
 		logger.debug("There are " + ranksToImport.size() + " ranks to import from data resource[" + sourceDataResourceId + "]: " + ranksToImport);
 		
-		for (int rank : ranksToImport) {
-			logger.info("Importing accepted concepts of rank " + rank + " from source data resource[" + sourceDataResourceId + "] to target data resource[" + targetDataResourceId + "]");
-			importTaxonomyFromDataResource(sourceDataResourceId, targetDataResourceId, targetDataProviderId, allowCreateUnknownKingdoms, majorRanksOnly, rank, true, unpartneredOnly);
-			logger.info("Importing non-accepted concepts of rank " + rank + " from source data resource[" + sourceDataResourceId + "] to target data resource[" + targetDataResourceId + "]");
-			importTaxonomyFromDataResource(sourceDataResourceId, targetDataResourceId, targetDataProviderId, allowCreateUnknownKingdoms, majorRanksOnly, rank, false, unpartneredOnly);
+		ExecutorService es = Executors.newCachedThreadPool();
+		for(int i=0;i<ranksToImport.size();i++){
+			int rank =(ranksToImport.get(i));
+		    es.execute(new Thread(new TaxonomyThread(relationshipAssertionDAO, taxonConceptDAO, targetDataResourceId, targetDataProviderId, allowCreateUnknownKingdoms, majorRanksOnly, unpartneredOnly, sourceDataResourceId, rank)));
 		}
+		es.shutdown();
+		while(!es.isTerminated()) {
+		   try {
+	            Thread.sleep(100);
+            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+       }
+	   System.out.println("Finalizados todos los hilos del recurso : " + sourceDataResourceId);
 	}
 	
 	/**
@@ -468,7 +479,7 @@ public class TaxonomyUtils {
 	 * @param accepted Control flag - will import only accepted / non accepted concepts
 	 * @param unpartneredOnly Control flag - to set whether we want to import only unpartnered concepts
 	 */
-	protected void importTaxonomyFromDataResource(long sourceDataResourceId, long targetDataResourceId, long targetDataProviderId, boolean allowCreateUnknownKingdoms, boolean majorRanksOnly, int rank, boolean accepted, boolean unpartnered) {
+	protected void importTaxonomyFromDataResource(RelationshipAssertionDAO relationshipAssertionDAO, TaxonConceptDAO taxonConceptDAO, long sourceDataResourceId, long targetDataResourceId, long targetDataProviderId, boolean allowCreateUnknownKingdoms, boolean majorRanksOnly, int rank, boolean accepted, boolean unpartnered) {
 		boolean hasMore = true;
 		long minId = 0;
 		while (hasMore) {
@@ -479,21 +490,19 @@ public class TaxonomyUtils {
 			} else {
 				logger.info("Received " + classifications.size() + " non accepted concepts of rank[" + rank + "] unpartneredOnly[" + unpartnered + "]");
 			}
-			
 			for (List<TaxonConceptLite> classification : classifications) {
 				if (classification.size()>0) {
 					minId = classification.get(classification.size()-1).getId();
 				}
 				classification = removeUnwantedConcepts(classification);
 				if (majorRanksOnly) {
-					classification = removeMinorRanks(classification);
+					classification =  removeMinorRanks(classification);
 				}	
-				
 				if (classification.size()>0) {
 					// store the importing one
 					long importingConceptId = classification.get(classification.size()-1).getId();
 					logger.debug("Finding target id");
-					TaxonConceptLite nub = synchroniseAtLowestJoinPoint(classification, targetDataProviderId, targetDataResourceId, allowCreateUnknownKingdoms);
+					TaxonConceptLite nub =  synchroniseAtLowestJoinPoint(relationshipAssertionDAO,taxonConceptDAO, classification, targetDataProviderId, targetDataResourceId, allowCreateUnknownKingdoms);
 					logger.debug("Target id: " + nub.getId());
 					logger.debug("Setting " + importingConceptId + " to partner " + nub.getId());
 					taxonConceptDAO.updatePartnerConcept(importingConceptId, nub.getId());
@@ -617,8 +626,8 @@ public class TaxonomyUtils {
 	 * @return The most significant concept in the classification (regardless of
 	 * whether it was newly created or not)
 	 */
-	public TaxonConceptLite synchroniseAtLowestJoinPoint(List<TaxonConceptLite> classification, long targetProviderId, long targetResourceId, boolean createUnknownKingdoms) {
-		TaxonConceptLite targetConcept = getTaxonConceptForClassification(targetProviderId, targetResourceId, toListOfTaxonName(classification), COMPARISON_THRESHOLD);
+	public TaxonConceptLite synchroniseAtLowestJoinPoint(RelationshipAssertionDAO relationshipAssertionDAO, TaxonConceptDAO taxonConceptDAO,List<TaxonConceptLite> classification, long targetProviderId, long targetResourceId, boolean createUnknownKingdoms) {
+		TaxonConceptLite targetConcept = getTaxonConceptForClassification(relationshipAssertionDAO, taxonConceptDAO, targetProviderId, targetResourceId, toListOfTaxonName(classification), COMPARISON_THRESHOLD);
 		if (targetConcept != null) {
 			logger.debug("The concept already exists in target resource [id: " + targetResourceId + "]: " + toListOfTaxonName(classification));
 			
@@ -642,7 +651,7 @@ public class TaxonomyUtils {
 				}
 			}
 			
-			targetConcept = synchronise(classification, targetProviderId, targetResourceId);
+			targetConcept = synchronise(relationshipAssertionDAO, taxonConceptDAO,classification, targetProviderId, targetResourceId);
 			
 			// Handle the situation in which this concept was added to the nub as a non-accepted secondary
 			// taxon but the taxon in the supplied classification is not secondary.
@@ -659,7 +668,7 @@ public class TaxonomyUtils {
 			
 		} else {
 			logger.debug("Not found in target resource [id: " + targetResourceId + "] - determining join point to resource for classification: " + toListOfTaxonName(classification));
-			TaxonConceptLite targetJoinPoint = getJoinPoint(toListOfTaxonName(classification), null, targetProviderId, targetResourceId);
+			TaxonConceptLite targetJoinPoint = getJoinPoint(taxonConceptDAO, toListOfTaxonName(classification), null, targetProviderId, targetResourceId);
 			
 			if (targetJoinPoint != null) {
 				logger.debug("Join point: " + targetJoinPoint.getTaxonName());
@@ -690,7 +699,7 @@ public class TaxonomyUtils {
 				}
 				logger.debug("Synchronising: " + toListOfTaxonName(toSync));
 				
-				TaxonConceptLite insertedConcept = synchronise(toSync, targetProviderId, targetResourceId);
+				TaxonConceptLite insertedConcept = synchronise(relationshipAssertionDAO, taxonConceptDAO,toSync, targetProviderId, targetResourceId);
 				
 				// For the nub taxonomy, handle secondary concepts 
 				if (targetResourceId == 1) {
@@ -710,7 +719,7 @@ public class TaxonomyUtils {
 				if (classification.get(0).getRank() == 1000
 						&& createUnknownKingdoms) {
 						logger.warn("Classification cannot be joined onto the target in any way - (creating a new kingdom): " + toListOfTaxonName(classification));
-						return synchronise(classification, targetProviderId, targetResourceId);
+						return synchronise(relationshipAssertionDAO, taxonConceptDAO, classification, targetProviderId, targetResourceId);
 				} else {
 					TaxonConceptLite oldKingdom = null;
 					// removed the kingdom that can't be created if any
@@ -727,7 +736,7 @@ public class TaxonomyUtils {
 					tcl.setPartnerConceptId(oldKingdom == null ? null : oldKingdom.getPartnerConceptId());
 					classification.add(0, tcl);
 					logger.debug("Classification cannot be joined onto the target in any way - (using the \"unknown\" kingdom): " + toListOfTaxonName(classification));
-					return synchronise(classification, targetProviderId, targetResourceId);
+					return synchronise(relationshipAssertionDAO,taxonConceptDAO,classification, targetProviderId, targetResourceId);
 				}					
 			}	
 		}
@@ -780,7 +789,7 @@ public class TaxonomyUtils {
 	 * should it be missing
 	 * @return The taxon concept within the target that can be merged to, at the appropriate rank
 	 */
-	public TaxonConceptLite getJoinPoint(List<TaxonName> classification, String kingdom, long targetProviderId, long targetResourceId) {
+	public TaxonConceptLite getJoinPoint(TaxonConceptDAO taxonConceptDAO, List<TaxonName> classification, String kingdom, long targetProviderId, long targetResourceId) {
 		TaxonConceptLite targetConcept = null;
 		// get the kingdom in there if needbe
 		if (StringUtils.isNotEmpty(kingdom)) {
@@ -806,7 +815,7 @@ public class TaxonomyUtils {
 			
 			// go from lowest to highest taxa finding a point at which this can be merged into the target
 			for (int i=workingClassification.size()-1; i>=0; i--) {
-				targetConcept = getTaxonConceptForClassification(targetProviderId, targetResourceId, workingClassification, COMPARISON_THRESHOLD);
+				targetConcept = getTaxonConceptForClassification(relationshipAssertionDAO, taxonConceptDAO, targetProviderId, targetResourceId, workingClassification, COMPARISON_THRESHOLD);
 				if (targetConcept != null) {
 					break;
 				} else {
@@ -927,7 +936,7 @@ public class TaxonomyUtils {
 	 * @param threshold Minimum acceptable measure for classificationsComparator()
 	 * @return The target concept or null if non found
 	 */
-	public TaxonConceptLite getTaxonConceptForClassification(Long targetProviderId, 
+	public TaxonConceptLite getTaxonConceptForClassification(RelationshipAssertionDAO relationshipAssertionDAO,TaxonConceptDAO taxonConceptDAO, Long targetProviderId, 
 															 Long targetResourceId, 
 															 List<TaxonName> classification,
 															 int threshold) {
@@ -938,8 +947,7 @@ public class TaxonomyUtils {
 		
 		boolean disambiguate = (targetResourceId == 1);
 		boolean requireFullCompatibility = (targetResourceId != 1);
-		
-		return getTaxonConceptForClassification(targetProviderId, 
+		return getTaxonConceptForClassification(relationshipAssertionDAO, taxonConceptDAO, targetProviderId, 
 												targetResourceId, 
 												classification, 
 												threshold, 
@@ -962,7 +970,7 @@ public class TaxonomyUtils {
 	 * @param recurse True if recursion is allowed
 	 * @return The target concept or null if non found
 	 */
-	private TaxonConceptLite getTaxonConceptForClassification(Long targetProviderId, 
+	private TaxonConceptLite getTaxonConceptForClassification(RelationshipAssertionDAO relationshipAssertionDAO, TaxonConceptDAO taxonConceptDAO, Long targetProviderId, 
 															  Long targetResourceId, 
 															  List<TaxonName> classification,
 															  int threshold,
@@ -1061,7 +1069,7 @@ public class TaxonomyUtils {
 							}
 							// Call ourselves recursively to find the ancestor, but do not trigger 
 							// disambiguation at the ancestor level
-							TaxonConceptLite ancestorConcept = getTaxonConceptForClassification(targetProviderId,
+							TaxonConceptLite ancestorConcept = getTaxonConceptForClassification(relationshipAssertionDAO, taxonConceptDAO, targetProviderId,
 																								targetResourceId,
 																								ancestorClassification,
 																								threshold,
@@ -1073,10 +1081,10 @@ public class TaxonomyUtils {
 								// Let's build a classification based on that concept's classification with the
 								// original name from the request and then try using that (with both recursion
 								// and disambiguation disabled).
-								List<TaxonConceptLite> ancestorConcepts = getClassificationConcepts(ancestorConcept.getId());
+								List<TaxonConceptLite> ancestorConcepts = getClassificationConcepts(taxonConceptDAO, ancestorConcept.getId());
 								List<TaxonName> newClassification = toListOfTaxonName(ancestorConcepts);
 								newClassification.add(mostSignificantName);
-								targetConcept = getTaxonConceptForClassification(targetProviderId,
+								targetConcept = getTaxonConceptForClassification(relationshipAssertionDAO, taxonConceptDAO, targetProviderId,
 																				 targetResourceId,
 																				 newClassification,
 																				 threshold,
@@ -1091,7 +1099,7 @@ public class TaxonomyUtils {
 					// disambiguation concept for them?
 					if (targetConcept == null && disambiguate) {
 						if (targetConcept == null) {
-							targetConcept = createDisambiguationConcept(targetProviderId, targetResourceId, bestClassifications);
+							targetConcept = createDisambiguationConcept(relationshipAssertionDAO, taxonConceptDAO, targetProviderId, targetResourceId, bestClassifications);
 						}
 					}
 				}
@@ -1117,7 +1125,7 @@ public class TaxonomyUtils {
 	 * @param classifications classifications which need to be disambiguated
 	 * @return disambiguation concept
 	 */
-	private TaxonConceptLite createDisambiguationConcept(Long dataProviderId, Long dataResourceId, List<List<TaxonConceptLite>> classifications) {
+	private TaxonConceptLite createDisambiguationConcept(RelationshipAssertionDAO relationshipAssertionDAO, TaxonConceptDAO taxonConceptDAO,Long dataProviderId, Long dataResourceId, List<List<TaxonConceptLite>> classifications) {
 		TaxonConcept disambiguationConcept = null;
 		
 		TaxonName name = classifications.get(0).get(classifications.get(0).size() - 1).getTaxonName();
@@ -1582,7 +1590,7 @@ public class TaxonomyUtils {
 	 * @param taxonConceptId
 	 * @return
 	 */
-	public List<TaxonConceptLite> getClassificationConcepts(long taxonConceptId) {
+	public List<TaxonConceptLite> getClassificationConcepts(TaxonConceptDAO taxonConceptDAO, long taxonConceptId) {
 		return taxonConceptDAO.getClassificationConcepts(taxonConceptId);
 	}
 

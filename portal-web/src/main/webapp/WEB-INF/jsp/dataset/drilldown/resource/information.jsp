@@ -72,7 +72,7 @@
  </c:otherwise> 
 </c:choose>
 
-<c:if test="${not empty dataResource.basisOfRecord}"><p><label for="basisOfRecord"><spring:message code="basis.of.record"/>:</label><spring:message code="basis.of.record.${dataResource.basisOfRecord}" text="${dataResource.basisOfRecord}"/></p></c:if>
+<!--<c:if test="${not empty dataResource.basisOfRecord}"><p><label for="basisOfRecord"><spring:message code="basis.of.record"/>:</label><spring:message code="basis.of.record.${dataResource.basisOfRecord}" text="${dataResource.basisOfRecord}"/></p></c:if>-->
 <c:if test="${not empty dataResource.scopeCountryCode}"><p><label for="scopeCountry"><spring:message code="scope.country" text=""/>:</label><a href="${pageContext.request.contextPath}/countries/${dataResource.scopeCountryCode}"><spring:message code="country.${dataResource.scopeCountryCode}" text=""/></a></p></c:if>
 <c:if test="${not empty dataResource.scopeContinentCode}"><p><label for="scopeContinentCode"><spring:message code="scope.continent" text=""/>:</label><spring:message code="continent.${dataResource.scopeContinentCode}" text=""/></p></c:if>
 <c:if test="${not empty dataResource.rootTaxonRank && not empty dataResource.rootTaxonName}"><p><label for="taxonScope"><spring:message code="scope.taxonomic"/>:</label>${dataResource.rootTaxonRank}: ${dataResource.rootTaxonName}</p></c:if>
