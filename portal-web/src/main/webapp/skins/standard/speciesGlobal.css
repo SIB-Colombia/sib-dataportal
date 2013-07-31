@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* -- The Generic Defs --*/
 a {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 	border-bottom: 0px dashed transparent;
 	-webkit-transition: all 0.5s ease-in-out;
@@ -62,11 +62,11 @@ a {
 }
 
 a:link {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 }
 a:visited {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 }
 a:hover, input[type=submit]:hover  {
@@ -877,7 +877,7 @@ h5#noGeoreferencedPoints {
 a[title="Mostrar todos los recursos"]{
 	margin: 5px 0;
 	padding:6px 6px 6px 28px;
-	background:#007FC9 url('../../images/icons/eye.png') no-repeat 5px center ;
+	background:#2b7fbc url('../../images/icons/eye.png') no-repeat 5px center ;
 	-webkit-border-radius: 10px;
     border-radius:10px;
 	position:relative;

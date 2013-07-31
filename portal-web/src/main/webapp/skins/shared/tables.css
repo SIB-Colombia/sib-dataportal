@@ -270,11 +270,11 @@ table.datasheetItem td.datatable { width:300px; padding: 0 0 0 20px; }
 
 /*Sorting*/
 .sorting_asc {
-    background: url('images/sort_asc.png') no-repeat 0px center;
+    background: url('images/sort_asc.png') no-repeat 3px center;
 }
  
 .sorting_desc {
-    background: url('images/sort_desc.png') no-repeat 0px center;
+    background: url('images/sort_desc.png') no-repeat 3px center;
 }
 
 .sorting_asc_disabled {
