@@ -75,9 +75,9 @@ $(document).ready(function() {
         "oLanguage": {
             "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
             "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
-            "sInfo": '<spring:message code="dataset.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
-            "sInfoEmpty": '<spring:message code="dataset.list.sinfoempty"/>',
-            "sInfoFiltered": '<spring:message code="dataset.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sInfo": '<spring:message code="department.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="department.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="department.list.sinfofiltered" arguments="_MAX_"/> ',
             "sSearch": '<spring:message code="dataset.list.ssearch"/>',
             "oPaginate": {
                 "sNext": '<spring:message code="dataset.list.snext"/>',
