@@ -79,6 +79,9 @@ public class FilterContentProvider implements ContentProvider {
   /** The filter used for department searches (SIB Colombia) */
   protected FilterDTO departmentOccurrenceFilter;
 
+  /** The filter used for county- searches (SIB Colombia) */
+  protected FilterDTO countyOccurrenceFilter;
+  
   /** The filter used for country searches */
   protected FilterDTO regionOccurrenceFilter;
   /** The filter used for country searches */
@@ -298,6 +301,13 @@ public class FilterContentProvider implements ContentProvider {
   }
 
   /**
+   * @return the countyOccurrenceFilter
+   */
+  public FilterDTO getCountyOccurrenceFilter() {
+    return countyOccurrenceFilter;
+  }
+
+  /**
    * Retrieves the correct filter for the rank.
    * 
    * @param rank
@@ -510,6 +520,12 @@ public class FilterContentProvider implements ContentProvider {
     this.departmentOccurrenceFilter = departmentOccurrenceFilter;
   }
 
+  /**
+   * @param countyOccurrenceFilter the countyOccurrenceFilter to set
+   */
+  public void setCountyOccurrenceFilter(FilterDTO countyOccurrenceFilter) {
+    this.countyOccurrenceFilter = countyOccurrenceFilter;
+  }
   /**
    * @param equalPredicate the equalPredicate to set
    */

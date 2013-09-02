@@ -142,6 +142,14 @@ public interface TaxonConceptDAO {
    * @return the root concepts for a department
    */
   public List<TaxonConceptLite> getDepartmentRootConceptsFor(String isoDepartmentCode);
+  
+  /**
+   * Returns the root concepts for a county
+   * 
+   * @param isoCountyCode
+   * @return the root concepts for a county
+   */
+  public List<TaxonConceptLite> getCountyRootConceptsFor(String isoCountyCode);
 
   /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
@@ -171,6 +179,16 @@ public interface TaxonConceptDAO {
    * @return The Parent Concept object for the concept with this id.
    */
   public List<TaxonConceptLite> getLiteChildConceptsForDepartment(long taxonConceptId, String isoDepartmentCode,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param isoCountyCode Restrict search to concepts within the supplied county, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForCounty(long taxonConceptId, String isoCountyCode,
     boolean allowUnconfirmed);
 
   /**

@@ -283,6 +283,16 @@ public interface TaxonomyManager {
    */
   public List<BriefTaxonConceptDTO> getChildConceptsForDepartment(String taxonConceptKey, String isoDepartmentCode,
     boolean allowUnconfirmed) throws ServiceException;
+  
+  /**
+   * Returns the Child Concepts for the TaxonConcept with the specified key value.
+   * 
+   * @param taxonConceptKey The taxon concept key
+   * @return list of BriefTaxonConceptDTO objects for the Child Concepts
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getChildConceptsForCounty(String taxonConceptKey, String isoCountyCode,
+    boolean allowUnconfirmed) throws ServiceException;
 
   /**
    * Returns the full classication given the supplied taxon concept key.
@@ -338,6 +348,24 @@ public interface TaxonomyManager {
    */
   public List<BriefTaxonConceptDTO> getClassificationForDepartment(String taxonConceptKey, boolean retrieveChildren,
     String isoDepartmentCode, boolean allowUnconfirmed) throws ServiceException;
+  
+  /**
+   * Returns the full classification given the supplied taxon concept key.
+   * This will include all ascendents and all direct descendents if descend is true.
+   * The list is order by rank in descending order (starting with highest rank).
+   * When the supplied taxonConceptKey is null, the highest concepts for a Data resource or provider
+   * will be returned
+   * 
+   * @param dataResourceKey the key of the data resource to use
+   * @param taxonConceptKey the key of a taxon concept to retrieve the classification for, nullable.
+   * @param retrieveChildren if set to true will gather child concepts as well as parent concepts
+   * @param isoCountyCode if retrieveChildren is set to true, setting isoCountyCode will only bring back child
+   *        concept with occurrence data in this county
+   * @return List of BriefTaxonConcept for the full tree for this concept
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForCounty(String taxonConceptKey, boolean retrieveChildren,
+    String isoCountyCode, boolean allowUnconfirmed) throws ServiceException;
 
   /**
    * Retrieve the common name for the supplied key.
@@ -364,6 +392,15 @@ public interface TaxonomyManager {
    * @throws ServiceException
    */
   public List<CountDTO> getDepartmentCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
+
+  /**
+   * Retrieves a count against all counties for this taxon concept.
+   * 
+   * @param taxonConcept
+   * @return
+   * @throws ServiceException
+   */
+  public List<CountDTO> getCountyCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
 
   /**
    * Returns the Nub Taxon Concepts for the specified TaxonConcept. This is the concept that is accepted as the
@@ -419,6 +456,17 @@ public interface TaxonomyManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public List<BriefTaxonConceptDTO> getRootTaxonConceptsForDepartment(String isoDepartmentCode) throws ServiceException;
+
+  /**
+   * Returns a list of TaxonConcepts that are the root concepts for the taxonomy of a county
+   * A root concept is a concept with no parent concept. This would typically be a higher concept
+   * of rank kingdom for example.
+   * 
+   * @param isoCountyCode The county to search, nullable
+   * @return List of BriefTaxonConceptDTOs ordered alphabetically by Scientific Name
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getRootTaxonConceptsForCounty(String isoCountyCode) throws ServiceException;
 
   /**
    * Returns a list of TaxonConcepts that are the root concepts for the taxonomy of the

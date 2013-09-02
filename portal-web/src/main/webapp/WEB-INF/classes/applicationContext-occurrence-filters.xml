@@ -25,6 +25,9 @@
 				<!-- Filter for Colombian Departments (SIB Colombia) -->
 				<ref bean="departmentFilter"/>
 				
+				<!-- Filter for Colombian Departments (SIB Colombia) -->
+				<ref bean="countyFilter"/>
+				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
 				
@@ -233,6 +236,23 @@
 		<property name="helpView" value="/occurrence/departmentHelp.htm"/>
 	</bean>
 	<!-- End of department filter class to show Colombian Departments (SIB Colombia) select list -->
+	
+	<!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
+	<bean id="countyFilter" parent="baseGeospatialFilter">
+		<property name="id" value="39"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.county"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-county-codes"/>
+		<property name="helpView" value="/occurrence/countyHelp.htm"/>
+	</bean>
+	<!-- End of county filter class to show Colombian Counties (SIB Colombia) select list -->
 	
 	<!--taxonomic ranks-->
 	<bean id="kingdomFilter" parent="baseTaxonRankFilter">

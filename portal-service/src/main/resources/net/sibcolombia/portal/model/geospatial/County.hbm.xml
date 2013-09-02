@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="county" name="net.sibcolombia.portal.model.geospatial.County">
+    <id unsaved-value="null" name="isoCountyCode" column="iso_county_code">
+      <generator class="assigned"/>
+    </id>
+    <property name="countyId" column="id"/>
+    <property name="countyName" column="county_name"/>
+    <property name="departmentId" column="department_id"/>
+    <property name="occurrenceCount" column="occurrence_count"/>
+    <property name="speciesCount" column="species_count"/>
+  </class>
+</hibernate-mapping>

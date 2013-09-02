@@ -77,5 +77,13 @@ public interface DepartmentDAO {
    * @return count of the total number of departments
    */
   public int getTotalDepartmentCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of counties
+   * 
+   * @return count of the total number of counties
+   */
+  public int getTotalCountyCount();
 
 }

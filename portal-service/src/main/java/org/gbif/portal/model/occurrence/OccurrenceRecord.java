@@ -91,6 +91,8 @@ public class OccurrenceRecord extends BaseObject {
   protected String isoCountryCode;
   /** Department code of the occurrence location */
   protected String isoDepartmentCode;
+  /** County code of the occurrence location */
+  protected String isoCountyCode;
 
   /** The Country of the occurrence location */
   protected Country country;
@@ -324,6 +326,12 @@ public class OccurrenceRecord extends BaseObject {
     return isoDepartmentCode;
   }
 
+  /**
+   * @return the isoCountyCode
+   */
+  public String getIsoCountyCode() {
+    return isoCountyCode;
+  }
   /**
    * @return the kingdomConcept
    */
@@ -686,6 +694,13 @@ public class OccurrenceRecord extends BaseObject {
    */
   public void setIsoDepartmentCode(String isoDepartmentCode) {
     this.isoDepartmentCode = isoDepartmentCode;
+  }
+  
+  /**
+   * @param isoCountyCode the isoCountyCode to set
+   */
+  public void setIsoCountyCode(String isoCountyCode) {
+    this.isoCountyCode = isoCountyCode;
   }
 
   /**

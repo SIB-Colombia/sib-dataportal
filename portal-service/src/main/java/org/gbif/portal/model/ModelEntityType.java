@@ -30,6 +30,8 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
   public static final ModelEntityType COUNTRY = new ModelEntityType("country", 2);
   // Department model entity type used in colombian department list by sib colombia
   public static final ModelEntityType DEPARTMENT = new ModelEntityType("department", 8);
+  // County model entity type used in colombian county list by sib colombia
+  public static final ModelEntityType COUNTY = new ModelEntityType("county", 9);
   public static final ModelEntityType DATA_PROVIDER = new ModelEntityType("dataProvider", 3);
   public static final ModelEntityType DATA_RESOURCE = new ModelEntityType("dataResource", 4);
   public static final ModelEntityType RESOURCE_NETWORK = new ModelEntityType("resourceNetwork", 5);
@@ -57,6 +59,9 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
     } else if (value == DEPARTMENT.getValue()) {
       // Department model entity type used in colombian department list by sib colombia
       return DEPARTMENT;
+    }else if (value == COUNTY.getValue()) {
+        // County model entity type used in colombian county list by sib colombia
+        return COUNTY;
     } else if (value == DATA_PROVIDER.getValue()) {
       return DATA_PROVIDER;
     } else if (value == DATA_RESOURCE.getValue()) {
@@ -86,7 +91,10 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
       } else if (name.equalsIgnoreCase(DEPARTMENT.getName())) {
         // Department model entity type used in colombian department list by sib colombia
         return DEPARTMENT;
-      } else if (name.equalsIgnoreCase(DATA_PROVIDER.getName())) {
+      } else if (name.equalsIgnoreCase(COUNTY.getName())) {
+        // County model entity type used in colombian county list by sib colombia
+        return COUNTY;
+      }else if (name.equalsIgnoreCase(DATA_PROVIDER.getName())) {
         return DATA_PROVIDER;
       } else if (name.equalsIgnoreCase(DATA_RESOURCE.getName())) {
         return DATA_RESOURCE;

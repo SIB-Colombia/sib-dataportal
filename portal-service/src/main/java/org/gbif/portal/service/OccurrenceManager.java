@@ -92,6 +92,7 @@ public interface OccurrenceManager {
 	 * @param hostIsoCountryCode the 2 digit ISO country code of the provider, nullable
 	 * @param originIsoCountryCode the 2 digit ISO country code of the record, nullable
 	 * @param originIsoDepartmentCode the 2 digit ISO department code of the record, nullable
+	 * @param originIsoCountyCode the 2 digit ISO county code of the record, nullable
 	 * @param basisOfRecordCode the basis of record code for the record, nullable
 	 * @param cellId the identifier of the one degree cell for the record, nullable
 	 * @param boundingBox provide a bounding box of points, nullable
@@ -111,6 +112,7 @@ public interface OccurrenceManager {
 			String hostIsoCountryCode,
 			String originIsoCountryCode,
 			String originIsoDepartmentCode,
+			String originIsoCountyCode,
 			String basisOfRecordCode,
 			String cellId, 
 			BoundingBoxDTO boundingBox,
@@ -143,6 +145,7 @@ public interface OccurrenceManager {
 	 * @param hostIsoCountryCode the 2 digit ISO country code of the provider, nullable
 	 * @param originIsoCountryCode the 2 digit ISO country code of the record, nullable
 	 * @param originIsoDepartmentCode the 2 digit ISO department code of the record, nullable
+	 * @param originIsoCountyCode the 2 digit ISO county code of the record, nullable
 	 * @param basisOfRecordCode the basis of record code for the record, nullable
 	 * @param cellId the identifier of the one degree cell for the record, nullable
 	 * @param boundingBox provide a bounding box of points, nullable
@@ -161,6 +164,7 @@ public interface OccurrenceManager {
 			String hostIsoCountryCode,
 			String originIsoCountryCode,
 			String originIsoDepartmentCode,
+			String originIsoCountyCode,
 			String basisOfRecordCode,
 			String cellId, 
 			BoundingBoxDTO boundingBox,

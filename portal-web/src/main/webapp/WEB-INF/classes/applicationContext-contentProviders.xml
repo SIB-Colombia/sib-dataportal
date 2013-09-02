@@ -40,6 +40,9 @@
 		<!-- ocurrence filter for Colombian Departments (SIB Colombia) -->
 		<property name="departmentOccurrenceFilter" ref="departmentFilter"/>
 		
+		<!-- ocurrence filter for Colombian Counties (SIB Colombia) -->
+		<property name="countyOccurrenceFilter" ref="countyFilter"/>
+		
 		<property name="geoConsistencyOccurrenceFilter" ref="geoConsistencyFilter"/>		
 		<property name="georeferencedOccurrenceFilter" ref="georeferencedFilter"/>		
 		<property name="regionOccurrenceFilter" ref="regionFilter"/>		
@@ -62,6 +65,7 @@
         <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="homeCountry"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="country"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="department"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="county"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.RESOURCENETWORKID" value="network"/>				

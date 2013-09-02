@@ -933,6 +933,10 @@
 	<definition name="departmentHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/departmentHelp.jsp"/>
 	</definition>
+	<!-- SIB Colombia departments search option help -->
+	<definition name="countyHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/countyHelp.jsp"/>
+	</definition>	
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						
 	</definition>
@@ -1020,6 +1024,9 @@
 	</definition>
 	<definition name="departmentTaxonHelp" extends="ajaxHtmlLayout"> 		 		
 		<put name="content" value="/WEB-INF/jsp/taxonomy/help/departmentHelp.jsp"/>
+	</definition>
+	<definition name="countyTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/countyHelp.jsp"/>
 	</definition>
   	
 	<!-- Simple System Details Page -->

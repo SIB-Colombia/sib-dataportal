@@ -12,6 +12,7 @@
     <mapping resource="org/gbif/portal/model/geospatial/CentiCellDensity.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/Country.hbm.xml"/>
     <mapping resource="net/sibcolombia/portal/model/geospatial/Department.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/County.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/CountryName.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/IPCountry.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/log/LogMessage.hbm.xml"/>
@@ -47,6 +48,7 @@
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonConceptLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonCountry.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonDepartment.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonCounty.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonNameLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/CommonName.hbm.xml"/>
   </session-factory>

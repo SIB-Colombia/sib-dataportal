@@ -55,7 +55,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
@@ -87,6 +89,10 @@ public class GeospatialManagerImpl implements GeospatialManager {
   /** Department DAO for Department queries */
   protected DepartmentDAO departmentDAO;
 
+  /** County DAO for County queries */
+  protected CountyDAO countyDAO;
+
+  
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
   /** Occurrence Record DAO */
@@ -555,6 +561,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
         Department department = (Department) departmentAndName;
         keyAsLong = department.getDepartmentId();
       }
+    }else if (type.equals(EntityType.TYPE_COUNTY)) {
+        Object countyAndName = countyDAO.getCountyForIsoCountyCode(key);
+        if (countyAndName != null) {
+          County county = (County) countyAndName;
+          keyAsLong = county.getCountyId();
+        }
     }
     return keyAsLong;
   }
@@ -807,6 +819,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
     this.departmentDAO = departmentDAO;
   }
 
+  /**
+   * @param countyDAO the countyDAO to set
+   */
+  public void setCountyDAO(CountyDAO countyDAO) {
+    this.countyDAO = countyDAO;
+  }
   /**
    * @param geoRegionDAO the geoRegionDAO to set
    */

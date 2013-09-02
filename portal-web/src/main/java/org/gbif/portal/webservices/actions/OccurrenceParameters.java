@@ -72,6 +72,7 @@ public class OccurrenceParameters extends Parameters {
   public static final String KEY_HOSTISOCOUNTRYCODE = "hostisocountrycode";
   public static final String KEY_ORIGINISOCOUNTRYCODE = "originisocountrycode";
   public static final String KEY_ORIGINISODEPARTMENTCODE = "originisodepartmentcode";
+  public static final String KEY_ORIGINISOCOUNTYCODE = "originisocountycode";
   public static final String KEY_ORIGINREGIONCODE = "originregioncode";
   public static final String KEY_TYPESONLY = "typesonly";
   public static final String KEY_COORDINATESTATUS = "coordinatestatus";
@@ -107,6 +108,7 @@ public class OccurrenceParameters extends Parameters {
   private static final String SUBJECT_HOSTCOUNTRYCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE";
   private static final String SUBJECT_ISOCOUNTRYCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE";
   private static final String SUBJECT_ISODEPARTMENTCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE";
+  private static final String SUBJECT_ISOCOUNTYCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE";
   private static final String SUBJECT_LATITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LATITUDE";
   private static final String SUBJECT_LONGITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LONGITUDE";
   private static final String SUBJECT_ALTITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ALTITUDE";
@@ -160,6 +162,7 @@ public class OccurrenceParameters extends Parameters {
   protected String[] hostIsoCountryCodes = null;
   protected String[] originIsoCountryCodes = null;
   protected String[] originIsoDepartmentCodes = null;
+  protected String[] originIsoCountyCodes = null;
   protected String[] dataProviderKeys = null;
   protected String[] dataResourceKeys = null;
   protected String[] resourceNetworkKeys = null;
@@ -227,7 +230,11 @@ public class OccurrenceParameters extends Parameters {
         && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
         originIsoDepartmentCodes = addValue(originIsoDepartmentCodes, (String) triplet.getObject());
         processed = true;
-      } else if (triplet.getSubject().equals(SUBJECT_HOSTCOUNTRYCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
+      }else if (triplet.getSubject().equals(SUBJECT_ISOCOUNTYCODE)
+    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
+        originIsoCountyCodes = addValue(originIsoCountyCodes, (String) triplet.getObject());
+        processed = true;
+      }else if (triplet.getSubject().equals(SUBJECT_HOSTCOUNTRYCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
         hostIsoCountryCodes = addValue(hostIsoCountryCodes, (String) triplet.getObject());
         processed = true;
       } else if (triplet.getSubject().equals(SUBJECT_REGIONCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
@@ -436,6 +443,8 @@ public class OccurrenceParameters extends Parameters {
           originIsoCountryCodes = getValue(params, KEY_ORIGINISOCOUNTRYCODE, ((String) value).toUpperCase());
         } else if (k.equals(KEY_ORIGINISODEPARTMENTCODE)) {
           originIsoDepartmentCodes = getValue(params, KEY_ORIGINISODEPARTMENTCODE, ((String) value).toUpperCase());
+        }else if (k.equals(KEY_ORIGINISOCOUNTYCODE)) {
+            originIsoCountyCodes = getValue(params, KEY_ORIGINISOCOUNTYCODE, ((String) value).toUpperCase());
         } else if (k.equals(KEY_ORIGINREGIONCODE)) {
           originRegionCodes = getValue(params, KEY_ORIGINREGIONCODE, ((String) value).toUpperCase());
         } else if (k.equals(KEY_KEY)) {
@@ -766,6 +775,13 @@ public class OccurrenceParameters extends Parameters {
   public String[] getOriginIsoDepartmentCodes() {
     return originIsoDepartmentCodes;
   }
+  
+  /**
+   * @return the originIsoCountyCode
+   */
+  public String[] getOriginIsoCountyCodes() {
+    return originIsoCountyCodes;
+  }
 
   /**
    * @return the originRegionCodes
@@ -798,6 +814,8 @@ public class OccurrenceParameters extends Parameters {
           map.put(KEY_ORIGINISOCOUNTRYCODE, originIsoCountryCodes);
         if (originIsoDepartmentCodes != null)
           map.put(KEY_ORIGINISODEPARTMENTCODE, originIsoDepartmentCodes);
+        if (originIsoCountyCodes != null)
+            map.put(KEY_ORIGINISOCOUNTYCODE, originIsoCountyCodes);
         if (originRegionCodes != null)
           map.put(KEY_ORIGINREGIONCODE, originRegionCodes);
         if (cellIds != null)
@@ -1003,6 +1021,11 @@ public class OccurrenceParameters extends Parameters {
       for (String originIsoDepartmentCode : originIsoDepartmentCodes) {
         addTriplet(triplets, SUBJECT_ISODEPARTMENTCODE, PREDICATE_EQUAL, originIsoDepartmentCode);
       }
+    }
+    if (originIsoCountyCodes != null) {
+        for (String originIsoCountyCode : originIsoCountyCodes) {
+          addTriplet(triplets, SUBJECT_ISOCOUNTYCODE, PREDICATE_EQUAL, originIsoCountyCode);
+        }
     }
     if (originRegionCodes != null) {
       for (String originRegionCode : originRegionCodes) {

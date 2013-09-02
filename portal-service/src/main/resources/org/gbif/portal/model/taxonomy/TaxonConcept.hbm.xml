@@ -60,5 +60,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="iso_department_code" class="net.sibcolombia.portal.model.geospatial.Department"/>
     </set>
+    <set lazy="true" name="counties" table="taxon_county">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="iso_county_code" class="net.sibcolombia.portal.model.geospatial.County"/>
+    </set>
   </class>
 </hibernate-mapping>

@@ -205,6 +205,19 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
   }
 
   /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalCountyCount()
+   */
+  public int getTotalCountyCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(c.id) from County c");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  /**
    * @param supportedLocales the supportedLocales to set
    */
   public void setSupportedLocales(List<String> supportedLocales) {

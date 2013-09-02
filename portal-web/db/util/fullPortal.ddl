@@ -485,6 +485,21 @@ CREATE TABLE `department` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table county DDL definition
+-- ----------------------------
+--  Table structure for `county` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `county`;
+CREATE TABLE `county` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `iso_county_code` char(8) DEFAULT NULL,
+  `department_id` int(10) DEFAULT NULL,
+  `county_name` varchar(255) DEFAULT NULL,
+  `species_count` int(10) DEFAULT NULL,
+  `occurrence_count` int(10) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1508,6 +1523,23 @@ CREATE TABLE `taxon_department` (
   PRIMARY KEY  (`taxon_concept_id`,`iso_department_code`),
   KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
   KEY `IX_iso_department_codes` (`iso_department_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_county`
+--
+
+DROP TABLE IF EXISTS `taxon_county`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_county` (
+  `taxon_concept_id` int(11) NOT NULL,
+  `iso_county_code` char(10) NOT NULL,
+  `count` int(11) default NULL,
+  PRIMARY KEY  (`taxon_concept_id`,`iso_county_code`),
+  KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+  KEY `IX_iso_county_codes` (`iso_county_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
