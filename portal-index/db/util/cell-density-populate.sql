@@ -6,6 +6,14 @@ inner join country c on oc.iso_country_code=c.iso_country_code
 where oc.cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3;
 
+-- populate the cell_density for county
+insert into cell_density 
+select 9, c.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join county c on oc.iso_county_code=c.iso_county_code 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
 -- populate the cell_density for home country
 -- This is the data for data_providers tied to a country
 insert into cell_density 
@@ -113,3 +121,5 @@ select 0, 0,cell_id,count(id)
 from occurrence_record
 where cell_id is not null and geospatial_issue=0
 group by 1,2,3;
+
+

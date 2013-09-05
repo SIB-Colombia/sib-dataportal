@@ -2019,6 +2019,12 @@ select concat('Starting county occurrence count: ', now()) as debug;
 update county c set occurrence_count =
 (select count(id) from occurrence_record o where o.iso_county_code=c.iso_county_code);
 
+
+-- set occurrence record coordinate count for county table
+select concat('Starting county occurrence coordinate count: ', now()) as debug;
+update county c set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=c.id and cd.type=9);
+
 -- set species count per county
 -- this used to be species and lower concepts as well - changed 12.8.08
 select concat('Starting county species count: ', now()) as debug;

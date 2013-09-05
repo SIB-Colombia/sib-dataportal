@@ -497,6 +497,7 @@ CREATE TABLE `county` (
   `county_name` varchar(255) DEFAULT NULL,
   `species_count` int(10) DEFAULT NULL,
   `occurrence_count` int(10) DEFAULT NULL,
+  `occurrence_coordinate_count` int(10) DEFAULT NULL,
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

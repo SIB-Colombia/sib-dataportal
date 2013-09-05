@@ -113,3 +113,19 @@ select 0, 0,cell_id,centi_cell_id,count(id)
 from occurrence_record
 where centi_cell_id is not null and geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for department
+insert into centi_cell_density 
+select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join department d on oc.iso_department_code=d.iso_department_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for county
+insert into centi_cell_density 
+select 9, c.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join county c on oc.iso_county_code=c.iso_county_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
