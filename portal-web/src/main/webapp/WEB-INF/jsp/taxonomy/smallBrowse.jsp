@@ -1,5 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <div id="taxonomy" class="taxonomyContainer">
+	<a class="faq g1" href="#" title="Explorar especies">? </a>
 	<div id="twopartheader">
 		<h2>
 		<c:choose>

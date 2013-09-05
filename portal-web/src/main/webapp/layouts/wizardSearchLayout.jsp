@@ -72,6 +72,7 @@ $(document).ready(function() {
 		<div id="cocoon">
 			<div id="container">	
 				<div id="content">
+					<a class="faq" href="#" title="Búsqueda avanzada">? </a>
 					<tiles:insert page="/WEB-INF/jsp/filters/filterArrays.jsp"/>
 					<div id="twopartheader">					
 						<h2><spring:message code="${searchTitle}"/></h2>

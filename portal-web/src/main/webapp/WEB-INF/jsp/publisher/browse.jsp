@@ -33,6 +33,7 @@
 	}
 	});
 </script>
+<a class="g3 faq" href="#" title="Explorar publicadores">? </a>
 <div id="twopartheader">	
 <h2><spring:message code="publisher.list.main.title"/>
 </h2>

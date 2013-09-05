@@ -19,6 +19,7 @@
         chart.draw(table, options);
     };
 </script> */ %>
+<a class="g4 faq" href="#" title="Explorar departamentos">? </a>
 <div id="twopartheader">	
 	<h2><spring:message code="departments.list.main.title"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span>
 	</h2>

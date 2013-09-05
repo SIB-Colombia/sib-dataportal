@@ -1,6 +1,7 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
 
-<div id="twopartheader">	
+<a class="faq g2" href="#" title="Explorar conjuntos de datos">? </a>
+<div id="twopartheader">
 <h2><spring:message code="dataset.list.main.title"/>
 </h2>
 	<% // <gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/> %>
