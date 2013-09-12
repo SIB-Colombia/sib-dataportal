@@ -12,6 +12,7 @@
  		
  		//rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCount}"/>"), parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>")]);
  		rows.push([parseFloat("<c:out value="${department.departmentLat}"/>"),parseFloat("<c:out value="${department.departmentLng}"/>"),"<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>"), parseInt("<c:out value="${department.occurrenceCount}"/>")]);
+ 		//console.log("${department.departmentName}"+" : "+"${department.isoDepartmentCode}");
  		isoCodeDep["${department.departmentName}"]="${department.isoDepartmentCode}";
  	</c:forEach>
  	google.load('visualization', '1', {'packages': ['geochart']});
@@ -31,8 +32,8 @@
             var selection = chart.getSelection();
             if (selection.length == 1) {
               var selectedRow = selection[0].row;
-              var selectedDepartment = table.getValue(selectedRow, 0);
-              //alert(selectedDepartment);
+              var selectedDepartment = table.getValue(selectedRow, 2);
+              //console.log(selectedDepartment);
               window.location.href="${pageContext.request.contextPath}"+"/departments/"+isoCodeDep[selectedDepartment];
               geochart.setSelection();
             }

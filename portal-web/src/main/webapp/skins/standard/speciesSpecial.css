@@ -78,7 +78,7 @@ table.results th {
 	margin-left: 5px;
 }
 #classificationTop {
-	margin: 20px 0 0 -90px;
+	margin: 20px 0 0 0px;
 	font-size: 11px;
 	background-color:rgba(255,255,255,1);
 	padding:2px 2px 4px 10px;

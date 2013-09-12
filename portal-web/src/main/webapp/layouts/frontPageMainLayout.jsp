@@ -12,14 +12,14 @@
 Sistema de información sobre biodiversidad de Colombia, biodiversidad, biodiversidad en colombia, especies amenazadas, especies amenazadas en colombia, catálogo de especies, biologia, conservacion, especies, nombre cientifico, biota, biota colombiana, especies en via de extincion, fauna colombiana, flora colombiana ">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
- <script src="${pageContext.request.contextPath}/javascript/jconf.jquery.js" type="text/javascript" language="javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jconf.jquery.js" type="text/javascript" language="javascript"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.colorbox-min.js" type="text/javascript" language="javascript"></script>
 
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="url">${req.requestURL}</c:set>
 <c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
-
 
 <script type="text/javascript">
 <spring:message code="sib.terms.dialog.question" var="question"/>
@@ -30,7 +30,20 @@ $(document).ready(function() {
 	if(readCookie('GbifTermsAndConditions')===null){
 		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm" class="newtab">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:''});
 	}
-});
+		//Examples of how to assign the Colorbox event to elements
+		$(".group1").colorbox({rel:'group1', transition:"fade"});
+		$(".group2").colorbox({rel:'group2', transition:"fade"});
+		$(".group3").colorbox({rel:'group3', transition:"fade"});
+		$(".group4").colorbox({rel:'group4', transition:"fade"});
+		$(".group5").colorbox({rel:'group5', transition:"fade"});
+		$(".tut_selector").colorbox({inline:true, width:"50%"});
+		
+		$(".g1").click(function() {$(".group1").colorbox({open:true})});
+		$(".g2").click(function() {$(".group2").colorbox({open:true})});
+		$(".g3").click(function() {$(".group3").colorbox({open:true})});
+		$(".g4").click(function() {$(".group4").colorbox({open:true})});
+		$(".g5").click(function() {$(".group5").colorbox({open:true})});
+	});
 </script>
 
 <!DOCTYPE HTML>
@@ -51,7 +64,8 @@ $(document).ready(function() {
 			<c:set var="title" scope="page"><tiles:getAsString name="title"/></c:set>
 			<spring:message code="${title}"/> 
 		</title>
-		<c:set var="title" scope="request"><tiles:insert name="subtitle" flush="false"/></c:set>		
+		<c:set var="title" scope="request"><tiles:insert name="subtitle" flush="false"/></c:set>
+		
 	</head>
 	<body>
 	<spring:message code="sib.terms.dialog.terms" var="terms"/>

@@ -16,7 +16,9 @@
         <a target="_self" href="${pageContext.request.contextPath}/conjuntos/"><spring:message code="datasets.foot"/></a> 
         <a target="_self" href="${pageContext.request.contextPath}/publicadores/"><spring:message code="pusblishers.foot"/></a> 
         <a target="_self" href="${pageContext.request.contextPath}/busqueda/"><spring:message code="advanced.search.foot"/></a>
-        <!--<a target="_blank" href="#">¿Cómo usar el portal de datos?</a>!--></div>
+        <a class="tut_selector" href="#inline_content">¿Cómo usar el portal de datos?</a>
+      </div>
+
 
      <div><h5><spring:message code="our.services.foot"/></h5> 
         <a target="_self" href="${pageContext.request.contextPath}/"><spring:message code="data.portal.foot"/></a> 
@@ -78,6 +80,64 @@
 
 
 </section>
+<!-- Begin Ayuda-->
+
+<div style='display:none'>
+  <div id='inline_content' style='padding:10px; background:#fff; text-align:center'>
+      <h2>Guías para facilitar la consulta del Portal de Datos</h2><br/>
+      <br/><a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva01.png" title="Explorar especies">Explorar especies </a><br/>
+      <br/><a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva1.png" title="Explorar conjuntos de datos">Explorar conjuntos de datos </a><br/>
+      <br/><a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva1.png" title="Explorar publicadores">Explorar publicadores </a><br/>
+      <br/><a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva1.png" title="Explorar departamentos">Explorar departamentos</a><br/>
+      <br/><a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva1.png" title="Búsqueda avanzada">Búsqueda avanzada</a><br/>
+  </div>
+</div>
+<div style="display:none">
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva02.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva03.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva04.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva05.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva06.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva07.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva08.png" title="Explorar especies"></a>
+  <a class="group1" href="${pageContext.request.contextPath}/images/ayuda/tutorial1/Diapositiva09.png" title="Explorar especies"></a>
+
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva2.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva3.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva4.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva5.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva6.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva7.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva8.png" title="Explorar conjuntos de datos"></a>
+  <a class="group2" href="${pageContext.request.contextPath}/images/ayuda/tutorial2/Diapositiva9.png" title="Explorar conjuntos de datos"></a>
+
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva2.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva3.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva4.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva5.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva6.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva7.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva8.png" title="Explorar publicadores"></a>
+  <a class="group3" href="${pageContext.request.contextPath}/images/ayuda/tutorial3/Diapositiva9.png" title="Explorar publicadores"></a>
+
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva2.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva3.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva4.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva5.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva6.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva7.png" title="Explorar departamentos"></a>
+  <a class="group4" href="${pageContext.request.contextPath}/images/ayuda/tutorial4/Diapositiva8.png" title="Explorar departamentos"></a>
+
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva2.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva3.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva4.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva5.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva6.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva7.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva8.png" title="Búsqueda avanzada"></a>
+  <a class="group5" href="${pageContext.request.contextPath}/images/ayuda/tutorial5/Diapositiva9.png" title="Búsqueda avanzada"></a>
+</div>
+<!-- End Ayuda -->
 </footer>
 
 <script type="text/javascript">
@@ -95,3 +155,4 @@
 
 </script> 
 <!-- End footer -->
+
