@@ -1,6 +1,6 @@
 #twopartheader {
 	margin: 0 0 20px 0;
-	min-height: 80px;
+	min-height: 110px;
 	padding:20px;
 	background:rgba(250,249,243, 1) url('images/publicadores_ico.png') no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
@@ -17,6 +17,8 @@
 	text-transform: uppercase;
 	line-height: 1.6em;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
+	width:90%;
+	display:inline-block;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 60px;
@@ -222,4 +224,10 @@ input[type="submit"], button{
 .dataTables_wrapper{
 	margin-top: 0px;
 	position: relative;
+}
+.logo_publisher{
+	max-height:70px;
+	width:auto;
+	position: absolute;
+	right: 20px
 }
