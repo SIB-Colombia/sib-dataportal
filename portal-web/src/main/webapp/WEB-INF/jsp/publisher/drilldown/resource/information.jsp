@@ -51,12 +51,21 @@
 -->	
 <p id="name"><label><spring:message code="name"/>:</label></p>
 <p id="webSiteUrl"><label><spring:message code="website"/>:</label></p>
-<table border="0" cellpadding="0" cellspacing="0"><p id="descr"><label><spring:message code="description"/>:</label></p></td></tr></table>
-<c:if test="${not empty dataResource.rights}"><p><label><spring:message code="rights"/>:</label><gbif:formatText content="${dataResource.rights}"/></p></c:if>
+<table border="0" cellpadding="0" cellspacing="0">
+<p id="descr"><label><spring:message code="description"/>:</label></p></td></tr>
+</table>
 
+<p id="rights"><label><spring:message code="rights"/>:</label></p></td></tr>
+<%-- 
+<c:if test="${not empty dataResource.rights}"><p><label><spring:message code="rights"/>:</label><gbif:formatText content="${dataResource.rights}"/></p></c:if>
+--%> 
 <c:set var="currentDate"><gbif:currentDate/></c:set>
 <c:set var="dataResourceLink"><a href="${urlBase}/datasets/resource/${dataResource.key}">${urlBase}/datasets/resource/${dataResource.key}</a></c:set>
 <c:if test="${not empty dataResource.gbifRUuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}">http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}<br></a></p></c:if>
+
+<p><label><spring:message code="how.to.cite"/>:</label><par id="citation"></par><spring:message code="citation.entry" arguments="${dataResourceLink}%%%${currentDate}" argumentSeparator="%%%"/></p>
+
+<%-- 
 <c:choose>
  <c:when test="${dataResource.overrideCitation}">
     <c:if test="${not empty dataResource.citation}">
@@ -71,6 +80,7 @@
 	<p><label for="citation"><spring:message code="how.to.cite"/>:</label>${dataResource.citation} <spring:message code="citation.entry" arguments="${dataResourceLink}%%%${currentDate}" argumentSeparator="%%%"/></p>
  </c:otherwise> 
 </c:choose>
+--%> 
 
 <c:if test="${not empty dataResource.basisOfRecord}"><p><label for="basisOfRecord"><spring:message code="basis.of.record"/>:</label><spring:message code="basis.of.record.${dataResource.basisOfRecord}" text="${dataResource.basisOfRecord}"/></p></c:if>
 <c:if test="${not empty dataResource.scopeCountryCode}"><p><label for="scopeCountry"><spring:message code="scope.country" text=""/>:</label><a href="${pageContext.request.contextPath}/countries/${dataResource.scopeCountryCode}"><spring:message code="country.${dataResource.scopeCountryCode}" text=""/></a></p></c:if>

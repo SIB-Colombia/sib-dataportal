@@ -38,6 +38,7 @@ public class DataProviderDTOFactory extends BaseDTOFactory {
 		BeanUtils.copyProperties(dataProvider, dataProviderDTO, ignores);
 		dataProviderDTO.setKey(dataProvider.getId().toString());
 		dataProviderDTO.setIsoCountryCode(dataProvider.getIsoCountryCode());
+		dataProviderDTO.setLogoUrl(dataProvider.getLogoUrl());
 		/* Presumably these are not needed...
 		dataProviderDTO.setOccurrenceCount(dataProvider.getOccurrenceCount());
 		dataProviderDTO.setOccurrenceCoordinateCount(dataProvider.getOccurrenceCoordinateCount());

@@ -1,10 +1,9 @@
 <%@ include file="/common/taglibs.jsp"%>
 <script type='text/javascript'>
- var url='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json';
-
+ var url='http://api.gbif.org/organization/'+'${dataProvider.uuid}';
  $(function(){
-	 var url1='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json';
-	 var url2='http://gbrds.gbif.org/registry/organisation/'+'${dataProvider.uuid}'+'.json?op=contacts'; 
+	 var url1='http://api.gbif.org/organization/'+'${dataProvider.uuid}';
+	 var url2='http://api.gbif.org/organization/'+'${dataProvider.uuid}'+'/contact'; 
 	 
 	 $.ajax({
 		    url: url1,
@@ -15,34 +14,33 @@
 		    	
 		    	
 		    	var name='${fn:escapeXml(dataProvider.name)}';
-		    	if((data.name!=undefined)&&(data.name.length!=0)){
-		    		$('#name').append(data.name.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+		    	if((data.title!=undefined)&&(data.title.length!=0)){
+		    		$('#name').append(data.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
 		    	}else if(name.length!=0){
 		    		$('#name').append(name);
 		    	}else {
 		    		$('#name').remove();
 		    	}
-		    	
-		    	
+		    		    	
+
 		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
-		    	if((data.homepageURL!=undefined)&&(data.homepageURL.length!=0)){
-		    		$('#webSiteUrl').append('<a href="'+data.homepageURL+'">'+data.homepageURL+'</a>'); 
+		    	if((data.homepage!=undefined)&&(data.homepage.length!=0)){
+		    		$('#webSiteUrl').append('<a href="'+data.homepage+'">'+data.homepage+'</a>'); 
 		    	}else if(webUrl.length!=0){
 		    		$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
 		    	}else {
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
-		    	var ndName='${fn:escapeXml(dataProvider.gbifApprover)}';
-		    	if((data.nodeName!=undefined)&&(data.nodeName.length!=0)){
-		    		$('#nodeApprover').append(data.nodeName.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    	var ndName='${fn:escapeXml(dataProvider.isoCountryCode)}';
+		    	if((data.country!=undefined)&&(data.country.length!=0)){
+		    		$('#nodeApprover').append(data.country.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(ndName.length!=0){
-		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
+		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.isoCountryCode)}');
 		    	}else {
 		    		$('#nodeApprover').remove();
 		    	}
-		    	
-		    	
+
 		    	var descrp='${fn:escapeXml(dataProvider.description)}';
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
 		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
@@ -53,8 +51,8 @@
 		    	}
 		    	
 		    	var addr='${fn:escapeXml(dataProvider.address)}';
-		    	if((data.primaryContactAddress!=undefined)&&(data.primaryContactAddress.length!=0)){
-		    		$('#addrs').append(data.primaryContactAddress.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    	if((data.address!=undefined)&&(data.address.length!=0)){
+		    		$('#addrs').append(data.address.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(addr.length!=0){
 		    		$('#addrs').append(addr);
 		    	}else {
@@ -75,8 +73,8 @@
 		    	*/
 		    	
 		    	var tel='${fn:escapeXml(dataProvider.telephone)}';
-		    	if((data.primaryContactPhone!=undefined)&&(data.primaryContactPhone.length!=0)){
-		    		$('#telph').append(data.primaryContactPhone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    	if((data.phone!=undefined)&&(data.phone.length!=0)){
+		    		$('#telph').append(data.phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
 		    	}else if(tel.length!=0){
 		    		$('#telph').append(tel);
 		    	}else {
@@ -114,7 +112,6 @@
 <c:if test="${not empty dataProvider.created}"><p><label><spring:message code="date.added"/>:</label><fmt:formatDate value="${dataProvider.created}"/></p></c:if>	
 <c:if test="${not empty dataProvider.modified}"><p><label><spring:message code="last.modified"/>:</label><fmt:formatDate value="${dataProvider.modified}"/></p></c:if>
 -->
-
 
 <p id="name"><label><spring:message code="name"/>:</label></p>
 <p id="webSiteUrl"><label><spring:message code="website"/>:</label></p>
