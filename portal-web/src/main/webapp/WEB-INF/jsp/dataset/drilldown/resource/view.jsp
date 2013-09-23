@@ -147,18 +147,17 @@
 </script>
 
 <div id="twopartheader">
-	<h2><spring:message code="dataset.resource"/>: <span class="subject">${dataResource.name}</span>
-	</h2>
-	<c:if test="${dataResource.logoUrl!=null && fn:startsWith(dataResource.logoUrl, 'http://')}">
+<c:if test="${dataResource.logoUrl!=null && fn:startsWith(dataResource.logoUrl, 'http://')}">
 		<c:if test="${dataResource.websiteUrl!=null}"><a href="${dataResource.websiteUrl}"></c:if>
-		<gbiftag:scaleImage imageUrl="${dataResource.logoUrl}" maxWidth="200" maxHeight="70" addLink="false" imgClass="logo"/>	
+		<gbiftag:scaleImage imageUrl="${dataResource.logoUrl}" maxWidth="200" maxHeight="70" addLink="false" imgClass="logo_dataset"/>	
 		<c:if test="${dataResource.websiteUrl!=null}"></a></c:if>	
 	</c:if>
+	<h2><spring:message code="dataset.resource"/>: <span class="subject">${dataResource.name}</span>
+	</h2>
 	<h3 style="font-size: 1.1em">
 		<spring:message code="dataset.providedby"/> 
 		<a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}">${dataProvider.name}</a>
 	</h3>
-
 </div>
 
 
