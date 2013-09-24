@@ -14,21 +14,6 @@
 
 <script src="${pageContext.request.contextPath}/javascript/jquery.colorbox-min.js" type="text/javascript" language="javascript"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-		//Examples of how to assign the Colorbox event to elements
-		$(".group1").colorbox({rel:'group1', transition:"fade"});
-		$(".group2").colorbox({rel:'group2', transition:"fade"});
-		$(".group3").colorbox({rel:'group3', transition:"fade"});
-		$(".group4").colorbox({rel:'group4', transition:"fade"});
-		$(".group5").colorbox({rel:'group5', transition:"fade"});
-		$(".tut_selector").colorbox({inline:true, width:"50%"});
 
-		$('.faq').click(function() {
-        $(".g5").colorbox({open:true});
-     });
-	});
-
-</script>
 
 <tiles:insert page="/common/scripts.jsp"/>
