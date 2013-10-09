@@ -14,10 +14,9 @@
 	
 	 var url1="http://api.gbif.org/resource/"+"${dataResource.gbifRUuid}";
 	 var url2="http://api.gbif.org/resource/"+"${dataResource.gbifRUuid}"+"/contacts";
-	 
+
 	 $.ajax({
 		    url: url1,
-		    dataType: 'jsonp',
 		    success: function(data){
 		    	
 		    	var name='${fn:escapeXml(dataResource.name)})';

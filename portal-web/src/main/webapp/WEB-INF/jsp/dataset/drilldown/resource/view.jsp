@@ -17,7 +17,6 @@
 	 
 	 $.ajax({
 		    url: url1,
-		    dataType: 'jsonp',
 		    success: function(data){
 		    	
 		    	var name='${fn:escapeXml(dataResource.name)})';
@@ -77,7 +76,7 @@
 		    	if((data.contacts[0].firstName!=undefined)&&(data.contacts[0].firstName.length!=0)){
 		    		aName=data.contacts[0].firstName.replace(/'/g, "&apos;").replace(/"/g, "&quot;");
 		    		if((data.contacts[0].lastName!=undefined)&&(data.contacts[0].lastName.length!=0)){
-		    			aName.append(data.contacts[0].lastName.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+		    			aName = aName + ' ' +  data.contacts[0].lastName.replace(/'/g, "&apos;").replace(/"/g, "&quot;");
 		    		}
 		    	}else if((('${fn:length(agents)}')>0)&&('${agents[0].agentName}'.length!=0)){
 		    		aName='${fn:escapeXml(agents[0].agentName)}';

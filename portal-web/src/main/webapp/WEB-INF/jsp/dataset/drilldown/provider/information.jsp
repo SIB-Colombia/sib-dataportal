@@ -8,7 +8,6 @@
 	 
 	 $.ajax({
 		    url: url1,
-		    dataType: 'jsonp',
 		    success: function(data){
 		    	url3 = data.homepage;
 		    	$('#webSite').append(url3);
