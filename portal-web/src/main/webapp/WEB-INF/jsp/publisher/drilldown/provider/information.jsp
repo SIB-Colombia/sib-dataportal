@@ -1,9 +1,9 @@
 <%@ include file="/common/taglibs.jsp"%>
 <script type='text/javascript'>
- var url='http://api.gbif.org/organization/'+'${dataProvider.uuid}';
+ var url='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}';
  $(function(){
-	 var url1='http://api.gbif.org/organization/'+'${dataProvider.uuid}';
-	 var url2='http://api.gbif.org/organization/'+'${dataProvider.uuid}'+'/contact'; 
+	 var url1='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}';
+	 var url2='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}'+'/contact'; 
 	 
 	 $.ajax({
 		    url: url1,

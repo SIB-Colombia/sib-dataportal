@@ -12,8 +12,8 @@
 	$(".twitter-share-button").attr("data-text", dpn);
 	
 	
-	 var url1="http://api.gbif.org/dataset/"+"${dataResource.gbifRUuid}";
-	 var url2="http://api.gbif.org/dataset/"+"${dataResource.gbifRUuid}"+"/contact";
+	 var url1="http://api.gbif.org/v0.9/dataset/"+"${dataResource.gbifRUuid}";
+	 var url2="http://api.gbif.org/v0.9/dataset/"+"${dataResource.gbifRUuid}"+"/contact";
 	 
 	 $.ajax({
 		    url: url1,
