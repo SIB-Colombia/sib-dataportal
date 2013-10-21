@@ -1,100 +1,101 @@
 <%@ include file="/common/taglibs.jsp"%>
 <script type='text/javascript'>
- var url='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}';
- $(function(){
-	 var url1='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}';
-	 var url2='http://api.gbif.org/v0.9/organization/'+'${dataProvider.uuid}'+'/contact'; 
-	 
-	 $.ajax({
-		    url: url1,
-		    success: function(data){
-		    	url3 = data.homepageURL;
-		    	$('#webSite').append(url3);
-		    	
-		    	
-		    	var name='${fn:escapeXml(dataProvider.name)}';
-		    	if((data.title!=undefined)&&(data.title.length!=0)){
-		    		$('#name').append(data.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
-		    	}else if(name.length!=0){
-		    		$('#name').append(name);
-		    	}else {
-		    		$('#name').remove();
-		    	}
-		    		    	
-
-		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
-		    	if((data.homepage!=undefined)&&(data.homepage.length!=0)){
-		    		$('#webSiteUrl').append('<a href="'+data.homepage+'">'+data.homepage+'</a>'); 
-		    	}else if(webUrl.length!=0){
-		    		$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
-		    	}else {
-		    		$('#webSiteUrl').remove();
-		    	}
-		    	
-		    	var ndName='${fn:escapeXml(dataProvider.isoCountryCode)}';
-		    	if((data.country!=undefined)&&(data.country.length!=0)){
-		    		$('#nodeApprover').append(data.country.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
-		    	}else if(ndName.length!=0){
-		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.isoCountryCode)}');
-		    	}else {
-		    		$('#nodeApprover').remove();
-		    	}
-
-		    	var descrp='${fn:escapeXml(dataProvider.description)}';
-		    	if((data.description!=undefined)&&(data.description.length!=0)){
-		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
-		    	}else if(descrp.length!=0){
-		    		$('#descr').append(descrp);
-		    	}else {
-		    		$('#descr').remove();
-		    	}
-		    	
-		    	var addr='${fn:escapeXml(dataProvider.address)}';
-		    	if((data.address!=undefined)&&(data.address.length!=0)){
-		    		$('#addrs').append(data.address.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
-		    	}else if(addr.length!=0){
-		    		$('#addrs').append(addr);
-		    	}else {
-		    		$('#addrs').remove();
-		    	}
-		    	
-		    	/*
-		    	var mail="${dataProvider.email}";
-		    	if((data.primaryContactEmail!=undefined)&&(data.primaryContactEmail.length!=0)){
-		    		$('#eMail').append(data.primaryContactEmail); 
-		    		alert("1");
-		    	}else if(addr.length!=0){
-		    		$('#eMail').append(mail);
-		    		alert("2");
-		    	}else {
-		    		$('#eMail').remove();
-		    	}
-		    	*/
-		    	
-		    	var tel='${fn:escapeXml(dataProvider.telephone)}';
-		    	if((data.phone!=undefined)&&(data.phone.length!=0)){
-		    		$('#telph').append(data.phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
-		    	}else if(tel.length!=0){
-		    		$('#telph').append(tel);
-		    	}else {
-		    		$('#telph').remove();
-		    	}
-		    },
-		    error: function (xhr, ajaxOptions, thrownError) {
-		    	console.log(xhr.statusText);
-		    	console.log(thrownError);
-		    	$('#name').append('${fn:escapeXml(dataProvider.name)}');
-		    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
-		    	$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
-		    	$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
-		    	$('#descr').append('${fn:escapeXml(dataProvider.description)}');
-		    	$('#addrs').append('${fn:escapeXml(dataProvider.address)}');
-		    	$('#telph').append('${fn:escapeXml(dataProvider.telephone)}');
-		    		
-		    }
+	var version='0.9';	
+	var url='http://api.gbif.org/v'+version+'/organization/'+'${dataProvider.uuid}';
+	$(function(){
+		 var url1='http://api.gbif.org/v'+version+'/organization/'+'${dataProvider.uuid}';
+		 var url2='http://api.gbif.org/v'+version+'/organization/'+'${dataProvider.uuid}'+'/contact'; 
+		 
+		 $.ajax({
+			    url: url1,
+			    success: function(data){
+			    	url3 = data.homepageURL;
+			    	$('#webSite').append(url3);
+			    	
+			    	
+			    	var name='${fn:escapeXml(dataProvider.name)}';
+			    	if((data.title!=undefined)&&(data.title.length!=0)){
+			    		$('#name').append(data.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+			    	}else if(name.length!=0){
+			    		$('#name').append(name);
+			    	}else {
+			    		$('#name').remove();
+			    	}
+			    		    	
+	
+			    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
+			    	if((data.homepage!=undefined)&&(data.homepage.length!=0)){
+			    		$('#webSiteUrl').append('<a href="'+data.homepage+'">'+data.homepage+'</a>'); 
+			    	}else if(webUrl.length!=0){
+			    		$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
+			    	}else {
+			    		$('#webSiteUrl').remove();
+			    	}
+			    	
+			    	var ndName='${fn:escapeXml(dataProvider.isoCountryCode)}';
+			    	if((data.country!=undefined)&&(data.country.length!=0)){
+			    		$('#nodeApprover').append(data.country.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+			    	}else if(ndName.length!=0){
+			    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.isoCountryCode)}');
+			    	}else {
+			    		$('#nodeApprover').remove();
+			    	}
+	
+			    	var descrp='${fn:escapeXml(dataProvider.description)}';
+			    	if((data.description!=undefined)&&(data.description.length!=0)){
+			    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+			    	}else if(descrp.length!=0){
+			    		$('#descr').append(descrp);
+			    	}else {
+			    		$('#descr').remove();
+			    	}
+			    	
+			    	var addr='${fn:escapeXml(dataProvider.address)}';
+			    	if((data.address!=undefined)&&(data.address.length!=0)){
+			    		$('#addrs').append(data.address.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+			    	}else if(addr.length!=0){
+			    		$('#addrs').append(addr);
+			    	}else {
+			    		$('#addrs').remove();
+			    	}
+			    	
+			    	/*
+			    	var mail="${dataProvider.email}";
+			    	if((data.primaryContactEmail!=undefined)&&(data.primaryContactEmail.length!=0)){
+			    		$('#eMail').append(data.primaryContactEmail); 
+			    		alert("1");
+			    	}else if(addr.length!=0){
+			    		$('#eMail').append(mail);
+			    		alert("2");
+			    	}else {
+			    		$('#eMail').remove();
+			    	}
+			    	*/
+			    	
+			    	var tel='${fn:escapeXml(dataProvider.telephone)}';
+			    	if((data.phone!=undefined)&&(data.phone.length!=0)){
+			    		$('#telph').append(data.phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+			    	}else if(tel.length!=0){
+			    		$('#telph').append(tel);
+			    	}else {
+			    		$('#telph').remove();
+			    	}
+			    },
+			    error: function (xhr, ajaxOptions, thrownError) {
+			    	console.log(xhr.statusText);
+			    	console.log(thrownError);
+			    	$('#name').append('${fn:escapeXml(dataProvider.name)}');
+			    	var webUrl='${fn:escapeXml(dataProvider.websiteUrl)}';
+			    	$('#webSiteUrl').append('<a href="'+webUrl+'">'+webUrl+'</a>');
+			    	$('#nodeApprover').append('${fn:escapeXml(dataProvider.gbifApprover)}');
+			    	$('#descr').append('${fn:escapeXml(dataProvider.description)}');
+			    	$('#addrs').append('${fn:escapeXml(dataProvider.address)}');
+			    	$('#telph').append('${fn:escapeXml(dataProvider.telephone)}');
+			    		
+			    }
+			});
+		 
 		});
-	 
-	});
 </script>
 
 <h4><spring:message code="dataset.information"/></h4>
