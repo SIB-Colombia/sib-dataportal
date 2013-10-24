@@ -94,6 +94,8 @@
 </c:forEach>-->
 <c:if test="${not empty dataResource.created}"><p><label><spring:message code="date.added"/>:</label><fmt:formatDate value="${dataResource.created}"/></p></c:if>	
 <c:if test="${not empty dataResource.modified}"><p><label><spring:message code="last.modified"/>:</label><fmt:formatDate value="${dataResource.modified}"/></p></c:if>
+
+<p id="metadata"><label><spring:message code="dataset.metadata"/>:</label></p>
 </fieldset>
 
 
