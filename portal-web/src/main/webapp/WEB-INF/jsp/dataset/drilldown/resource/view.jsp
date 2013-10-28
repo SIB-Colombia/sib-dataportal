@@ -74,7 +74,7 @@
 			    	}
 			    	
 			    	var metadata='';
-			    	if((data.endpoints[0].url!=undefined)&&(data.endpoints[0].url!=0)&&(data.endpoints[0].url.indexOf("http://ipt.sibcolombia.net/")===0)){
+			    	if((data.endpoints[0].url!=undefined)&&(data.endpoints[0].url!=0)&&((data.endpoints[0].url.indexOf("archive.do")!= -1)||(data.endpoints[0].url.indexOf("eml.do")!= -1)||(data.endpoints[0].url.indexOf("rtf.do")!= -1))){
 			    		$('#metadata').append('<a href="'+data.endpoints[0].url.replace(/'/g, "&apos;").replace(/"/g, "&quot;").replace('archive','resource').replace('eml','resource').replace('rtf','resource')+'">'+data.endpoints[0].url.replace(/'/g, "&apos;").replace(/"/g, "&quot;").replace('archive','resource').replace('eml','resource').replace('rtf','resource')+'</a>');
 			    	}else if(ident.length!=0){
 			    		$('#metadata').append(ident);
