@@ -58,3 +58,4 @@ CREATE PROCEDURE generate_common_names ()
 		end loop LOOP1;
 	end BLOCK1
 //
+DELIMITER ;

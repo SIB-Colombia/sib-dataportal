@@ -168,9 +168,8 @@ ul.geospatial {
 .geospatialFilterHelp,
 .datasetFilterHelp,
 .otherDetailsFilterHelp {
-	background:url('../../skins/standard/images/ico_pink_bulb.png') no-repeat center left;
-	padding-left:55px;
-	height:55px;
+	background:url('../../skins/standard/images/ico_pink_bulb.png') no-repeat top left;
+	padding:10px 0 0 55px;
 	color:#333;
 }
 .geospatialFilterHelp {
