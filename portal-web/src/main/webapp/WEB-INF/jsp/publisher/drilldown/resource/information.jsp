@@ -61,7 +61,7 @@
 --%> 
 <c:set var="currentDate"><gbif:currentDate/></c:set>
 <c:set var="dataResourceLink"><a href="${urlBase}/datasets/resource/${dataResource.key}">${urlBase}/datasets/resource/${dataResource.key}</a></c:set>
-<c:if test="${not empty dataResource.gbifRUuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}">http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}<br></a></p></c:if>
+<c:if test="${not empty dataResource.gbifRUuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://www.gbif.org/publisher/${dataResource.gbifRUuid}">http://www.gbif.org/publisher/${dataResource.gbifRUuid}<br></a></p></c:if>
 
 <p><label><spring:message code="how.to.cite"/>:</label><par id="citation"></par><spring:message code="citation.entry" arguments="${dataResourceLink}%%%${currentDate}" argumentSeparator="%%%"/></p>
 

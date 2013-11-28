@@ -118,7 +118,7 @@
 <p id="nodeApprover"><label><spring:message code="gbif.participant"/>:</label></p>
 <p id="descr"><label><spring:message code="description"/>:</label></p>
 <p id="addrs"><label><spring:message code="address"/>:</label></p>
-<c:if test="${not empty dataProvider.uuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://gbrds.gbif.org/browse/agent?uuid=${dataProvider.uuid}">http://gbrds.gbif.org/browse/agent?uuid=${dataProvider.uuid}<br></a></p></c:if>
+<c:if test="${not empty dataProvider.uuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://www.gbif.org/publisher/${dataProvider.uuid}">http://www.gbif.org/publisher/${dataProvider.uuid}<br></a></p></c:if>
 <c:if test="${not empty dataProvider.isoCountryCode}"><p><label><spring:message code="country" text=""/>:</label><spring:message code="country.${dataProvider.isoCountryCode}" text=""/></p></c:if>
 <!-- <p id="eMail"><label><spring:message code="email"/>:</label></p> -->
 <c:if test="${not empty dataProvider.email}"><p><label><spring:message code="email"/>:</label><gbiftag:emailPrint email="${dataProvider.email}"/></p></c:if>

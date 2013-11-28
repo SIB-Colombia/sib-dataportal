@@ -65,7 +65,7 @@
 
 <p id="rights"><label><spring:message code="rights"/>:</label></p>
 
-<c:if test="${not empty dataResource.gbifRUuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}">http://gbrds.gbif.org/browse/agent?uuid=${dataResource.gbifRUuid}<br></a></p></c:if>
+<c:if test="${not empty dataResource.gbifRUuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://www.gbif.org/dataset/${dataResource.gbifRUuid}">http://www.gbif.org/dataset/${dataResource.gbifRUuid}<br></a></p></c:if>
 
 <p><label><spring:message code="how.to.cite"/>:</label><par id="citation"></par>${url}</p>
 <p id="ident"><label><spring:message code="dataset.accessPointUrl"/>:</label></p>
