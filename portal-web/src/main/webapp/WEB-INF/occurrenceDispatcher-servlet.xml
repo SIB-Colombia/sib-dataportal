@@ -55,6 +55,8 @@
         <prop key="/department/celldensity/department-celldensity-*.kml">departmentCellDensityKmlController</prop>
         <!-- For counties -->
         <prop key="/county/placemarks/county-placemarks-*.kml">countyKmlController</prop>
+         <!-- For paramos -->
+        <prop key="/paramo/placemarks/paramo-placemarks-*.kml">paramoKmlController</prop>
         <prop key="/resource/placemarks/resource-placemarks-*.kml">resourceKmlController</prop>
         <prop key="/resource/celldensity/resource-celldensity-*.kml">resourceCellDensityKmlController</prop>
         <prop key="/provider/placemarks/provider-placemarks-*.kml">providerKmlController</prop>
@@ -282,8 +284,23 @@
       </map>
     </property>
   </bean>
-
-  <!-- Controller that redirects to the occurrence cell density kml service -->
+  
+  <bean id="paramoKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>complexid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="complexid" value="paramo-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+ <!-- Controller that redirects to the occurrence cell density kml service -->
   <bean id="abstractOccurrenceCellDensityKmlController"
     class="org.gbif.portal.web.controller.RedirectToWebServiceController">
     <property name="removeExtensions" value="true" />
@@ -650,8 +667,11 @@
     <!-- New filter for Colombia Departments (SIB Colombia) -->
     <property name="departmentFilter" ref="departmentFilter" />
     
-      <!-- New filter for Colombia Departments (SIB Colombia) -->
+    <!-- New filter for Colombia Counties (SIB Colombia) -->
     <property name="countyFilter" ref="countyFilter" />
+    
+    <!-- New filter for Colombia Paramos (SIB Colombia) -->
+    <property name="paramoFilter" ref="paramoFilter" />
     
     <property name="scientificNameFilter" ref="scientificNameFilter" />
     <property name="dataResourceIdFilter" ref="dataResourceIdFilter" />

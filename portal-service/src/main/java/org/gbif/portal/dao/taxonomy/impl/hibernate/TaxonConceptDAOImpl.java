@@ -549,7 +549,33 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
             + " where tct.key.isoCountyCode = :isoDepartmentCode"
             + " and tct.taxonConceptLite.taxonRank=:taxonRank" + " and tct.taxonConceptLite.isAccepted=true"
             + " order by tct.taxonConceptLite.taxonRank asc, tct.taxonConceptLite.taxonNameLite.canonical");
-        query.setParameter("isoDepartmentCode", isoCountyCode);
+        query.setParameter("isoCountyCode", isoCountyCode);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getParamoRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getParamoRootConceptsFor(final String complexId) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tct.taxonConceptLite from TaxonParamo tct"
+            + " inner join fetch tct.taxonConceptLite.taxonNameLite"
+            + " where tct.key.complexId = :complexId"
+            + " and tct.taxonConceptLite.taxonRank=:taxonRank" + " and tct.taxonConceptLite.isAccepted=true"
+            + " order by tct.taxonConceptLite.taxonRank asc, tct.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("complexId", complexId);
         query.setParameter("taxonRank", TaxonRank.KINGDOM);
         query.setCacheable(true);
         return query.list();
@@ -677,7 +703,7 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
   }
 
   /**
-   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForDepartment(long)
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForCounty(long)
    */
   @SuppressWarnings("unchecked")
   public List<TaxonConceptLite> getLiteChildConceptsForCounty(final long taxonConceptId,
@@ -703,6 +729,39 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
         Query query = session.createQuery(sb.toString());
         query.setParameter("taxonConceptId", taxonConceptId);
         query.setParameter("isoCountyCode", isoCountyCode);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForParamo(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForParamo(final long taxonConceptId,
+    final String complexId, final boolean allowUnconfirmed) {
+    if (complexId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tct.taxonConceptLite from TaxonParamo tct "
+            + "inner join fetch tct.taxonConceptLite.taxonNameLite");
+        sb.append(" where tct.taxonConceptLite.parentConceptId = :taxonConceptId and tct.taxonConceptLite.isAccepted=true "
+          + "and  tct.key.complexId =:complexId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tct.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tct.taxonConceptLite.taxonRank, tct.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("complexId", complexId);
         query.setMaxResults(maxChildConcepts);
         return query.list();
       }

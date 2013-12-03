@@ -1540,6 +1540,16 @@ from occurrence_record oc
 inner join county c on oc.iso_county_code=c.iso_county_code 
 where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for county: ', now()) as debug;
+insert into centi_cell_density 
+select 10, p.id, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+inner join paramo p on oc.paramo=p.complex_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
 -- End of SiB Colombia addition
 -- --------------------------------------------
 
@@ -2055,6 +2065,83 @@ group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia
+-- sets the paramos taxon count
+-- ***********************************
+-- populate taxon_paramo
+select concat('Starting taxon_paramo kingdom generation: ', now()) as debug;
+truncate table taxon_paramo;
+-- populate taxon_paramo
+insert ignore into taxon_paramo 
+select kingdom_concept_id, paramo, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo phylum generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select phylum_concept_id, paramo, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo class generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select class_concept_id, paramo, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo order generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select order_concept_id, paramo, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo family generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select family_concept_id, paramo, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo genus generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select genus_concept_id, paramo, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo species generation: ', now()) as debug;
+insert ignore into taxon_paramo
+select species_concept_id, paramo, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_paramo
+select concat('Starting taxon_paramo nub concept generation: ', now()) as debug;
+insert ignore into taxon_paramo 
+select nub_concept_id, paramo, count(*)
+from occurrence_record
+where paramo is not null
+group by 1,2;
+
+-- ***********************************
+-- Addition by SiB Colombia
 -- sets the departments count
 -- ***********************************
 select concat('Starting department occurrence count: ', now()) as debug;
@@ -2094,6 +2181,34 @@ update county c set occurrence_coordinate_count =
 select concat('Starting county species count: ', now()) as debug;
 update county c set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.iso_county_code = c.iso_county_code);
+
+-- sets the paramos count
+select concat('Starting paramo occurrence count: ', now()) as debug;
+update paramo p set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo=p.complex_id);
+
+-- set occurrence record coordinate count for paramo table
+select concat('Starting paramo occurrence coordinate count: ', now()) as debug;
+update paramo p set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=p.id and cd.type=10);
+
+-- set species count per paramo
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo species count: ', now()) as debug;
+update paramo p set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo = p.complex_id);
+
+-- sets the paramos count for any
+select concat('Starting paramo occurrence count for any: ', now()) as debug;
+update paramo p set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
+
+-- set species count per paramo for any
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo species count for any: ', now()) as debug;
+update paramo p set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
+
 -- End of SiB Colombia addition
 
 -- temporal range - temporal range for this dataset

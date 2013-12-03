@@ -13,6 +13,7 @@
 				<!-- SIB Colombia Department map layer support -->
 				<prop key="/department/**/*">departmentMapLayerController</prop>
 				<prop key="/county/**/*">countyMapLayerController</prop>
+				<prop key="/paramo/**/*">paramoMapLayerController</prop>
 				
 				<prop key="/homeCountry/**/*">homeCountryMapLayerController</prop>
 				<prop key="/network/**/*">networkMapLayerController</prop>
@@ -36,10 +37,15 @@
 		<property name="entityType" value="8"/>
 		<property name="urlRoot" value="department"/>
 	</bean>
-	<!-- SIB Colombia Department map layer support -->
+	<!-- SIB Colombia County map layer support -->
 	<bean id="countyMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="9"/>
 		<property name="urlRoot" value="county"/>
+	</bean>
+	<!-- SIB Colombia Paramo map layer support -->
+	<bean id="paramoMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="10"/>
+		<property name="urlRoot" value="paramo"/>
 	</bean>
 	<bean id="providerMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="3"/>

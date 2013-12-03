@@ -129,3 +129,19 @@ from occurrence_record oc
 inner join county c on oc.iso_county_code=c.iso_county_code 
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for paramo
+insert into centi_cell_density 
+select 10, p.id, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+inner join paramo p on oc.paramo=p.complex_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any paramo
+insert into centi_cell_density 
+select 10, 37, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;

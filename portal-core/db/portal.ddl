@@ -499,6 +499,23 @@ CREATE TABLE `county` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table paramo DDL definition
+-- ----------------------------
+--  Table structure for `paramo` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `paramo`;
+CREATE TABLE `paramo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `complex_id` char(3) DEFAULT NULL,
+  `sector` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `complex` varchar(255) DEFAULT NULL,
+  `species_count` int(10) DEFAULT NULL,
+  `occurrence_count` int(10) DEFAULT NULL,
+  `occurrence_coordinate_count` int(10) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --

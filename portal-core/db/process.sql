@@ -164,6 +164,26 @@ inner join county c on oc.iso_county_code=c.iso_county_code
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for paramo: ', now()) as debug;
+insert into centi_cell_density 
+select 10, p.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join paramo p on oc.paramo=p.complex_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for any paramo: ', now()) as debug;
+insert into centi_cell_density 
+select 10, 37 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- --------------------------------------------
 
 -- populate cell densities for all ORs on the denormalised nub id
@@ -539,17 +559,43 @@ select concat('Starting county occurrence count: ', now()) as debug;
 update county c set occurrence_count =
 (select count(id) from occurrence_record o where o.iso_county_code=c.iso_county_code);
 
--- set occurrence record coordinate count for department table
+-- set occurrence record coordinate count for county table
 select concat('Starting county occurrence coordinate count: ', now()) as debug;
 update county c set occurrence_coordinate_count =   
 (select sum(cd.count) from cell_density cd where cd.entity_id=c.id and cd.type=9);
 
--- set species count per department
+-- set species count per county
 -- this used to be species and lower concepts as well - changed 12.8.08
 select concat('Starting county species count: ', now()) as debug;
 update county c set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.iso_county_code = c.iso_county_code);
 
+-- Addition by SiB Colombia
+-- sets the paramos count
+select concat('Starting paramo occurrence count: ', now()) as debug;
+update paramo p set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo=p.complex_id);
+
+-- set occurrence record coordinate count for paramo table
+select concat('Starting paramo occurrence coordinate count: ', now()) as debug;
+update paramo p set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=p.id and cd.type=10);
+
+-- set species count per paramo
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo species count: ', now()) as debug;
+update paramo p set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo = p.complex_id);
+
+-- sets the any paramo count
+select concat('Starting paramo occurrence count for any: ', now()) as debug;
+update paramo p set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
+
+-- set species count any paramo
+select concat('Starting paramo species count for any: ', now()) as debug;
+update paramo p set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
 
 -- temporal range - temporal range for this dataset
 -- Query OK, 2083 rows affected, 1200 warnings (2 min 24.52 sec)

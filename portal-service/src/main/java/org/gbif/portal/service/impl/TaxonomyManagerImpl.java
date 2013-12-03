@@ -60,6 +60,8 @@ import java.util.Locale;
 
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
+import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -101,6 +103,8 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   protected DepartmentDAO departmentDAO;
   /** The DAO interface for accessing Counties */
   protected CountyDAO countyDAO;
+  /** The DAO interface for accessing Counties */
+  protected ParamoDAO paramoDAO;
   /** The DAO interface for accessing Countries */
   protected ImageRecordDAO imageRecordDAO;
   /** The remote concept DAO */
@@ -568,6 +572,18 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   }
   
   /**
+   * @see org.gbif.portal.service.TaxonomyManager#getChildConceptsForParamo(java.lang.String, java.lang.String,
+   *      boolean)
+   */
+  public List<BriefTaxonConceptDTO> getChildConceptsForParamo(String taxonConceptKey, String paramo,
+    boolean allowUnconfirmed) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List<TaxonConceptLite> childConcepts =
+      taxonConceptDAO.getLiteChildConceptsForParamo(taxonConceptId, paramo, allowUnconfirmed);
+    return briefTaxonConceptDTOFactory.createDTOList(childConcepts);
+  }
+  
+  /**
    * Uses TaxonConceptDAO.getParentChildConcepts to retrieve the specified concept,
    * its child concepts and its parent concept. It then goes up the tree calling getParent
    * until parent it null.
@@ -781,6 +797,75 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
     }
     return null;
   }
+  
+  /**
+   * Uses TaxonConceptDAO.getParentChildConcepts to retrieve the specified concept,
+   * its child concepts and its parent concept. It then goes up the tree calling getParent
+   * until parent it null.
+   * 
+   * @see org.gbif.portal.service.TaxonomyManager#getClassificationForParamo(java.lang.String, boolean)
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForParamo(String taxonConceptKey, boolean ascend,
+    boolean descend, String paramo, boolean includeCounts, boolean allowUnconfirmed) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List<BriefTaxonConceptDTO> classificationDTOList = new ArrayList<BriefTaxonConceptDTO>();
+    // add the concept
+    TaxonConcept taxonConcept = taxonConceptDAO.getParentChildConcepts(taxonConceptId, false, allowUnconfirmed);
+    if (taxonConcept != null) {
+
+      if (ascend) {
+        // add the parent concepts
+        TaxonConcept parentConcept = taxonConceptDAO.getParentConceptFor(taxonConcept.getId());
+        // recurse till parent null
+
+        // save the IDs being stored in the Classification list, to check for previous existence when entering a new one
+        // (to avoid infinite loops)
+        List<Long> previousIds = new ArrayList<Long>();
+
+        while (parentConcept != null && !previousIds.contains(parentConcept.getId())) {
+          classificationDTOList.add(0,
+            (BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(parentConcept, includeCounts));
+          previousIds.add(parentConcept.getId());
+          Long oldId = parentConcept.getId();
+          parentConcept = taxonConceptDAO.getParentConceptFor(parentConcept.getId());
+          // avoid infinite loops due to bad data
+          if (parentConcept != null && parentConcept.getId().equals(oldId))
+            parentConcept = null;
+        }
+      }
+
+      // add this concept to the list
+      classificationDTOList.add((BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(taxonConcept,
+        includeCounts));
+
+      if (descend) {
+        // order child concepts
+        List<TaxonConceptLite> childConcepts =
+          taxonConceptDAO.getLiteChildConceptsForParamo(taxonConceptId, paramo, allowUnconfirmed);
+        ArrayList<TaxonConceptLite> childConceptList = new ArrayList<TaxonConceptLite>();
+        childConceptList.addAll(childConcepts);
+        Collections.sort(childConceptList, new Comparator<TaxonConceptLite>() {
+
+          public int compare(TaxonConceptLite c1, TaxonConceptLite c2) {
+            if (c1.getTaxonRank().getValue() != c2.getTaxonRank().getValue())
+              return c1.getTaxonRank().getValue().compareTo(c2.getTaxonRank().getValue());
+            // else compare canonical
+            return c1.getTaxonNameLite().getCanonical().compareTo(c2.getTaxonNameLite().getCanonical());
+          }
+        });
+        // add child concepts
+        for (TaxonConceptLite childConcept : childConceptList) {
+          // non accepted ones are not added
+          if (childConcept.isAccepted()) {
+            classificationDTOList.add((BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(childConcept,
+              includeCounts));
+          }
+        }
+      }
+      return classificationDTOList;
+    }
+    return null;
+  }
 
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getClassificationForDepartment(java.lang.String, boolean,
@@ -799,6 +884,15 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   public List<BriefTaxonConceptDTO> getClassificationForCounty(String taxonConceptKey, boolean retrieveChildren,
     String isoCountyCode, boolean allowUnconfirmed) throws ServiceException {
     return getClassificationForCounty(taxonConceptKey, true, retrieveChildren, isoCountyCode, false,
+      allowUnconfirmed);
+  }
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getClassificationForParamo(java.lang.String, boolean,
+   *      java.lang.String)
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForParamo(String taxonConceptKey, boolean retrieveChildren,
+    String paramo, boolean allowUnconfirmed) throws ServiceException {
+    return getClassificationForCounty(taxonConceptKey, true, retrieveChildren, paramo, false,
       allowUnconfirmed);
   }
 
@@ -838,6 +932,14 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
     return countDTOFactory.createDTOList(counts);
   }
 
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getCountryCountsForTaxonConcept(java.lang.String)
+   */
+  public List<CountDTO> getParamoCountsForTaxonConcept(String taxonConceptKey) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List counts = paramoDAO.getParamoCountsForTaxonConcept(taxonConceptId);
+    return countDTOFactory.createDTOList(counts);
+  }
 
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getNubTaxonConceptFor(java.lang.String)
@@ -897,10 +999,17 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
    * @see org.gbif.portal.service.TaxonomyManager#getRootTaxonConceptsForCounty(java.lang.String)
    */
   public List<BriefTaxonConceptDTO> getRootTaxonConceptsForCounty(String isoCountyCode) throws ServiceException {
-    List<TaxonConceptLite> rootConcepts = taxonConceptDAO.getDepartmentRootConceptsFor(isoCountyCode);
+    List<TaxonConceptLite> rootConcepts = taxonConceptDAO.getCountyRootConceptsFor(isoCountyCode);
     return briefTaxonConceptDTOFactory.createDTOList(rootConcepts);
   }
 
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getRootTaxonConceptsForParamo(java.lang.String)
+   */
+  public List<BriefTaxonConceptDTO> getRootTaxonConceptsForParamo(String paramo) throws ServiceException {
+    List<TaxonConceptLite> rootConcepts = taxonConceptDAO.getParamoRootConceptsFor(paramo);
+    return briefTaxonConceptDTOFactory.createDTOList(rootConcepts);
+  }
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getRootTaxonConceptsFor(java.lang.String)
    */

@@ -57,8 +57,11 @@ import java.util.Set;
 
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
+import net.sibcolombia.portal.model.geospatial.Paramo;
+
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -91,6 +94,9 @@ public class GeospatialManagerImpl implements GeospatialManager {
 
   /** County DAO for County queries */
   protected CountyDAO countyDAO;
+  
+  /** Paramo DAO for County queries */
+  protected ParamoDAO paramoDAO;
 
   
   /** The GeoRegion DAO */
@@ -567,6 +573,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
           County county = (County) countyAndName;
           keyAsLong = county.getCountyId();
         }
+    }else if (type.equals(EntityType.TYPE_PARAMO)) {
+        Object paramoAndName = paramoDAO.getParamoForComplexId(key);
+        if (paramoAndName != null) {
+          Paramo paramo = (Paramo) paramoAndName;
+          keyAsLong = paramo.getParamoId();
+        }
     }
     return keyAsLong;
   }
@@ -824,6 +836,13 @@ public class GeospatialManagerImpl implements GeospatialManager {
    */
   public void setCountyDAO(CountyDAO countyDAO) {
     this.countyDAO = countyDAO;
+  }
+  
+  /**
+   * @param countyDAO the countyDAO to set
+   */
+  public void setParamoDAO(ParamoDAO paramoDAO) {
+    this.paramoDAO = paramoDAO;
   }
   /**
    * @param geoRegionDAO the geoRegionDAO to set

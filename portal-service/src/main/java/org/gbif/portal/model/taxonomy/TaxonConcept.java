@@ -21,6 +21,7 @@ import java.util.Set;
 
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.County;
+import net.sibcolombia.portal.model.geospatial.Paramo;
 
 /**
  * TaxonConcept Model Object represents a Taxonomic Concept described
@@ -107,6 +108,8 @@ public class TaxonConcept extends BaseObject {
   protected Set<Department> departments;
   /** The common names for this concept */
   protected Set<County> counties;
+  /** The common names for this concept */
+  protected Set<Paramo> paramos;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -204,6 +207,13 @@ public class TaxonConcept extends BaseObject {
    */
   public Set<County> getCounties() {
     return counties;
+  }
+  
+  /**
+   * @return the paramos
+   */
+  public Set<Paramo> getParamos() {
+    return paramos;
   }
   
   /**
@@ -500,6 +510,12 @@ public class TaxonConcept extends BaseObject {
    */
   public void setCounties(Set<County> counties) {
     this.counties = counties;
+  }
+  /**
+   * @param counties the paramos to set
+   */
+  public void setParamos(Set<Paramo> paramos) {
+    this.paramos = paramos;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

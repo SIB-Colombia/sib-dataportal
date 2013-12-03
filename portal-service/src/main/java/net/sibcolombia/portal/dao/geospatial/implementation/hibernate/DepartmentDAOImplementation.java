@@ -217,6 +217,20 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     });
     return count.intValue();
   }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalParamoCount()
+   */
+  public int getTotalParamoCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(p.id) from Paramo p");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
   /**
    * @param supportedLocales the supportedLocales to set
    */

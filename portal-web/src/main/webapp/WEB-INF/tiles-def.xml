@@ -933,9 +933,13 @@
 	<definition name="departmentHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/departmentHelp.jsp"/>
 	</definition>
-	<!-- SIB Colombia departments search option help -->
+	<!-- SIB Colombia counties search option help -->
 	<definition name="countyHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/countyHelp.jsp"/>
+	</definition>	
+	<!-- SIB Colombia paramos search option help -->
+	<definition name="paramoHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/paramoHelp.jsp"/>
 	</definition>	
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						

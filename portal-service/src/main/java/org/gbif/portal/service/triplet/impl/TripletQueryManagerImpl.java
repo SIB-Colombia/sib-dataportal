@@ -84,9 +84,9 @@ public class TripletQueryManagerImpl implements TripletQueryManager {
 			logger.debug("Built query : "+query);
 		
 		List<Object> parameters = new LinkedList<Object>();
-		for (PropertyStoreTripletDTO criterion : fullCriteria) 
+		for (PropertyStoreTripletDTO criterion : fullCriteria){ 
 			parameters.add(criterion.getObject());
-		
+		}
 		int pageSize = constraints.getMaxResults();
 		
 		//queries for pageSize+1. if pageSize+1 records are returned

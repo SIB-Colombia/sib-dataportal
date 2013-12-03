@@ -1470,4 +1470,45 @@
 		<entry key='99773' value="county.cumaribo"/>
 	</util:map>
 	
+	<util:map id="complex-ids">
+		<entry key= 'ALM' value='paramo.almorzadero'/>
+		<entry key= 'ACB' value='paramo.altiplano_cundiboyacense'/>
+		<entry key= 'BMR' value='paramo.belmira'/>
+		<entry key= 'PLT' value='paramo.cerro_plateado'/>
+		<entry key= 'CHC' value='paramo.chiles_cumbal'/>
+		<entry key= 'CBG' value='paramo.chili_barrangan'/>
+		<entry key= 'CHG' value='paramo.chingaza'/>
+		<entry key= 'CTR' value='paramo.citara'/>
+		<entry key= 'SCV' value='paramo.cruz_verde_sumapaz'/>
+		<entry key= 'DJP' value='paramo.dona_juana_chimayoy'/>
+		<entry key= 'PDN' value='paramo.el_duende'/>
+		<entry key= 'FRC' value='paramo.farallones_de_cali'/>
+		<entry key= 'FRU' value='paramo.frontino_urrao'/>
+		<entry key= 'GPC' value='paramo.guanacas_purace_coconucos'/>
+		<entry key= 'GLR' value='paramo.guantiva_la_rusia'/>
+		<entry key= 'GUE' value='paramo.guerrero'/>
+		<entry key= 'IGM' value='paramo.iguaque_merchan'/>
+		<entry key= 'JSB' value='paramo.jurisdicciones_santurban_berlin'/>
+		<entry key= 'LCP' value='paramo.la_cocha_patascoy'/>
+		<entry key= 'HMS' value='paramo.las_hermosas'/>
+		<entry key= 'NVS' value='paramo.los_nevados'/>
+		<entry key= 'PIC' value='paramo.los_picachos'/>
+		<entry key= 'PIC' value='paramo.los_picachos'/>
+		<entry key= 'MRF' value='paramo.miraflores'/>
+		<entry key= 'NHM' value='paramo.nevado_del_huila_moras'/>
+		<entry key= 'PRM' value='paramo.paramillo'/>
+		<entry key= 'PRJ' value='paramo.perija'/>
+		<entry key= 'PSB' value='paramo.pisba'/>
+		<entry key= 'RRB' value='paramo.rabanal_y_rio_bogota'/>
+		<entry key= 'SMT' value='paramo.sierra_nevada_de_santa_marta'/>
+		<entry key= 'SNC' value='paramo.sierra_nevada_del_cocuy'/>
+		<entry key= 'SSN' value='paramo.sonson'/>
+		<entry key= 'STR' value='paramo.sotara'/>
+		<entry key= 'TMA' value='paramo.tama'/>
+		<entry key= 'TTM' value='paramo.tatama'/>
+		<entry key= 'TBM' value='paramo.tota_bijagual_mamapacha'/>
+		<entry key= 'YRG' value='paramo.yariguies'/>
+		<entry key= 'CUA' value='paramo.any'/>
+	</util:map>
+	
 </beans>
