@@ -15,18 +15,12 @@
 <div id="twopartheader">
 	<h2>
 			<spring:message code="dataset.provider"/>: <span class="subject">${dataProvider.name}</span> 
-			<c:if test="${dataProvider.logoUrl!=null}">
-				<c:if test="${dataProvider.websiteUrl!=null}"><a href="${dataProvider.websiteUrl}"></c:if>
-				<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
-				<c:if test="${dataProvider.websiteUrl!=null}"></a></c:if>
-			</c:if>
-		<!-- tweet-button-->	
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/?utm_source=&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="">Twittear</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-		js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-		</script>	
 	</h2>
-	
+	<c:if test="${dataProvider.logoUrl!=null}">
+		<c:if test="${dataProvider.websiteUrl!=null}"><a href="${dataProvider.websiteUrl}"></c:if>
+		<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
+		<c:if test="${dataProvider.websiteUrl!=null}"></a></c:if>
+	</c:if>
 </div>
 
 <tiles:insert page="actions.jsp"/>

@@ -417,6 +417,12 @@
 		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/dataset/drilldown/provider/view.jsp"/>
 	</definition>
+	<!-- Data Publisher-Provider Tiles -->
+	<definition name="provider-publisher" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/publisher/drilldown/datasetSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/publisher/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/publisher/drilldown/provider/view.jsp"/>
+	</definition>
 	<!-- Resource Network Tiles -->
 	<definition name="network" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/dataset/drilldown/datasetSubtitle.jsp"/>
@@ -429,8 +435,20 @@
 		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/dataset/drilldown/provider/logTable.jsp"/>
 	</definition>
+	<!-- Log Event Publishers Tiles -->	
+	<definition name="logTable-publishers" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/dataset/drilldown/provider/logTableSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/dataset/drilldown/provider/logTable.jsp"/>
+	</definition>
 	<!-- Harvesting Log Event Tiles -->	
 	<definition name="harvestingLogTable" extends="mainLayout">
+		<put name="subtitle" value="/WEB-INF/jsp/dataset/drilldown/provider/dataTrackingSubtitle.jsp"/>
+		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
+		<put name="content" value="/WEB-INF/jsp/dataset/drilldown/provider/logTable.jsp"/>
+	</definition>
+	<!-- Harvesting Log Event Publisher Tiles -->	
+	<definition name="harvestingLogTable-publishers" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/dataset/drilldown/provider/dataTrackingSubtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/dataset/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/dataset/drilldown/provider/logTable.jsp"/>
@@ -915,6 +933,14 @@
 	<definition name="departmentHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/departmentHelp.jsp"/>
 	</definition>
+	<!-- SIB Colombia counties search option help -->
+	<definition name="countyHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/countyHelp.jsp"/>
+	</definition>	
+	<!-- SIB Colombia paramos search option help -->
+	<definition name="paramoHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/paramoHelp.jsp"/>
+	</definition>	
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						
 	</definition>
@@ -1002,6 +1028,9 @@
 	</definition>
 	<definition name="departmentTaxonHelp" extends="ajaxHtmlLayout"> 		 		
 		<put name="content" value="/WEB-INF/jsp/taxonomy/help/departmentHelp.jsp"/>
+	</definition>
+	<definition name="countyTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/countyHelp.jsp"/>
 	</definition>
   	
 	<!-- Simple System Details Page -->

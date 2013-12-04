@@ -80,5 +80,7 @@
 	<c:set var="mapDivName" value="map" scope="request"/>
 	<c:set var="pointsClickable" value="false" scope="request"/>
 	<tiles:insert page="/WEB-INF/jsp/geography/googleMap.jsp"/>
-	<a href="${pageContext.request.contextPath}/occurrences/${occurrenceRecord.key}/largeMap"><spring:message code="occurrence.record.view.large.map"/></a>
+	<p>
+		<a href="${pageContext.request.contextPath}/occurrences/${occurrenceRecord.key}/largeMap"><spring:message code="occurrence.record.view.large.map"/></a>
+	</p>
 </c:if>

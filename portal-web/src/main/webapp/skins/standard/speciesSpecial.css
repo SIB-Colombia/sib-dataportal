@@ -11,9 +11,10 @@
 	color: #1BC0E0;
 	padding: 5px 0 0 0;
 	margin: 0;
-	font-size: 2.3em;
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: 300;
 	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
@@ -77,7 +78,7 @@ table.results th {
 	margin-left: 5px;
 }
 #classificationTop {
-	margin: 20px 0 0 -90px;
+	margin: 20px 0 0 0px;
 	font-size: 11px;
 	background-color:rgba(255,255,255,1);
 	padding:2px 2px 4px 10px;
@@ -145,7 +146,7 @@ h4#addSearchFilter, h4#currentSearch {
 	font-size:1.6em;
 }
 input[type="submit"], button{
-	background-color:#34BCE0;
+	background-color:#34BCE0 !important;
 }
 table.actionsList tr:nth-child(even) td,
 table.actionsList tr:nth-child(even) th{

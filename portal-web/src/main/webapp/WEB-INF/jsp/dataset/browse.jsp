@@ -1,14 +1,10 @@
 <%@ include file="/common/taglibssibcolombia.jsp"%>
 
-<div id="twopartheader">	
+<a class="faq g2" href="#" title="Explorar conjuntos de datos">? </a>
+<div id="twopartheader">
 <h2><spring:message code="dataset.list.main.title"/>
-	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/conjuntos/?utm_source=datasets&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es" data-text="Conjuntos de datos" >Twittear</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
 </h2>
-	<gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/>
+	<% // <gbif:alphabetLink rootUrl="/datasets/browse/" selected="${selectedChar}" listClass="flatlist" letters="${alphabet}" messageSource="${messageSource}"/> %>
 </div>
 <c:choose><c:when test="${selectedChar!=48}"><h2 id="selectedChar">${selectedChar}</h2></c:when><c:otherwise><br/></c:otherwise></c:choose>
 	<c:choose>
@@ -85,7 +81,7 @@
 </display:table>
 -->
 
-<display:table name="dataResources" export="false" class="statistics sortable" id="dataResource" cellspacing="0">
+<display:table name="dataResources" export="false" class="statistics" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/conjuntos/resource/${dataResource.key}">${dataResource.name}</a>
   	<p class="resultsDetails"><a href="${pageContext.request.contextPath}/conjuntos/provider/${dataResource.dataProviderKey}">${dataResource.dataProviderName}</a></p>
@@ -147,3 +143,38 @@
 
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	var oTable = $('#dataResource').dataTable( {
+		"iDisplayLength": 100,
+        "bLengthChange": false,
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "oLanguage": {
+            "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
+            "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
+            "sInfo": '<spring:message code="dataset.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="dataset.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="dataset.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sSearch": '<spring:message code="dataset.list.ssearch"/>',
+            "oPaginate": {
+                "sNext": '<spring:message code="dataset.list.snext"/>',
+                "sPrevious": '<spring:message code="dataset.list.sprevious" />'
+            }
+        },
+        "aoColumns": [null,
+                      { "sType": "num-html" },
+                      { "sType": "num-html" },
+                      { "sType": "num-html" },
+                      { "sType": "num-html" }
+                  ],"fnDrawCallback": function(){
+        	  if(this.fnSettings().fnRecordsDisplay()<=$('#dataResource tr').length){
+        		  $('#dataResource_paginate').hide();
+        	  }else{
+        		  $('#dataResource_paginate').show();  
+        	  } 
+        	}
+    } );
+} );
+</script>

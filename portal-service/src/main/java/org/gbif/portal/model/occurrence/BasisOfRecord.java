@@ -43,6 +43,21 @@ public class BasisOfRecord extends IntegerEnumType implements Serializable{
 	public static final BasisOfRecord GERMPLASM = new BasisOfRecord("germplasm", 4);
 	public static final BasisOfRecord FOSSIL = new BasisOfRecord("fossil", 5);
 	public static final BasisOfRecord LITERATURE = new BasisOfRecord("literature", 6);
+	public static final BasisOfRecord PRESERVEDSPECIMEN = new BasisOfRecord("preservedspecimen", 7);
+	public static final BasisOfRecord FOSSILSPECIMEN = new BasisOfRecord("fossilspecimen", 8);
+	public static final BasisOfRecord LIVINGSPECIMEN = new BasisOfRecord("livingspecimen", 9);
+	public static final BasisOfRecord HUMANOBSERVATION = new BasisOfRecord("humanobservation", 10);
+	public static final BasisOfRecord MACHINEOBSERVATION = new BasisOfRecord("machineobservation", 11);
+	public static final BasisOfRecord STILLIMAGE = new BasisOfRecord("stillimage", 12);
+	public static final BasisOfRecord MOVINGIMAGE = new BasisOfRecord("movingimage", 13);
+	public static final BasisOfRecord SOUNDRECORDING = new BasisOfRecord("soundrecording", 14);
+	public static final BasisOfRecord OTHERSPECIMEN = new BasisOfRecord("otherspecimen", 15);
+	public static final BasisOfRecord OCCURRENCE = new BasisOfRecord("occurrence", 16);
+	public static final BasisOfRecord MATERIALSAMPLE = new BasisOfRecord("materialsample", 17);
+	public static final BasisOfRecord EVENT = new BasisOfRecord("event", 18);
+	public static final BasisOfRecord LOCATION = new BasisOfRecord("location", 19);
+	public static final BasisOfRecord TAXON = new BasisOfRecord("taxon", 20);
+	public static final BasisOfRecord NOMENCLATURALCHECKLIST = new BasisOfRecord("nomenclaturalchecklist", 21);
 
 	// The following are primarily for name/concept data resources
 	public static final BasisOfRecord NOMENCLATOR = new BasisOfRecord("nomenclator", 101);

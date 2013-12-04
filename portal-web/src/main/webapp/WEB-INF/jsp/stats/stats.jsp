@@ -9,14 +9,18 @@
      var rows=[];
      var isoCodeDep=[];
  	<c:forEach items="${departments}" var="department">
+ 		
  		//rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCount}"/>"), parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>")]);
- 		rows.push(["<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>"), parseInt("<c:out value="${department.occurrenceCount}"/>")]);
+ 		rows.push([parseFloat("<c:out value="${department.departmentLat}"/>"),parseFloat("<c:out value="${department.departmentLng}"/>"),"<c:out value="${department.departmentName}"/>", parseInt("<c:out value="${department.occurrenceCoordinateCount}"/>"), parseInt("<c:out value="${department.occurrenceCount}"/>")]);
+ 		//console.log("${department.departmentName}"+" : "+"${department.isoDepartmentCode}");
  		isoCodeDep["${department.departmentName}"]="${department.isoDepartmentCode}";
  	</c:forEach>
  	google.load('visualization', '1', {'packages': ['geochart']});
     google.setOnLoadCallback(drawMarkersMap);
       function drawMarkersMap() {
     	var table = new google.visualization.DataTable();  
+    	table.addColumn('number', 'Lat');
+    	table.addColumn('number', 'Long');
     	table.addColumn('string', 'DEPARTAMENTO', 'Departamento');
     	table.addColumn('number', 'Registros biológicos georreferenciados', 'Registros biológicos georreferenciados');
 		table.addColumn('number', 'Registros biológicos', 'Registros biológicos');
@@ -28,8 +32,8 @@
             var selection = chart.getSelection();
             if (selection.length == 1) {
               var selectedRow = selection[0].row;
-              var selectedDepartment = table.getValue(selectedRow, 0);
-              //alert(selectedDepartment);
+              var selectedDepartment = table.getValue(selectedRow, 2);
+              //console.log(selectedDepartment);
               window.location.href="${pageContext.request.contextPath}"+"/departments/"+isoCodeDep[selectedDepartment];
               geochart.setSelection();
             }
@@ -285,18 +289,18 @@ $(function () {
 	<div id="chart_stat"></div>
 </div>
 
+<div><h4>Número de Conjuntos de datos por publicador</h4>
+	<div id="pchart"></div>
+</div> 
+
 <div>
 	<h4>Conjuntos de datos por publicador</h4>
-	<div id="chart_tree" style="width: 720px; height: 500px;"></div>
+	<div id="chart_tree" style="width: 720px; height: 500px; float:left;"></div>
 	<p><img src="${pageContext.request.contextPath}/images/treemap_guide.png" /></p>
 	<p><strong>Haz click sobre un publicador para ver los conjuntos de datos que ha publicado</strong></p>
 	<p>El color más oscuro indica mayor cantidad de registros georeferenciados, y el tamaño del cuadro muestra la proporción de registros comparados con los demas publicadores, o publicaciones </p>
 </div>
 
-
-<div><h4>Número de Conjuntos de datos por publicador</h4>
-	<div id="pchart"></div>
-</div> 
 
 </div>
 

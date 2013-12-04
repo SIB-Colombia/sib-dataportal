@@ -110,7 +110,7 @@ public class DataProvider extends BaseObject {
 	/**
 	 * Initialises loads.
 	 */
-	public DataProvider(long id, String name, Integer occurrenceCount, Integer occurrenceCoordinateCount, Integer conceptCount, Integer speciesCount, Integer dataResourceCount, String isoCountryCode){
+	public DataProvider(long id, String name, Integer occurrenceCount, Integer occurrenceCoordinateCount, Integer conceptCount, Integer speciesCount, Integer dataResourceCount, String isoCountryCode, String logoUrl){
 		this.id = id;
 		this.name = name;
 		this.occurrenceCount = occurrenceCount;
@@ -119,6 +119,7 @@ public class DataProvider extends BaseObject {
 		this.speciesCount = speciesCount;
 		this.dataResourceCount = dataResourceCount;
 		this.isoCountryCode = isoCountryCode;
+		this.logoUrl = logoUrl;
 	}	
 		
 	/**

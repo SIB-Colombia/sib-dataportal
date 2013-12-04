@@ -19,13 +19,9 @@
         chart.draw(table, options);
     };
 </script> */ %>
+<a class="g4 faq" href="#" title="Explorar departamentos">? </a>
 <div id="twopartheader">	
 	<h2><spring:message code="departments.list.main.title"/>: <span class="subject"><gbif:capitalize><string:lowerCase><spring:message code="country.${country.isoCountryCode}"/></string:lowerCase></gbif:capitalize></span>
-	<!-- tweet-button-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/departamentos/?utm_source=departments&utm_medium=twitter&utm_campaign=impacto_redes" data-text="Colombia - Portal de datos SIB Colombia" data-via="sibcolombia" data-lang="es">Twittear</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
 	</h2>
 	
 	<p style="padding-left: 10px;">
@@ -51,7 +47,7 @@
 	
 	<fmt:setLocale value="en_US"/>
 	
-	<display:table name="departments" export="false" class="statistics sortable" id="department" cellspacing="0">
+	<display:table name="departments" export="false" class="statistics" id="department" cellspacing="0">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
 	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
 	  </display:column>	  
@@ -69,6 +65,47 @@
 	</display:table>
 	</c:otherwise>
 </c:choose>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	var oTable = $('#department').dataTable( {
+        "iDisplayLength": 100,
+        "bLengthChange": false,
+        "bAutoWidth": false,
+        "aaSorting": [[ 0, "asc" ]],
+        "oLanguage": {
+            "sEmptyTable": '<spring:message code="dataset.list.semptytable"/>',
+            "sZeroRecords":'<spring:message code="dataset.list.szerorecords"/> ',
+            "sInfo": '<spring:message code="department.list.sinfo" arguments="_START_,_END_,_TOTAL_"/>',
+            "sInfoEmpty": '<spring:message code="department.list.sinfoempty"/>',
+            "sInfoFiltered": '<spring:message code="department.list.sinfofiltered" arguments="_MAX_"/> ',
+            "sSearch": '<spring:message code="dataset.list.ssearch"/>',
+            "oPaginate": {
+                "sNext": '<spring:message code="dataset.list.snext"/>',
+                "sPrevious": '<spring:message code="dataset.list.sprevious" />'
+            }
+        },"aoColumns": [null,
+                        { "sType": "num-html" },
+                        { "sType": "num-html" },
+                        { "sType": "num-html" }
+                    ],
+		"fnDrawCallback": function(){
+      	  if(this.fnSettings().fnRecordsDisplay()<=$('#department tr').length){
+    		  $('#department_paginate').hide();
+    	  }else{
+    		  $('#department_paginate').show();  
+    	  }
+      	},"fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+      		if($(nRow).attr('class')=='odd even'){
+      			$(nRow).attr('class', 'even');
+      		}
+      		if($(nRow).attr('class')=='even odd'){
+      			$(nRow).attr('class', 'odd');
+      		}
+      	}
+    } );
+} );
+</script>
 <br></br>
 
 <% /* SIB Colombia Commenting code to show map at the bottom

@@ -1,342 +1,286 @@
-// This shows a lat/lon graticule on the map. Interval is automatic
-// Bill Chadwick, 
+// Graticule for google.maps v3
+//
+// Adapted from Bill Chadwick 2006 http://www.bdcc.co.uk/Gmaps/BdccGmapBits.htm
+// which is free for any use.
+//
+// This work is licensed under the Creative Commons Attribution 3.0 Unported
+// License. To view a copy of this license, visit
+// http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
+// Commons, 171 Second Street, Suite 300, San Francisco, California, 94105,
+// USA.
+//
+// Matthew Shen 2011
+//
+// Reworked some more by Bill Chadwick ...
+//
+var Graticule = (function() {
+    function _(map, sexagesimal) {
+        // default to decimal intervals
+        this.sex_ = sexagesimal || false;
+        this.set('container', document.createElement('DIV'));
 
-function LatLonGraticule() {
-}
-LatLonGraticule.prototype = new GOverlay();
+        this.show();
 
-
-LatLonGraticule.prototype.initialize = function(map) {
-
-  //save for later
-  this.map_ = map;
-  //array for divs used for lines and labels
-  this.divs_ = new Array();
-      
-}
-
-LatLonGraticule.prototype.remove = function() {
-
-  try{
-  var i = 0;
-  var div = this.map_.getPane(G_MAP_MARKER_SHADOW_PANE);
-  for(i=0; i< this.divs_.length; i++)
-	div.removeChild(this.divs_[i]);
-	}
-  catch(e){
-  }
-
-}
-
-LatLonGraticule.prototype.copy = function() {
-  return new LatLonGraticule();
-}
-
-// Redraw the graticule based on the current projection and zoom level
-LatLonGraticule.prototype.redraw = function(force) {
-
-  //clear old
-  this.remove();
-
-  //best color for writing on the map
-  this.color_ = this.map_.getCurrentMapType().getTextColor();
-
-  //determine graticule interval
-  var bnds = this.map_.getBounds();
+        this.setMap(map);
+    }
+    _.prototype = new google.maps.OverlayView();
+    _.prototype.addDiv = function(div) {
+        this.get('container').appendChild(div);
+    },
+  _.prototype.decToLonSex = function(d) {
+      var degs = Math.floor(Math.abs(d));
+      var mins = ((Math.abs(d) - degs) * 60.0).toFixed(2);
+      if (mins == "60.00") { degs += 1.0; mins = "0.00"; }
+      return [degs, (d>0)?"E":"W", mins].join('');
+  };
   
-  
-  var l = bnds.getSouthWest().lng();
-  var b = bnds.getSouthWest().lat();
-  var t = bnds.getNorthEast().lat();
-  var r = bnds.getNorthEast().lng();
+    _.prototype.decToLatSex = function(d) {
+      var degs = Math.floor(Math.abs(d));
+      var mins = ((Math.abs(d) - degs) * 60.0).toFixed(2);
+      if (mins == "60.00") { degs += 1.0; mins = "0.00"; }
+      return [degs, (d>0)?"N":"S", mins].join('');
+  };
+    _.prototype.onAdd = function() {
+        var self = this;
+        this.getPanes().mapPane.appendChild(this.get('container'));
 
-  //sanity
-  if (b < -90.0)
-	b = -90.0;
-  if(t > 90.0)
-	t = 90.0;
-  if(l < -180.0)
-    l = -180.0;  
-  if(r > 180.0)
-    r = 180.0;
-    
-  if(l == r){
-	l = -180.0;
-	r = 180.0;
-  }
+        function redraw() {
+            self.draw();
+        }
+        this.idleHandler_ = google.maps.event.addListener(this.getMap(), 'idle', redraw);
 
-  if(t == b){
-	b = -90.0;
-	t = 90.0;
-  }
+        function changeColor() {
+            self.draw();
+        }
+        changeColor();
+        this.typeHandler_ = google.maps.event.addListener(this.getMap(), 'maptypeid_changed', changeColor);
+    };
+    _.prototype.clear = function() {
+        var container = this.get('container');
+        while (container.hasChildNodes()) {
+            container.removeChild(container.firstChild);
+        }
+    };
+    _.prototype.onRemove = function() {
+        this.get('container').parentNode.removeChild(this.get('container'));
+        this.set('container', null);
+        google.maps.event.removeListener(this.idleHandler_);
+        google.maps.event.removeListener(this.typeHandler_);
+    };
+    _.prototype.show = function() {
+        this.get('container').style.visibility = 'visible';
+    };
+    _.prototype.hide = function() {
+        this.get('container').style.visibility = 'hidden';
+    };
 
-  //grid interval in minutes    
-  var dLat = this.gridIntervalMins(t-b);
-  var dLng; 
-  if(r>l)
-	dLng = this.gridIntervalMins(r-l);
-  else
-    dLng = this.gridIntervalMins((180-l)+(r+180));
+    function _bestTextColor(overlay) {
+        var type = overlay.getMap().getMapTypeId();
+        var GMM = google.maps.MapTypeId;
+        if (type === GMM.HYBRID) return '#fff';
+        if (type === GMM.ROADMAP) return '#000';
+        if (type === GMM.SATELLITE) return '#fff';
+        if (type === GMM.TERRAIN) return '#000';
+        var mt = overlay.getMap().mapTypes[type];
+        return (mt.textColor) ? mt.textColor : '#fff'; //ported legacy V2 map layers may have a textColor property
+    };
 
-  //round iteration limits to the computed grid interval
-  l = Math.floor(l*60/dLng)*dLng/60;
-  b = Math.floor(b*60/dLat)*dLat/60;
-  t = Math.ceil(t*60/dLat)*dLat/60;
-  r = Math.ceil(r*60/dLng)*dLng/60;
+    function gridPrecision(dDeg) {
+        if (dDeg < 0.01) return 3;
+        if (dDeg < 0.1) return 2;
+        if (dDeg < 1) return 1;
+        return 0;
+    }
 
-  //Sanity
-  if (b <= -90.0)
-	b = -90;
-  if(t >= 90.0)
-	t = 90;
-  if(l < -180.0)
-    l = -180.0;  
-  if(r > 180.0)
-    r = 180.0;
-    
-  //to whole degrees
-  dLat /= 60;
-  dLng /= 60;
-  
-  //# digits after DP for labels
-  var latDecs = this.gridPrecision(dLat);
-  var lonDecs = this.gridPrecision(dLng);
-  
- 
-  this.divs_ = new Array();
-  var i=0;//count inserted divs
+    function leThenReturn(x, l, d) {
+        for (var i = 0; i < l.length; i += 1) {
+            if (x <= l[i]) {
+                return l[i];
+            }
+        }
+        return d;
+    }
 
-  //min and max x and y pixel values for graticule lines
-  var pbl = this.map_.fromLatLngToDivPixel(new GLatLng(b,l));
-  var ptr = this.map_.fromLatLngToDivPixel(new GLatLng(t,r));
-  
-  this.maxX = ptr.x;
-  this.maxY = pbl.y;
-  this.minX = pbl.x;
-  this.minY = ptr.y;
-  
-  var x;//coord for label
-  //labels on second column to avoid peripheral controls
-  var y = this.map_.fromLatLngToDivPixel(new GLatLng(b+dLat+dLat,l)).y + 2;//coord for label
-  
-  //pane/layer to write on
-  var mapDiv = this.map_.getPane(G_MAP_MARKER_SHADOW_PANE);
-  
-  var lo = l;//copy to save original
-  
-  if(r<lo)
-      r += 360.0;
+    var numLines = 10;
+    var decmins = [
+    0.06, // 0.001 degrees
+    0.12, // 0.002 degrees
+    0.3, // 0.005 degrees
+    0.6, // 0.01 degrees
+    1.2, // 0.02 degrees
+    3, // 0.05 degrees
+    6, // 0.1 degrees
+    12, // 0.2 degrees
+    30, // 0.5
+    60, // 1
+    60 * 2,
+    60 * 5,
+    60 * 10,
+    60 * 20,
+    60 * 30,
+  ];
+    var sexmins = [
+    0.01, // minutes
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0,
+    3, // 0.05 degrees
+    6, // 0.1 degrees
+    12, // 0.2 degrees
+    30, // 0.5
+    60, // 1
+    60 * 2,
+    60 * 5,
+    60 * 10,
+    60 * 20,
+    60 * 30,
+  ];
 
-  //vertical lines
-  while(lo<=r){
+    function mins_list(overlay) {
+        if (overlay.sex_) return sexmins;
+        return decmins;
+    }
 
-		 var p = this.map_.fromLatLngToDivPixel(new GLatLng(b,lo));
+    function latLngToPixel(overlay, lat, lng) {
+        return overlay.getProjection().fromLatLngToDivPixel(
+      new google.maps.LatLng(lat, lng));
+    };
 
-		 //line
-		 this.divs_[i] = this.createVLine(p.x);
-		 mapDiv.insertBefore(this.divs_[i],null);
-		 i++;
-		  	
-		 //label	 
-		 var d = document.createElement("DIV");
-		 x = p.x + 3;
-		 d.style.position = "absolute";
-         d.style.left = x.toString() + "px";
-         d.style.top = y.toString() + "px";
-		 d.style.color = this.color_;
-		 d.style.fontFamily='Arial';
-		 d.style.fontSize='x-small';
-         d.innerHTML = (Math.abs(lo)).toFixed(lonDecs);
-	     if(lo<0)
-			d.title = "West (WGS84)";
-		 else 
-			d.title = "East (WGS84)";
-		 mapDiv.insertBefore(d,null);
-		 this.divs_[i] = d;
-		 i++;
-		 lo += dLng;	
-		 if (lo > 180.0){
-			r -= 360.0;
-			lo -= 360.0;
-			}		 		
-  }
-  
-  var j = 0;
-      
-  //labels on second row to avoid controls
-  x = this.map_.fromLatLngToDivPixel(new GLatLng(b,l+dLng+dLng)).x + 3;
-  
-  //horizontal lines
-  while(b<=t){
+    // calculate rounded graticule interval in decimals of degrees for supplied
+    // lat/lon span return is in minutes
+    function gridInterval(dDeg, mins) {
+        return leThenReturn(Math.ceil(dDeg / numLines * 6000) / 100, mins,
+                        60 * 45) / 60;
+    }
 
-		 var p = this.map_.fromLatLngToDivPixel(new GLatLng(b,l));
+    function npx(n) {
+        return n.toString() + 'px';
+    }
 
-		 //line
-		 
-		 if(r < l){ //draw lines across the dateline
-			this.divs_[i] = this.createHLine3(b);
-			mapDiv.insertBefore(this.divs_[i],null);
-			i++;
-		 }
-		 else if (r == l){ //draw lines for world scale zooms
-			this.divs_[i] = this.createHLine3(b);
-			mapDiv.insertBefore(this.divs_[i],null);
-			i++;
-		 }
-		 else{
-			this.divs_[i] = this.createHLine(p.y);
-			mapDiv.insertBefore(this.divs_[i],null);
-			i++;
-		 }
-		 
-		 
-		 
-		 
-		 //label
-		 var d = document.createElement("DIV");
-		 y = p.y + 2;
-	
-		 d.style.position = "absolute";
-		 d.style.left = x.toString() + "px";
-		 d.style.top = y.toString() + "px";
-		 d.style.color = this.color_;
-		 d.style.fontFamily='Arial';
-		 d.style.fontSize='x-small';
-		 d.innerHTML = (Math.abs(b)).toFixed(latDecs);
-		 if(b<0)
-			d.title = "South (WGS84)";
-		 else 
-			d.title = "North (WGS84)";
+    function makeLabel(color, x, y, text) {
+        var d = document.createElement('DIV');
+        var s = d.style;
+        s.position = 'absolute';
+        s.left = npx(x);
+        s.top = npx(y);
+        s.color = color;
+        s.width = '3em';
+        s.fontSize = '0.7em';
+        s.whiteSpace = 'nowrap';
+        d.innerHTML = text;
+        return d;
+    };
 
-		 if(j != 2)//dont put two labels in the same place
-		 {
-			 mapDiv.insertBefore(d,null);
-			 this.divs_[i] = d;
-			 i++;
-		 }
-		 j++;
-		 b += dLat;
-  }
- 
-}
+    function createLine(x, y, w, h, color) {
+        var d = document.createElement('DIV');
+        var s = d.style;
+        s.position = 'absolute';
+        s.overflow = 'hidden';
+        s.backgroundColor = color;
+        s.opacity = 0.3;
+        var s = d.style;
+        s.left = npx(x);
+        s.top = npx(y);
+        s.width = npx(w);
+        s.height = npx(h);
+        return d;
+    };
 
-//calculate rounded graticule interval for supplied lat/lon span
-//return is in minutes
-LatLonGraticule.prototype.gridIntervalMins = function(dDeg) {
+    var span = 50000;
+    function meridian(px, color) {
+        return createLine(px, -span, 1, 2 * span, color);
+    }
+    function parallel(py, color) {
+        return createLine(-span, py, 2 * span, 1, color);
+    }
+    function eqE(a, b, e) {
+        if (!e) {
+            e = Math.pow(10, -6);
+        }
+        if (Math.abs(a - b) < e) {
+            return true;
+        }
+        return false;
+    }
 
-  var dDeg = dDeg/10;//want around 10 lines in the graticule
-  dDeg *= 6000;//to minutes*100
-  dDeg = Math.ceil(dDeg)/100;//minutes and hundredths of mins
-  
-  if(dDeg <= 0.06)
-	dDeg = 0.06;//0.001 degrees
-  else if(dDeg <= 0.12)
-	dDeg = 0.12;//0.002 degrees
-  else if(dDeg <= 0.3)
-	dDeg = 0.3;//0.005 degrees
-  else if(dDeg <= 0.6)
-	dDeg = 0.6;//0.01 degrees
-  else if (dDeg <=  1.2)
-	dDeg = 1.2;//0.02 degrees
-  else if(dDeg <= 3)
-	dDeg = 3;//0.05 degrees
-  else if(dDeg <= 6)
-	dDeg = 6;//0.1 degrees
-  else if (dDeg <=  12)
-	dDeg = 12;//0.2 degrees
-  else if (dDeg <=  30)
-	dDeg = 30;//0.5
-  else if (dDeg <=  60)
-	dDeg = 60;//1
-  else if (dDeg <=  (60*2))
-	dDeg = 60*2;
-  else if (dDeg <=  (60*5))
-	dDeg = 60*5;
-  else if (dDeg <=  (60*10))
-	dDeg = 60*10;
-  else if (dDeg <=  (60*20))
-	dDeg = 60*20;
-  else if (dDeg <=  (60*30))
-	dDeg = 60*30;
-  else
-	dDeg = 60*45;
-  
-	
-  return dDeg;
+    // Redraw the graticule based on the current projection and zoom level
+    _.prototype.draw = function() {
 
-}
+        var color = _bestTextColor(this);
 
-//calculate grid label precision from grid interval in degrees
-LatLonGraticule.prototype.gridPrecision = function(dDeg) {
-if(dDeg < 0.01)
-	return 3;
-else if(dDeg < 0.1)
-	return 2;
-else if(dDeg < 1)
-	return 1;
-else return 0;
-}
-
-  
-//returns a div that is a vertical single pixel line    	  
-LatLonGraticule.prototype.createVLine = function(x) {
+        this.clear();
 
 
-	var div = document.createElement("DIV");
-	div.style.position = "absolute";
-	div.style.overflow = "hidden";
-	div.style.backgroundColor = this.color_;
-	div.style.left = x + "px";
-	div.style.top = this.minY + "px";
-	div.style.width = "1px";
-	div.style.height = (this.maxY-this.minY) + "px";
-	
-    return div;
-	
-}
+        if (this.get('container').style.visibility != 'visible') {
+            return;
+        }
 
-//returns a div that is a horizontal single pixel line    	  
-LatLonGraticule.prototype.createHLine = function(y) {
+        // determine graticule interval
+        var bnds = this.getMap().getBounds();
+        if (!bnds) {
+            // The map is not ready yet.
+            return;
+        }
 
+        var sw = bnds.getSouthWest(),
+        ne = bnds.getNorthEast();
+        var l = sw.lng(),
+        b = sw.lat(),
+        r = ne.lng(),
+        t = ne.lat();
+        if (l == r) { l = -180.0; r = 180.0; }
+        if (t == b) { b = -90.0; t = 90.0; }
 
-	var div = document.createElement("DIV");
-	div.style.position = "absolute";
-	div.style.overflow = "hidden";
-	div.style.backgroundColor = this.color_;
-	div.style.left = this.minX + "px";
-	div.style.top = y + "px";
-	div.style.width = (this.maxX-this.minX) + "px";
-	div.style.height = "1px";
-	
-    return div;
-	
-}
+        // grid interval in degrees
+        var mins = mins_list(this);
+        var dLat = gridInterval(t - b, mins);
+        var dLng = gridInterval(r > l ? r - l : ((180 - l) + (r + 180)), mins);
 
-//returns a div that is a horizontal single pixel line, across the dateline  
-//we find the start and width of a 180 degree line and draw the same amount
-//to its left and right	  
-LatLonGraticule.prototype.createHLine3 = function(lat) {
+        // round iteration limits to the computed grid interval
+        l = Math.floor(l / dLng) * dLng;
+        b = Math.floor(b / dLat) * dLat;
+        t = Math.ceil(t / dLat) * dLat;
+        r = Math.ceil(r / dLng) * dLng;
+        if (r == l) l += dLng;
+        if (r < l) r += 360.0;
 
-	var f = this.map_.fromLatLngToDivPixel(new GLatLng(lat,0));
-	var t = this.map_.fromLatLngToDivPixel(new GLatLng(lat,180));		
+        // lngs
+        var crosslng = l + 2 * dLng;
+        // labels on second column to avoid peripheral controls
+        var y = latLngToPixel(this, b + 2 * dLat, l).y + 2;
 
-	var div = document.createElement("DIV");
-	div.style.position = "absolute";
-	div.style.overflow = "hidden";
-	div.style.backgroundColor = this.color_;
+        // lo<r to skip printing 180/-180
+        for (var lo = l; lo < r; lo += dLng) {
+            if (lo > 180.0) {
+                r -= 360.0;
+                lo -= 360.0;
+            }
+            var px = latLngToPixel(this, b, lo).x;
+            this.addDiv(meridian(px, color));
 
-	var x1 = f.x;
-	var x2 = t.x;
-	if(x2 < x1)
-	{
-		x2 = f.x;
-		x1 = t.x;
-	}
-	div.style.left = (x1-(x2-x1)) + "px";
-	div.style.top = f.y + "px";
-	div.style.width = ((x2-x1)*3) + "px";
-	div.style.height = "1px";
+            var atcross = eqE(lo, crosslng);
+            this.addDiv(makeLabel(color,
+        px + (atcross ? 17 : 3), y - (atcross ? 3 : 0),
+        (this.sex_ ? this.decToLonSex(lo) : lo.toFixed(gridPrecision(dLng)))));
+        }
 
-    return div;
-	
-}  
+        // lats
+        var crosslat = b + 2 * dLat;
+        // labels on second row to avoid controls
+        var x = latLngToPixel(this, b, l + 2 * dLng).x + 3;
+
+        for (; b <= t; b += dLat) {
+            var py = latLngToPixel(this, b, l).y;
+            this.addDiv(parallel(py, color));
+
+            this.addDiv(makeLabel(color,
+        x, py + (eqE(b, crosslat) ? 7 : 2),
+        (this.sex_ ? this.decToLatSex(b) : b.toFixed(gridPrecision(dLat)))));
+        }
+    };
+
+    return _;
+})();  

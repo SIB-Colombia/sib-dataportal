@@ -67,6 +67,7 @@
 					</ul>
 				</td>
 			</tr>
+			<!--
 			<tr>
 				<th><spring:message code="actions.webservice"/></th>
 				<td>	
@@ -76,7 +77,8 @@
 						</li>	
 					</ul>
 				</td>
-			</tr>	
+			</tr>
+			-->	
 		</tbody>
 	</table>
 </div>

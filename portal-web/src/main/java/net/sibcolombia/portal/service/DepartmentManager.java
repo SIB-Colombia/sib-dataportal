@@ -83,7 +83,25 @@ public interface DepartmentManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public int getTotalDepartmentCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of counties
+   * 
+   * @return count of the total number of counties
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalCountyCount() throws ServiceException;
 
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of paramos
+   * 
+   * @return count of the total number of paramos
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalParamoCount() throws ServiceException;
+  
   /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied

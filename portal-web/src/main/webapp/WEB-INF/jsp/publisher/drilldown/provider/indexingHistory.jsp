@@ -3,13 +3,13 @@
 	<h2>
 		<c:choose>
 			<c:when test="${not empty dataResource}">
-				<spring:message code="dataset.resource" text="Dataset"/>: <a href="${pageContext.request.contextPath}/datasets/resource/${dataResource.key}"><span class="subject">${dataResource.name}</span></a>
+				<spring:message code="dataset.resource" text="Dataset"/>: <a href="${pageContext.request.contextPath}/publicadoers/resource/${dataResource.key}"><span class="subject">${dataResource.name}</span></a>
 				<c:if test="${dataResource.logoUrl!=null}">
 					<gbiftag:scaleImage imageUrl="${dataResource.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
 				</c:if>
 			</c:when>		
 			<c:when test="${not empty dataProvider}">
-				<spring:message code="dataset.provider"/>: <a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}"><span class="subject">${dataProvider.name}</span></a>
+				<spring:message code="dataset.provider"/>: <a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}"><span class="subject">${dataProvider.name}</span></a>
 				<c:if test="${dataProvider.logoUrl!=null}">	
 					<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
 				</c:if>
@@ -60,7 +60,7 @@
 
 <c:if test="${dataResource!=null}">
 <ul class="genericList">
-	<li><a href="${pageContext.request.contextPath}/datasets/resource/${dataResource.key}/datatracking/"><spring:message code="indexing.history.preview.indexed"/></a></li>
+	<li><a href="${pageContext.request.contextPath}/publicadores/resource/${dataResource.key}/datatracking/"><spring:message code="indexing.history.preview.indexed"/></a></li>
 <table><tr><td style="background-color:#D4ECF5; width:600px; padding:10px;"><spring:message code="indexing.history.preview.indexed.message"/></td></tr></table>	
 </ul>	
 </c:if>
@@ -98,7 +98,7 @@
 	</td>
 	<c:if test="${empty dataProvider}">	
 	<td>
-		<a href="${pageContext.request.contextPath}/datasets/provider/${indexingActivity.dataProviderKey}/indexing/">${indexingActivity.dataProviderName}</a>
+		<a href="${pageContext.request.contextPath}/publicadores/provider/${indexingActivity.dataProviderKey}/indexing/">${indexingActivity.dataProviderName}</a>
 	</td>
 	</c:if>
 	<c:if test="${empty dataResource}">		

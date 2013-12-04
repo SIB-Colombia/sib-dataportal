@@ -1,11 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
+
+<a class="g4 faq" href="#" title="Explorar departamentos">? </a>
 <div id="twopartheader">	
 	<h2><spring:message code="geography.drilldown.list.resource.search"/>
-		<!-- tweet-button-->
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/paises/?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-		js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-		</script>
 	</h2>
 		<c:set var="ignores"><spring:message code="country.alphabet.skips"/></c:set>
 		<gbif:alphabetLink rootUrl="/countries/browse/" selected="${selectedChar}" listClass="flatlist" ignores="${ignores}" letters="${alphabet}"/>

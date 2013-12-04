@@ -19,8 +19,8 @@
 </div>
  </a>
 <div>
-  <a href="${pageContext.request.contextPath}/especies/Puma_concolor" >
+  <a href="${pageContext.request.contextPath}/especies/Guadua_angustifolia" class="confirm" >
     <h4>
     <spring:message code="taxonomy.intro.latestspeciesadded"/>
   </h4>
-  <i>Puma concolor</i> (Linnaeus, 1771)</a></div>
+  <i>Guadua angustifolia</i></a></div>

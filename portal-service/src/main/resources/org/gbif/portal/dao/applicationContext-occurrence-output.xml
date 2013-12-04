@@ -118,6 +118,16 @@
 								<property name="propertyName" value="isoDepartmentCode"/>
 							</bean>
 						</entry>
+						<entry key="isoCountyCode">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="isoCountyCode"/>
+							</bean>
+						</entry>
+						<entry key="paramo">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="paramo"/>
+							</bean>
+						</entry>
 						<entry key="latitude">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="latitude"/>

@@ -1,4 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
+
 <div id="twopartheader">
 	<h2><spring:message code="occurrence.record.details.title"/>
 		<span class="subject">

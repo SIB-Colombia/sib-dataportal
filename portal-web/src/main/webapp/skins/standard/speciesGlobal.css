@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Economica:400,700italic,700,400italic);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Economica:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic);
 
 
 /* CSS RESET */
@@ -26,7 +26,7 @@
     strong { font-weight: bold; }   
       
     table { border-collapse: collapse; border-spacing: 0; }  
-    img { border: 0; max-width: 100%; }  
+    img { border: 0;}  
       
     p { font-size: 1em; line-height: 1.0em; color: #333; }  
 
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* -- The Generic Defs --*/
 a {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 	border-bottom: 0px dashed transparent;
 	-webkit-transition: all 0.5s ease-in-out;
@@ -62,11 +62,11 @@ a {
 }
 
 a:link {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 }
 a:visited {
-	color: #007FC9;
+	color: #2b7fbc;
 	text-decoration: none;
 }
 a:hover, input[type=submit]:hover  {
@@ -208,9 +208,9 @@ img.standalone {
 /* ---- Top Header ---- */
 
 header.sib { background:#2b7fbc; height:53px; color:white; text-transform:uppercase; min-width: 1050px; position: fixed; width: 100%; z-index: 10000; top: 0px}
-header.sib a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px;}
-header.sib  nav {vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; position: relative; right: 0px; height: 50px; }
-header.sib  nav a{ max-width:110px; padding:12px; margin:0px; height: 53px;}
+header.sib a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px; padding-right: 4%; }
+header.sib  nav {vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; min-width: 1100px; position: relative; right: 0px; height: 50px; padding-right: 20px; margin: 0 auto;}
+header.sib  nav a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
 header.sib  nav a:hover{ background-color: rgba(255,255,255,0.3); color: #fff !important;}
 
 header.sib .top_menu {width: 550px; margin: 0 auto; display: inline;}
@@ -221,6 +221,7 @@ header.sib .logo{
 		padding:10px 13px 13px 13px;
 		float: left;
 		position: absolute;
+		z-index:15000;
 		}
 		header.sib .logo:hover{
 			filter: alpha(opacity=100);
@@ -242,7 +243,7 @@ header.sib .logo{
 			max-width: 1500px;
 			margin: 0 auto;
 		}
-.share_icons { float: right; display: inline-block; position: absolute; right: 12px; }
+.share_icons { float: right; display: inline-block; position: absolute; right: 12px; width: 320px; top: 0px;}
 .share_icons a{ vertical-align:middle !important; margin: 0; padding: 12px 7px;}
 .share_icons span{
 	width:0px;
@@ -252,6 +253,9 @@ header.sib .logo{
 	vertical-align:middle;
 	margin: 0 4px;
 }
+.share_icons span:first-child{
+	margin-left: 70px;
+	}
 /* ---- END Top Header ---- */
 
 
@@ -266,48 +270,66 @@ header.sib .logo{
 	text-align: right;
 	border:1px transparent solid;
 	background: #2B7FBC;
-	position: relative;
-	height: 30px;
+	position: absolute;
+	right: 0;
+	height:30px;
 	overflow: hidden;
-}
+	margin: 9px 315px 0 0;
+	}
+
 	 #quickSearch:hover {
 	 border: 1px white solid;
-	 width: 240px;
-	 height: 60px;
+	 width: 200px;
+	 height: 65px;
 	}
+	 #quickSearch:hover {
+	 	color: #2B7FBC;
+	 }
+	  #quickSearch:hover #query {
+	 	width:170px;
+	 }
 	#quickSearch .adv_busqueda{
 		display: inline-block;
-		border-top: 1px solid white;
-		margin: 5px auto;
+		border-top: 1px solid rgba(255,255,255,0.5);
+		margin: 1px 10px 5px 10px;
 		padding: 4px;
 		text-align: center;
 		height: 30px;
 		width: 90%;
-	}
+		max-width: 100%;
+		text-transform: none;
+		font-weight: 700;
+		}
+		#quickSearch .adv_busqueda img{
+			margin: 2px;
+			float: left;
+		}
 	 #quickSearch:hover #query {
 	 	color: white;
 	 }
-
-
-#quickSearch #query {
-	margin:0;
-	padding: 7px;
-	font-size: 0.9em;
-	color: #2B7FBC;
-	border: 0px transparent none;
-	float: left;
-	width: 200px;
-	 background: #2B7FBC;
-	 }
-#quickSearch #go {
-	display: inline-block;
-	padding: 13px;
-	color: #FFF;
-	position: absolute;
-	right: 0px;
-	text-decoration: none;
-	background:url(images/ico_search.png) no-repeat center center ;
-	}
+	#quickSearch #query {
+		margin:0;
+		padding: 8px;
+		font-size: 0.9em;
+		color: #2B7FBC;
+		border: 0px transparent none !important;
+		float: left;
+		width: 0px;
+		background: #2B7FBC;
+		 -webkit-appearance: none;
+		 outline: none;
+		 }
+	#quickSearch #go {
+		display: inline-block;
+		padding: 13px;
+		color: #FFF;
+		position: absolute;
+		right: 0px;
+		height: 32px;
+		text-decoration: none;
+		width: 33px;
+		background:url(images/ico_search.png) no-repeat center center ;
+		}
 /*-- END Search Form --*/
 #content {
 	margin:0;
@@ -348,6 +370,8 @@ footer {
 	color: #515254 !important;
 	background: rgba(255,255,255,0.6) url("images/shadow_top_clear.png") no-repeat top center;
 	line-height: 1.5em;
+	min-width: 1024px;
+	padding: 0 20px;
 }
 footer h5{
 	font-family: 'Open Sans';
@@ -365,15 +389,17 @@ footer aside{
     -webkit-box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, 0.2);
      box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
-footer section{ margin: 0 auto; max-width: 1100px; padding: 30 0;}
+footer section{ margin: 0 auto; max-width: 1100px; padding: 30px 0 !important; text-align: center;}
 footer section div{ display: inline-block; vertical-align: top;}
-footer section div:nth-child(3) div{ width: 30%;}
+footer section div:nth-child(3) div{ width: 24%;}
+footer section div:nth-child(3) div:nth-child(1){ width: 31%;}
+footer section div:nth-child(3) div:nth-child(3){ width: 19%;}
 footer section a{
 	color: #515254 !important;
 }
 footer section div a{ display: block; vertical-align: top} 
-footer section:nth-child(1){background: url("images/shadow_bottom_clear.png") no-repeat bottom center;}
-footer section div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
+footer section:nth-child(1){background: url("images/shadow_bottom_clear.png") no-repeat bottom center; text-align: left;}
+footer section > div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
  footer .redes{ width: 26%; padding: 0 20px 0px 20px; margin: 20px 0 0 70px; }
 
 footer section > div:nth-child(3), footer nav{ width: 66%; padding: 0 20px 0px 20px !important; display: inline-block; border-left: 1px #cfcfcf solid;}
@@ -511,7 +537,7 @@ div#warnings {
 	font-family:'Economica';
 	min-width: 250px;
 	vertical-align: top;
-	padding:10px 10px 10px 75px;
+	padding:10px 10px 10px 55px;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	background: rgba(248, 84, 84, 0.3) url("../../images/icons/warning.png") no-repeat scroll 10px center;
@@ -522,7 +548,7 @@ div#warnings h4 {
 	margin-left: 5px;
 }
 div#warnings p {
-	margin-left: 10px;
+	margin-left: 5px;
 	font-family:helvetica, arial, sans-serif;
 	font-size:1.1em;
 }
@@ -550,6 +576,12 @@ div#warnings ul {
 }
 #globalOverviewLinks span {
 	display:inline-block;
+}
+#globalOverviewLinks .subject{
+	font-family: 'Open Sans' !important;
+	font-weight: 700 !important;
+	display:inline-block !important;
+
 }
 #globalOverviewFooter {
 	clear: both;
@@ -582,7 +614,7 @@ ul.overviewMapLinks .subject{
 	list-style: none;
 	margin-left: 0px;
 	padding-left : 17px;
-	margin-bottom : 8px;
+	margin-bottom : 0px;
 	background: url('../../images/icons/bullet_arrow_right.png') no-repeat 0 50%;
 }
 div.subcontainer {
@@ -604,7 +636,6 @@ div.subcontainer {
 .subject {
 	font-weight: normal;
 	display:inline-block;
-	line-height:0.6em;
 }
 .generaSubject {
 	font-weight: bold;
@@ -704,10 +735,11 @@ div.subcontainer {
 	margin:0px;
 	vertical-align:middle;
 	font-style:italic;
+	font-family: 'Economica', Helvetica, sans-serif;
 	color:#41372F;
 }
 #quickConceptSearch h2{
-	font-size:2em;
+	font-size:1.7em;
 	margin-right:20px;
 }
 input[type=search],input[type=text], textarea, #statesinput{
@@ -722,6 +754,7 @@ input[type=search],input[type=text], textarea, #statesinput{
 	 padding:9px 17px;
 	 color:#555;
 	 font-size:0.9em;
+	 -webkit-appearance:none;
 }
 input[type=search]{
 	/*background:rgba(255,255,255,0.8) url("images/lupa.png") no-repeat 10px center !important;
@@ -806,7 +839,7 @@ div:empty {
 	font-size: 1.7em;
 	color:#41372F;
 	text-transform:uppercase;
-	font-style:italic;
+	font-weight:300;
 }
 /* End of Added By Dave */
 h7#noGeoreferencedPoints {
@@ -853,7 +886,7 @@ h5#noGeoreferencedPoints {
 a[title="Mostrar todos los recursos"]{
 	margin: 5px 0;
 	padding:6px 6px 6px 28px;
-	background:#007FC9 url('../../images/icons/eye.png') no-repeat 5px center ;
+	background:#2b7fbc url('../../images/icons/eye.png') no-repeat 5px center ;
 	-webkit-border-radius: 10px;
     border-radius:10px;
 	position:relative;
@@ -885,4 +918,119 @@ a[title="Mostrar todos los recursos"]{
 }
 h2 .twitter-share-button{
 	float:right;
+}
+#twopartheader+#quickConceptSearch{
+	border-radius: 0 0 20px 20px;
+	margin-top: -20px;
+}
+.dataTables_info{
+	margin: 13px;
+	color: #777;
+}
+
+/*
+    Colorbox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:99999; overflow:hidden; text-transform:uppercase;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of Colorbox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:url('../../images/colorbox/overlay.png') repeat 0 0;}
+#colorbox{outline:0;}
+    #cboxTopLeft{width:21px; height:21px; background:url('../../images/colorbox/controls.png') no-repeat -100px 0;}
+    #cboxTopRight{width:21px; height:21px; background:url('../../images/colorbox/controls.png') no-repeat -128px 0;}
+    #cboxBottomLeft{width:21px; height:21px; background:url('../../images/colorbox/controls.png') no-repeat -100px -29px;}
+    #cboxBottomRight{width:21px; height:21px; background:url(../../images/colorbox/controls.png) no-repeat -128px -29px;}
+    #cboxMiddleLeft{width:21px; background:url(../../images/colorbox/controls.png) left top repeat-y;}
+    #cboxMiddleRight{width:21px; background:url(../../images/colorbox/controls.png) right top repeat-y;}
+    #cboxTopCenter{height:21px; background:url(../../images/colorbox/border.png) 0 0 repeat-x;}
+    #cboxBottomCenter{height:21px; background:url(../../images/colorbox/border.png) 0 -29px repeat-x;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:28px;}
+        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#0f0f0f;}
+        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#0f0f0f;}
+        #cboxLoadingOverlay{background:url(../../images/colorbox/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../../images/colorbox/loading.gif) no-repeat center center;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url('../../images/colorbox/controls.png') no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious:hover{background-position:-75px -25px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url('../../images/colorbox/controls.png') no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext:hover{background-position:-50px -25px;}
+        #cboxClose{position:absolute; bottom:0; right:0; background:url('../../images/colorbox/controls.png') no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxClose:hover{background-position:-25px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
+
+.faq{
+	position: relative;
+	background: rgba(53, 188, 224, 0.3);
+	font-size: 1.2em;
+	-webkit-border-radius: 20px;
+    border-radius: 20px;
+    z-index: 1000;
+    padding: 8px 12px;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    float: right;
+}
+#panes .tut_selector{
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 1em;
+	background:white url(../../skins/standard/images/faq_ico.png) no-repeat 20px center;
+	padding:17px 15px 17px 60px;
+	text-align: left;
+}
+
+@media screen and (max-width:1120px){
+	header.sib nav {
+		min-width: 900px;
+	}
+	.share_icons{
+		width: 220px;
+	}
+	.share_icons a[href*=".com"] { 
+		display:none;
+	}
+	#quickSearch{
+		margin: 9px 180px 0 0;
+	}
 }

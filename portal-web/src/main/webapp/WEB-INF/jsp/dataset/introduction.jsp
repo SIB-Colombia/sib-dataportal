@@ -25,7 +25,7 @@
 </div>
 </a>
 <div>
-<a href="${pageContext.request.contextPath}/datasets/resource/${latestResource.key}/"  >
+<a href="${pageContext.request.contextPath}/datasets/resource/${latestResource.key}/"  class="confirm" >
 <h4>
   <spring:message code="dataset.intro.latestresourceadded"/>
 </h4>

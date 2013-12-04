@@ -156,6 +156,7 @@ public class PropertyStoreQueryBuilder {
 				if(logger.isTraceEnabled())
 					logger.trace("Adding triplet: "+triplet.toString());
 				sb.append(propertyStore.getProperty(triplet.getNamespace(), triplet.getSubject()));
+
 				sb.append(' ');
 				Predicate predicate = (Predicate) propertyStore.getProperty(triplet.getNamespace(), triplet.getPredicate());
 				sb.append(predicate.getPrefix());
@@ -172,10 +173,15 @@ public class PropertyStoreQueryBuilder {
 					//append nothing
 				} else {
 					sb.append("?");
+					
 				}
 				sb.append(predicate.getPostfix());				
+				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID")&&triplet.getObject().equals("CUA")){
+					sb.append(" or oc.paramo is not null ");
+				}
 			}
 			sb.append(" ) ");
+			
 			
 			sb.append(propertyStore.getProperty(namespace, postambleKey));
 			

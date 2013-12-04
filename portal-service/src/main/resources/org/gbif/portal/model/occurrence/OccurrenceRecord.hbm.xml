@@ -52,7 +52,11 @@
     <many-to-one column="iso_country_code" not-null="true" name="country" update="false" insert="false"/>
     
     <property name="isoDepartmentCode" column="iso_department_code" not-null="false"/>
+    
+    <property name="isoCountyCode" column="iso_county_code" not-null="false"/>
 
+	<property name="paramo" column="paramo" not-null="false"/>
+	
     <property name="latitude" column="latitude" not-null="false"/>
     <property name="longitude" column="longitude" not-null="false"/>
 

@@ -1,6 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 
 <div id="fb-root"></div>
 <div id="fb-root"></div>
@@ -33,47 +31,46 @@
 
 
 <aside>
-<div> <a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/></a>
-  <h4>IR AL PORTAL GENERAL</br>SIB COLOMBIA</h4>
-  </div>
+<a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
+  <h4>IR AL PORTAL GENERAL</h4>
+  </a>
   <hr/>
   <div>
       <!-- tweet-button--> 
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.sibcolombia.net/inicio.htm?utm_source=home&utm_medium=twitter&utm_campaign=impacto_redes" data-via="sibcolombia" data-lang="es">Twittear</a> 
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);
-	js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script> 
-      <!-- tweet-button--> 
-      <span style=" margin-bottom:10px;">
+      <a href="https://twitter.com/sibcolombia" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @sibcolombia</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <br/>
+  <br/>
       <!-- facebok-button-->
-      <script>(function(d, s, id) {
+      <div id="fb-root"></div>
+	<script>(function(d, s, id) {
   	var js, fjs = d.getElementsByTagName(s)[0];
   	if (d.getElementById(id)) return;
   	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+  	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   	fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-      <div class="fb-like" data-href="http://data.sibcolombia.net/inicio.htm?utm_source=home&amp;utm_medium=facebook&amp;utm_campaign=impacto_redes" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+      <div class="fb-follow" data-href="https://www.facebook.com/SibColombia" data-show-faces="false" data-width="100"></div>
       <!-- facebok-button--> 
 
   </div>
   <hr/>
-  <div class="cifras">
+  <a class="cifras" href="${pageContext.request.contextPath}/stats.htm" target="_blank">
   <img src="${pageContext.request.contextPath}/skins/standard/images/ico_cifras.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
     <c:set var="link1">
-    <em><a href="${pageContext.request.contextPath}/tutorial/introduction">
+    <em>
     <spring:message code="topmenu.about"/>
-    </a></em>
+    </em>
     </c:set>
     <c:set var="link2">
-    <em><a href="${pageContext.request.contextPath}/settings.htm">
+    <em>
     <spring:message code="topmenu.settings"/>
-    </a></em>
+    </em>
     </c:set>
     <c:set var="link3">
-    <em><a href="${pageContext.request.contextPath}/terms.htm">
+    <em>
     <spring:message code="dataagreement.title"/>
-    </a></em>
+    </em>
     </c:set>
     
     <p>
@@ -84,6 +81,7 @@
       <fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
       <fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
       <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/>
+    </p>
       <!--  
 	<c:set var="req" value="${pageContext.request}" />
 	<c:set var="uri" value="${req.requestURI}" />
@@ -91,8 +89,10 @@
 	<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
 	<p>${urlt}</p>
 	--> 
-	</div>
+	</a>
   <hr/> 
+  <a class='tut_selector' href="#inline_content">&iquest;C&oacute;mo usar el portal de datos?</a>
+  <hr/>
   </aside>
   
   <div id ="geographypane"  class="panes_div"><tiles:insert page="/WEB-INF/jsp/geography/introduction.jsp"/>

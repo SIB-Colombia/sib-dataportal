@@ -11,4 +11,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='occurrenceSpecial.css'/>"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/<spring:theme code='jquery-ui-1.10.2.custom.css'/>"/>
 <link rel="Shortcut Icon" href="${pageContext.request.contextPath}/favicon.ico" />
+
+<script src="${pageContext.request.contextPath}/javascript/jquery.colorbox-min.js" type="text/javascript" language="javascript"></script>
+
+
+
 <tiles:insert page="/common/scripts.jsp"/>

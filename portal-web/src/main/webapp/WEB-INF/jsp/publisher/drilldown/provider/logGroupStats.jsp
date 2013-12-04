@@ -3,13 +3,13 @@
 	<h2>
 		<c:choose>
 			<c:when test="${not empty dataProvider}">
-				<spring:message code="dataset.provider"/>: <a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}"><span class="subject">${dataProvider.name}</span></a>
+				<spring:message code="dataset.provider"/>: <a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}"><span class="subject">${dataProvider.name}</span></a>
 				<c:if test="${dataProvider.logoUrl!=null}">
 					<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
 				</c:if>
 			</c:when>
 			<c:when test="${not empty dataResource}">
-				<spring:message code="dataset.resource" text="Dataset"/>: <a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}"><span class="subject">${dataResource.name}</span></a>
+				<spring:message code="dataset.resource" text="Dataset"/>: <a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}"><span class="subject">${dataResource.name}</span></a>
 				<c:if test="${dataResource.logoUrl!=null}">
 					<gbiftag:scaleImage imageUrl="${dataResource.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
 				</c:if>
