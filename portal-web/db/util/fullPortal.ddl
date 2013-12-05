@@ -501,20 +501,6 @@ CREATE TABLE `county` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-
-DROP TABLE IF EXISTS `paramo`;
-CREATE TABLE `paramo` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `complex_id` char(3) DEFAULT NULL,
-  `sector` varchar(255) DEFAULT NULL,
-  `district` varchar(255) DEFAULT NULL,
-  `complex` varchar(255) DEFAULT NULL,
-  `species_count` int(10) DEFAULT NULL,
-  `occurrence_count` int(10) DEFAULT NULL,
-  `occurrence_coordinate_count` int(10) DEFAULT NULL,
-   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 --
 -- Table structure for table `data_provider`
 --
@@ -1555,23 +1541,6 @@ CREATE TABLE `taxon_county` (
   PRIMARY KEY  (`taxon_concept_id`,`iso_county_code`),
   KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
   KEY `IX_iso_county_codes` (`iso_county_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `taxon_paramo`
---
-
-DROP TABLE IF EXISTS `taxon_paramo`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `taxon_paramo` (
-  `taxon_concept_id` int(11) NOT NULL,
-  `complex_id` char(10) NOT NULL,
-  `count` int(11) default NULL,
-  PRIMARY KEY  (`taxon_concept_id`,`complex_id`),
-  KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
-  KEY `IX_complex_ids` (`complex_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
