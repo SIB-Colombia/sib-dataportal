@@ -123,3 +123,11 @@ Icon
 
 # Sublime project files
 portal-web/src/main/webapp/dataportal.sublime-project
+
+# Dreamweaver files
+portal-core/**/_notes/
+portal-index/**/_notes/
+portal-service/**/_notes/
+portal-web/**/_notes/
+_notes/**
+dwsync.xml
