@@ -1550,6 +1550,17 @@ from occurrence_record oc
 inner join paramo p on oc.paramo=p.complex_id 
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for any paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for any paramo: ', now()) as debug;
+insert into centi_cell_density 
+select 10, 37 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- End of SiB Colombia addition
 -- --------------------------------------------
 
