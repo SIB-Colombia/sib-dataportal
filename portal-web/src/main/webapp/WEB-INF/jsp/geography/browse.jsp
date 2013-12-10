@@ -1,4 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
+
+<a class="g4 faq" href="#" title="Explorar departamentos">? </a>
 <div id="twopartheader">	
 	<h2><spring:message code="geography.drilldown.list.resource.search"/>
 	</h2>

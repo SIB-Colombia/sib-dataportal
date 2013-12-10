@@ -25,6 +25,12 @@
 				<!-- Filter for Colombian Departments (SIB Colombia) -->
 				<ref bean="departmentFilter"/>
 				
+				<!-- Filter for Colombian Departments (SIB Colombia) -->
+				<ref bean="countyFilter"/>
+				
+				<!-- Filter for Colombian Departments (SIB Colombia) -->
+				<ref bean="paramoFilter"/>
+				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
 				
@@ -234,6 +240,40 @@
 	</bean>
 	<!-- End of department filter class to show Colombian Departments (SIB Colombia) select list -->
 	
+	<!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
+	<bean id="countyFilter" parent="baseGeospatialFilter">
+		<property name="id" value="39"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.county"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-county-codes"/>
+		<property name="helpView" value="/occurrence/countyHelp.htm"/>
+	</bean>
+	<!-- End of county filter class to show Colombian Counties (SIB Colombia) select list -->
+	
+	<!-- Paramo filter class to show Colombian Paramos (SIB Colombia) select list -->
+	<bean id="paramoFilter" parent="baseGeospatialFilter">
+		<property name="id" value="40"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.paramo"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="complex-ids"/>
+		<property name="helpView" value="/occurrence/countyHelp.htm"/>
+	</bean>
+	<!-- End of county filter class to show Colombian Counties (SIB Colombia) select list -->
+	
 	<!--taxonomic ranks-->
 	<bean id="kingdomFilter" parent="baseTaxonRankFilter">
 		<property name="id" value="6"/>
@@ -380,15 +420,21 @@
 				<entry key="3" value="basis.of.record.living"/>
 				<entry key="4" value="basis.of.record.germplasm"/>
 				<entry key="5" value="basis.of.record.fossil"/>-->
+				<!-- <entry key="12" value="basis.of.record.stillimage"/>
+				<entry key="13" value="basis.of.record.movingimage"/>
+				<entry key="14" value="basis.of.record.soundrecording"/>
+				<entry key="15" value="basis.of.record.otherspecimen"/> -->
+				<entry key="16" value="basis.of.record.occurrence"/>
+				<entry key="17" value="basis.of.record.materialsample"/>
+				<entry key="18" value="basis.of.record.event"/>
+				<entry key="19" value="basis.of.record.location"/>
+				<entry key="20" value="basis.of.record.taxon"/>
 				<entry key="7" value="basis.of.record.preservedspecimen"/>
 				<entry key="8" value="basis.of.record.fossilspecimen"/>
 				<entry key="9" value="basis.of.record.livingspecimen"/>
 				<entry key="10" value="basis.of.record.humanobservation"/>
 				<entry key="11" value="basis.of.record.machineobservation"/>
-				<entry key="12" value="basis.of.record.stillimage"/>
-				<entry key="13" value="basis.of.record.movingimage"/>
-				<entry key="14" value="basis.of.record.soundrecording"/>
-				<entry key="15" value="basis.of.record.otherspecimen"/>
+				<entry key="21" value="basis.of.record.nomenclaturalchecklist"/>
 			</map>
 		</property>
 		<property name="valueType" value="java.lang.Integer"/>

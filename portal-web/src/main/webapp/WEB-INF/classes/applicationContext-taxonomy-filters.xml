@@ -28,6 +28,8 @@
 				<ref bean="dataProviderTaxonFilter"/>			
 				<ref bean="countryTaxonFilter"/>	
 				<ref bean="departmentTaxonFilter"/>
+				<ref bean="countyTaxonFilter"/>
+				<ref bean="paramoTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -214,6 +216,36 @@
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="iso-department-codes"/>
 		<property name="helpView" value="/taxonomy/departmentTaxonHelp.htm"/>						
+	</bean>	
+	
+	<bean id="countyTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="14"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.county"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.ISOCOUNTYCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-county-codes"/>
+		<property name="helpView" value="/taxonomy/countyTaxonHelp.htm"/>						
+	</bean>	
+	
+	<bean id="paramoTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="15"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.paramo"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.COMPLEXID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="complex-ids"/>
+		<property name="helpView" value="/taxonomy/paramoTaxonHelp.htm"/>						
 	</bean>	
 	
 	<!-- Filter helpers -->

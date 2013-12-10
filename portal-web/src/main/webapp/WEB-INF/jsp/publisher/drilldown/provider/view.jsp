@@ -13,14 +13,15 @@
 	});
 </script>
 <div id="twopartheader">
+	<c:if test="${dataProvider.logoUrl!=null}">
+		<c:if test="${dataProvider.websiteUrl!=null}"><a href="${dataProvider.websiteUrl}"></c:if>
+		<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo_publisher" addLink="false"/>
+		<c:if test="${dataProvider.websiteUrl!=null}"></a></c:if>
+	</c:if>
 	<h2>
 			<spring:message code="dataset.provider"/>: <span class="subject">${dataProvider.name}</span> 
-			<c:if test="${dataProvider.logoUrl!=null}">
-				<c:if test="${dataProvider.websiteUrl!=null}"><a href="${dataProvider.websiteUrl}"></c:if>
-				<gbiftag:scaleImage imageUrl="${dataProvider.logoUrl}" maxWidth="200" maxHeight="80" imgClass="logo" addLink="false"/>
-				<c:if test="${dataProvider.websiteUrl!=null}"></a></c:if>
-			</c:if>
 	</h2>
+	
 	
 </div>
 

@@ -156,6 +156,7 @@ dataresource.wizard.select.resource=Seleccione un recurso de datos...
 dataresource.wizard.submit.search=Use este recurso de datos
 dataset=Recurso
 dataset.accessPointUrl=URL del Punto de Acceso
+dataset.metadata=Metadato
 dataset.classCount=Clases
 dataset.download.taxonomy=Taxonom�a en hoja de c�lculo
 dataset.drilldown.main.title=Recurso de datos
@@ -731,6 +732,8 @@ occurrence.search.filter.geospatial.boundingbox=Condiciones de selecci�n
 occurrence.search.filter.geospatial.continent=Continente
 occurrence.search.filter.geospatial.country=Pa�s
 occurrence.search.filter.geospatial.department=Departamento
+occurrence.search.filter.geospatial.county=Municipio
+occurrence.search.filter.geospatial.paramo=Páramo
 occurrence.search.filter.geospatial.depth=Profundidad
 occurrence.search.filter.geospatial.georegion=�rea Protegida
 occurrence.search.filter.geospatial.hostcountrycode=Pa�s que alberga el dato
@@ -775,7 +778,7 @@ occurrence.search.filter.resultsmap.this.search=esta b�squeda
 occurrence.search.filter.resultsmap.title=Mapa de resultados
 occurrence.search.filter.resultstable.title=Tabla de resultados
 occurrence.search.filter.retrievingcount=Recuperando la cuenta para su b�squeda.....
-occurrence.search.filter.sampleresults.title=Resultados de muestra
+occurrence.search.filter.sampleresults.title=Ejemplos de los resultados
 # Occurrence Search Filters
 occurrence.search.filter.searchresults=Resultados de la b�squeda:
 # Occurrence - Start your search

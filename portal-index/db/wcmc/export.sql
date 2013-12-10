@@ -26,6 +26,12 @@
 --  movingimage, 13
 --  soundrecording, 14
 --  otherspecimen, 15
+--  occurrence, 16
+--  materialsample, 17
+--  event, 18
+--  location, 19
+--  taxon, 20
+--  nomenclaturalchecklist, 21
 
 
 /*

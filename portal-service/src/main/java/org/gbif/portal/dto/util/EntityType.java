@@ -38,7 +38,9 @@ public class EntityType implements Serializable {
   public static final EntityType TYPE_HOME_COUNTRY = new EntityType(6, "homeCountry");
   public static final EntityType TYPE_OCCURRENCE = new EntityType(7, "occurrence");
   public static final EntityType TYPE_DEPARTMENT = new EntityType(8, "department");
-
+  public static final EntityType TYPE_COUNTY = new EntityType(9, "county");
+  public static final EntityType TYPE_PARAMO = new EntityType(10, "paramo");
+  
   static {
     entityTypes.put(TYPE_ALL.id, TYPE_ALL);
     entityTypes.put(TYPE_TAXON.id, TYPE_TAXON);
@@ -49,6 +51,8 @@ public class EntityType implements Serializable {
     entityTypes.put(TYPE_HOME_COUNTRY.id, TYPE_HOME_COUNTRY);
     entityTypes.put(TYPE_OCCURRENCE.id, TYPE_OCCURRENCE);
     entityTypes.put(TYPE_DEPARTMENT.id, TYPE_DEPARTMENT);
+    entityTypes.put(TYPE_COUNTY.id, TYPE_COUNTY);
+    entityTypes.put(TYPE_PARAMO.id, TYPE_PARAMO);
 
     entityTypesByName.put(TYPE_ALL.name, TYPE_ALL);
     entityTypesByName.put(TYPE_TAXON.name, TYPE_TAXON);
@@ -59,6 +63,8 @@ public class EntityType implements Serializable {
     entityTypesByName.put(TYPE_HOME_COUNTRY.name, TYPE_HOME_COUNTRY);
     entityTypesByName.put(TYPE_OCCURRENCE.name, TYPE_OCCURRENCE);
     entityTypesByName.put(TYPE_DEPARTMENT.name, TYPE_DEPARTMENT);
+    entityTypesByName.put(TYPE_COUNTY.name, TYPE_COUNTY);
+    entityTypesByName.put(TYPE_PARAMO.name, TYPE_PARAMO);
   }
 
   /** Unique id for this enum type */

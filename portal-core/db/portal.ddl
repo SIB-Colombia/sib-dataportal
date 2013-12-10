@@ -483,6 +483,39 @@ CREATE TABLE `department` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table county DDL definition
+-- ----------------------------
+--  Table structure for `county` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `county`;
+CREATE TABLE `county` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `iso_county_code` char(8) DEFAULT NULL,
+  `department_id` int(10) DEFAULT NULL,
+  `county_name` varchar(255) DEFAULT NULL,
+  `species_count` int(10) DEFAULT NULL,
+  `occurrence_count` int(10) DEFAULT NULL,
+  `occurrence_coordinate_count` int(10) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Table paramo DDL definition
+-- ----------------------------
+--  Table structure for `paramo` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `paramo`;
+CREATE TABLE `paramo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `complex_id` char(3) DEFAULT NULL,
+  `sector` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `complex` varchar(255) DEFAULT NULL,
+  `species_count` int(10) DEFAULT NULL,
+  `occurrence_count` int(10) DEFAULT NULL,
+  `occurrence_coordinate_count` int(10) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1038,6 +1071,8 @@ CREATE TABLE `occurrence_record` (
   `species_concept_id` int(10) unsigned default NULL,
   `nub_concept_id` int(10) unsigned default NULL,
   `iso_country_code` char(2) default NULL,
+  `iso_department_code` char(8) default NULL,
+  `iso_county_code` char(8) default NULL,
   `latitude` float default NULL,
   `longitude` float default NULL,
   `cell_id` smallint(5) unsigned default NULL,

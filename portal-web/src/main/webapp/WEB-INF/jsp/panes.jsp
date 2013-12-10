@@ -1,6 +1,4 @@
 <%@ include file="/common/taglibs.jsp"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 
 <div id="fb-root"></div>
 <div id="fb-root"></div>
@@ -93,6 +91,8 @@
 	--> 
 	</a>
   <hr/> 
+  <a class='tut_selector' href="#inline_content">&iquest;C&oacute;mo usar el portal de datos?</a>
+  <hr/>
   </aside>
   
   <div id ="geographypane"  class="panes_div"><tiles:insert page="/WEB-INF/jsp/geography/introduction.jsp"/>

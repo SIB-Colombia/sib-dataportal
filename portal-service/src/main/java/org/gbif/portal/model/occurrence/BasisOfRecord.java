@@ -52,6 +52,12 @@ public class BasisOfRecord extends IntegerEnumType implements Serializable{
 	public static final BasisOfRecord MOVINGIMAGE = new BasisOfRecord("movingimage", 13);
 	public static final BasisOfRecord SOUNDRECORDING = new BasisOfRecord("soundrecording", 14);
 	public static final BasisOfRecord OTHERSPECIMEN = new BasisOfRecord("otherspecimen", 15);
+	public static final BasisOfRecord OCCURRENCE = new BasisOfRecord("occurrence", 16);
+	public static final BasisOfRecord MATERIALSAMPLE = new BasisOfRecord("materialsample", 17);
+	public static final BasisOfRecord EVENT = new BasisOfRecord("event", 18);
+	public static final BasisOfRecord LOCATION = new BasisOfRecord("location", 19);
+	public static final BasisOfRecord TAXON = new BasisOfRecord("taxon", 20);
+	public static final BasisOfRecord NOMENCLATURALCHECKLIST = new BasisOfRecord("nomenclaturalchecklist", 21);
 
 	// The following are primarily for name/concept data resources
 	public static final BasisOfRecord NOMENCLATOR = new BasisOfRecord("nomenclator", 101);

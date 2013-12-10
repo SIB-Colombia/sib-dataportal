@@ -1,6 +1,6 @@
 #twopartheader {
 	margin: 0 0 20px 0;
-	min-height: 80px;
+	min-height: 110px;
 	padding:20px;
 	background:rgba(250,249,243, 1) url('images/conjuntos_ico.png') no-repeat 20px 20px ;
 	-webkit-border-radius: 20px;
@@ -16,6 +16,7 @@
 	font-weight: 300;
 	text-transform: uppercase;
 	line-height: 1.6em;
+	display: inline-block;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 }
 #twopartheader h3 {
@@ -24,7 +25,7 @@
 	font-weight: 400;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 	color:#666;
-line-height:1.3em;
+	line-height:1.3em;
 	font-size:1em;
 }
 .subject {
@@ -36,7 +37,6 @@ line-height:1.3em;
 img.logo {
 	position: relative;
 	float: right;
-	margin:-120px 40px 0 0;
 }
 /* End of Added by Dave */
 
@@ -222,4 +222,10 @@ input[type="submit"], button{
 .dataTables_wrapper{
 	margin-top: 0px;
 	position: relative;
+}
+.logo_dataset{
+	max-height:70px;
+	width:auto;
+	position: absolute;
+	right: 20px
 }

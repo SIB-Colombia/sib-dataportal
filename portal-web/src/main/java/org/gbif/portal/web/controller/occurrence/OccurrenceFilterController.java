@@ -117,6 +117,12 @@ public class OccurrenceFilterController extends MultiActionController {
   /* Filter for Colombian Departments */
   protected FilterDTO departmentFilter;
 
+  /* Filter for Colombian Counties */
+  protected FilterDTO countyFilter;
+  
+  /* Filter for Colombian Paramos */
+  protected FilterDTO paramoFilter;
+  
   protected FilterDTO regionFilter;
   protected FilterDTO scientificNameFilter;
   protected FilterDTO classificationFilter;
@@ -149,6 +155,8 @@ public class OccurrenceFilterController extends MultiActionController {
   protected String occurrenceFilterResourceCountsView = "occurrenceFilterResourceCounts";
   protected String occurrenceFilterCountryCountsView = "occurrenceFilterCountryCounts";
   protected String occurrenceFilterDepartmentCountsView = "occurrenceFilterDepartmentCounts";
+  protected String occurrenceFilterCountyCountsView = "occurrenceFilterCountyCounts";
+  protected String occurrenceFilterParamoCountsView = "occurrenceFilterParamoCounts";
   protected String occurrenceFilterSpeciesCountsView = "occurrenceFilterSpeciesCounts";
   protected String downloadSpreadsheetView = "occurrenceDownloadSpreadsheet";
   protected String downloadXMLView = "occurrenceDownloadXML";
@@ -752,6 +760,78 @@ public class OccurrenceFilterController extends MultiActionController {
   }
 
   /**
+   * Retrieves the counts against the counties for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchCounties(HttpServletRequest request, HttpServletResponse response)
+    throws ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getCountyCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getCountyCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterCountyCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfCounties = departmentManager.getTotalCountyCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.COUNTYCOUNTS",
+    occurrenceFilterCountyCountsView, new SearchConstraints(0, totalNoOfCounties));
+  }
+
+  /**
+   * Retrieves the counts against the paramos for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchParamos(HttpServletRequest request, HttpServletResponse response)
+    throws ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getParamoCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getParamoCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterParamoCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfParamos = departmentManager.getTotalParamoCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS",
+    occurrenceFilterParamoCountsView, new SearchConstraints(0, totalNoOfParamos));
+  }
+
+  /**
    * Retrieves the counts against the providers for this set of criteria
    * 
    * @param request
@@ -1084,6 +1164,20 @@ public class OccurrenceFilterController extends MultiActionController {
   public void setDepartmentFilter(FilterDTO departmentFilter) {
     this.departmentFilter = departmentFilter;
   }
+  
+  /**
+   * @param countyFilter the countyFilter to set
+   */
+  public void setCountyFilter(FilterDTO countyFilter) {
+    this.countyFilter = countyFilter;
+  }
+  
+  /**
+   * @param paramoFilter the paramoFilter to set
+   */
+  public void setParamoFilter(FilterDTO paramoFilter) {
+    this.paramoFilter = paramoFilter;
+  }
 
   /**
    * @param downloadRedirectPath the downloadRedirectPath to set
@@ -1265,6 +1359,13 @@ public class OccurrenceFilterController extends MultiActionController {
    */
   public void setOccurrenceFilterDepartmentCountsView(String occurrenceFilterDepartmentCountsView) {
     this.occurrenceFilterDepartmentCountsView = occurrenceFilterDepartmentCountsView;
+  }
+  
+  /**
+   * @param occurrenceFilterCountyCountsView the occurrenceFilterCountyCountsView to set
+   */
+  public void setOccurrenceFilterCountyCountsView(String occurrenceFilterCountyCountsView) {
+    this.occurrenceFilterCountyCountsView = occurrenceFilterCountyCountsView;
   }
 
   /**

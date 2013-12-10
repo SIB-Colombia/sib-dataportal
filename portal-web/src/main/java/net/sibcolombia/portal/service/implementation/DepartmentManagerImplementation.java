@@ -110,6 +110,20 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   }
 
   /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalCountyCount()
+   */
+  public int getTotalCountyCount() throws ServiceException {
+    return departmentDAO.getTotalCountyCount();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalParamoCount()
+   */
+  public int getTotalParamoCount() throws ServiceException {
+    return departmentDAO.getTotalParamoCount();
+  }
+  
+  /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */
   public boolean isValidDepartmentKey(String departmentKey) {

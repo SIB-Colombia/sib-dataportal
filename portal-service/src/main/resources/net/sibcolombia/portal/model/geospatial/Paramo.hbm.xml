@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="paramo" name="net.sibcolombia.portal.model.geospatial.Paramo">
+    <id unsaved-value="null" name="complexId" column="complex_id">
+      <generator class="assigned"/>
+    </id>
+    <property name="paramoId" column="id"/>
+    <property name="sector" column="sector"/>
+    <property name="district" column="district"/>
+    <property name="occurrenceCount" column="occurrence_count"/>
+    <property name="speciesCount" column="species_count"/>
+  </class>
+</hibernate-mapping>

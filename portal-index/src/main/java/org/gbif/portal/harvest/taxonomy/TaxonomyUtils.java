@@ -1593,6 +1593,14 @@ public class TaxonomyUtils {
 	public List<TaxonConceptLite> getClassificationConcepts(TaxonConceptDAO taxonConceptDAO, long taxonConceptId) {
 		return taxonConceptDAO.getClassificationConcepts(taxonConceptId);
 	}
+	
+	/**
+	 * @param taxonConceptId
+	 * @return
+	 */
+	public List<TaxonConceptLite> getClassificationConcepts(long taxonConceptId) {
+		return taxonConceptDAO.getClassificationConcepts(taxonConceptId);
+	}
 
 	/**
 	 * @param parentId
