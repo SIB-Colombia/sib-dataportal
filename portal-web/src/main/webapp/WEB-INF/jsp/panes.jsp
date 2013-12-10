@@ -79,8 +79,8 @@
       <fmt:formatNumber var="totalCO" type="number" value="${totalOcurrenceRecordsCO}" />
       <fmt:formatNumber var="total" type="number" value="${totalOccurrenceRecords}" />
       <fmt:formatNumber var="totalSpecies" type="number" value="${totalSpecies}" />
-      <fmt:formatNumber var="speciesCountryCO" type="number" value="${speciesCountryCO}" />
-      <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/>
+      <fmt:formatNumber var="speciesCountCountry" type="number" value="${speciesCountCountry}" />
+      <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountCountry}" argumentSeparator="%%%"/>
     </p>
       <!--  
 	<c:set var="req" value="${pageContext.request}" />

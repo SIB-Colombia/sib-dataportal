@@ -63,7 +63,7 @@ public class DepartmentBrowserController extends net.sibcolombia.portal.web.cont
     }
     Locale locale = RequestContextUtils.getLocale(request);
     List<DepartmentDTO> departments = departmentManager.getDepartmentsFor(searchForChar);
-    CountryDTO country = geospatialManager.getCountryForIsoCountryCode("CO", locale);
+    CountryDTO country = geospatialManager.getCountryForIsoCountryCode("BR", locale);
 
     boolean showHosted = ServletRequestUtils.getBooleanParameter(request, hostedModelKey, false);
     EntityType entityType = null;
