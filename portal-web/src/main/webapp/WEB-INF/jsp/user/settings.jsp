@@ -15,6 +15,9 @@
 
 <h4><spring:message code="settings.language"/></h4>
 <p>
+<input type="radio" name="locale" value="pt_BR" <c:if test="${settings.locale=='pt_BR'}">checked="true"</c:if>/>Português
+</p>
+<p>
 <input type="radio" name="locale" value="en" <c:if test="${settings.locale=='en'}">checked="true"</c:if>/>English
 </p>
 <p> 
