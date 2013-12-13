@@ -7,7 +7,7 @@
         function initMap(){
             var map = new OpenLayers.Map('map');
             var gbif = new OpenLayers.Layer.WMS( "GBIF",
-                "http://geoserver.gbif.org/wms?", {layers: "gbif:gbifDensityLayer", version: "1.0.0", transparent: "true", 
+                "http://buriti.lncc.br/geoserver/wms?", {layers: "gbif:gbifDensityLayer", version: "1.0.0", transparent: "true", 
                 format: "image/png", filter:"${param.wmsFilter}"} );
 
 			var ol_wms = new OpenLayers.Layer.WMS( "World Map",
