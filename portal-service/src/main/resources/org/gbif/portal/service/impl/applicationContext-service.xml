@@ -176,6 +176,7 @@
   		<list>
   			<value>en</value>
   			<value>es</value>
+  			<value>pt_BR</value>
   		</list>
   	</property>
   </bean>
@@ -186,20 +187,10 @@
   		<list>
   			<value>en</value>
   			<value>es</value>
+  			<value>pt_BR</value>
   		</list>
   	</property>
   </bean>
-  
-   <!-- Bean implementation DAO county classes SiB Colombia -->
-  <bean id="paramoDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.ParamoDAOImplementation" parent="baseDAORO">
-  	<property name="supportedLocales">
-  		<list>
-  			<value>en</value>
-  			<value>es</value>
-  		</list>
-  	</property>
-  </bean>
-  
   
   <bean id="departmentDTOFactory" class="net.sibcolombia.portal.dto.department.DepartmentDTOFactory"/>
   
@@ -210,7 +201,6 @@
   			<property name="countryDAO" ref="countryDAORO"/>
   			<property name="departmentDAO" ref="departmentDAORO"/>
   			<property name="countyDAO" ref="countyDAORO"/>
-  			<property name="paramoDAO" ref="paramoDAORO"/>
   			<property name="cellDensityDAO" ref="cellDensityDAORO"/>
   			<property name="centiCellDensityDAO" ref="centiCellDensityDAORO"/>
   			<property name="occurrenceRecordDAO" ref="occurrenceRecordDAORO"/>
@@ -263,7 +253,7 @@
         <property name="userTemplateMessage" ref="userTemplateMessage"/>
         <property name="portalEmailAddresses">
             <list>
-                <value>oduque@humboldt.org.co</value>
+                <value>gbif@sibbr.gov.br</value>
             </list>
         </property>
     </bean>	
@@ -290,27 +280,26 @@
 
 	<!-- The Mail Sender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value=""/>
+		<property name="host" value="iota.lncc.br"/>
 		<property name="username" value=""/>
 		<property name="password" value=""/>
-		<property name="port" value=""/>
-
-    <property name="javaMailProperties">
-    <props>
+	    <property name="javaMailProperties">
+ 		   <props>
+              <prop key="mail.debug">true</prop>
               <prop key="mail.smtp.auth">true</prop>
-              <prop key="mail.smtp.starttls.enable">true</prop>
-    </props>
-    </property>
+              <prop key="mail.smtp.ssl.enable">true</prop>
+    		</props>
+	    </property>
 	</bean>	
 
 	<!-- this is a template message that we can pre-load with default state -->
 	<bean id="providerTemplateMessage" class="org.springframework.mail.SimpleMailMessage">
-		<property name="from" value="portal@gbif.org"/>
+		<property name="from" value="gbif@sibbr.gov.br"/>
 	</bean>
 
 	<!-- this is a template message that we can pre-load with default state -->
 	<bean id="userTemplateMessage" class="org.springframework.mail.SimpleMailMessage">
-		<property name="from" value="portal@gbif.org"/>
+		<property name="from" value="gbif@sibbr.gov.br"/>
 	</bean>
 
 	<!-- System Manager -->
@@ -653,8 +642,6 @@
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="isoDepartmentCode"/>
         		<!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="isoCountyCode"/>
-        		<!-- County filter class to show Colombian Paramos (SIB Colombia) select list -->
-        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="paramo"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="hostCountry"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCE" value="dataResource"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="dataResource"/>				        							
