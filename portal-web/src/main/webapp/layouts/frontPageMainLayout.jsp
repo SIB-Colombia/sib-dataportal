@@ -1,15 +1,15 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" %><%@ include file="/common/taglibs.jsp"%>
-<META NAME="country" CONTENT="Colombia">
+<META NAME="country" CONTENT="Brasil">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-<meta property="og:title" content="Portal de Datos del Sistema de Información sobre Biodiversidad en Colombia" />
+<meta property="og:title" content="Portal da Biodiversidade do Sistema da Informação sobre a Biodiversidade Brasileira" />
 <meta property="og:type" content="website" />
-<meta property="og:description" content="El portal de datos del SiB Colombia es un servicio que permite acceder ágilmente a registros biológicos que han sido publicados por nuestra red de socios" />
-<meta property="og:url" content="http://data.sibcolombia.net/" />
+<meta property="og:description" content="O Sistema da Informação sobre a Biodiversidade Brasileira é um serviço que permite acesso a registros biológicos publicados por nossa rede de parceiros e pelo GBIF" />
+<meta property="og:url" content="http://localhost/portal-dev" />
 <meta property="og:image" content="http://data.sibcolombia.net/skins/standard/images/logo.png" />
-<meta property="og:site_name" content="Sib Colombia" />
-<meta property="og:locale" content="es_ES" />
-<META NAME="Keywords" CONTENT="portal de datos, sib colombia, informática de biodiversidad, búsqueda de especies, gbif colombia, conjunto de datos, dataset, especies de colombia, especies por departamento, 
-Sistema de información sobre biodiversidad de Colombia, biodiversidad, biodiversidad en colombia, especies amenazadas, especies amenazadas en colombia, catálogo de especies, biologia, conservacion, especies, nombre cientifico, biota, biota colombiana, especies en via de extincion, fauna colombiana, flora colombiana ">
+<meta property="og:site_name" content="Sistema da Informação sobre a Biodiversidade Brasileira" />
+<meta property="og:locale" content="pt_BR" />
+<META NAME="Keywords" CONTENT="portal de dados, sib brasil, informática de biodiversidade, busca de especies, gbif brasil, conjunto de dados, sibbr, espécies do Brasil, espécies por estados, 
+Sistema da Informação sobre a Biodiversidade Brasileira, biodiversidade, biodiversidade no Brasil, espécies ameaçadas, espécies ameaçadas no brasil, catálogo de espécies, biologia, conservação, nome científico, fauna, flora">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
