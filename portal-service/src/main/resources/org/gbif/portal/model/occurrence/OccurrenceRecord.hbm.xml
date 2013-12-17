@@ -51,7 +51,11 @@
     <property name="isoCountryCode" column="iso_country_code"/>	  
     <many-to-one column="iso_country_code" not-null="true" name="country" update="false" insert="false"/>
     
+    <property name="isoCountryCodeCalculated" column="iso_country_code_calculated"/>
+    
     <property name="isoDepartmentCode" column="iso_department_code" not-null="false"/>
+    
+    <property name="isoDepartmentCodeCalculated" column="iso_department_code_calculated" not-null="false"/>
     
     <property name="isoCountyCode" column="iso_county_code" not-null="false"/>
 

@@ -91,6 +91,10 @@ public class OccurrenceRecord extends BaseObject {
   protected String isoCountryCode;
   /** Department code of the occurrence location */
   protected String isoDepartmentCode;
+  /** Country calculated code of the occurrence location */
+  protected String isoCountryCodeCalculated;
+  /** Department calculatedcode of the occurrence location */
+  protected String isoDepartmentCodeCalculated;
   /** County code of the occurrence location */
   protected String isoCountyCode;
   /** Paramo code of the occurrence location */
@@ -901,4 +905,20 @@ public class OccurrenceRecord extends BaseObject {
   public void setYear(Integer year) {
     this.year = year;
   }
+
+	public String getIsoCountryCodeCalculated() {
+		return isoCountryCodeCalculated;
+	}
+	
+	public void setIsoCountryCodeCalculated(String isoCountryCodeCalculated) {
+		this.isoCountryCodeCalculated = isoCountryCodeCalculated;
+	}
+	
+	public String getIsoDepartmentCodeCalculated() {
+		return isoDepartmentCodeCalculated;
+	}
+	
+	public void setIsoDepartmentCodeCalculated(String isoDepartmentCodeCalculated) {
+		this.isoDepartmentCodeCalculated = isoDepartmentCodeCalculated;
+	}
 }

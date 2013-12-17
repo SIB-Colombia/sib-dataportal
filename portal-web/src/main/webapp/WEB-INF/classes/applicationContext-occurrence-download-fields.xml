@@ -40,12 +40,14 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="rawGenus"/>
 		<ref bean="rawCountry"/>
 		<ref bean="isoCountryCode"/>
+		<ref bean="isoCountryCodeCalculated"/>
 		<ref bean="rawLocality"/>
 		<!-- raw fields -->
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
 		<ref bean="isoDepartmentCode"/>
+		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
@@ -109,11 +111,13 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<util:list id="geospatialOccurrenceDownloadFields">
 		<ref bean="rawCountry"/>
 		<ref bean="isoCountryCode"/>
+		<ref bean="isoCountryCodeCalculated"/>
 		<ref bean="rawLocality"/>
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
 		<ref bean="isoDepartmentCode"/>
+		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
@@ -172,6 +176,18 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<bean id="isoDepartmentCode" parent="downloadField">
 		<property name="fieldName" value="isoDepartmentCode"/>
 		<property name="fieldI18nNameKey" value="occurrence.record.interpreted.department"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="department"/>
+	</bean>
+	<bean id="isoCountryCodeCalculated" parent="downloadField">
+		<property name="fieldName" value="isoCountryCodeCalculated"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.calculated.country"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="country"/>
+	</bean>
+	<bean id="isoDepartmentCodeCalculated" parent="downloadField">
+		<property name="fieldName" value="isoDepartmentCodeCalculated"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.calculated.department"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="department"/>
 	</bean>
