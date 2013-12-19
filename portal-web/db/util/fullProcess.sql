@@ -176,20 +176,6 @@ delete from gbif_log_message where event_id=1006 and occurrence_id in (select id
 -- delete warning 
 update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2;
 
-
--- ***********************************
--- Addition by SiB Colombia
--- Here we ignore the validation of coordinates falling outside the country cells
--- since Colombian cells are not well configured in HIT so the validation aplies for 
--- coordinates that actually are in Colombia shape
--- ***********************************
-
--- removing logs of this marked issue
-delete from gbif_log_message where event_id=1008 and occurrence_id  in 
-(select id from occurrence_record where geospatial_issue=32);
--- removing geospatial_issue
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
-
 -- ***********************************
 -- Addition by SiB Colombia
 -- Assigns all possible occurrences for department names to the corresponding ISO-CODE
@@ -2414,7 +2400,18 @@ set c.parent_concept_id=null
 where p.rank>=c.rank; */
 
 
--- ignoring geospatial_issue=32 since that validation is not quite accurate
-delete from gbif_log_message where event_id=1008 and occurrence_id in (select id from occurrence_record where geospatial_issue=32);
+-- ***********************************
+-- Addition by SiB Colombia
+-- Here we ignore the validation of coordinates falling outside the country cells
+-- since Colombian cells are not well configured in HIT so the validation aplies for 
+-- coordinates that actually are in Colombia shape
+-- ***********************************
+
+-- removing logs of this marked issue
+delete from gbif_log_message where event_id=1008 and occurrence_id  in 
+(select id from occurrence_record where geospatial_issue=32);
+-- removing geospatial_issue
 update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 
+update occurrence_record set geospatial_issue= geospatial_issue + 32 where iso_country_code != iso_country_code_calculated;
+call gib_log_message();
