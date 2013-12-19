@@ -17,7 +17,7 @@ BLOCK1: BEGIN
 		leave LOOP1;
 		end if;
 		insert into gbif_log_message(portal_instance_id, log_group_id, event_id, level, data_provider_id, data_resource_id, occurrence_id, taxon_concept_id, message, restricted, count, timestamp)
-		select 1 , logGroup, 1008, 40000,  data_provider_id, data_resource_id, id, taxon_concept_id , concat(iso_country_code , " (Lat: " , latitude , ", Lon: " , longitude , " ): Geospatial issues: coordinates fall outside specified country, country calculated: " , iso_country_code_calculated ), 0, 1, NOW() from occurrence_record where iso_country_code != iso_country_code_calculated; 
+		select 1 , logGroup, 1008, 40000,  data_provider_id, data_resource_id, id, taxon_concept_id , concat(iso_country_code , " (Lat: " , latitude , ", Lon: " , longitude , " ): Geospatial issues: coordinates fall outside specified country, country calculated: " , iso_country_code_calculated ), 0, 1, NOW() from occurrence_record where iso_country_code_calculated is not null and iso_country_code != iso_country_code_calculated; 
 	end loop LOOP1;
 end BLOCK1
 //
