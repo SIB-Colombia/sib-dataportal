@@ -68,5 +68,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="complex_id" class="net.sibcolombia.portal.model.geospatial.Paramo"/>
     </set>
+    <set lazy="true" name="marineZones" table="taxon_marine_zone">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="marine_id" class="net.sibcolombia.portal.model.geospatial.MarineZone"/>
+    </set>
   </class>
 </hibernate-mapping>

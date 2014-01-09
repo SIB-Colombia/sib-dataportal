@@ -49,6 +49,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="isoDepartmentCode"/>
 		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
+		<ref bean="marineZone"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -119,6 +120,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="isoDepartmentCode"/>
 		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
+		<ref bean="marineZone"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -196,6 +198,12 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldI18nNameKey" value="occurrence.record.paramo"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="paramo"/>
+	</bean>
+	<bean id="marineZone" parent="downloadField">
+		<property name="fieldName" value="marineZone"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.marineZone"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="marineZone"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

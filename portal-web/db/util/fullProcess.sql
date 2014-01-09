@@ -1547,6 +1547,26 @@ where oc.paramo is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, m.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for any marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, 8 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- End of SiB Colombia addition
 -- --------------------------------------------
 
@@ -2139,6 +2159,83 @@ group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia
+-- sets the marine zones taxon count
+-- ***********************************
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone kingdom generation: ', now()) as debug;
+truncate table taxon_marine_zone;
+-- populate taxon_marine_zone
+insert ignore into taxon_marine_zone 
+select kingdom_concept_id, marine_zone, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone phylum generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select phylum_concept_id, marine_zone, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone class generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select class_concept_id, marine_zone, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone order generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select order_concept_id, marine_zone, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone family generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select family_concept_id, marine_zone, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone genus generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select genus_concept_id, marine_zone, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone species generation: ', now()) as debug;
+insert ignore into taxon_marine_zone
+select species_concept_id, marine_zone, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone nub concept generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select nub_concept_id, marine_zone, count(*)
+from occurrence_record
+where marine_zone is not null
+group by 1,2;
+
+-- ***********************************
+-- Addition by SiB Colombia
 -- sets the departments count
 -- ***********************************
 select concat('Starting department occurrence count: ', now()) as debug;
@@ -2201,10 +2298,36 @@ update paramo p set occurrence_count =
 (select count(id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
 
 -- set species count per paramo for any
--- this used to be species and lower concepts as well - changed 12.8.08
 select concat('Starting paramo species count for any: ', now()) as debug;
 update paramo p set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
+
+-- sets the marine zones count
+select concat('Starting marine zones occurrence count: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- set occurrence record coordinate count for marine zones table
+select concat('Starting marine zones occurrence coordinate count: ', now()) as debug;
+update marine_zone m set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=m.id and cd.type=11);
+
+-- set species count per marine zones
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- sets the marine zones count for any
+select concat('Starting marine zones occurrence count for any: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- set species count per marine zones for any
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count for any: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
 
 -- End of SiB Colombia addition
 
@@ -2413,5 +2536,7 @@ delete from gbif_log_message where event_id=1008 and occurrence_id  in
 -- removing geospatial_issue
 update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 
-update occurrence_record set geospatial_issue= geospatial_issue + 32 where iso_country_code != iso_country_code_calculated;
+update occurrence_record set geospatial_issue= geospatial_issue + 32 where iso_country_code != iso_country_code_calculated and marine_zone is not null;
 call gif_log_message();
+
+update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;

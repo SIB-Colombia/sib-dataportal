@@ -40,6 +40,7 @@ public class EntityType implements Serializable {
   public static final EntityType TYPE_DEPARTMENT = new EntityType(8, "department");
   public static final EntityType TYPE_COUNTY = new EntityType(9, "county");
   public static final EntityType TYPE_PARAMO = new EntityType(10, "paramo");
+  public static final EntityType TYPE_MARINEZONE = new EntityType(11, "marineZone");
   
   static {
     entityTypes.put(TYPE_ALL.id, TYPE_ALL);
@@ -53,7 +54,7 @@ public class EntityType implements Serializable {
     entityTypes.put(TYPE_DEPARTMENT.id, TYPE_DEPARTMENT);
     entityTypes.put(TYPE_COUNTY.id, TYPE_COUNTY);
     entityTypes.put(TYPE_PARAMO.id, TYPE_PARAMO);
-
+    entityTypes.put(TYPE_MARINEZONE.id, TYPE_MARINEZONE);
     entityTypesByName.put(TYPE_ALL.name, TYPE_ALL);
     entityTypesByName.put(TYPE_TAXON.name, TYPE_TAXON);
     entityTypesByName.put(TYPE_COUNTRY.name, TYPE_COUNTRY);

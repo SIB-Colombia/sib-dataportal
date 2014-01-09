@@ -60,6 +60,7 @@ import java.util.Locale;
 
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
+import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
 
 import org.apache.commons.lang.StringUtils;
@@ -103,8 +104,10 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   protected DepartmentDAO departmentDAO;
   /** The DAO interface for accessing Counties */
   protected CountyDAO countyDAO;
-  /** The DAO interface for accessing Counties */
+  /** The DAO interface for accessing Paramos */
   protected ParamoDAO paramoDAO;
+  /** The DAO interface for accessing Marine Zones */
+  protected MarineZoneDAO marineZoneDAO;
   /** The DAO interface for accessing Countries */
   protected ImageRecordDAO imageRecordDAO;
   /** The remote concept DAO */
@@ -933,11 +936,20 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   }
 
   /**
-   * @see org.gbif.portal.service.TaxonomyManager#getCountryCountsForTaxonConcept(java.lang.String)
+   * @see org.gbif.portal.service.TaxonomyManager#getParamoCountsForTaxonConcept(java.lang.String)
    */
   public List<CountDTO> getParamoCountsForTaxonConcept(String taxonConceptKey) throws ServiceException {
     Long taxonConceptId = parseKey(taxonConceptKey);
     List counts = paramoDAO.getParamoCountsForTaxonConcept(taxonConceptId);
+    return countDTOFactory.createDTOList(counts);
+  }
+  
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getMarineZoneCountsForTaxonConcept(java.lang.String)
+   */
+  public List<CountDTO> getMarineZoneCountsForTaxonConcept(String taxonConceptKey) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List counts = marineZoneDAO.getMarineZoneCountsForTaxonConcept(taxonConceptId);
     return countDTOFactory.createDTOList(counts);
   }
 

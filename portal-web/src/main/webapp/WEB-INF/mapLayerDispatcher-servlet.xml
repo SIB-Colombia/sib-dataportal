@@ -14,7 +14,7 @@
 				<prop key="/department/**/*">departmentMapLayerController</prop>
 				<prop key="/county/**/*">countyMapLayerController</prop>
 				<prop key="/paramo/**/*">paramoMapLayerController</prop>
-				
+				<prop key="/marineZone/**/*">marineZoneMapLayerController</prop>
 				<prop key="/homeCountry/**/*">homeCountryMapLayerController</prop>
 				<prop key="/network/**/*">networkMapLayerController</prop>
 				<prop key="/provider/**/*">providerMapLayerController</prop>
@@ -46,6 +46,11 @@
 	<bean id="paramoMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="10"/>
 		<property name="urlRoot" value="paramo"/>
+	</bean>
+	<!-- SIB Colombia Marine Zone map layer support -->
+	<bean id="marineZoneMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="11"/>
+		<property name="urlRoot" value="marineZone"/>
 	</bean>
 	<bean id="providerMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="3"/>

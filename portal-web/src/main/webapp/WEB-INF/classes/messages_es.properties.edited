@@ -736,6 +736,7 @@ occurrence.search.filter.geospatial.country=Pa�s
 occurrence.search.filter.geospatial.department=Departamento
 occurrence.search.filter.geospatial.county=Municipio
 occurrence.search.filter.geospatial.paramo=Páramo
+occurrence.search.filter.geospatial.marineZone=Área Maritima
 occurrence.search.filter.geospatial.depth=Profundidad
 occurrence.search.filter.geospatial.georegion=�rea Protegida
 occurrence.search.filter.geospatial.hostcountrycode=Pa�s que alberga el dato

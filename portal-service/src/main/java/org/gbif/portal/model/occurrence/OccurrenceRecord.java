@@ -99,7 +99,8 @@ public class OccurrenceRecord extends BaseObject {
   protected String isoCountyCode;
   /** Paramo code of the occurrence location */
   protected String paramo;
-
+  /** Marine Zone code of the occurrence location */
+  protected String marineZone;
   /** The Country of the occurrence location */
   protected Country country;
 
@@ -343,6 +344,12 @@ public class OccurrenceRecord extends BaseObject {
    */
   public String getParamo() {
 		return paramo;
+	}
+  /**
+   * @return the marine zone
+   */
+  public String getMarineZone() {
+		return marineZone;
 	}
   /**
    * @return the kingdomConcept
@@ -722,6 +729,13 @@ public class OccurrenceRecord extends BaseObject {
    */
 	public void setParamo(String paramo) {
 		this.paramo = paramo;
+	}
+	
+  /**
+   * @param marine zone the marine zone to set
+   */
+	public void setMarineZone(String marineZone) {
+		this.marineZone = marineZone;
 	}
 
 /**

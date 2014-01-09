@@ -31,6 +31,9 @@
 				<!-- Filter for Colombian Departments (SIB Colombia) -->
 				<ref bean="paramoFilter"/>
 				
+				<!-- Filter for Colombian Departments (SIB Colombia) -->
+				<ref bean="marineZoneFilter"/>
+				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
 				
@@ -270,7 +273,23 @@
 		<property name="wildcardFriendly" value="true"/>
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="complex-ids"/>
-		<property name="helpView" value="/occurrence/countyHelp.htm"/>
+		<property name="helpView" value="/occurrence/paramoHelp.htm"/>
+	</bean>
+	
+	<!-- Marine zone filter class to show Colombian Marine zones (SIB Colombia) select list -->
+	<bean id="marineZoneFilter" parent="baseGeospatialFilter">
+		<property name="id" value="41"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.marineZone"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="marine-ids"/>
+		<property name="helpView" value="/occurrence/marineZoneHelp.htm"/>
 	</bean>
 	<!-- End of county filter class to show Colombian Counties (SIB Colombia) select list -->
 	

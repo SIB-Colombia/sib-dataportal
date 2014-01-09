@@ -124,6 +124,13 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   }
   
   /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalMarineZoneCount()
+   */
+  public int getTotalMarineZoneCount() throws ServiceException {
+    return departmentDAO.getTotalMarineZoneCount();
+  }
+  
+  /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */
   public boolean isValidDepartmentKey(String departmentKey) {

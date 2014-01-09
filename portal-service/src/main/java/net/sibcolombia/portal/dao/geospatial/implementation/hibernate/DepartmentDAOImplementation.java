@@ -231,6 +231,20 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     });
     return count.intValue();
   }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalMarineZoneCount()
+   */
+  public int getTotalMarineZoneCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(m.id) from MarineZone m");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
   /**
    * @param supportedLocales the supportedLocales to set
    */

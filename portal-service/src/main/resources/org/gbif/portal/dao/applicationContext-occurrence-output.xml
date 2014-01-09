@@ -138,6 +138,11 @@
 								<property name="propertyName" value="paramo"/>
 							</bean>
 						</entry>
+						<entry key="marineZone">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="marineZone"/>
+							</bean>
+						</entry>
 						<entry key="latitude">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="latitude"/>

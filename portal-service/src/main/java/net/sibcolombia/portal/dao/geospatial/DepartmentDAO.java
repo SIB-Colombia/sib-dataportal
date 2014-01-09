@@ -93,5 +93,12 @@ public interface DepartmentDAO {
    * @return count of the total number of paramos
    */
   public int getTotalParamoCount();
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of marine zones
+   * 
+   * @return count of the total number of marine zones
+   */
+  public int getTotalMarineZoneCount();
 
 }

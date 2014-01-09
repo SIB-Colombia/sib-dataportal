@@ -57,9 +57,11 @@ import java.util.Set;
 
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
+import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 
 import org.apache.commons.lang.math.NumberUtils;
@@ -95,9 +97,11 @@ public class GeospatialManagerImpl implements GeospatialManager {
   /** County DAO for County queries */
   protected CountyDAO countyDAO;
   
-  /** Paramo DAO for County queries */
+  /** Paramo DAO for Paramo queries */
   protected ParamoDAO paramoDAO;
 
+  /** Marine Zone DAO for marine zone queries */
+  protected MarineZoneDAO marineZoneDAO;
   
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
@@ -579,6 +583,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
           Paramo paramo = (Paramo) paramoAndName;
           keyAsLong = paramo.getParamoId();
         }
+    }else if (type.equals(EntityType.TYPE_MARINEZONE)) {
+        Object marineZoneAndName = marineZoneDAO.getMarineZoneForMask(key);
+        if (marineZoneAndName != null) {
+          MarineZone marineZone = (MarineZone) marineZoneAndName;
+          keyAsLong = marineZone.getMarineZoneId();
+        }
     }
     return keyAsLong;
   }
@@ -839,10 +849,17 @@ public class GeospatialManagerImpl implements GeospatialManager {
   }
   
   /**
-   * @param countyDAO the countyDAO to set
+   * @param paramoDAO the paramoDAO to set
    */
   public void setParamoDAO(ParamoDAO paramoDAO) {
     this.paramoDAO = paramoDAO;
+  }
+  
+  /**
+   * @param marineZoneDAO the marineZoneDAO to set
+   */
+  public void setMarineZoneDAO(MarineZoneDAO marineZoneDAO) {
+    this.marineZoneDAO = marineZoneDAO;
   }
   /**
    * @param geoRegionDAO the geoRegionDAO to set

@@ -30,6 +30,7 @@
 				<ref bean="departmentTaxonFilter"/>
 				<ref bean="countyTaxonFilter"/>
 				<ref bean="paramoTaxonFilter"/>
+				<ref bean="marineZoneTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -247,6 +248,21 @@
 		<property name="dropDownValues" ref="complex-ids"/>
 		<property name="helpView" value="/taxonomy/paramoTaxonHelp.htm"/>						
 	</bean>	
+	
+	<bean id="marineZoneTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="16"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.marineZone"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="marine-ids"/>
+		<property name="helpView" value="/taxonomy/marineZoneTaxonHelp.htm"/>						
+	</bean>
 	
 	<!-- Filter helpers -->
 	<bean id="dataProviderTaxonPicklistHelper" class="org.gbif.portal.web.content.dataset.DataProviderTaxonPicklistHelper">

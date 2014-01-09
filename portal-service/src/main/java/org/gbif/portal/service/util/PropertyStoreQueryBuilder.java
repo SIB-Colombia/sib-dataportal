@@ -175,9 +175,12 @@ public class PropertyStoreQueryBuilder {
 					sb.append("?");
 					
 				}
-				sb.append(predicate.getPostfix());				
+				sb.append(predicate.getPostfix());
 				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID")&&triplet.getObject().equals("CUA")){
 					sb.append(" or oc.paramo is not null ");
+				}
+				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID")&&triplet.getObject().equals("CUA")){
+					sb.append(" or oc.marineZone is not null ");
 				}
 			}
 			sb.append(" ) ");

@@ -53,6 +53,45 @@ inner join county c on oc.iso_county_code=c.iso_county_code
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for county: ', now()) as debug;
+insert into centi_cell_density 
+select 10, p.id, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+inner join paramo p on oc.paramo=p.complex_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any paramo
+-- 10 is paramo lookup_cell_density_type
+select concat('Building centi cells for any paramo: ', now()) as debug;
+insert into centi_cell_density 
+select 10, 37 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, m.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for any marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, 8 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
 
 -- sets the counties count
 select concat('Starting county occurrence count: ', now()) as debug;
@@ -78,6 +117,14 @@ inner join paramo p on oc.paramo=p.complex_id
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+
+insert into centi_cell_density 
+select 10, 37 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- sets the paramos count
 SET SQL_SAFE_UPDATES=0;
 select concat('Starting paramo occurrence count: ', now()) as debug;
@@ -95,4 +142,45 @@ select concat('Starting paramo species count: ', now()) as debug;
 update paramo p set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.paramo = p.complex_id);
 
+
+insert into centi_cell_density 
+select 11, m.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+insert into centi_cell_density 
+select 11, 8 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- sets the marine zones count
+select concat('Starting marine zones occurrence count: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- set occurrence record coordinate count for marine zones table
+select concat('Starting marine zones occurrence coordinate count: ', now()) as debug;
+update marine_zone m set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=m.id and cd.type=11);
+
+-- set species count per marine zones
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- sets the marine zones count for any
+select concat('Starting marine zones occurrence count for any: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- set species count per marine zones for any
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count for any: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
 -- End of SiB Colombia addition

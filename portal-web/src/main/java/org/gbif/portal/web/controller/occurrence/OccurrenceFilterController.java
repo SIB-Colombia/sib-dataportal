@@ -123,6 +123,9 @@ public class OccurrenceFilterController extends MultiActionController {
   /* Filter for Colombian Paramos */
   protected FilterDTO paramoFilter;
   
+  /* Filter for Colombian Marine Zones */
+  protected FilterDTO marineZoneFilter;
+  
   protected FilterDTO regionFilter;
   protected FilterDTO scientificNameFilter;
   protected FilterDTO classificationFilter;
@@ -157,6 +160,7 @@ public class OccurrenceFilterController extends MultiActionController {
   protected String occurrenceFilterDepartmentCountsView = "occurrenceFilterDepartmentCounts";
   protected String occurrenceFilterCountyCountsView = "occurrenceFilterCountyCounts";
   protected String occurrenceFilterParamoCountsView = "occurrenceFilterParamoCounts";
+  protected String occurrenceFilterMarineZoneCountsView = "occurrenceFilterMarineZoneCounts";
   protected String occurrenceFilterSpeciesCountsView = "occurrenceFilterSpeciesCounts";
   protected String downloadSpreadsheetView = "occurrenceDownloadSpreadsheet";
   protected String downloadXMLView = "occurrenceDownloadXML";
@@ -832,6 +836,42 @@ public class OccurrenceFilterController extends MultiActionController {
   }
 
   /**
+   * Retrieves the counts against the marine zone for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchMarineZones(HttpServletRequest request, HttpServletResponse response)
+    throws ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getMarineZoneCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getMarineZoneCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterMarineZoneCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfMarineZones = departmentManager.getTotalMarineZoneCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS",
+    occurrenceFilterMarineZoneCountsView, new SearchConstraints(0, totalNoOfMarineZones));
+  }
+  
+  /**
    * Retrieves the counts against the providers for this set of criteria
    * 
    * @param request
@@ -1179,6 +1219,13 @@ public class OccurrenceFilterController extends MultiActionController {
     this.paramoFilter = paramoFilter;
   }
 
+  /**
+   * @param marineZoneFilter the marineZoneFilter to set
+   */
+  public void setMarineZoneFilter(FilterDTO marineZoneFilter) {
+    this.marineZoneFilter = marineZoneFilter;
+  }
+  
   /**
    * @param downloadRedirectPath the downloadRedirectPath to set
    */

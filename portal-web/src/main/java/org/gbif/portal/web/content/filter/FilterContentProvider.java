@@ -85,6 +85,9 @@ public class FilterContentProvider implements ContentProvider {
   /** The filter used for paramo- searches (SIB Colombia) */
   protected FilterDTO paramoOccurrenceFilter;
   
+  /** The filter used for marineZone- searches (SIB Colombia) */
+  protected FilterDTO marineZoneOccurrenceFilter;
+  
   /** The filter used for country searches */
   protected FilterDTO regionOccurrenceFilter;
   /** The filter used for country searches */
@@ -316,6 +319,13 @@ public class FilterContentProvider implements ContentProvider {
   public FilterDTO getParamoOccurrenceFilter() {
     return paramoOccurrenceFilter;
   }
+  
+  /**
+   * @return the marineZoneOccurrenceFilter
+   */
+  public FilterDTO getMarineZoneOccurrenceFilter() {
+    return marineZoneOccurrenceFilter;
+  }
 
   /**
    * Retrieves the correct filter for the rank.
@@ -542,6 +552,13 @@ public class FilterContentProvider implements ContentProvider {
    */
   public void setParamoOccurrenceFilter(FilterDTO paramoOccurrenceFilter) {
     this.paramoOccurrenceFilter = paramoOccurrenceFilter;
+  }
+  
+  /**
+   * @param marineZoneOccurrenceFilter the marineZoneOccurrenceFilter to set
+   */
+  public void setMarineZoneOccurrenceFilter(FilterDTO marineZoneOccurrenceFilter) {
+    this.marineZoneOccurrenceFilter = marineZoneOccurrenceFilter;
   }
   
   /**

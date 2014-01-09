@@ -74,6 +74,7 @@ public class OccurrenceParameters extends Parameters {
   public static final String KEY_ORIGINISODEPARTMENTCODE = "originisodepartmentcode";
   public static final String KEY_ORIGINISOCOUNTYCODE = "originisocountycode";
   public static final String KEY_COMPLEXID = "complexid";
+  public static final String KEY_MARINEZONEID = "marineZoneid";
   public static final String KEY_ORIGINREGIONCODE = "originregioncode";
   public static final String KEY_TYPESONLY = "typesonly";
   public static final String KEY_COORDINATESTATUS = "coordinatestatus";
@@ -111,6 +112,7 @@ public class OccurrenceParameters extends Parameters {
   private static final String SUBJECT_ISODEPARTMENTCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE";
   private static final String SUBJECT_ISOCOUNTYCODE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE";
   private static final String SUBJECT_COMPLEXID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID";
+  private static final String SUBJECT_MARINEZONEID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID";
   private static final String SUBJECT_LATITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LATITUDE";
   private static final String SUBJECT_LONGITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LONGITUDE";
   private static final String SUBJECT_ALTITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ALTITUDE";
@@ -166,6 +168,7 @@ public class OccurrenceParameters extends Parameters {
   protected String[] originIsoDepartmentCodes = null;
   protected String[] originIsoCountyCodes = null;
   protected String[] complexIds = null;
+  protected String[] marineZoneIds = null;
   protected String[] dataProviderKeys = null;
   protected String[] dataResourceKeys = null;
   protected String[] resourceNetworkKeys = null;
@@ -241,6 +244,10 @@ public class OccurrenceParameters extends Parameters {
     	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
           complexIds = addValue(complexIds, (String) triplet.getObject());
           processed = true;
+      }else if (triplet.getSubject().equals(SUBJECT_MARINEZONEID)
+  	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
+    	  marineZoneIds = addValue(marineZoneIds, (String) triplet.getObject());
+        processed = true;
       }else if (triplet.getSubject().equals(SUBJECT_HOSTCOUNTRYCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
         hostIsoCountryCodes = addValue(hostIsoCountryCodes, (String) triplet.getObject());
         processed = true;
@@ -454,6 +461,8 @@ public class OccurrenceParameters extends Parameters {
             originIsoCountyCodes = getValue(params, KEY_ORIGINISOCOUNTYCODE, ((String) value).toUpperCase());
         }else if (k.equals(KEY_COMPLEXID)) {
             complexIds = getValue(params, KEY_COMPLEXID, ((String) value).toUpperCase());
+        } else if (k.equals(KEY_MARINEZONEID)) {
+            marineZoneIds = getValue(params, KEY_MARINEZONEID, ((String) value).toUpperCase());
         } else if (k.equals(KEY_ORIGINREGIONCODE)) {
           originRegionCodes = getValue(params, KEY_ORIGINREGIONCODE, ((String) value).toUpperCase());
         } else if (k.equals(KEY_KEY)) {
@@ -799,6 +808,12 @@ public class OccurrenceParameters extends Parameters {
     return complexIds;
   }
   /**
+   * @return the marineZoneId
+   */
+  public String[] getMarineZoneIds() {
+    return marineZoneIds;
+  }
+  /**
    * @return the originRegionCodes
    */
   public String[] getOriginRegionCodes() {
@@ -833,6 +848,8 @@ public class OccurrenceParameters extends Parameters {
             map.put(KEY_ORIGINISOCOUNTYCODE, originIsoCountyCodes);
         if (complexIds != null)
             map.put(KEY_COMPLEXID, complexIds);
+        if (marineZoneIds != null)
+            map.put(KEY_MARINEZONEID, marineZoneIds);
         if (originRegionCodes != null)
           map.put(KEY_ORIGINREGIONCODE, originRegionCodes);
         if (cellIds != null)
@@ -1047,6 +1064,11 @@ public class OccurrenceParameters extends Parameters {
     if (complexIds != null) {
         for (String complexId : complexIds) {
         		 addTriplet(triplets, SUBJECT_COMPLEXID, PREDICATE_EQUAL, complexId);
+        }
+    }
+    if (marineZoneIds != null) {
+        for (String marineZoneId : marineZoneIds) {
+        		 addTriplet(triplets, SUBJECT_MARINEZONEID, PREDICATE_EQUAL, marineZoneId);
         }
     }
     if (originRegionCodes != null) {

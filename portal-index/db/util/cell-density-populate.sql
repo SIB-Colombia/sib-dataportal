@@ -31,6 +31,23 @@ and oc.cell_id is not null
 and oc.geospatial_issue=0
 group by 1,2,3;
 
+-- populate the centi_cell_density for marine zone
+insert into cell_density 
+select 10, m.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for any marine zone
+insert into cell_density 
+select 11, 8, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null 
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
 -- populate the cell_density for home country
 -- This is the data for data_providers tied to a country
 insert into cell_density 

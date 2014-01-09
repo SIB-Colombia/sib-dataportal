@@ -941,6 +941,10 @@
 	<definition name="paramoHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/paramoHelp.jsp"/>
 	</definition>	
+		<!-- SIB Colombia marine zones search option help -->
+	<definition name="marineZoneHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/marineZoneHelp.jsp"/>
+	</definition>	
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						
 	</definition>

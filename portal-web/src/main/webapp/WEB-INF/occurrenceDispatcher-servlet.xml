@@ -57,6 +57,8 @@
         <prop key="/county/placemarks/county-placemarks-*.kml">countyKmlController</prop>
          <!-- For paramos -->
         <prop key="/paramo/placemarks/paramo-placemarks-*.kml">paramoKmlController</prop>
+        <!-- For marine zones -->
+        <prop key="/marineZone/placemarks/marineZone-placemarks-*.kml">paramoKmlController</prop>
         <prop key="/resource/placemarks/resource-placemarks-*.kml">resourceKmlController</prop>
         <prop key="/resource/celldensity/resource-celldensity-*.kml">resourceCellDensityKmlController</prop>
         <prop key="/provider/placemarks/provider-placemarks-*.kml">providerKmlController</prop>
@@ -296,6 +298,21 @@
     <property name="patternPrefix">
       <map>
         <entry key="complexid" value="paramo-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+    <bean id="marineZoneKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>marineid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="marineid" value="marineZone-placemarks-" />
       </map>
     </property>
   </bean>
@@ -672,6 +689,9 @@
     
     <!-- New filter for Colombia Paramos (SIB Colombia) -->
     <property name="paramoFilter" ref="paramoFilter" />
+    
+      <!-- New filter for Colombia Marine Zones (SIB Colombia) -->
+    <property name="marineZoneFilter" ref="marineZoneFilter" />
     
     <property name="scientificNameFilter" ref="scientificNameFilter" />
     <property name="dataResourceIdFilter" ref="dataResourceIdFilter" />

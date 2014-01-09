@@ -438,6 +438,15 @@ public interface TaxonomyManager {
    * @throws ServiceException
    */
   public List<CountDTO> getParamoCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
+  
+  /**
+   * Retrieves a count against all marine zone for this taxon concept.
+   * 
+   * @param taxonConcept
+   * @return
+   * @throws ServiceException
+   */
+  public List<CountDTO> getMarineZoneCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
 
   /**
    * Returns the Nub Taxon Concepts for the specified TaxonConcept. This is the concept that is accepted as the

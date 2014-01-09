@@ -21,6 +21,7 @@ import java.util.Set;
 
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.County;
+import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 
 /**
@@ -110,6 +111,8 @@ public class TaxonConcept extends BaseObject {
   protected Set<County> counties;
   /** The common names for this concept */
   protected Set<Paramo> paramos;
+  /** The common names for this concept */
+  protected Set<MarineZone> marineZones;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -214,6 +217,13 @@ public class TaxonConcept extends BaseObject {
    */
   public Set<Paramo> getParamos() {
     return paramos;
+  }
+  
+  /**
+   * @return the marine zones
+   */
+  public Set<MarineZone> getMarineZones() {
+    return marineZones;
   }
   
   /**
@@ -512,10 +522,17 @@ public class TaxonConcept extends BaseObject {
     this.counties = counties;
   }
   /**
-   * @param counties the paramos to set
+   * @param paramos the paramos to set
    */
   public void setParamos(Set<Paramo> paramos) {
     this.paramos = paramos;
+  }
+  
+  /**
+   * @param marine zones the marine zones to set
+   */
+  public void setMarineZones(Set<MarineZone> marineZones) {
+    this.marineZones = marineZones;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

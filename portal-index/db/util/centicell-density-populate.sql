@@ -145,3 +145,19 @@ from occurrence_record oc
 where oc.paramo is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for marine_zone
+insert into centi_cell_density 
+select 10, m.id, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any marine_zone
+insert into centi_cell_density 
+select 11, 8, cell_id, centi_cell_id, count(oc.id)  
+from occurrence_record oc 
+where oc.marine_zone is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
