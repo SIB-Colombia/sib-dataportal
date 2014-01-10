@@ -2536,7 +2536,10 @@ delete from gbif_log_message where event_id=1008 and occurrence_id  in
 -- removing geospatial_issue
 update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 
-update occurrence_record set geospatial_issue= geospatial_issue + 32 where iso_country_code != iso_country_code_calculated and marine_zone is not null;
-call gif_log_message();
-
 update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
+
+update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated;
+
+call gif_log_message();
