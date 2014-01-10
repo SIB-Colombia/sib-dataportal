@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <server ip_addr="localhost" communication_type="LOCAL" />
+  <Proxy>
+    <HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />
+  </Proxy>
+  <work records="10000" />
+ <shape path="C://Users//PC 2//Desktop//Paises//world_country_admin_boundary_shapefile_with_fips_codes.shp">
+    <column name="iso_a2">FIPS_CNTRY</column>
+    <column name="admin">CNTRY_NAME</column>
+  </shape>
+</config>
+
