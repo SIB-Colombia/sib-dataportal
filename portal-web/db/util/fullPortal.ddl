@@ -1593,7 +1593,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `taxon_marine_zone`;
 SET @saved_cs_client = @@character_set_client;
 SET character_set_client = utf8;
-CREATE TABLE `taxon_marine_zne` (
+CREATE TABLE `taxon_marine_zone` (
 	`taxon_concept_id` int(11) NOT NULL,
 	`marine_id` char(10) NOT NULL,
 	`count` int(11) default NULL,
