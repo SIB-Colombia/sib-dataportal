@@ -34,6 +34,8 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
   public static final ModelEntityType COUNTY = new ModelEntityType("county", 9);
   // Paramo model entity type used in colombian paramo list by sib colombia
   public static final ModelEntityType PARAMO = new ModelEntityType("paramo", 10);
+//Paramo model entity type used in colombian marine zone list by sib colombia
+ public static final ModelEntityType MARINE_ZONE = new ModelEntityType("marine_zone", 11);
   public static final ModelEntityType DATA_PROVIDER = new ModelEntityType("dataProvider", 3);
   public static final ModelEntityType DATA_RESOURCE = new ModelEntityType("dataResource", 4);
   public static final ModelEntityType RESOURCE_NETWORK = new ModelEntityType("resourceNetwork", 5);
@@ -67,7 +69,10 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
     }else if (value == PARAMO.getValue()) {
         // Paramo model entity type used in colombian paramo list by sib colombia
         return PARAMO;
-    } else if (value == DATA_PROVIDER.getValue()) {
+    }else if (value == MARINE_ZONE.getValue()) {
+        // Marine zone model entity type used in colombian marine zone list by sib colombia
+        return MARINE_ZONE;
+    }else if (value == DATA_PROVIDER.getValue()) {
       return DATA_PROVIDER;
     } else if (value == DATA_RESOURCE.getValue()) {
       return DATA_RESOURCE;
@@ -101,8 +106,11 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
         return COUNTY;
       }else if (name.equalsIgnoreCase(PARAMO.getName())) {
           // Paramo model entity type used in colombian paramo list by sib colombia
-          return PARAMO;
-        }else if (name.equalsIgnoreCase(DATA_PROVIDER.getName())) {
+        return PARAMO;
+      }else if (name.equalsIgnoreCase(MARINE_ZONE.getName())) {
+          // MARINE ZONE model entity type used in colombian marine zone list by sib colombia
+        return MARINE_ZONE;
+      }else if (name.equalsIgnoreCase(DATA_PROVIDER.getName())) {
         return DATA_PROVIDER;
       } else if (name.equalsIgnoreCase(DATA_RESOURCE.getName())) {
         return DATA_RESOURCE;

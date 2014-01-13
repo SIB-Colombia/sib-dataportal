@@ -35,7 +35,7 @@ public class MarineZone extends BaseObject{
 	  protected String mask;
 	  
 	  /** The marine zone name */
-	  protected Long description;
+	  protected String description;
 
 	  /** The number of species this data resource provides */
 	  protected Integer speciesCount;
@@ -59,11 +59,11 @@ public class MarineZone extends BaseObject{
 		this.mask = mask;
 	}
 
-	public Long getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(Long description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 

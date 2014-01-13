@@ -158,6 +158,14 @@ public interface TaxonConceptDAO {
    * @return the root concepts for a paramo
    */
   public List<TaxonConceptLite> getParamoRootConceptsFor(String paramo);
+  
+  /**
+   * Returns the root concepts for a marine zone
+   * 
+   * @param marineZone
+   * @return the root concepts for a marine zone
+   */
+  public List<TaxonConceptLite> getMarineZoneRootConceptsFor(String marineZone);
 
   /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
@@ -207,6 +215,16 @@ public interface TaxonConceptDAO {
    * @return The Parent Concept object for the concept with this id.
    */
   public List<TaxonConceptLite> getLiteChildConceptsForParamo(long taxonConceptId, String complexId,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param marineZone Restrict search to concepts within the supplied marine zone, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForMarineZone(long taxonConceptId, String marineId,
     boolean allowUnconfirmed);
 
   /**

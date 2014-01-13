@@ -102,7 +102,7 @@ public class MarineZoneDAOImplementation extends HibernateDaoSupport implements 
 
   
   /**
-   * @see net.sibcolombia.portal.dao.geospatial.ParamoDAO#getParamoFor(long)
+   * @see net.sibcolombia.portal.dao.geospatial.MarineZoneDAO#getMarineZoneFor(long)
    */
   public Object getMarineZoneFor(final long marineZoneId) {
     return getHibernateTemplate().execute(new HibernateCallback() {

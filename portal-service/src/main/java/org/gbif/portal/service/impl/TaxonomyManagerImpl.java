@@ -587,6 +587,18 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   }
   
   /**
+   * @see org.gbif.portal.service.TaxonomyManager#getChildConceptsForMarineZone(java.lang.String, java.lang.String,
+   *      boolean)
+   */
+  public List<BriefTaxonConceptDTO> getChildConceptsForMarineZone(String taxonConceptKey, String marineZone,
+    boolean allowUnconfirmed) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List<TaxonConceptLite> childConcepts =
+      taxonConceptDAO.getLiteChildConceptsForMarineZone(taxonConceptId, marineZone, allowUnconfirmed);
+    return briefTaxonConceptDTOFactory.createDTOList(childConcepts);
+  }
+  
+  /**
    * Uses TaxonConceptDAO.getParentChildConcepts to retrieve the specified concept,
    * its child concepts and its parent concept. It then goes up the tree calling getParent
    * until parent it null.
@@ -871,6 +883,74 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   }
 
   /**
+   * Uses TaxonConceptDAO.getParentChildConcepts to retrieve the specified concept,
+   * its child concepts and its parent concept. It then goes up the tree calling getParent
+   * until parent it null.
+   * 
+   * @see org.gbif.portal.service.TaxonomyManager#getClassificationForMarineZone(java.lang.String, boolean)
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForMarineZone(String taxonConceptKey, boolean ascend,
+    boolean descend, String marineZone, boolean includeCounts, boolean allowUnconfirmed) throws ServiceException {
+    Long taxonConceptId = parseKey(taxonConceptKey);
+    List<BriefTaxonConceptDTO> classificationDTOList = new ArrayList<BriefTaxonConceptDTO>();
+    // add the concept
+    TaxonConcept taxonConcept = taxonConceptDAO.getParentChildConcepts(taxonConceptId, false, allowUnconfirmed);
+    if (taxonConcept != null) {
+
+      if (ascend) {
+        // add the parent concepts
+        TaxonConcept parentConcept = taxonConceptDAO.getParentConceptFor(taxonConcept.getId());
+        // recurse till parent null
+
+        // save the IDs being stored in the Classification list, to check for previous existence when entering a new one
+        // (to avoid infinite loops)
+        List<Long> previousIds = new ArrayList<Long>();
+
+        while (parentConcept != null && !previousIds.contains(parentConcept.getId())) {
+          classificationDTOList.add(0,
+            (BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(parentConcept, includeCounts));
+          previousIds.add(parentConcept.getId());
+          Long oldId = parentConcept.getId();
+          parentConcept = taxonConceptDAO.getParentConceptFor(parentConcept.getId());
+          // avoid infinite loops due to bad data
+          if (parentConcept != null && parentConcept.getId().equals(oldId))
+            parentConcept = null;
+        }
+      }
+
+      // add this concept to the list
+      classificationDTOList.add((BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(taxonConcept,
+        includeCounts));
+
+      if (descend) {
+        // order child concepts
+        List<TaxonConceptLite> childConcepts =
+          taxonConceptDAO.getLiteChildConceptsForMarineZone(taxonConceptId, marineZone, allowUnconfirmed);
+        ArrayList<TaxonConceptLite> childConceptList = new ArrayList<TaxonConceptLite>();
+        childConceptList.addAll(childConcepts);
+        Collections.sort(childConceptList, new Comparator<TaxonConceptLite>() {
+
+          public int compare(TaxonConceptLite c1, TaxonConceptLite c2) {
+            if (c1.getTaxonRank().getValue() != c2.getTaxonRank().getValue())
+              return c1.getTaxonRank().getValue().compareTo(c2.getTaxonRank().getValue());
+            // else compare canonical
+            return c1.getTaxonNameLite().getCanonical().compareTo(c2.getTaxonNameLite().getCanonical());
+          }
+        });
+        // add child concepts
+        for (TaxonConceptLite childConcept : childConceptList) {
+          // non accepted ones are not added
+          if (childConcept.isAccepted()) {
+            classificationDTOList.add((BriefTaxonConceptDTO) briefTaxonConceptDTOFactory.createDTO(childConcept,
+              includeCounts));
+          }
+        }
+      }
+      return classificationDTOList;
+    }
+    return null;
+  }
+  /**
    * @see org.gbif.portal.service.TaxonomyManager#getClassificationForDepartment(java.lang.String, boolean,
    *      java.lang.String)
    */
@@ -895,10 +975,19 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
    */
   public List<BriefTaxonConceptDTO> getClassificationForParamo(String taxonConceptKey, boolean retrieveChildren,
     String paramo, boolean allowUnconfirmed) throws ServiceException {
-    return getClassificationForCounty(taxonConceptKey, true, retrieveChildren, paramo, false,
+    return getClassificationForParamo(taxonConceptKey, true, retrieveChildren, paramo, false,
       allowUnconfirmed);
   }
 
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getClassificationForMarineZone(java.lang.String, boolean,
+   *      java.lang.String)
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForMarineZone(String taxonConceptKey, boolean retrieveChildren,
+    String marineZone, boolean allowUnconfirmed) throws ServiceException {
+    return getClassificationForMarineZone(taxonConceptKey, true, retrieveChildren, marineZone, false,
+      allowUnconfirmed);
+  }
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getCommonNameFor(java.lang.String)
    */
@@ -1022,6 +1111,15 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
     List<TaxonConceptLite> rootConcepts = taxonConceptDAO.getParamoRootConceptsFor(paramo);
     return briefTaxonConceptDTOFactory.createDTOList(rootConcepts);
   }
+  
+  /**
+   * @see org.gbif.portal.service.TaxonomyManager#getRootTaxonConceptsForMarineZone(java.lang.String)
+   */
+  public List<BriefTaxonConceptDTO> getRootTaxonConceptsForMarineZone(String marineZone) throws ServiceException {
+    List<TaxonConceptLite> rootConcepts = taxonConceptDAO.getMarineZoneRootConceptsFor(marineZone);
+    return briefTaxonConceptDTOFactory.createDTOList(rootConcepts);
+  }
+  
   /**
    * @see org.gbif.portal.service.TaxonomyManager#getRootTaxonConceptsFor(java.lang.String)
    */

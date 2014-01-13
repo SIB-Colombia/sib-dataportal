@@ -263,7 +263,7 @@ public class TaxonResolvingController extends RestController {
     // TODO Ideally this would hit a statistics table.
     if (TaxonRankType.isGenusOrLowerRank(taxonConcept.getRank())) {
       occurrenceCount =
-        occurrenceManager.countOccurrenceRecords(null, null, null, taxonConcept.getKey(), null, null, null, null, null, null,null, null,
+        occurrenceManager.countOccurrenceRecords(null, null, null, taxonConcept.getKey(), null, null, null, null, null, null,null,null, null,
           (BoundingBoxDTO) null, (TimePeriodDTO) null, (Date) null, false);
       request.setAttribute("occurrenceCount", occurrenceCount);
       List<CountDTO> resourceCounts =

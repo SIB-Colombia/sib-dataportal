@@ -582,6 +582,32 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
       }
     });
   }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getMarineZoneRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getMarineZoneRootConceptsFor(final String marineId) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tct.taxonConceptLite from TaxonMarineZone tmz"
+            + " inner join fetch tmz.taxonConceptLite.taxonNameLite"
+            + " where tmz.key.marineId = :marineId"
+            + " and tmz.taxonConceptLite.taxonRank=:taxonRank" + " and tmz.taxonConceptLite.isAccepted=true"
+            + " order by tmz.taxonConceptLite.taxonRank asc, tmz.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("marineId", marineId);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
 
   /**
    * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getDetailedTaxonConceptFor(long)
@@ -762,6 +788,39 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
         Query query = session.createQuery(sb.toString());
         query.setParameter("taxonConceptId", taxonConceptId);
         query.setParameter("complexId", complexId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForMarineZone(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForMarineZone(final long taxonConceptId,
+    final String marineId, final boolean allowUnconfirmed) {
+    if (marineId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tct.taxonConceptLite from TaxonMarineZone tct "
+            + "inner join fetch tct.taxonConceptLite.taxonNameLite");
+        sb.append(" where tct.taxonConceptLite.parentConceptId = :taxonConceptId and tct.taxonConceptLite.isAccepted=true "
+          + "and  tct.key.marineId =:marineId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tct.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tct.taxonConceptLite.taxonRank, tct.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("marineId", marineId);
         query.setMaxResults(maxChildConcepts);
         return query.list();
       }

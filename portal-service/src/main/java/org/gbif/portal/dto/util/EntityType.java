@@ -66,6 +66,7 @@ public class EntityType implements Serializable {
     entityTypesByName.put(TYPE_DEPARTMENT.name, TYPE_DEPARTMENT);
     entityTypesByName.put(TYPE_COUNTY.name, TYPE_COUNTY);
     entityTypesByName.put(TYPE_PARAMO.name, TYPE_PARAMO);
+    entityTypesByName.put(TYPE_MARINEZONE.name, TYPE_MARINEZONE);
   }
 
   /** Unique id for this enum type */

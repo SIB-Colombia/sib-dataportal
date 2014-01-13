@@ -71,6 +71,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	protected DepartmentDAO departmentDAO;
 	protected CountyDAO countyDAO;
 	protected ParamoDAO paramoDAO;
+	protected MarineZoneDAO marineZoneDAO;
 	protected DataProviderDAO dataProviderDAO;
 	protected DataResourceDAO dataResourceDAO;
 	protected ResourceNetworkDAO resourceNetworkDAO;
@@ -148,7 +149,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	 */
 	public SearchResultsDTO findOccurrenceRecords(String dataProviderKey,
 			String dataResourceKey, String resourceNetworkKey, String taxonConceptKey,
-			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId, String basisOfRecordCode, 
+			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId,String marineId, String basisOfRecordCode, 
 			String cellId, BoundingBoxDTO boundingBox,	TimePeriodDTO timePeriod, Date modifiedSince, 
 			boolean georeferencedOnly, SearchConstraints searchConstraints)
 			throws ServiceException {
@@ -218,6 +219,10 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No paramo found for complex id " + complexId);
 		}
 		
+		if (marineId != null && marineZoneDAO.getMarineZoneForMask(marineId) == null ) {
+			throw new ServiceException("No marine zone found for mask " + marineId);
+		}
+		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -258,7 +263,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			endDate = timePeriod.getEndPeriod();
 		}
 		
-		List<OccurrenceRecord> occurrenceRecords = occurrenceRecordDAO.findOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode,originIsoCountyCode,complexId, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly, searchConstraints);
+		List<OccurrenceRecord> occurrenceRecords = occurrenceRecordDAO.findOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode,originIsoCountyCode,complexId,marineId, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly, searchConstraints);
 		if(logger.isDebugEnabled())
 			logger.debug("occurrenceRecords: "+occurrenceRecords.size());
 		return occurrenceRecordDTOFactory.createResultsDTO(occurrenceRecords, searchConstraints.getMaxResults());
@@ -302,7 +307,8 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	 */
 	public int countOccurrenceRecords(String dataProviderKey,
 			String dataResourceKey, String resourceNetworkKey, String taxonConceptKey,
-			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode, String originIsoCountyCode,String paramo,String basisOfRecordCode, 
+			String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode, 
+			String originIsoCountyCode, String paramo, String marineZone, String basisOfRecordCode, 
 			String cellId, BoundingBoxDTO boundingBox,	TimePeriodDTO timePeriod, Date modifiedSince, boolean georeferencedOnly)
 			throws ServiceException {
 		
@@ -372,6 +378,10 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 		if (paramo != null && paramoDAO.getParamoForComplexId(paramo) == null ) {
 			throw new ServiceException("No paramo found for complex id " + paramo);
 		}
+		
+		if (marineZone != null && marineZoneDAO.getMarineZoneForMask(marineZone) == null ) {
+			throw new ServiceException("No marine zone found for mask " + marineZone);
+		}
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -412,7 +422,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			endDate = timePeriod.getEndPeriod();
 		}
 
-		Long recordCount = occurrenceRecordDAO.countOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode, originIsoCountyCode, paramo, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly);
+		Long recordCount = occurrenceRecordDAO.countOccurrenceRecords(taxonConcept, dataProvider, dataResource, resourceNetwork, scientificName, hostIsoCountryCode, originIsoCountryCode, originIsoDepartmentCode, originIsoCountyCode, paramo, marineZone, minLongitude, maxLongitude, minLatitude, maxLatitude, cellIdValue, startDate, endDate, basisOfRecord, modifiedSince, georeferencedOnly);
 		if(logger.isDebugEnabled())
 			logger.debug("occurrenceRecords: "+recordCount);
 		return recordCount.intValue();

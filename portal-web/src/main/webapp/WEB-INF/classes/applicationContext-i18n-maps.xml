@@ -1511,7 +1511,6 @@
 		<entry key= 'YRG' value='paramo.yariguies'/>
 	</util:map>
 	<util:map id="marine-ids">
-		<entry key= 'CUA' value='marineZone.any'/>
 		<entry key= 'emergido' value='marineZone.emergido'/>
 		<entry key= 'c. bjo n' value='marineZone.cayo_bajo_nuevo'/>
 		<entry key= 'c. serr' value='marineZone.cayo_serranilla'/>
