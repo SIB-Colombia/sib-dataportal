@@ -296,7 +296,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView boundingBoxWithCriteria(HttpServletRequest request, HttpServletResponse response)
-    throws UnsupportedEncodingException {
+    throws Exception, UnsupportedEncodingException {
     CriteriaDTO criteria = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
     CriteriaUtil.fixEncoding(request, criteria);
@@ -369,7 +369,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView downloadSpecies(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
 
     ModelAndView mav =
       getCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS",
@@ -411,7 +411,7 @@ public class OccurrenceFilterController extends MultiActionController {
    */
   @SuppressWarnings("unchecked")
   private ModelAndView getCountryCountsView(HttpServletRequest request, HttpServletResponse response,
-    String returnFieldsKey, String viewName, SearchConstraints searchConstraints) throws ServiceException,
+    String returnFieldsKey, String viewName, SearchConstraints searchConstraints) throws Exception, ServiceException,
     UnsupportedEncodingException {
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -462,7 +462,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   private ModelAndView getCountsView(HttpServletRequest request, HttpServletResponse response, String returnFieldsKey,
-    String viewName, SearchConstraints searchConstraints) throws ServiceException, UnsupportedEncodingException {
+    String viewName, SearchConstraints searchConstraints) throws Exception, ServiceException, UnsupportedEncodingException {
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
     request.setCharacterEncoding("ISO-8859-1");
@@ -698,7 +698,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchCountries(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -736,7 +736,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchDepartments(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -772,7 +772,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchCounties(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -808,7 +808,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchParamos(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -844,7 +844,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchMarineZones(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -880,7 +880,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchProviders(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a country filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -928,7 +928,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchResources(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a country filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value

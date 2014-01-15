@@ -107,7 +107,7 @@ public class CriteriaUtil {
 	 * @param locale the locale to use to retrieve locale specific values for display, nullable
 	 * @return CriteriaDTO for the criteria in the supplied request
 	 */
-	public static CriteriaDTO getCriteria(String criteriaString, List<FilterDTO> filters, Locale locale){
+	public static CriteriaDTO getCriteria(String criteriaString, List<FilterDTO> filters, Locale locale) throws Exception{
 		logger.debug(criteriaString);
 		if(StringUtils.isEmpty(criteriaString))
 			return null;
@@ -132,7 +132,7 @@ public class CriteriaUtil {
 	 * @param filters the filters to use to populate the criteria
 	 * @return CriteriaDTO for the criteria in the supplied request
 	 */
-	public static CriteriaDTO getCriteria(HttpServletRequest request, List<FilterDTO> filters){
+	public static CriteriaDTO getCriteria(HttpServletRequest request, List<FilterDTO> filters)throws Exception{
 		if(logger.isDebugEnabled())
 			logger.debug("criteria string:"+request.getQueryString());
 		//find the number of criteria set in the request
@@ -148,7 +148,7 @@ public class CriteriaUtil {
 	 * @return CriteriaDTO for the criteria in the supplied request
 	 */
 	@SuppressWarnings("unchecked")
-	public static CriteriaDTO getCriteria(PropertyValue[] pvs, List<FilterDTO> filters, Locale locale){	
+	public static CriteriaDTO getCriteria(PropertyValue[] pvs, List<FilterDTO> filters, Locale locale) throws Exception{	
 		CriteriaDTO criteriaDTO = new CriteriaDTO();
     	List<CriterionDTO> criteria = criteriaDTO.getCriteria();
 		String subject = null;
@@ -203,7 +203,7 @@ public class CriteriaUtil {
 					if(PREDICATE.equals(propertyName))
 						predicate = (String) propertyValue;
 					if(OBJECT.equals(propertyName)){
-						value = (String) propertyValue;
+						value = new String(propertyValue.toString().getBytes("ISO-8859-1"), "UTF-8");
 						value = QueryHelper.tidyValue(value);
 					}
 					//if all 3 properties are non null create a criterion
@@ -313,7 +313,7 @@ public class CriteriaUtil {
 	 * @param criteria
 	 */
 	@SuppressWarnings("unchecked")
-	public static CriteriaDTO getCriteriaAndPopulate(HttpServletRequest request, List<FilterDTO> filters) {
+	public static CriteriaDTO getCriteriaAndPopulate(HttpServletRequest request, List<FilterDTO> filters)throws Exception {
 		CriteriaDTO criteria  = CriteriaUtil.getCriteria(request, filters);
 		CriteriaUtil.checkFilterConstraints(filters, criteria);
 		Locale locale = RequestContextUtils.getLocale(request);
