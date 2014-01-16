@@ -58,6 +58,27 @@ set
     o.genus_concept_id=tc.genus_concept_id,
     o.species_concept_id=tc.species_concept_id;
 
+-- ***********************************
+-- Addition by SiB Colombia
+-- Here we ignore the validation of coordinates falling outside the country cells
+-- since Colombian cells are not well configured in HIT so the validation aplies for 
+-- coordinates that actually are in Colombia shape
+-- ***********************************
+
+-- removing logs of this marked issue
+delete from gbif_log_message where event_id=1008 and occurrence_id  in 
+(select id from occurrence_record where geospatial_issue=32);
+-- removing geospatial_issue
+update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
+
+update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated;
+
+call gif_log_message();
+
 -- clear the centi cells
 -- Query OK, 0 rows affected (54.06 sec)
 select concat('Clearing centi cells: ', now()) as debug;    
@@ -2522,24 +2543,3 @@ inner join taxon_concept p on c.parent_concept_id=p.id
 set c.parent_concept_id=null
 where p.rank>=c.rank; */
 
-
--- ***********************************
--- Addition by SiB Colombia
--- Here we ignore the validation of coordinates falling outside the country cells
--- since Colombian cells are not well configured in HIT so the validation aplies for 
--- coordinates that actually are in Colombia shape
--- ***********************************
-
--- removing logs of this marked issue
-delete from gbif_log_message where event_id=1008 and occurrence_id  in 
-(select id from occurrence_record where geospatial_issue=32);
--- removing geospatial_issue
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
-
-update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
-
-update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
-
-update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated;
-
-call gif_log_message();

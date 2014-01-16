@@ -58,7 +58,7 @@
          <!-- For paramos -->
         <prop key="/paramo/placemarks/paramo-placemarks-*.kml">paramoKmlController</prop>
         <!-- For marine zones -->
-        <prop key="/marineZone/placemarks/marineZone-placemarks-*.kml">paramoKmlController</prop>
+        <prop key="/marineZone/placemarks/marineZone-placemarks-*.kml">marineZoneKmlController</prop>
         <prop key="/resource/placemarks/resource-placemarks-*.kml">resourceKmlController</prop>
         <prop key="/resource/celldensity/resource-celldensity-*.kml">resourceCellDensityKmlController</prop>
         <prop key="/provider/placemarks/provider-placemarks-*.kml">providerKmlController</prop>
