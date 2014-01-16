@@ -77,6 +77,8 @@ update occurrence_record set iso_country_code_calculated = 'CO' where marine_zon
 
 update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated;
 
+update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
+
 call gif_log_message();
 
 -- clear the centi cells
