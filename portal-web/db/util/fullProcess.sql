@@ -79,7 +79,7 @@ update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_
 
 update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
 
-call gif_log_message();
+call gbif_log_message();
 
 -- clear the centi cells
 -- Query OK, 0 rows affected (54.06 sec)

@@ -1,8 +1,8 @@
-DROP PROCEDURE IF EXISTS gif_log_message;
+DROP PROCEDURE IF EXISTS gbif_log_message;
 
 DELIMITER //
 
-CREATE PROCEDURE gif_log_message ()
+CREATE PROCEDURE gbif_log_message ()
 BLOCK1: BEGIN
 	declare logGroup int(10);
 	declare no_more_rows1 BOOL;
