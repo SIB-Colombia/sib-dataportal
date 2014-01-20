@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Economica:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Helvetica+Neue:400,700,400italic);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic);
 
 
@@ -36,22 +36,35 @@
 body {
 	font-size: 80%;
 	color: #333;
-	background: #fffef3 url("images/bg_new.jpg") repeat 0 0;
-	font-family: 'Open sans', Helvetica, Verdana, Helvetica, Arial;
+	background-color:#efefef;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-align: left;
 	padding: 0;
 	margin: 0;
 	min-width: 705px;
 	line-height: 1;
 }
+
+#boxcontent {
+	margin: 9px 0 20px 0;
+	min-height: 110px;
+	padding: 20px;
+	background: rgba(255, 255, 255, 1);
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+	-webkit-box-shadow: 0 0 3px#F0F0F0;
+	box-shadow: 0 0 3px #DFDFDF;
+}
+
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Economica', Helvetica, Arial, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	/*text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);*/
 }
 
 /* -- The Generic Defs --*/
 a {
-	color: #2b7fbc;
+	color: #007FC9;
 	text-decoration: none;
 	border-bottom: 0px dashed transparent;
 	-webkit-transition: all 0.5s ease-in-out;
@@ -62,19 +75,22 @@ a {
 }
 
 a:link {
-	color: #2b7fbc;
+	color: #666;
 	text-decoration: none;
 }
 a:visited {
-	color: #2b7fbc;
+	color: #666;
 	text-decoration: none;
 }
 a:hover, input[type=submit]:hover  {
 	border: 0;
 	/*border-bottom:1px solid #00a0ff;*/
-	color: #00a0ff !important;
-	filter: alpha(opacity=60);
-	opacity: .6;
+	color: #005e7d;
+	-webkit-transition: color 0.3s ease-in-out;
+	-moz-transition: color 0.3s ease-in-out;
+	-o-transition: color 0.3s ease-in-out;
+	-ms-transition: color 0.3s ease-in-out;
+	transition: color 0.3s ease-in-out;
 }
 a[href*="darwin"],
 a[href*=".kml"],
@@ -108,7 +124,7 @@ h6 {
 	font-size: 1em;
 }
 p {
-	margin: 0.33em 0 0.8em 0;
+	/*margin: 0.33em 0 0.8em 0;*/
 	line-height:1.3em;
 }
 p.standalone {
@@ -118,13 +134,15 @@ p.standalone img {
 	display: inline;
 }
 #content fieldset{
-	margin: 0px 0 10px 0;
-	padding:20px;
-	min-height: 80px;
-	background:rgba(250,249,243, 1);
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
-	position:relative;
+/*	margin: 16px 0 20px 0;
+	min-height: 110px;
+	padding: 20px;
+	background: rgba(255, 255, 255, 1);
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+	-webkit-box-shadow: 0 0 3px#F0F0F0;
+	box-shadow: 0 0 3px #DFDFDF;*/
 }
 fieldset {
 	padding-left: 0px;
@@ -139,7 +157,7 @@ fieldset p {
 }
 ul, ol {
 	margin: 0;
-	padding-left: 1.15em;
+	padding-left: 0px;
 }
 ul li,
 ol li{
@@ -195,7 +213,7 @@ img.standalone {
 /* -- END The Generic Defs --*/
 
 #cocoon {
-	padding-top: 60px;
+	padding-top: 30px;
 
 }
 #container {
@@ -207,7 +225,7 @@ img.standalone {
 }
 /* ---- Top Header ---- */
 
-header.sib { background:#2b7fbc; height:53px; color:white; text-transform:uppercase; min-width: 1050px; position: fixed; width: 100%; z-index: 10000; top: 0px}
+header.sib { background:#2b7fbc; height:53px; color:white; text-transform:uppercase; min-width: 1050px; width: 100%; z-index: 10000; top: 0px}
 header.sib a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px; padding-right: 4%; }
 header.sib  nav {vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; min-width: 1100px; position: relative; right: 0px; height: 50px; padding-right: 20px; margin: 0 auto;}
 header.sib  nav a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
@@ -232,12 +250,12 @@ header.sib .logo{
         	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 		}
 		header.sib:after{
-			content:" ";
+/*			content:" ";
 			display:block;
 			height:20px;
 			width:100%;
 			background: url(images/shadow_top.png) no-repeat top center;
-			margin-top: 3px;
+			margin-top: 3px;*/
 			}
 		header > div{
 			max-width: 1500px;
@@ -367,8 +385,9 @@ footer {
 	font-size: 0.9em;
 	clear: both;
 	margin: 0;
-	color: #515254 !important;
-	background: rgba(255,255,255,0.6) url("images/shadow_top_clear.png") no-repeat top center;
+	color: #FFF !important;
+	font-color: #FFF;
+	background: #515B4A;
 	line-height: 1.5em;
 	min-width: 1024px;
 	padding: 0 20px;
@@ -395,17 +414,23 @@ footer section div:nth-child(3) div{ width: 24%;}
 footer section div:nth-child(3) div:nth-child(1){ width: 31%;}
 footer section div:nth-child(3) div:nth-child(3){ width: 19%;}
 footer section a{
-	color: #515254 !important;
+	color: #ffffff !important;
 }
 footer section div a{ display: block; vertical-align: top} 
-footer section:nth-child(1){background: url("images/shadow_bottom_clear.png") no-repeat bottom center; text-align: left;}
+footer section:nth-child(1){background: url("") no-repeat bottom center; text-align: left;}
 footer section > div:nth-child(2) { width: 26%; padding: 0px 20px 0px 20px;}
  footer .redes{ width: 26%; padding: 0 20px 0px 20px; margin: 20px 0 0 70px; }
 
 footer section > div:nth-child(3), footer nav{ width: 66%; padding: 0 20px 0px 20px !important; display: inline-block; border-left: 1px #cfcfcf solid;}
  footer nav  { border:none; font-weight: bold; vertical-align: top; margin-top: 20px; padding: 0px; font-size: 1.1em;}
   footer nav a { margin: 0 30px 0 3px;}
- footer section:nth-child(2) span p{ display: block; font-weight: 700; font-size: 0.8em; margin-top: 12px;}
+ footer section:nth-child(2) span p{ 
+	display: block;
+	font-weight: 700;
+	font-size: 0.9em;
+	margin-top: 12px;
+	color: #ffffff;
+}
  footer section:nth-child(2) span{ margin: 0 10px; position: relative; padding:  0 10px;}
  footer section:nth-child(2) span:last-child{ margin-right: 0px; padding-right: 0px;}
  footer section:nth-child(2) span:first-child{ margin-left: 0px; padding-left: 0px;}
@@ -451,11 +476,29 @@ footer section > div:nth-child(3), footer nav{ width: 66%; padding: 0 20px 0px 2
 }
 /** furtherActions is intended to a consistent style reused in various places - Im not sure this is the best place...please move **/
 #furtherActions {
-	margin: -45px 0 10px 0;
+	/*margin: -45px 0 10px 0;
 	padding:20px 5px 5px 5px;
-	/*background-color: rgba( 204, 233, 242, 0.7);*/
 	-webkit-border-radius: 10px;
     border-radius: 10px;
+	background-color: rgba( 204, 233, 242, 0.7);*/
+	/*margin: 0 0 20px 0;
+	min-height: 110px;
+	padding: 20px;
+	background: rgba(255, 255, 255, 1);
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+	-webkit-box-shadow: 0 0 3px#F0F0F0;
+	box-shadow: 0 0 3px #DFDFDF;*/
+	margin: 9px 0 20px 0;
+	min-height: 110px;
+	padding: 20px;
+	background: rgba(255, 255, 255, 1);
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+	-webkit-box-shadow: 0 0 3px#F0F0F0;
+	box-shadow: 0 0 3px #DFDFDF;
 }
 #furtherActions h4 {
 	padding: 0px;
@@ -477,13 +520,15 @@ table{font-size:100%;}
 
 table.actionsList td,
 table.actionsList th {
-	padding:12px 14px;
+	padding:9px 14px;
 	vertical-align: middle;
 }
 table.actionsList th {
-	font-size:1em;
-	font-weight:bold;
-	text-align:right;
+	font-size:1.1em;
+	text-align:left;
+	font-weight:300;
+	color:#007FC9;
+	
 }
 
 table.actionsList tr:last-child th:first-child,
@@ -569,7 +614,7 @@ div#warnings ul {
 }
 #globalOverviewLinks {
 	margin: 0;
-	float: left;
+	float: right;
 	/*width: 450px;*/
 	width:60%;
 	padding-left: 20px;
@@ -722,8 +767,8 @@ div.subcontainer {
 }
 
 #quickConceptSearch{
-	padding:10px 20px 15px 20px;
-	background: rgba(53, 188, 224, 0.4);
+	padding: 0px 0px 35px 130px;
+/*	background: rgba(53, 188, 224, 0.4);*/
 	-webkit-border-radius: 20px;
     border-radius: 20px;
 	font-family: 'Economica', Helvetica, Arial, sans-serif;
@@ -843,10 +888,6 @@ div:empty {
 }
 /* End of Added By Dave */
 h7#noGeoreferencedPoints {
-	background:#FAF9F3;
-	padding:20px;
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
 	display:inline-block;
 	font-weight:bold;
 }
@@ -921,7 +962,9 @@ h2 .twitter-share-button{
 }
 #twopartheader+#quickConceptSearch{
 	border-radius: 0 0 20px 20px;
-	margin-top: -20px;
+	margin-top: -107px;
+	z-index: 12000;
+	float: right;
 }
 .dataTables_info{
 	margin: 13px;
@@ -1018,6 +1061,15 @@ h2 .twitter-share-button{
 	background:white url(../../skins/standard/images/faq_ico.png) no-repeat 20px center;
 	padding:17px 15px 17px 60px;
 	text-align: left;
+}
+.decoration {
+	margin-top: 10px;
+	border-bottom: 11px solid #9B9B9B;
+	height: 62px;
+	width:100%;
+	background: url("images/footer_flower.png");
+	clear: both;
+	min-width:1024px;
 }
 
 @media screen and (max-width:1120px){

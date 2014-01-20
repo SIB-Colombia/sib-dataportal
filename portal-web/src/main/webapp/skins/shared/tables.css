@@ -136,6 +136,7 @@ table.results tr:last-child td:only-child{
 table.statistics tr {
 	border: 0px; 
 	font-weight: normal;
+	border-bottom: 1px solid #f1f1f1;
 }
 table.statistics td,
 table.smallStatistics td,
@@ -163,40 +164,50 @@ table.smallStatistics td.property {
 
 /* to be moved to another home */
 fieldset {
-	border:0px;
+/*	border:0px;
 	margin: 10px 0;
 	-webkit-border-radius: 20px;
     border-radius: 20px;
-	padding:20px;
+	padding:20px; */
 }
 
 fieldset label {
-	display: block;
+/*	display: block;
 	float: left;
 	margin-bottom: 5px;
 	margin-right:5px;
 	text-align: left;
 	width: 160px;
 	padding-right: 20px;
-	padding-bottom: 5px;	
+	padding-bottom: 5px;*/
+	padding-right: 20px;
+	font-size: 1.1em;
+	text-align: left;
+	font-weight: 300;
+	color: #007FC9;
+	float: left;
+	vertical-align: middle;
 }
 fieldset br {
 	clear:left;
 }
 
 fieldset p{
-	border-bottom:1px solid #ded3cc;
+/*	border-bottom:1px solid #ded3cc;
 	padding-bottom:6px;
 	min-height:20px;
-	display:block;
+	display:block;*/
+	padding: 9px 14px;
+	vertical-align: middle;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 9px 14px;
+	min-height: 3.4em;
 }
 fieldset p:last-child{
 	border-bottom:none 0px transparent;
 	padding-bottom:0px;
 }
-fieldset label{
-	font-weight:bold;
-}
+
 form.acceptForm {
 	margin: 10px 0px 10px 0px;
 }
@@ -303,7 +314,7 @@ input[type="submit"], button{
 	color: gray;
 	position: absolute;
 	right: 4%;
-	top: -93px;
+	top: -77px;
 
 	}
 

@@ -81,6 +81,7 @@
 </display:table>
 -->
 
+    <div id="boxcontent">
 <display:table name="dataResources" export="false" class="statistics" id="dataResource" cellspacing="0">
   <display:column sortProperty="dataResource.name" titleKey="dataset.resources.list.title" class="name">
   	<a href="${pageContext.request.contextPath}/conjuntos/resource/${dataResource.key}">${dataResource.name}</a>
@@ -105,6 +106,9 @@
 		  </c:otherwise>
 		</c:choose>
   </display:column>
+  
+
+
   <display:column titleKey="dataset.list.occurrence.count.georeferenced" class="bigcount">
     <c:choose>
       <c:when test="${dataResource.occurrenceCount>0}">
@@ -127,6 +131,9 @@
 		  </c:otherwise>
 		</c:choose>
   </display:column> 
+  
+  
+
   <display:column titleKey="dataset.list.taxonconcept.count" class="count">
      <c:if test="${dataResource.conceptCount>0}">
   	 	<fmt:formatNumber value="${dataResource.conceptCount}" pattern="###,###"/>
@@ -140,6 +147,7 @@
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>
+</div>
 
 	</c:otherwise>
 </c:choose>

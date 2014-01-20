@@ -14,30 +14,31 @@ h4{
 	padding: 20px 0 0 0px;
 }
 #twopartheader {
-	margin: 20px 0 0px 0;
-	padding:20px 20px 20px 110px;
-	min-height: 70px;
-	background:rgba(250,249,243, 1) url('images/ico_help.png') no-repeat 20px 20px ;
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
-	position:relative;
+/*	background-color: #CEE6B9;*/
+	margin: 0px 0 20px 0;
+	padding: 7px 20px 0px 0px;
+	position: relative;
 }
 #twopartheader h2 {
-	color: #34BCE0;
-	padding: 5px 0 0 0;
+	color: #fff;
+	padding: 0 0 0 0;
 	margin: 0;
-	font-size: 2em;
 	font-weight: 300;
 	text-transform: uppercase;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
+	margin-bottom: 9px;
+	line-height: 37px;
+	font-size: 35px;
+	display: inline-block;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
 	margin: 0;
-	font-weight: 400;
+	font-weight: 300;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	º
-	font-size:1em;
+	color: #fff;
+	line-height: 1.3em;
+	font-size: 12px;
 }
 #content p {
 	margin: 5px 50px 10px 94px;

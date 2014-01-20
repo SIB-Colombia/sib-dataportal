@@ -92,9 +92,14 @@
 	<c:choose>
 		<c:when test="${not empty concepts}">
 			<tiles:insert page="quickTaxonSearch.jsp"/>
+            
+<div id="boxcontent">        
 			<div id="taxonomytree" class="smalltree">
 				<gbif:smallbrowser concepts="${concepts}" rootUrl="${rootUrl}" highestRank="${highestRank}" selectedConcept="${taxonConcept}" markConceptBelowThreshold="${dataProvider.key==nubProvider.key}" messageSource="${messageSource}" occurrenceManager="${occurrenceManager}"/>
 			</div>
+	            </div>
+            
+            
 		</c:when>
 		<c:when test="${dataProvider!=null}">
 			<spring:message code="taxonomy.browser.notree.for"/> ${dataProvider.name}<c:if test="${dataResource!=null}">: ${dataResource.name}</c:if>

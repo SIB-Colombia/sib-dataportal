@@ -214,8 +214,8 @@
 
 <div id="mapSelector" 
 	class="zoom${zoom}"
-	onMouseOver='javascript:capture=true;' 
-	onMouseOut='javascript:capture=false;'
+	onMouseOver="javascript:capture=true;" 
+	onMouseOut="javascript:capture=false;"
 	<c:choose>
 		<c:when test='${zoom == 6}'>
 			onclick="javascript:occurrenceSearch();"

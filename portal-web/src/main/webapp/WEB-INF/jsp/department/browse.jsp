@@ -37,16 +37,18 @@
 	
 	<% // SIB Colombia, details of Colombia %>
 	<tiles:insert page="actions.jsp"/>
-	
+<div id="boxcontent">  
 	<div class="subcontainer">
 		<tiles:insert page="occurrences.jsp"/>
         <div class="menu_amarillo"><p>
     <spring:message code="departments.list.link.countries" arguments="${pageContext.request.contextPath}/paises/"/>
 	</p></div>
 	</div>
-	
+		</div>
+        
+	        <div id="boxcontent">
 	<fmt:setLocale value="en_US"/>
-	
+
 	<display:table name="departments" export="false" class="statistics" id="department" cellspacing="0">
 	  <display:column titleKey="deparments.drilldown.main.title" class="name">
 	  	<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}">${department.departmentName}</a>
@@ -65,7 +67,7 @@
 	</display:table>
 	</c:otherwise>
 </c:choose>
-
+</div>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
 	var oTable = $('#department').dataTable( {

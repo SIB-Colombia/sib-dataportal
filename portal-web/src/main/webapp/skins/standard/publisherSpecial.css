@@ -1,33 +1,29 @@
 #twopartheader {
-	margin: 0 0 20px 0;
-	min-height: 110px;
-	padding:20px;
-	background:rgba(250,249,243, 1) url('images/publicadores_ico.png') no-repeat 20px 20px ;
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
-	position:relative;
+/*	background-color: #CEE6B9;*/
+	margin: 0px 0 20px 0;
+	padding: 7px 20px 0px 0px;
+	position: relative;
 }
-/* Added by Dave */
 #twopartheader h2 {
-	color: rgb(235, 169, 0);
-	padding: 0 150px 0 60px;
+	color: #fff;
+	padding: 0 0 0 0;
 	margin: 0;
-	font-size: 2em;
 	font-weight: 300;
 	text-transform: uppercase;
-	line-height: 1.6em;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	width:90%;
-	display:inline-block;
+	margin-bottom: 9px;
+	line-height: 37px;
+	font-size: 35px;
+	display: inline-block;
 }
 #twopartheader h3 {
-	padding: 7px 0 0 60px;
+	padding: 7px 0 0 0px;
 	margin: 0;
-	font-weight: 400;
+	font-weight: 300;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	color:#666;
-line-height:1.3em;
-	font-size:1em;
+	color: #fff;
+	line-height: 1.3em;
+	font-size: 12px;
 }
 .subject {
 	font-weight: 300;
@@ -48,12 +44,12 @@ img.logo {
 	color: #81A647;
 }
 #content h4 {
-	margin: 20px 0 5px 30px;
-	padding: 0;
-	font-size: 1.9em;
-	color:#41372F;
+	padding-bottom: 20px;
+	line-height: 20px;
+	font-size: 23px;
+	font-weight: 300;
 	text-transform:uppercase;
-	font-style:italic;
+	border-bottom: 1px solid #f1f1f1;
 }
 .lt, a.lt {
 	color: #BBB
@@ -130,11 +126,8 @@ ul.flatlist #chosen {
 	text-align:center;
 	}
 #furtherActions {
-	margin: -40px 0 10px 0;
-	padding:20px 5px 5px 5px;
+	margin: -15px 0 10px 0;
 	/*background-color: rgba( 204, 233, 242, 0.7);*/
-	-webkit-border-radius: 10px;
-    border-radius: 10px;
 }
 #furtherActions td{
 	padding:6px;
@@ -169,8 +162,6 @@ ul.flatlist #chosen {
 	color: #FF0000;
 }
 .subcontainer p {
-	margin-left: 10px;
-	margin-top: 10px;
 }
 .extractionEvent {
 	background-color: #F6F6F6;
@@ -195,14 +186,14 @@ table.statistics{
 .statistics .odd td,
 table.actionsList tr:nth-child(odd) td,
 table.actionsList tr:nth-child(odd) th {
-	background-color:rgba(235, 169, 0, 0.2);
+	border-bottom: 1px solid #f1f1f1;
 }
 table.statistics td,
 table.smallStatistics td,
 table.results td,
 table.actionsList td,
 table.actionsList th{
-	background-color:rgba(235, 169, 0, 0.2);
+	border-bottom: 1px solid #f1f1f1;
 }
 table.statistics .odd td,
 table.smallStatistics .odd td,
@@ -210,15 +201,19 @@ table.results .odd td,
 table.actionsList tr:nth-child(2n) th,
 table.actionsList tr:nth-child(2n) td,
 table.smallStatistics tr:nth-child(2n) td{
-	background-color:rgba(235, 169, 0, 0.3);
+	border-bottom: 1px solid #f1f1f1;
+	color: #007FC9;
 }
 table.statistics th,
 table.smallStatistics th{
-	background-color:rgba(235, 169, 0, 0.6);
 	height:50px;
+	font-size: 1.1em;
+	text-align: left;
+	font-weight: 300;
+	color: #007FC9;
 }
 input[type="submit"], button{
-	background-color:rgb(166,180,98);
+	border-bottom: 1px solid #f1f1f1;
 }
 .dataTables_wrapper{
 	margin-top: 0px;

@@ -1,29 +1,29 @@
 #twopartheader {
-	margin: 0px 0 10px 0;
-	padding:20px 20px 20px 80px;
-	min-height: 80px;
-	background:rgba(250,249,243, 1) url('images/ico_search_br_big.png') no-repeat 20px 20px ;
-	-webkit-border-radius: 20px;
-    border-radius: 20px;
-	position:relative;
+/*	background-color: #CEE6B9;*/
+	margin: 0px 0 20px 0;
+	padding: 7px 20px 0px 0px;
+	position: relative;
 }
 #twopartheader h2 {
-	color: #7e4717;
-	padding: 5px 0 0 0px;
+	color: #fff;
+	padding: 0 0 0 0;
 	margin: 0;
-	font-size: 2em;
 	font-weight: 300;
 	text-transform: uppercase;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
+	margin-bottom: 9px;
+	line-height: 37px;
+	font-size: 35px;
+	display: inline-block;
 }
 #twopartheader h3 {
 	padding: 7px 0 0 0px;
 	margin: 0;
-	font-weight: 400;
+	font-weight: 300;
 	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
-	color:black;
-line-height:1.3em;
-	font-size:1em;
+	color: #fff;
+	line-height: 1.3em;
+	font-size: 12px;
 }
 
 #content h1 {
@@ -206,7 +206,6 @@ input[type="submit"], button{
 	font-size:1.7em;
 	font-style:italic;
 	font-weight:400;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 #searchResultCount h4{
 	font-size:1em;
@@ -217,7 +216,7 @@ input[type="submit"], button{
 .statistics .odd td,
 table.actionsList tr:nth-child(odd) td,
 table.actionsList tr:nth-child(odd) th {
-	background-color:rgba(239, 107, 45, 0.1);
+	border-bottom: 1px solid #f1f1f1;
 }
 .results th,
 .results td,
@@ -227,16 +226,14 @@ table.actionsList tr:nth-child(odd) th {
 .actionsList td,
 table.actionsList tr:nth-child(even) td,
 table.actionsList tr:nth-child(even) th{
-	background-color:rgba(239, 107, 45, 0.2);
+	border-bottom: 1px solid #f1f1f1;
 	padding:12px 14px;
 }
 
 table.actionsList tr:first-child th:first-child,
 table.actionsList tr:first-child td:first-child{
-	-webkit-border-radius: 15px 0 0 0 ;
-    border-radius:15px 0 0 0 ;
+
 }
 table.actionsList tr:first-child td:last-child{
-	-webkit-border-radius: 0 15px 0 0;
-    border-radius: 0 15px 0 0;
+
 }

@@ -14,11 +14,12 @@
 	    		<tr>
     				<strong><c:set var="placeholder"><spring:message code="quick.taxon.search"/></c:set></strong>
 	   				<td style="width:290px;" valign="top">
-  	 					<input id="statesinput" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/> 
-			      		<div id="statescontainer" style="margin-left:3px;width:200px;"></div>
+  	 					<input id="statesinput" value="${not empty param['qs'] ? param['qs'] : placeholder }" type="search" placeholder="<spring:message code="quick.taxon.search"/>"/>
+                        <span id="noMatchesReport"></span> 
+                             		<div id="statescontainer" style="margin-left:3px;width:200px;"></div>
    					</td>	
 		       	<td style="width:60px; valign:top;" valign="top"><input type="submit" onclick="javascript:findBrowseUrl(document.getElementById('statesinput').value, null, null);" value=" "></td>
-	    			<td><span id="noMatchesReport"></span></td>		       	
+	    			<td></td>		       	
    				</tr>
 		    </table>
    	 </div><!--statesautocomplete-->

@@ -16,52 +16,55 @@ div.smalltree a:visited {
 	border-bottom: none;
 }
 div.smalltree div.ancestor {
-	padding: 0 0 0 20px;
+/*	padding: 0 0 0 20px;
 	margin:15px 0 0 20px;
+	*/
 }
 div.smalltree div.list {
-	margin-top: -2px;
+/*	margin-top: -2px;
 	margin-left: 12px;
 	margin-bottom: 5px;
-	/*background: url('../standard/images/tree_lines2.png') repeat-y bottom left;*/
-	padding: 15px 0 0 20px;
+	padding: 15px 0 0 20px;*/
+/*background: url('../standard/images/tree_lines2.png') repeat-y bottom left;*/
 }
 
 #taxonomytree {
 	/*background:url('../standard/images/linea_sombra.png') top center no-repeat;*/
-	padding-top:20px;
-	margin-top:10px;
+	/*padding-top:20px;
+	margin-top:10px;*/
 }
 #taxonomytree p:before {
-	content:" ";
+	/*content:" ";
 	background: url('../standard/images/tree_lines1.png') no-repeat left bottom;
 	position:absolute;
 	height:65px;
 	width:20px;
 	margin:-50px 0 0 -30px;
+	*/
 }
 #taxonomytree .ancestor > p:before {
-	content:" ";
+	/*content:" ";
 	background: url('../standard/images/tree_lines1.png') no-repeat left bottom;
 	position:absolute;
 	height:40px;
 	width:20px;
-	margin:-25px 0 0 -30px;
+	margin:-25px 0 0 -30px;*/
 }
 div.smalltree p {
 	margin: 0;
 	padding: 10px;
-	-webkit-border-radius: 12px;
+	/*-webkit-border-radius: 12px;
     border-radius: 12px;
 	background:rgba(255,255,255,0.4);
-	display:table;
+	display:table;*/
+	border-bottom: 1px solid #f1f1f1;
+	width: 100%;
 }
 
 div.smalltree p.selected {
-	background:#007FC9;
+	color:#333333;
 }
 div.smalltree p.selected span {
-	color:white !important;
 }
 .list p {
 	margin: 0 0 15px 0 !important;
@@ -73,9 +76,12 @@ div.smalltree p.selected, div.smalltree p.selectedTentative {
 }
 /* Taxonomy Browsing */
 #smtFirstLevel {
-	padding-bottom: 5px;
-	font-weight:700;
-	font-size:1.1em;
+	padding-bottom: 20px;
+	line-height: 20px;
+	font-size: 23px;
+	font-weight: 300;
+	text-transform: uppercase;
+	font-family: 'Open sans', Helvetica, Verdana, Arial, sans-serif;
 	background-image:none !important;
 	text-transform:uppercase;
 	position:relative;
@@ -85,31 +91,38 @@ div.smalltree p.selected, div.smalltree p.selectedTentative {
 	background-image:none !important;
 	display:none !important;
 	}
-.rank, .taxon {
-	color: #007FC9;
+.rank{
+	color: #333333;
+	font-weight: 300;
+	font-size: 17px;
+	font-style: normal;
+	font-variant: normal;
+	height: 20px;
 }
 .taxon {
-	color: #000000;
+	font-size: 17px;
+	color: #007FC9;
 	background: url('../standard/images/l_arrow.png') no-repeat top right;
 	padding-right:20px;
+	
 }
 .generaTaxon {
 	font-style: italic;
-	color: #000000;
+	color: #333333;
 }
 .selected .generaTaxon {
 	font-size:1.2em;
-	color:#bfe6f7;
+	color:#0099cc;
 }
 .overviewLink {
-	padding-left: 15px;
+	/*padding-left: 15px;
 	padding-right: 5px;
-	/*background: url('../standard/images/l_arrow.png') no-repeat top left;*/
+	background: url('../standard/images/l_arrow.png') no-repeat top left;*/
 	border: none;
 }
 .selectedConceptLink {
 	margin: 0;
-	padding:3px 13px;
+/*	padding:3px 13px; */
 	margin-top:-5px;
 	border: none;
 	background: url("../standard/images/plus_blue_1.png") no-repeat scroll 8px 3px transparent;
@@ -123,10 +136,6 @@ a.treeNodeLink, a.treeNodeLinkTentative, a.treeNodeLink:hover, a.treeNodeLinkTen
 }
 a.treeNodeLink{
 	font-weight:bold;
-}
-.rank, .taxon{
-	font-weight:bold;
-	font-size:1.2em;
 }
 a.treeNodeLinkTentative .rank {
 	color: #c11bd2;
@@ -144,16 +153,16 @@ a.treeNodeLinkTentative .generaTaxon {
 	color:white;
 }
 .selected a {
-	color:#bfe6f7 !important;
+	color:#A8A8A8 !important;
 }
 p.selected .rank {
-	color: #34BCE0;
+/*	color: #34BCE0;*/
 }
 p.selected .taxon {
-	color: #000000;
+	color: #007FC9;;
 }
 p.selected .generaTaxon {
-	color: #000000;
+	color: #333333;
 }
 p.selectedTentative .rank {
 	color: #c11bd2;
@@ -166,7 +175,7 @@ p.selectedTentative .generaTaxon {
 }
 #uncertainPositions {
 	margin-left: 5px;
-	color: #000000;
+	color: #333333;
 }
 #unconfirmedNames {
 	margin-left: 5px;
@@ -200,7 +209,7 @@ a.taxonOverviewLink {
 	display:block;
 }
 a.taxonOverviewLink:visited {
-	color: #34BCE0;
+	color: #A8A8A8;
 	border: none;
 }
 a.taxonOverviewLink:hover {

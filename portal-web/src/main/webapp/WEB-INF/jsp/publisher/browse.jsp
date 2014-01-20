@@ -14,7 +14,7 @@
 	</c:when>
 	<c:otherwise><br/></c:otherwise>
 </c:choose>
-
+<div id="boxcontent">  
 	
 <fmt:setLocale value="en_US"/>
 <display:table name="dataProviders" export="false" class="statistics" id="dataProvider" cellspacing="0">
@@ -80,6 +80,8 @@
   <display:setProperty name="basic.msg.empty_list"> </display:setProperty>	  
   <display:setProperty name="basic.empty.showtable">false</display:setProperty>	  
 </display:table>
+</div>
+
 
 
 <script type="text/javascript" charset="utf-8">
