@@ -52,9 +52,8 @@ public class PortalManager {
 	         	query.append(" SET iso_country_code_calculated = (select iso_country_code from country_name where replace(replace(lower(trim(name)),'.',''),'\\'','') like '" + rec.getIsoCountryCodeCalculated().trim().toLowerCase().replace("'", "").replace(".", "") + "' limit 1)");
 	         }
 	         query.append(" WHERE id = " + rec.getId());
-	         query.append(" AND longitude LIKE ('"+ rec.getLongitude() + "')");
-	         query.append(" AND latitude LIKE ('"+ rec.getLatitude()+ "')");
 	         query.append("; ");
+	         System.out.println(query.toString());
 	         return DataBaseManager.makeChange(query.toString(), conx);
         }
 

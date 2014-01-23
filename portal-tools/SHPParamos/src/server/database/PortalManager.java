@@ -55,8 +55,6 @@ public class PortalManager {
 	                        	query.append(" SET paramo = (select complex_id from paramo where complex like '" + rec.getParamo() + "' )");
 	                        }
 	                        query.append(" WHERE id = " + rec.getId());
-	                        query.append(" AND CAST(longitude AS DECIMAL) = CAST("+ rec.getLongitude() + " AS DECIMAL)");
-	       	             	query.append(" AND CAST(latitude AS DECIMAL) = CAST("+ rec.getLatitude()+ " AS DECIMAL)");
 	                        query.append("; ");
 	                        result = DataBaseManager.makeChange(query.toString(), conx);
 	                        System.out.println(query.toString()+"respuesta:" + result);

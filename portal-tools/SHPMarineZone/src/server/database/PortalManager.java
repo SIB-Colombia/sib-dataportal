@@ -53,8 +53,6 @@ public class PortalManager {
 	        	query.append(" SET marine_zone = (select mask from marine_zone where description like ('" + rec.getMarineZone().split(",")[0] + "'))");
 	        }
 	        query.append(" WHERE id = " + rec.getId());
-	        query.append(" AND longitude LIKE ('"+ rec.getLongitude() + "')");
-	        query.append(" AND latitude LIKE ('"+ rec.getLatitude()+ "')");
 	        query.append(";");
 	        return DataBaseManager.makeChange(query.toString(), conx);
 

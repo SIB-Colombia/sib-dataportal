@@ -53,8 +53,6 @@ public class PortalManager {
 	        	query.append(" SET iso_department_code_calculated = (select iso_department_code from department where department_name like ('" + rec.getDepartamento() + "'))");
 	        }
 	        query.append(" WHERE id = " + rec.getId());
-	        query.append(" AND longitude LIKE ('"+ rec.getLongitude() + "')");
-	        query.append(" AND latitude LIKE ('"+ rec.getLatitude()+ "')");
 	        query.append(";");
 	            
 	        return DataBaseManager.makeChange(query.toString(), conx);
