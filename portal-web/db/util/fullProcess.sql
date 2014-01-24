@@ -64,99 +64,7 @@ set
 -- since Colombian cells are not well configured in HIT so the validation aplies for 
 -- coordinates that actually are in Colombia shape
 -- ***********************************
-
--- removing logs of this marked issue
-delete from gbif_log_message where event_id=1008 and occurrence_id  in 
-(select id from occurrence_record where geospatial_issue=32);
--- removing geospatial_issue
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
-
-update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
-
-update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
-
-update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated;
-
-update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
-
-call gbif_log_message();
-
--- clear the centi cells
--- Query OK, 0 rows affected (54.06 sec)
-select concat('Clearing centi cells: ', now()) as debug;    
--- truncate table centi_cell_density;
-delete from centi_cell_density;
-
--- populate the centi_cell_density for country
--- Query OK, 405400 rows affected (17 min 2.61 sec)
--- Records: 405400  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for country: ', now()) as debug;
-insert into centi_cell_density 
-select 2, c.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join country c on oc.iso_country_code=c.iso_country_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
-
--- populate the cell_density for home country
--- This is the data for data_providers tied to a country
--- Query OK, 486945 rows affected (8 min 44.25 sec)
--- Records: 486945  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for home country: ', now()) as debug;
-insert into centi_cell_density 
-select 6, c.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join data_provider dp on oc.data_provider_id=dp.id
-inner join country c on dp.iso_country_code=c.iso_country_code
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
-
--- populate home country for international networks
--- Query OK, 262835 rows affected (56.98 sec)
--- Records: 262835  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for international networks: ', now()) as debug;
-insert into centi_cell_density 
-select 6, 0, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join data_provider dp on oc.data_provider_id=dp.id
-where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc. deleted is null
-group by 3,4;
-
--- populate the centi_cell_density for provider
--- Query OK, 1010956 rows affected (3 min 39.17 sec)
--- Records: 1010956  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for provider: ', now()) as debug;
-insert into centi_cell_density
-select 3,data_provider_id,cell_id,centi_cell_id,count(id)
-from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0 and deleted is null
-group by 1,2,3,4;
-
--- populate the centi_cell_density for resource
--- Query OK, 1350386 rows affected (3 min 40.00 sec)
--- Records: 1350386  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for resource: ', now()) as debug;
-insert into centi_cell_density
-select 4,data_resource_id,cell_id,centi_cell_id,count(id)
-from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0 and deleted is null
-group by 1,2,3,4;
-
--- populate the centi_cell_density for resource_network
--- Query OK, 820967 rows affected (10 min 31.83 sec)
--- Records: 820967  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for network: ', now()) as debug;
-insert into centi_cell_density
-select 5,nm.resource_network_id,cell_id,centi_cell_id,count(oc.id)
-from occurrence_record oc
-inner join network_membership nm on oc.data_resource_id=nm.data_resource_id
-where centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by nm.resource_network_id, oc.cell_id, oc.centi_cell_id;
-
--- ***********************************
--- Addition by SiB Colombia
 -- Assigns all possible occurrences for basis of record ids to the corresponding DarwinCore
--- ***********************************
 
 -- populate basis_of_record according to differents possible ids.
 -- Preserved Specimen
@@ -193,16 +101,7 @@ update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_r
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='21' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%nomenclaturalchecklist%');
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='21' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%listadecomprobaciondenomenclatura%');
 
--- ignoring event_id = 1006 since that validation is not quite accurate
-delete from gbif_log_message where event_id=1006 and occurrence_id in (select id from occurrence_record where geospatial_issue=0 and basis_of_record!=0);
-
--- delete warning 
-update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2;
-
--- ***********************************
--- Addition by SiB Colombia
 -- Assigns all possible occurrences for department names to the corresponding ISO-CODE
--- ***********************************
 
 -- populate iso_department_code according to differents possible names.
 -- Bogotá, D.C
@@ -401,22 +300,9 @@ update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vichada') and (occurrence_record.iso_country_code='CO');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-vid') and (occurrence_record.iso_country_code='CO');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='99') and (occurrence_record.iso_country_code='CO');
--- populate the centi_cell_density for department
--- 8 is department lookup_cell_density_type
-select concat('Building centi cells for department: ', now()) as debug;
-insert into centi_cell_density 
-select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join department d on oc.iso_department_code=d.iso_department_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
--- End of SiB Colombia addition
--- --------------------------------------------
 
--- ***********************************
--- Addition by SiB Colombia
+
 -- Assigns all possible occurrences for county codes to the corresponding ISO-CODE
--- ***********************************
 
 -- populate iso_county_code according to differents possible codes.
 update occurrence_record, raw_occurrence_record set iso_county_code = '05001' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-ANT' and lower (raw_occurrence_record.county)=('medellín');
@@ -1540,6 +1426,125 @@ update occurrence_record, raw_occurrence_record set iso_county_code = '99001' wh
 update occurrence_record, raw_occurrence_record set iso_county_code = '99524' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('la primavera');
 update occurrence_record, raw_occurrence_record set iso_county_code = '99624' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('santa rosalía');
 update occurrence_record, raw_occurrence_record set iso_county_code = '99773' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('cumaribo');
+
+-- End of SiB Colombia addition
+-- --------------------------------------------
+
+-- ignoring event_id = 1006 since that validation is not quite accurate
+delete from gbif_log_message where event_id=1006 and occurrence_id in (select id from occurrence_record where geospatial_issue=0 and basis_of_record!=0);
+
+-- delete warning 
+update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2;
+
+-- removing logs of this marked issue
+delete from gbif_log_message where event_id=1008 and occurrence_id  in (select id from occurrence_record where geospatial_issue=32);
+
+-- removing geospatial_issue
+update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
+
+update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated or iso_country_code_calculated is null;
+
+update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
+
+update occurrence_record set geospatial_issue= 32 
+where iso_department_code in ('CO-GUV','CO-ATL','CO-MAG','CO-BOL','CO-SUC','CO-COR','CO-ANT','CO-CHO','CO-VAC','CO-CAU','CO-NAR') 
+and iso_country_code_calculated = 'CO'  
+and iso_department_code_calculated is null 
+and marine_zone is null;
+
+update occurrence_record set geospatial_issue= 32 
+where iso_department_code not in ('CO-GUV','CO-ATL','CO-MAG','CO-BOL','CO-SUC','CO-COR','CO-ANT','CO-CHO','CO-VAC','CO-CAU','CO-NAR') 
+and iso_country_code_calculated = 'CO'  
+and iso_department_code_calculated is null; 
+
+call gbif_log_message();
+
+-- clear the centi cells
+-- Query OK, 0 rows affected (54.06 sec)
+select concat('Clearing centi cells: ', now()) as debug;    
+-- truncate table centi_cell_density;
+delete from centi_cell_density;
+
+-- populate the centi_cell_density for country
+-- Query OK, 405400 rows affected (17 min 2.61 sec)
+-- Records: 405400  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for country: ', now()) as debug;
+insert into centi_cell_density 
+select 2, c.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join country c on oc.iso_country_code=c.iso_country_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
+-- populate the cell_density for home country
+-- This is the data for data_providers tied to a country
+-- Query OK, 486945 rows affected (8 min 44.25 sec)
+-- Records: 486945  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for home country: ', now()) as debug;
+insert into centi_cell_density 
+select 6, c.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join data_provider dp on oc.data_provider_id=dp.id
+inner join country c on dp.iso_country_code=c.iso_country_code
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
+-- populate home country for international networks
+-- Query OK, 262835 rows affected (56.98 sec)
+-- Records: 262835  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for international networks: ', now()) as debug;
+insert into centi_cell_density 
+select 6, 0, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join data_provider dp on oc.data_provider_id=dp.id
+where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc. deleted is null
+group by 3,4;
+
+-- populate the centi_cell_density for provider
+-- Query OK, 1010956 rows affected (3 min 39.17 sec)
+-- Records: 1010956  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for provider: ', now()) as debug;
+insert into centi_cell_density
+select 3,data_provider_id,cell_id,centi_cell_id,count(id)
+from occurrence_record
+where centi_cell_id is not null and geospatial_issue=0 and deleted is null
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for resource
+-- Query OK, 1350386 rows affected (3 min 40.00 sec)
+-- Records: 1350386  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for resource: ', now()) as debug;
+insert into centi_cell_density
+select 4,data_resource_id,cell_id,centi_cell_id,count(id)
+from occurrence_record
+where centi_cell_id is not null and geospatial_issue=0 and deleted is null
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for resource_network
+-- Query OK, 820967 rows affected (10 min 31.83 sec)
+-- Records: 820967  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for network: ', now()) as debug;
+insert into centi_cell_density
+select 5,nm.resource_network_id,cell_id,centi_cell_id,count(oc.id)
+from occurrence_record oc
+inner join network_membership nm on oc.data_resource_id=nm.data_resource_id
+where centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by nm.resource_network_id, oc.cell_id, oc.centi_cell_id;
+
+-- populate the centi_cell_density for department
+-- 8 is department lookup_cell_density_type
+select concat('Building centi cells for department: ', now()) as debug;
+insert into centi_cell_density 
+select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join department d on oc.iso_department_code=d.iso_department_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
 -- populate the centi_cell_density for county
 -- 9 is county lookup_cell_density_type
 select concat('Building centi cells for county: ', now()) as debug;
@@ -1552,7 +1557,7 @@ group by 1,2,3,4;
 
 -- populate the centi_cell_density for paramo
 -- 10 is paramo lookup_cell_density_type
-select concat('Building centi cells for county: ', now()) as debug;
+select concat('Building centi cells for paramo: ', now()) as debug;
 insert into centi_cell_density 
 select 10, p.id, cell_id, centi_cell_id, count(oc.id)  
 from occurrence_record oc 
@@ -1589,10 +1594,6 @@ from occurrence_record oc
 where oc.marine_zone is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
-
--- End of SiB Colombia addition
--- --------------------------------------------
-
 
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
