@@ -67,7 +67,7 @@ public class PortalManager {
          */
         public synchronized List<Record> getRecords() {
                 rs = DataBaseManager.makeQuery("select id,latitude,longitude,nub_concept_id,marine_zone from " + ServerConfig.getInstance().dbTableGoods
-                                + " where id > " + lastID  + " order by id " ,
+                                + " where iso_department_code_calculated is null and id > " + lastID  + " order by id " ,
                                 conx);
 
                 endRecords = false;
