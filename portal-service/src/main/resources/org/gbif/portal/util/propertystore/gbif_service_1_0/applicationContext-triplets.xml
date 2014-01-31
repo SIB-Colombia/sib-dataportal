@@ -360,7 +360,7 @@
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISODEPARTMENTCODE" value="tc.departments.isoDepartmentCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISOCOUNTYCODE" value="tc.counties.isoCountyCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.COMPLEXID" value="tc.paramos.complexId"/>
-                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID" value="tc.marinezones.marineId"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID" value="tc.marineZones.mask"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.KINGDOM" value="tc.kingdomConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.PHYLUM" value="tc.phylumConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.CLASS" value="tc.classConcept.taxonNameLite.canonical"/>

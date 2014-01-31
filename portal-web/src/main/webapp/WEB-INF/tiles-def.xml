@@ -1036,7 +1036,12 @@
 	<definition name="countyTaxonHelp" extends="ajaxHtmlLayout"> 		 		
 		<put name="content" value="/WEB-INF/jsp/taxonomy/help/countyHelp.jsp"/>
 	</definition>
-  	
+  		<definition name="paramoTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/paramoTaxonHelp.jsp"/>
+	</definition>
+		<definition name="marineZoneTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/marineZoneTaxonHelp.jsp"/>
+	</definition>
 	<!-- Simple System Details Page -->
 	<definition name="systemDetails" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/systemDetailsSubtitle.jsp"/>
