@@ -48,9 +48,9 @@
         <key column="from_concept_id"/>
         <one-to-many class="org.gbif.portal.model.taxonomy.RelationshipAssertion"/>
     </set>
-    <set lazy="true" name="commonNames">
+    <set lazy="true" name="commonNames" table="common_name_taxon_concept">
         <key column="taxon_concept_id"/>
-        <one-to-many class="org.gbif.portal.model.taxonomy.CommonName"/>
+        <many-to-many column="common_name_id" class="org.gbif.portal.model.taxonomy.CommonName"/>
     </set>
     <set lazy="true" name="countries" table="taxon_country">
         <key column="taxon_concept_id"/>

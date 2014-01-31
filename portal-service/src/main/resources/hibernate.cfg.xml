@@ -43,6 +43,7 @@
     <mapping resource="org/gbif/portal/model/resources/Agent.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/resources/DataProviderAgent.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/resources/DataResourceAgent.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/resources/Language.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/RelationshipAssertion.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/RemoteConcept.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonConcept.hbm.xml"/>

@@ -43,7 +43,7 @@ public class CommonNameDAOImpl extends HibernateDaoSupport implements CommonName
 				String nameStub = name;
 				if(fuzzy)
 					nameStub= nameStub+'%';
-				Query query = session.createQuery("select distinct name from CommonName cn where cn.name like :nameStub");
+				Query query = session.createQuery("select distinct cn.name from CommonName cn inner join cn.taxonConcepts where cn.name like :nameStub");
 				query.setParameter("nameStub", nameStub);
 				query.setCacheable(true);
 				query.setMaxResults(maxResults);
@@ -66,8 +66,8 @@ public class CommonNameDAOImpl extends HibernateDaoSupport implements CommonName
 					nameStub= nameStub+'%';
 				Query query = session.createQuery(
 						"from CommonName cn" +
-						" inner join fetch cn.taxonConcept" +
-						" inner join fetch cn.taxonConcept.taxonName" +
+						" inner join fetch cn.taxonConcepts" +
+						" inner join fetch cn.taxonConcepts.taxonName" +
 						" where cn.name like :nameStub");
 				query.setParameter("nameStub", nameStub);
 				query.setCacheable(true);
@@ -86,7 +86,7 @@ public class CommonNameDAOImpl extends HibernateDaoSupport implements CommonName
 		HibernateTemplate template = getHibernateTemplate();
 		return (List<CommonName>) template.execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) {
-				Query query = session.createQuery("from CommonName cn where  cn.taxonConceptId=:taxonConceptId");
+				Query query = session.createQuery("from CommonName cn where  cn.taxonConcepts.id=:taxonConceptId");
 				query.setParameter("taxonConceptId", taxonConceptId);
 				query.setCacheable(true);
 				query.setMaxResults(maxResults);
@@ -105,8 +105,8 @@ public class CommonNameDAOImpl extends HibernateDaoSupport implements CommonName
 			public Object doInHibernate(Session session) {
 				Query query = session.createQuery(
 						"from CommonName cn" +
-						" inner join fetch cn.taxonConcept" +
-						" inner join fetch cn.taxonConcept.taxonName" +
+						" inner join fetch cn.taxonConcepts" +
+						" inner join fetch cn.taxonConcepts.taxonName" +
 						" where cn.id like :commonNameId");
 				query.setParameter("commonNameId", commonNameId);
 				return query.uniqueResult();

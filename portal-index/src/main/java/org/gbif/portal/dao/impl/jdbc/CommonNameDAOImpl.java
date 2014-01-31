@@ -41,20 +41,20 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 	 * The create sql
 	 */
 	protected static final String CREATE_SQL = "insert into common_name(" +
-												"taxon_concept_id," +
 												"name," +
+												"transliteration," +
 												"iso_language_code," +
-												"language) " +
+												"iso_country_code) " +
 												"values (?,?,?,?)";
 	
 	/**
 	 * The update sql
 	 */
 	protected static final String UPDATE_SQL = "update common_name " +
-												"set taxon_concept_id=?," +
 												"set name=?," +
+												"set transliteration=?," +
 												"set iso_language_code=?," +
-												"set language=? where id=?";
+												"set iso_country_code=? where id=?";
 
 	/**
 	 * The delete sql
@@ -65,22 +65,24 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 	 * The get by id
 	 */
 	protected static final String QUERY_BY_ID_SQL = 
-	"select cn.id,cn.taxon_concept_id,cn.name,cn.iso_language_code,cn.language " +
+	"select cn.id,cn.name,cn.transliteration,cn.iso_language_code,cn.iso_country_code " +
 	" from common_name cn where cn.id=?";
 	
 	/**
 	 * The get by taxon_concept_id, name and language sql (e.g. Business Unique)
 	 */
 	protected static final String QUERY_BY_CONCEPT_NAME_LANGUAGE_SQL = 
-		"select cn.id,cn.taxon_concept_id,cn.name,cn.iso_language_code,cn.language " +
-		" from common_name cn where cn.taxon_concept_id=? and cn.name=? and cn.language=?";
+		"select cn.id,cn.name,cn.transliteration,cn.iso_language_code,cn.iso_country_code" +
+		" from common_name_taxon_concept cntc inner join common_name cn on cntc.common_name_id = cn.id" +
+		" where cntc.taxon_concept_id=? and cn.name=? and cn.iso_language_code=?";
 
 	/**
 	 * The get by taxon_concept_id, name and language sql (e.g. Business Unique)
 	 */
 	protected static final String QUERY_BY_CONCEPT_NAME_NOLANGUAGE_SQL = 
-		"select cn.id,cn.taxon_concept_id,cn.name,cn.iso_language_code,cn.language " +
-		" from common_name cn where cn.taxon_concept_id=? and cn.name=? and cn.language is null";
+		"select cn.id,cn.name,cn.transliteration,cn.iso_language_code,cn.iso_country_code" +
+		" from common_name_taxon_concept cntc inner join common_name cn on cntc.common_name_id = cn.id" +
+		" where cntc.taxon_concept_id=? and cn.name=? and cn.iso_language_code is null";
 	
 	/**
 	 * Reusable mapper
@@ -97,10 +99,10 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 		 */
 		public CommonName mapRow(ResultSet rs, int rowNumber) throws SQLException {
 			return new CommonName(rs.getLong("id"),
-					rs.getLong("taxon_concept_id"),
 					rs.getString("name"),
+					rs.getString("transliteration"),
 					rs.getString("iso_language_code"),
-					rs.getString("language"));			
+					rs.getString("iso_country_code"));			
 		}
 	}
 
@@ -113,10 +115,10 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 			new PreparedStatementCreator() {
 				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 					PreparedStatement ps = conn.prepareStatement(CommonNameDAOImpl.CREATE_SQL);
-					ps.setLong(1, commonName.getTaxonConceptId());
-					ps.setString(2, commonName.getName());
+					ps.setString(1, commonName.getName());
+					ps.setString(2, commonName.getTransliteration());
 					ps.setString(3, commonName.getIsoLanguageCode());
-					ps.setString(4, commonName.getLanguage());
+					ps.setString(4, commonName.getIsoCountryCode());
 					return ps;
 				}					
 			},
@@ -137,10 +139,10 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 					new PreparedStatementCreator() {
 						public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 							PreparedStatement ps = conn.prepareStatement(CommonNameDAOImpl.UPDATE_SQL);
-							ps.setLong(1, commonName.getTaxonConceptId());
-							ps.setString(2, commonName.getName());
+							ps.setString(1, commonName.getName());
+							ps.setString(2, commonName.getTransliteration());
 							ps.setString(3, commonName.getIsoLanguageCode());
-							ps.setString(4, commonName.getLanguage());
+							ps.setString(4, commonName.getIsoCountryCode());
 							ps.setLong(5, commonName.getId());
 							return ps;
 					}					
@@ -154,23 +156,23 @@ public class CommonNameDAOImpl extends JdbcDaoSupport implements
 	 * @see org.gbif.portal.dao.CommonNameDAO#getUnique(java.lang.Long, java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
-	public CommonName getUnique(Long taxonConceptId, String name, String language) {
+	public CommonName getUnique(String name, String language) {
 		List<CommonName> results = null;
 		if (StringUtils.isEmpty(language)) {
 			results = (List<CommonName>) getJdbcTemplate()
 			.query(CommonNameDAOImpl.QUERY_BY_CONCEPT_NAME_NOLANGUAGE_SQL,
-				new Object[]{taxonConceptId, name},
+				new Object[]{name},
 				new RowMapperResultSetExtractor(commonNameRowMapper, 1));
 		} else {
 			results = (List<CommonName>) getJdbcTemplate()
 			.query(CommonNameDAOImpl.QUERY_BY_CONCEPT_NAME_LANGUAGE_SQL,
-				new Object[]{taxonConceptId, name, language},
+				new Object[]{name, language},
 				new RowMapperResultSetExtractor(commonNameRowMapper, 1));
 		}
 		if (results.size() == 0) {
 			return null;
 		} else if (results.size()>1) {
-			logger.warn("Found multiple CommonNames with concept[" + taxonConceptId + "], name[" + name + 
+			logger.warn("Found multiple CommonNames with name[" + name + 
 					"], language[" + language + "]");
 		}
 		return results.get(0);

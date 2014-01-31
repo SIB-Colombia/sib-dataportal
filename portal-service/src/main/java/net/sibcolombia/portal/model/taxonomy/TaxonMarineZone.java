@@ -17,10 +17,8 @@ import org.gbif.portal.model.taxonomy.TaxonConceptLite;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * A join entity for taxon and country. Represents occurrences of a taxon in a
- * particular country with a count.
- * 
- * @author dmartin
+ * A join entity for taxon and marine zone. Represents occurrences of a taxon in a
+ * particular  marine zone with a count.
  */
 public class TaxonMarineZone extends HibernateDaoSupport {
 

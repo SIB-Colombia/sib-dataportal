@@ -1690,6 +1690,57 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table 'language'
+--
+
+DROP TABLE IF EXISTS language;
+CREATE TABLE language (
+       id INT NOT NULL AUTO_INCREMENT
+       , iso_language_code CHAR(3) NOT NULL
+       , name VARCHAR(255) NOT NULL
+	   , standard TINYINT(1) NOT NULL
+       ,PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE INDEX IX_language_1 ON language (name ASC);
+CREATE INDEX IX_language_2 ON language (iso_language_code ASC);
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table 'common_name'
+--
+
+DROP TABLE IF EXISTS common_name;
+CREATE TABLE common_name(
+       id INT NOT NULL AUTO_INCREMENT
+       , name VARCHAR(255) NOT NULL
+       , transliteration VARCHAR(255)
+	   , iso_language_code CHAR(3)
+       , iso_country_code CHAR(2)
+       ,PRIMARY KEY (`id`)
+	   , CONSTRAINT `FK_ISO_LANGUAGE_CODE` FOREIGN KEY (`ISO_LANGUAGE_CODE`) REFERENCES `language` (`ISO_LANGUAGE_CODE`)
+	   , CONSTRAINT `FK_ISO_COUNTRY_CODE` FOREIGN KEY (`ISO_COUNTRY_CODE`) REFERENCES `country` (`ISO_COUNTRY_CODE`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE INDEX IX_common_name_1 ON common_name (name ASC);
+CREATE INDEX IX_common_name_2 ON common_name (iso_language_code ASC);
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table 'common_name_taxon_concept'
+--
+
+DROP TABLE IF EXISTS common_name_taxon_concept;
+CREATE TABLE common_name_taxon_concept(
+	   taxon_concept_id INT NOT NULL
+     , common_name_id INT NOT NULL
+     , PRIMARY KEY (taxon_concept_id,common_name_id)
+     , INDEX (taxon_concept_id)
+	 , INDEX (common_name_id)
+	 , CONSTRAINT `FK_TAXON_CONCEPT_ID` FOREIGN KEY (`TAXON_CONCEPT_ID`) REFERENCES `taxon_concept` (`ID`)
+	 , CONSTRAINT `FK_COMON_NAME_ID` FOREIGN KEY (`COMMON_NAME_ID`) REFERENCES `common_name` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Final view structure for view `classification`
 --
 

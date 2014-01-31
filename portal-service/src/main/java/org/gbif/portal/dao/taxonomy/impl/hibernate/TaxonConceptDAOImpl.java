@@ -304,7 +304,7 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
 
       public Object doInHibernate(Session session) {
         StringBuffer sb =
-          new StringBuffer("from CommonName cn" + " inner join fetch cn.taxonConcept tc"
+          new StringBuffer("from CommonName cn" + " inner join fetch cn.taxonConcepts tc"
             + " inner join fetch tc.taxonName"
             + " left join fetch tc.kingdomConcept kc left join fetch kc.taxonNameLite"
             + " left join fetch tc.phylumConcept pc left join fetch pc.taxonNameLite"

@@ -159,7 +159,7 @@ public class TaxonConceptDTOFactory extends BriefTaxonConceptDTOFactory {
 						if(logger.isDebugEnabled())
 							logger.debug("Common name in required language found");
 						taxonConceptDTO.setCommonName(cn.getName());
-						taxonConceptDTO.setCommonNameLanguage(cn.getLanguage());
+						taxonConceptDTO.setCommonNameLanguage(cn.getLanguage().getName());
 						commonNameSet = true;
 						break;
 					}
@@ -171,7 +171,7 @@ public class TaxonConceptDTOFactory extends BriefTaxonConceptDTOFactory {
 				// just use the first name retrieved
 				CommonName commonName = commonNames.iterator().next();
 				taxonConceptDTO.setCommonName(commonName.getName());
-				taxonConceptDTO.setCommonNameLanguage(commonName.getLanguage());
+				taxonConceptDTO.setCommonNameLanguage(commonName.getLanguage().getName());
 			}
 		}
 		

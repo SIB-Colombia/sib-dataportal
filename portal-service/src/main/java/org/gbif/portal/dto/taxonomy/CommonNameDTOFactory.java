@@ -14,8 +14,11 @@
  ***************************************************************************/
 package org.gbif.portal.dto.taxonomy;
 
+import java.util.Set;
+
 import org.gbif.portal.dto.BaseDTOFactory;
 import org.gbif.portal.model.taxonomy.CommonName;
+import org.gbif.portal.model.taxonomy.TaxonConcept;
 
 /**
  * A DTOFactory for Common Name objects. A Common Name is associated with a particular taxon concept.
@@ -32,11 +35,29 @@ public class CommonNameDTOFactory extends BaseDTOFactory {
 		CommonNameDTO commonNameDTO = new CommonNameDTO();
 		commonNameDTO.setKey(commonName.getId().toString());
 		commonNameDTO.setName(commonName.getName());
-		commonNameDTO.setTaxonName(commonName.getTaxonConcept().getTaxonName().getCanonical());
-		commonNameDTO.setTaxonConceptKey(String.valueOf(commonName.getTaxonConceptId()));
+		
+		//TODO Something to keep an eye on - involves lazy loading of the accepted concept
+		Set<TaxonConcept> taxonConcepts = commonName.getTaxonConcepts();
+		if(taxonConcepts!=null && !taxonConcepts.isEmpty()) {
+			boolean taxonConceptSet = false;
+			for (TaxonConcept tc : taxonConcepts) {
+				commonNameDTO.setTaxonConceptKey(String.valueOf(tc.getId()));
+				commonNameDTO.setTaxonName(tc.getTaxonName().getCanonical());
+				taxonConceptSet = true;
+				break;
+				}
+			if (!taxonConceptSet) {
+				if(logger.isDebugEnabled())
+					logger.debug("Either no taxon concept found - using first");
+				// just use the first name retrieved
+				TaxonConcept taxonConcet = taxonConcepts.iterator().next();
+				commonNameDTO.setTaxonConceptKey(String.valueOf(taxonConcet.getId()));
+				commonNameDTO.setTaxonName(taxonConcet.getTaxonName().getCanonical());
+			}
+		}
 		//iso language code not being set at the minute
 		//commonNameDTO.setLanguage(commonName.getIsoLanguageCode());
-		commonNameDTO.setLanguage(commonName.getLanguage());
+		commonNameDTO.setLanguage(commonName.getLanguage().getName());
 		return commonNameDTO;
 	}
 }
