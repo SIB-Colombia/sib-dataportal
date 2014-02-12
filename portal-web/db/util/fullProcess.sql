@@ -1446,6 +1446,8 @@ update occurrence_record set iso_country_code_calculated = 'CO' where iso_depart
 
 update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
 
+update occurrence_record set iso_department_code_calculated = 'CO-DC' where iso_department_code_calculated = 'CO-CUN' and iso_department_code = 'CO-DC';
+
 update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated or iso_country_code_calculated is null;
 
 update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
