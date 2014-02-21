@@ -323,6 +323,7 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.CELLID.MOD360.MULTIPLECONDITION" value=" and "/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.YEAR.MULTIPLECONDITION" value=" or "/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.YEARRANGE.MULTIPLECONDITION" value=" and "/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.TR.SPECIESID.MULTIPLECONDITION" value=" or "/>
 
                 <!-- The service layer for taxonomic concept records -->
                 <entry key="SERVICE.TAXONOMY.QUERY.PREAMBLE" 

@@ -405,5 +405,26 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
       }
     });
   }
+  @SuppressWarnings("unchecked")
+  public List<String> getProviderTypeCounts(){
+	  HibernateTemplate template = getHibernateTemplate();
+	  List<Object[]> providerTypeCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+            	  SQLQuery query = session.createSQLQuery("SELECT provider_type, count FROM stats_provider_type_species_counts");
+                  query.setCacheable(true);
+                  query.addScalar("provider_type", Hibernate.STRING);
+                  query.addScalar("count", Hibernate.INTEGER);
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> providerC = new ArrayList<String>();  
+      
+      for (Object[] result: providerTypeCounts) {
+    	  providerC.add(result[0].toString() + "|" + result[1].toString());
+    	}
+
+      return providerC;
+  }
 }
 

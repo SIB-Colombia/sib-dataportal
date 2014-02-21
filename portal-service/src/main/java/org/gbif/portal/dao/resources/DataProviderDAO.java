@@ -158,4 +158,12 @@ public interface DataProviderDAO {
 	 * @return the last Data Provider added to the system.
 	 */
 	public DataProvider getLastDataProviderAdded();
+	
+	  /**
+	   * Returns the number of ocurrences entered in the data portal for a publisher type.
+	   * 
+	   * @return number of ocurrences entered in the data portal for apublisher type.
+	   * 
+	   */
+	public List<String> getProviderTypeCounts();
 }

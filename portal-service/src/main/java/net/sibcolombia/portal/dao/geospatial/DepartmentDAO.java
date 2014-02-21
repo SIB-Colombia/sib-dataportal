@@ -47,6 +47,13 @@ public interface DepartmentDAO {
   public List<Object[]> getDepartmentCountsForTaxonConcept(long taxonConceptId);
 
   /**
+   * Use the taxon_department table to retrieve the departments with data for this taxon.
+   * 
+   * @return
+   */
+  public List<Department> getDepartmentsCountsForTaxonConcept();
+  
+  /**
    * Retrieve the department for the supplied Id.
    * 
    * @param departmentId the internal system id for this department

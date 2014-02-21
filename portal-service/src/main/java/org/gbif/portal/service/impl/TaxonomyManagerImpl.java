@@ -1438,4 +1438,14 @@ public class TaxonomyManagerImpl implements TaxonomyManager {
   public void setTypificationRecordDTOFactory(DTOFactory typificationRecordDTOFactory) {
     this.typificationRecordDTOFactory = typificationRecordDTOFactory;
   }
+  
+  /**
+   * Returns the number of taxon concepts entered in the data portal.
+   * 
+   * @return number of taxon concepts entered in the data portal.
+   * 
+   */
+  public List<String> getTaxonConceptCounts(){
+	  return taxonConceptDAO.getTaxonConceptCounts(); 
+  };
 }

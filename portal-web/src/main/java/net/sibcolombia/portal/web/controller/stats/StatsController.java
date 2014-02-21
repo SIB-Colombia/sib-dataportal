@@ -11,6 +11,7 @@ import org.gbif.portal.dto.SearchResultsDTO;
 import org.gbif.portal.dto.util.SearchConstraints;
 import org.gbif.portal.service.DataResourceManager;
 import org.gbif.portal.service.ServiceException;
+import org.gbif.portal.service.TaxonomyManager;
 import org.gbif.portal.web.content.map.MapContentProvider;
 import org.gbif.portal.web.controller.RestController;
 
@@ -44,6 +45,8 @@ public class StatsController implements Controller {
   protected MapContentProvider mapContentProvider;
   /** Provides the data resource/provider */
   protected DataResourceManager dataResourceManager;
+  /** Manager providing taxon concept information */
+  protected TaxonomyManager taxonomyManager;
   
   /** Number of resources per provider*/
   protected String dataProvidersRes = "providersRes";
@@ -55,8 +58,20 @@ public class StatsController implements Controller {
   /** Model Key for the data provider matches */
   protected String resourceNetworksModelKey = "resourceNetworks";
 
+  /** Number of taxon */
+  protected String taxonConceptRes = "taxonRes";
+  
+  /** Number of resources per provider type*/
+  protected String dataProvidersTypeRes = "providersTypeRes";
+  
+  /** Model Key for the taxon concept matches */
+  protected String taxonConceptModelKey = "taxonConcepts";
+  
   /** The Model Key for the retrieve list of departments */
   protected String departmentsModelKey = "departments";
+  
+  /** The Model Key for the retrieve list of departmentsCounts */
+  protected String departmentsCountsModelKey = "departmentsCounts";
   
   protected String dataModelKey = "dataDate";
   protected String dataTreeModelkey="dataTree";
@@ -99,15 +114,18 @@ public class StatsController implements Controller {
   @SuppressWarnings("unchecked")
   public ModelAndView listStats(ModelAndView mav, HttpServletRequest request,
     HttpServletResponse response) {
+	  
     List<DepartmentDTO> departments = departmentManager.getDepartmentsFor(null);
 	
+    List<DepartmentDTO> departmentsCounts = departmentManager.getDepartmentsCountForTaxonConcept();
+    
+    List<String> taxonCounts = taxonomyManager.getTaxonConceptCounts();
     
     SearchResultsDTO resourceResultsDTO = null;
 	resourceResultsDTO = dataResourceManager.findDatasets("", true, false, false, new SearchConstraints(0, null));
 	List<Object> resourceMatches = resourceResultsDTO.getResults();
 	
 	List<DataProviderDTO> providers = new ArrayList<DataProviderDTO>();
-	
 	
 	List<DataResourceDTO> resources = new ArrayList<DataResourceDTO>();
     List<ResourceNetworkDTO> resourceNetworks = new ArrayList<ResourceNetworkDTO>();
@@ -124,13 +142,13 @@ public class StatsController implements Controller {
       removeNubProviderAndResources(providers, resources);
     }
     
-    
-    
     Collections.sort(resourceNetworks, COMPARERESOURCENETWORK);
     Collections.sort(resources, COMPARERESOURCES);
     Collections.sort(providers, COMPAREPROVIDERS);
     
     List<String> dataDate = dataResourceManager.getOcurrencePerMonth();
+    
+    List<String> providerType = dataResourceManager.getProviderTypeCounts();
     
     List<String> resl =new ArrayList<String>();
     List<String> publRes =new ArrayList<String>();
@@ -162,6 +180,7 @@ public class StatsController implements Controller {
     }
 
     mav.addObject(departmentsModelKey, departments);
+    mav.addObject(departmentsCountsModelKey, departmentsCounts);
 	mav.addObject(datasetMatchesModelKey, resourceResultsDTO);
     mav.addObject(resourceNetworksModelKey, resourceNetworks);
     mav.addObject(dataProviderModelKey, providers);
@@ -169,6 +188,8 @@ public class StatsController implements Controller {
     mav.addObject(dataModelKey, dataDate);
     mav.addObject(dataTreeModelkey, resl);
     mav.addObject(dataProvidersRes, publRes);
+    mav.addObject(taxonConceptRes, taxonCounts);
+    mav.addObject(dataProvidersTypeRes, providerType);
     
     return mav;
   }
@@ -207,8 +228,16 @@ public class StatsController implements Controller {
     return listStats(mav, request, response);
   }
 
+  
+  public TaxonomyManager getTaxonomyManager() {
+	return taxonomyManager;
+  }
+ 
+  public void setTaxonomyManager(TaxonomyManager taxonomyManager) {
+	 this.taxonomyManager = taxonomyManager;
+  }
 
-  /**
+/**
    * @param departmentManager the departmentManager to set
    */
   public void setDepartmentManager(DepartmentManager departmentManager) {
@@ -349,7 +378,7 @@ public class StatsController implements Controller {
 		return sortResourcesByCount;
 	}
 
-
+	
 
 
 }

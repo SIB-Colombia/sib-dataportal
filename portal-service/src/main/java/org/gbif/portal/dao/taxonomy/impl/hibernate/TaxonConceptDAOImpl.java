@@ -12,16 +12,22 @@
  ***************************************************************************/
 package org.gbif.portal.dao.taxonomy.impl.hibernate;
 
+import net.sibcolombia.portal.model.geospatial.Department;
+
 import org.gbif.portal.dao.taxonomy.TaxonConceptDAO;
 import org.gbif.portal.model.taxonomy.CommonName;
 import org.gbif.portal.model.taxonomy.TaxonConcept;
 import org.gbif.portal.model.taxonomy.TaxonConceptLite;
 import org.gbif.portal.model.taxonomy.TaxonRank;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -1178,5 +1184,27 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
    */
   public void setMaxChildConcepts(int maxChildConcepts) {
     this.maxChildConcepts = maxChildConcepts;
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getTaxonConceptCounts(){
+	  HibernateTemplate template = getHibernateTemplate();
+	  List<Object[]> taxonCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+            	  SQLQuery query = session.createSQLQuery("select taxon_name, count from stats_taxon_concept_counts");
+                  query.setCacheable(true);
+                  query.addScalar("taxon_name", Hibernate.STRING);
+                  query.addScalar("count", Hibernate.INTEGER);
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> taxaC = new ArrayList<String>();  
+      
+      for (Object[] result: taxonCounts) {
+    	  taxaC.add(result[0].toString() + "|" + result[1].toString());
+    	}
+
+      return taxaC;
   }
 }

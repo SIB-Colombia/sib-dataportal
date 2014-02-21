@@ -85,6 +85,7 @@
   <bean id="statsController" class="net.sibcolombia.portal.web.controller.stats.StatsController">
     <property name="departmentManager" ref="departmentManager" />
     <property name="dataResourceManager" ref="dataResourceManager" />
+    <property name="taxonomyManager" ref="taxonomyManager" />
     <property name="modelViewName" value="statsView" />
   </bean>
 

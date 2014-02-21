@@ -101,7 +101,11 @@ public class DepartmentManagerImplementation implements DepartmentManager {
     return departmentDTOFactory.createDTOList(departments);
   }
 
-
+  public List<DepartmentDTO> getDepartmentsCountForTaxonConcept() {
+	    List<Department> departments = departmentDAO.getDepartmentsCountsForTaxonConcept();
+	    return departmentDTOFactory.createDTOList(departments);
+  }
+  
   /**
    * @see net.sibcolombia.portal.service.DepartmentManager#getTotalDepartmentCount()
    */

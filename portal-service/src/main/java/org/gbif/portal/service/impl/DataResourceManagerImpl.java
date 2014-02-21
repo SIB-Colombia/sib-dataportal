@@ -739,5 +739,11 @@ public class DataResourceManagerImpl implements DataResourceManager {
 		return dataProviderDAO.getTotalDataResourceCountPerProvider(dataProviderKey);
 	}
 
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getProviderTypeCounts()
+	 */
+	public List<String> getProviderTypeCounts(){
+		return dataProviderDAO.getProviderTypeCounts();
+	};
 	
 }

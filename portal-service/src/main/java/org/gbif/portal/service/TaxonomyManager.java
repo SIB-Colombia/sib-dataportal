@@ -709,4 +709,12 @@ public interface TaxonomyManager {
    * @return true if the supplied key is a valid key
    */
   public boolean isValidTaxonConceptKey(String taxonConceptKey) throws ServiceException;
+  
+  /**
+   * Returns the number of taxon concepts entered in the data portal.
+   * 
+   * @return number of taxon concepts entered in the data portal.
+   * 
+   */
+  public List<String> getTaxonConceptCounts();
 }

@@ -337,4 +337,11 @@ public interface TaxonConceptDAO {
    * @return The Nub Concept object for the concept with this id.
    */
   public List<TaxonConcept> getTaxonConceptsForNubTaxonConcept(long nubConceptId);
+  /**
+   * Returns the number of taxon concepts entered in the data portal.
+   * 
+   * @return number of taxon concepts entered in the data portal.
+   * 
+   */
+  public List<String> getTaxonConceptCounts();
 }

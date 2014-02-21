@@ -446,4 +446,12 @@ public interface DataResourceManager {
    * 
    */
   public int getTotalDataResourceCountPerProvider(String dataProviderKey) throws ServiceException;
+  
+  /**
+   * Returns the number of ocurrences entered in the data portal for a publisher type.
+   * 
+   * @return number of ocurrences entered in the data portal for apublisher type.
+   * 
+   */
+  public List<String> getProviderTypeCounts();
 }

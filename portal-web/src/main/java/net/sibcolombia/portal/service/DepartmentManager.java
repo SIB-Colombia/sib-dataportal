@@ -54,7 +54,7 @@ public interface DepartmentManager {
    * @return DepartmentDTO holding details of this department, null if there isnt a department for the specified key.
    */
   public DepartmentDTO getDepartmentFor(String departmentKey);
-
+  
   /**
    * Retrieves the department information for the department with the supplied iso department code.
    * 
@@ -75,6 +75,13 @@ public interface DepartmentManager {
    */
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar);
 
+  /**
+   * Retrieves the department information for taxon concept counts.
+   * 
+   * @return list of departments
+   */
+  public List<DepartmentDTO> getDepartmentsCountForTaxonConcept();
+  
   /**
    * SIB Colombia New method
    * Returns a count of the total number of departments
