@@ -2355,6 +2355,63 @@ select concat('Starting marine zones species count for any: ', now()) as debug;
 update marine_zone m set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
 
+select concat('Starting stats provider type species counts: ', now()) as debug;	
+UPDATE stats_provider_type_species_counts st set st.count = 
+(SELECT count(distinct species_concept_id) FROM occurrence_record where data_provider_id in (SELECT id FROM portal.data_provider where type like st.provider_type) and deleted is null);
+
+select concat('Starting stats taxon concept counts for Chromista: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Chromista') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Chromistas';
+
+select concat('Starting stats taxon concept counts for Protozoa: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Protozoa') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Protozoos';
+
+select concat('Starting stats taxon concept counts for Plantae: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Plantae') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Plantas';
+
+select concat('Starting stats taxon concept counts for Fungi: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Fungi') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Hongos';
+
+select concat('Starting stats taxon concept counts for Animalia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Animalia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Animales';
+
+select concat('Starting stats taxon concept counts for Mollusca: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where phylum_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Mollusca') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Moluscos';
+
+select concat('Starting stats taxon concept counts for Amphibia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Amphibia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Anfibios';
+
+select concat('Starting stats taxon concept counts for Reptilia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Reptilia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Reptiles';
+
+select concat('Starting stats taxon concept counts for Mammalia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Mammalia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Mamíferos';
+
+select concat('Starting stats taxon concept counts for Aves: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Aves') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Aves';
+
+select concat('Starting stats taxon concept counts for Arachnida: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Arachnida') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Arácnidos';
+
+select concat('Starting stats taxon concept counts for Insecta: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Insecta') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Insectos';
+
+select concat('Starting stats taxon concept counts for Actinopterygii and Sarcopterygii: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT SUM(T1.total) FROM(
+SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Actinopterygii') and data_provider_id = 1 and data_resource_id = 1) union all
+SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1)) T1) where st.taxon_name like 'Peces óseos';
 -- End of SiB Colombia addition
 
 -- temporal range - temporal range for this dataset
