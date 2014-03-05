@@ -56,9 +56,9 @@
     	table_1.addColumn('number', 'Lat');
     	table_1.addColumn('number', 'Long');
     	table_1.addColumn('string', 'DEPARTAMENTO', 'Departamento');
-    	table_1.addColumn('number', 'Taxones por departamento', 'Taxones por departamento');
+    	table_1.addColumn('number', 'Especies por departamento', 'Especies por departamento');
     	table_1.addRows(rows_1);
-        var options_1 = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#1888c9', '#b55232'] , datalessRegionColor:'#a6b361', height:'500', width:'800'};
+        var options_1 = {region: 'CO', resolution: 'provinces' , displayMode: 'markers', enableRegionInteractivity: true, backgroundColor: '#a8d4dc', colors: ['#deed97', '#9ba85c'] , datalessRegionColor:'#fdf6c6', height:'500', width:'800'};
         var chart_1 = new google.visualization.GeoChart(document.getElementById('chart_div_1'));
         google.visualization.events.addListener(chart_1, 'select', function() {
             var selection_1 = chart_1.getSelection();
@@ -322,17 +322,17 @@ $(function () {
 	function drawVisualization() {
 		var tableTX = new google.visualization.DataTable();
 		tableTX.addColumn('string', 'Taxon');
-		tableTX.addColumn('number', 'Taxones');
+		tableTX.addColumn('number', 'Registros');
 		tableTX.addRows(rowst_1);
 
         var options = {
-                vAxis: {title: "# de Taxones", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#'},
-                hAxis: {title: "Taxon", color:"#6B6B6B", textStyle:{color: '#6B6B6B'}},
+                vAxis: {title: "Cantidad de registros", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#',titleTextStyle:{bold:true}},
+                hAxis: {title: "Grupo biológico", color:"#6B6B6B", textStyle:{color: '#6B6B6B'},titleTextStyle:{bold:true}},
                 seriesType: "bars",
                 fontSize: "13",
 				fontName: 'Open Sans',
 				bar: {groupWidth:'70%'},
-                colors:[ '#ec5d2d', '#ffdd69', '#0098d9'],
+                colors:[ '#ec5d2d'],
                 legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
 				areaOpacity:0,
 				height:'450',
@@ -365,13 +365,13 @@ $(function () {
 	
 	function drawVisualization() {
 		var tablePT = new google.visualization.DataTable();
-		tablePT.addColumn('string', 'Tipo de publicador');
+		tablePT.addColumn('string', 'Tipo');
 		tablePT.addColumn('number', 'Especies');
 		tablePT.addRows(rowst_2);
 
         var options = {
-                vAxis: {title: "# de Especies", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#'},
-                hAxis: {title: "Tipo de publicador", color:"#6B6B6B", textStyle:{color: '#6B6B6B'}},
+                vAxis: {title: "Cantidad de especies", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#',titleTextStyle:{bold:true}},
+                hAxis: {title: "Tipo de publicador", color:"#6B6B6B", textStyle:{color: '#6B6B6B'},titleTextStyle:{bold:true}},
                 seriesType: "bars",
                 fontSize: "13",
 				fontName: 'Open Sans',
@@ -400,7 +400,7 @@ $(function () {
 	     <p><img src="${pageContext.request.contextPath}/images/legend_map.png" /></p>
 	    <p><strong>Haz click sobre el departamento de tu interés para ver los registros en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
 	   
-	    <p>El tamaño de los círculos es proporcional al total de registros por departamento. El color es indicativo del número de registros con coordenadas geográficas</p>
+	    <p>El tamaño y color de los círculos es proporcional al total de registros por departamento. El color es indicativo del número de registros con coordenadas geográficas</p>
 	   
 	</div>
 
@@ -421,16 +421,16 @@ $(function () {
 	</div>--%>
 	
 	<div>
-		<h4>Taxones por departamento</h4>
+		<h4>Especies por departamento</h4>
 		<div id="chart_div_1" style=" width:720px; float:left;"></div>
 	     <p><img src="${pageContext.request.contextPath}/images/legend_map_2.png" /></p>
-	    <p><strong>Haz click sobre el departamento de tu interés para ver los registros en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
+	    <p><strong>Haz click sobre el departamento de tu interés para ver las especies en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
 	   
-	    <p>El tamaño de los círculos es proporcional al total de registros por departamento. El color es indicativo del número de registros con coordenadas geográficas</p>
+	    <p>El tamaño y el color de los círculos son proporcional al total de especies por departamento.</p>
 	   
 	</div>
 	
-	<div><h4>Número de taxones en el portal de datos</h4>
+	<div><h4>Número de registros en el portal de datos por grupo biológico</h4>
 		<div id="chart_stat_1"></div>
 	</div>
 	
