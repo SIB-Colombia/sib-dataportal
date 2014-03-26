@@ -37,7 +37,7 @@
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
 				
-				<!--<ref bean="boundingBoxFilter"/>-->
+				<ref bean="boundingBoxFilter"/>
 				<ref bean="latitudeFilter"/>
 				<ref bean="longitudeFilter"/>
                 <ref bean="altitudeFilter"/>
@@ -47,7 +47,7 @@
                 <!--<ref bean="geoRegionFilter"/>-->
 				<!-- dataset filters-->
 				<ref bean="dataProviderIdFilter"/>
-				<!--<ref bean="dataResourceIdFilter"/>-->
+				<ref bean="dataResourceIdFilter"/>
 				<!--<ref bean="hostCountryCodeFilter"/>-->
 				<ref bean="resourceNetworkIdFilter"/>
 				<!-- other details filters -->
