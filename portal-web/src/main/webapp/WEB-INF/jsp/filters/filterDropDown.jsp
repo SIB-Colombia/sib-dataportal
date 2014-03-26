@@ -40,7 +40,7 @@
     	<c:if test="${newCategory && filterCategory!=null}"></optgroup></c:if>							
     	<c:if test="${newCategory}"><optgroup label="<spring:message code="${filter.category}"/>"></c:if>
 			<% //get category, if its change add optgroup, set changed to true	%>
-			<c:if test="${filter.editable}">
+			<c:if test="${filter.editable&&filter.id!=19}">
         <option value="${filter.id}"<c:if test="${filterSubject==filter.id}"> selected="true"</c:if>>
             <spring:message code="${filter.displayName}"/>
         </option>	  
