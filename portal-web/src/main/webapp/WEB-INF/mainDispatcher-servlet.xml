@@ -26,6 +26,7 @@
         <prop key="/bugs.htm">urlFilenameController</prop>
         <!-- Statistics page for SIB Dataportal -->
         <prop key="/stats.htm">statsController</prop>
+        <prop key="/especies.htm">biodivController</prop>
         <prop key="/cifras.htm">statsController</prop>
       </props>
     </property>
@@ -87,6 +88,14 @@
     <property name="dataResourceManager" ref="dataResourceManager" />
     <property name="taxonomyManager" ref="taxonomyManager" />
     <property name="modelViewName" value="statsView" />
+  </bean>
+
+  <!-- Statistics page for SIB Biodiversisty charts -->
+  <bean id="biodivController" class="net.sibcolombia.portal.web.controller.stats.StatsController">
+    <property name="departmentManager" ref="departmentManager" />
+    <property name="dataResourceManager" ref="dataResourceManager" />
+    <property name="taxonomyManager" ref="taxonomyManager" />
+    <property name="modelViewName" value="biodivView" />
   </bean>
 
 </beans>

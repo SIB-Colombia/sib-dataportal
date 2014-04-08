@@ -19,6 +19,19 @@
 		<put name="footer" value="/common/footer.jsp"/>
 	</definition>
 	
+	<!-- Empty Definition  -->
+	<definition name="emptyLayout" path="/layouts/emptyLayout.jsp">
+		<put name="title" value="portal.title"/>
+		<put name="subtitle" value="/WEB-INF/jsp/species.jsp"/>
+		<put name="keywords" value=""/>		
+		<put name="headcontent" value=""/>
+		<put name="header" value="/WEB-INF/jsp/header.jsp"/>
+		<put name="topmenu" value="/WEB-INF/jsp/menu/topMenu.jsp"/>
+		<put name="content" value=""/>
+		<put name="breadcrumbs" value=""/>
+		<put name="footer" value="/common/footer.jsp"/>
+	</definition>
+
 	<!-- Main Layout Definition  -->
 	<definition name="frontmainLayout" path="/layouts/frontPageMainLayout.jsp">
 		<put name="title" value="portal.title"/>
@@ -546,6 +559,11 @@
 		<put name="subtitle" value="/WEB-INF/jsp/stats/subtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/stats/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/stats/stats.jsp"/>
+	</definition>
+	
+	<!-- Tile for Stats page  -->
+	<definition name="biodivView" extends="emptyLayout">
+		<put name="content" value="/WEB-INF/jsp/stats/sib-charts.jsp"/>
 	</definition>
 
 	<!-- Mapping tiles -->
@@ -1192,6 +1210,7 @@
 		<put name="subtitle" value="/WEB-INF/jsp/webservices/subtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/webservices/headcontent.jsp"/>	  
 		<put name="content" value="/WEB-INF/jsp/webservices/input.jsp"/>
-	</definition> 
+	</definition>
+
   
 </tiles-definitions>

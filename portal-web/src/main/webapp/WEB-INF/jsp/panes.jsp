@@ -55,7 +55,7 @@
 
   </div>
   <hr/>
-  <a class="cifras" href="${pageContext.request.contextPath}/stats.htm" target="_blank">
+  <a class="cifras" href="${pageContext.request.contextPath}/stats.htm" target="_self">
   <img src="${pageContext.request.contextPath}/skins/standard/images/ico_cifras.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
     <c:set var="link1">
     <em>
