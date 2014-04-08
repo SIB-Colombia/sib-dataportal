@@ -90,9 +90,19 @@ public class SmallTaxonomyBrowserTag extends TagSupport {
   void addConcepts(StringBuffer sb, PageContext pageContext, String contextPath) throws JspException {
 
     // create a copy of the list that we can remove elements from
-    List<BriefTaxonConceptDTO> conceptList = new ArrayList<BriefTaxonConceptDTO>();
-    conceptList.addAll(concepts);
-    addConceptsRecursively(conceptList, sb, contextPath);
+    //List<BriefTaxonConceptDTO> conceptList = new ArrayList<BriefTaxonConceptDTO>();
+    //conceptList.addAll(concepts);
+	  
+	// Addition by SiBBr: Implementation of clone() method
+	 List<BriefTaxonConceptDTO> conceptList = new ArrayList<BriefTaxonConceptDTO>(concepts.size());
+	  for (BriefTaxonConceptDTO concept: concepts) {
+	  	try {
+			conceptList.add(concept.clone());
+		} catch (CloneNotSupportedException e) {
+			logger.debug(e.getMessage());
+		}
+	  }   
+     addConceptsRecursively(conceptList, sb, contextPath);
   }
 
   /**
