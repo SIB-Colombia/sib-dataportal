@@ -2412,6 +2412,19 @@ UPDATE stats_taxon_concept_counts st set st.count =
 (SELECT SUM(T1.total) FROM(
 SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Actinopterygii') and data_provider_id = 1 and data_resource_id = 1) union all
 SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1)) T1) where st.taxon_name like 'Peces óseos';
+
+--set with_records in taxon_name
+--this is use in the advance search because we need to show only taxon names with occurrence record
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT taxon_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT kingdom_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT phylum_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT class_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT order_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT family_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT genus_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT species_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT nub_concept_id FROM portal.occurrence_record));
+
 -- End of SiB Colombia addition
 
 -- temporal range - temporal range for this dataset

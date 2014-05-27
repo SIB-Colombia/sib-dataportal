@@ -132,7 +132,7 @@ public class TaxonNameDAOImpl extends HibernateDaoSupport implements TaxonNameDA
 			public Object doInHibernate(Session session) {
 				
 				StringBuffer sb = new StringBuffer();
-				sb.append("select distinct canonical from TaxonName where ");
+				sb.append("select distinct canonical from TaxonName where with_records = 1 and ");
 				if(soundex)
 					sb.append("searchableCanonical like :nameStub");
 				else
