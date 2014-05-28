@@ -134,13 +134,13 @@ public class LatitudeFilterHelper implements FilterHelper {
 		StringBuffer sb = new StringBuffer();
 		if(value!=null){
 			Float latitude = Float.parseFloat(value);
-			sb.append(Math.abs(latitude));
-			sb.append("&deg;");
-			if(latitude>=0){
+			sb.append(latitude);
+			//sb.append("&deg;");
+			/*if(latitude>=0){
 				sb.append('N');
 			} else {
 				sb.append('S');
-			}
+			}*/
 			return sb.toString();
 		}
 		return value;

@@ -135,13 +135,13 @@ public class LongitudeFilterHelper implements FilterHelper {
 		StringBuffer sb = new StringBuffer();
 		if(value!=null){
 			Float longitude = Float.parseFloat(value);
-			sb.append(Math.abs(longitude));
-			sb.append("&deg;");
+			sb.append(longitude);
+			/*sb.append("&deg;");
 			if(longitude>=0){
 				sb.append('E');
 			} else {
 				sb.append('W');
-			}
+			}*/
 			return sb.toString();
 		}
 		return value;
