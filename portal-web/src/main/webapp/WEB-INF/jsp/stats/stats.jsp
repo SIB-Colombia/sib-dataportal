@@ -332,7 +332,7 @@ $(function () {
                 fontSize: "13",
 				fontName: 'Open Sans',
 				bar: {groupWidth:'70%'},
-                colors:[ '#ec5d2d'],
+                colors:[ '#F1C593'],
                 legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
 				areaOpacity:0,
 				height:'450',
@@ -376,7 +376,7 @@ $(function () {
                 fontSize: "13",
 				fontName: 'Open Sans',
 				bar: {groupWidth:'70%'},
-                colors:[ '#0098d9'],
+                colors:[ '#A8D4DC'],
                 legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
 				areaOpacity:0,
 				height:'450',
@@ -387,6 +387,93 @@ $(function () {
         
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_stat_2'));
         chart.draw(tablePT, options);
+	}
+	
+	
+</script>
+
+
+<script type='text/javascript'>
+	
+	var rowst_3=[];
+	var monthTrimester = new Array();
+	var numTaxons=0;
+	
+	<c:forEach items="${monthsTrimesterRes}" var="monthsTrimesterRes">
+		var dataMT ="${monthsTrimesterRes}".split("|");
+		//alert(dataMT[0]+" "+dataMT[1]);
+		rowst_3.push([dataMT[0],parseInt(dataMT[1])]);
+	</c:forEach>
+	
+	google.load('visualization', '1', {packages: ['corechart']});
+	google.setOnLoadCallback(drawVisualization);
+	
+	function drawVisualization() {
+		var tableMT = new google.visualization.DataTable();
+		tableMT.addColumn('string', 'Trimester');
+		tableMT.addColumn('number', 'Registros');
+		tableMT.addRows(rowst_3);
+
+        var options = {
+                vAxis: {title: "Cantidad de registros", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#',titleTextStyle:{bold:true}},
+                hAxis: {title: "Trimestre", color:"#6B6B6B", textStyle:{color: '#6B6B6B'},titleTextStyle:{bold:true}},
+                seriesType: "bars",
+                fontSize: "13",
+				fontName: 'Open Sans',
+				bar: {groupWidth:'70%'},
+                colors:[ '#CDDC88'],
+                legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
+				areaOpacity:0,
+				height:'450',
+				width:'950',
+				dataOpacity: 0.8,
+				backgroundColor: 'none'
+              };
+        
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_stat_3'));
+        chart.draw(tableMT, options);
+	}
+	
+	
+</script>
+
+<script type='text/javascript'>
+	
+	var rowst_4=[];
+	var monthAccumulative = new Array();
+	var numTaxons=0;
+	
+	<c:forEach items="${monthsAccumulativeRes}" var="monthsAccumulativeRes">
+		var dataMA ="${monthsAccumulativeRes}".split("|");
+		//alert(dataMA[0]+" "+dataMA[1]);
+		rowst_4.push([dataMA[0],parseInt(dataMA[1])]);
+	</c:forEach>
+	
+	google.load('visualization', '1', {packages: ['corechart']});
+	google.setOnLoadCallback(drawVisualization);
+	
+	function drawVisualization() {
+		var tableMA = new google.visualization.DataTable();
+		tableMA.addColumn('string', 'Mes');
+		tableMA.addColumn('number', 'Registros');
+		tableMA.addRows(rowst_4);
+
+        var options = {
+                vAxis: {title: "Cantidad de registros", color:"#6B6B6B", logScale:"true", textStyle:{color: '#6B6B6B'}, format:'#',titleTextStyle:{bold:true}},
+                hAxis: {title: "Mes", color:"#6B6B6B", textStyle:{color: '#6B6B6B'},titleTextStyle:{bold:true}},
+                fontSize: "13",
+				fontName: 'Open Sans',
+                colors:[ '#ED652D'],
+                legend:{position: 'right', textStyle: {color: '#6B6B6B'}},
+				areaOpacity:0,
+				height:'450',
+				width:'950',
+				dataOpacity: 0.8,
+				backgroundColor: 'none'
+              };
+        
+        var chart = new google.visualization.LineChart(document.getElementById('chart_stat_4'));
+        chart.draw(tableMA, options);
 	}
 	
 	
@@ -436,5 +523,13 @@ $(function () {
 	
 	<div><h4>Número de especies en el portal de datos por tipo de publicador</h4>
 		<div id="chart_stat_2"></div>
+	</div>
+	
+	<div><h4>Número de registros en el portal de datos por trimestre</h4>
+		<div id="chart_stat_3"></div>
+	</div>
+	
+	<div><h4>Número de registros en el portal de datos por mes (acumulado)</h4>
+		<div id="chart_stat_4"></div>
 	</div>
 </div>

@@ -746,4 +746,18 @@ public class DataResourceManagerImpl implements DataResourceManager {
 		return dataProviderDAO.getProviderTypeCounts();
 	};
 	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getOcurrencePerMonthAccumulativeCounts()
+	 */
+	public List<String> getOcurrencePerMonthAccumulativeCounts(){
+		return dataProviderDAO.getOcurrencePerMonthAccumulativeCounts();
+	};
+	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#getOcurrencePerMonthTriCounts()
+	 */
+	public List<String> getOcurrencePerMonthTriCounts(){
+		return dataProviderDAO.getOcurrencePerMonthTriCounts();
+	};
+	
 }

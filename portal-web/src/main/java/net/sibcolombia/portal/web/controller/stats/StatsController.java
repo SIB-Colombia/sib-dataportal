@@ -64,6 +64,12 @@ public class StatsController implements Controller {
   /** Number of resources per provider type*/
   protected String dataProvidersTypeRes = "providersTypeRes";
   
+  /** Number of resources per provider type*/
+  protected String monthsAccumulativeRes = "monthsAccumulativeRes";
+  
+  /** Number of resources per provider type*/
+  protected String monthsTrimesterRes = "monthsTrimesterRes";
+  
   /** Model Key for the taxon concept matches */
   protected String taxonConceptModelKey = "taxonConcepts";
   
@@ -150,6 +156,10 @@ public class StatsController implements Controller {
     
     List<String> providerType = dataResourceManager.getProviderTypeCounts();
     
+    List<String> monthAccumulative = dataResourceManager.getOcurrencePerMonthAccumulativeCounts();
+    
+    List<String> monthTrimester = dataResourceManager.getOcurrencePerMonthTriCounts();
+    
     List<String> resl =new ArrayList<String>();
     List<String> publRes =new ArrayList<String>();
     List<DataResourceDTO> resourcesTemp = new ArrayList<DataResourceDTO>();
@@ -190,6 +200,8 @@ public class StatsController implements Controller {
     mav.addObject(dataProvidersRes, publRes);
     mav.addObject(taxonConceptRes, taxonCounts);
     mav.addObject(dataProvidersTypeRes, providerType);
+    mav.addObject(monthsAccumulativeRes, monthAccumulative);
+    mav.addObject(monthsTrimesterRes, monthTrimester);
     
     return mav;
   }

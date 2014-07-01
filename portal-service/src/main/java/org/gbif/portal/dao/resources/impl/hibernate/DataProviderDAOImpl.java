@@ -426,5 +426,50 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
 
       return providerC;
   }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getOcurrencePerMonthAccumulativeCounts(){
+	  HibernateTemplate template = getHibernateTemplate();
+	  List<Object[]> monthAccumulativeCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+            	  SQLQuery query = session.createSQLQuery("SELECT year, month, accumulative FROM stats_month_counts");
+                  query.setCacheable(true);
+                  query.addScalar("year", Hibernate.INTEGER);
+                  query.addScalar("month", Hibernate.INTEGER);
+                  query.addScalar("accumulative", Hibernate.INTEGER);
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> monthC = new ArrayList<String>();  
+      
+      for (Object[] result: monthAccumulativeCounts) {
+    	  monthC.add(result[0].toString() + "-" + result[1].toString() + "|" + result[2].toString());
+    	}
+
+      return monthC;
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getOcurrencePerMonthTriCounts(){
+	  HibernateTemplate template = getHibernateTemplate();
+	  List<Object[]> monthTriCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+            	  SQLQuery query = session.createSQLQuery("SELECT tri, count FROM stats_tri_month_counts");
+                  query.setCacheable(true);
+                  query.addScalar("tri", Hibernate.STRING);
+                  query.addScalar("count", Hibernate.INTEGER);
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> monthTC = new ArrayList<String>();  
+      
+      for (Object[] result: monthTriCounts) {
+    	  monthTC.add(result[0].toString() + "|" + result[1].toString());
+    	}
+
+      return monthTC;
+  }
 }
 

@@ -454,4 +454,21 @@ public interface DataResourceManager {
    * 
    */
   public List<String> getProviderTypeCounts();
+  
+  /**
+   * Returns the number of ocurrences entered in the data portal in a specific month, it is accumulative.
+   * 
+   * @return number of ocurrences entered in the data portal in a specific month.
+   * 
+   */
+   
+  public List<String> getOcurrencePerMonthAccumulativeCounts();
+	
+	/**
+	   * Returns the number of ocurrences entered in the data portal in a trimester.
+	   * 
+	   * @return number of ocurrences entered in the data portal in a trimester.
+	   * 
+	   */
+  public List<String> getOcurrencePerMonthTriCounts();
 }
