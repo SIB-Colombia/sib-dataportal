@@ -481,6 +481,15 @@ $(function () {
 
 
 <div class="subcontainer stats">
+
+	<div><h4>Número de registros en el portal de datos por mes (acumulado)</h4>
+		<div id="chart_stat_4"></div>
+	</div>
+	
+	<div><h4>Número de registros en el portal de datos por trimestre</h4>
+		<div id="chart_stat_3"></div>
+	</div>
+		
 	<div>
 		<h4>Registros biológicos por departamento</h4>
 		<div id="chart_div" style=" width:720px; float:left;"></div>
@@ -488,7 +497,6 @@ $(function () {
 	    <p><strong>Haz click sobre el departamento de tu interés para ver los registros en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
 	   
 	    <p>El tamaño y color de los círculos es proporcional al total de registros por departamento. El color es indicativo del número de registros con coordenadas geográficas</p>
-	   
 	</div>
 
 	<%--<div><h4>Número de registros por publicador en los últimos meses</h4>
@@ -512,9 +520,7 @@ $(function () {
 		<div id="chart_div_1" style=" width:720px; float:left;"></div>
 	     <p><img src="${pageContext.request.contextPath}/images/legend_map_2.png" /></p>
 	    <p><strong>Haz click sobre el departamento de tu interés para ver las especies en nuestro <a href="htttp://data.sibcolombia.net" target="_blank">Portal de datos</a></strong></p>
-	   
 	    <p>El tamaño y el color de los círculos son proporcional al total de especies por departamento.</p>
-	   
 	</div>
 	
 	<div><h4>Número de registros en el portal de datos por grupo biológico</h4>
@@ -525,11 +531,4 @@ $(function () {
 		<div id="chart_stat_2"></div>
 	</div>
 	
-	<div><h4>Número de registros en el portal de datos por trimestre</h4>
-		<div id="chart_stat_3"></div>
-	</div>
-	
-	<div><h4>Número de registros en el portal de datos por mes (acumulado)</h4>
-		<div id="chart_stat_4"></div>
-	</div>
 </div>

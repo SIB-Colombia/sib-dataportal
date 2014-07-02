@@ -432,7 +432,7 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
 	  HibernateTemplate template = getHibernateTemplate();
 	  List<Object[]> monthAccumulativeCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
               public Object doInHibernate(Session session) {
-            	  SQLQuery query = session.createSQLQuery("SELECT year, month, accumulative FROM stats_month_counts");
+            	  SQLQuery query = session.createSQLQuery("SELECT year, month, accumulative FROM stats_month_counts where count > 0");
                   query.setCacheable(true);
                   query.addScalar("year", Hibernate.INTEGER);
                   query.addScalar("month", Hibernate.INTEGER);
@@ -455,7 +455,7 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
 	  HibernateTemplate template = getHibernateTemplate();
 	  List<Object[]> monthTriCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
               public Object doInHibernate(Session session) {
-            	  SQLQuery query = session.createSQLQuery("SELECT tri, count FROM stats_tri_month_counts");
+            	  SQLQuery query = session.createSQLQuery("SELECT tri, count FROM stats_tri_month_counts where count > 0");
                   query.setCacheable(true);
                   query.addScalar("tri", Hibernate.STRING);
                   query.addScalar("count", Hibernate.INTEGER);
