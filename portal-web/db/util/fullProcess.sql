@@ -2355,7 +2355,7 @@ select concat('Starting marine zones species count for any: ', now()) as debug;
 update marine_zone m set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
 
---stats
+-- stats
 select concat('Starting stats provider type species counts: ', now()) as debug;	
 UPDATE stats_provider_type_species_counts st set st.count = 
 (SELECT count(distinct species_concept_id) FROM occurrence_record where data_provider_id in (SELECT id FROM portal.data_provider where type like st.provider_type) and deleted is null);
@@ -2931,8 +2931,10 @@ insert into stats_tri_month_counts values ('dic 2029 - feb 2030', (select sum(co
 insert into stats_tri_month_counts values ('mar 2030 - may 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 03) or (year = 2030 and month = 04) or (year = 2030 and month = 05)));
 insert into stats_tri_month_counts values ('jun 2030 - ago 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 06) or (year = 2030 and month = 07) or (year = 2030 and month = 08)));
 insert into stats_tri_month_counts values ('sep 2030 - nov 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 09) or (year = 2030 and month = 10) or (year = 2030 and month = 11)));
---set with_records in taxon_name
---this is use in the advance search because we need to show only taxon names with occurrence record
+
+-- set with_records in taxon_name
+-- this is use in the advance search because we need to show only taxon names with occurrence record
+
 update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT taxon_concept_id FROM portal.occurrence_record));
 update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT kingdom_concept_id FROM portal.occurrence_record));
 update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT phylum_concept_id FROM portal.occurrence_record));
@@ -2943,7 +2945,13 @@ update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name
 update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT species_concept_id FROM portal.occurrence_record));
 update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT nub_concept_id FROM portal.occurrence_record));
 
+update data_resource dr set modified= (select max(r.created)  
+from raw_occurrence_record r
+where dr.id=r.data_resource_id and r.deleted is null);
 
+update data_provider dp set modified= (select max(r.created)  
+from raw_occurrence_record r
+where dp.id=r.data_provider_id and r.deleted is null);
 
 -- End of SiB Colombia addition
 
