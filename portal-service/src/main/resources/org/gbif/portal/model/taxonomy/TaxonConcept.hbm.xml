@@ -72,5 +72,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="marine_id" class="net.sibcolombia.portal.model.geospatial.MarineZone"/>
     </set>
+    <set lazy="true" name="protectedAreas" table="taxon_protected_area">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="protected_id" class="net.sibcolombia.portal.model.geospatial.ProtectedArea"/>
+    </set>
   </class>
 </hibernate-mapping>

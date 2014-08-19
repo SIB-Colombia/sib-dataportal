@@ -192,6 +192,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="oc.paramo"/>
                 <!-- County filter class to show Colombian Marine Zones (SIB Colombia) select list -->
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="oc.marineZone"/>
+                <!-- County filter class to show Colombian Protected Areas (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="oc.protectedArea"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="oc.dataProvider.isoCountryCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="oc.dataResourceId"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="oc.dataProviderId"/>
@@ -299,6 +301,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS" value="distinct oc.marineZone, oc.marineZone, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS" value="distinct oc.protectedArea, oc.protectedArea, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS" value="distinct oc.nubTaxonConceptId, oc.taxonName.canonical, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS.GROUPBY" value=""/>
 
@@ -362,6 +366,7 @@
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISOCOUNTYCODE" value="tc.counties.isoCountyCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.COMPLEXID" value="tc.paramos.complexId"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID" value="tc.marineZones.mask"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.PROTECTEDID" value="tc.protectedAreas.paId"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.KINGDOM" value="tc.kingdomConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.PHYLUM" value="tc.phylumConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.CLASS" value="tc.classConcept.taxonNameLite.canonical"/>

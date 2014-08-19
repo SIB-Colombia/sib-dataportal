@@ -59,10 +59,12 @@ import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
 import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
+import net.sibcolombia.portal.dao.geospatial.ProtectedAreaDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
+import net.sibcolombia.portal.model.geospatial.ProtectedArea;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
@@ -102,6 +104,9 @@ public class GeospatialManagerImpl implements GeospatialManager {
 
   /** Marine Zone DAO for marine zone queries */
   protected MarineZoneDAO marineZoneDAO;
+  
+  /** Protected Area DAO for protected area queries */
+  protected ProtectedAreaDAO protectedAreaDAO;
   
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
@@ -589,6 +594,12 @@ public class GeospatialManagerImpl implements GeospatialManager {
           MarineZone marineZone = (MarineZone) marineZoneAndName;
           keyAsLong = marineZone.getMarineZoneId();
         }
+    }else if (type.equals(EntityType.TYPE_PROTECTEDAREA)) {
+        Object protectedAreaAndName = protectedAreaDAO.getProtectedAreaForProtectedArea(key);
+        if (protectedAreaAndName != null) {
+          ProtectedArea protectedArea = (ProtectedArea) protectedAreaAndName;
+          keyAsLong = protectedArea.getProtectedAreaId();
+        }
     }
     return keyAsLong;
   }
@@ -861,6 +872,14 @@ public class GeospatialManagerImpl implements GeospatialManager {
   public void setMarineZoneDAO(MarineZoneDAO marineZoneDAO) {
     this.marineZoneDAO = marineZoneDAO;
   }
+  
+  /**
+   * @param marineZoneDAO the marineZoneDAO to set
+   */
+  public void setProtectedAreaDAO(ProtectedAreaDAO protectedAreaDAO) {
+    this.protectedAreaDAO = protectedAreaDAO;
+  }
+  
   /**
    * @param geoRegionDAO the geoRegionDAO to set
    */

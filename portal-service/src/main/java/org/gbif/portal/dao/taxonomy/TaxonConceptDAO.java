@@ -166,6 +166,14 @@ public interface TaxonConceptDAO {
    * @return the root concepts for a marine zone
    */
   public List<TaxonConceptLite> getMarineZoneRootConceptsFor(String marineZone);
+  
+  /**
+   * Returns the root concepts for a protected area
+   * 
+   * @param protectedArea
+   * @return the root concepts for a protected area
+   */
+  public List<TaxonConceptLite> getProtectedAreaRootConceptsFor(String protectedArea);
 
   /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
@@ -227,6 +235,16 @@ public interface TaxonConceptDAO {
   public List<TaxonConceptLite> getLiteChildConceptsForMarineZone(long taxonConceptId, String marineId,
     boolean allowUnconfirmed);
 
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param protectedArea Restrict search to concepts within the supplied protected area, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForProtectedArea(long taxonConceptId, String protectedId,
+    boolean allowUnconfirmed);
+  
   /**
    * Returns the Nub Concept of the Taxon Concept with the specified key value.
    * 

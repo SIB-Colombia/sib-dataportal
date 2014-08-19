@@ -23,6 +23,7 @@ import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
+import net.sibcolombia.portal.model.geospatial.ProtectedArea;
 
 /**
  * TaxonConcept Model Object represents a Taxonomic Concept described
@@ -113,6 +114,8 @@ public class TaxonConcept extends BaseObject {
   protected Set<Paramo> paramos;
   /** The common names for this concept */
   protected Set<MarineZone> marineZones;
+  /** The common names for this concept */
+  protected Set<ProtectedArea> protectedAreas;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -224,6 +227,13 @@ public class TaxonConcept extends BaseObject {
    */
   public Set<MarineZone> getMarineZones() {
     return marineZones;
+  }
+  
+  /**
+   * @return the protected areas
+   */
+  public Set<ProtectedArea> getProtectedAreas() {
+    return protectedAreas;
   }
   
   /**
@@ -533,6 +543,13 @@ public class TaxonConcept extends BaseObject {
    */
   public void setMarineZones(Set<MarineZone> marineZones) {
     this.marineZones = marineZones;
+  }
+  
+  /**
+   * @param protected areas the protected areas to set
+   */
+  public void setProtectedAreas(Set<ProtectedArea> protectedAreas) {
+    this.protectedAreas = protectedAreas;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

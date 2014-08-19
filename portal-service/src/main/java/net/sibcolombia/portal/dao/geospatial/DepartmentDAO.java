@@ -107,5 +107,13 @@ public interface DepartmentDAO {
    * @return count of the total number of marine zones
    */
   public int getTotalMarineZoneCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of protected areas
+   * 
+   * @return count of the total number of protected areas
+   */
+  public int getTotalProtectedAreaCount();
 
 }

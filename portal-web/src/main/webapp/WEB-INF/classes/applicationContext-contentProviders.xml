@@ -49,6 +49,9 @@
 		<!-- ocurrence filter for Colombian Marine Zones (SIB Colombia) -->
 		<property name="marineZoneOccurrenceFilter" ref="marineZoneFilter"/>
 		
+		<!-- ocurrence filter for Colombian Protected Areas (SIB Colombia) -->
+		<property name="protectedAreaOccurrenceFilter" ref="protectedAreaFilter"/>
+		
 		<property name="geoConsistencyOccurrenceFilter" ref="geoConsistencyFilter"/>		
 		<property name="georeferencedOccurrenceFilter" ref="georeferencedFilter"/>		
 		<property name="regionOccurrenceFilter" ref="regionFilter"/>		
@@ -74,6 +77,7 @@
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="county"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="paramo"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="marineZone"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.RESOURCENETWORKID" value="network"/>				

@@ -33,7 +33,7 @@ group by 1,2,3;
 
 -- populate the centi_cell_density for marine zone
 insert into cell_density 
-select 10, m.id, cell_id, count(oc.id) 
+select 11, m.id, cell_id, count(oc.id) 
 from occurrence_record oc 
 inner join marine_zone m on oc.marine_zone=m.mask 
 where oc.cell_id is not null and oc.geospatial_issue=0
@@ -46,6 +46,14 @@ from occurrence_record oc
 where oc.marine_zone is not null 
 and oc.cell_id is not null 
 and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for marine zone
+insert into cell_density 
+select 12, pa.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join protected_area pa on oc.protected_area=pa.pa_id 
+where oc.cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3;
 
 -- populate the cell_density for home country

@@ -47,6 +47,7 @@ public interface OccurrenceRecordDAO {
 	 * @param originIsoCountyCode The county from which the occurrence records are served
 	 * @param complexId The paramo from which the occurrence records are served
 	 * @param marineId The marine zone from which the occurrence records are served
+	 * @param protectedId The protected area from which the occurrence records are served
 	 * @param minLongitude The minimum longitude for the area from which the occurrence records come
 	 * @param maxLongitude The maximum longitude for the area from which the occurrence records come
 	 * @param minLatitude The minimum latitude for the area from which the occurrence records come
@@ -60,7 +61,7 @@ public interface OccurrenceRecordDAO {
 	 * @param searchConstraints Paging constraints
 	 * @return List of matching OccurrenceRecord objects.
 	 */
-	public List<OccurrenceRecord> findOccurrenceRecords(TaxonConcept taxonConcept, DataProvider dataProvider, DataResource dataResource, ResourceNetwork resourceNetwork, String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId,String marineId, Float minLongitude, Float maxLongitude, Float minLatitude, Float maxLatitude, Integer cellId, Date startDate, Date endDate, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly, SearchConstraints searchConstraints);
+	public List<OccurrenceRecord> findOccurrenceRecords(TaxonConcept taxonConcept, DataProvider dataProvider, DataResource dataResource, ResourceNetwork resourceNetwork, String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId,String marineId,String protectedId, Float minLongitude, Float maxLongitude, Float minLatitude, Float maxLatitude, Integer cellId, Date startDate, Date endDate, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly, SearchConstraints searchConstraints);
 
 	/**
 	 * Counts the OccurrenceRecords matching the provided parameters.
@@ -76,6 +77,7 @@ public interface OccurrenceRecordDAO {
 	 * @param originIsoCountyCode The county from which the occurrence records are served
 	 * @param complexId The paramo from which the occurrence records are served
 	 * @param marineId The marine zone from which the occurrence records are served
+	 * @param protectedId The protected area from which the occurrence records are served
 	 * @param minLongitude The minimum longitude for the area from which the occurrence records come
 	 * @param maxLongitude The maximum longitude for the area from which the occurrence records come
 	 * @param minLatitude The minimum latitude for the area from which the occurrence records come
@@ -88,7 +90,7 @@ public interface OccurrenceRecordDAO {
 	 * @param georeferencedOnly Only return records with coordinates
 	 * @return Count of matching OccurrenceRecord objects.
 	 */
-	public Long countOccurrenceRecords(TaxonConcept taxonConcept, DataProvider dataProvider, DataResource dataResource, ResourceNetwork resourceNetwork, String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId,String marineId, Float minLongitude, Float maxLongitude, Float minLatitude, Float maxLatitude, Integer cellId, Date startDate, Date endDate, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly);
+	public Long countOccurrenceRecords(TaxonConcept taxonConcept, DataProvider dataProvider, DataResource dataResource, ResourceNetwork resourceNetwork, String scientificName, String hostIsoCountryCode, String originIsoCountryCode, String originIsoDepartmentCode,String originIsoCountyCode,String complexId,String marineId,String protectedId, Float minLongitude, Float maxLongitude, Float minLatitude, Float maxLatitude, Integer cellId, Date startDate, Date endDate, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly);
 
 	/**
 	 * Returns the OccurrenceRecord with the specified id value.

@@ -96,10 +96,10 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 	}	
 	
 	/**
-	 * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#findOccurrenceRecord(org.gbif.portal.model.taxonomy.TaxonConcept, org.gbif.portal.model.resources.DataResource, java.lang.String, java.lang.String, java.lang.Float, java.lang.Float, java.lang.Float, java.lang.Float, java.util.Date, java.util.Date, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly, SearchConstraints searchConstraints)
+	 * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#findOccurrenceRecord(org.gbif.portal.model.taxonomy.TaxonConcept, org.gbif.portal.model.resources.DataResource, java.lang.String, java.lang.String,java.lang.String, java.lang.Float, java.lang.Float, java.lang.Float, java.lang.Float, java.util.Date, java.util.Date, BasisOfRecord basisOfRecord, Date modifiedSince, boolean georeferencedOnly, SearchConstraints searchConstraints)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<OccurrenceRecord> findOccurrenceRecords(final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode, final String originIsoCountyCode,final String complexId, final String marineId,final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly, final SearchConstraints searchConstraints) {
+	public List<OccurrenceRecord> findOccurrenceRecords(final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode, final String originIsoCountyCode,final String complexId, final String protectedId, final String marineId,final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly, final SearchConstraints searchConstraints) {
 		HibernateTemplate template = getHibernateTemplate();
 		return (List<OccurrenceRecord>) template.execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) {
@@ -115,6 +115,7 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 				  originIsoCountyCode,
 				  complexId,
 				  marineId,
+				  protectedId,
 				  minLongitude, 
 				  maxLongitude, 
 				  minLatitude, 
@@ -132,10 +133,10 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 	}
 	
 	/**
-	 * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#countOccurrenceRecord(org.gbif.portal.model.taxonomy.TaxonConcept, org.gbif.portal.model.resources.DataResource, java.lang.String, java.lang.String, java.lang.Float, java.lang.Float, java.lang.Float, java.lang.Float, java.util.Date, java.util.Date, BasisOfRecord, java.util.Date, boolean)
+	 * @see org.gbif.portal.dao.occurrence.OccurrenceRecordDAO#countOccurrenceRecord(org.gbif.portal.model.taxonomy.TaxonConcept, org.gbif.portal.model.resources.DataResource, java.lang.String, java.lang.String, java.lang.String, java.lang.Float, java.lang.Float, java.lang.Float, java.lang.Float, java.util.Date, java.util.Date, BasisOfRecord, java.util.Date, boolean)
 	 */
 	@SuppressWarnings("unchecked")
-	public Long countOccurrenceRecords(final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode , final String originIsoCountyCode,final String complexId,final String marineId, final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly) {
+	public Long countOccurrenceRecords(final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode , final String originIsoCountyCode,final String complexId,final String marineId, final String protectedId, final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly) {
 		HibernateTemplate template = getHibernateTemplate();
 		return ((Integer) template.execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) {
@@ -151,6 +152,7 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 						  originIsoCountyCode,
 						  complexId,
 						  marineId,
+						  protectedId,
 						  minLongitude, 
 						  maxLongitude, 
 						  minLatitude, 
@@ -183,6 +185,7 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 	 * @param originIsoCountyCode
 	 * @param complexId
 	 * @param marineId
+	 * @param protectedId
 	 * @param minLongitude
 	 * @param maxLongitude
 	 * @param minLatitude
@@ -196,7 +199,7 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 	 * @param searchConstraints
 	 * @return a constructed hibernate criteria 
 	 */
-	private Criteria buildCriteria(Session session, final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode, final String originIsoCountyCode, final String complexId, final String marineId,final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly, final SearchConstraints searchConstraints) {
+	private Criteria buildCriteria(Session session, final TaxonConcept taxonConcept, final DataProvider dataProvider, final DataResource dataResource, final ResourceNetwork resourceNetwork, final String scientificName, final String hostIsoCountryCode, final String originIsoCountryCode, final String originIsoDepartmentCode, final String originIsoCountyCode, final String complexId, final String marineId, final String protectedId,final Float minLongitude, final Float maxLongitude, final Float minLatitude, final Float maxLatitude, final Integer cellId, final Date startDate, final Date endDate, final BasisOfRecord basisOfRecord, final Date modifiedSince, final boolean georeferencedOnly, final SearchConstraints searchConstraints) {
 		Criteria criteria = session.createCriteria(OccurrenceRecord.class, "ocr");
 		if (taxonConcept != null) {
 			String searchRankString = null;
@@ -280,6 +283,10 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 		
 		if (marineId != null) {
 			criteria = criteria.add(Restrictions.eq("ocr.marineZone", marineId));
+		}
+		
+		if (protectedId != null) {
+			criteria = criteria.add(Restrictions.eq("ocr.protectedArea", protectedId));
 		}
 		
 		if (cellId != null) {

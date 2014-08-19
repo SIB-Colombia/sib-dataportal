@@ -531,6 +531,23 @@ CREATE TABLE `marine_zone` (
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table protected_area DDL definition
+-- ----------------------------
+--  Table structure for `protected_area` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `protected_area`;
+CREATE TABLE `protected_area`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`pa_id` int(3) DEFAULT NULL,
+`name` varchar(255) DEFAULT NULL,
+`pn_cat` char(3) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
 --
 -- Table structure for table `data_provider`
 --

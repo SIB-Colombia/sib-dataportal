@@ -88,6 +88,9 @@ public class FilterContentProvider implements ContentProvider {
   /** The filter used for marineZone- searches (SIB Colombia) */
   protected FilterDTO marineZoneOccurrenceFilter;
   
+  /** The filter used for protectedArea- searches (SIB Colombia) */
+  protected FilterDTO protectedAreaOccurrenceFilter;
+  
   /** The filter used for country searches */
   protected FilterDTO regionOccurrenceFilter;
   /** The filter used for country searches */
@@ -326,6 +329,13 @@ public class FilterContentProvider implements ContentProvider {
   public FilterDTO getMarineZoneOccurrenceFilter() {
     return marineZoneOccurrenceFilter;
   }
+  
+  /**
+   * @return the protectedAreaOccurrenceFilter
+   */
+  public FilterDTO getProtectedAreaOccurrenceFilter() {
+    return protectedAreaOccurrenceFilter;
+  }
 
   /**
    * Retrieves the correct filter for the rank.
@@ -559,6 +569,13 @@ public class FilterContentProvider implements ContentProvider {
    */
   public void setMarineZoneOccurrenceFilter(FilterDTO marineZoneOccurrenceFilter) {
     this.marineZoneOccurrenceFilter = marineZoneOccurrenceFilter;
+  }
+  
+  /**
+   * @param protectedAreaOccurrenceFilter the protectedAreaOccurrenceFilter to set
+   */
+  public void setProtectedAreaOccurrenceFilter(FilterDTO protectedAreaOccurrenceFilter) {
+    this.protectedAreaOccurrenceFilter = protectedAreaOccurrenceFilter;
   }
   
   /**

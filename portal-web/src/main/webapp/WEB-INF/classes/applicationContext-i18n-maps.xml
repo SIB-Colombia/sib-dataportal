@@ -1520,4 +1520,64 @@
 		<entry key= 'oPacifico' value='marineZone.oceano_pacifico'/>
 		<entry key= 'regimenCo' value='marineZone.area_de_regimen_comun'/>
 	</util:map>	
+	<util:map id="protected-ids">
+		<entry key='198' value ='protectedArea.el_cocuy'/>
+		<entry key='199' value ='protectedArea.pisba'/>
+		<entry key='200' value ='protectedArea.paramillo'/>
+		<entry key='201' value ='protectedArea.malpelo'/>
+		<entry key='202' value ='protectedArea.sanquianga'/>
+		<entry key='203' value ='protectedArea.otun_quimbaya'/>
+		<entry key='204' value ='protectedArea.macuira'/>
+		<entry key='205' value ='protectedArea.los_flamencos'/>
+		<entry key='206' value ='protectedArea.los_nevados'/>
+		<entry key='207' value ='protectedArea.utria'/>
+		<entry key='208' value ='protectedArea.sumapaz'/>
+		<entry key='209' value ='protectedArea.cahuinari'/>
+		<entry key='210' value ='protectedArea.sierra_nevada_de_santa_marta'/>
+		<entry key='211' value ='protectedArea.old_providence_mc_bean_lagoon'/>
+		<entry key='212' value ='protectedArea.el_corchal_el_mono_hernandez'/>
+		<entry key='213' value ='protectedArea.isla_de_salamanca'/>
+		<entry key='214' value ='protectedArea.los_katios'/>
+		<entry key='215' value ='protectedArea.las_orquideas'/>
+		<entry key='216' value ='protectedArea.plantas_medicinales_orito_ingi_ande'/>
+		<entry key='217' value ='protectedArea.catatumbo_bari'/>
+		<entry key='218' value ='protectedArea.los_estoraques'/>
+		<entry key='219' value ='protectedArea.tama'/>
+		<entry key='220' value ='protectedArea.serrania_de_los_yariguies'/>
+		<entry key='221' value ='protectedArea.guanenta_alto_rio_fonce'/>
+		<entry key='222' value ='protectedArea.galeras'/>
+		<entry key='223' value ='protectedArea.isla_de_la_corota'/>
+		<entry key='224' value ='protectedArea.purace'/>
+		<entry key='225' value ='protectedArea.cueva_de_los_guacharos'/>
+		<entry key='226' value ='protectedArea.nevado_del_huila'/>
+		<entry key='227' value ='protectedArea.serrania_de_los_churumbelos'/>
+		<entry key='228' value ='protectedArea.chingaza'/>
+		<entry key='229' value ='protectedArea.el_tuparro'/>
+		<entry key='230' value ='protectedArea.cordillera_de_los_picachos'/>
+		<entry key='231' value ='protectedArea.tinigua'/>
+		<entry key='232' value ='protectedArea.alto_fragua_indiwasi'/>
+		<entry key='233' value ='protectedArea.puinawai'/>
+		<entry key='234' value ='protectedArea.uramba_bahia_malaga'/>
+		<entry key='235' value ='protectedArea.cienaga_grande_de_santa_marta'/>
+		<entry key='236' value ='protectedArea.amacayacu'/>
+		<entry key='237' value ='protectedArea.rio_pure'/>
+		<entry key='238' value ='protectedArea.nukak'/>
+		<entry key='239' value ='protectedArea.sierra_de_la_macarena'/>
+		<entry key='240' value ='protectedArea.serrania_de_chiribiquete'/>
+		<entry key='241' value ='protectedArea.la_paya'/>
+		<entry key='242' value ='protectedArea.gorgona'/>
+		<entry key='243' value ='protectedArea.yaigoje_apaporis'/>
+		<entry key='244' value ='protectedArea.las_hermosas_gloria_valencia_de_castano'/>
+		<entry key='245' value ='protectedArea.iguaque'/>
+		<entry key='246' value ='protectedArea.tayrona'/>
+		<entry key='247' value ='protectedArea.los_farallones_de_cali'/>
+		<entry key='248' value ='protectedArea.tatama'/>
+		<entry key='249' value ='protectedArea.complejo_volcanico_dona_juana_cascabel'/>
+		<entry key='250' value ='protectedArea.selva_de_florencia'/>
+		<entry key='251' value ='protectedArea.los_colorados'/>
+		<entry key='252' value ='protectedArea.corales_de_profundidad'/>
+		<entry key='253' value ='protectedArea.los_corales_del_rosario_y_san_bernardo'/>
+		<entry key='254' value ='protectedArea.munchique'/>
+		<entry key='255' value ='protectedArea.acandi_playon_y_playona'/>
+	</util:map>	
 </beans>

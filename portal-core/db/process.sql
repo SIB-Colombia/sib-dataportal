@@ -204,6 +204,15 @@ where oc.marine_zone is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for protected area
+-- 12 is protected area lookup_cell_density_type
+select concat('Building centi cells for protected area: ', now()) as debug;
+insert into centi_cell_density 
+select 12, pa.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join protected_area pa on oc.protected_area=pa.pa_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
 -- --------------------------------------------
 
 -- populate cell densities for all ORs on the denormalised nub id
@@ -643,6 +652,25 @@ update marine_zone m set occurrence_count =
 select concat('Starting marine zone species count for any: ', now()) as debug;
 update marine_zone m set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- Addition by SiB Colombia
+-- sets the protected area count
+select concat('Starting protected area occurrence count: ', now()) as debug;
+update protected_area pa set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone=pa.pa_id);
+
+-- set occurrence record coordinate count for protected area table
+select concat('Starting protected area occurrence coordinate count: ', now()) as debug;
+update protected_area pa set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=pa.id and cd.type=12);
+
+-- set species count per marine zone
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting protected area species count: ', now()) as debug;
+update protected_area m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.protected_area = pa.pa_id);
+
+
 
 -- temporal range - temporal range for this dataset
 -- Query OK, 2083 rows affected, 1200 warnings (2 min 24.52 sec)

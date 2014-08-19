@@ -31,6 +31,7 @@
 				<ref bean="countyTaxonFilter"/>
 				<ref bean="paramoTaxonFilter"/>
 				<ref bean="marineZoneTaxonFilter"/>
+				<ref bean="protectedAreaTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -262,6 +263,20 @@
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="marine-ids"/>
 		<property name="helpView" value="/taxonomy/marineZoneTaxonHelp.htm"/>						
+	</bean>
+	<bean id="protectedAreaTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="17"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.protectedArea"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.PROTECTEDID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="protected-ids"/>
+		<property name="helpView" value="/taxonomy/protectedAreaTaxonHelp.htm"/>						
 	</bean>
 	
 	<!-- Filter helpers -->

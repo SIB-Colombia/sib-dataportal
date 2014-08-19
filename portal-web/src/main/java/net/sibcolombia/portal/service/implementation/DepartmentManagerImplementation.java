@@ -135,6 +135,13 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   }
   
   /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalProtectedAreaCount()
+   */
+  public int getTotalProtectedAreaCount() throws ServiceException {
+    return departmentDAO.getTotalProtectedAreaCount();
+  }
+  
+  /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */
   public boolean isValidDepartmentKey(String departmentKey) {

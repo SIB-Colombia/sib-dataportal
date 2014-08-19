@@ -1597,6 +1597,16 @@ where oc.marine_zone is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for protected area
+-- 12 is protected area lookup_cell_density_type
+select concat('Building centi cells for protected area: ', now()) as debug;
+insert into centi_cell_density 
+select 12, pa.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join protected_area pa on oc.protected_area=pa.pa_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
 -- Records: 873791  Duplicates: 0  Warnings: 0
@@ -2262,6 +2272,84 @@ group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia
+-- sets the protected areas taxon count
+-- ***********************************
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area kingdom generation: ', now()) as debug;
+truncate table taxon_protected_area;
+-- populate taxon_protected_area
+insert ignore into taxon_protected_area 
+select kingdom_concept_id, protected_area, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area phylum generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select phylum_concept_id, protected_area, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area class generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select class_concept_id, protected_area, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area order generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select order_concept_id, protected_area, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area family generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select family_concept_id, protected_area, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area genus generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select genus_concept_id, protected_area, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area species generation: ', now()) as debug;
+insert ignore into taxon_protected_area
+select species_concept_id, protected_area, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area nub concept generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select nub_concept_id, protected_area, count(*)
+from occurrence_record
+where protected_area is not null
+group by 1,2;
+
+
+-- ***********************************
+-- Addition by SiB Colombia
 -- sets the departments count
 -- ***********************************
 select concat('Starting department occurrence count: ', now()) as debug;
@@ -2354,6 +2442,22 @@ update marine_zone m set occurrence_count =
 select concat('Starting marine zones species count for any: ', now()) as debug;
 update marine_zone m set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- sets the protected areas count
+select concat('Starting protected areas occurrence count: ', now()) as debug;
+update protected_area pa set occurrence_count =
+(select count(id) from occurrence_record o where o.protected_area=pa.pa_id);
+
+-- set occurrence record coordinate count for protected areas table
+select concat('Starting protected areas occurrence coordinate count: ', now()) as debug;
+update protected_area pa set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=pa.id and cd.type=11);
+
+-- set species count per protected areas
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting protected areas species count: ', now()) as debug;
+update protected_area pa set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.protected_area=pa.pa_id);
 
 -- stats
 select concat('Starting stats provider type species counts: ', now()) as debug;	

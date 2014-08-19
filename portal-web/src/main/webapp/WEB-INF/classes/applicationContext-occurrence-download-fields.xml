@@ -50,6 +50,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
 		<ref bean="marineZone"/>
+		<ref bean="protectedArea"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -121,6 +122,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="isoDepartmentCodeCalculated"/>
 		<ref bean="paramo"/>
 		<ref bean="marineZone"/>
+		<ref bean="protectedArea"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -204,6 +206,12 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldI18nNameKey" value="occurrence.record.marineZone"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="marineZone"/>
+	</bean>
+	<bean id="protectedArea" parent="downloadField">
+		<property name="fieldName" value="protectedArea"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.protectedArea"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="protectedArea"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

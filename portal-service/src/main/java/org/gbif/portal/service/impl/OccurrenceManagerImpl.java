@@ -73,6 +73,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	protected CountyDAO countyDAO;
 	protected ParamoDAO paramoDAO;
 	protected MarineZoneDAO marineZoneDAO;
+	protected ProtectedAreaDAO protectedAreaDAO;
 	protected DataProviderDAO dataProviderDAO;
 	protected DataResourceDAO dataResourceDAO;
 	protected ResourceNetworkDAO resourceNetworkDAO;
@@ -161,7 +162,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	 * @see org.gbif.portal.service.OccurrenceManager#findOccurrenceRecords(java.lang.String,
 	 *      java.lang.String, java.lang.String, java.lang.String,
 	 *      java.lang.String, java.lang.String, java.lang.String,
-	 *      java.lang.String, org.gbif.portal.dto.util.BoundingBoxDTO,
+	 *      java.lang.String, java.langString, org.gbif.portal.dto.util.BoundingBoxDTO,
 	 *      org.gbif.portal.dto.util.TimePeriodDTO, boolean,
 	 *      org.gbif.portal.dto.util.SearchConstraints)
 	 */
@@ -170,7 +171,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String complexId, String marineId, String basisOfRecordCode,
+			String complexId, String marineId, String protectedId, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly, SearchConstraints searchConstraints)
@@ -267,6 +268,12 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No marine zone found for mask "
 					+ marineId);
 		}
+		
+		if (protectedId != null
+				&& protectedAreaDAO.getProtectedAreaForProtectedArea(protectedId) == null) {
+			throw new ServiceException("No protected area found for Protected area Id "
+					+ protectedId);
+		}
 
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
@@ -314,7 +321,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 						dataResource, resourceNetwork, scientificName,
 						hostIsoCountryCode, originIsoCountryCode,
 						originIsoDepartmentCode, originIsoCountyCode,
-						complexId, marineId, minLongitude, maxLongitude,
+						complexId, marineId, protectedId, minLongitude, maxLongitude,
 						minLatitude, maxLatitude, cellIdValue, startDate,
 						endDate, basisOfRecord, modifiedSince,
 						georeferencedOnly, searchConstraints);
@@ -379,7 +386,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String paramo, String marineZone, String basisOfRecordCode,
+			String paramo, String marineZone, String protectedArea, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly) throws ServiceException {
@@ -476,6 +483,12 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No marine zone found for mask "
 					+ marineZone);
 		}
+		
+		if (protectedArea != null
+				&& protectedAreaDAO.getProtectedAreaForProtectedArea(protectedArea) == null) {
+			throw new ServiceException("No protected area found for protected area id "
+					+ protectedArea);
+		}
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -521,7 +534,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 				taxonConcept, dataProvider, dataResource, resourceNetwork,
 				scientificName, hostIsoCountryCode, originIsoCountryCode,
 				originIsoDepartmentCode, originIsoCountyCode, paramo,
-				marineZone, minLongitude, maxLongitude, minLatitude,
+				marineZone, protectedArea, minLongitude, maxLongitude, minLatitude,
 				maxLatitude, cellIdValue, startDate, endDate, basisOfRecord,
 				modifiedSince, georeferencedOnly);
 		if (logger.isDebugEnabled())

@@ -526,6 +526,18 @@ CREATE TABLE `marine_zone` (
 	 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `protected_area`;
+CREATE TABLE `protected_area`(
+	`id` int(10)  NOT NULL AUTO_INCREMENT,
+	`pa_id` int(3) DEFAULT NULL,
+	`name` varchar(255) DEFAULT NULL,
+	`pn_cat` char(3) DEFAULT NULL,
+	`species_count` int(10) DEFAULT NULL,
+	`occurrence_count` int(10) DEFAULT NULL,
+	`occurrence_coordinate_count` int(10) DEFAULT NULL,
+	 PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1600,6 +1612,23 @@ CREATE TABLE `taxon_marine_zone` (
 	PRIMARY KEY(`taxon_concept_id`,`marine_id`),
 	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
 	KEY `IX_marine_ids` (`marine_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_protected_area`
+--
+
+DROP TABLE IF EXISTS `taxon_protected_area`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_protected_area` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`protected_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`protected_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_protected_ids` (`protected_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 

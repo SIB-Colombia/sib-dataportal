@@ -143,6 +143,11 @@
 								<property name="propertyName" value="marineZone"/>
 							</bean>
 						</entry>
+						<entry key="protectedArea">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="protectedArea"/>
+							</bean>
+						</entry>
 						<entry key="latitude">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="latitude"/>
