@@ -74,6 +74,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	protected ParamoDAO paramoDAO;
 	protected MarineZoneDAO marineZoneDAO;
 	protected ProtectedAreaDAO protectedAreaDAO;
+	protected EcosystemDAO ecosystemDAO;
 	protected DataProviderDAO dataProviderDAO;
 	protected DataResourceDAO dataResourceDAO;
 	protected ResourceNetworkDAO resourceNetworkDAO;
@@ -171,7 +172,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String complexId, String marineId, String protectedId, String basisOfRecordCode,
+			String complexId, String marineId, String protectedId, String ecosystem, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly, SearchConstraints searchConstraints)
@@ -274,6 +275,12 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No protected area found for Protected area Id "
 					+ protectedId);
 		}
+		
+		if (ecosystem != null
+				&& ecosystemDAO.getEcosystemFor(Long.parseLong(ecosystem)) == null) {
+			throw new ServiceException("No ecosystem found for ecosystem Id "
+					+ ecosystem);
+		}
 
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
@@ -321,7 +328,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 						dataResource, resourceNetwork, scientificName,
 						hostIsoCountryCode, originIsoCountryCode,
 						originIsoDepartmentCode, originIsoCountyCode,
-						complexId, marineId, protectedId, minLongitude, maxLongitude,
+						complexId, marineId, protectedId, ecosystem, minLongitude, maxLongitude,
 						minLatitude, maxLatitude, cellIdValue, startDate,
 						endDate, basisOfRecord, modifiedSince,
 						georeferencedOnly, searchConstraints);
@@ -386,7 +393,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String paramo, String marineZone, String protectedArea, String basisOfRecordCode,
+			String paramo, String marineZone, String protectedArea, String ecosystem, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly) throws ServiceException {
@@ -489,6 +496,13 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No protected area found for protected area id "
 					+ protectedArea);
 		}
+		
+		if (ecosystem != null
+				&& ecosystemDAO.getEcosystemFor(Long.parseLong(ecosystem)) == null) {
+			throw new ServiceException("No ecosystem found for ecosystem id "
+					+ ecosystem);
+		}
+		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -534,7 +548,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 				taxonConcept, dataProvider, dataResource, resourceNetwork,
 				scientificName, hostIsoCountryCode, originIsoCountryCode,
 				originIsoDepartmentCode, originIsoCountyCode, paramo,
-				marineZone, protectedArea, minLongitude, maxLongitude, minLatitude,
+				marineZone, protectedArea,ecosystem, minLongitude, maxLongitude, minLatitude,
 				maxLatitude, cellIdValue, startDate, endDate, basisOfRecord,
 				modifiedSince, georeferencedOnly);
 		if (logger.isDebugEnabled())

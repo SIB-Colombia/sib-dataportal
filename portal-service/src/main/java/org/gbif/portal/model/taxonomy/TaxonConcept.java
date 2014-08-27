@@ -21,6 +21,7 @@ import java.util.Set;
 
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.County;
+import net.sibcolombia.portal.model.geospatial.Ecosystem;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 import net.sibcolombia.portal.model.geospatial.ProtectedArea;
@@ -104,18 +105,20 @@ public class TaxonConcept extends BaseObject {
   protected Set<RelationshipAssertion> relationshipAssertions;
   /** The taxonomic priority for this concept */
   protected Integer taxonomicPriority;
-  /** The common names for this concept */
+  /** The countries for this concept */
   protected Set<Country> countries;
-  /** The common names for this concept */
+  /** The departments for this concept */
   protected Set<Department> departments;
-  /** The common names for this concept */
+  /** The counties for this concept */
   protected Set<County> counties;
-  /** The common names for this concept */
+  /** The paramos for this concept */
   protected Set<Paramo> paramos;
-  /** The common names for this concept */
+  /** The marine zones for this concept */
   protected Set<MarineZone> marineZones;
-  /** The common names for this concept */
+  /** The protected areas for this concept */
   protected Set<ProtectedArea> protectedAreas;
+  /** The ecosystems for this concept */
+  protected Set<Ecosystem> ecosystems;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -234,6 +237,14 @@ public class TaxonConcept extends BaseObject {
    */
   public Set<ProtectedArea> getProtectedAreas() {
     return protectedAreas;
+  }
+  
+  
+  /**
+   * @return the ecosystems
+   */
+  public Set<Ecosystem> getEcosystems() {
+    return ecosystems;
   }
   
   /**
@@ -550,6 +561,13 @@ public class TaxonConcept extends BaseObject {
    */
   public void setProtectedAreas(Set<ProtectedArea> protectedAreas) {
     this.protectedAreas = protectedAreas;
+  }
+  
+  /**
+   * @param ecosystems the ecosystems to set
+   */
+  public void setEcosystems(Set<Ecosystem> ecosystems) {
+    this.ecosystems = ecosystems;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

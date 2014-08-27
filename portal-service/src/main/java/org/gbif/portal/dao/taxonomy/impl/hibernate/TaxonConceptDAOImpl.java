@@ -642,6 +642,32 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
   }
 
   /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getEcosystemRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getEcosystemRootConceptsFor(final String ecosystem) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tct.taxonConceptLite from TaxonEcosystem tpa"
+            + " inner join fetch tpa.taxonConceptLite.taxonNameLite"
+            + " where tpa.key.ecosystemId = :ecosystemId"
+            + " and tpa.taxonConceptLite.taxonRank=:taxonRank" + " and tpa.taxonConceptLite.isAccepted=true"
+            + " order by tpa.taxonConceptLite.taxonRank asc, tpa.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("ecosystemId", ecosystem);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
    * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getDetailedTaxonConceptFor(long)
    */
   public TaxonConcept getDetailedTaxonConceptFor(final long taxonConceptId) {
@@ -885,6 +911,38 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
         Query query = session.createQuery(sb.toString());
         query.setParameter("taxonConceptId", taxonConceptId);
         query.setParameter("protectedId", protectedId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForEcosystem(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForEcosystem(final long taxonConceptId,final String ecosystemId,
+		   final boolean allowUnconfirmed) {
+    if (ecosystemId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select te.taxonConceptLite from TaxonEcosystem te "
+            + "inner join fetch te.taxonConceptLite.taxonNameLite");
+        sb.append(" where te.taxonConceptLite.parentConceptId = :taxonConceptId and te.taxonConceptLite.isAccepted=true "
+          + "and  te.key.ecosystemId =:ecosystemId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and te.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by te.taxonConceptLite.taxonRank, te.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("ecosystemId", ecosystemId);
         query.setMaxResults(maxChildConcepts);
         return query.list();
       }

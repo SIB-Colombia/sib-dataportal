@@ -1579,5 +1579,10 @@
 		<entry key='253' value ='protectedArea.los_corales_del_rosario_y_san_bernardo'/>
 		<entry key='254' value ='protectedArea.munchique'/>
 		<entry key='255' value ='protectedArea.acandi_playon_y_playona'/>
+	</util:map>
+	
+	<util:map id= "ecosystem-ids">
+		<entry key='1' value ='ecosystem.bosque_seco_tropical'/>
+		<entry key='2' value ='ecosystem.paramo'/>
 	</util:map>	
 </beans>

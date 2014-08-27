@@ -91,6 +91,9 @@ public class FilterContentProvider implements ContentProvider {
   /** The filter used for protectedArea- searches (SIB Colombia) */
   protected FilterDTO protectedAreaOccurrenceFilter;
   
+  /** The filter used for ecosystem- searches (SIB Colombia) */
+  protected FilterDTO ecosystemOccurrenceFilter;
+  
   /** The filter used for country searches */
   protected FilterDTO regionOccurrenceFilter;
   /** The filter used for country searches */
@@ -336,6 +339,13 @@ public class FilterContentProvider implements ContentProvider {
   public FilterDTO getProtectedAreaOccurrenceFilter() {
     return protectedAreaOccurrenceFilter;
   }
+  
+  /**
+   * @return the ecosystemOccurrenceFilter
+   */
+  public FilterDTO getEcosystemOccurrenceFilter() {
+    return ecosystemOccurrenceFilter;
+  }
 
   /**
    * Retrieves the correct filter for the rank.
@@ -576,6 +586,13 @@ public class FilterContentProvider implements ContentProvider {
    */
   public void setProtectedAreaOccurrenceFilter(FilterDTO protectedAreaOccurrenceFilter) {
     this.protectedAreaOccurrenceFilter = protectedAreaOccurrenceFilter;
+  }
+  
+  /**
+   * @param ecosystemOccurrenceFilter the ecosystemOccurrenceFilter to set
+   */
+  public void setEcosystemOccurrenceFilter(FilterDTO ecosystemOccurrenceFilter) {
+    this.ecosystemOccurrenceFilter = ecosystemOccurrenceFilter;
   }
   
   /**

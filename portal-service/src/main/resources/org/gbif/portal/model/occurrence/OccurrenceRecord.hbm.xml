@@ -65,6 +65,8 @@
 	
 	<property name="protectedArea" column="protected_area" not-null="false"/>
 	
+	<property name="dryForest" column="dry_forest" not-null="false"/>
+	
     <property name="latitude" column="latitude" not-null="false"/>
     <property name="longitude" column="longitude" not-null="false"/>
 

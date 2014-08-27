@@ -966,6 +966,10 @@
 	<!-- SIB Colombia protected areas search option help -->
 	<definition name="protectedAreaHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/protectedAreaHelp.jsp"/>
+	</definition>
+	<!-- SIB Colombia ecosystems search option help -->
+	<definition name="ecosystemHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/ecosystemHelp.jsp"/>
 	</definition>	
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						

@@ -51,6 +51,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="paramo"/>
 		<ref bean="marineZone"/>
 		<ref bean="protectedArea"/>
+		<ref bean="dryForest"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -123,6 +124,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="paramo"/>
 		<ref bean="marineZone"/>
 		<ref bean="protectedArea"/>
+		<ref bean="dryForest"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -212,6 +214,11 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldI18nNameKey" value="occurrence.record.protectedArea"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="protectedArea"/>
+	</bean>
+	<bean id="dryForest" parent="downloadField">
+		<property name="fieldName" value="dryForest"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.dryForest"/>
+		<property name="useI18nOnValue" value="true"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

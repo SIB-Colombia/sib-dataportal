@@ -176,6 +176,14 @@ public interface TaxonConceptDAO {
   public List<TaxonConceptLite> getProtectedAreaRootConceptsFor(String protectedArea);
 
   /**
+   * Returns the root concepts for a ecosystem
+   * 
+   * @param ecosystem
+   * @return the root concepts for a ecosystem
+   */
+  public List<TaxonConceptLite> getEcosystemRootConceptsFor(String ecosystem);
+
+  /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
    * by service layer methods that need to access major rank concepts associated with a
    * concept.
@@ -243,6 +251,16 @@ public interface TaxonConceptDAO {
    * @return The Parent Concept object for the concept with this id.
    */
   public List<TaxonConceptLite> getLiteChildConceptsForProtectedArea(long taxonConceptId, String protectedId,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param ecosystem Restrict search to concepts within the supplied ecosystem, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForEcosystem(long taxonConceptId, String ecosystemId,
     boolean allowUnconfirmed);
   
   /**

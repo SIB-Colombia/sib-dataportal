@@ -115,5 +115,13 @@ public interface DepartmentDAO {
    * @return count of the total number of protected areas
    */
   public int getTotalProtectedAreaCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of ecosystems
+   * 
+   * @return count of the total number of ecosystems
+   */
+  public int getTotalEcosystemCount();
 
 }

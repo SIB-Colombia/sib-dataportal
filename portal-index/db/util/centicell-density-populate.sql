@@ -169,3 +169,19 @@ from occurrence_record oc
 inner join protected_area pa on oc.protected_area=pa.pa_id 
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for any dry forest ecosystem
+insert into centi_cell_density 
+select 13, 1 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for any paramo ecossytem
+insert into centi_cell_density 
+select 13, 2 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;

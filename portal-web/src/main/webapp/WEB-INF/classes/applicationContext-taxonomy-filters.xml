@@ -32,6 +32,7 @@
 				<ref bean="paramoTaxonFilter"/>
 				<ref bean="marineZoneTaxonFilter"/>
 				<ref bean="protectedAreaTaxonFilter"/>
+				<ref bean="ecosystemTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -277,6 +278,21 @@
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="protected-ids"/>
 		<property name="helpView" value="/taxonomy/protectedAreaTaxonHelp.htm"/>						
+	</bean>
+	
+	<bean id="ecosystemTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="18"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.ecosystem"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.ECOSYSTEMID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="ecosystem-ids"/>
+		<property name="helpView" value="/taxonomy/ecosystemTaxonHelp.htm"/>						
 	</bean>
 	
 	<!-- Filter helpers -->

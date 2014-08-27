@@ -142,6 +142,13 @@ public class DepartmentManagerImplementation implements DepartmentManager {
   }
   
   /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalEcosystemCount()
+   */
+  public int getTotalEcosystemCount() throws ServiceException {
+    return departmentDAO.getTotalEcosystemCount();
+  }
+  
+  /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */
   public boolean isValidDepartmentKey(String departmentKey) {

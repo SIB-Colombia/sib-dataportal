@@ -285,6 +285,19 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     return count.intValue();
   }
   /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalEcosystemCount()
+   */
+  public int getTotalEcosystemCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(e.id) from Ecosystem e");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  /**
    * @param supportedLocales the supportedLocales to set
    */
   public void setSupportedLocales(List<String> supportedLocales) {

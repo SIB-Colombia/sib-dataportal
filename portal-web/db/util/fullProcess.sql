@@ -1607,6 +1607,24 @@ inner join protected_area pa on oc.protected_area=pa.pa_id
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for ecosystem
+-- 13 is ecosystem lookup_cell_density_type
+select concat('Building centi cells for dry forest ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 1 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+select concat('Building centi cells for paramo ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 2 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
 -- Records: 873791  Duplicates: 0  Warnings: 0
@@ -2347,6 +2365,152 @@ from occurrence_record
 where protected_area is not null
 group by 1,2;
 
+-- ***********************************
+-- Addition by SiB Colombia
+-- sets the ecosystem taxon count
+-- ***********************************
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem kingdom generation: ', now()) as debug;
+truncate table taxon_ecosystem;
+-- populate taxon_ecosystem
+insert ignore into taxon_ecosystem 
+select kingdom_concept_id, dry_forest, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem phylum generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select phylum_concept_id, dry_forest, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem class generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select class_concept_id, dry_forest, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem order generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select order_concept_id, dry_forest, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem family generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select family_concept_id, dry_forest, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem genus generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select genus_concept_id, dry_forest, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem species generation: ', now()) as debug;
+insert ignore into taxon_ecosystem
+select species_concept_id, dry_forest, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem nub concept generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select nub_concept_id, dry_forest, count(*)
+from occurrence_record
+where dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+insert ignore into taxon_ecosystem 
+select kingdom_concept_id, paramo, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem phylum generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select phylum_concept_id, paramo, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem class generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select class_concept_id, paramo, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem order generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select order_concept_id, paramo, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem family generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select family_concept_id, paramo, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem genus generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select genus_concept_id, paramo, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem species generation: ', now()) as debug;
+insert ignore into taxon_ecosystem
+select species_concept_id, paramo, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem nub concept generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select nub_concept_id, paramo, count(*)
+from occurrence_record
+where paramo is not null
+group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia

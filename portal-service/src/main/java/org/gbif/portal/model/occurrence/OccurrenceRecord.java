@@ -103,6 +103,8 @@ public class OccurrenceRecord extends BaseObject {
   protected String marineZone;
   /** Portected Area code of the occurrence location */
   protected String protectedArea;
+  /** Dry Forest code of the occurrence location */
+  protected String dryForest;
   /** The Country of the occurrence location */
   protected Country country;
 
@@ -360,6 +362,14 @@ public class OccurrenceRecord extends BaseObject {
   public String getProtectedArea() {
 		return protectedArea;
 	}
+
+  /**
+   * @return the protected area
+   */
+  public String getDryForest() {
+		return dryForest;
+	}
+  
   /**
    * @return the kingdomConcept
    */
@@ -752,6 +762,13 @@ public class OccurrenceRecord extends BaseObject {
 	*/
 	public void setProtectedArea(String protectedArea) {
 		this.protectedArea = protectedArea;
+	}
+	
+	/**
+	   * @param ecosystem area the ecosystem to set
+	*/
+	public void setDryForest(String dryForest) {
+		this.dryForest = dryForest;
 	}
 
 /**

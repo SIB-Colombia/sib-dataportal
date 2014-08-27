@@ -57,11 +57,13 @@ import java.util.Set;
 
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.dao.geospatial.EcosystemDAO;
 import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
 import net.sibcolombia.portal.dao.geospatial.ProtectedAreaDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
+import net.sibcolombia.portal.model.geospatial.Ecosystem;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 import net.sibcolombia.portal.model.geospatial.ProtectedArea;
@@ -107,6 +109,9 @@ public class GeospatialManagerImpl implements GeospatialManager {
   
   /** Protected Area DAO for protected area queries */
   protected ProtectedAreaDAO protectedAreaDAO;
+  
+  /** Ecosystem DAO for ecosystem queries */
+  protected EcosystemDAO ecosystemDAO;
   
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
@@ -601,6 +606,13 @@ public class GeospatialManagerImpl implements GeospatialManager {
           keyAsLong = protectedArea.getProtectedAreaId();
         }
     }
+    else if (type.equals(EntityType.TYPE_ECOSYSTEM)) {
+        Object ecosystemAndName = ecosystemDAO.getEcosystemFor(Long.parseLong(key));
+        if (ecosystemAndName != null) {
+        	Ecosystem ecosystem = (Ecosystem) ecosystemAndName;
+          keyAsLong = ecosystem.getEcosystemId();
+        }
+    }
     return keyAsLong;
   }
 
@@ -874,10 +886,17 @@ public class GeospatialManagerImpl implements GeospatialManager {
   }
   
   /**
-   * @param marineZoneDAO the marineZoneDAO to set
+   * @param protectedAreaDAO the protectedAreaDAO to set
    */
   public void setProtectedAreaDAO(ProtectedAreaDAO protectedAreaDAO) {
     this.protectedAreaDAO = protectedAreaDAO;
+  }
+  
+  /**
+   * @param ecosystemDAO the ecosystemDAO to set
+   */
+  public void setEcosystemDAO(EcosystemDAO ecosystemDAO) {
+    this.ecosystemDAO = ecosystemDAO;
   }
   
   /**

@@ -103,6 +103,25 @@ inner join protected_area pa on oc.protected_area=pa.pa_id
 where oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for ecosystem
+-- 13 is ecosystem lookup_cell_density_type
+select concat('Building centi cells for dry forest ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 1 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+select concat('Building centi cells for paramo ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 2 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+
 -- sets the counties count
 select concat('Starting county occurrence count: ', now()) as debug;
 update county c set occurrence_count =
@@ -151,6 +170,56 @@ update paramo p set occurrence_coordinate_count =
 select concat('Starting paramo species count: ', now()) as debug;
 update paramo p set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.paramo = p.complex_id);
+
+-- populate the centi_cell_density for dry forest ecosystem
+insert into cell_density 
+select 13, 1, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1 
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for paramo ecosystem
+insert into cell_density 
+select 13, 2, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- Addition by SiB Colombia
+-- sets the dry forest ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- sets the paramo ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo is not null)
+where id = 2;
+
+-- set occurrence record coordinate count for ecosystem
+select concat('Starting  ecosystem occurrence coordinate count: ', now()) as debug;
+update ecosystem e set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=e.id and cd.type=13);
+
+-- set species count per dry forest ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting dry forest ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- set species count per paramo ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null)
+where id = 2;
 
 
 insert into centi_cell_density 

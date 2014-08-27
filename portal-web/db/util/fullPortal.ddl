@@ -538,6 +538,16 @@ CREATE TABLE `protected_area`(
 	 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `ecosystem`;
+CREATE TABLE `ecosystem`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`type` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1629,6 +1639,23 @@ CREATE TABLE `taxon_protected_area` (
 	PRIMARY KEY(`taxon_concept_id`,`protected_id`),
 	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
 	KEY `IX_protected_ids` (`protected_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_ecosystem`
+--
+
+DROP TABLE IF EXISTS `taxon_ecosystem`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_ecosystem` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`ecosystem_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`ecosystem_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_ecosystem_ids` (`ecosystem_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 

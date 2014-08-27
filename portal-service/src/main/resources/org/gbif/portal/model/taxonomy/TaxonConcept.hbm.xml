@@ -76,5 +76,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="protected_id" class="net.sibcolombia.portal.model.geospatial.ProtectedArea"/>
     </set>
+    <set lazy="true" name="ecosystems" table="taxon_ecosystem">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="ecosystem_id" class="net.sibcolombia.portal.model.geospatial.Ecosystem"/>
+    </set>
   </class>
 </hibernate-mapping>

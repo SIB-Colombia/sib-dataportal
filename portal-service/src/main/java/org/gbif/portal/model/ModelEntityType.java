@@ -38,6 +38,8 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
   public static final ModelEntityType MARINE_ZONE = new ModelEntityType("marine_zone", 11);
   //Protected Area model entity type used in colombian proected area list by sib colombia
   public static final ModelEntityType PROTECTED_AREA = new ModelEntityType("protected_area", 12);
+  //Ecosystem model entity type used in colombian ecosystem list by sib colombia
+  public static final ModelEntityType ECOSYSTEM = new ModelEntityType("ecosystem", 13);
   public static final ModelEntityType DATA_PROVIDER = new ModelEntityType("dataProvider", 3);
   public static final ModelEntityType DATA_RESOURCE = new ModelEntityType("dataResource", 4);
   public static final ModelEntityType RESOURCE_NETWORK = new ModelEntityType("resourceNetwork", 5);
@@ -77,6 +79,9 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
     }else if (value == PROTECTED_AREA.getValue()) {
         // Portected Area model entity type used in colombian protected area list by sib colombia
         return PROTECTED_AREA;
+    }else if (value == ECOSYSTEM.getValue()) {
+        // ecosystem model entity type used in colombian ecosystem list by sib colombia
+        return ECOSYSTEM;
     }else if (value == DATA_PROVIDER.getValue()) {
       return DATA_PROVIDER;
     } else if (value == DATA_RESOURCE.getValue()) {
@@ -118,6 +123,9 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
       }else if (name.equalsIgnoreCase(PROTECTED_AREA.getName())) {
           // PROTECTED AREA  model entity type used in colombian protected area list by sib colombia
         return PROTECTED_AREA;
+      }else if (name.equalsIgnoreCase(ECOSYSTEM.getName())) {
+          // ECOSYSTEM  model entity type used in colombian ecosystem list by sib colombia
+        return ECOSYSTEM;
       }else if (name.equalsIgnoreCase(DATA_PROVIDER.getName())) {
         return DATA_PROVIDER;
       } else if (name.equalsIgnoreCase(DATA_RESOURCE.getName())) {
