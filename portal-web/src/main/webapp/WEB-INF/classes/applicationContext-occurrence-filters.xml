@@ -40,6 +40,9 @@
 				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
 				<ref bean="ecosystemFilter"/>
 				
+				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
+				<ref bean="zonificacionFilter"/>
+				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
 				
@@ -332,6 +335,23 @@
 		<property name="helpView" value="/occurrence/ecosystemHelp.htm"/>
 	</bean>
 	<!-- End of ecosystem filter class to show Colombian Ecosystems (SIB Colombia) select list -->
+	
+	<!-- Zonificacion hidrografica filter class to show Colombian zonificaciones hidrograficas (SIB Colombia) select list -->
+	<bean id="zonificacionFilter" parent="baseGeospatialFilter">
+		<property name="id" value="44"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.zonificacion"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="zonificacion-ids"/>
+		<property name="helpView" value="/occurrence/zonificacionHelp.htm"/>
+	</bean>
+	<!-- End of protected area filter class to show Colombian Protected areas (SIB Colombia) select list -->
 	
 	<!--taxonomic ranks-->
 	<bean id="kingdomFilter" parent="baseTaxonRankFilter">

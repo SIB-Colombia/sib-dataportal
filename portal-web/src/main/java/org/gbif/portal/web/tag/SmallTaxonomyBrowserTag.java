@@ -261,7 +261,7 @@ public class SmallTaxonomyBrowserTag extends TagSupport {
           try {
             occurrencesCount =
               occurrenceManager.countOccurrenceRecords(null, null, null, concept.getKey(), null, null, null,
-            	null, null, null, null, null, null, null, null, null, null,null, false);
+            	null, null, null, null, null, null, null, null, null, null,null,null, false);
           } catch (ServiceException e) {
             logger.error(e.getMessage(), e);
           }

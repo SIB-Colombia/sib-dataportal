@@ -137,6 +137,15 @@ public interface DepartmentManager {
   public int getTotalEcosystemCount() throws ServiceException;
   
   /**
+   * SIB Colombia New method
+   * Returns a count of the total number of protected areas
+   * 
+   * @return count of the total number of zonificaciones hidrograficas
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalZonificacionCount() throws ServiceException;
+  
+  /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied
    * key is of the correct format.

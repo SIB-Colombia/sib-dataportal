@@ -230,6 +230,16 @@
   	</property>
   </bean>
   
+    <!-- Bean implementation DAO zonificacion hidrografica classes SiB Colombia -->
+  <bean id="zonificacionDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.ZonificacionDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
+  
   <bean id="departmentDTOFactory" class="net.sibcolombia.portal.dto.department.DepartmentDTOFactory"/>
   
   <!-- GeospatialManager -->
@@ -243,6 +253,7 @@
   			<property name="marineZoneDAO" ref="marineZoneDAORO"/>
   			<property name="protectedAreaDAO" ref="protectedAreaDAORO"/>
   			<property name="ecosystemDAO" ref="ecosystemDAORO"/>
+  			<property name="zonificacionDAO" ref="zonificacionDAORO"/>
   			<property name="cellDensityDAO" ref="cellDensityDAORO"/>
   			<property name="centiCellDensityDAO" ref="centiCellDensityDAORO"/>
   			<property name="occurrenceRecordDAO" ref="occurrenceRecordDAORO"/>
@@ -693,6 +704,8 @@
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
         		<!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID" value="dryForest"/>
+        		<!-- Zonificacion filter class to show Colombian Zonificaciones Hidrograficas (SIB Colombia) select list -->
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="hostCountry"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCE" value="dataResource"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="dataResource"/>				        							

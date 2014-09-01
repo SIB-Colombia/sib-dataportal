@@ -234,6 +234,17 @@ and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 -- --------------------------------------------
 
+-- populate the centi_cell_density for zonificacion
+-- 14 is zonificacion lookup_cell_density_type
+select concat('Building centi cells for zonificacion: ', now()) as debug;
+insert into centi_cell_density 
+select 14, z.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.zonificacion=z.szh 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+-- --------------------------------------------
+
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
 -- Records: 873791  Duplicates: 0  Warnings: 0
@@ -683,7 +694,7 @@ select concat('Starting protected area occurrence coordinate count: ', now()) as
 update protected_area pa set occurrence_coordinate_count =   
 (select sum(cd.count) from cell_density cd where cd.entity_id=pa.id and cd.type=12);
 
--- set species count per marine zone
+-- set species count per protected area
 -- this used to be species and lower concepts as well - changed 12.8.08
 select concat('Starting protected area species count: ', now()) as debug;
 update protected_area m set species_count = 
@@ -721,6 +732,22 @@ update ecosystem e set species_count =
 (select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null)
 where id = 2;
 
+-- Addition by SiB Colombia
+-- sets the zonificacion count
+select concat('Starting zonificacion occurrence count: ', now()) as debug;
+update zonificacion z set occurrence_count =
+(select count(id) from occurrence_record o where o.zonificacion=z.szh);
+
+-- set occurrence record coordinate count for zonificacion table
+select concat('Starting zonificacion occurrence coordinate count: ', now()) as debug;
+update zonificacion z set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=z.id and cd.type=14);
+
+-- set species count per zonificacion
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting zonificacion species count: ', now()) as debug;
+update zonificacion z set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.zonificacion = z.szh);
 
 -- temporal range - temporal range for this dataset
 -- Query OK, 2083 rows affected, 1200 warnings (2 min 24.52 sec)

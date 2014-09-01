@@ -196,6 +196,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="oc.protectedArea"/>
                 <!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID" value="oc.dryForest"/>
+                <!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="oc.zonificacion"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="oc.dataProvider.isoCountryCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="oc.dataResourceId"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="oc.dataProviderId"/>
@@ -307,6 +309,8 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DRYFORESTCOUNTS" value="distinct oc.dryForest, oc.dryForest, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DRYFORESTCOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ZONIFICACIONCOUNTS" value="distinct oc.zonificacion, oc.zonificacion, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ZONIFICACIONCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS" value="distinct oc.nubTaxonConceptId, oc.taxonName.canonical, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS.GROUPBY" value=""/>
 
@@ -372,6 +376,7 @@
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID" value="tc.marineZones.mask"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.PROTECTEDID" value="tc.protectedAreas.paId"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ECOSYSTEMID" value="tc.ecosystems.ecosystemId"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ZONIFICACIONID" value="tc.zonificaciones.szh"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.KINGDOM" value="tc.kingdomConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.PHYLUM" value="tc.phylumConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.CLASS" value="tc.classConcept.taxonNameLite.canonical"/>

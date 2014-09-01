@@ -185,3 +185,11 @@ from occurrence_record oc
 where oc.paramo is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
+
+-- populate the centi_cell_density for any zonificacion
+insert into centi_cell_density 
+select 14, z.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.zonificacion=z.szh 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;

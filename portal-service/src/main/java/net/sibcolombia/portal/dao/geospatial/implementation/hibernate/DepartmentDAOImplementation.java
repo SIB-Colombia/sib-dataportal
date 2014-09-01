@@ -272,7 +272,7 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
   }
   
   /**
-   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalMarineZoneCount()
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalProtectedAreaCount()
    */
   public int getTotalProtectedAreaCount() {
     Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
@@ -297,6 +297,21 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     });
     return count.intValue();
   }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalZonificacionCount()
+   */
+  public int getTotalZonificacionCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(z.id) from Zonificacion z");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  
   /**
    * @param supportedLocales the supportedLocales to set
    */

@@ -182,6 +182,14 @@ public interface TaxonConceptDAO {
    * @return the root concepts for a ecosystem
    */
   public List<TaxonConceptLite> getEcosystemRootConceptsFor(String ecosystem);
+  
+  /**
+   * Returns the root concepts for a zonificacion
+   * @param zonificacion
+   * @return the root concepts for a zonificacion
+   */
+  public List<TaxonConceptLite> getZonificacionRootConceptsFor(String zonificacion);
+
 
   /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
@@ -261,6 +269,16 @@ public interface TaxonConceptDAO {
    * @return The Parent Concept object for the concept with this id.
    */
   public List<TaxonConceptLite> getLiteChildConceptsForEcosystem(long taxonConceptId, String ecosystemId,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param zonificacion Restrict search to concepts within the supplied zonificacion, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForZonificacion(long taxonConceptId, String zonificacionId,
     boolean allowUnconfirmed);
   
   /**

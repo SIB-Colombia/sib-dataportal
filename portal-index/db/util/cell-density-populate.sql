@@ -74,6 +74,14 @@ and oc.cell_id is not null
 and oc.geospatial_issue=0
 group by 1,2,3;
 
+-- populate the centi_cell_density for zonificacion
+insert into cell_density 
+select 14, z.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.protected_area=z.szh 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
 -- populate the cell_density for home country
 -- This is the data for data_providers tied to a country
 insert into cell_density 

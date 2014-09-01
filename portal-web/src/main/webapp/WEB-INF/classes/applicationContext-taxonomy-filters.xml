@@ -33,6 +33,7 @@
 				<ref bean="marineZoneTaxonFilter"/>
 				<ref bean="protectedAreaTaxonFilter"/>
 				<ref bean="ecosystemTaxonFilter"/>
+				<ref bean="zonificacionTaxonFilter"/>
 			</list>
 		</property>	
 	</bean>
@@ -293,6 +294,21 @@
 		<property name="filterType" value="1"/>
 		<property name="dropDownValues" ref="ecosystem-ids"/>
 		<property name="helpView" value="/taxonomy/ecosystemTaxonHelp.htm"/>						
+	</bean>
+	
+	<bean id="zonificacionTaxonFilter" parent="baseGeospatialFilter">
+		<property name="id" value="19"/>					
+		<property name="displayName" value="occurrence.search.filter.geospatial.zonificacion"/>					
+		<property name="subject" value="SERVICE.TAXONOMY.QUERY.SUBJECT.ZONIFICACIONID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>        
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>			
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="zonificacion-ids"/>
+		<property name="helpView" value="/taxonomy/zonificacionTaxonHelp.htm"/>						
 	</bean>
 	
 	<!-- Filter helpers -->

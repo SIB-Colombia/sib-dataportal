@@ -75,6 +75,7 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 	protected MarineZoneDAO marineZoneDAO;
 	protected ProtectedAreaDAO protectedAreaDAO;
 	protected EcosystemDAO ecosystemDAO;
+	protected ZonificacionDAO zonificacionDAO;
 	protected DataProviderDAO dataProviderDAO;
 	protected DataResourceDAO dataResourceDAO;
 	protected ResourceNetworkDAO resourceNetworkDAO;
@@ -172,7 +173,8 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String complexId, String marineId, String protectedId, String ecosystem, String basisOfRecordCode,
+			String complexId, String marineId, String protectedId, String ecosystem, 
+			String zonificacionId, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly, SearchConstraints searchConstraints)
@@ -281,7 +283,13 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			throw new ServiceException("No ecosystem found for ecosystem Id "
 					+ ecosystem);
 		}
-
+		
+		if (zonificacionId != null
+				&& zonificacionDAO.getZonificacionForSZH(zonificacionId) == null) {
+			throw new ServiceException("No zonificacion hidrografica found for Zonificacion Id "
+					+ zonificacionId);
+		}
+		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -328,7 +336,8 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 						dataResource, resourceNetwork, scientificName,
 						hostIsoCountryCode, originIsoCountryCode,
 						originIsoDepartmentCode, originIsoCountyCode,
-						complexId, marineId, protectedId, ecosystem, minLongitude, maxLongitude,
+						complexId, marineId, protectedId, ecosystem,
+						zonificacionId, minLongitude, maxLongitude,
 						minLatitude, maxLatitude, cellIdValue, startDate,
 						endDate, basisOfRecord, modifiedSince,
 						georeferencedOnly, searchConstraints);
@@ -393,7 +402,8 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 			String taxonConceptKey, String scientificName,
 			String hostIsoCountryCode, String originIsoCountryCode,
 			String originIsoDepartmentCode, String originIsoCountyCode,
-			String paramo, String marineZone, String protectedArea, String ecosystem, String basisOfRecordCode,
+			String paramo, String marineZone, String protectedArea, 
+			String ecosystem, String zonificacion, String basisOfRecordCode,
 			String cellId, BoundingBoxDTO boundingBox,
 			TimePeriodDTO timePeriod, Date modifiedSince,
 			boolean georeferencedOnly) throws ServiceException {
@@ -503,6 +513,12 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 					+ ecosystem);
 		}
 		
+		if (zonificacion != null
+				&& zonificacionDAO.getZonificacionForSZH(zonificacion) == null) {
+			throw new ServiceException("No zonificacion found for zonificacion hidrografica id "
+					+ zonificacion);
+		}
+		
 		BasisOfRecord basisOfRecord = null;
 		if (basisOfRecordCode != null) {
 			basisOfRecord = BasisOfRecord.getBasisOfRecord(basisOfRecordCode);
@@ -548,7 +564,8 @@ public class OccurrenceManagerImpl implements OccurrenceManager {
 				taxonConcept, dataProvider, dataResource, resourceNetwork,
 				scientificName, hostIsoCountryCode, originIsoCountryCode,
 				originIsoDepartmentCode, originIsoCountyCode, paramo,
-				marineZone, protectedArea,ecosystem, minLongitude, maxLongitude, minLatitude,
+				marineZone, protectedArea,ecosystem, zonificacion,
+				minLongitude, maxLongitude, minLatitude,
 				maxLatitude, cellIdValue, startDate, endDate, basisOfRecord,
 				modifiedSince, georeferencedOnly);
 		if (logger.isDebugEnabled())

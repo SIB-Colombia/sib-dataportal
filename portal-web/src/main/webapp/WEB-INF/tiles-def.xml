@@ -971,6 +971,10 @@
 	<definition name="ecosystemHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/ecosystemHelp.jsp"/>
 	</definition>	
+	<!-- SIB Colombia zonificaciones hidrograficas search option help -->
+	<definition name="zonificacionHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/zonificacionHelp.jsp"/>
+	</definition>
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						
 	</definition>

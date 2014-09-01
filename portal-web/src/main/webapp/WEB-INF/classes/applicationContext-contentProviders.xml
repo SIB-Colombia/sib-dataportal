@@ -55,6 +55,9 @@
 		<!-- ocurrence filter for Colombian Ecosystems (SIB Colombia) -->
 		<property name="ecosystemOccurrenceFilter" ref="ecosystemFilter"/>
 		
+		<!-- ocurrence filter for Colombian Zonificaciones Hidrograficas (SIB Colombia) -->
+		<property name="zonificacionOccurrenceFilter" ref="ecosystemFilter"/>
+		
 		<property name="geoConsistencyOccurrenceFilter" ref="geoConsistencyFilter"/>		
 		<property name="georeferencedOccurrenceFilter" ref="georeferencedFilter"/>		
 		<property name="regionOccurrenceFilter" ref="regionFilter"/>		
@@ -82,6 +85,7 @@
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="marineZone"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID" value="dryForest"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.RESOURCENETWORKID" value="network"/>				

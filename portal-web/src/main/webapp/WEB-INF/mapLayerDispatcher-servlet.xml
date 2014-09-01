@@ -17,6 +17,7 @@
 				<prop key="/marineZone/**/*">marineZoneMapLayerController</prop>
 				<prop key="/protectedArea/**/*">protectedAreaMapLayerController</prop>
 				<prop key="/ecosystem/**/*">ecosystemMapLayerController</prop>
+				<prop key="/zonificacion/**/*">zonificacionMapLayerController</prop>
 				<prop key="/homeCountry/**/*">homeCountryMapLayerController</prop>
 				<prop key="/network/**/*">networkMapLayerController</prop>
 				<prop key="/provider/**/*">providerMapLayerController</prop>
@@ -63,6 +64,11 @@
 	<bean id="ecosystemMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="13"/>
 		<property name="urlRoot" value="ecosystem"/>
+	</bean>
+		<!-- SIB Colombia zonificacion map layer support -->
+	<bean id="zonificacionMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="14"/>
+		<property name="urlRoot" value="zonificacion"/>
 	</bean>
 	<bean id="providerMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="3"/>

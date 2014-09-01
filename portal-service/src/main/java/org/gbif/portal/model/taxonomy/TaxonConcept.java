@@ -25,6 +25,7 @@ import net.sibcolombia.portal.model.geospatial.Ecosystem;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 import net.sibcolombia.portal.model.geospatial.ProtectedArea;
+import net.sibcolombia.portal.model.geospatial.Zonificacion;
 
 /**
  * TaxonConcept Model Object represents a Taxonomic Concept described
@@ -119,6 +120,8 @@ public class TaxonConcept extends BaseObject {
   protected Set<ProtectedArea> protectedAreas;
   /** The ecosystems for this concept */
   protected Set<Ecosystem> ecosystems;
+  /** The zonificaciones for this concept */
+  protected Set<Zonificacion> zonificaciones;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -239,12 +242,18 @@ public class TaxonConcept extends BaseObject {
     return protectedAreas;
   }
   
-  
   /**
    * @return the ecosystems
    */
   public Set<Ecosystem> getEcosystems() {
     return ecosystems;
+  }
+  
+  /**
+   * @return the zonificaciones
+   */
+  public Set<Zonificacion> getZonificaciones() {
+    return zonificaciones;
   }
   
   /**
@@ -568,6 +577,13 @@ public class TaxonConcept extends BaseObject {
    */
   public void setEcosystems(Set<Ecosystem> ecosystems) {
     this.ecosystems = ecosystems;
+  }
+  
+  /**
+   * @param zonificaciones the zonificaciones to set
+   */
+  public void setZonificaciones(Set<Zonificacion> zonificaciones) {
+    this.zonificaciones = zonificaciones;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

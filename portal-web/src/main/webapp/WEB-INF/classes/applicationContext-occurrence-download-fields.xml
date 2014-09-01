@@ -52,6 +52,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="marineZone"/>
 		<ref bean="protectedArea"/>
 		<ref bean="dryForest"/>
+		<ref bean="zonificacion"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -125,6 +126,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="marineZone"/>
 		<ref bean="protectedArea"/>
 		<ref bean="dryForest"/>
+		<ref bean="zonificacion"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -219,6 +221,12 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldName" value="dryForest"/>
 		<property name="fieldI18nNameKey" value="occurrence.record.dryForest"/>
 		<property name="useI18nOnValue" value="true"/>
+	</bean>
+	<bean id="zonificacion" parent="downloadField">
+		<property name="fieldName" value="zonificacion"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.zonificacion"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="zonificacion"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

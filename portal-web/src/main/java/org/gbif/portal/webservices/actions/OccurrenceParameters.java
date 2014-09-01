@@ -77,6 +77,7 @@ public class OccurrenceParameters extends Parameters {
   public static final String KEY_MARINEZONEID = "marineZoneid";
   public static final String KEY_PROTECTEDAREAID = "protectedAreaid";
   public static final String KEY_ECOSYSTEMID = "ecosystemid";
+  public static final String KEY_ZONIFICACIONID = "zonificacionid";
   public static final String KEY_ORIGINREGIONCODE = "originregioncode";
   public static final String KEY_TYPESONLY = "typesonly";
   public static final String KEY_COORDINATESTATUS = "coordinatestatus";
@@ -117,6 +118,7 @@ public class OccurrenceParameters extends Parameters {
   private static final String SUBJECT_MARINEZONEID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID";
   private static final String SUBJECT_PROTECTEDAREAID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID";
   private static final String SUBJECT_DRYFORESTID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID";
+  private static final String SUBJECT_ZONIFICACIONID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID";
   private static final String SUBJECT_LATITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LATITUDE";
   private static final String SUBJECT_LONGITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LONGITUDE";
   private static final String SUBJECT_ALTITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ALTITUDE";
@@ -175,6 +177,7 @@ public class OccurrenceParameters extends Parameters {
   protected String[] marineZoneIds = null;
   protected String[] protectedAreaIds = null;
   protected String[] ecosystemIds = null;
+  protected String[] zonificacionIds = null;
   protected String[] dataProviderKeys = null;
   protected String[] dataResourceKeys = null;
   protected String[] resourceNetworkKeys = null;
@@ -265,7 +268,11 @@ public class OccurrenceParameters extends Parameters {
     	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
       	  ecosystemIds = addValue(ecosystemIds, (String) triplet.getObject());
           processed = true;
-      }else if (triplet.getSubject().equals(SUBJECT_HOSTCOUNTRYCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
+      }else if (triplet.getSubject().equals(SUBJECT_ZONIFICACIONID)
+  	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
+    	  zonificacionIds = addValue(zonificacionIds, (String) triplet.getObject());
+        processed = true;
+    }else if (triplet.getSubject().equals(SUBJECT_HOSTCOUNTRYCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
         hostIsoCountryCodes = addValue(hostIsoCountryCodes, (String) triplet.getObject());
         processed = true;
       } else if (triplet.getSubject().equals(SUBJECT_REGIONCODE) && triplet.getPredicate().equals(PREDICATE_EQUAL)) {
@@ -484,7 +491,9 @@ public class OccurrenceParameters extends Parameters {
             protectedAreaIds = getValue(params, KEY_PROTECTEDAREAID, ((String) value).toUpperCase());
         } else if (k.equals(KEY_ECOSYSTEMID)) {
             ecosystemIds = getValue(params, KEY_ECOSYSTEMID, ((String) value).toUpperCase());
-        } else if (k.equals(KEY_ORIGINREGIONCODE)) {
+        } else if (k.equals(KEY_ZONIFICACIONID)) {
+            zonificacionIds = getValue(params, KEY_ZONIFICACIONID, ((String) value).toUpperCase());
+        }else if (k.equals(KEY_ORIGINREGIONCODE)) {
           originRegionCodes = getValue(params, KEY_ORIGINREGIONCODE, ((String) value).toUpperCase());
         } else if (k.equals(KEY_KEY)) {
           key = (String) value;
@@ -847,6 +856,12 @@ public class OccurrenceParameters extends Parameters {
     return ecosystemIds;
   }
   /**
+   * @return the zonificacionIds
+   */
+  public String[] getZonificacionIds() {
+    return zonificacionIds;
+  }
+  /**
    * @return the originRegionCodes
    */
   public String[] getOriginRegionCodes() {
@@ -887,6 +902,8 @@ public class OccurrenceParameters extends Parameters {
             map.put(KEY_PROTECTEDAREAID, protectedAreaIds);
         if (ecosystemIds != null)
             map.put(KEY_ECOSYSTEMID, ecosystemIds);
+        if (zonificacionIds != null)
+            map.put(KEY_ZONIFICACIONID, zonificacionIds);
         if (originRegionCodes != null)
           map.put(KEY_ORIGINREGIONCODE, originRegionCodes);
         if (cellIds != null)
@@ -1116,6 +1133,12 @@ public class OccurrenceParameters extends Parameters {
     if (ecosystemIds != null) {
         addTriplet(triplets, SUBJECT_DRYFORESTID, PREDICATE_EQUAL, 1);
         addTriplet(triplets, SUBJECT_COMPLEXID, PREDICATE_EQUAL, 2);
+    }
+    
+    if (zonificacionIds != null) {
+        for (String zonificacionId : zonificacionIds) {
+        		 addTriplet(triplets, SUBJECT_ZONIFICACIONID, PREDICATE_EQUAL, zonificacionId);
+        }
     }
     if (originRegionCodes != null) {
       for (String originRegionCode : originRegionCodes) {

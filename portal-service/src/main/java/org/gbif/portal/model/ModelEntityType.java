@@ -40,6 +40,8 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
   public static final ModelEntityType PROTECTED_AREA = new ModelEntityType("protected_area", 12);
   //Ecosystem model entity type used in colombian ecosystem list by sib colombia
   public static final ModelEntityType ECOSYSTEM = new ModelEntityType("ecosystem", 13);
+  //Zonificacion model entity type used in colombian zonificacion hidrografica list by sib colombia
+  public static final ModelEntityType ZONIFICACION = new ModelEntityType("zonificacion", 14);
   public static final ModelEntityType DATA_PROVIDER = new ModelEntityType("dataProvider", 3);
   public static final ModelEntityType DATA_RESOURCE = new ModelEntityType("dataResource", 4);
   public static final ModelEntityType RESOURCE_NETWORK = new ModelEntityType("resourceNetwork", 5);
@@ -82,6 +84,9 @@ public class ModelEntityType extends IntegerEnumType implements Serializable {
     }else if (value == ECOSYSTEM.getValue()) {
         // ecosystem model entity type used in colombian ecosystem list by sib colombia
         return ECOSYSTEM;
+    }else if (value == ZONIFICACION.getValue()) {
+        // zonificacion model entity type used in colombian zonificacion hidrografica list by sib colombia
+        return ZONIFICACION;
     }else if (value == DATA_PROVIDER.getValue()) {
       return DATA_PROVIDER;
     } else if (value == DATA_RESOURCE.getValue()) {

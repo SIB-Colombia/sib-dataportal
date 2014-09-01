@@ -333,6 +333,16 @@ public interface TaxonomyManager {
    */
   public List<BriefTaxonConceptDTO> getChildConceptsForEcosystem(String taxonConceptKey, String ecosystemId,
     boolean allowUnconfirmed) throws ServiceException;
+  
+  /**
+   * Returns the Child Concepts for the TaxonConcept with the specified key value.
+   * 
+   * @param taxonConceptKey The taxon concept key
+   * @return list of BriefTaxonConceptDTO objects for the Child Concepts
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getChildConceptsForZonificacion(String taxonConceptKey, String zonificacionId,
+    boolean allowUnconfirmed) throws ServiceException;
 
 
   /**
@@ -454,7 +464,7 @@ public interface TaxonomyManager {
    * @param dataResourceKey the key of the data resource to use
    * @param taxonConceptKey the key of a taxon concept to retrieve the classification for, nullable.
    * @param retrieveChildren if set to true will gather child concepts as well as parent concepts
-   * @param protectedArea if retrieveChildren is set to true, setting marineId will only bring back child
+   * @param protectedArea if retrieveChildren is set to true, setting protectedArea will only bring back child
    *        concept with occurrence data in this county
    * @return List of BriefTaxonConcept for the full tree for this concept
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
@@ -472,13 +482,31 @@ public interface TaxonomyManager {
    * @param dataResourceKey the key of the data resource to use
    * @param taxonConceptKey the key of a taxon concept to retrieve the classification for, nullable.
    * @param retrieveChildren if set to true will gather child concepts as well as parent concepts
-   * @param ecosystem if retrieveChildren is set to true, setting marineId will only bring back child
+   * @param ecosystem if retrieveChildren is set to true, setting ecosystem will only bring back child
    *        concept with occurrence data in this county
    * @return List of BriefTaxonConcept for the full tree for this concept
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public List<BriefTaxonConceptDTO> getClassificationForEcosystem(String taxonConceptKey, boolean retrieveChildren,
     String ecosystem, boolean allowUnconfirmed) throws ServiceException;
+  
+  /**
+   * Returns the full classification given the supplied taxon concept key.
+   * This will include all ascendents and all direct descendents if descend is true.
+   * The list is order by rank in descending order (starting with highest rank).
+   * When the supplied taxonConceptKey is null, the highest concepts for a Data resource or provider
+   * will be returned
+   * 
+   * @param dataResourceKey the key of the data resource to use
+   * @param taxonConceptKey the key of a taxon concept to retrieve the classification for, nullable.
+   * @param retrieveChildren if set to true will gather child concepts as well as parent concepts
+   * @param zonificacion if retrieveChildren is set to true, setting zonificacionId will only bring back child
+   *        concept with occurrence data in this county
+   * @return List of BriefTaxonConcept for the full tree for this concept
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getClassificationForZonificacion(String taxonConceptKey, boolean retrieveChildren,
+    String zonificacion, boolean allowUnconfirmed) throws ServiceException;
 
   /**
    * Retrieve the common name for the supplied key.
@@ -550,6 +578,16 @@ public interface TaxonomyManager {
    * @throws ServiceException
    */
   public List<CountDTO> getEcosystemCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
+  
+  /**
+   * Retrieves a count against all zonificaciones hidrograficas for this taxon concept.
+   * 
+   * @param taxonConcept
+   * @return
+   * @throws ServiceException
+   */
+  public List<CountDTO> getZonificacionCountsForTaxonConcept(String taxonConceptKey) throws ServiceException;
+
 
   
   /**
@@ -661,6 +699,17 @@ public interface TaxonomyManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public List<BriefTaxonConceptDTO> getRootTaxonConceptsForEcosystem(String ecosystemId) throws ServiceException;
+  
+  /**
+   * Returns a list of TaxonConcepts that are the root concepts for the taxonomy of a county
+   * A root concept is a concept with no parent concept. This would typically be a higher concept
+   * of rank kingdom for example.
+   * 
+   * @param zonificacionId The ecosystem to search, nullable
+   * @return List of BriefTaxonConceptDTOs ordered alphabetically by Scientific Name
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public List<BriefTaxonConceptDTO> getRootTaxonConceptsForZonificacion(String zonificacionId) throws ServiceException;
 
   /**
    * Returns a list of TaxonConcepts that are the root concepts for the taxonomy of the

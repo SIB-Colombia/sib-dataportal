@@ -1625,6 +1625,16 @@ where oc.paramo is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
+-- populate the centi_cell_density for zonificacion
+-- 14 is zonificacion lookup_cell_density_type
+select concat('Building centi cells for zonificacion: ', now()) as debug;
+insert into centi_cell_density 
+select 14, z.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.zonificacion=z.szh 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
 -- Records: 873791  Duplicates: 0  Warnings: 0
@@ -2514,6 +2524,84 @@ group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia
+-- sets the zonificacion taxon count
+-- ***********************************
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion kingdom generation: ', now()) as debug;
+truncate table taxon_zonificacion;
+-- populate taxon_zonificacion
+insert ignore into taxon_zonificacion 
+select kingdom_concept_id, zonificacion, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion phylum generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select phylum_concept_id, zonificacion, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion class generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select class_concept_id, zonificacion, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion order generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select order_concept_id, zonificacion, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion family generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select family_concept_id, zonificacion, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion genus generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select genus_concept_id, zonificacion, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion species generation: ', now()) as debug;
+insert ignore into taxon_zonificacion
+select species_concept_id, zonificacion, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion nub concept generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select nub_concept_id, zonificacion, count(*)
+from occurrence_record
+where zonificacion is not null
+group by 1,2;
+
+
+-- ***********************************
+-- Addition by SiB Colombia
 -- sets the departments count
 -- ***********************************
 select concat('Starting department occurrence count: ', now()) as debug;
@@ -2622,6 +2710,53 @@ update protected_area pa set occurrence_coordinate_count =
 select concat('Starting protected areas species count: ', now()) as debug;
 update protected_area pa set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.protected_area=pa.pa_id);
+
+-- sets the dry forest ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- sets the paramo ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo is not null)
+where id = 2;
+
+-- set occurrence record coordinate count for ecosystem
+select concat('Starting  ecosystem occurrence coordinate count: ', now()) as debug;
+update ecosystem e set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=e.id and cd.type=13);
+
+-- set species count per dry forest ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting dry forest ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- set species count per paramo ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null)
+where id = 2;
+
+-- sets the zonificacion count
+select concat('Starting zonificacion occurrence count: ', now()) as debug;
+update zonificacion z set occurrence_count =
+(select count(id) from occurrence_record o where o.zonificacion=z.szh);
+
+-- set occurrence record coordinate count for zonificacion table
+select concat('Starting zonificacion occurrence coordinate count: ', now()) as debug;
+update zonificacion z set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=z.id and cd.type=14);
+
+-- set species count per zonificacion
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting zonificacion species count: ', now()) as debug;
+update zonificacion z set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.zonificacion = z.szh);
 
 -- stats
 select concat('Starting stats provider type species counts: ', now()) as debug;	

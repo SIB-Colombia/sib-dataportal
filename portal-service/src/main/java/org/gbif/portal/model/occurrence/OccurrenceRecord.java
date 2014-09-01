@@ -105,6 +105,8 @@ public class OccurrenceRecord extends BaseObject {
   protected String protectedArea;
   /** Dry Forest code of the occurrence location */
   protected String dryForest;
+  /** Zonificacion Hidrografica code of the occurrence location */
+  protected String zonificacion;
   /** The Country of the occurrence location */
   protected Country country;
 
@@ -364,13 +366,20 @@ public class OccurrenceRecord extends BaseObject {
 	}
 
   /**
-   * @return the protected area
+   * @return the dry forest
    */
   public String getDryForest() {
 		return dryForest;
 	}
   
   /**
+   * @return the zonificacion 
+   */
+  public String getZonificacion() {
+	return zonificacion;
+  }
+
+/**
    * @return the kingdomConcept
    */
   public TaxonConceptLite getKingdomConcept() {
@@ -765,10 +774,17 @@ public class OccurrenceRecord extends BaseObject {
 	}
 	
 	/**
-	   * @param ecosystem area the ecosystem to set
+	   * @param ecosystem the ecosystem to set
 	*/
 	public void setDryForest(String dryForest) {
 		this.dryForest = dryForest;
+	}
+	
+	/**
+	   * @param zonificacion hidrografica the zonificacion hidrografica to set
+	*/
+	public void setZonificacion(String zonificacion) {
+		this.zonificacion = zonificacion;
 	}
 
 /**

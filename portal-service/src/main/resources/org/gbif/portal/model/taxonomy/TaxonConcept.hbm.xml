@@ -80,5 +80,9 @@
         <key column="taxon_concept_id"/>
         <many-to-many column="ecosystem_id" class="net.sibcolombia.portal.model.geospatial.Ecosystem"/>
     </set>
+     <set lazy="true" name="zonificaciones" table="taxon_zonificacion">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="zonificacion_id" class="net.sibcolombia.portal.model.geospatial.Zonificacion"/>
+    </set>
   </class>
 </hibernate-mapping>

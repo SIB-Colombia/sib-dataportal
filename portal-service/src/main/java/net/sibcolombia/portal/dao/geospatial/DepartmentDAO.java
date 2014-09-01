@@ -123,5 +123,13 @@ public interface DepartmentDAO {
    * @return count of the total number of ecosystems
    */
   public int getTotalEcosystemCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of zonificacion hidrografica
+   * 
+   * @return count of the total number of zonificacion hidrografica
+   */
+  public int getTotalZonificacionCount();
 
 }

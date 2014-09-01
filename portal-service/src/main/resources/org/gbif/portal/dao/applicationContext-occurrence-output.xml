@@ -153,6 +153,11 @@
 								<property name="propertyName" value="dryForest"/>
 							</bean>
 						</entry>
+						<entry key="zonificacion">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="zonificacion"/>
+							</bean>
+						</entry>
 						<entry key="latitude">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="latitude"/>

@@ -561,6 +561,25 @@ CREATE TABLE `ecosystem`(
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table ecosystem DDL definition
+-- ----------------------------
+--  Table structure for `zonificacion` for SIB Colombia
+
+DROP TABLE IF EXISTS `zonificacion`;
+CREATE TABLE `zonificacion`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`ah` int(2)  NOT NULL,
+`nomah` varchar(255) DEFAULT NULL,
+`zh` int(2)  NOT NULL,
+`nomzh` varchar(255) DEFAULT NULL,
+`szh` int(2)  NOT NULL,
+`nomszh` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --

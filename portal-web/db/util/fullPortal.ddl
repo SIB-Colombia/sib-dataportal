@@ -548,6 +548,21 @@ CREATE TABLE `ecosystem`(
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `zonificacion`;
+CREATE TABLE `zonificacion`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`ah` int(2)  NOT NULL,
+`nomah` varchar(255) DEFAULT NULL,
+`zh` int(2)  NOT NULL,
+`nomzh` varchar(255) DEFAULT NULL,
+`szh` int(2)  NOT NULL,
+`nomszh` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1645,7 +1660,6 @@ SET character_set_client = @saved_cs_client;
 --
 -- Table structure for table `taxon_ecosystem`
 --
-
 DROP TABLE IF EXISTS `taxon_ecosystem`;
 SET @saved_cs_client = @@character_set_client;
 SET character_set_client = utf8;
@@ -1656,6 +1670,22 @@ CREATE TABLE `taxon_ecosystem` (
 	PRIMARY KEY(`taxon_concept_id`,`ecosystem_id`),
 	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
 	KEY `IX_ecosystem_ids` (`ecosystem_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_zonificacion`
+--
+DROP TABLE IF EXISTS `taxon_zonificacion`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_zonificacion` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`zonificacion_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`zonificacion_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_zonificacion_ids` (`zonificacion_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 

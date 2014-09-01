@@ -61,12 +61,15 @@ import net.sibcolombia.portal.dao.geospatial.EcosystemDAO;
 import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
 import net.sibcolombia.portal.dao.geospatial.ProtectedAreaDAO;
+import net.sibcolombia.portal.dao.geospatial.ZonificacionDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
 import net.sibcolombia.portal.model.geospatial.Ecosystem;
 import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
 import net.sibcolombia.portal.model.geospatial.ProtectedArea;
+import net.sibcolombia.portal.model.geospatial.Zonificacion;
+
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
@@ -112,6 +115,9 @@ public class GeospatialManagerImpl implements GeospatialManager {
   
   /** Ecosystem DAO for ecosystem queries */
   protected EcosystemDAO ecosystemDAO;
+  
+  /** Zonificacion DAO for zonificacion queries */
+  protected ZonificacionDAO zonificacionDAO;
   
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
@@ -613,6 +619,13 @@ public class GeospatialManagerImpl implements GeospatialManager {
           keyAsLong = ecosystem.getEcosystemId();
         }
     }
+    else if (type.equals(EntityType.TYPE_ZONIFICACION)) {
+        Object zonificacionAndName = zonificacionDAO.getZonificacionFor(Long.parseLong(key));
+        if (zonificacionAndName != null) {
+        	Zonificacion zonificacion = (Zonificacion) zonificacionAndName;
+          keyAsLong = zonificacion.getZonificacionId();
+        }
+    }
     return keyAsLong;
   }
 
@@ -897,6 +910,13 @@ public class GeospatialManagerImpl implements GeospatialManager {
    */
   public void setEcosystemDAO(EcosystemDAO ecosystemDAO) {
     this.ecosystemDAO = ecosystemDAO;
+  }
+  
+  /**
+   * @param zonificacionDAO the zonificacionDAO to set
+   */
+  public void setZonificacionDAO(ZonificacionDAO zonificacionDAO) {
+    this.zonificacionDAO = zonificacionDAO;
   }
   
   /**
