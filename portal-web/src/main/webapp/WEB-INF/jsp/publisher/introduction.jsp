@@ -10,9 +10,6 @@
   </p>
 </span>
 <div>
-<h3>
-  <spring:message code="publisher.intro.summary"/>
-</h3>
 <p>
   <c:set var="a0">
   <strong class="subject">${dataResourceCount}</strong>
@@ -28,9 +25,9 @@
 
 <div>
 <a href="${pageContext.request.contextPath}/publicadores/provider/${latestProvider.key}/" class="confirm" >
-<h3>
+<h4>
   <spring:message code="publisher.intro.latestresourceadded"/>
-</h3>
+</h4>
 ${latestProvider.name}</a>
 </c:if>
 </div>

@@ -15,20 +15,6 @@
 <spring:message code="welcome.tip.of.the.day.4" arguments="${link3}"/><br/>
 <a href="version.htm"><spring:message code="version" text="Version"/>
 <gbif:propertyLoader bundle="portal" property="version"/></a>-->
-  
-
-
-<div id="taxonomypane" class="panes_div">
-  <tiles:insert page="/WEB-INF/jsp/taxonomy/introduction.jsp"/>
-</div>
-<div id ="datasetpane"  class="panes_div">
-  <tiles:insert page="/WEB-INF/jsp/dataset/introduction.jsp"/>
-</div>
-<div id ="publisherpane"  class="panes_div">
-  <tiles:insert page="/WEB-INF/jsp/publisher/introduction.jsp"/>
-</div>
-
-
 
 <aside>
 <a href="http://www.sibcolombia.net" target="_blank"> <img src="${pageContext.request.contextPath}/skins/standard/images/ico_sib_portal.png" alt="<spring:message code='portal.header.dataportal.title.alt'/>"/>
@@ -43,13 +29,13 @@
   <br/>
       <!-- facebok-button-->
       <div id="fb-root"></div>
-	<script>(function(d, s, id) {
-  	var js, fjs = d.getElementsByTagName(s)[0];
-  	if (d.getElementById(id)) return;
-  	js = d.createElement(s); js.id = id;
-  	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
       <div class="fb-follow" data-href="https://www.facebook.com/SibColombia" data-show-faces="false" data-width="100"></div>
       <!-- facebok-button--> 
 
@@ -83,23 +69,63 @@
       <spring:message code="welcome.tip.of.the.day.1" arguments="${totalCO}%%%${total}%%%${totalSpecies}%%%${speciesCountryCO}" argumentSeparator="%%%"/>
     </p>
       <!--  
-	<c:set var="req" value="${pageContext.request}" />
-	<c:set var="uri" value="${req.requestURI}" />
-	<c:set var="url">${req.requestURL}</c:set>
-	<c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
-	<p>${urlt}</p>
-	--> 
-	</a>
+  <c:set var="req" value="${pageContext.request}" />
+  <c:set var="uri" value="${req.requestURI}" />
+  <c:set var="url">${req.requestURL}</c:set>
+  <c:set var="urlt" value="${fn:substring(url, 0, fn:length(url) - fn:length(uri))}${req.contextPath}"/>
+  <p>${urlt}</p>
+  --> 
+  </a>
   <hr/> 
   <a class='tut_selector' href="#inline_content">&iquest;C&oacute;mo usar el portal de datos?</a>
   <hr/>
   </aside>
-  
-  <div id ="geographypane"  class="panes_div"><tiles:insert page="/WEB-INF/jsp/geography/introduction.jsp"/>
-  </div>
-  
-  </div>
-<!-- End panes--> 
+
+<div id="searchpane">
+<a href="#" class="floating_search">B鷖queda<br/>avanzada</a>
+    <input type="text" name="textfield" id="textfield" autocomplete="on" placeholder="Busca en el portal de datos">
+    <input type="submit" name="buscar_home" id="buscar_home" value="">
+    <hr/>
+    <div class="results">
+         <a>
+             <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
+             <h1>Ara severus</h1>
+             <strong>Colecci贸n de sonidos ambientales</strong>
+             <p>Instituto alexander von Humboldt</p>
+         </a>
+         <a>
+             <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
+             <h1>Ara severus</h1>
+             <strong>Colecci贸n de sonidos ambientales</strong>
+             <p>Instituto alexander von Humboldt</p>
+         </a>
+         <a>
+             <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
+             <h1>Ara severus</h1>
+             <strong>Colecci贸n de sonidos ambientales</strong>
+             <p>Instituto alexander von Humboldt</p>
+         </a>
+         <a>
+             <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
+             <h1>Ara severus</h1>
+             <strong>Colecci贸n de sonidos ambientales</strong>
+             <p>Instituto alexander von Humboldt</p>
+         </a>
+        
+    </div>
+</div>
+
+<div id="geographypane" class="panes_div">
+  <tiles:insert page="/WEB-INF/jsp/geography/introduction.jsp"/>
+</div>
+<div id ="datasetpane"  class="panes_div">
+  <tiles:insert page="/WEB-INF/jsp/dataset/introduction.jsp"/>
+</div>
+<div id ="publisherpane"  class="panes_div">
+  <tiles:insert page="/WEB-INF/jsp/publisher/introduction.jsp"/>
+</div>
+
+
 <small>
   <spring:message code="portal.frontpage.images.credits"/>
 </small>

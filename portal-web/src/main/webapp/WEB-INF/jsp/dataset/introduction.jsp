@@ -2,16 +2,17 @@
 
 
 <a href="${pageContext.request.contextPath}/conjuntos/" class="confirm">
-<span><h2>
-  <spring:message code="dataset.intro.heading"/>
-  </h2>
-<p>
-  <strong><spring:message code="dataset.intro.description"/></strong>
-</p></span>
+<span>
+	<h2>
+	  <spring:message code="dataset.intro.heading"/>
+	  </h2>
+	<p>
+	  <strong><spring:message code="dataset.intro.description"/></strong>
+	</p>
+</span>
+
 <div>
-<h3>
-  <spring:message code="dataset.intro.summary"/>
-</h3>
+
 <p>
   <c:set var="a0">
   <strong class="subject">${dataResourceCount}</strong>
