@@ -25,10 +25,7 @@
 
 </div>
 </a>
-<div>alala</div>
-
-
-
+<div></div>
 
   <%-- This was commented since it must be a recognition of the userDepartment in Colombia  
   <c:choose>

@@ -89,7 +89,6 @@ float: right;
 
 .panes_div > div:nth-of-type(1) a h4 { color:white !important;}
 .panes_div > div:nth-of-type(1) a, .panes_div a div p { font-size: 1em !important;}
-
 #taxonomypane:after, #datasetpane:after, #publisherpane:after, #geographypane:after {content:" "; background: url("images/shadow_top.png") no-repeat top center; position: relative; width: 100%; height: 15px; display: block;}
 #taxonomypane span, #datasetpane  span, #geographypane span, #publisherpane span{
 	background-color: rgba(0,0,0,0.5);

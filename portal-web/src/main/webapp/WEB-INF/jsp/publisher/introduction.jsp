@@ -22,7 +22,6 @@
 </p>
 </div>
 </a>
-
 <div>
 <a href="${pageContext.request.contextPath}/publicadores/provider/${latestProvider.key}/" class="confirm" >
 <h4>

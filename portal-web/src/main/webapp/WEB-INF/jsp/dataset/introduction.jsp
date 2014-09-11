@@ -12,7 +12,6 @@
 </span>
 
 <div>
-
 <p>
   <c:set var="a0">
   <strong class="subject">${dataResourceCount}</strong>
