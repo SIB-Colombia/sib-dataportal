@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
  * Holds details of a Colombian protected areas.
- * NOTE:The identifier for this hibernate object isnt the protectedAreaId but the protectedArea.
+ * NOTE:The identifier for this hibernate object isnt the zonificacionId but the szh.
  * This is to enable joins with the OccurrenceRecord on protected_area.
  * 
  * @author Maria Fernanda Cubillos

@@ -703,7 +703,7 @@
         		<!-- Protected Area filter class to show Colombian Protected Areas (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
         		<!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
-        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID" value="dryForest"/>
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID" value="ecosystem"/>
         		<!-- Zonificacion filter class to show Colombian Zonificaciones Hidrograficas (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="hostCountry"/>

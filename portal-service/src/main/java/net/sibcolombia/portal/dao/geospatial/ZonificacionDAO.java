@@ -5,7 +5,7 @@ import java.util.List;
 import net.sibcolombia.portal.model.geospatial.Zonificacion;
 
 /**
- * The DAO for the ProtectedArea model object.
+ * The DAO for the Zonificacion model object.
  * 
  * @author Maria Fernanda Cubillos
  */

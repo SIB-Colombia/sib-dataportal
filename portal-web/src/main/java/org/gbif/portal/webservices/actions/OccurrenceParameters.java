@@ -117,7 +117,7 @@ public class OccurrenceParameters extends Parameters {
   private static final String SUBJECT_COMPLEXID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID";
   private static final String SUBJECT_MARINEZONEID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID";
   private static final String SUBJECT_PROTECTEDAREAID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID";
-  private static final String SUBJECT_DRYFORESTID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID";
+  private static final String SUBJECT_ECOSYSTEMID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID";
   private static final String SUBJECT_ZONIFICACIONID = "SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID";
   private static final String SUBJECT_LATITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LATITUDE";
   private static final String SUBJECT_LONGITUDE = "SERVICE.OCCURRENCE.QUERY.SUBJECT.LONGITUDE";
@@ -264,7 +264,7 @@ public class OccurrenceParameters extends Parameters {
     	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
       	  protectedAreaIds = addValue(protectedAreaIds, (String) triplet.getObject());
           processed = true;
-      }else if (triplet.getSubject().equals(SUBJECT_DRYFORESTID)
+      }else if (triplet.getSubject().equals(SUBJECT_ECOSYSTEMID)
     	    	&& triplet.getPredicate().equals(PREDICATE_EQUAL)) {
       	  ecosystemIds = addValue(ecosystemIds, (String) triplet.getObject());
           processed = true;
@@ -1131,7 +1131,7 @@ public class OccurrenceParameters extends Parameters {
         }
     }
     if (ecosystemIds != null) {
-        addTriplet(triplets, SUBJECT_DRYFORESTID, PREDICATE_EQUAL, 1);
+        addTriplet(triplets, SUBJECT_ECOSYSTEMID, PREDICATE_EQUAL, 1);
         addTriplet(triplets, SUBJECT_COMPLEXID, PREDICATE_EQUAL, 2);
     }
     

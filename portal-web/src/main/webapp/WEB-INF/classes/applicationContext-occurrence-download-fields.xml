@@ -221,6 +221,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldName" value="dryForest"/>
 		<property name="fieldI18nNameKey" value="occurrence.record.dryForest"/>
 		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="ecosystem"/>
 	</bean>
 	<bean id="zonificacion" parent="downloadField">
 		<property name="fieldName" value="zonificacion"/>

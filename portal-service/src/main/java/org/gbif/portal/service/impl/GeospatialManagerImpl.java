@@ -620,7 +620,7 @@ public class GeospatialManagerImpl implements GeospatialManager {
         }
     }
     else if (type.equals(EntityType.TYPE_ZONIFICACION)) {
-        Object zonificacionAndName = zonificacionDAO.getZonificacionFor(Long.parseLong(key));
+        Object zonificacionAndName = zonificacionDAO.getZonificacionForSZH(key);
         if (zonificacionAndName != null) {
         	Zonificacion zonificacion = (Zonificacion) zonificacionAndName;
           keyAsLong = zonificacion.getZonificacionId();

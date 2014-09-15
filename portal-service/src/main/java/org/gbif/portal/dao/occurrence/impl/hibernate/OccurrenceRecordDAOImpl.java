@@ -295,12 +295,8 @@ public class OccurrenceRecordDAOImpl extends HibernateDaoSupport implements Occu
 			criteria = criteria.add(Restrictions.eq("ocr.protectedArea", protectedId));
 		}
 		
-		if (ecosystemId != null && ecosystemId.equalsIgnoreCase("1")) {
+		if (ecosystemId != null) {
 			criteria = criteria.add(Restrictions.eq("ocr.dryForest", ecosystemId));
-		}
-		
-		if (ecosystemId != null && ecosystemId.equalsIgnoreCase("2")) {
-			criteria = criteria.add(Restrictions.isNotNull("ocr.paramo"));
 		}
 		
 		if (zonificacionId != null) {

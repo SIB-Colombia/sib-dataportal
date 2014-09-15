@@ -183,7 +183,7 @@ public class PropertyStoreQueryBuilder {
 				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID")&&triplet.getObject().equals("CUA")){
 					sb.append(" or oc.paramo is not null ");
 				}
-				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID")&&triplet.getObject().equals("2")){
+				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID")&&triplet.getObject().equals("2")){
 					sb.append(" or oc.paramo is not null ");
 				}
 				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID")&&triplet.getObject().equals("CUA")){

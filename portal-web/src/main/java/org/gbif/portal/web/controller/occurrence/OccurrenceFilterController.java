@@ -953,7 +953,7 @@ public class OccurrenceFilterController extends MultiActionController {
     int totalNoOfEcosystems = departmentManager.getTotalEcosystemCount();
     String view;
     if(criteriaDTO.get(0).getValue() == "1"){
-    	view = "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.DRYFORESTCOUNTS";
+    	view = "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ECOSYSTEMCOUNTS";
     }else{
     	view= "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS";
     }

@@ -84,7 +84,7 @@
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="paramo"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="marineZone"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
-				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DRYFORESTID" value="dryForest"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID" value="ecosystem"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>

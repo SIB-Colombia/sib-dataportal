@@ -43,7 +43,7 @@ public class EntityType implements Serializable {
   public static final EntityType TYPE_MARINEZONE = new EntityType(11, "marineZone");
   public static final EntityType TYPE_PROTECTEDAREA = new EntityType(12, "protectedArea");
   public static final EntityType TYPE_ECOSYSTEM = new EntityType(13, "ecosystem");
-  public static final EntityType TYPE_ZONIFICACION = new EntityType(13, "zonificacion");
+  public static final EntityType TYPE_ZONIFICACION = new EntityType(14, "zonificacion");
   
   static {
     entityTypes.put(TYPE_ALL.id, TYPE_ALL);
