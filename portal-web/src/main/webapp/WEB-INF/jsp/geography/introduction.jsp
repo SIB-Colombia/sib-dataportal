@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<a href="${pageContext.request.contextPath}/departamentos/" class="confirm">
+<a href="http://maps.sibcolombia.net/" class="confirm">
 <span>
     <h2>
       <spring:message code="departments.intro.heading"/>

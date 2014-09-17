@@ -82,33 +82,35 @@
   </aside>
 
 <div id="searchpane">
-<a href="#" class="floating_search">B鷖queda<br/>avanzada</a>
-    <input type="text" name="textfield" id="textfield" autocomplete="on" placeholder="Busca en el portal de datos">
-    <input type="submit" name="buscar_home" id="buscar_home" value="">
+	<form name="quickSearchForm" method="get" onsubmit="return javascript:submitFromLinkQuickSearch();" action="${pageContext.request.contextPath}/search/blanketSearch.htm">
+		<input type="text" id="query" name="keyword" placeholder="Busca en el portal de datos" autosave="gbif.blanketsearch" results="5" tabindex="1"/>		
+		<a href="${pageContext.request.contextPath}/busqueda/" class="floating_search">B鷖queda<br/>avanzada</a>
+		<input type="submit" name="buscar_home" id="buscar_home" value="">
+	</form>
     <hr/>
     <div class="results">
          <a>
              <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
              <h1>Ara severus</h1>
-             <strong>Colecci贸n de sonidos ambientales</strong>
+             <strong>Colecci髇 de sonidos ambientales</strong>
              <p>Instituto alexander von Humboldt</p>
          </a>
          <a>
              <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
              <h1>Ara severus</h1>
-             <strong>Colecci贸n de sonidos ambientales</strong>
+             <strong>Colecci髇 de sonidos ambientales</strong>
              <p>Instituto alexander von Humboldt</p>
          </a>
          <a>
              <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
              <h1>Ara severus</h1>
-             <strong>Colecci贸n de sonidos ambientales</strong>
+             <strong>Colecci髇 de sonidos ambientales</strong>
              <p>Instituto alexander von Humboldt</p>
          </a>
          <a>
              <img src="http://data.sibcolombia.net/skins/standard/images/esp_ico.png"/>
              <h1>Ara severus</h1>
-             <strong>Colecci贸n de sonidos ambientales</strong>
+             <strong>Colecci髇 de sonidos ambientales</strong>
              <p>Instituto alexander von Humboldt</p>
          </a>
         
@@ -131,10 +133,31 @@
 </small>
   
 <script type="text/javascript">
+document.getElementById("query").focus();
+
+function submitQuickSearch(formSubmit){
+	//check for empty value
+	var textValue = document.getElementById('query').value;
+	if(textValue!=null && textValue.length>0){
+		if(formSubmit)
+			document.quickSearchForm.submit();
+		return true;
+	}
+	return false;
+}
+
+function submitFromLinkQuickSearch(){
+	//check for empty value
+	var textValue = document.getElementById('query').value;
+	if(textValue!=null && textValue.length>0){
+			document.quickSearchForm.submit();
+	}
+}	
   var uvOptions = {};
   (function() {
     var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
     uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/lBPZH9vrbtDdBpMQsEctag.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
+ 
 </script> 
