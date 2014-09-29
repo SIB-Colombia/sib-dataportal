@@ -19,6 +19,19 @@
 		<put name="footer" value="/common/footer.jsp"/>
 	</definition>
 	
+	<!-- Empty Definition  -->
+	<definition name="emptyLayout" path="/layouts/emptyLayout.jsp">
+		<put name="title" value="portal.title"/>
+		<put name="subtitle" value="/WEB-INF/jsp/species.jsp"/>
+		<put name="keywords" value=""/>		
+		<put name="headcontent" value=""/>
+		<put name="header" value="/WEB-INF/jsp/header.jsp"/>
+		<put name="topmenu" value="/WEB-INF/jsp/menu/topMenu.jsp"/>
+		<put name="content" value=""/>
+		<put name="breadcrumbs" value=""/>
+		<put name="footer" value="/common/footer.jsp"/>
+	</definition>
+
 	<!-- Main Layout Definition  -->
 	<definition name="frontmainLayout" path="/layouts/frontPageMainLayout.jsp">
 		<put name="title" value="portal.title"/>
@@ -547,6 +560,11 @@
 		<put name="headcontent" value="/WEB-INF/jsp/stats/headcontent.jsp"/>
 		<put name="content" value="/WEB-INF/jsp/stats/stats.jsp"/>
 	</definition>
+	
+	<!-- Tile for Stats page  -->
+	<definition name="biodivView" extends="emptyLayout">
+		<put name="content" value="/WEB-INF/jsp/stats/sib-charts.jsp"/>
+	</definition>
 
 	<!-- Mapping tiles -->
 	<!-- the main map tile -->
@@ -941,6 +959,22 @@
 	<definition name="paramoHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/paramoHelp.jsp"/>
 	</definition>	
+	<!-- SIB Colombia marine zones search option help -->
+	<definition name="marineZoneHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/marineZoneHelp.jsp"/>
+	</definition>
+	<!-- SIB Colombia protected areas search option help -->
+	<definition name="protectedAreaHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/protectedAreaHelp.jsp"/>
+	</definition>
+	<!-- SIB Colombia ecosystems search option help -->
+	<definition name="ecosystemHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/ecosystemHelp.jsp"/>
+	</definition>	
+	<!-- SIB Colombia zonificaciones hidrograficas search option help -->
+	<definition name="zonificacionHelp" extends="ajaxHtmlLayout"> 		
+		<put name="content" value="/WEB-INF/jsp/occurrence/help/zonificacionHelp.jsp"/>
+	</definition>
 	<definition name="dataProviderHelp" extends="ajaxHtmlLayout"> 		
 		<put name="content" value="/WEB-INF/jsp/occurrence/help/dataProviderHelp.jsp"/>						
 	</definition>
@@ -1032,7 +1066,12 @@
 	<definition name="countyTaxonHelp" extends="ajaxHtmlLayout"> 		 		
 		<put name="content" value="/WEB-INF/jsp/taxonomy/help/countyHelp.jsp"/>
 	</definition>
-  	
+  		<definition name="paramoTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/paramoTaxonHelp.jsp"/>
+	</definition>
+		<definition name="marineZoneTaxonHelp" extends="ajaxHtmlLayout"> 		 		
+		<put name="content" value="/WEB-INF/jsp/taxonomy/help/marineZoneTaxonHelp.jsp"/>
+	</definition>
 	<!-- Simple System Details Page -->
 	<definition name="systemDetails" extends="mainLayout">
 		<put name="subtitle" value="/WEB-INF/jsp/systemDetailsSubtitle.jsp"/>
@@ -1183,6 +1222,7 @@
 		<put name="subtitle" value="/WEB-INF/jsp/webservices/subtitle.jsp"/>
 		<put name="headcontent" value="/WEB-INF/jsp/webservices/headcontent.jsp"/>	  
 		<put name="content" value="/WEB-INF/jsp/webservices/input.jsp"/>
-	</definition> 
+	</definition>
+
   
 </tiles-definitions>

@@ -101,7 +101,11 @@ public class DepartmentManagerImplementation implements DepartmentManager {
     return departmentDTOFactory.createDTOList(departments);
   }
 
-
+  public List<DepartmentDTO> getDepartmentsCountForTaxonConcept() {
+	    List<Department> departments = departmentDAO.getDepartmentsCountsForTaxonConcept();
+	    return departmentDTOFactory.createDTOList(departments);
+  }
+  
   /**
    * @see net.sibcolombia.portal.service.DepartmentManager#getTotalDepartmentCount()
    */
@@ -123,6 +127,33 @@ public class DepartmentManagerImplementation implements DepartmentManager {
     return departmentDAO.getTotalParamoCount();
   }
   
+  /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalMarineZoneCount()
+   */
+  public int getTotalMarineZoneCount() throws ServiceException {
+    return departmentDAO.getTotalMarineZoneCount();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalProtectedAreaCount()
+   */
+  public int getTotalProtectedAreaCount() throws ServiceException {
+    return departmentDAO.getTotalProtectedAreaCount();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalEcosystemCount()
+   */
+  public int getTotalEcosystemCount() throws ServiceException {
+    return departmentDAO.getTotalEcosystemCount();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.service.DepartmentManager#getTotalProtectedAreaCount()
+   */
+  public int getTotalZonificacionCount() throws ServiceException {
+    return departmentDAO.getTotalZonificacionCount();
+  }
   /**
    * @see net.sibcolombia.portal.service.DepartmentManager#isValidDepartmentKey(java.lang.String)
    */

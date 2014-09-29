@@ -47,6 +47,13 @@ public interface DepartmentDAO {
   public List<Object[]> getDepartmentCountsForTaxonConcept(long taxonConceptId);
 
   /**
+   * Use the taxon_department table to retrieve the departments with data for this taxon.
+   * 
+   * @return
+   */
+  public List<Department> getDepartmentsCountsForTaxonConcept();
+  
+  /**
    * Retrieve the department for the supplied Id.
    * 
    * @param departmentId the internal system id for this department
@@ -93,5 +100,36 @@ public interface DepartmentDAO {
    * @return count of the total number of paramos
    */
   public int getTotalParamoCount();
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of marine zones
+   * 
+   * @return count of the total number of marine zones
+   */
+  public int getTotalMarineZoneCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of protected areas
+   * 
+   * @return count of the total number of protected areas
+   */
+  public int getTotalProtectedAreaCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of ecosystems
+   * 
+   * @return count of the total number of ecosystems
+   */
+  public int getTotalEcosystemCount();
+  
+  /**
+   * SIB Colombia
+   * Returns a count of the total number of zonificacion hidrografica
+   * 
+   * @return count of the total number of zonificacion hidrografica
+   */
+  public int getTotalZonificacionCount();
 
 }

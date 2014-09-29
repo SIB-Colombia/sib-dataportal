@@ -48,9 +48,9 @@
         <key column="from_concept_id"/>
         <one-to-many class="org.gbif.portal.model.taxonomy.RelationshipAssertion"/>
     </set>
-    <set lazy="true" name="commonNames">
+    <set lazy="true" name="commonNames" table="common_name_taxon_concept">
         <key column="taxon_concept_id"/>
-        <one-to-many class="org.gbif.portal.model.taxonomy.CommonName"/>
+        <many-to-many column="common_name_id" class="org.gbif.portal.model.taxonomy.CommonName"/>
     </set>
     <set lazy="true" name="countries" table="taxon_country">
         <key column="taxon_concept_id"/>
@@ -67,6 +67,22 @@
     <set lazy="true" name="paramos" table="taxon_paramo">
         <key column="taxon_concept_id"/>
         <many-to-many column="complex_id" class="net.sibcolombia.portal.model.geospatial.Paramo"/>
+    </set>
+    <set lazy="true" name="marineZones" table="taxon_marine_zone">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="marine_id" class="net.sibcolombia.portal.model.geospatial.MarineZone"/>
+    </set>
+    <set lazy="true" name="protectedAreas" table="taxon_protected_area">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="protected_id" class="net.sibcolombia.portal.model.geospatial.ProtectedArea"/>
+    </set>
+    <set lazy="true" name="ecosystems" table="taxon_ecosystem">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="ecosystem_id" class="net.sibcolombia.portal.model.geospatial.Ecosystem"/>
+    </set>
+     <set lazy="true" name="zonificaciones" table="taxon_zonificacion">
+        <key column="taxon_concept_id"/>
+        <many-to-many column="zonificacion_id" class="net.sibcolombia.portal.model.geospatial.Zonificacion"/>
     </set>
   </class>
 </hibernate-mapping>

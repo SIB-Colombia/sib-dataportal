@@ -5,7 +5,7 @@
 		<c:choose>
 			<c:when test="${selectedConcept!=null}">
 				<spring:message code="taxonomy.browser.classification.of"/> 
-				<span class="subject"><string:capitalize>${selectedConcept.rank}</string:capitalize>: 
+				<span class="subject"><string:capitalize><spring:message code="taxonrank.${selectedConcept.rank}"/></string:capitalize>: 
 				<gbif:taxonPrint concept="${selectedConcept}"/></span> 
 				${selectedConcept.author}
 			</c:when>
@@ -15,14 +15,13 @@
 		</c:choose>
 		</h2>
 		<h3>
-			<spring:message code="taxonomy.browser.species.recorded.in" text="Species recorded in"/>:
+			<spring:message code="taxonomy.browser.species.recorded.in"/>:
 			<a href="${pageContext.request.contextPath}/departments/${department.isoDepartmentCode}"><gbif:capitalize>${department.departmentName}</gbif:capitalize></a>
 		</h3>
 	</div>
 	<c:choose>
 		<c:when test="${not empty concepts}">
 			<div id="furtherActions">
-				<%-- title hidden <h4><spring:message code='actions.for'/> <gbif:capitalize>${department.departmentName}</gbif:capitalize></h4> --%>
 				<table cellspacing="0" class="actionsList">
 					<tbody>
 						<tr valign="top">
@@ -55,7 +54,7 @@
 				</table>
 			</div><!--end further actions-->		
 			<div class="smalltree">
-				<gbif:smallbrowser concepts="${concepts}" selectedConcept="${selectedConcept}" rootUrl="/species/browse/department/${department.isoDepartmentCode}" markConceptBelowThreshold="${dataProvider.key==nubProvider.key}" highestRank="kingdom" messageSource="${messageSource}"/>
+				<gbif:smallbrowser concepts="${concepts}" selectedConcept="${selectedConcept}" rootUrl="/species/browse/department/${department.isoDepartmentCode}" markConceptBelowThreshold="${dataProvider.key==nubProvider.key}" highestRank="kingdom" messageSource="${messageSource}" occurrenceManager="${occurrenceManager}"/>
 			</div><!--end smalltree-->		
 		</c:when>
 		<c:otherwise>		

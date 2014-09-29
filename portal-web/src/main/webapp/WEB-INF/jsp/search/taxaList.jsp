@@ -10,11 +10,12 @@
 						<a href="${pageContext.request.contextPath}/species/<string:encodeUrl>${taxonConcept.key}</string:encodeUrl>/"><string:trim>
 							<gbif:taxonPrint concept="${taxonConcept}" printName="false">
 								<gbif:highlight keyword="${searchString}" cssClass="match" matchAnyPart="true">
-									${taxonConcept.taxonName}	<c:if test="${taxonConcept.commonName!=null}">(<c:if test="${not empty taxonConcept.commonNameLanguage}">${taxonConcept.commonNameLanguage}:</c:if><string:capitalize>${taxonConcept.commonName}</string:capitalize>)</c:if>
+									${taxonConcept.taxonName} <c:if test="${taxonConcept.commonName!=null}">(<c:if test="${not empty taxonConcept.commonNameLanguage}">${taxonConcept.commonNameLanguage}:</c:if><string:capitalize>${taxonConcept.commonName}</string:capitalize>)</c:if>
 								</gbif:highlight>
 							</gbif:taxonPrint>	
 						</string:trim></a>
 					</span>
+					${taxonConcept.author}
 				</p>
             </td>
             <td class="tdColumn3" >

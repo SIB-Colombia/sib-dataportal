@@ -58,82 +58,13 @@ set
     o.genus_concept_id=tc.genus_concept_id,
     o.species_concept_id=tc.species_concept_id;
 
--- clear the centi cells
--- Query OK, 0 rows affected (54.06 sec)
-select concat('Clearing centi cells: ', now()) as debug;    
--- truncate table centi_cell_density;
-delete from centi_cell_density;
-
--- populate the centi_cell_density for country
--- Query OK, 405400 rows affected (17 min 2.61 sec)
--- Records: 405400  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for country: ', now()) as debug;
-insert into centi_cell_density 
-select 2, c.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join country c on oc.iso_country_code=c.iso_country_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
-
--- populate the cell_density for home country
--- This is the data for data_providers tied to a country
--- Query OK, 486945 rows affected (8 min 44.25 sec)
--- Records: 486945  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for home country: ', now()) as debug;
-insert into centi_cell_density 
-select 6, c.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join data_provider dp on oc.data_provider_id=dp.id
-inner join country c on dp.iso_country_code=c.iso_country_code
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
-
--- populate home country for international networks
--- Query OK, 262835 rows affected (56.98 sec)
--- Records: 262835  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for international networks: ', now()) as debug;
-insert into centi_cell_density 
-select 6, 0, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join data_provider dp on oc.data_provider_id=dp.id
-where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc. deleted is null
-group by 3,4;
-
--- populate the centi_cell_density for provider
--- Query OK, 1010956 rows affected (3 min 39.17 sec)
--- Records: 1010956  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for provider: ', now()) as debug;
-insert into centi_cell_density
-select 3,data_provider_id,cell_id,centi_cell_id,count(id)
-from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0 and deleted is null
-group by 1,2,3,4;
-
--- populate the centi_cell_density for resource
--- Query OK, 1350386 rows affected (3 min 40.00 sec)
--- Records: 1350386  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for resource: ', now()) as debug;
-insert into centi_cell_density
-select 4,data_resource_id,cell_id,centi_cell_id,count(id)
-from occurrence_record
-where centi_cell_id is not null and geospatial_issue=0 and deleted is null
-group by 1,2,3,4;
-
--- populate the centi_cell_density for resource_network
--- Query OK, 820967 rows affected (10 min 31.83 sec)
--- Records: 820967  Duplicates: 0  Warnings: 0
-select concat('Building centi cells for network: ', now()) as debug;
-insert into centi_cell_density
-select 5,nm.resource_network_id,cell_id,centi_cell_id,count(oc.id)
-from occurrence_record oc
-inner join network_membership nm on oc.data_resource_id=nm.data_resource_id
-where centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by nm.resource_network_id, oc.cell_id, oc.centi_cell_id;
-
 -- ***********************************
 -- Addition by SiB Colombia
--- Assigns all possible occurrences for basis of record ids to the corresponding DarwinCore
+-- Here we ignore the validation of coordinates falling outside the country cells
+-- since Colombian cells are not well configured in HIT so the validation aplies for 
+-- coordinates that actually are in Colombia shape
 -- ***********************************
+-- Assigns all possible occurrences for basis of record ids to the corresponding DarwinCore
 
 -- populate basis_of_record according to differents possible ids.
 -- Preserved Specimen
@@ -170,30 +101,7 @@ update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_r
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='21' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%nomenclaturalchecklist%');
 update occurrence_record, raw_occurrence_record set occurrence_record.basis_of_record ='21' where raw_occurrence_record.id = occurrence_record.id and replace(lower(raw_occurrence_record.basis_of_record),' ','') like ('%listadecomprobaciondenomenclatura%');
 
--- ignoring event_id = 1006 since that validation is not quite accurate
-delete from gbif_log_message where event_id=1006 and occurrence_id in (select id from occurrence_record where geospatial_issue=0 and basis_of_record!=0);
-
--- delete warning 
-update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2;
-
-
--- ***********************************
--- Addition by SiB Colombia
--- Here we ignore the validation of coordinates falling outside the country cells
--- since Colombian cells are not well configured in HIT so the validation aplies for 
--- coordinates that actually are in Colombia shape
--- ***********************************
-
--- removing logs of this marked issue
-delete from gbif_log_message where event_id=1008 and occurrence_id  in 
-(select id from occurrence_record where geospatial_issue=32);
--- removing geospatial_issue
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
-
--- ***********************************
--- Addition by SiB Colombia
 -- Assigns all possible occurrences for department names to the corresponding ISO-CODE
--- ***********************************
 
 -- populate iso_department_code according to differents possible names.
 -- Bogotá, D.C
@@ -392,22 +300,9 @@ update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VAU
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('vichada') and (occurrence_record.iso_country_code='CO');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and lower (raw_occurrence_record.state_province)=('co-vid') and (occurrence_record.iso_country_code='CO');
 update occurrence_record, raw_occurrence_record set iso_department_code ='CO-VID' where raw_occurrence_record.id = occurrence_record.id and (raw_occurrence_record.state_province='99') and (occurrence_record.iso_country_code='CO');
--- populate the centi_cell_density for department
--- 8 is department lookup_cell_density_type
-select concat('Building centi cells for department: ', now()) as debug;
-insert into centi_cell_density 
-select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
-from occurrence_record oc 
-inner join department d on oc.iso_department_code=d.iso_department_code 
-where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
-group by 1,2,3,4;
--- End of SiB Colombia addition
--- --------------------------------------------
 
--- ***********************************
--- Addition by SiB Colombia
+
 -- Assigns all possible occurrences for county codes to the corresponding ISO-CODE
--- ***********************************
 
 -- populate iso_county_code according to differents possible codes.
 update occurrence_record, raw_occurrence_record set iso_county_code = '05001' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-ANT' and lower (raw_occurrence_record.county)=('medellín');
@@ -1531,6 +1426,127 @@ update occurrence_record, raw_occurrence_record set iso_county_code = '99001' wh
 update occurrence_record, raw_occurrence_record set iso_county_code = '99524' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('la primavera');
 update occurrence_record, raw_occurrence_record set iso_county_code = '99624' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('santa rosalía');
 update occurrence_record, raw_occurrence_record set iso_county_code = '99773' where raw_occurrence_record.id = occurrence_record.id and occurrence_record.iso_department_code = 'CO-VID' and lower (raw_occurrence_record.county)=('cumaribo');
+
+-- End of SiB Colombia addition
+-- --------------------------------------------
+
+-- ignoring event_id = 1006 since that validation is not quite accurate
+delete from gbif_log_message where event_id=1006 and occurrence_id in (select id from occurrence_record where geospatial_issue=0 and basis_of_record!=0);
+
+-- delete warning 
+update occurrence_record set other_issue = 0 where basis_of_record != '0' and other_issue = 2;
+
+-- removing logs of this marked issue
+delete from gbif_log_message where event_id=1008 and occurrence_id  in (select id from occurrence_record where geospatial_issue=32);
+
+-- removing geospatial_issue
+update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where iso_department_code_calculated is not null;
+
+update occurrence_record set iso_country_code_calculated = 'CO' where marine_zone is not null;
+
+update occurrence_record set iso_department_code_calculated = 'CO-DC' where iso_department_code_calculated = 'CO-CUN' and iso_department_code = 'CO-DC';
+
+update occurrence_record set geospatial_issue= 32 where iso_country_code != iso_country_code_calculated or iso_country_code_calculated is null;
+
+update occurrence_record set geospatial_issue= 32 where iso_department_code != iso_department_code_calculated;
+
+update occurrence_record set geospatial_issue= 32 
+where iso_department_code in ('CO-GUV','CO-ATL','CO-MAG','CO-BOL','CO-SUC','CO-COR','CO-ANT','CO-CHO','CO-VAC','CO-CAU','CO-NAR') 
+and iso_country_code_calculated = 'CO'  
+and iso_department_code_calculated is null 
+and marine_zone is null;
+
+update occurrence_record set geospatial_issue= 32 
+where iso_department_code not in ('CO-GUV','CO-ATL','CO-MAG','CO-BOL','CO-SUC','CO-COR','CO-ANT','CO-CHO','CO-VAC','CO-CAU','CO-NAR') 
+and iso_country_code_calculated = 'CO'  
+and iso_department_code_calculated is null; 
+
+call gbif_log_message();
+
+-- clear the centi cells
+-- Query OK, 0 rows affected (54.06 sec)
+select concat('Clearing centi cells: ', now()) as debug;    
+-- truncate table centi_cell_density;
+delete from centi_cell_density;
+
+-- populate the centi_cell_density for country
+-- Query OK, 405400 rows affected (17 min 2.61 sec)
+-- Records: 405400  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for country: ', now()) as debug;
+insert into centi_cell_density 
+select 2, c.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join country c on oc.iso_country_code=c.iso_country_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
+-- populate the cell_density for home country
+-- This is the data for data_providers tied to a country
+-- Query OK, 486945 rows affected (8 min 44.25 sec)
+-- Records: 486945  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for home country: ', now()) as debug;
+insert into centi_cell_density 
+select 6, c.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join data_provider dp on oc.data_provider_id=dp.id
+inner join country c on dp.iso_country_code=c.iso_country_code
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
+-- populate home country for international networks
+-- Query OK, 262835 rows affected (56.98 sec)
+-- Records: 262835  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for international networks: ', now()) as debug;
+insert into centi_cell_density 
+select 6, 0, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join data_provider dp on oc.data_provider_id=dp.id
+where dp.iso_country_code is null and oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc. deleted is null
+group by 3,4;
+
+-- populate the centi_cell_density for provider
+-- Query OK, 1010956 rows affected (3 min 39.17 sec)
+-- Records: 1010956  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for provider: ', now()) as debug;
+insert into centi_cell_density
+select 3,data_provider_id,cell_id,centi_cell_id,count(id)
+from occurrence_record
+where centi_cell_id is not null and geospatial_issue=0 and deleted is null
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for resource
+-- Query OK, 1350386 rows affected (3 min 40.00 sec)
+-- Records: 1350386  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for resource: ', now()) as debug;
+insert into centi_cell_density
+select 4,data_resource_id,cell_id,centi_cell_id,count(id)
+from occurrence_record
+where centi_cell_id is not null and geospatial_issue=0 and deleted is null
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for resource_network
+-- Query OK, 820967 rows affected (10 min 31.83 sec)
+-- Records: 820967  Duplicates: 0  Warnings: 0
+select concat('Building centi cells for network: ', now()) as debug;
+insert into centi_cell_density
+select 5,nm.resource_network_id,cell_id,centi_cell_id,count(oc.id)
+from occurrence_record oc
+inner join network_membership nm on oc.data_resource_id=nm.data_resource_id
+where centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by nm.resource_network_id, oc.cell_id, oc.centi_cell_id;
+
+-- populate the centi_cell_density for department
+-- 8 is department lookup_cell_density_type
+select concat('Building centi cells for department: ', now()) as debug;
+insert into centi_cell_density 
+select 8, d.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join department d on oc.iso_department_code=d.iso_department_code 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0 and oc.deleted is null
+group by 1,2,3,4;
+
 -- populate the centi_cell_density for county
 -- 9 is county lookup_cell_density_type
 select concat('Building centi cells for county: ', now()) as debug;
@@ -1543,7 +1559,7 @@ group by 1,2,3,4;
 
 -- populate the centi_cell_density for paramo
 -- 10 is paramo lookup_cell_density_type
-select concat('Building centi cells for county: ', now()) as debug;
+select concat('Building centi cells for paramo: ', now()) as debug;
 insert into centi_cell_density 
 select 10, p.id, cell_id, centi_cell_id, count(oc.id)  
 from occurrence_record oc 
@@ -1561,9 +1577,63 @@ where oc.paramo is not null
 and oc.centi_cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3,4;
 
--- End of SiB Colombia addition
--- --------------------------------------------
+-- populate the centi_cell_density for marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, m.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
 
+-- populate the centi_cell_density for any marine zone
+-- 11 is marine zone lookup_cell_density_type
+select concat('Building centi cells for any marine zone: ', now()) as debug;
+insert into centi_cell_density 
+select 11, 8 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for protected area
+-- 12 is protected area lookup_cell_density_type
+select concat('Building centi cells for protected area: ', now()) as debug;
+insert into centi_cell_density 
+select 12, pa.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join protected_area pa on oc.protected_area=pa.pa_id 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for ecosystem
+-- 13 is ecosystem lookup_cell_density_type
+select concat('Building centi cells for dry forest ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 1 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+select concat('Building centi cells for paramo ecosystem: ', now()) as debug;
+insert into centi_cell_density 
+select 13, 2 , cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
+
+-- populate the centi_cell_density for zonificacion
+-- 14 is zonificacion lookup_cell_density_type
+select concat('Building centi cells for zonificacion: ', now()) as debug;
+insert into centi_cell_density 
+select 14, z.id, cell_id, centi_cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.zonificacion=z.szh 
+where oc.centi_cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3,4;
 
 -- populate cell densities for all ORs on the denormalised nub id
 -- Query OK, 873791 rows affected (3 min 58.67 sec)
@@ -2153,6 +2223,385 @@ group by 1,2;
 
 -- ***********************************
 -- Addition by SiB Colombia
+-- sets the marine zones taxon count
+-- ***********************************
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone kingdom generation: ', now()) as debug;
+truncate table taxon_marine_zone;
+-- populate taxon_marine_zone
+insert ignore into taxon_marine_zone 
+select kingdom_concept_id, marine_zone, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone phylum generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select phylum_concept_id, marine_zone, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone class generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select class_concept_id, marine_zone, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone order generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select order_concept_id, marine_zone, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone family generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select family_concept_id, marine_zone, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone genus generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select genus_concept_id, marine_zone, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone species generation: ', now()) as debug;
+insert ignore into taxon_marine_zone
+select species_concept_id, marine_zone, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and marine_zone is not null
+group by 1,2;
+
+-- populate taxon_marine_zone
+select concat('Starting taxon_marine_zone nub concept generation: ', now()) as debug;
+insert ignore into taxon_marine_zone 
+select nub_concept_id, marine_zone, count(*)
+from occurrence_record
+where marine_zone is not null
+group by 1,2;
+
+-- ***********************************
+-- Addition by SiB Colombia
+-- sets the protected areas taxon count
+-- ***********************************
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area kingdom generation: ', now()) as debug;
+truncate table taxon_protected_area;
+-- populate taxon_protected_area
+insert ignore into taxon_protected_area 
+select kingdom_concept_id, protected_area, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area phylum generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select phylum_concept_id, protected_area, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area class generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select class_concept_id, protected_area, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area order generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select order_concept_id, protected_area, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area family generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select family_concept_id, protected_area, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area genus generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select genus_concept_id, protected_area, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area species generation: ', now()) as debug;
+insert ignore into taxon_protected_area
+select species_concept_id, protected_area, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and protected_area is not null
+group by 1,2;
+
+-- populate taxon_protected_area
+select concat('Starting taxon_protected_area nub concept generation: ', now()) as debug;
+insert ignore into taxon_protected_area 
+select nub_concept_id, protected_area, count(*)
+from occurrence_record
+where protected_area is not null
+group by 1,2;
+
+-- ***********************************
+-- Addition by SiB Colombia
+-- sets the ecosystem taxon count
+-- ***********************************
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem kingdom generation: ', now()) as debug;
+truncate table taxon_ecosystem;
+-- populate taxon_ecosystem
+insert ignore into taxon_ecosystem 
+select kingdom_concept_id, dry_forest, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem phylum generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select phylum_concept_id, dry_forest, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem class generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select class_concept_id, dry_forest, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem order generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select order_concept_id, dry_forest, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem family generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select family_concept_id, dry_forest, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem genus generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select genus_concept_id, dry_forest, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem species generation: ', now()) as debug;
+insert ignore into taxon_ecosystem
+select species_concept_id, dry_forest, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem nub concept generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select nub_concept_id, dry_forest, count(*)
+from occurrence_record
+where dry_forest = 1
+group by 1,2;
+
+-- populate taxon_ecosystem
+insert ignore into taxon_ecosystem 
+select kingdom_concept_id, paramo, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem phylum generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select phylum_concept_id, paramo, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem class generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select class_concept_id, paramo, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem order generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select order_concept_id, paramo, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem family generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select family_concept_id, paramo, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem genus generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select genus_concept_id, paramo, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem species generation: ', now()) as debug;
+insert ignore into taxon_ecosystem
+select species_concept_id, paramo, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and paramo is not null
+group by 1,2;
+
+-- populate taxon_ecosystem
+select concat('Starting taxon_ecosystem nub concept generation: ', now()) as debug;
+insert ignore into taxon_ecosystem 
+select nub_concept_id, paramo, count(*)
+from occurrence_record
+where paramo is not null
+group by 1,2;
+
+-- ***********************************
+-- Addition by SiB Colombia
+-- sets the zonificacion taxon count
+-- ***********************************
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion kingdom generation: ', now()) as debug;
+truncate table taxon_zonificacion;
+-- populate taxon_zonificacion
+insert ignore into taxon_zonificacion 
+select kingdom_concept_id, zonificacion, count(*)
+from occurrence_record 
+where kingdom_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion phylum generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select phylum_concept_id, zonificacion, count(*)
+from occurrence_record 
+where phylum_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion class generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select class_concept_id, zonificacion, count(*)
+from occurrence_record 
+where class_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion order generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select order_concept_id, zonificacion, count(*)
+from occurrence_record 
+where order_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion family generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select family_concept_id, zonificacion, count(*)
+from occurrence_record 
+where family_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion genus generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select genus_concept_id, zonificacion, count(*)
+from occurrence_record 
+where genus_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion species generation: ', now()) as debug;
+insert ignore into taxon_zonificacion
+select species_concept_id, zonificacion, count(*)
+from occurrence_record 
+where species_concept_id is not null
+and zonificacion is not null
+group by 1,2;
+
+-- populate taxon_zonificacion
+select concat('Starting taxon_zonificacion nub concept generation: ', now()) as debug;
+insert ignore into taxon_zonificacion 
+select nub_concept_id, zonificacion, count(*)
+from occurrence_record
+where zonificacion is not null
+group by 1,2;
+
+
+-- ***********************************
+-- Addition by SiB Colombia
 -- sets the departments count
 -- ***********************************
 select concat('Starting department occurrence count: ', now()) as debug;
@@ -2215,10 +2664,697 @@ update paramo p set occurrence_count =
 (select count(id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
 
 -- set species count per paramo for any
--- this used to be species and lower concepts as well - changed 12.8.08
 select concat('Starting paramo species count for any: ', now()) as debug;
 update paramo p set species_count = 
 (select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null) where complex_id = 'CUA';
+
+-- sets the marine zones count
+select concat('Starting marine zones occurrence count: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- set occurrence record coordinate count for marine zones table
+select concat('Starting marine zones occurrence coordinate count: ', now()) as debug;
+update marine_zone m set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=m.id and cd.type=11);
+
+-- set species count per marine zones
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone=m.mask);
+
+-- sets the marine zones count for any
+select concat('Starting marine zones occurrence count for any: ', now()) as debug;
+update marine_zone m set occurrence_count =
+(select count(id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- set species count per marine zones for any
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting marine zones species count for any: ', now()) as debug;
+update marine_zone m set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.marine_zone is not null) where mask = 'CUA';
+
+-- sets the protected areas count
+select concat('Starting protected areas occurrence count: ', now()) as debug;
+update protected_area pa set occurrence_count =
+(select count(id) from occurrence_record o where o.protected_area=pa.pa_id);
+
+-- set occurrence record coordinate count for protected areas table
+select concat('Starting protected areas occurrence coordinate count: ', now()) as debug;
+update protected_area pa set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=pa.id and cd.type=11);
+
+-- set species count per protected areas
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting protected areas species count: ', now()) as debug;
+update protected_area pa set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.protected_area=pa.pa_id);
+
+-- sets the dry forest ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- sets the paramo ecosystem count
+select concat('Starting dry forest ecosystem occurrence count: ', now()) as debug;
+update ecosystem e set occurrence_count =
+(select count(id) from occurrence_record o where o.paramo is not null)
+where id = 2;
+
+-- set occurrence record coordinate count for ecosystem
+select concat('Starting  ecosystem occurrence coordinate count: ', now()) as debug;
+update ecosystem e set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=e.id and cd.type=13);
+
+-- set species count per dry forest ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting dry forest ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.dry_forest = 1)
+where id = 1;
+
+-- set species count per paramo ecosystem
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting paramo ecosystem species count: ', now()) as debug;
+update ecosystem e set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.paramo is not null)
+where id = 2;
+
+-- sets the zonificacion count
+select concat('Starting zonificacion occurrence count: ', now()) as debug;
+update zonificacion z set occurrence_count =
+(select count(id) from occurrence_record o where o.zonificacion=z.szh);
+
+-- set occurrence record coordinate count for zonificacion table
+select concat('Starting zonificacion occurrence coordinate count: ', now()) as debug;
+update zonificacion z set occurrence_coordinate_count =   
+(select sum(cd.count) from cell_density cd where cd.entity_id=z.id and cd.type=14);
+
+-- set species count per zonificacion
+-- this used to be species and lower concepts as well - changed 12.8.08
+select concat('Starting zonificacion species count: ', now()) as debug;
+update zonificacion z set species_count = 
+(select count(distinct o.species_concept_id) from occurrence_record o where o.zonificacion = z.szh);
+
+-- stats
+select concat('Starting stats provider type species counts: ', now()) as debug;	
+UPDATE stats_provider_type_species_counts st set st.count = 
+(SELECT count(distinct species_concept_id) FROM occurrence_record where data_provider_id in (SELECT id FROM portal.data_provider where type like st.provider_type) and deleted is null);
+
+select concat('Starting stats taxon concept counts for Chromista: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Chromista') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Chromistas';
+
+select concat('Starting stats taxon concept counts for Protozoa: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Protozoa') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Protozoos';
+
+select concat('Starting stats taxon concept counts for Plantae: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Plantae') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Plantas';
+
+select concat('Starting stats taxon concept counts for Fungi: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Fungi') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Hongos';
+
+select concat('Starting stats taxon concept counts for Animalia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where kingdom_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Animalia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Animales';
+
+select concat('Starting stats taxon concept counts for Mollusca: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where phylum_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Mollusca') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Moluscos';
+
+select concat('Starting stats taxon concept counts for Amphibia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Amphibia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Anfibios';
+
+select concat('Starting stats taxon concept counts for Reptilia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Reptilia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Reptiles';
+
+select concat('Starting stats taxon concept counts for Mammalia: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Mammalia') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Mamíferos';
+
+select concat('Starting stats taxon concept counts for Aves: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Aves') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Aves';
+
+select concat('Starting stats taxon concept counts for Arachnida: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Arachnida') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Arácnidos';
+
+select concat('Starting stats taxon concept counts for Insecta: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Insecta') and data_provider_id = 1 and data_resource_id = 1)) where st.taxon_name like 'Insectos';
+
+select concat('Starting stats taxon concept counts for Actinopterygii and Sarcopterygii: ', now()) as debug;	
+UPDATE stats_taxon_concept_counts st set st.count = 
+(SELECT SUM(T1.total) FROM(
+SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Actinopterygii') and data_provider_id = 1 and data_resource_id = 1) union all
+SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1)) T1) where st.taxon_name like 'Peces óseos';
+
+drop table if exists stats_month_counts;
+
+create table stats_month_counts (year int(4), month int (2), count int(10), accumulative int(10));
+
+insert into stats_month_counts (year, month, count) 
+select 2012, 12, count(*) from raw_occurrence_record where created like '2012-12%' union all
+select 2013, 01, count(*) from raw_occurrence_record where created like '2013-01%' union all
+select 2013, 02, count(*) from raw_occurrence_record where created like '2013-02%' union all
+select 2013, 03, count(*) from raw_occurrence_record where created like '2013-03%' union all
+select 2013, 04, count(*) from raw_occurrence_record where created like '2013-04%' union all
+select 2013, 05, count(*) from raw_occurrence_record where created like '2013-05%' union all
+select 2013, 06, count(*) from raw_occurrence_record where created like '2013-06%' union all
+select 2013, 07, count(*) from raw_occurrence_record where created like '2013-07%' union all
+select 2013, 08, count(*) from raw_occurrence_record where created like '2013-08%' union all
+select 2013, 09, count(*) from raw_occurrence_record where created like '2013-09%' union all
+select 2013, 10, count(*) from raw_occurrence_record where created like '2013-10%' union all
+select 2013, 11, count(*) from raw_occurrence_record where created like '2013-11%' union all
+select 2013, 12, count(*) from raw_occurrence_record where created like '2013-12%' union all
+select 2014, 01, count(*) from raw_occurrence_record where created like '2014-01%' union all
+select 2014, 02, count(*) from raw_occurrence_record where created like '2014-02%' union all
+select 2014, 03, count(*) from raw_occurrence_record where created like '2014-03%' union all
+select 2014, 04, count(*) from raw_occurrence_record where created like '2014-04%' union all
+select 2014, 05, count(*) from raw_occurrence_record where created like '2014-05%' union all
+select 2014, 06, count(*) from raw_occurrence_record where created like '2014-06%' union all
+select 2014, 07, count(*) from raw_occurrence_record where created like '2014-07%' union all
+select 2014, 08, count(*) from raw_occurrence_record where created like '2014-08%' union all
+select 2014, 09, count(*) from raw_occurrence_record where created like '2014-09%' union all
+select 2014, 10, count(*) from raw_occurrence_record where created like '2014-10%' union all
+select 2014, 11, count(*) from raw_occurrence_record where created like '2014-11%' union all
+select 2014, 12, count(*) from raw_occurrence_record where created like '2014-12%' union all
+select 2015, 01, count(*) from raw_occurrence_record where created like '2015-01%' union all
+select 2015, 02, count(*) from raw_occurrence_record where created like '2015-02%' union all
+select 2015, 03, count(*) from raw_occurrence_record where created like '2015-03%' union all
+select 2015, 04, count(*) from raw_occurrence_record where created like '2015-04%' union all
+select 2015, 05, count(*) from raw_occurrence_record where created like '2015-05%' union all
+select 2015, 06, count(*) from raw_occurrence_record where created like '2015-06%' union all
+select 2015, 07, count(*) from raw_occurrence_record where created like '2015-07%' union all
+select 2015, 08, count(*) from raw_occurrence_record where created like '2015-08%' union all
+select 2015, 09, count(*) from raw_occurrence_record where created like '2015-09%' union all
+select 2015, 10, count(*) from raw_occurrence_record where created like '2015-10%' union all
+select 2015, 11, count(*) from raw_occurrence_record where created like '2015-11%' union all
+select 2015, 12, count(*) from raw_occurrence_record where created like '2015-12%' union all
+select 2016, 01, count(*) from raw_occurrence_record where created like '2016-01%' union all
+select 2016, 02, count(*) from raw_occurrence_record where created like '2016-02%' union all
+select 2016, 03, count(*) from raw_occurrence_record where created like '2016-03%' union all
+select 2016, 04, count(*) from raw_occurrence_record where created like '2016-04%' union all
+select 2016, 05, count(*) from raw_occurrence_record where created like '2016-05%' union all
+select 2016, 06, count(*) from raw_occurrence_record where created like '2016-06%' union all
+select 2016, 07, count(*) from raw_occurrence_record where created like '2016-07%' union all
+select 2016, 08, count(*) from raw_occurrence_record where created like '2016-08%' union all
+select 2016, 09, count(*) from raw_occurrence_record where created like '2016-09%' union all
+select 2016, 10, count(*) from raw_occurrence_record where created like '2016-10%' union all
+select 2016, 11, count(*) from raw_occurrence_record where created like '2016-11%' union all
+select 2016, 12, count(*) from raw_occurrence_record where created like '2016-12%' union all
+select 2017, 01, count(*) from raw_occurrence_record where created like '2017-01%' union all
+select 2017, 02, count(*) from raw_occurrence_record where created like '2017-02%' union all
+select 2017, 03, count(*) from raw_occurrence_record where created like '2017-03%' union all
+select 2017, 04, count(*) from raw_occurrence_record where created like '2017-04%' union all
+select 2017, 05, count(*) from raw_occurrence_record where created like '2017-05%' union all
+select 2017, 06, count(*) from raw_occurrence_record where created like '2017-06%' union all
+select 2017, 07, count(*) from raw_occurrence_record where created like '2017-07%' union all
+select 2017, 08, count(*) from raw_occurrence_record where created like '2017-08%' union all
+select 2017, 09, count(*) from raw_occurrence_record where created like '2017-09%' union all
+select 2017, 10, count(*) from raw_occurrence_record where created like '2017-10%' union all
+select 2017, 11, count(*) from raw_occurrence_record where created like '2017-11%' union all
+select 2017, 12, count(*) from raw_occurrence_record where created like '2017-12%' union all
+select 2018, 01, count(*) from raw_occurrence_record where created like '2018-01%' union all
+select 2018, 02, count(*) from raw_occurrence_record where created like '2018-02%' union all
+select 2018, 03, count(*) from raw_occurrence_record where created like '2018-03%' union all
+select 2018, 04, count(*) from raw_occurrence_record where created like '2018-04%' union all
+select 2018, 05, count(*) from raw_occurrence_record where created like '2018-05%' union all
+select 2018, 06, count(*) from raw_occurrence_record where created like '2018-06%' union all
+select 2018, 07, count(*) from raw_occurrence_record where created like '2018-07%' union all
+select 2018, 08, count(*) from raw_occurrence_record where created like '2018-08%' union all
+select 2018, 09, count(*) from raw_occurrence_record where created like '2018-09%' union all
+select 2018, 10, count(*) from raw_occurrence_record where created like '2018-10%' union all
+select 2018, 11, count(*) from raw_occurrence_record where created like '2018-11%' union all
+select 2018, 12, count(*) from raw_occurrence_record where created like '2018-12%' union all
+select 2019, 01, count(*) from raw_occurrence_record where created like '2019-01%' union all
+select 2019, 02, count(*) from raw_occurrence_record where created like '2019-02%' union all
+select 2019, 03, count(*) from raw_occurrence_record where created like '2019-03%' union all
+select 2019, 04, count(*) from raw_occurrence_record where created like '2019-04%' union all
+select 2019, 05, count(*) from raw_occurrence_record where created like '2019-05%' union all
+select 2019, 06, count(*) from raw_occurrence_record where created like '2019-06%' union all
+select 2019, 07, count(*) from raw_occurrence_record where created like '2019-07%' union all
+select 2019, 08, count(*) from raw_occurrence_record where created like '2019-08%' union all
+select 2019, 09, count(*) from raw_occurrence_record where created like '2019-09%' union all
+select 2019, 10, count(*) from raw_occurrence_record where created like '2019-10%' union all
+select 2019, 11, count(*) from raw_occurrence_record where created like '2019-11%' union all
+select 2019, 12, count(*) from raw_occurrence_record where created like '2019-12%' union all
+select 2020, 01, count(*) from raw_occurrence_record where created like '2020-01%' union all
+select 2020, 02, count(*) from raw_occurrence_record where created like '2020-02%' union all
+select 2020, 03, count(*) from raw_occurrence_record where created like '2020-03%' union all
+select 2020, 04, count(*) from raw_occurrence_record where created like '2020-04%' union all
+select 2020, 05, count(*) from raw_occurrence_record where created like '2020-05%' union all
+select 2020, 06, count(*) from raw_occurrence_record where created like '2020-06%' union all
+select 2020, 07, count(*) from raw_occurrence_record where created like '2020-07%' union all
+select 2020, 08, count(*) from raw_occurrence_record where created like '2020-08%' union all
+select 2020, 09, count(*) from raw_occurrence_record where created like '2020-09%' union all
+select 2020, 10, count(*) from raw_occurrence_record where created like '2020-10%' union all
+select 2020, 11, count(*) from raw_occurrence_record where created like '2020-11%' union all
+select 2020, 12, count(*) from raw_occurrence_record where created like '2020-12%' union all 
+select 2021, 01, count(*) from raw_occurrence_record where created like '2021-01%' union all
+select 2021, 02, count(*) from raw_occurrence_record where created like '2021-02%' union all
+select 2021, 03, count(*) from raw_occurrence_record where created like '2021-03%' union all
+select 2021, 04, count(*) from raw_occurrence_record where created like '2021-04%' union all
+select 2021, 05, count(*) from raw_occurrence_record where created like '2021-05%' union all
+select 2021, 06, count(*) from raw_occurrence_record where created like '2021-06%' union all
+select 2021, 07, count(*) from raw_occurrence_record where created like '2021-07%' union all
+select 2021, 08, count(*) from raw_occurrence_record where created like '2021-08%' union all
+select 2021, 09, count(*) from raw_occurrence_record where created like '2021-09%' union all
+select 2021, 10, count(*) from raw_occurrence_record where created like '2021-10%' union all
+select 2021, 11, count(*) from raw_occurrence_record where created like '2021-11%' union all
+select 2021, 12, count(*) from raw_occurrence_record where created like '2021-12%' union all
+select 2022, 01, count(*) from raw_occurrence_record where created like '2022-01%' union all
+select 2022, 02, count(*) from raw_occurrence_record where created like '2022-02%' union all
+select 2022, 03, count(*) from raw_occurrence_record where created like '2022-03%' union all
+select 2022, 04, count(*) from raw_occurrence_record where created like '2022-04%' union all
+select 2022, 05, count(*) from raw_occurrence_record where created like '2022-05%' union all
+select 2022, 06, count(*) from raw_occurrence_record where created like '2022-06%' union all
+select 2022, 07, count(*) from raw_occurrence_record where created like '2022-07%' union all
+select 2022, 08, count(*) from raw_occurrence_record where created like '2022-08%' union all
+select 2022, 09, count(*) from raw_occurrence_record where created like '2022-09%' union all
+select 2022, 10, count(*) from raw_occurrence_record where created like '2022-10%' union all
+select 2022, 11, count(*) from raw_occurrence_record where created like '2022-11%' union all
+select 2022, 12, count(*) from raw_occurrence_record where created like '2022-12%' union all
+select 2023, 01, count(*) from raw_occurrence_record where created like '2023-01%' union all
+select 2023, 02, count(*) from raw_occurrence_record where created like '2023-02%' union all
+select 2023, 03, count(*) from raw_occurrence_record where created like '2023-03%' union all
+select 2023, 04, count(*) from raw_occurrence_record where created like '2023-04%' union all
+select 2023, 05, count(*) from raw_occurrence_record where created like '2023-05%' union all
+select 2023, 06, count(*) from raw_occurrence_record where created like '2023-06%' union all
+select 2023, 07, count(*) from raw_occurrence_record where created like '2023-07%' union all
+select 2023, 08, count(*) from raw_occurrence_record where created like '2023-08%' union all
+select 2023, 09, count(*) from raw_occurrence_record where created like '2023-09%' union all
+select 2023, 10, count(*) from raw_occurrence_record where created like '2023-10%' union all
+select 2023, 11, count(*) from raw_occurrence_record where created like '2023-11%' union all
+select 2023, 12, count(*) from raw_occurrence_record where created like '2023-12%' union all
+select 2024, 01, count(*) from raw_occurrence_record where created like '2024-01%' union all
+select 2024, 02, count(*) from raw_occurrence_record where created like '2024-02%' union all
+select 2024, 03, count(*) from raw_occurrence_record where created like '2024-03%' union all
+select 2024, 04, count(*) from raw_occurrence_record where created like '2024-04%' union all
+select 2024, 05, count(*) from raw_occurrence_record where created like '2024-05%' union all
+select 2024, 06, count(*) from raw_occurrence_record where created like '2024-06%' union all
+select 2024, 07, count(*) from raw_occurrence_record where created like '2024-07%' union all
+select 2024, 08, count(*) from raw_occurrence_record where created like '2024-08%' union all
+select 2024, 09, count(*) from raw_occurrence_record where created like '2024-09%' union all
+select 2024, 10, count(*) from raw_occurrence_record where created like '2024-10%' union all
+select 2024, 11, count(*) from raw_occurrence_record where created like '2024-11%' union all
+select 2024, 12, count(*) from raw_occurrence_record where created like '2024-12%' union all
+select 2025, 01, count(*) from raw_occurrence_record where created like '2025-01%' union all
+select 2025, 02, count(*) from raw_occurrence_record where created like '2025-02%' union all
+select 2025, 03, count(*) from raw_occurrence_record where created like '2025-03%' union all
+select 2025, 04, count(*) from raw_occurrence_record where created like '2025-04%' union all
+select 2025, 05, count(*) from raw_occurrence_record where created like '2025-05%' union all
+select 2025, 06, count(*) from raw_occurrence_record where created like '2025-06%' union all
+select 2025, 07, count(*) from raw_occurrence_record where created like '2025-07%' union all
+select 2025, 08, count(*) from raw_occurrence_record where created like '2025-08%' union all
+select 2025, 09, count(*) from raw_occurrence_record where created like '2025-09%' union all
+select 2025, 10, count(*) from raw_occurrence_record where created like '2025-10%' union all
+select 2025, 11, count(*) from raw_occurrence_record where created like '2025-11%' union all
+select 2025, 12, count(*) from raw_occurrence_record where created like '2025-12%' union all
+select 2026, 01, count(*) from raw_occurrence_record where created like '2026-01%' union all
+select 2026, 02, count(*) from raw_occurrence_record where created like '2026-02%' union all
+select 2026, 03, count(*) from raw_occurrence_record where created like '2026-03%' union all
+select 2026, 04, count(*) from raw_occurrence_record where created like '2026-04%' union all
+select 2026, 05, count(*) from raw_occurrence_record where created like '2026-05%' union all
+select 2026, 06, count(*) from raw_occurrence_record where created like '2026-06%' union all
+select 2026, 07, count(*) from raw_occurrence_record where created like '2026-07%' union all
+select 2026, 08, count(*) from raw_occurrence_record where created like '2026-08%' union all
+select 2026, 09, count(*) from raw_occurrence_record where created like '2026-09%' union all
+select 2026, 10, count(*) from raw_occurrence_record where created like '2026-10%' union all
+select 2026, 11, count(*) from raw_occurrence_record where created like '2026-11%' union all
+select 2026, 12, count(*) from raw_occurrence_record where created like '2026-12%' union all
+select 2027, 01, count(*) from raw_occurrence_record where created like '2027-01%' union all
+select 2027, 02, count(*) from raw_occurrence_record where created like '2027-02%' union all
+select 2027, 03, count(*) from raw_occurrence_record where created like '2027-03%' union all
+select 2027, 04, count(*) from raw_occurrence_record where created like '2027-04%' union all
+select 2027, 05, count(*) from raw_occurrence_record where created like '2027-05%' union all
+select 2027, 06, count(*) from raw_occurrence_record where created like '2027-06%' union all
+select 2027, 07, count(*) from raw_occurrence_record where created like '2027-07%' union all
+select 2027, 08, count(*) from raw_occurrence_record where created like '2027-08%' union all
+select 2027, 09, count(*) from raw_occurrence_record where created like '2027-09%' union all
+select 2027, 10, count(*) from raw_occurrence_record where created like '2027-10%' union all
+select 2027, 11, count(*) from raw_occurrence_record where created like '2027-11%' union all
+select 2027, 12, count(*) from raw_occurrence_record where created like '2027-12%' union all
+select 2028, 01, count(*) from raw_occurrence_record where created like '2028-01%' union all
+select 2028, 02, count(*) from raw_occurrence_record where created like '2028-02%' union all
+select 2028, 03, count(*) from raw_occurrence_record where created like '2028-03%' union all
+select 2028, 04, count(*) from raw_occurrence_record where created like '2028-04%' union all
+select 2028, 05, count(*) from raw_occurrence_record where created like '2028-05%' union all
+select 2028, 06, count(*) from raw_occurrence_record where created like '2028-06%' union all
+select 2028, 07, count(*) from raw_occurrence_record where created like '2028-07%' union all
+select 2028, 08, count(*) from raw_occurrence_record where created like '2028-08%' union all
+select 2028, 09, count(*) from raw_occurrence_record where created like '2028-09%' union all
+select 2028, 10, count(*) from raw_occurrence_record where created like '2028-10%' union all
+select 2028, 11, count(*) from raw_occurrence_record where created like '2028-11%' union all
+select 2028, 12, count(*) from raw_occurrence_record where created like '2028-12%' union all
+select 2029, 01, count(*) from raw_occurrence_record where created like '2029-01%' union all
+select 2029, 02, count(*) from raw_occurrence_record where created like '2029-02%' union all
+select 2029, 03, count(*) from raw_occurrence_record where created like '2029-03%' union all
+select 2029, 04, count(*) from raw_occurrence_record where created like '2029-04%' union all
+select 2029, 05, count(*) from raw_occurrence_record where created like '2029-05%' union all
+select 2029, 06, count(*) from raw_occurrence_record where created like '2029-06%' union all
+select 2029, 07, count(*) from raw_occurrence_record where created like '2029-07%' union all
+select 2029, 08, count(*) from raw_occurrence_record where created like '2029-08%' union all
+select 2029, 09, count(*) from raw_occurrence_record where created like '2029-09%' union all
+select 2029, 10, count(*) from raw_occurrence_record where created like '2029-10%' union all
+select 2029, 11, count(*) from raw_occurrence_record where created like '2029-11%' union all
+select 2029, 12, count(*) from raw_occurrence_record where created like '2029-12%' union all
+select 2030, 01, count(*) from raw_occurrence_record where created like '2030-01%' union all
+select 2030, 02, count(*) from raw_occurrence_record where created like '2030-02%' union all
+select 2030, 03, count(*) from raw_occurrence_record where created like '2030-03%' union all
+select 2030, 04, count(*) from raw_occurrence_record where created like '2030-04%' union all
+select 2030, 05, count(*) from raw_occurrence_record where created like '2030-05%' union all
+select 2030, 06, count(*) from raw_occurrence_record where created like '2030-06%' union all
+select 2030, 07, count(*) from raw_occurrence_record where created like '2030-07%' union all
+select 2030, 08, count(*) from raw_occurrence_record where created like '2030-08%' union all
+select 2030, 09, count(*) from raw_occurrence_record where created like '2030-09%' union all
+select 2030, 10, count(*) from raw_occurrence_record where created like '2030-10%' union all
+select 2030, 11, count(*) from raw_occurrence_record where created like '2030-11%' union all
+select 2030, 12, count(*) from raw_occurrence_record where created like '2030-12%';
+
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-01-01') where year = 2012 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-02-01') where year = 2013 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-03-01') where year = 2013 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-04-01') where year = 2013 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-05-01') where year = 2013 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-06-01') where year = 2013 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-07-01') where year = 2013 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-08-01') where year = 2013 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-09-01') where year = 2013 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-10-01') where year = 2013 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-11-01') where year = 2013 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2013-12-01') where year = 2013 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-01-01') where year = 2013 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-02-01') where year = 2014 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-03-01') where year = 2014 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-04-01') where year = 2014 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-05-01') where year = 2014 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-06-01') where year = 2014 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-07-01') where year = 2014 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-08-01') where year = 2014 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-09-01') where year = 2014 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-10-01') where year = 2014 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-11-01') where year = 2014 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2014-12-01') where year = 2014 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-01-01') where year = 2014 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-02-01') where year = 2015 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-03-01') where year = 2015 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-04-01') where year = 2015 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-05-01') where year = 2015 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-06-01') where year = 2015 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-07-01') where year = 2015 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-08-01') where year = 2015 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-09-01') where year = 2015 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-10-01') where year = 2015 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-11-01') where year = 2015 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2015-12-01') where year = 2015 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-01-01') where year = 2015 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-02-01') where year = 2016 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-03-01') where year = 2016 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-04-01') where year = 2016 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-05-01') where year = 2016 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-06-01') where year = 2016 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-07-01') where year = 2016 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-08-01') where year = 2016 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-09-01') where year = 2016 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-10-01') where year = 2016 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-11-01') where year = 2016 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2016-12-01') where year = 2016 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-01-01') where year = 2016 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-02-01') where year = 2017 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-03-01') where year = 2017 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-04-01') where year = 2017 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-05-01') where year = 2017 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-06-01') where year = 2017 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-07-01') where year = 2017 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-08-01') where year = 2017 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-09-01') where year = 2017 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-10-01') where year = 2017 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-11-01') where year = 2017 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2017-12-01') where year = 2017 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-01-01') where year = 2017 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-02-01') where year = 2018 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-03-01') where year = 2018 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-04-01') where year = 2018 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-05-01') where year = 2018 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-06-01') where year = 2018 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-07-01') where year = 2018 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-08-01') where year = 2018 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-09-01') where year = 2018 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-10-01') where year = 2018 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-11-01') where year = 2018 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2018-12-01') where year = 2018 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-01-01') where year = 2018 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-02-01') where year = 2019 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-03-01') where year = 2019 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-04-01') where year = 2019 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-05-01') where year = 2019 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-06-01') where year = 2019 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-07-01') where year = 2019 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-08-01') where year = 2019 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-09-01') where year = 2019 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-10-01') where year = 2019 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-11-01') where year = 2019 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2019-12-01') where year = 2019 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-01-01') where year = 2019 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-02-01') where year = 2020 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-03-01') where year = 2020 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-04-01') where year = 2020 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-05-01') where year = 2020 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-06-01') where year = 2020 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-07-01') where year = 2020 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-08-01') where year = 2020 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-09-01') where year = 2020 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-10-01') where year = 2020 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-11-01') where year = 2020 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2020-12-01') where year = 2020 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-01-01') where year = 2020 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-02-01') where year = 2021 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-03-01') where year = 2021 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-04-01') where year = 2021 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-05-01') where year = 2021 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-06-01') where year = 2021 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-07-01') where year = 2021 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-08-01') where year = 2021 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-09-01') where year = 2021 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-10-01') where year = 2021 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-11-01') where year = 2021 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2021-12-01') where year = 2021 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-01-01') where year = 2021 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-02-01') where year = 2022 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-03-01') where year = 2022 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-04-01') where year = 2022 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-05-01') where year = 2022 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-06-01') where year = 2022 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-07-01') where year = 2022 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-08-01') where year = 2022 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-09-01') where year = 2022 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-10-01') where year = 2022 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-11-01') where year = 2022 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2022-12-01') where year = 2022 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-01-01') where year = 2022 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-02-01') where year = 2023 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-03-01') where year = 2023 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-04-01') where year = 2023 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-05-01') where year = 2023 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-06-01') where year = 2023 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-07-01') where year = 2023 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-08-01') where year = 2023 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-09-01') where year = 2023 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-10-01') where year = 2023 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-11-01') where year = 2023 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2023-12-01') where year = 2023 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-01-01') where year = 2023 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-02-01') where year = 2024 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-03-01') where year = 2024 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-04-01') where year = 2024 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-05-01') where year = 2024 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-06-01') where year = 2024 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-07-01') where year = 2024 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-08-01') where year = 2024 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-09-01') where year = 2024 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-10-01') where year = 2024 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-11-01') where year = 2024 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2024-12-01') where year = 2024 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-01-01') where year = 2024 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-02-01') where year = 2025 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-03-01') where year = 2025 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-04-01') where year = 2025 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-05-01') where year = 2025 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-06-01') where year = 2025 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-07-01') where year = 2025 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-08-01') where year = 2025 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-09-01') where year = 2025 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-10-01') where year = 2025 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-11-01') where year = 2025 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2025-12-01') where year = 2025 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-01-01') where year = 2025 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-02-01') where year = 2026 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-03-01') where year = 2026 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-04-01') where year = 2026 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-05-01') where year = 2026 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-06-01') where year = 2026 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-07-01') where year = 2026 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-08-01') where year = 2026 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-09-01') where year = 2026 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-10-01') where year = 2026 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-11-01') where year = 2026 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2026-12-01') where year = 2026 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-01-01') where year = 2026 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-02-01') where year = 2027 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-03-01') where year = 2027 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-04-01') where year = 2027 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-05-01') where year = 2027 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-06-01') where year = 2027 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-07-01') where year = 2027 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-08-01') where year = 2027 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-09-01') where year = 2027 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-10-01') where year = 2027 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-11-01') where year = 2027 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2027-12-01') where year = 2027 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-01-01') where year = 2027 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-02-01') where year = 2028 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-03-01') where year = 2028 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-04-01') where year = 2028 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-05-01') where year = 2028 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-06-01') where year = 2028 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-07-01') where year = 2028 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-08-01') where year = 2028 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-09-01') where year = 2028 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-10-01') where year = 2028 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-11-01') where year = 2028 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2028-12-01') where year = 2028 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-01-01') where year = 2028 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-02-01') where year = 2029 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-03-01') where year = 2029 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-04-01') where year = 2029 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-05-01') where year = 2029 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-06-01') where year = 2029 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-07-01') where year = 2029 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-08-01') where year = 2029 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-09-01') where year = 2029 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-10-01') where year = 2029 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-11-01') where year = 2029 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2029-12-01') where year = 2029 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-01-01') where year = 2029 and month = 12;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-02-01') where year = 2030 and month = 01;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-03-01') where year = 2030 and month = 02;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-04-01') where year = 2030 and month = 03;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-05-01') where year = 2030 and month = 04;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-06-01') where year = 2030 and month = 05;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-07-01') where year = 2030 and month = 06;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-08-01') where year = 2030 and month = 07;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-09-01') where year = 2030 and month = 08;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-10-01') where year = 2030 and month = 09;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-11-01') where year = 2030 and month = 10;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2030-12-01') where year = 2030 and month = 11;
+update stats_month_counts set accumulative = (select count(*) from raw_occurrence_record where created < '2031-01-01') where year = 2030 and month = 12;
+
+drop table if exists stats_tri_month_counts;
+
+create table stats_tri_month_counts (tri char(100), count int(10));
+
+insert into stats_tri_month_counts values ('dic 2012 - feb 2013', (select sum(count) from stats_month_counts where (year = 2012 and month = 12) or (year = 2013 and month = 01) or (year = 2013 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2013 - may 2013', (select sum(count) from stats_month_counts where (year = 2013 and month = 03) or (year = 2013 and month = 04) or (year = 2013 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2013 - ago 2013', (select sum(count) from stats_month_counts where (year = 2013 and month = 06) or (year = 2013 and month = 07) or (year = 2013 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2013 - nov 2013', (select sum(count) from stats_month_counts where (year = 2013 and month = 09) or (year = 2013 and month = 10) or (year = 2013 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2013 - feb 2014', (select sum(count) from stats_month_counts where (year = 2013 and month = 12) or (year = 2014 and month = 01) or (year = 2014 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2014 - may 2014', (select sum(count) from stats_month_counts where (year = 2014 and month = 03) or (year = 2014 and month = 04) or (year = 2014 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2014 - ago 2014', (select sum(count) from stats_month_counts where (year = 2014 and month = 06) or (year = 2014 and month = 07) or (year = 2014 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2014 - nov 2014', (select sum(count) from stats_month_counts where (year = 2014 and month = 09) or (year = 2014 and month = 10) or (year = 2014 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2014 - feb 2015', (select sum(count) from stats_month_counts where (year = 2014 and month = 12) or (year = 2015 and month = 01) or (year = 2015 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2015 - may 2015', (select sum(count) from stats_month_counts where (year = 2015 and month = 03) or (year = 2015 and month = 04) or (year = 2015 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2015 - ago 2015', (select sum(count) from stats_month_counts where (year = 2015 and month = 06) or (year = 2015 and month = 07) or (year = 2015 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2015 - nov 2015', (select sum(count) from stats_month_counts where (year = 2015 and month = 09) or (year = 2015 and month = 10) or (year = 2015 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2015 - feb 2016', (select sum(count) from stats_month_counts where (year = 2015 and month = 12) or (year = 2016 and month = 01) or (year = 2016 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2016 - may 2016', (select sum(count) from stats_month_counts where (year = 2016 and month = 03) or (year = 2016 and month = 04) or (year = 2016 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2016 - ago 2016', (select sum(count) from stats_month_counts where (year = 2016 and month = 06) or (year = 2016 and month = 07) or (year = 2016 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2016 - nov 2016', (select sum(count) from stats_month_counts where (year = 2016 and month = 09) or (year = 2016 and month = 10) or (year = 2016 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2016 - feb 2017', (select sum(count) from stats_month_counts where (year = 2016 and month = 12) or (year = 2017 and month = 01) or (year = 2017 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2017 - may 2017', (select sum(count) from stats_month_counts where (year = 2017 and month = 03) or (year = 2017 and month = 04) or (year = 2017 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2017 - ago 2017', (select sum(count) from stats_month_counts where (year = 2017 and month = 06) or (year = 2017 and month = 07) or (year = 2017 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2017 - nov 2017', (select sum(count) from stats_month_counts where (year = 2017 and month = 09) or (year = 2017 and month = 10) or (year = 2017 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2017 - feb 2018', (select sum(count) from stats_month_counts where (year = 2017 and month = 12) or (year = 2018 and month = 01) or (year = 2018 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2018 - may 2018', (select sum(count) from stats_month_counts where (year = 2018 and month = 03) or (year = 2018 and month = 04) or (year = 2018 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2018 - ago 2018', (select sum(count) from stats_month_counts where (year = 2018 and month = 06) or (year = 2018 and month = 07) or (year = 2018 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2018 - nov 2018', (select sum(count) from stats_month_counts where (year = 2018 and month = 09) or (year = 2018 and month = 10) or (year = 2018 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2018 - feb 2019', (select sum(count) from stats_month_counts where (year = 2018 and month = 12) or (year = 2019 and month = 01) or (year = 2019 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2019 - may 2019', (select sum(count) from stats_month_counts where (year = 2019 and month = 03) or (year = 2019 and month = 04) or (year = 2019 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2019 - ago 2019', (select sum(count) from stats_month_counts where (year = 2019 and month = 06) or (year = 2019 and month = 07) or (year = 2019 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2019 - nov 2019', (select sum(count) from stats_month_counts where (year = 2019 and month = 09) or (year = 2019 and month = 10) or (year = 2019 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2019 - feb 2020', (select sum(count) from stats_month_counts where (year = 2019 and month = 12) or (year = 2020 and month = 01) or (year = 2020 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2020 - may 2020', (select sum(count) from stats_month_counts where (year = 2020 and month = 03) or (year = 2020 and month = 04) or (year = 2020 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2020 - ago 2020', (select sum(count) from stats_month_counts where (year = 2020 and month = 06) or (year = 2020 and month = 07) or (year = 2020 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2020 - nov 2020', (select sum(count) from stats_month_counts where (year = 2020 and month = 09) or (year = 2020 and month = 10) or (year = 2020 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2020 - feb 2021', (select sum(count) from stats_month_counts where (year = 2020 and month = 12) or (year = 2021 and month = 01) or (year = 2021 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2021 - may 2021', (select sum(count) from stats_month_counts where (year = 2021 and month = 03) or (year = 2021 and month = 04) or (year = 2021 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2021 - ago 2021', (select sum(count) from stats_month_counts where (year = 2021 and month = 06) or (year = 2021 and month = 07) or (year = 2021 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2021 - nov 2021', (select sum(count) from stats_month_counts where (year = 2021 and month = 09) or (year = 2021 and month = 10) or (year = 2021 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2021 - feb 2022', (select sum(count) from stats_month_counts where (year = 2021 and month = 12) or (year = 2022 and month = 01) or (year = 2022 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2022 - may 2022', (select sum(count) from stats_month_counts where (year = 2022 and month = 03) or (year = 2022 and month = 04) or (year = 2022 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2022 - ago 2022', (select sum(count) from stats_month_counts where (year = 2022 and month = 06) or (year = 2022 and month = 07) or (year = 2022 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2022 - nov 2022', (select sum(count) from stats_month_counts where (year = 2022 and month = 09) or (year = 2022 and month = 10) or (year = 2022 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2022 - feb 2023', (select sum(count) from stats_month_counts where (year = 2022 and month = 12) or (year = 2023 and month = 01) or (year = 2023 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2023 - may 2023', (select sum(count) from stats_month_counts where (year = 2023 and month = 03) or (year = 2023 and month = 04) or (year = 2023 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2023 - ago 2023', (select sum(count) from stats_month_counts where (year = 2023 and month = 06) or (year = 2023 and month = 07) or (year = 2023 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2023 - nov 2023', (select sum(count) from stats_month_counts where (year = 2023 and month = 09) or (year = 2023 and month = 10) or (year = 2023 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2023 - feb 2024', (select sum(count) from stats_month_counts where (year = 2023 and month = 12) or (year = 2024 and month = 01) or (year = 2024 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2024 - may 2024', (select sum(count) from stats_month_counts where (year = 2024 and month = 03) or (year = 2024 and month = 04) or (year = 2024 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2024 - ago 2024', (select sum(count) from stats_month_counts where (year = 2024 and month = 06) or (year = 2024 and month = 07) or (year = 2024 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2024 - nov 2024', (select sum(count) from stats_month_counts where (year = 2024 and month = 09) or (year = 2024 and month = 10) or (year = 2024 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2024 - feb 2025', (select sum(count) from stats_month_counts where (year = 2024 and month = 12) or (year = 2025 and month = 01) or (year = 2025 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2025 - may 2025', (select sum(count) from stats_month_counts where (year = 2025 and month = 03) or (year = 2025 and month = 04) or (year = 2025 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2025 - ago 2025', (select sum(count) from stats_month_counts where (year = 2025 and month = 06) or (year = 2025 and month = 07) or (year = 2025 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2025 - nov 2025', (select sum(count) from stats_month_counts where (year = 2025 and month = 09) or (year = 2025 and month = 10) or (year = 2025 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2025 - feb 2026', (select sum(count) from stats_month_counts where (year = 2025 and month = 12) or (year = 2026 and month = 01) or (year = 2026 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2026 - may 2026', (select sum(count) from stats_month_counts where (year = 2026 and month = 03) or (year = 2026 and month = 04) or (year = 2026 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2026 - ago 2026', (select sum(count) from stats_month_counts where (year = 2026 and month = 06) or (year = 2026 and month = 07) or (year = 2026 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2026 - nov 2026', (select sum(count) from stats_month_counts where (year = 2026 and month = 09) or (year = 2026 and month = 10) or (year = 2026 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2026 - feb 2027', (select sum(count) from stats_month_counts where (year = 2026 and month = 12) or (year = 2027 and month = 01) or (year = 2027 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2027 - may 2027', (select sum(count) from stats_month_counts where (year = 2027 and month = 03) or (year = 2027 and month = 04) or (year = 2027 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2027 - ago 2027', (select sum(count) from stats_month_counts where (year = 2027 and month = 06) or (year = 2027 and month = 07) or (year = 2027 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2027 - nov 2027', (select sum(count) from stats_month_counts where (year = 2027 and month = 09) or (year = 2027 and month = 10) or (year = 2027 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2027 - feb 2028', (select sum(count) from stats_month_counts where (year = 2027 and month = 12) or (year = 2028 and month = 01) or (year = 2028 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2028 - may 2028', (select sum(count) from stats_month_counts where (year = 2028 and month = 03) or (year = 2028 and month = 04) or (year = 2028 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2028 - ago 2028', (select sum(count) from stats_month_counts where (year = 2028 and month = 06) or (year = 2028 and month = 07) or (year = 2028 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2028 - nov 2028', (select sum(count) from stats_month_counts where (year = 2028 and month = 09) or (year = 2028 and month = 10) or (year = 2028 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2028 - feb 2029', (select sum(count) from stats_month_counts where (year = 2028 and month = 12) or (year = 2029 and month = 01) or (year = 2029 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2029 - may 2029', (select sum(count) from stats_month_counts where (year = 2029 and month = 03) or (year = 2029 and month = 04) or (year = 2029 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2029 - ago 2029', (select sum(count) from stats_month_counts where (year = 2029 and month = 06) or (year = 2029 and month = 07) or (year = 2029 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2029 - nov 2029', (select sum(count) from stats_month_counts where (year = 2029 and month = 09) or (year = 2029 and month = 10) or (year = 2029 and month = 11)));
+insert into stats_tri_month_counts values ('dic 2029 - feb 2030', (select sum(count) from stats_month_counts where (year = 2029 and month = 12) or (year = 2030 and month = 01) or (year = 2030 and month = 02)));
+insert into stats_tri_month_counts values ('mar 2030 - may 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 03) or (year = 2030 and month = 04) or (year = 2030 and month = 05)));
+insert into stats_tri_month_counts values ('jun 2030 - ago 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 06) or (year = 2030 and month = 07) or (year = 2030 and month = 08)));
+insert into stats_tri_month_counts values ('sep 2030 - nov 2030', (select sum(count) from stats_month_counts where (year = 2030 and month = 09) or (year = 2030 and month = 10) or (year = 2030 and month = 11)));
+
+-- set with_records in taxon_name
+-- this is use in the advance search because we need to show only taxon names with occurrence record
+
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT taxon_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT kingdom_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT phylum_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT class_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT order_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT family_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT genus_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT species_concept_id FROM portal.occurrence_record));
+update taxon_name set with_records = 1 where taxon_name.id in (select taxon_name_id from taxon_concept where id in(SELECT nub_concept_id FROM portal.occurrence_record));
+
+update data_resource dr set modified= (select max(r.created)  
+from raw_occurrence_record r
+where dr.id=r.data_resource_id and r.deleted is null);
+
+update data_provider dp set modified= (select max(r.created)  
+from raw_occurrence_record r
+where dp.id=r.data_provider_id and r.deleted is null);
 
 -- End of SiB Colombia addition
 
@@ -2412,9 +3548,4 @@ select concat('Rollover complete: ', now()) as debug;
 inner join taxon_concept p on c.parent_concept_id=p.id
 set c.parent_concept_id=null
 where p.rank>=c.rank; */
-
-
--- ignoring geospatial_issue=32 since that validation is not quite accurate
-delete from gbif_log_message where event_id=1008 and occurrence_id in (select id from occurrence_record where geospatial_issue=32);
-update occurrence_record set geospatial_issue=0 where geospatial_issue=32;
 

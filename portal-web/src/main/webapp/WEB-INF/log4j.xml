@@ -20,7 +20,7 @@
 	<appender name="DATABASE" class="org.gbif.portal.util.log.GbifDatabaseLogAppender">
 		<param name="Threshold" value="INFO"/>  
 		<param name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<param name="serverName" value="localhost"/>
+		<param name="serverName" value="192.168.16.110"/>
 		<param name="port" value="3306"/>
 		<param name="databaseName" value="portal"/>
 		<param name="userName" value="root"/>

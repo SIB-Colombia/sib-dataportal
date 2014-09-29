@@ -1510,5 +1510,392 @@
 		<entry key= 'TBM' value='paramo.tota_bijagual_mamapacha'/>
 		<entry key= 'YRG' value='paramo.yariguies'/>
 	</util:map>
+	<util:map id="marine-ids">
+		<!--<entry key= 'CUA' value='marineZone.any'/>-->
+		<entry key= 'emergido' value='marineZone.emergido'/>
+		<entry key= 'cBjoN' value='marineZone.cayo_bajo_nuevo'/>
+		<entry key= 'cSerr' value='marineZone.cayo_serranilla'/>
+		<!--<entry key= 'inside' value='marineZone.revisar_limites'/>-->
+		<entry key= 'mCaribe' value='marineZone.mar_caribe'/>
+		<entry key= 'oPacifico' value='marineZone.oceano_pacifico'/>
+		<entry key= 'regimenCo' value='marineZone.area_de_regimen_comun'/>
+	</util:map>	
+	<util:map id="protected-ids">
+		<entry key='198' value ='protectedArea.el_cocuy'/>
+		<entry key='199' value ='protectedArea.pisba'/>
+		<entry key='200' value ='protectedArea.paramillo'/>
+		<entry key='201' value ='protectedArea.malpelo'/>
+		<entry key='202' value ='protectedArea.sanquianga'/>
+		<entry key='203' value ='protectedArea.otun_quimbaya'/>
+		<entry key='204' value ='protectedArea.macuira'/>
+		<entry key='205' value ='protectedArea.los_flamencos'/>
+		<entry key='206' value ='protectedArea.los_nevados'/>
+		<entry key='207' value ='protectedArea.utria'/>
+		<entry key='208' value ='protectedArea.sumapaz'/>
+		<entry key='209' value ='protectedArea.cahuinari'/>
+		<entry key='210' value ='protectedArea.sierra_nevada_de_santa_marta'/>
+		<entry key='211' value ='protectedArea.old_providence_mc_bean_lagoon'/>
+		<entry key='212' value ='protectedArea.el_corchal_el_mono_hernandez'/>
+		<entry key='213' value ='protectedArea.isla_de_salamanca'/>
+		<entry key='214' value ='protectedArea.los_katios'/>
+		<entry key='215' value ='protectedArea.las_orquideas'/>
+		<entry key='216' value ='protectedArea.plantas_medicinales_orito_ingi_ande'/>
+		<entry key='217' value ='protectedArea.catatumbo_bari'/>
+		<entry key='218' value ='protectedArea.los_estoraques'/>
+		<entry key='219' value ='protectedArea.tama'/>
+		<entry key='220' value ='protectedArea.serrania_de_los_yariguies'/>
+		<entry key='221' value ='protectedArea.guanenta_alto_rio_fonce'/>
+		<entry key='222' value ='protectedArea.galeras'/>
+		<entry key='223' value ='protectedArea.isla_de_la_corota'/>
+		<entry key='224' value ='protectedArea.purace'/>
+		<entry key='225' value ='protectedArea.cueva_de_los_guacharos'/>
+		<entry key='226' value ='protectedArea.nevado_del_huila'/>
+		<entry key='227' value ='protectedArea.serrania_de_los_churumbelos'/>
+		<entry key='228' value ='protectedArea.chingaza'/>
+		<entry key='229' value ='protectedArea.el_tuparro'/>
+		<entry key='230' value ='protectedArea.cordillera_de_los_picachos'/>
+		<entry key='231' value ='protectedArea.tinigua'/>
+		<entry key='232' value ='protectedArea.alto_fragua_indiwasi'/>
+		<entry key='233' value ='protectedArea.puinawai'/>
+		<entry key='234' value ='protectedArea.uramba_bahia_malaga'/>
+		<entry key='235' value ='protectedArea.cienaga_grande_de_santa_marta'/>
+		<entry key='236' value ='protectedArea.amacayacu'/>
+		<entry key='237' value ='protectedArea.rio_pure'/>
+		<entry key='238' value ='protectedArea.nukak'/>
+		<entry key='239' value ='protectedArea.sierra_de_la_macarena'/>
+		<entry key='240' value ='protectedArea.serrania_de_chiribiquete'/>
+		<entry key='241' value ='protectedArea.la_paya'/>
+		<entry key='242' value ='protectedArea.gorgona'/>
+		<entry key='243' value ='protectedArea.yaigoje_apaporis'/>
+		<entry key='244' value ='protectedArea.las_hermosas_gloria_valencia_de_castano'/>
+		<entry key='245' value ='protectedArea.iguaque'/>
+		<entry key='246' value ='protectedArea.tayrona'/>
+		<entry key='247' value ='protectedArea.los_farallones_de_cali'/>
+		<entry key='248' value ='protectedArea.tatama'/>
+		<entry key='249' value ='protectedArea.complejo_volcanico_dona_juana_cascabel'/>
+		<entry key='250' value ='protectedArea.selva_de_florencia'/>
+		<entry key='251' value ='protectedArea.los_colorados'/>
+		<entry key='252' value ='protectedArea.corales_de_profundidad'/>
+		<entry key='253' value ='protectedArea.los_corales_del_rosario_y_san_bernardo'/>
+		<entry key='254' value ='protectedArea.munchique'/>
+		<entry key='255' value ='protectedArea.acandi_playon_y_playona'/>
+	</util:map>
 	
+	<util:map id= "ecosystem-ids">
+		<entry key='1' value ='ecosystem.bosque_seco_tropical'/>
+		<entry key='2' value ='ecosystem.paramo'/>
+	</util:map>	
+	<util:map id="zonificacion-ids">
+		<entry key= '1102' value ='zonificacion.alto_atrato'/>
+		<entry key= '4401' value ='zonificacion.alto_caqueta'/>
+		<entry key= '2801' value ='zonificacion.alto_cesar'/>
+		<entry key= '3204' value ='zonificacion.alto_guaviare'/>
+		<entry key= '2101' value ='zonificacion.alto_magdalena'/>
+		<entry key= '2702' value ='zonificacion.alto_nechi'/>
+		<entry key= '4303' value ='zonificacion.alto_rio_apaporis'/>
+		<entry key= '3901' value ='zonificacion.alto_rio_apure'/>
+		<entry key= '2601' value ='zonificacion.alto_rio_cauca'/>
+		<entry key= '4101' value ='zonificacion.alto_rio_guania'/>
+		<entry key= '4701' value ='zonificacion.alto_rio_putumayo'/>
+		<entry key= '3401' value ='zonificacion.alto_rio_tomo'/>
+		<entry key= '3216' value ='zonificacion.alto_rio_uva'/>
+		<entry key= '2201' value ='zonificacion.alto_saldana'/>
+		<entry key= '2501' value ='zonificacion.alto_san_jorge'/>
+		<entry key= '1301' value ='zonificacion.alto_sinu_urra'/>
+		<entry key= '4203' value ='zonificacion.alto_vaupes'/>
+		<entry key= '3301' value ='zonificacion.alto_vichada'/>
+		<entry key= '4501' value ='zonificacion.alto_yari'/>
+		<entry key= '1206' value ='zonificacion.arroyos_directos_al_caribe'/>
+		<entry key= '1607' value ='zonificacion.bajo_catatumbo'/>
+		<entry key= '2805' value ='zonificacion.bajo_cesar'/>
+		<entry key= '3214' value ='zonificacion.bajo_guaviare'/>
+		<entry key= '2703' value ='zonificacion.bajo_nechi_(md)'/>
+		<entry key= '4305' value ='zonificacion.bajo_rio_apaporis'/>
+		<entry key= '4105' value ='zonificacion.bajo_rio_guania'/>
+		<entry key= '3403' value ='zonificacion.bajo_rio_tomo'/>
+		<entry key= '3217' value ='zonificacion.bajo_rio_uva'/>
+		<entry key= '2208' value ='zonificacion.bajo_saldana'/>
+		<entry key= '2502' value ='zonificacion.bajo_san_jorge_la_mojana'/>
+		<entry key= '1303' value ='zonificacion.bajo_sinu'/>
+		<entry key= '4207' value ='zonificacion.bajo_vaupes'/>
+		<entry key= '3306' value ='zonificacion.bajo_vichada'/>
+		<entry key= '4506' value ='zonificacion.bajo_yari'/>
+		<entry key= '2903' value ='zonificacion.canal_del_dique_margen_derecho'/>
+		<entry key= '2905' value ='zonificacion.canal_del_dique_margen_izquierda'/>
+		<entry key= '3605' value ='zonificacion.cano_aguaclarita'/>
+		<entry key= '3110' value ='zonificacion.cano_bocon'/>
+		<entry key= '3218' value ='zonificacion.cano_chupabe'/>
+		<entry key= '3514' value ='zonificacion.cano_cumaral'/>
+		<entry key= '3522' value ='zonificacion.cano_guanapalo_y_otros_directos_al_meta'/>
+		<entry key= '3405' value ='zonificacion.cano_lioni_o_terecay'/>
+		<entry key= '3803' value ='zonificacion.cano_mataven'/>
+		<entry key= '3215' value ='zonificacion.cano_minisiare'/>
+		<entry key= '3107' value ='zonificacion.cano_nabuquen'/>
+		<entry key= '3604' value ='zonificacion.cano_samuco'/>
+		<entry key= '2906' value ='zonificacion.cga_grande_de_santa_marta'/>
+		<entry key= '2909' value ='zonificacion.cienaga_mallorquin'/>
+		<entry key= '5311' value ='zonificacion.dagua_buenaventura_bahia_malaga'/>
+		<entry key= '2904' value ='zonificacion.directos_al_bajo_magdalena_entre_calamar_y_desembocadura_al_mar_caribe_(mi)'/>
+		<entry key= '2902' value ='zonificacion.directos_al_bajo_magdalena_entre_el_plato_y_calamar_(md)'/>
+		<entry key= '2901' value ='zonificacion.directos_al_bajo_magdalena_entre_el_plato_y_calamar_(mi)'/>
+		<entry key= '2704' value ='zonificacion.directos_al_bajo_nechi_(mi)'/>
+		<entry key= '2625' value ='zonificacion.directos_al_cauca_entre_pto_valdivia_y_rio_nechi_(md)'/>
+		<entry key= '2320' value ='zonificacion.directos_al_magdalena_(brazo_morales)'/>
+		<entry key= '2303' value ='zonificacion.directos_al_magdalena_entre_rios_seco_y_negro_(md)'/>
+		<entry key= '2311' value ='zonificacion.directos_al_magdalena_medio_entre_rios_negro_y_carare_(md)'/>
+		<entry key= '3520' value ='zonificacion.directos_al_meta_entre_rios_cusiana_y_cravo_sur_(mi)'/>
+		<entry key= '3526' value ='zonificacion.directos_al_rio_meta_entre_rios_cusiana_y_carare_(md)'/>
+		<entry key= '3527' value ='zonificacion.directos_al_rio_meta_entre_rios_humea_y_upia_(mi)'/>
+		<entry key= '3524' value ='zonificacion.directos_al_rio_meta_entre_rios_pauto_y_carare_(mi)'/>
+		<entry key= '1106' value ='zonificacion.directos_atrato_entre_rios_bebarama_y_murri_(md)'/>
+		<entry key= '1105' value ='zonificacion.directos_atrato_entre_rios_quito_y_bojaya_(mi)'/>
+		<entry key= '1114' value ='zonificacion.directos_bajo_atrato_entre_rio_sucio_y_desembocadura_al_mar_caribe'/>
+		<entry key= '2626' value ='zonificacion.directos_bajo_cauca_cga_la_raya_entre_rio_nechi_y_brazo_de_loba'/>
+		<entry key= '2907' value ='zonificacion.directos_bajo_magdalena_entre_el_banco_y_el_plato_(md)'/>
+		<entry key= '3525' value ='zonificacion.directos_bajo_meta_entre_rios_casanare_y_orinoco_(md)'/>
+		<entry key= '1507' value ='zonificacion.directos_caribe_ay.sharimahana_alta_guajira'/>
+		<entry key= '1205' value ='zonificacion.directos_caribe_golfo_de_morrosquillo'/>
+		<entry key= '2115' value ='zonificacion.directos_magdalena_entre_rios_cabrera_y_sumapaz_(md)'/>
+		<entry key= '2304' value ='zonificacion.directos_magdalena_entre_rios_guarino_y_la_miel_(mi)'/>
+		<entry key= '2307' value ='zonificacion.directos_magdalena_medio_entre_rios_la_miel_y_nare_(mi)'/>
+		<entry key= '3805' value ='zonificacion.directos_orinoco_entre_rios_tomo_y_meta_(mi)'/>
+		<entry key= '5601' value ='zonificacion.directos_pacifico_frontera_panama'/>
+		<entry key= '4801' value ='zonificacion.directos_rio_amazonas_(mi)'/>
+		<entry key= '3706' value ='zonificacion.directos_rio_arauca_(md)'/>
+		<entry key= '3804' value ='zonificacion.directos_rio_atabapo_(mi)'/>
+		<entry key= '2620' value ='zonificacion.directos_rio_cauca_entre_rio_san_juan_y_pto_valdivia_(md)'/>
+		<entry key= '2621' value ='zonificacion.directos_rio_cauca_entre_rio_san_juan_y_pto_valdivia_(mi)'/>
+		<entry key= '3511' value ='zonificacion.directos_rio_metica_entre_rios_guayuriba_y_yucao'/>
+		<entry key= '4107' value ='zonificacion.directos_rio_negro_(md)'/>
+		<entry key= '4309' value ='zonificacion.directos_rio_taraira'/>
+		<entry key= '3305' value ='zonificacion.directos_vichada_medio'/>
+		<entry key= '2109' value ='zonificacion.juncal_y_otros_rios_directos_al_magdalena'/>
+		<entry key= '3516' value ='zonificacion.lago_de_tota'/>
+		<entry key= '2802' value ='zonificacion.medio_cesar'/>
+		<entry key= '3210' value ='zonificacion.medio_guaviare'/>
+		<entry key= '4102' value ='zonificacion.medio_rio_guania'/>
+		<entry key= '2203' value ='zonificacion.medio_saldana'/>
+		<entry key= '1302' value ='zonificacion.medio_sinu'/>
+		<entry key= '4504' value ='zonificacion.medio_yari'/>
+		<entry key= '2321' value ='zonificacion.quebrada_el_carmen_y_otros_directos_al_magdalena_medio'/>
+		<entry key= '3108' value ='zonificacion.r._inirida_(mi)_hasta_bocas_cano_bocon_y_r._las_vinas'/>
+		<entry key= '2113' value ='zonificacion.rio_aipe_rio_chenche_y_otros_directos_al_magdalena'/>
+		<entry key= '4302' value ='zonificacion.rio_ajaju'/>
+		<entry key= '1605' value ='zonificacion.rio_algodonal_(alto_catatumbo)'/>
+		<entry key= '2204' value ='zonificacion.rio_amoya'/>
+		<entry key= '5310' value ='zonificacion.rio_anchicaya'/>
+		<entry key= '1503' value ='zonificacion.rio_ancho_y_otros_directos_al_caribe'/>
+		<entry key= '1101' value ='zonificacion.rio_andagueda'/>
+		<entry key= '4106' value ='zonificacion.rio_aquio_o_cano_aque'/>
+		<entry key= '3206' value ='zonificacion.rio_ariari'/>
+		<entry key= '2804' value ='zonificacion.rio_ariguani'/>
+		<entry key= '3601' value ='zonificacion.rio_ariporo'/>
+		<entry key= '2618' value ='zonificacion.rio_arma'/>
+		<entry key= '2202' value ='zonificacion.rio_ata'/>
+		<entry key= '2112' value ='zonificacion.rio_bache'/>
+		<entry key= '3705' value ='zonificacion.rio_banadia_y_otros_directos_al_rio_arauca'/>
+		<entry key= '5501' value ='zonificacion.rio_baudo'/>
+		<entry key= '1104' value ='zonificacion.rio_bebarama_y_otros_directos_atrato_(md)'/>
+		<entry key= '2120' value ='zonificacion.rio_bogota'/>
+		<entry key= '3704' value ='zonificacion.rio_bojaba'/>
+		<entry key= '1108' value ='zonificacion.rio_bojaya'/>
+		<entry key= '2635' value ='zonificacion.rio_bugalagrande'/>
+		<entry key= '1117' value ='zonificacion.rio_cabi_y_otros_directos_atrato_(md)'/>
+		<entry key= '2114' value ='zonificacion.rio_cabrera'/>
+		<entry key= '1113' value ='zonificacion.rio_cacarica'/>
+		<entry key= '4601' value ='zonificacion.rio_caguan_alto'/>
+		<entry key= '4604' value ='zonificacion.rio_caguan_bajo'/>
+		<entry key= '4417' value ='zonificacion.rio_cahuinari'/>
+		<entry key= '5404' value ='zonificacion.rio_cajon'/>
+		<entry key= '1505' value ='zonificacion.rio_camarones_y_otros_directos_caribe'/>
+		<entry key= '4502' value ='zonificacion.rio_camuya'/>
+		<entry key= '1204' value ='zonificacion.rio_canalete_y_otros_arroyos_directos_al_caribe'/>
+		<entry key= '4306' value ='zonificacion.rio_cananari'/>
+		<entry key= '5405' value ='zonificacion.rio_capoma_y_otros_directos_al_san_juan'/>
+		<entry key= '4415' value ='zonificacion.rio_caqueta_bajo'/>
+		<entry key= '4402' value ='zonificacion.rio_caqueta_medio'/>
+		<entry key= '4705' value ='zonificacion.rio_cara-parana'/>
+		<entry key= '2312' value ='zonificacion.rio_carare_(minero)'/>
+		<entry key= '1508' value ='zonificacion.rio_carraipia_paraguachon_directos_al_golfo_maracaibo'/>
+		<entry key= '3602' value ='zonificacion.rio_casanare'/>
+		<entry key= '2403' value ='zonificacion.rio_chicamocha'/>
+		<entry key= '2615' value ='zonificacion.rio_chinchina'/>
+		<entry key= '4901' value ='zonificacion.rio_chingual'/>
+		<entry key= '3701' value ='zonificacion.rio_chitaga'/>
+		<entry key= '2317' value ='zonificacion.rio_cimitarra_y_otros_directos_al_magdalena'/>
+		<entry key= '3809' value ='zonificacion.rio_cinaruco_y_directos_rio_orinoco'/>
+		<entry key= '3703' value ='zonificacion.rio_cobugon_rio_cobaria'/>
+		<entry key= '2121' value ='zonificacion.rio_coello'/>
+		<entry key= '4710' value ='zonificacion.rio_cotuhe'/>
+		<entry key= '3603' value ='zonificacion.rio_cravo_norte'/>
+		<entry key= '3521' value ='zonificacion.rio_cravo_sur'/>
+		<entry key= '2207' value ='zonificacion.rïo_cucuana'/>
+		<entry key= '4414' value ='zonificacion.rio_cuemani'/>
+		<entry key= '4108' value ='zonificacion.rio_cuiary'/>
+		<entry key= '4509' value ='zonificacion.rio_cunare'/>
+		<entry key= '3519' value ='zonificacion.rio_cusiana'/>
+		<entry key= '1608' value ='zonificacion.rio_del_suroeste_y_directos_rio_de_oro'/>
+		<entry key= '2622' value ='zonificacion.rio_desbaratado'/>
+		<entry key= '5502' value ='zonificacion.rio_docampado_y_directos_pacifico'/>
+		<entry key= '1502' value ='zonificacion.rio_don_diego'/>
+		<entry key= '3402' value ='zonificacion.rio_elvita'/>
+		<entry key= '2402' value ='zonificacion.rio_fonce'/>
+		<entry key= '2111' value ='zonificacion.rio_fortalecillas_y_otros'/>
+		<entry key= '2611' value ='zonificacion.rio_frio'/>
+		<entry key= '2617' value ='zonificacion.rio_frio_y_otros_directos_al_cauca'/>
+		<entry key= '3507' value ='zonificacion.rio_garagoa'/>
+		<entry key= '3504' value ='zonificacion.rio_guacavia'/>
+		<entry key= '1509' value ='zonificacion.rio_guachaca_mendiguaca_y_buritaca'/>
+		<entry key= '2607' value ='zonificacion.rio_guachal_(bolo_fraile_y_parraga)'/>
+		<entry key= '5202' value ='zonificacion.rio_guachicono'/>
+		<entry key= '5205' value ='zonificacion.rio_guaitara'/>
+		<entry key= '2301' value ='zonificacion.rio_guali'/>
+		<entry key= '3202' value ='zonificacion.rio_guape'/>
+		<entry key= '5304' value ='zonificacion.rio_guapi'/>
+		<entry key= '2302' value ='zonificacion.rio_guarino'/>
+		<entry key= '3302' value ='zonificacion.rio_guarrojo'/>
+		<entry key= '3503' value ='zonificacion.rio_guatiquia'/>
+		<entry key= '3506' value ='zonificacion.rio_guavio'/>
+		<entry key= '3201' value ='zonificacion.rio_guayabero'/>
+		<entry key= '4602' value ='zonificacion.rio_guayas'/>
+		<entry key= '3502' value ='zonificacion.rio_guayuriba'/>
+		<entry key= '3207' value ='zonificacion.rio_guejar'/>
+		<entry key= '3505' value ='zonificacion.rio_humea'/>
+		<entry key= '4707' value ='zonificacion.rio_igara-parana'/>
+		<entry key= '3101' value ='zonificacion.rio_inirida_alto'/>
+		<entry key= '3104' value ='zonificacion.rio_inirida_medio'/>
+		<entry key= '4109' value ='zonificacion.rio_isana'/>
+		<entry key= '5303' value ='zonificacion.rio_iscuande'/>
+		<entry key= '3213' value ='zonificacion.rio_iteviare'/>
+		<entry key= '4201' value ='zonificacion.rio_itilla'/>
+		<entry key= '5204' value ='zonificacion.rio_juananbu'/>
+		<entry key= '2305' value ='zonificacion.rio_la_miel_(samana)'/>
+		<entry key= '2612' value ='zonificacion.rio_la_vieja'/>
+		<entry key= '2125' value ='zonificacion.rio_lagunilla_y_otros_directos_al_magdalena'/>
+		<entry key= '2319' value ='zonificacion.rio_lebrija_y_otros_directos_al_magdalena'/>
+		<entry key= '3508' value ='zonificacion.rio_lengupa'/>
+		<entry key= '1201' value ='zonificacion.rio_leon'/>
+		<entry key= '3203' value ='zonificacion.rio_losada'/>
+		<entry key= '4505' value ='zonificacion.rio_luisa'/>
+		<entry key= '2118' value ='zonificacion.rio_luisa_y_otros_directos_al_magdalena'/>
+		<entry key= '3515' value ='zonificacion.rio_manacacias'/>
+		<entry key= '3702' value ='zonificacion.rio_margua'/>
+		<entry key= '5203' value ='zonificacion.rio_mayo'/>
+		<entry key= '4408' value ='zonificacion.rio_mecaya'/>
+		<entry key= '3513' value ='zonificacion.rio_melua'/>
+		<entry key= '4510' value ='zonificacion.rio_mesay'/>
+		<entry key= '3501' value ='zonificacion.rio_metica_(guamal_humadea)'/>
+		<entry key= '5102' value ='zonificacion.rio_mira'/>
+		<entry key= '4418' value ='zonificacion.rio_miriti-parana'/>
+		<entry key= '3303' value ='zonificacion.rio_muco'/>
+		<entry key= '1202' value ='zonificacion.rio_mulatos_y_otros_directos_al_caribe'/>
+		<entry key= '5406' value ='zonificacion.rio_munguido'/>
+		<entry key= '1110' value ='zonificacion.rio_murindo_directos_al_atrato'/>
+		<entry key= '1107' value ='zonificacion.rio_murri'/>
+		<entry key= '1109' value ='zonificacion.rio_napipi_rio_opogado'/>
+		<entry key= '2308' value ='zonificacion.rio_nare'/>
+		<entry key= '5308' value ='zonificacion.rio_naya_yurumangui'/>
+		<entry key= '2306' value ='zonificacion.rio_negro'/>
+		<entry key= '3510' value ='zonificacion.rio_negro'/>
+		<entry key= '2110' value ='zonificacion.rio_neiva'/>
+		<entry key= '1603' value ='zonificacion.rio_nuevo_presidente_tres_bocas_(sardinata_tibu)'/>
+		<entry key= '2122' value ='zonificacion.rio_opia'/>
+		<entry key= '2314' value ='zonificacion.rio_opon'/>
+		<entry key= '4403' value ='zonificacion.rio_orteguaza'/>
+		<entry key= '2613' value ='zonificacion.rio_otun_y_otros_directos_al_cauca'/>
+		<entry key= '2606' value ='zonificacion.rio_ovejas'/>
+		<entry key= '2105' value ='zonificacion.rio_paez'/>
+		<entry key= '2636' value ='zonificacion.rio_paila'/>
+		<entry key= '2602' value ='zonificacion.rio_palace'/>
+		<entry key= '2604' value ='zonificacion.rio_palo'/>
+		<entry key= '1601' value ='zonificacion.rio_pamplonita'/>
+		<entry key= '3105' value ='zonificacion.rio_papunaya'/>
+		<entry key= '4209' value ='zonificacion.rio_papuri'/>
+		<entry key= '5201' value ='zonificacion.rio_patia_alto'/>
+		<entry key= '5209' value ='zonificacion.rio_patia_bajo'/>
+		<entry key= '5207' value ='zonificacion.rio_patia_medio'/>
+		<entry key= '3523' value ='zonificacion.rio_pauto'/>
+		<entry key= '4410' value ='zonificacion.rio_peneya'/>
+		<entry key= '4404' value ='zonificacion.rio_pescado'/>
+		<entry key= '1501' value ='zonificacion.rio_piedras_rio_manzanares'/>
+		<entry key= '2627' value ='zonificacion.rio_piendamo'/>
+		<entry key= '4307' value ='zonificacion.rio_pira_parana'/>
+		<entry key= '2701' value ='zonificacion.rio_porce'/>
+		<entry key= '2116' value ='zonificacion.rio_prado'/>
+		<entry key= '4420' value ='zonificacion.rio_pure'/>
+		<entry key= '4711' value ='zonificacion.rio_purite'/>
+		<entry key= '4706' value ='zonificacion.rio_putumayo_bajo'/>
+		<entry key= '4704' value ='zonificacion.rio_putumayo_directos_(mi)'/>
+		<entry key= '4703' value ='zonificacion.rio_putumayo_medio'/>
+		<entry key= '4208' value ='zonificacion.rio_querary'/>
+		<entry key= '2628' value ='zonificacion.rio_quinamayo_y_otros_directos_al_cauca'/>
+		<entry key= '1103' value ='zonificacion.rio_quito'/>
+		<entry key= '1506' value ='zonificacion.rio_rancheria'/>
+		<entry key= '2614' value ='zonificacion.rio_risaralda'/>
+		<entry key= '5103' value ='zonificacion.rio_rosario'/>
+		<entry key= '4407' value ='zonificacion.rio_rutuya'/>
+		<entry key= '5306' value ='zonificacion.rio_saija'/>
+		<entry key= '2603' value ='zonificacion.rio_salado_y_otros_directos_cauca'/>
+		<entry key= '1112' value ='zonificacion.rio_salaqui_y_otros_directos_bajo_atrato'/>
+		<entry key= '2310' value ='zonificacion.rio_san_bartolo_y_otros_directos_al_magdalena_medio'/>
+		<entry key= '1203' value ='zonificacion.rio_san_juan'/>
+		<entry key= '2619' value ='zonificacion.rio_san_juan'/>
+		<entry key= '5101' value ='zonificacion.rio_san_juan_(frontera_ecuador)'/>
+		<entry key= '5401' value ='zonificacion.rio_san_juan_alto'/>
+		<entry key= '5307' value ='zonificacion.rio_san_juan_del_micay'/>
+		<entry key= '5408' value ='zonificacion.rio_san_juan_medio'/>
+		<entry key= '4702' value ='zonificacion.rio_san_miguel'/>
+		<entry key= '2123' value ='zonificacion.rio_seco_y_otros_directos_al_magdalena'/>
+		<entry key= '4409' value ='zonificacion.rio_sencella'/>
+		<entry key= '3212' value ='zonificacion.rio_siare'/>
+		<entry key= '5403' value ='zonificacion.rio_sipi'/>
+		<entry key= '1606' value ='zonificacion.rio_socuavo_del_norte_y_rio_socuavo_sur'/>
+		<entry key= '2405' value ='zonificacion.rio_sogamoso'/>
+		<entry key= '2401' value ='zonificacion.rio_suarez'/>
+		<entry key= '2103' value ='zonificacion.rio_suaza'/>
+		<entry key= '1111' value ='zonificacion.rio_sucio'/>
+		<entry key= '2119' value ='zonificacion.rio_sumapaz'/>
+		<entry key= '4605' value ='zonificacion.rio_sunsiya'/>
+		<entry key= '5402' value ='zonificacion.rio_tamana_y_otros_directos_san_juan'/>
+		<entry key= '1115' value ='zonificacion.rio_tanela_y_otros_directos_al_caribe'/>
+		<entry key= '5302' value ='zonificacion.rio_tapaje'/>
+		<entry key= '1504' value ='zonificacion.rio_tapias'/>
+		<entry key= '2616' value ='zonificacion.rio_tapias_y_otros_directos_al_cauca'/>
+		<entry key= '2624' value ='zonificacion.rio_taraza_rio_man'/>
+		<entry key= '1604' value ='zonificacion.rio_tarra'/>
+		<entry key= '5206' value ='zonificacion.rio_telembi'/>
+		<entry key= '2206' value ='zonificacion.rio_tetuan_rio_ortega'/>
+		<entry key= '2102' value ='zonificacion.rio_timana_y_otros_directos_al_magdalena'/>
+		<entry key= '2605' value ='zonificacion.rio_timba'/>
+		<entry key= '5305' value ='zonificacion.rio_timbiqui'/>
+		<entry key= '4211' value ='zonificacion.rio_tiquie'/>
+		<entry key= '5104' value ='zonificacion.rio_tola'/>
+		<entry key= '1116' value ='zonificacion.rio_tolo_y_otros_directos_al_caribe'/>
+		<entry key= '4110' value ='zonificacion.rio_tomo'/>
+		<entry key= '2124' value ='zonificacion.rio_totare'/>
+		<entry key= '3518' value ='zonificacion.rio_tua_y_otros_directos_al_meta'/>
+		<entry key= '4301' value ='zonificacion.rio_tunia_o_macaya'/>
+		<entry key= '3802' value ='zonificacion.rio_tuparro'/>
+		<entry key= '4202' value ='zonificacion.rio_unilla'/>
+		<entry key= '3509' value ='zonificacion.rio_upia'/>
+		<entry key= '3801' value ='zonificacion.rio_vita'/>
+		<entry key= '2108' value ='zonificacion.rio_yaguara_y_rio_iquira'/>
+		<entry key= '3512' value ='zonificacion.rio_yucao'/>
+		<entry key= '1602' value ='zonificacion.rio_zulia'/>
+		<entry key= '2609' value ='zonificacion.rios_amaime_y_cerrito'/>
+		<entry key= '2631' value ='zonificacion.rios_arroyohondo_yumbo_mulalo_vijes_yotoco__mediacanoa_y_piedras'/>
+		<entry key= '5309' value ='zonificacion.rios_cajambre_mayorquin_raposo'/>
+		<entry key= '2634' value ='zonificacion.rios_cali'/>
+		<entry key= '5407' value ='zonificacion.rios_calima_y_bajo_san_juan'/>
+		<entry key= '2908' value ='zonificacion.rios_chimicuica_y_corozal'/>
+		<entry key= '2629' value ='zonificacion.rios_claro_y_jamundi'/>
+		<entry key= '2104' value ='zonificacion.rios_directos_al_magdalena_(mi)'/>
+		<entry key= '2106' value ='zonificacion.rios_directos_magdalena_(md)'/>
+		<entry key= '2632' value ='zonificacion.rios_guabas,sabaletas_y_sonso'/>
+		<entry key= '2633' value ='zonificacion.rios_guadalajara_y_san_pedro'/>
+		<entry key= '2637' value ='zonificacion.rios_las_canas_los_micos_y_obando'/>
+		<entry key= '2630' value ='zonificacion.rios_lili_melendez_y_canaveralejo'/>
+		<entry key= '2608' value ='zonificacion.rios_pescador_rut_chanco_catarina_y_canaveral'/>
+		<entry key= '2610' value ='zonificacion.rios_tulua_y_morales'/>
+	</util:map>
 </beans>

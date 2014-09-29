@@ -24,7 +24,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * 
  * @author dmartin
  */
-public class BriefTaxonConceptDTO implements Serializable{
+public class BriefTaxonConceptDTO implements Serializable, Cloneable{
 	
 	/** serial version id */
 	private static final long serialVersionUID = 6268011656521981931L;
@@ -319,5 +319,12 @@ public class BriefTaxonConceptDTO implements Serializable{
 			return briefTaxonConceptDTO.getKey().equals(this.getKey());
 		}
 		return false;
-	}	
+	}
+	/**
+	 * Addition by SiBBr: clone() implementation
+	 */
+	 @Override
+ 	public BriefTaxonConceptDTO clone() throws CloneNotSupportedException {
+ 		return (BriefTaxonConceptDTO)super.clone();
+ 	}
 }

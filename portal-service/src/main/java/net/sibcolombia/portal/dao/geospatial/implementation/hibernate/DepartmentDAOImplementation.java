@@ -142,6 +142,31 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
       }
     });
   }
+  
+  @SuppressWarnings("unchecked")
+  public List<Department> getDepartmentsCountsForTaxonConcept() {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<Department>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        SQLQuery query =
+          session
+            .createSQLQuery("select dn.id as id, dn.department_name as department_name, dn.iso_department_code as iso_department_code, count(tc.taxon_concept_id) as count, 0 as count_1, 0 as count_2, dn.lat as lat, dn.lng as lng "
+              + " from taxon_department tc left join department dn on tc.iso_department_code = dn.iso_department_code"
+              + " group by dn.iso_department_code");
+        query.setCacheable(true);
+        query.addScalar("id", Hibernate.LONG);
+        query.addScalar("department_name", Hibernate.STRING);
+        query.addScalar("iso_department_code", Hibernate.STRING);
+        query.addScalar("count", Hibernate.INTEGER);
+        query.addScalar("count_1", Hibernate.INTEGER);
+        query.addScalar("count_2", Hibernate.INTEGER);
+        query.addScalar("lat", Hibernate.STRING);
+        query.addScalar("lng", Hibernate.STRING);
+        return query.list();
+      }
+    });
+  }
 
   /**
    * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getDepartmentFor(long)
@@ -231,11 +256,67 @@ public class DepartmentDAOImplementation extends HibernateDaoSupport implements 
     });
     return count.intValue();
   }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalMarineZoneCount()
+   */
+  public int getTotalMarineZoneCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(m.id) from MarineZone m");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalProtectedAreaCount()
+   */
+  public int getTotalProtectedAreaCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(pa.id) from ProtectedArea pa");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalEcosystemCount()
+   */
+  public int getTotalEcosystemCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(e.id) from Ecosystem e");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  
+  /**
+   * @see net.sibcolombia.portal.dao.geospatial.DepartmentDAO#getTotalZonificacionCount()
+   */
+  public int getTotalZonificacionCount() {
+    Long count = (Long) getHibernateTemplate().execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        Query query = session.createQuery("select count(z.id) from Zonificacion z");
+        return query.uniqueResult();
+      }
+    });
+    return count.intValue();
+  }
+  
   /**
    * @param supportedLocales the supportedLocales to set
    */
   public void setSupportedLocales(List<String> supportedLocales) {
     this.supportedLocales = supportedLocales;
   }
-
+ 
 }

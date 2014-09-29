@@ -91,11 +91,22 @@ public class OccurrenceRecord extends BaseObject {
   protected String isoCountryCode;
   /** Department code of the occurrence location */
   protected String isoDepartmentCode;
+  /** Country calculated code of the occurrence location */
+  protected String isoCountryCodeCalculated;
+  /** Department calculatedcode of the occurrence location */
+  protected String isoDepartmentCodeCalculated;
   /** County code of the occurrence location */
   protected String isoCountyCode;
   /** Paramo code of the occurrence location */
   protected String paramo;
-
+  /** Marine Zone code of the occurrence location */
+  protected String marineZone;
+  /** Portected Area code of the occurrence location */
+  protected String protectedArea;
+  /** Dry Forest code of the occurrence location */
+  protected String dryForest;
+  /** Zonificacion Hidrografica code of the occurrence location */
+  protected String zonificacion;
   /** The Country of the occurrence location */
   protected Country country;
 
@@ -341,6 +352,34 @@ public class OccurrenceRecord extends BaseObject {
 		return paramo;
 	}
   /**
+   * @return the marine zone
+   */
+  public String getMarineZone() {
+		return marineZone;
+	}
+  
+  /**
+   * @return the protected area
+   */
+  public String getProtectedArea() {
+		return protectedArea;
+	}
+
+  /**
+   * @return the dry forest
+   */
+  public String getDryForest() {
+		return dryForest;
+	}
+  
+  /**
+   * @return the zonificacion 
+   */
+  public String getZonificacion() {
+	return zonificacion;
+  }
+
+/**
    * @return the kingdomConcept
    */
   public TaxonConceptLite getKingdomConcept() {
@@ -719,6 +758,34 @@ public class OccurrenceRecord extends BaseObject {
 	public void setParamo(String paramo) {
 		this.paramo = paramo;
 	}
+	
+  /**
+   * @param marine zone the marine zone to set
+   */
+	public void setMarineZone(String marineZone) {
+		this.marineZone = marineZone;
+	}
+	
+	/**
+	   * @param protected area the protected area to set
+	*/
+	public void setProtectedArea(String protectedArea) {
+		this.protectedArea = protectedArea;
+	}
+	
+	/**
+	   * @param ecosystem the ecosystem to set
+	*/
+	public void setDryForest(String dryForest) {
+		this.dryForest = dryForest;
+	}
+	
+	/**
+	   * @param zonificacion hidrografica the zonificacion hidrografica to set
+	*/
+	public void setZonificacion(String zonificacion) {
+		this.zonificacion = zonificacion;
+	}
 
 /**
    * @param kingdomConcept the kingdomConcept to set
@@ -901,4 +968,20 @@ public class OccurrenceRecord extends BaseObject {
   public void setYear(Integer year) {
     this.year = year;
   }
+
+	public String getIsoCountryCodeCalculated() {
+		return isoCountryCodeCalculated;
+	}
+	
+	public void setIsoCountryCodeCalculated(String isoCountryCodeCalculated) {
+		this.isoCountryCodeCalculated = isoCountryCodeCalculated;
+	}
+	
+	public String getIsoDepartmentCodeCalculated() {
+		return isoDepartmentCodeCalculated;
+	}
+	
+	public void setIsoDepartmentCodeCalculated(String isoDepartmentCodeCalculated) {
+		this.isoDepartmentCodeCalculated = isoDepartmentCodeCalculated;
+	}
 }

@@ -136,7 +136,7 @@ public class FilterMapLayerController extends AbstractMapLayerController {
 	 * @param response
 	 * @return
 	 */
-	protected List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+	protected List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException {
 		// choose the correct return fields
 		PropertyStoreTripletDTO returnTypeTriplet = new PropertyStoreTripletDTO(queryHelper.getQueryNamespace(), selectFieldSubject, returnPredicateSubject, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MAPLAYERCOUNTS");
 		//do the query 
@@ -153,7 +153,7 @@ public class FilterMapLayerController extends AbstractMapLayerController {
 	 * @param response
 	 * @return
 	 */
-	protected List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, Set<Integer> cellIds, HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+	protected List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, Set<Integer> cellIds, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException {
 		// choose the correct return fields
 		PropertyStoreTripletDTO returnTypeTriplet = new PropertyStoreTripletDTO(queryHelper.getQueryNamespace(), selectFieldSubject, returnPredicateSubject, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MAPLAYERCOUNTS");
 		List<PropertyStoreTripletDTO> extraTriplets = new ArrayList<PropertyStoreTripletDTO>();
@@ -172,7 +172,7 @@ public class FilterMapLayerController extends AbstractMapLayerController {
 	 * @param response
 	 * @return
 	 */
-	protected List<CellDensityDTO> get0Point1DegCellDensities(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+	protected List<CellDensityDTO> get0Point1DegCellDensities(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException {
 		// choose the correct return fields
 		PropertyStoreTripletDTO returnTypeTriplet = new PropertyStoreTripletDTO(queryHelper.getQueryNamespace(), selectFieldSubject, returnPredicateSubject, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MAPLAYERCENTICELLCOUNTS");
 		List<PropertyStoreTripletDTO> extraTriplets = new ArrayList<PropertyStoreTripletDTO>();
@@ -195,7 +195,7 @@ public class FilterMapLayerController extends AbstractMapLayerController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CellDensityDTO> doCellDensityTripletQuery(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response, PropertyStoreTripletDTO returnTypeTriplet, List<PropertyStoreTripletDTO> extraTriplets, SearchConstraints searchConstraints){
+	public List<CellDensityDTO> doCellDensityTripletQuery(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response, PropertyStoreTripletDTO returnTypeTriplet, List<PropertyStoreTripletDTO> extraTriplets, SearchConstraints searchConstraints) throws Exception{
 		String query = properties.get(queryRequestKey);
 		try {
 			query = URLDecoder.decode(query, "UTF-8");

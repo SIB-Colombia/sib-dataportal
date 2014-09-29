@@ -126,6 +126,8 @@
 		<property name="viewNamePrefix" value="departmentTaxonomyBrowse"/>
 		<property name="defaultView" value="/welcome.htm"/>
 		<property name="messageSource" ref="messageSource"/>
+		<!-- Addition by SiBBr to fix tree generation under departments #issue31 -->
+ 		<property name="occurrenceManager" ref="occurrenceManager"/>
 	</bean>	
 		
 	<!--  Common Name Resolving Controller -->

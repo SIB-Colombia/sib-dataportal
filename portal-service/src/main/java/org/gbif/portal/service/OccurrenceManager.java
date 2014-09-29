@@ -94,6 +94,10 @@ public interface OccurrenceManager {
 	 * @param originIsoDepartmentCode the 2 digit ISO department code of the record, nullable
 	 * @param originIsoCountyCode the 2 digit ISO county code of the record, nullable
 	 * @param complexId the 3 letters complex id of the record, nullable
+	 * @param marineId letters marine id of the record, nullable
+	 * @param protectedId numbers protected area id of the record, nullable
+	 * @param ecosystemId numbers ecosystem id of the record, nullable
+	 * @param zonificacionId numbers zonificacion id of the record, nullable
 	 * @param basisOfRecordCode the basis of record code for the record, nullable
 	 * @param cellId the identifier of the one degree cell for the record, nullable
 	 * @param boundingBox provide a bounding box of points, nullable
@@ -115,6 +119,10 @@ public interface OccurrenceManager {
 			String originIsoDepartmentCode,
 			String originIsoCountyCode,
 			String complexId,
+			String marineId,
+			String protectedId,
+			String ecosystemId,
+			String zonificacionId,
 			String basisOfRecordCode,
 			String cellId, 
 			BoundingBoxDTO boundingBox,
@@ -149,6 +157,10 @@ public interface OccurrenceManager {
 	 * @param originIsoDepartmentCode the 2 digit ISO department code of the record, nullable
 	 * @param originIsoCountyCode the 2 digit ISO county code of the record, nullable
 	 * @param complexId the 3 letters complex id of the record, nullable
+	 * @param marineId letters marine id of the record, nullable
+	 * @param protectedId numbers protected area id of the record, nullable
+	 * @param ecosystemId numbers ecosystem id of the record, nullable
+	 * @param zonificacionId numbers zonificacion id of the record, nullable
 	 * @param basisOfRecordCode the basis of record code for the record, nullable
 	 * @param cellId the identifier of the one degree cell for the record, nullable
 	 * @param boundingBox provide a bounding box of points, nullable
@@ -168,7 +180,11 @@ public interface OccurrenceManager {
 			String originIsoCountryCode,
 			String originIsoDepartmentCode,
 			String originIsoCountyCode,
-			String complexTd,
+			String complexId,
+			String marineId,
+			String protectedId,
+			String ecosystemId,
+			String zonificacionId,
 			String basisOfRecordCode,
 			String cellId, 
 			BoundingBoxDTO boundingBox,

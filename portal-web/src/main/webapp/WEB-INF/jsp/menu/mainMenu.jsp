@@ -1,12 +1,12 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 
-<a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a>
+<%--a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a--%>
 <%--<a href="${pageContext.request.contextPath}/countries/" title="<spring:message code='topmenu.countries.title'/>"><spring:message code='topmenu.countries'/></a>--%>
 <a href="${pageContext.request.contextPath}/conjuntos/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a>
 <a href="http://maps.sibcolombia.net/" title="<spring:message code='topmenu.explorer.title'/>"><spring:message code='topmenu.explorer'/></a>
-<a href="${pageContext.request.contextPath}/publicadores/" title="<spring:message code='topmenu.publishers.title'/>"><spring:message code='topmenu.publishers'/></a>  
-<%--<a href="${pageContext.request.contextPath}/departamentos/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a>--%>
+<a href="${pageContext.request.contextPath}/departamentos/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a>
+<a href="${pageContext.request.contextPath}/publicadores/" title="<spring:message code='topmenu.publishers.title'/>"><spring:message code='topmenu.publishers'/></a>
 <%--<a href="${pageContext.request.contextPath}/busqueda/" title="<spring:message code='topmenu.occurrences.title'/>"><spring:message code='topmenu.occurrences'/></a>--%>
 
 

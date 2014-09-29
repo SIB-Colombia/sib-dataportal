@@ -91,28 +91,29 @@
 			    	}else if((('${fn:length(agents)}')>0)&&('${agents[0].agentName}'.length!=0)){
 			    		aName='${fn:escapeXml(agents[0].agentName)}';
 			    	}
-	
+					
 			    	var aAddress='';
 			    	if((data.contacts[0].address!=undefined)&&(data.contacts[0].address.length!=0)){
-			    		aAddress=data.contacts[0].address.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aAddress=data.contacts[0].address;
+			    		
 			    	}else if('${agents[0].agentAddress}'.length!=0){
 			    		aAddress='${fn:escapeXml(agents[0].agentAddress)}';
 			    	}
-			    	
+					
 			    	var aEmail='';
 			    	if((data.contacts[0].email!=undefined)&&(data.contacts[0].email.length!=0)){
-			    		aEmail=data.contacts[0].email.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aEmail=data.contacts[0].email; 
 			    	}else if('${agents[0].agentEmail}'.length!=0){
 			    		aEmail='${fn:escapeXml(agents[0].agentEmail)}';
 			    	}
-			    	
+					
 			    	var aTelephone='';
 			    	if((data.contacts[0].phone!=undefined)&&(data.contacts[0].phone.length!=0)){
-			    		aTelephone=data.contacts[0].phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aTelephone=data.contacts[0].phone; 
 			    	}else if('${agents[0].agentTelephone}'.length!=0){
 			    		aTelephone='${fn:escapeXml(agents[0].agentTelephone)}';
 			    	}
-			    	
+					
 			    	if(aName!=''){
 						$('#agentTable').find('tbody')
 				    	.append($('<tr class="odd">')

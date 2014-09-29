@@ -188,8 +188,16 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="oc.isoDepartmentCode"/>
                 <!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="oc.isoCountyCode"/>
-                <!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
+                <!-- Complex filter class to show Colombian Paramos (SIB Colombia) select list -->
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="oc.paramo"/>
+                <!-- Marine Zone filter class to show Colombian Marine Zones (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="oc.marineZone"/>
+                <!-- Protected Area filter class to show Colombian Protected Areas (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="oc.protectedArea"/>
+                <!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID" value="oc.dryForest"/>
+                <!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="oc.zonificacion"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="oc.dataProvider.isoCountryCode"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="oc.dataResourceId"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="oc.dataProviderId"/>
@@ -295,6 +303,14 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.COUNTYCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS" value="distinct oc.paramo, oc.paramo, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS" value="distinct oc.marineZone, oc.marineZone, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS" value="distinct oc.protectedArea, oc.protectedArea, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ECOSYSTEMCOUNTS" value="distinct oc.dryForest, oc.dryForest, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ECOSYSTEMCOUNTS.GROUPBY" value=""/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ZONIFICACIONCOUNTS" value="distinct oc.zonificacion, oc.zonificacion, 0"/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ZONIFICACIONCOUNTS.GROUPBY" value=""/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS" value="distinct oc.nubTaxonConceptId, oc.taxonName.canonical, 0"/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS.GROUPBY" value=""/>
 
@@ -319,6 +335,7 @@
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.CELLID.MOD360.MULTIPLECONDITION" value=" and "/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.YEAR.MULTIPLECONDITION" value=" or "/>
                 <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.YEARRANGE.MULTIPLECONDITION" value=" and "/>
+                <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.TR.SPECIESID.MULTIPLECONDITION" value=" or "/>
 
                 <!-- The service layer for taxonomic concept records -->
                 <entry key="SERVICE.TAXONOMY.QUERY.PREAMBLE" 
@@ -356,6 +373,10 @@
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISODEPARTMENTCODE" value="tc.departments.isoDepartmentCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ISOCOUNTYCODE" value="tc.counties.isoCountyCode"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.COMPLEXID" value="tc.paramos.complexId"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.MARINEID" value="tc.marineZones.mask"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.PROTECTEDID" value="tc.protectedAreas.paId"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ECOSYSTEMID" value="tc.ecosystems.ecosystemId"/>
+                <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.ZONIFICACIONID" value="tc.zonificaciones.szh"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.KINGDOM" value="tc.kingdomConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.PHYLUM" value="tc.phylumConcept.taxonNameLite.canonical"/>
                 <entry key="SERVICE.TAXONOMY.QUERY.SUBJECT.TR.CLASS" value="tc.classConcept.taxonNameLite.canonical"/>

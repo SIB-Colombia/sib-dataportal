@@ -158,6 +158,38 @@ public interface TaxonConceptDAO {
    * @return the root concepts for a paramo
    */
   public List<TaxonConceptLite> getParamoRootConceptsFor(String paramo);
+  
+  /**
+   * Returns the root concepts for a marine zone
+   * 
+   * @param marineZone
+   * @return the root concepts for a marine zone
+   */
+  public List<TaxonConceptLite> getMarineZoneRootConceptsFor(String marineZone);
+  
+  /**
+   * Returns the root concepts for a protected area
+   * 
+   * @param protectedArea
+   * @return the root concepts for a protected area
+   */
+  public List<TaxonConceptLite> getProtectedAreaRootConceptsFor(String protectedArea);
+
+  /**
+   * Returns the root concepts for a ecosystem
+   * 
+   * @param ecosystem
+   * @return the root concepts for a ecosystem
+   */
+  public List<TaxonConceptLite> getEcosystemRootConceptsFor(String ecosystem);
+  
+  /**
+   * Returns the root concepts for a zonificacion
+   * @param zonificacion
+   * @return the root concepts for a zonificacion
+   */
+  public List<TaxonConceptLite> getZonificacionRootConceptsFor(String zonificacion);
+
 
   /**
    * A more populated TaxonConcept with eagerly loaded associations. This should be used
@@ -208,7 +240,47 @@ public interface TaxonConceptDAO {
    */
   public List<TaxonConceptLite> getLiteChildConceptsForParamo(long taxonConceptId, String complexId,
     boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param marineZone Restrict search to concepts within the supplied marine zone, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForMarineZone(long taxonConceptId, String marineId,
+    boolean allowUnconfirmed);
 
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param protectedArea Restrict search to concepts within the supplied protected area, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForProtectedArea(long taxonConceptId, String protectedId,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param ecosystem Restrict search to concepts within the supplied ecosystem, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForEcosystem(long taxonConceptId, String ecosystemId,
+    boolean allowUnconfirmed);
+  
+  /**
+   * Returns a list of Child Concepts for the Taxon Concept with the specified key value.
+   * 
+   * @param taxonConceptId The id of the taxonConcept
+   * @param zonificacion Restrict search to concepts within the supplied zonificacion, nullable
+   * @return The Parent Concept object for the concept with this id.
+   */
+  public List<TaxonConceptLite> getLiteChildConceptsForZonificacion(long taxonConceptId, String zonificacionId,
+    boolean allowUnconfirmed);
+  
   /**
    * Returns the Nub Concept of the Taxon Concept with the specified key value.
    * 
@@ -319,4 +391,11 @@ public interface TaxonConceptDAO {
    * @return The Nub Concept object for the concept with this id.
    */
   public List<TaxonConcept> getTaxonConceptsForNubTaxonConcept(long nubConceptId);
+  /**
+   * Returns the number of taxon concepts entered in the data portal.
+   * 
+   * @return number of taxon concepts entered in the data portal.
+   * 
+   */
+  public List<String> getTaxonConceptCounts();
 }

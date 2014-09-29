@@ -25,7 +25,7 @@
 				<td>	
 					<ul class="actionsListInline">
 						<c:set var="dataProvider">${occurrenceRecord.dataResourceName}</c:set>
-						<li><a href="${pageContext.request.contextPath}/occurrences/${occurrenceRecord.key}/rawProviderMessage/" target="_blank"><spring:message code="occurrence.record.dynamic.details"/></a></li>
+						<!-- <li><a href="${pageContext.request.contextPath}/occurrences/${occurrenceRecord.key}/rawProviderMessage/" target="_blank"><spring:message code="occurrence.record.dynamic.details"/></a></li> -->
 						<c:if test="${georeferenced}">
 							<li><a href="${pageContext.request.contextPath}/occurrences/occurrence-${occurrenceRecord.key}.kml"><spring:message code="occurrence.record.geospatial.google.earth"/></a></li>
 						</c:if>

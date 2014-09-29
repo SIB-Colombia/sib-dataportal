@@ -128,12 +128,13 @@ public class PropertyStoreQueryBuilder {
 			// be safe throughout and ensure spaces (might be overkill)
 			sb.append(" ");
 			String currentGrouping = null;
+			String currentSubject = null;
 			
 			for (int i=0; i<triplets.size(); i++) {
 				PropertyStoreTripletDTO triplet = triplets.get(i);
 				
 				//if grouping or subject has changed close the query portion and start a new one
-				if (!triplet.getGrouping().equals(currentGrouping)){
+				if ((!triplet.getGrouping().equals(currentGrouping)&&!triplet.getGrouping().equals("SERVICE.OCCURRENCE.QUERY.GROUPINGS.CLASSIFICATION"))||(triplet.getGrouping().equals("SERVICE.OCCURRENCE.QUERY.GROUPINGS.CLASSIFICATION")&&!triplet.getSubject().equals(currentSubject))){
 					//add a bracket
 					if(i>0){
 						sb.append(") " );
@@ -145,13 +146,16 @@ public class PropertyStoreQueryBuilder {
 					sb.append(" (" );
 				}
 				
+				
+				
 				//if a condition for this has already been set append an OR or an AND instead
-				if(triplet.getGrouping().equals(currentGrouping)){
+				if((triplet.getGrouping().equals(currentGrouping)&&!triplet.getGrouping().equals("SERVICE.OCCURRENCE.QUERY.GROUPINGS.CLASSIFICATION"))||(triplet.getGrouping().equals("SERVICE.OCCURRENCE.QUERY.GROUPINGS.CLASSIFICATION")&&triplet.getSubject().equals(currentSubject))){
 					String multipleCondition = getMultipleCondition(triplet.getSubject());
 					sb.append(multipleCondition);
 				} 
 
 				currentGrouping = triplet.getGrouping();
+				currentSubject = triplet.getSubject();
 				
 				if(logger.isTraceEnabled())
 					logger.trace("Adding triplet: "+triplet.toString());
@@ -175,9 +179,15 @@ public class PropertyStoreQueryBuilder {
 					sb.append("?");
 					
 				}
-				sb.append(predicate.getPostfix());				
+				sb.append(predicate.getPostfix());
 				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID")&&triplet.getObject().equals("CUA")){
 					sb.append(" or oc.paramo is not null ");
+				}
+				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID")&&triplet.getObject().equals("2")){
+					sb.append(" or oc.paramo is not null ");
+				}
+				if(triplet.getSubject().equals("SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID")&&triplet.getObject().equals("CUA")){
+					sb.append(" or oc.marineZone is not null ");
 				}
 			}
 			sb.append(" ) ");

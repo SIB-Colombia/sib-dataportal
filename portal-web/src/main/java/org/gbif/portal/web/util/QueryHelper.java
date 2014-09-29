@@ -118,7 +118,7 @@ public class QueryHelper {
 	 * @param criteria
 	 * @return PropertyStoreTripletDTO
 	 */
-	public List<PropertyStoreTripletDTO> getTriplets(HttpServletRequest request, HttpServletResponse response){
+	public List<PropertyStoreTripletDTO> getTriplets(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		CriteriaDTO criteria = CriteriaUtil.getCriteria(request, filters.getFilters());
 		return getTriplets(filters.getFilters(), criteria, request, response);
 	}

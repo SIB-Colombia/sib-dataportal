@@ -54,7 +54,7 @@ public class FilterComponentsController extends MultiActionController {
 	 * @param response
 	 * @return
 	 */
-	public ModelAndView refreshFilters(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView refreshFilters(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		//retrieve the criteria from the request
 		CriteriaDTO criteria  = CriteriaUtil.getCriteriaAndPopulate(request, filterMapWrapper.getFilters());
 		if(criteria.getCriteria().isEmpty())
@@ -69,14 +69,15 @@ public class FilterComponentsController extends MultiActionController {
 	 * @param response
 	 * @return ModelAndView of the containing constructed filters
 	 */
-	public ModelAndView addOrUpdateFilters(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView addOrUpdateFilters(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String subject = request.getParameter("newSubject");
 		String predicate = request.getParameter("newPredicate");
-		String value = request.getParameter("newValue");
+		String value = new String(request.getParameter("newValue").getBytes("ISO-8859-1"), "UTF-8");
 		value = QueryHelper.tidyValue(value);
 		CriterionDTO criterionDTO = new CriterionDTO(subject, predicate, value);
 		CriteriaDTO criteria = CriteriaUtil.getCriteria(request, filterMapWrapper.getFilters());
 		//retrieve the criteria from the request
+		CriteriaUtil.fixEncoding(request,criteria);
 		criteria.getCriteria().add(criterionDTO);
 		Locale locale = RequestContextUtils.getLocale(request);
 		CriteriaUtil.populateCriteria(filterMapWrapper.getFilters(), criteria, locale);

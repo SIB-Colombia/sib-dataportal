@@ -31,12 +31,12 @@ public class ParamoDAOImplementation extends HibernateDaoSupport implements Para
 
         StringBuffer sb = null;
 
-        sb = new StringBuffer("select c from Paramo p where (p.complex like :name");
+        sb = new StringBuffer("select p from Paramo p where (p.complex like :name");
         if (anyOccurrence) {
-          sb.append(" or c.complex like :anyPartName");
+          sb.append(" or p.complex like :anyPartName");
         }
         sb.append(")");
-        sb.append(" order by c.complex");
+        sb.append(" order by p.complex");
 
         Query query = session.createQuery(sb.toString());
         String searchString = nameStub;
@@ -134,7 +134,7 @@ public class ParamoDAOImplementation extends HibernateDaoSupport implements Para
       public Object doInHibernate(Session session) {
         Query query =
           session
-            .createQuery("SELECT p.complexId AS complexId, p.complex AS complexName, p.sector AS sector, p.district AS district, c.occurrenceCount AS occurrenceCount, c.speciesCount AS speciesCount, c.contextCount AS contextCount FROM Paramo p WHERE p.complex LIKE :name ORDER BY complex ASC");
+            .createQuery("SELECT p.complexId AS complexId, p.complex AS complexName, p.sector AS sector, p.district AS district, p.occurrenceCount AS occurrenceCount, p.speciesCount AS speciesCount, p.contextCount AS contextCount FROM Paramo p WHERE p.complex LIKE :name ORDER BY complex ASC");
         String searchString;
         if (theChar != null) {
           searchString = theChar + "%";

@@ -57,10 +57,19 @@ import java.util.Set;
 
 import net.sibcolombia.portal.dao.geospatial.CountyDAO;
 import net.sibcolombia.portal.dao.geospatial.DepartmentDAO;
+import net.sibcolombia.portal.dao.geospatial.EcosystemDAO;
+import net.sibcolombia.portal.dao.geospatial.MarineZoneDAO;
 import net.sibcolombia.portal.dao.geospatial.ParamoDAO;
+import net.sibcolombia.portal.dao.geospatial.ProtectedAreaDAO;
+import net.sibcolombia.portal.dao.geospatial.ZonificacionDAO;
 import net.sibcolombia.portal.model.geospatial.County;
 import net.sibcolombia.portal.model.geospatial.Department;
+import net.sibcolombia.portal.model.geospatial.Ecosystem;
+import net.sibcolombia.portal.model.geospatial.MarineZone;
 import net.sibcolombia.portal.model.geospatial.Paramo;
+import net.sibcolombia.portal.model.geospatial.ProtectedArea;
+import net.sibcolombia.portal.model.geospatial.Zonificacion;
+
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
@@ -95,9 +104,20 @@ public class GeospatialManagerImpl implements GeospatialManager {
   /** County DAO for County queries */
   protected CountyDAO countyDAO;
   
-  /** Paramo DAO for County queries */
+  /** Paramo DAO for Paramo queries */
   protected ParamoDAO paramoDAO;
 
+  /** Marine Zone DAO for marine zone queries */
+  protected MarineZoneDAO marineZoneDAO;
+  
+  /** Protected Area DAO for protected area queries */
+  protected ProtectedAreaDAO protectedAreaDAO;
+  
+  /** Ecosystem DAO for ecosystem queries */
+  protected EcosystemDAO ecosystemDAO;
+  
+  /** Zonificacion DAO for zonificacion queries */
+  protected ZonificacionDAO zonificacionDAO;
   
   /** The GeoRegion DAO */
   protected GeoRegionDAO geoRegionDAO;
@@ -579,6 +599,32 @@ public class GeospatialManagerImpl implements GeospatialManager {
           Paramo paramo = (Paramo) paramoAndName;
           keyAsLong = paramo.getParamoId();
         }
+    }else if (type.equals(EntityType.TYPE_MARINEZONE)) {
+        Object marineZoneAndName = marineZoneDAO.getMarineZoneForMask(key);
+        if (marineZoneAndName != null) {
+          MarineZone marineZone = (MarineZone) marineZoneAndName;
+          keyAsLong = marineZone.getMarineZoneId();
+        }
+    }else if (type.equals(EntityType.TYPE_PROTECTEDAREA)) {
+        Object protectedAreaAndName = protectedAreaDAO.getProtectedAreaForProtectedArea(key);
+        if (protectedAreaAndName != null) {
+          ProtectedArea protectedArea = (ProtectedArea) protectedAreaAndName;
+          keyAsLong = protectedArea.getProtectedAreaId();
+        }
+    }
+    else if (type.equals(EntityType.TYPE_ECOSYSTEM)) {
+        Object ecosystemAndName = ecosystemDAO.getEcosystemFor(Long.parseLong(key));
+        if (ecosystemAndName != null) {
+        	Ecosystem ecosystem = (Ecosystem) ecosystemAndName;
+          keyAsLong = ecosystem.getEcosystemId();
+        }
+    }
+    else if (type.equals(EntityType.TYPE_ZONIFICACION)) {
+        Object zonificacionAndName = zonificacionDAO.getZonificacionForSZH(key);
+        if (zonificacionAndName != null) {
+        	Zonificacion zonificacion = (Zonificacion) zonificacionAndName;
+          keyAsLong = zonificacion.getZonificacionId();
+        }
     }
     return keyAsLong;
   }
@@ -839,11 +885,40 @@ public class GeospatialManagerImpl implements GeospatialManager {
   }
   
   /**
-   * @param countyDAO the countyDAO to set
+   * @param paramoDAO the paramoDAO to set
    */
   public void setParamoDAO(ParamoDAO paramoDAO) {
     this.paramoDAO = paramoDAO;
   }
+  
+  /**
+   * @param marineZoneDAO the marineZoneDAO to set
+   */
+  public void setMarineZoneDAO(MarineZoneDAO marineZoneDAO) {
+    this.marineZoneDAO = marineZoneDAO;
+  }
+  
+  /**
+   * @param protectedAreaDAO the protectedAreaDAO to set
+   */
+  public void setProtectedAreaDAO(ProtectedAreaDAO protectedAreaDAO) {
+    this.protectedAreaDAO = protectedAreaDAO;
+  }
+  
+  /**
+   * @param ecosystemDAO the ecosystemDAO to set
+   */
+  public void setEcosystemDAO(EcosystemDAO ecosystemDAO) {
+    this.ecosystemDAO = ecosystemDAO;
+  }
+  
+  /**
+   * @param zonificacionDAO the zonificacionDAO to set
+   */
+  public void setZonificacionDAO(ZonificacionDAO zonificacionDAO) {
+    this.zonificacionDAO = zonificacionDAO;
+  }
+  
   /**
    * @param geoRegionDAO the geoRegionDAO to set
    */

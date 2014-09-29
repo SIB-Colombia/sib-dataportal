@@ -204,7 +204,7 @@
 	</tr>
 <c:if test="${not empty wmsFilter}">	
 	<tr>
-		<td class="link" colspan="6" align="right"><span class="new">Beta: </span><a href="${pageContext.request.contextPath}/countries/gbifWMSMap?wmsFilter=${wmsFilter}">GBIF Open Geospatial Consortium <spring:message code="maps.services" text="services"/></a></td>
+		<td class="link" colspan="6" align="right"><span class="new"></span><a href="http://maps.sibcolombia.net/">Ver explorador geográfico de registros biológicos</a></td>
 	</tr>
 </c:if>	
 </table>

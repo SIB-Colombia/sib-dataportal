@@ -515,6 +515,54 @@ CREATE TABLE `paramo` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `marine_zone`;
+CREATE TABLE `marine_zone` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`mask` varchar(255) DEFAULT NULL,
+	`description` varchar(255) DEFAULT NULL,
+	`species_count` int(10) DEFAULT NULL,
+	`occurrence_count` int(10) DEFAULT NULL,
+	`occurrence_coordinate_count` int(10) DEFAULT NULL,
+	 PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `protected_area`;
+CREATE TABLE `protected_area`(
+	`id` int(10)  NOT NULL AUTO_INCREMENT,
+	`pa_id` int(3) DEFAULT NULL,
+	`name` varchar(255) DEFAULT NULL,
+	`pn_cat` char(3) DEFAULT NULL,
+	`species_count` int(10) DEFAULT NULL,
+	`occurrence_count` int(10) DEFAULT NULL,
+	`occurrence_coordinate_count` int(10) DEFAULT NULL,
+	 PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ecosystem`;
+CREATE TABLE `ecosystem`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`type` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `zonificacion`;
+CREATE TABLE `zonificacion`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`ah` int(2)  NOT NULL,
+`nomah` varchar(255) DEFAULT NULL,
+`zh` int(2)  NOT NULL,
+`nomzh` varchar(255) DEFAULT NULL,
+`szh` int(2)  NOT NULL,
+`nomszh` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
@@ -1576,6 +1624,72 @@ CREATE TABLE `taxon_paramo` (
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `taxon_marine_zone`
+--
+
+DROP TABLE IF EXISTS `taxon_marine_zone`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_marine_zone` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`marine_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`marine_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_marine_ids` (`marine_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_protected_area`
+--
+
+DROP TABLE IF EXISTS `taxon_protected_area`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_protected_area` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`protected_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`protected_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_protected_ids` (`protected_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_ecosystem`
+--
+DROP TABLE IF EXISTS `taxon_ecosystem`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_ecosystem` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`ecosystem_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`ecosystem_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_ecosystem_ids` (`ecosystem_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `taxon_zonificacion`
+--
+DROP TABLE IF EXISTS `taxon_zonificacion`;
+SET @saved_cs_client = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `taxon_zonificacion` (
+	`taxon_concept_id` int(11) NOT NULL,
+	`zonificacion_id` char(10) NOT NULL,
+	`count` int(11) default NULL,
+	PRIMARY KEY(`taxon_concept_id`,`zonificacion_id`),
+	KEY `IX_taxon_concept_ids` (`taxon_concept_id`),
+	KEY `IX_zonificacion_ids` (`zonificacion_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `taxon_name`
 --
 
@@ -1659,6 +1773,57 @@ SET character_set_client = utf8;
   `job_group` varchar(100),
   `next_fire_time` varbinary(29)
 ) */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table 'language'
+--
+
+DROP TABLE IF EXISTS language;
+CREATE TABLE language (
+       id INT NOT NULL AUTO_INCREMENT
+       , iso_language_code CHAR(3) NOT NULL
+       , name VARCHAR(255) NOT NULL
+	   , standard TINYINT(1) NOT NULL
+       ,PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE INDEX IX_language_1 ON language (name ASC);
+CREATE INDEX IX_language_2 ON language (iso_language_code ASC);
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table 'common_name'
+--
+
+DROP TABLE IF EXISTS common_name;
+CREATE TABLE common_name(
+       id INT NOT NULL AUTO_INCREMENT
+       , name VARCHAR(255) NOT NULL
+       , transliteration VARCHAR(255)
+	   , iso_language_code CHAR(3)
+       , iso_country_code CHAR(2)
+       ,PRIMARY KEY (`id`)
+	   , CONSTRAINT `FK_ISO_LANGUAGE_CODE` FOREIGN KEY (`ISO_LANGUAGE_CODE`) REFERENCES `language` (`ISO_LANGUAGE_CODE`)
+	   , CONSTRAINT `FK_ISO_COUNTRY_CODE` FOREIGN KEY (`ISO_COUNTRY_CODE`) REFERENCES `country` (`ISO_COUNTRY_CODE`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE INDEX IX_common_name_1 ON common_name (name ASC);
+CREATE INDEX IX_common_name_2 ON common_name (iso_language_code ASC);
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table 'common_name_taxon_concept'
+--
+
+DROP TABLE IF EXISTS common_name_taxon_concept;
+CREATE TABLE common_name_taxon_concept(
+	   taxon_concept_id INT NOT NULL
+     , common_name_id INT NOT NULL
+     , PRIMARY KEY (taxon_concept_id,common_name_id)
+     , INDEX (taxon_concept_id)
+	 , INDEX (common_name_id)
+	 , CONSTRAINT `FK_TAXON_CONCEPT_ID` FOREIGN KEY (`TAXON_CONCEPT_ID`) REFERENCES `taxon_concept` (`ID`)
+	 , CONSTRAINT `FK_COMON_NAME_ID` FOREIGN KEY (`COMMON_NAME_ID`) REFERENCES `common_name` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --

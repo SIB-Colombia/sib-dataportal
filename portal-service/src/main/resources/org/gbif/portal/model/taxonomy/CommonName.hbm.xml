@@ -5,10 +5,20 @@
     <id unsaved-value="null" name="id" column="id">
       <generator class="native"/>
     </id>
+    
     <property name="name" column="name" not-null="false"/>
+    
+    <property name="transliteration" column="transliteration" not-null="false"/>
+    
     <property name="isoLanguageCode" column="iso_language_code" not-null="false"/>
-    <property name="taxonConceptId" column="taxon_concept_id" insert="false" update="false"  not-null="false"/>
-    <many-to-one name="taxonConcept" column="taxon_concept_id" not-null="true" insert="false" update="false"/>
-    <property name="language" column="language" not-null="false"/>
+    <many-to-one column="iso_language_code" not-null="true" name="language" update="false" insert="false"/>
+    
+    <property name="isoCountryCode" column="iso_country_code" not-null="false"/>
+	<many-to-one column="iso_country_code" not-null="true" name="country" update="false" insert="false"/>    
+    
+    <set lazy="true" name="taxonConcepts" table="common_name_taxon_concept">
+       <key column="common_name_id"/>
+       <many-to-many column="taxon_concept_id" class="org.gbif.portal.model.taxonomy.TaxonConcept"/>
+    </set>   
   </class>
 </hibernate-mapping>

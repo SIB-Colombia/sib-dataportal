@@ -15,25 +15,39 @@
 
 package org.gbif.portal.model.taxonomy;
 
-import org.gbif.portal.model.BaseObject;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.gbif.portal.model.BaseObject;
+import org.gbif.portal.model.geospatial.Country;
+import org.gbif.portal.model.resources.Language;
 /**
  * A Common Name associated with a taxonomic concept.
  * 
- * @author dmartin
+ * @author mcubillos
  */
 public class CommonName extends BaseObject {
 	
 	/** The taxon concept that this is joined to  */
-	protected TaxonConcept taxonConcept;
-	/** The taxon concept that this is joined to  */
-	protected long taxonConceptId;
+	protected Set<TaxonConcept> taxonConcepts = new HashSet<TaxonConcept>();
+	
 	/** The actual name */
 	protected String name;
-	/** The ISO Country code */
+	
+	/** The ISO Language code */
 	protected String isoLanguageCode;
-	/** The language */
-	protected String language;
+	
+	/** The Country of the common name location */
+	protected Language language;
+	
+	/** The ISO Country code */
+	protected String isoCountryCode;
+	
+	/** The Country of the common name location */
+	protected Country country;
+	
+	/** The transliteration */
+	protected String transliteration;
 	
 	/**
 	 * @return the isoCountryCode
@@ -47,16 +61,12 @@ public class CommonName extends BaseObject {
 	public void setIsoLanguageCode(String isoCountryCode) {
 		this.isoLanguageCode = isoCountryCode;
 	}
-	/**
-	 * @return the language
-	 */
-	public String getLanguage() {
+	
+	
+	public Language getLanguage() {
 		return language;
 	}
-	/**
-	 * @param language the language to set
-	 */
-	public void setLanguage(String language) {
+	public void setLanguage(Language language) {
 		this.language = language;
 	}
 	/**
@@ -74,25 +84,32 @@ public class CommonName extends BaseObject {
 	/**
 	 * @return the taxonConcept
 	 */
-	public TaxonConcept getTaxonConcept() {
-		return taxonConcept;
+	public Set<TaxonConcept> getTaxonConcepts() {
+		return taxonConcepts;
 	}
 	/**
 	 * @param taxonConcept the taxonConcept to set
 	 */
-	public void setTaxonConcept(TaxonConcept taxonConcept) {
-		this.taxonConcept = taxonConcept;
+	public void setTaxonConcepts(Set<TaxonConcept> taxonConcepts) {
+		this.taxonConcepts = taxonConcepts;
 	}
-	/**
-	 * @return the taxonConceptId
-	 */
-	public long getTaxonConceptId() {
-		return taxonConceptId;
+	public String getIsoCountryCode() {
+		return isoCountryCode;
 	}
-	/**
-	 * @param taxonConceptId the taxonConceptId to set
-	 */
-	public void setTaxonConceptId(long taxonConceptId) {
-		this.taxonConceptId = taxonConceptId;
+	public void setIsoCountryCode(String isoCountryCode) {
+		this.isoCountryCode = isoCountryCode;
+	}
+	
+	public Country getCountry() {
+		return country;
+	}
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	public String getTransliteration() {
+		return transliteration;
+	}
+	public void setTransliteration(String transliteration) {
+		this.transliteration = transliteration;
 	}
 }

@@ -190,7 +190,7 @@
   	</property>
   </bean>
   
-   <!-- Bean implementation DAO county classes SiB Colombia -->
+   <!-- Bean implementation DAO paramo classes SiB Colombia -->
   <bean id="paramoDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.ParamoDAOImplementation" parent="baseDAORO">
   	<property name="supportedLocales">
   		<list>
@@ -200,6 +200,45 @@
   	</property>
   </bean>
   
+   <!-- Bean implementation DAO marine zone classes SiB Colombia -->
+  <bean id="marineZoneDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.MarineZoneDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
+  
+  <!-- Bean implementation DAO protected area classes SiB Colombia -->
+  <bean id="protectedAreaDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.ProtectedAreaDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
+  
+    <!-- Bean implementation DAO ecosystem classes SiB Colombia -->
+  <bean id="ecosystemDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.EcosystemDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
+  
+    <!-- Bean implementation DAO zonificacion hidrografica classes SiB Colombia -->
+  <bean id="zonificacionDAORO" class="net.sibcolombia.portal.dao.geospatial.implementation.hibernate.ZonificacionDAOImplementation" parent="baseDAORO">
+  	<property name="supportedLocales">
+  		<list>
+  			<value>en</value>
+  			<value>es</value>
+  		</list>
+  	</property>
+  </bean>
   
   <bean id="departmentDTOFactory" class="net.sibcolombia.portal.dto.department.DepartmentDTOFactory"/>
   
@@ -211,6 +250,10 @@
   			<property name="departmentDAO" ref="departmentDAORO"/>
   			<property name="countyDAO" ref="countyDAORO"/>
   			<property name="paramoDAO" ref="paramoDAORO"/>
+  			<property name="marineZoneDAO" ref="marineZoneDAORO"/>
+  			<property name="protectedAreaDAO" ref="protectedAreaDAORO"/>
+  			<property name="ecosystemDAO" ref="ecosystemDAORO"/>
+  			<property name="zonificacionDAO" ref="zonificacionDAORO"/>
   			<property name="cellDensityDAO" ref="cellDensityDAORO"/>
   			<property name="centiCellDensityDAO" ref="centiCellDensityDAORO"/>
   			<property name="occurrenceRecordDAO" ref="occurrenceRecordDAORO"/>
@@ -653,8 +696,16 @@
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="isoDepartmentCode"/>
         		<!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="isoCountyCode"/>
-        		<!-- County filter class to show Colombian Paramos (SIB Colombia) select list -->
+        		<!-- Complex filter class to show Colombian Paramos (SIB Colombia) select list -->
         		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="paramo"/>
+        		<!-- Marine Zone filter class to show Colombian Marine Zones (SIB Colombia) select list -->
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="marineZone"/>
+        		<!-- Protected Area filter class to show Colombian Protected Areas (SIB Colombia) select list -->
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
+        		<!-- Dry Forest filter class to show Colombian Dry Forests (SIB Colombia) select list -->
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID" value="ecosystem"/>
+        		<!-- Zonificacion filter class to show Colombian Zonificaciones Hidrograficas (SIB Colombia) select list -->
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="hostCountry"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCE" value="dataResource"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="dataResource"/>				        							

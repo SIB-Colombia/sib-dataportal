@@ -48,7 +48,7 @@ public interface CommonNameDAO {
 	 * @param rank Rank 
 	 * @return The unique name
 	 */
-	public CommonName getUnique(Long taxonConceptId, String name, String language);
+	public CommonName getUnique(String name, String language);
 		
 	/**
 	 * Get CommonName by id

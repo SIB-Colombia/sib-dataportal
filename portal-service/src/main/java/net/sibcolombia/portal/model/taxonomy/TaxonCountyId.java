@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Identifier class used for compound key.
  * 
- * @author dmartin
+ * @author mcubillos
  */
 public class TaxonCountyId implements Serializable {
 
@@ -15,7 +15,7 @@ public class TaxonCountyId implements Serializable {
   public String isoCountyCode;
 
   /**
-   * @return the isoDepartmentCode
+   * @return the isoCountyCode
    */
   public String getIsoCountyCode() {
     return isoCountyCode;
@@ -29,7 +29,7 @@ public class TaxonCountyId implements Serializable {
   }
 
   /**
-   * @param isoDepartmentCode the isoDepartmentCode to set
+   * @param isoCountyCode the isoDepartmentCode to set
    */
   public void setIsoCountyCode(String isoCountyCode) {
     this.isoCountyCode = isoCountyCode;

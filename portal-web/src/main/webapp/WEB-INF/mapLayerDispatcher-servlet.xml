@@ -14,7 +14,10 @@
 				<prop key="/department/**/*">departmentMapLayerController</prop>
 				<prop key="/county/**/*">countyMapLayerController</prop>
 				<prop key="/paramo/**/*">paramoMapLayerController</prop>
-				
+				<prop key="/marineZone/**/*">marineZoneMapLayerController</prop>
+				<prop key="/protectedArea/**/*">protectedAreaMapLayerController</prop>
+				<prop key="/ecosystem/**/*">ecosystemMapLayerController</prop>
+				<prop key="/zonificacion/**/*">zonificacionMapLayerController</prop>
 				<prop key="/homeCountry/**/*">homeCountryMapLayerController</prop>
 				<prop key="/network/**/*">networkMapLayerController</prop>
 				<prop key="/provider/**/*">providerMapLayerController</prop>
@@ -46,6 +49,26 @@
 	<bean id="paramoMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="10"/>
 		<property name="urlRoot" value="paramo"/>
+	</bean>
+	<!-- SIB Colombia Marine Zone map layer support -->
+	<bean id="marineZoneMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="11"/>
+		<property name="urlRoot" value="marineZone"/>
+	</bean>
+	<!-- SIB Colombia protected area map layer support -->
+	<bean id="protectedAreaMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="12"/>
+		<property name="urlRoot" value="protectedArea"/>
+	</bean>
+	<!-- SIB Colombia ecosystem map layer support -->
+	<bean id="ecosystemMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="13"/>
+		<property name="urlRoot" value="ecosystem"/>
+	</bean>
+		<!-- SIB Colombia zonificacion map layer support -->
+	<bean id="zonificacionMapLayerController" parent="entityMapLayerController">
+		<property name="entityType" value="14"/>
+		<property name="urlRoot" value="zonificacion"/>
 	</bean>
 	<bean id="providerMapLayerController" parent="entityMapLayerController">
 		<property name="entityType" value="3"/>

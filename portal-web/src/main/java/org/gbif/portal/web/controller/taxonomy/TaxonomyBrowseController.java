@@ -14,6 +14,7 @@
  ***************************************************************************/
 package org.gbif.portal.web.controller.taxonomy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -175,7 +176,7 @@ public class TaxonomyBrowseController extends RestKeyValueController {
           dataResourceDTO = nubResource;
           //get the root taxon concepts
 					if(dataResourceDTO!=null)
-						concepts= taxonomyManager.getRootTaxonConceptsForTaxonomy(null, nubResource.getKey());
+						concepts = taxonomyManager.getRootTaxonConceptsForTaxonomy(null, nubResource.getKey());
 				}
 				//if only one child descend tree until there is a choice
 				if(concepts!=null && concepts.size()==1){

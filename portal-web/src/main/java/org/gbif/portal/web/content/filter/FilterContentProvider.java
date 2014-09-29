@@ -85,6 +85,18 @@ public class FilterContentProvider implements ContentProvider {
   /** The filter used for paramo- searches (SIB Colombia) */
   protected FilterDTO paramoOccurrenceFilter;
   
+  /** The filter used for marineZone- searches (SIB Colombia) */
+  protected FilterDTO marineZoneOccurrenceFilter;
+  
+  /** The filter used for protectedArea- searches (SIB Colombia) */
+  protected FilterDTO protectedAreaOccurrenceFilter;
+  
+  /** The filter used for ecosystem- searches (SIB Colombia) */
+  protected FilterDTO ecosystemOccurrenceFilter;
+  
+  /** The filter used for zonificacion- searches (SIB Colombia) */
+  protected FilterDTO zonificacionOccurrenceFilter;
+  
   /** The filter used for country searches */
   protected FilterDTO regionOccurrenceFilter;
   /** The filter used for country searches */
@@ -316,6 +328,34 @@ public class FilterContentProvider implements ContentProvider {
   public FilterDTO getParamoOccurrenceFilter() {
     return paramoOccurrenceFilter;
   }
+  
+  /**
+   * @return the marineZoneOccurrenceFilter
+   */
+  public FilterDTO getMarineZoneOccurrenceFilter() {
+    return marineZoneOccurrenceFilter;
+  }
+  
+  /**
+   * @return the protectedAreaOccurrenceFilter
+   */
+  public FilterDTO getProtectedAreaOccurrenceFilter() {
+    return protectedAreaOccurrenceFilter;
+  }
+  
+  /**
+   * @return the ecosystemOccurrenceFilter
+   */
+  public FilterDTO getEcosystemOccurrenceFilter() {
+    return ecosystemOccurrenceFilter;
+  }
+  
+  /**
+   * @return the zonificacionOccurrenceFilter
+   */
+  public FilterDTO getZonificacionOccurrenceFilter() {
+    return zonificacionOccurrenceFilter;
+  }
 
   /**
    * Retrieves the correct filter for the rank.
@@ -542,6 +582,34 @@ public class FilterContentProvider implements ContentProvider {
    */
   public void setParamoOccurrenceFilter(FilterDTO paramoOccurrenceFilter) {
     this.paramoOccurrenceFilter = paramoOccurrenceFilter;
+  }
+  
+  /**
+   * @param marineZoneOccurrenceFilter the marineZoneOccurrenceFilter to set
+   */
+  public void setMarineZoneOccurrenceFilter(FilterDTO marineZoneOccurrenceFilter) {
+    this.marineZoneOccurrenceFilter = marineZoneOccurrenceFilter;
+  }
+  
+  /**
+   * @param protectedAreaOccurrenceFilter the protectedAreaOccurrenceFilter to set
+   */
+  public void setProtectedAreaOccurrenceFilter(FilterDTO protectedAreaOccurrenceFilter) {
+    this.protectedAreaOccurrenceFilter = protectedAreaOccurrenceFilter;
+  }
+  
+  /**
+   * @param ecosystemOccurrenceFilter the ecosystemOccurrenceFilter to set
+   */
+  public void setEcosystemOccurrenceFilter(FilterDTO ecosystemOccurrenceFilter) {
+    this.ecosystemOccurrenceFilter = ecosystemOccurrenceFilter;
+  }
+  
+  /**
+   * @param zonificacionOccurrenceFilter the zonificacionOccurrenceFilter to set
+   */
+  public void setZonificacionOccurrenceFilter(FilterDTO zonificacionOccurrenceFilter) {
+    this.zonificacionOccurrenceFilter = zonificacionOccurrenceFilter;
   }
   
   /**

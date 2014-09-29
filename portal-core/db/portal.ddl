@@ -516,6 +516,70 @@ CREATE TABLE `paramo` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- Table marine_zone DDL definition
+-- ----------------------------
+--  Table structure for `marine_zone` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `marine_zone`;
+CREATE TABLE `marine_zone` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+`mask` varchar(255) DEFAULT NULL,
+`description` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Table protected_area DDL definition
+-- ----------------------------
+--  Table structure for `protected_area` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `protected_area`;
+CREATE TABLE `protected_area`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`pa_id` int(3) DEFAULT NULL,
+`name` varchar(255) DEFAULT NULL,
+`pn_cat` char(3) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Table ecosystem DDL definition
+-- ----------------------------
+--  Table structure for `ecosystem` for SIB Colombia
+-- ----------------------------
+DROP TABLE IF EXISTS `ecosystem`;
+CREATE TABLE `ecosystem`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`type` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Table ecosystem DDL definition
+-- ----------------------------
+--  Table structure for `zonificacion` for SIB Colombia
+
+DROP TABLE IF EXISTS `zonificacion`;
+CREATE TABLE `zonificacion`(
+`id` int(10)  NOT NULL AUTO_INCREMENT,
+`ah` int(2)  NOT NULL,
+`nomah` varchar(255) DEFAULT NULL,
+`zh` int(2)  NOT NULL,
+`nomzh` varchar(255) DEFAULT NULL,
+`szh` int(2)  NOT NULL,
+`nomszh` varchar(255) DEFAULT NULL,
+`species_count` int(10) DEFAULT NULL,
+`occurrence_count` int(10) DEFAULT NULL,
+`occurrence_coordinate_count` int(10) DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 --
 -- Table structure for table `data_provider`
 --
