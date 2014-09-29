@@ -6,6 +6,82 @@ inner join country c on oc.iso_country_code=c.iso_country_code
 where oc.cell_id is not null and oc.geospatial_issue=0
 group by 1,2,3;
 
+-- populate the cell_density for county
+insert into cell_density 
+select 9, c.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join county c on oc.iso_county_code=c.iso_county_code 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for paramo
+insert into cell_density 
+select 10, p.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join paramo p on oc.paramo=p.complex_id 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for any paramo
+insert into cell_density 
+select 10, 37, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null 
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for marine zone
+insert into cell_density 
+select 11, m.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join marine_zone m on oc.marine_zone=m.mask 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for any marine zone
+insert into cell_density 
+select 11, 8, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.marine_zone is not null 
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for protected area
+insert into cell_density 
+select 12, pa.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join protected_area pa on oc.protected_area=pa.pa_id 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for dry forest ecosystem
+insert into cell_density 
+select 13, 1, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.dry_forest = 1 
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for paramo ecosystem
+insert into cell_density 
+select 13, 2, cell_id, count(oc.id) 
+from occurrence_record oc 
+where oc.paramo is not null
+and oc.cell_id is not null 
+and oc.geospatial_issue=0
+group by 1,2,3;
+
+-- populate the centi_cell_density for zonificacion
+insert into cell_density 
+select 14, z.id, cell_id, count(oc.id) 
+from occurrence_record oc 
+inner join zonificacion z on oc.protected_area=z.szh 
+where oc.cell_id is not null and oc.geospatial_issue=0
+group by 1,2,3;
+
 -- populate the cell_density for home country
 -- This is the data for data_providers tied to a country
 insert into cell_density 
@@ -113,3 +189,5 @@ select 0, 0,cell_id,count(id)
 from occurrence_record
 where cell_id is not null and geospatial_issue=0
 group by 1,2,3;
+
+

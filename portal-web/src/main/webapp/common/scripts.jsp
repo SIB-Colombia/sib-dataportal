@@ -19,3 +19,4 @@
 <script src="${pageContext.request.contextPath}/javascript/request.js" type="text/javascript" language="javascript"></script>
 <!-- SIB Colombia: including sort tables support library, datatable.js by Allan Jardine -->
 <script src="${pageContext.request.contextPath}/javascript/datatable.js" type="text/javascript" language="javascript"></script>
+

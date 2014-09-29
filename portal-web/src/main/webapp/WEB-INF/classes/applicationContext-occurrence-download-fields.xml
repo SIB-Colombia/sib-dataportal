@@ -40,12 +40,19 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<ref bean="rawGenus"/>
 		<ref bean="rawCountry"/>
 		<ref bean="isoCountryCode"/>
+		<ref bean="isoCountryCodeCalculated"/>
 		<ref bean="rawLocality"/>
 		<!-- raw fields -->
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
 		<ref bean="isoDepartmentCode"/>
+		<ref bean="isoDepartmentCodeCalculated"/>
+		<ref bean="paramo"/>
+		<ref bean="marineZone"/>
+		<ref bean="protectedArea"/>
+		<ref bean="dryForest"/>
+		<ref bean="zonificacion"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -108,11 +115,18 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<util:list id="geospatialOccurrenceDownloadFields">
 		<ref bean="rawCountry"/>
 		<ref bean="isoCountryCode"/>
+		<ref bean="isoCountryCodeCalculated"/>
 		<ref bean="rawLocality"/>
 		<ref bean="rawCounty"/>
 		<ref bean="rawContinentOrOcean"/>
 		<ref bean="rawStateOrProvince"/>
 		<ref bean="isoDepartmentCode"/>
+		<ref bean="isoDepartmentCodeCalculated"/>
+		<ref bean="paramo"/>
+		<ref bean="marineZone"/>
+		<ref bean="protectedArea"/>
+		<ref bean="dryForest"/>
+		<ref bean="zonificacion"/>
 		<ref bean="region"/>
 		<ref bean="providerIsoCountryCode"/>
 		<ref bean="latitude"/>
@@ -172,6 +186,48 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="fieldI18nNameKey" value="occurrence.record.interpreted.department"/>
 		<property name="useI18nOnValue" value="true"/>
 		<property name="i18nPrefix" value="department"/>
+	</bean>
+	<bean id="isoCountryCodeCalculated" parent="downloadField">
+		<property name="fieldName" value="isoCountryCodeCalculated"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.calculated.country"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="country"/>
+	</bean>
+	<bean id="isoDepartmentCodeCalculated" parent="downloadField">
+		<property name="fieldName" value="isoDepartmentCodeCalculated"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.calculated.department"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="department"/>
+	</bean>
+	<bean id="paramo" parent="downloadField">
+		<property name="fieldName" value="paramo"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.paramo"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="paramo"/>
+	</bean>
+	<bean id="marineZone" parent="downloadField">
+		<property name="fieldName" value="marineZone"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.marineZone"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="marineZone"/>
+	</bean>
+	<bean id="protectedArea" parent="downloadField">
+		<property name="fieldName" value="protectedArea"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.protectedArea"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="protectedArea"/>
+	</bean>
+	<bean id="dryForest" parent="downloadField">
+		<property name="fieldName" value="dryForest"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.dryForest"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="ecosystem"/>
+	</bean>
+	<bean id="zonificacion" parent="downloadField">
+		<property name="fieldName" value="zonificacion"/>
+		<property name="fieldI18nNameKey" value="occurrence.record.zonificacion"/>
+		<property name="useI18nOnValue" value="true"/>
+		<property name="i18nPrefix" value="zonificacion"/>
 	</bean>
 	<bean id="region" parent="downloadField">
 		<property name="fieldName" value="region"/>

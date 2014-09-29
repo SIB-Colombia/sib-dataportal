@@ -20,6 +20,12 @@ import org.gbif.portal.model.resources.DataResource;
 import java.util.Set;
 
 import net.sibcolombia.portal.model.geospatial.Department;
+import net.sibcolombia.portal.model.geospatial.County;
+import net.sibcolombia.portal.model.geospatial.Ecosystem;
+import net.sibcolombia.portal.model.geospatial.MarineZone;
+import net.sibcolombia.portal.model.geospatial.Paramo;
+import net.sibcolombia.portal.model.geospatial.ProtectedArea;
+import net.sibcolombia.portal.model.geospatial.Zonificacion;
 
 /**
  * TaxonConcept Model Object represents a Taxonomic Concept described
@@ -100,10 +106,22 @@ public class TaxonConcept extends BaseObject {
   protected Set<RelationshipAssertion> relationshipAssertions;
   /** The taxonomic priority for this concept */
   protected Integer taxonomicPriority;
-  /** The common names for this concept */
+  /** The countries for this concept */
   protected Set<Country> countries;
-  /** The common names for this concept */
+  /** The departments for this concept */
   protected Set<Department> departments;
+  /** The counties for this concept */
+  protected Set<County> counties;
+  /** The paramos for this concept */
+  protected Set<Paramo> paramos;
+  /** The marine zones for this concept */
+  protected Set<MarineZone> marineZones;
+  /** The protected areas for this concept */
+  protected Set<ProtectedArea> protectedAreas;
+  /** The ecosystems for this concept */
+  protected Set<Ecosystem> ecosystems;
+  /** The zonificaciones for this concept */
+  protected Set<Zonificacion> zonificaciones;
 
   /**
    * @see org.gbif.model.BaseObject#equals()
@@ -196,6 +214,48 @@ public class TaxonConcept extends BaseObject {
     return departments;
   }
 
+  /**
+   * @return the counties
+   */
+  public Set<County> getCounties() {
+    return counties;
+  }
+  
+  /**
+   * @return the paramos
+   */
+  public Set<Paramo> getParamos() {
+    return paramos;
+  }
+  
+  /**
+   * @return the marine zones
+   */
+  public Set<MarineZone> getMarineZones() {
+    return marineZones;
+  }
+  
+  /**
+   * @return the protected areas
+   */
+  public Set<ProtectedArea> getProtectedAreas() {
+    return protectedAreas;
+  }
+  
+  /**
+   * @return the ecosystems
+   */
+  public Set<Ecosystem> getEcosystems() {
+    return ecosystems;
+  }
+  
+  /**
+   * @return the zonificaciones
+   */
+  public Set<Zonificacion> getZonificaciones() {
+    return zonificaciones;
+  }
+  
   /**
    * @return Returns the familyConcept.
    */
@@ -483,6 +543,47 @@ public class TaxonConcept extends BaseObject {
    */
   public void setDepartments(Set<Department> departments) {
     this.departments = departments;
+  }
+  
+  /**
+   * @param counties the counties to set
+   */
+  public void setCounties(Set<County> counties) {
+    this.counties = counties;
+  }
+  /**
+   * @param paramos the paramos to set
+   */
+  public void setParamos(Set<Paramo> paramos) {
+    this.paramos = paramos;
+  }
+  
+  /**
+   * @param marine zones the marine zones to set
+   */
+  public void setMarineZones(Set<MarineZone> marineZones) {
+    this.marineZones = marineZones;
+  }
+  
+  /**
+   * @param protected areas the protected areas to set
+   */
+  public void setProtectedAreas(Set<ProtectedArea> protectedAreas) {
+    this.protectedAreas = protectedAreas;
+  }
+  
+  /**
+   * @param ecosystems the ecosystems to set
+   */
+  public void setEcosystems(Set<Ecosystem> ecosystems) {
+    this.ecosystems = ecosystems;
+  }
+  
+  /**
+   * @param zonificaciones the zonificaciones to set
+   */
+  public void setZonificaciones(Set<Zonificacion> zonificaciones) {
+    this.zonificaciones = zonificaciones;
   }
 
   public void setFamilyConcept(TaxonConceptLite familyConcept) {

@@ -183,7 +183,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @param response
 	 * @return
 	 */
-	protected abstract List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws ServiceException;
+	protected abstract List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException;
 
 	/**
 	 * 10x20 - retrieve cell densities for the set of supplied cells.
@@ -193,7 +193,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @param response
 	 * @return
 	 */
-	protected abstract List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, Set<Integer> cellIds, HttpServletRequest request, HttpServletResponse response) throws ServiceException;
+	protected abstract List<CellDensityDTO> get1DegCellDensities(Map<String, String> properties, Set<Integer> cellIds, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException;
 
 	/**
 	 * 1x2 - retrieve 0.1 degree cell densities for the supplied cell.
@@ -202,7 +202,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @param response
 	 * @return
 	 */
-	protected abstract List<CellDensityDTO> get0Point1DegCellDensities(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws ServiceException;
+	protected abstract List<CellDensityDTO> get0Point1DegCellDensities(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws Exception, ServiceException;
 	
 	/**
 	 * Gets the map layer data using the 1 deg method, and the controller configuration (size offsets)
@@ -214,7 +214,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @throws UnableToGenerateCellIdException If the LAT LONGs are invalid
 	 * @throws ServiceException If the service layer reports an error
 	 */
-	private List<CellDensityDTO> getBounded1DegData(Map<String, String> properties, String size, HttpServletRequest request, HttpServletResponse response) throws UnableToGenerateCellIdException, ServiceException {
+	private List<CellDensityDTO> getBounded1DegData(Map<String, String> properties, String size, HttpServletRequest request, HttpServletResponse response) throws Exception, UnableToGenerateCellIdException, ServiceException {
 		try {
 			String minLongAsString = properties.get(minLongRequestKey);
 			String minLatAsString = properties.get(minLatRequestKey);
@@ -247,7 +247,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @throws UnableToGenerateCellIdException If the LAT LONGs are invalid
 	 * @throws ServiceException If the service layer reports an error
 	 */
-	private List<LatLongCellDensityDTO> getBounded0Point1DegData(Map<String, String> properties, String size, HttpServletRequest request, HttpServletResponse response) throws UnableToGenerateCellIdException, ServiceException {
+	private List<LatLongCellDensityDTO> getBounded0Point1DegData(Map<String, String> properties, String size, HttpServletRequest request, HttpServletResponse response) throws Exception, UnableToGenerateCellIdException, ServiceException {
 		try {
 			String minLongAsString = properties.get(minLongRequestKey);
 			String minLatAsString = properties.get(minLatRequestKey);
@@ -285,7 +285,7 @@ public abstract class AbstractMapLayerController extends RestController {
 	 * @return The list of values or empty list
 	 * @throws ServiceException If the service layer is throwing an error
 	 */
-	private List<LatLongCellDensityDTO> getBounded0Point1WithLatLong(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+	private List<LatLongCellDensityDTO> getBounded0Point1WithLatLong(Map<String, String> properties, int cellId, HttpServletRequest request, HttpServletResponse response) throws Exception,ServiceException {
 		List<CellDensityDTO> cellDensities = get0Point1DegCellDensities(properties, cellId, request, response);
 		// convert to a list of Lat Long 
 		List<LatLongCellDensityDTO> latLongResults = new LinkedList<LatLongCellDensityDTO>();

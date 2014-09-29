@@ -14,12 +14,12 @@ package net.sibcolombia.portal.web.controller.taxonomy;
 
 import org.gbif.portal.dto.taxonomy.BriefTaxonConceptDTO;
 import org.gbif.portal.dto.taxonomy.TaxonConceptDTO;
+import org.gbif.portal.service.OccurrenceManager;
 import org.gbif.portal.service.TaxonomyManager;
 import org.gbif.portal.web.controller.RestKeyValueController;
 import org.gbif.portal.web.util.TaxonConceptUtils;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,133 +32,168 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Country Taxonomy Browser.
- * TODO this class should be factored out and the TaxonomyBrowseController should handle both resource taxonomies and
- * country taxonomies.
+ * Department Taxonomy Browser. TODO this class should be factored out and the
+ * TaxonomyBrowseController should handle both resource taxonomies and
+ * department taxonomies.
  * 
  * @author dmartin
  */
 public class DepartmentTaxonomyBrowseController extends RestKeyValueController {
 
-  /** Taxonomy Manager providing tree and taxonConcept lookup */
-  protected TaxonomyManager taxonomyManager;
-  /** Taxonomy Manager providing tree and taxonConcept lookup */
-  protected TaxonConceptUtils taxonConceptUtils;
-  /** Department Manager providing department lookup */
-  protected DepartmentManager departmentManager;
-  /** The request properties taxon concept key */
-  protected String departmentPropertyKey = "department";
-  /** The request properties taxon concept key */
-  protected String taxonConceptPropertyKey = "taxon";
-  /** Threshold used to determining rendering */
-  protected String taxonPriorityThresholdModelKey = "taxonPriorityThreshold";
-  /** Threshold used to determining rendering */
-  protected int taxonPriorityThreshold = 20;
+	/** Taxonomy Manager providing tree and taxonConcept lookup */
+	protected TaxonomyManager taxonomyManager;
+	/** Taxonomy Manager providing tree and taxonConcept lookup */
+	protected TaxonConceptUtils taxonConceptUtils;
+	/** Department Manager providing department lookup */
+	protected DepartmentManager departmentManager;
+	/** The request properties taxon concept key */
+	protected String departmentPropertyKey = "department";
+	/** The request properties taxon concept key */
+	protected String taxonConceptPropertyKey = "taxon";
+	/** Threshold used to determining rendering */
+	protected String taxonPriorityThresholdModelKey = "taxonPriorityThreshold";
+	/** Threshold used to determining rendering */
+	protected int taxonPriorityThreshold = 20;
 
-  protected MessageSource messageSource;
+	protected MessageSource messageSource;
+	
+	/** Addition by SiBBr: occurrenceManager for the taxonomy occurrences calculation */
+	protected OccurrenceManager occurrenceManager;
+	/** Addition by SiBBr: occurrenceManager for the taxonomy occurrences calculation */
+	protected String occurrenceManagerModelKey = "occurrenceManager";
 
-  /**
-   * @see org.gbif.portal.web.controller.RestController#handleRequest(java.util.Map,
-   *      javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
-  @Override
-  public ModelAndView handleRequest(Map<String, String> propertiesMap, HttpServletRequest request,
-    HttpServletResponse response) throws Exception {
+	/**
+	 * @see org.gbif.portal.web.controller.RestController#handleRequest(java.util.Map,
+	 *      javax.servlet.http.HttpServletRequest,
+	 *      javax.servlet.http.HttpServletResponse)
+	 */
+	@Override
+	public ModelAndView handleRequest(Map<String, String> propertiesMap,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 
-    logger.debug("Viewing department taxonomy");
-    String departmentCode = propertiesMap.get(departmentPropertyKey);
-    String taxonConceptKey = propertiesMap.get(taxonConceptPropertyKey);
-    // Create the view
-    ModelAndView mav = resolveAndCreateView(propertiesMap, request, false);
-    if (departmentCode == null) {
-      return redirectToDefaultView();
-    }
+		logger.debug("Viewing department taxonomy");
+		String departmentCode = propertiesMap.get(departmentPropertyKey);
+		String taxonConceptKey = propertiesMap.get(taxonConceptPropertyKey);
+		// Create the view
+		ModelAndView mav = resolveAndCreateView(propertiesMap, request, false);
+		if (departmentCode == null) {
+			return redirectToDefaultView();
+		}
 
-    Locale locale = RequestContextUtils.getLocale(request);
-    DepartmentDTO departmentDTO = departmentManager.getDepartmentFor(departmentCode);
-    logger.debug(departmentDTO);
-    if (departmentDTO == null)
-      redirectToDefaultView();
-    mav.addObject("department", departmentDTO);
-    mav.addObject("messageSource", messageSource);
+		// Locale locale = RequestContextUtils.getLocale(request);
+		DepartmentDTO departmentDTO = departmentManager
+				.getDepartmentFor(departmentCode);
+		logger.debug(departmentDTO);
+		if (departmentDTO == null)
+			redirectToDefaultView();
+		mav.addObject("department", departmentDTO);
+		mav.addObject("messageSource", messageSource);
 
-    if (taxonConceptKey != null && departmentCode != null) {
-      TaxonConceptDTO selectedConcept = taxonomyManager.getTaxonConceptFor(taxonConceptKey);
-      mav.addObject("selectedConcept", selectedConcept);
-      if (logger.isDebugEnabled()) {
-        logger.debug(selectedConcept);
-      }
-      if (selectedConcept == null)
-        redirectToDefaultView();
-      List<BriefTaxonConceptDTO> concepts =
-        taxonomyManager.getClassificationForDepartment(taxonConceptKey, false, departmentCode, true);
-      List<BriefTaxonConceptDTO> childConcepts =
-        taxonomyManager.getChildConceptsForDepartment(taxonConceptKey, departmentCode, true);
-      taxonConceptUtils.organiseUnconfirmedNames(request, selectedConcept, concepts, childConcepts,
-        taxonPriorityThreshold);
-      mav.addObject("concepts", concepts);
-    } else if (departmentCode != null) {
-      List<BriefTaxonConceptDTO> concepts = taxonomyManager.getRootTaxonConceptsForDepartment(departmentCode);
-      mav.addObject("concepts", concepts);
-    } else {
-      return redirectToDefaultView();
-    }
-    return mav;
-  }
+		if (taxonConceptKey != null && departmentCode != null) {
+			TaxonConceptDTO selectedConcept = taxonomyManager
+					.getTaxonConceptFor(taxonConceptKey);
+			mav.addObject("selectedConcept", selectedConcept);
+			if (logger.isDebugEnabled()) {
+				logger.debug(selectedConcept);
+			}
+			if (selectedConcept == null)
+				redirectToDefaultView();
+			List<BriefTaxonConceptDTO> concepts = taxonomyManager
+					.getClassificationForDepartment(taxonConceptKey, false,
+							departmentCode, true);
+			List<BriefTaxonConceptDTO> childConcepts = taxonomyManager
+					.getChildConceptsForDepartment(taxonConceptKey,
+							departmentCode, true);
+			taxonConceptUtils.organiseUnconfirmedNames(request,
+					selectedConcept, concepts, childConcepts,
+					taxonPriorityThreshold);
+			mav.addObject("concepts", concepts);
+		} else if (departmentCode != null) {
+			List<BriefTaxonConceptDTO> concepts = taxonomyManager
+					.getRootTaxonConceptsForDepartment(departmentCode);
+			mav.addObject("concepts", concepts);
+		} else {
+			return redirectToDefaultView();
+		}
 
-  /**
-   * @param departmentManager the departmentManager to set
-   */
-  public void setDepartmentManager(DepartmentManager departmentManager) {
-    this.departmentManager = departmentManager;
-  }
+		// Addition by SiBBr: #issue31 fixing Department Taxonomy Browse
+		mav.addObject(occurrenceManagerModelKey, occurrenceManager);
+		return mav;
+	}
 
-  /**
-   * @param countryPropertyKey the countryPropertyKey to set
-   */
-  public void setDepartmentPropertyKey(String departmentPropertyKey) {
-    this.departmentPropertyKey = departmentPropertyKey;
-  }
+	/**
+	 * @param departmentManager
+	 *            the departmentManager to set
+	 */
+	public void setDepartmentManager(DepartmentManager departmentManager) {
+		this.departmentManager = departmentManager;
+	}
 
-  /**
-   * @param messageSource the messageSource to set
-   */
-  public void setMessageSource(MessageSource messageSource) {
-    this.messageSource = messageSource;
-  }
+	/**
+	 * @param countryPropertyKey
+	 *            the countryPropertyKey to set
+	 */
+	public void setDepartmentPropertyKey(String departmentPropertyKey) {
+		this.departmentPropertyKey = departmentPropertyKey;
+	}
 
-  /**
-   * @param taxonConceptPropertyKey the taxonConceptPropertyKey to set
-   */
-  public void setTaxonConceptPropertyKey(String taxonConceptPropertyKey) {
-    this.taxonConceptPropertyKey = taxonConceptPropertyKey;
-  }
+	/**
+	 * @param messageSource
+	 *            the messageSource to set
+	 */
+	public void setMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
 
-  /**
-   * @param taxonConceptUtils the taxonConceptUtils to set
-   */
-  public void setTaxonConceptUtils(TaxonConceptUtils taxonConceptUtils) {
-    this.taxonConceptUtils = taxonConceptUtils;
-  }
+	/**
+	 * @param taxonConceptPropertyKey
+	 *            the taxonConceptPropertyKey to set
+	 */
+	public void setTaxonConceptPropertyKey(String taxonConceptPropertyKey) {
+		this.taxonConceptPropertyKey = taxonConceptPropertyKey;
+	}
 
-  /**
-   * @param taxonomyManager the taxonomyManager to set
-   */
-  public void setTaxonomyManager(TaxonomyManager taxonomyManager) {
-    this.taxonomyManager = taxonomyManager;
-  }
+	/**
+	 * @param taxonConceptUtils
+	 *            the taxonConceptUtils to set
+	 */
+	public void setTaxonConceptUtils(TaxonConceptUtils taxonConceptUtils) {
+		this.taxonConceptUtils = taxonConceptUtils;
+	}
 
-  /**
-   * @param taxonPriorityThreshold the taxonPriorityThreshold to set
-   */
-  public void setTaxonPriorityThreshold(int taxonPriorityThreshold) {
-    this.taxonPriorityThreshold = taxonPriorityThreshold;
-  }
+	/**
+	 * @param taxonomyManager
+	 *            the taxonomyManager to set
+	 */
+	public void setTaxonomyManager(TaxonomyManager taxonomyManager) {
+		this.taxonomyManager = taxonomyManager;
+	}
 
-  /**
-   * @param taxonPriorityThresholdModelKey the taxonPriorityThresholdModelKey to set
-   */
-  public void setTaxonPriorityThresholdModelKey(String taxonPriorityThresholdModelKey) {
-    this.taxonPriorityThresholdModelKey = taxonPriorityThresholdModelKey;
-  }
+	/**
+	 * @param taxonPriorityThreshold
+	 *            the taxonPriorityThreshold to set
+	 */
+	public void setTaxonPriorityThreshold(int taxonPriorityThreshold) {
+		this.taxonPriorityThreshold = taxonPriorityThreshold;
+	}
+
+	/**
+	 * @param taxonPriorityThresholdModelKey
+	 *            the taxonPriorityThresholdModelKey to set
+	 */
+	public void setTaxonPriorityThresholdModelKey(
+			String taxonPriorityThresholdModelKey) {
+		this.taxonPriorityThresholdModelKey = taxonPriorityThresholdModelKey;
+	}
+
+	/**
+	 * Addition by SiBBr: #issue31 fixing Department Taxonomy Browse
+	 * 
+	 * @param occurrenceManager
+	 *            the occurrenceManager to set
+	 */
+	public void setOccurrenceManager(OccurrenceManager occurrenceManager) {
+		this.occurrenceManager = occurrenceManager;
+	}
 }

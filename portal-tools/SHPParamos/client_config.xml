@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <server ip_addr="localhost" communication_type="LOCAL" />
+  <Proxy>
+    <HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />
+  </Proxy>
+  <work records="10000" />
+  <shape path="C://Users//PC 2//Desktop//Paramos_2012//Paramos_100K_2012_wgs84.shp">
+    <column name="codigo">CODIGO</column>
+    <column name="complejo">COMPLEJO</column>
+    <column name="distrito">NAME_1</column>
+    <column name="sector">NAME_2</column>
+  </shape>
+</config>
+

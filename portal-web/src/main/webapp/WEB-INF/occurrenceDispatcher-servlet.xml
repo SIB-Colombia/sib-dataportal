@@ -53,6 +53,18 @@
         <!-- For departments -->
         <prop key="/department/placemarks/department-placemarks-*.kml">departmentKmlController</prop>
         <prop key="/department/celldensity/department-celldensity-*.kml">departmentCellDensityKmlController</prop>
+        <!-- For counties -->
+        <prop key="/county/placemarks/county-placemarks-*.kml">countyKmlController</prop>
+         <!-- For paramos -->
+        <prop key="/paramo/placemarks/paramo-placemarks-*.kml">paramoKmlController</prop>
+        <!-- For marine zones -->
+        <prop key="/marineZone/placemarks/marineZone-placemarks-*.kml">marineZoneKmlController</prop>
+        <!-- For protected areas -->
+        <prop key="/protectedArea/placemarks/protectedArea-placemarks-*.kml">protectedAreaKmlController</prop>
+        <!-- For ecosystems -->
+        <prop key="/ecosystem/placemarks/ecosystem-placemarks-*.kml">ecosystemKmlController</prop>
+        <!-- For zonificaciones -->
+        <prop key="/zonificacion/placemarks/zonificacion-placemarks-*.kml">zonificacionKmlController</prop>
         <prop key="/resource/placemarks/resource-placemarks-*.kml">resourceKmlController</prop>
         <prop key="/resource/celldensity/resource-celldensity-*.kml">resourceCellDensityKmlController</prop>
         <prop key="/provider/placemarks/provider-placemarks-*.kml">providerKmlController</prop>
@@ -265,8 +277,98 @@
       </map>
     </property>
   </bean>
-
-  <!-- Controller that redirects to the occurrence cell density kml service -->
+  
+   <bean id="countyKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>originisocountycode</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="originisocountycode" value="county-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+  <bean id="paramoKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>complexid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="complexid" value="paramo-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+   <bean id="marineZoneKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>marineid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="marineid" value="marineZone-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+   <bean id="protectedAreaKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>protectedid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="protectedid" value="protectedArea-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+  <bean id="ecosystemKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>ecosystemid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="ecosystemid" value="ecosystem-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+  <bean id="zonificacionKmlController" parent="abstractOccurrenceKmlController">
+    <property name="supportedPatterns">
+      <list>
+        <list>
+          <value>zonificacionid</value>
+        </list>
+      </list>
+    </property>
+    <property name="patternPrefix">
+      <map>
+        <entry key="zonificacionid" value="zonificacion-placemarks-" />
+      </map>
+    </property>
+  </bean>
+  
+ <!-- Controller that redirects to the occurrence cell density kml service -->
   <bean id="abstractOccurrenceCellDensityKmlController"
     class="org.gbif.portal.web.controller.RedirectToWebServiceController">
     <property name="removeExtensions" value="true" />
@@ -632,6 +734,26 @@
     
     <!-- New filter for Colombia Departments (SIB Colombia) -->
     <property name="departmentFilter" ref="departmentFilter" />
+    
+    <!-- New filter for Colombia Counties (SIB Colombia) -->
+    <property name="countyFilter" ref="countyFilter" />
+    
+    <!-- New filter for Colombia Paramos (SIB Colombia) -->
+    <property name="paramoFilter" ref="paramoFilter" />
+    
+    <!-- New filter for Colombia Marine Zones (SIB Colombia) -->
+    <property name="marineZoneFilter" ref="marineZoneFilter" />
+    
+     <!-- New filter for Colombia Protected Areas (SIB Colombia) -->
+    <property name="protectedAreaFilter" ref="protectedAreaFilter" />
+    
+    <!-- New filter for Colombia Ecosystems (SIB Colombia) -->
+    <property name="ecosystemFilter" ref="ecosystemFilter" />
+    
+    <!-- New filter for Colombia Zonificaciones Hidrograficas (SIB Colombia) -->
+    <property name="zonificacionFilter" ref="zonificacionFilter" />
+    
+
     
     <property name="scientificNameFilter" ref="scientificNameFilter" />
     <property name="dataResourceIdFilter" ref="dataResourceIdFilter" />

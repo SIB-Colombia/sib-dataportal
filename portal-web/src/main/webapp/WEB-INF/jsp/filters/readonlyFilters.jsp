@@ -32,7 +32,7 @@
 			<spring:message code="${filter.displayName}"/>
 		</c:when>
 		<c:otherwise>
-			<span class="secondCondition"><spring:message code="filter.or"/></span>
+			<span class="secondCondition"><spring:message code="${filter.i18nMultipleConditionKey}"/></span>
 		</c:otherwise>
 		</c:choose>
 		<spring:message code="${predicate.value}"/>

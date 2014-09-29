@@ -27,6 +27,18 @@ $(document).ready(function() {
 	if(readCookie('GbifTermsAndConditions')===null){
 		$('.confirm').jConfirmAction({question : '${question}'+'<br/><a href="${urlt}/terms.htm">${urlt}/terms.htm</a>', yesAnswer : '${accept}', cancelAnswer : '${cancel}', url:'${pageContext.request.contextPath}/welcome.htm'});
 	}
+	//Examples of how to assign the Colorbox event to elements
+	$(".group1").colorbox({rel:'group1', transition:"fade"});
+	$(".group2").colorbox({rel:'group2', transition:"fade"});
+	$(".group3").colorbox({rel:'group3', transition:"fade"});
+	$(".group4").colorbox({rel:'group4', transition:"fade"});
+	$(".group5").colorbox({rel:'group5', transition:"fade"});
+	$(".tut_selector").colorbox({inline:true, width:"50%"});
+
+	$('.faq').click(function() {
+    	$(".group5").colorbox({open:true});
+ 	});
+	
 });
 </script>
 <c:set var="viewName" scope="request"><tiles:getAsString name="viewName"/></c:set>
@@ -72,6 +84,7 @@ $(document).ready(function() {
 		<div id="cocoon">
 			<div id="container">	
 				<div id="content">
+					<a class="faq" href="#" title="Búsqueda avanzada">? </a>
 					<tiles:insert page="/WEB-INF/jsp/filters/filterArrays.jsp"/>
 					<div id="twopartheader">					
 						<h2><spring:message code="${searchTitle}"/></h2>

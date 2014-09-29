@@ -52,7 +52,7 @@ public class Field {
 		String formattedValue = propertyValue;
 		
 		if(useI18nOnValue && propertyValue!=null){
-			formattedValue = messageSource.getMessage(i18nPrefix+"."+propertyValue, null, locale);
+			formattedValue = messageSource.getMessage(i18nPrefix+"."+propertyValue.replace(" ", ""), null, locale);
 		} else {
 			if(removeNewLines)
 				formattedValue = propertyValue.replaceAll("\n", "");

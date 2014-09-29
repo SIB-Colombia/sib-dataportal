@@ -40,6 +40,24 @@
 		<!-- ocurrence filter for Colombian Departments (SIB Colombia) -->
 		<property name="departmentOccurrenceFilter" ref="departmentFilter"/>
 		
+		<!-- ocurrence filter for Colombian Counties (SIB Colombia) -->
+		<property name="countyOccurrenceFilter" ref="countyFilter"/>
+		
+		<!-- ocurrence filter for Colombian Paramos (SIB Colombia) -->
+		<property name="paramoOccurrenceFilter" ref="paramoFilter"/>
+		
+		<!-- ocurrence filter for Colombian Marine Zones (SIB Colombia) -->
+		<property name="marineZoneOccurrenceFilter" ref="marineZoneFilter"/>
+		
+		<!-- ocurrence filter for Colombian Protected Areas (SIB Colombia) -->
+		<property name="protectedAreaOccurrenceFilter" ref="protectedAreaFilter"/>
+		
+		<!-- ocurrence filter for Colombian Ecosystems (SIB Colombia) -->
+		<property name="ecosystemOccurrenceFilter" ref="ecosystemFilter"/>
+		
+		<!-- ocurrence filter for Colombian Zonificaciones Hidrograficas (SIB Colombia) -->
+		<property name="zonificacionOccurrenceFilter" ref="ecosystemFilter"/>
+		
 		<property name="geoConsistencyOccurrenceFilter" ref="geoConsistencyFilter"/>		
 		<property name="georeferencedOccurrenceFilter" ref="georeferencedFilter"/>		
 		<property name="regionOccurrenceFilter" ref="regionFilter"/>		
@@ -59,9 +77,15 @@
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.TR.SPECIES" value="taxon"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.CLASSIFICATION" value="taxon"/>				
 				<!-- other entity types -->				
-        <entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="homeCountry"/>				
+        		<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.HOSTCOUNTRYCODE" value="homeCountry"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTRYCODE" value="country"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISODEPARTMENTCODE" value="department"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE" value="county"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID" value="paramo"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID" value="marineZone"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID" value="protectedArea"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID" value="ecosystem"/>
+				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID" value="zonificacion"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATARESOURCEID" value="resource"/>				
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.DATAPROVIDERID" value="provider"/>
 				<entry key="SERVICE.OCCURRENCE.QUERY.SUBJECT.RESOURCENETWORKID" value="network"/>				

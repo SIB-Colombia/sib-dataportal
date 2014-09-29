@@ -114,7 +114,7 @@
   <!-- The message resources-->
   <bean id="messageSource" class="org.gbif.portal.web.i18n.PropertiesMessageSource">
 	<!--  bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"-->
-		<property name="basenames" value="messages,countries,continents,basis_of_record,month,identifier_types,regions,colombiandepartments"/>
+		<property name="basenames" value="messages,countries,continents,basis_of_record,month,identifier_types,regions,colombiandepartments,colombiancounties,colombianparamos,colombianmarinezones,colombianprotectedareas,colombianecosystems,colombianzonificaciones"/>
 		<property name="resolveFromDefaultIfNull" value="true"/>
 	</bean>	
 </beans>	

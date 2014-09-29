@@ -113,9 +113,49 @@
 								<property name="propertyName" value="isoCountryCode"/>
 							</bean>
 						</entry>
+						<entry key="isoCountryCodeCalculated">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="isoCountryCodeCalculated"/>
+							</bean>
+						</entry>
 						<entry key="isoDepartmentCode">
 							<bean parent="occurrenceRecordProperty">
 								<property name="propertyName" value="isoDepartmentCode"/>
+							</bean>
+						</entry>
+						<entry key="isoDepartmentCodeCalculated">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="isoDepartmentCodeCalculated"/>
+							</bean>
+						</entry>
+						<entry key="isoCountyCode">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="isoCountyCode"/>
+							</bean>
+						</entry>
+						<entry key="paramo">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="paramo"/>
+							</bean>
+						</entry>
+						<entry key="marineZone">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="marineZone"/>
+							</bean>
+						</entry>
+						<entry key="protectedArea">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="protectedArea"/>
+							</bean>
+						</entry>
+						<entry key="dryForest">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="dryForest"/>
+							</bean>
+						</entry>
+						<entry key="zonificacion">
+							<bean parent="occurrenceRecordProperty">
+								<property name="propertyName" value="zonificacion"/>
 							</bean>
 						</entry>
 						<entry key="latitude">

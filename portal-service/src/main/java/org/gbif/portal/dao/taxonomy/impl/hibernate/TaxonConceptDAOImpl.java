@@ -12,16 +12,22 @@
  ***************************************************************************/
 package org.gbif.portal.dao.taxonomy.impl.hibernate;
 
+import net.sibcolombia.portal.model.geospatial.Department;
+
 import org.gbif.portal.dao.taxonomy.TaxonConceptDAO;
 import org.gbif.portal.model.taxonomy.CommonName;
 import org.gbif.portal.model.taxonomy.TaxonConcept;
 import org.gbif.portal.model.taxonomy.TaxonConceptLite;
 import org.gbif.portal.model.taxonomy.TaxonRank;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -304,15 +310,15 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
 
       public Object doInHibernate(Session session) {
         StringBuffer sb =
-          new StringBuffer("from CommonName cn" + " inner join fetch cn.taxonConcept tc"
+          new StringBuffer("from CommonName cn" + " inner join fetch cn.taxonConcepts tc"
             + " inner join fetch tc.taxonName"
-            + " left join fetch tc.kingdomConcept left join fetch tc.kingdomConcept.taxonNameLite"
-            + " left join fetch tc.phylumConcept left join fetch tc.phylumConcept.taxonNameLite"
-            + " left join fetch tc.orderConcept left join fetch tc.orderConcept.taxonNameLite"
-            + " left join fetch tc.classConcept left join fetch tc.classConcept.taxonNameLite"
-            + " left join fetch tc.familyConcept left join fetch tc.familyConcept.taxonNameLite"
-            + " left join fetch tc.genusConcept left join fetch tc.genusConcept.taxonNameLite"
-            + " left join fetch tc.speciesConcept left join fetch tc.speciesConcept.taxonNameLite"
+            + " left join fetch tc.kingdomConcept kc left join fetch kc.taxonNameLite"
+            + " left join fetch tc.phylumConcept pc left join fetch pc.taxonNameLite"
+            + " left join fetch tc.orderConcept oc left join fetch oc.taxonNameLite"
+            + " left join fetch tc.classConcept cc left join fetch cc.taxonNameLite"
+            + " left join fetch tc.familyConcept fc left join fetch fc.taxonNameLite"
+            + " left join fetch tc.genusConcept gc left join fetch gc.taxonNameLite"
+            + " left join fetch tc.speciesConcept sc left join fetch sc.taxonNameLite"
             + " where cn.name like :commonNameStub and tc.isNubConcept=true");
         Query query = session.createQuery(sb.toString());
         String searchString = commonNameStub;
@@ -532,6 +538,162 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
   }
 
   /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getCountyRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getCountyRootConceptsFor(final String isoCountyCode) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tct.taxonConceptLite from TaxonCounty tct"
+            + " inner join fetch tct.taxonConceptLite.taxonNameLite"
+            + " where tct.key.isoCountyCode = :isoDepartmentCode"
+            + " and tct.taxonConceptLite.taxonRank=:taxonRank" + " and tct.taxonConceptLite.isAccepted=true"
+            + " order by tct.taxonConceptLite.taxonRank asc, tct.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("isoCountyCode", isoCountyCode);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getParamoRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getParamoRootConceptsFor(final String complexId) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tct.taxonConceptLite from TaxonParamo tct"
+            + " inner join fetch tct.taxonConceptLite.taxonNameLite"
+            + " where tct.key.complexId = :complexId"
+            + " and tct.taxonConceptLite.taxonRank=:taxonRank" + " and tct.taxonConceptLite.isAccepted=true"
+            + " order by tct.taxonConceptLite.taxonRank asc, tct.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("complexId", complexId);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getMarineZoneRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getMarineZoneRootConceptsFor(final String marineId) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tmz.taxonConceptLite from TaxonMarineZone tmz"
+            + " inner join fetch tmz.taxonConceptLite.taxonNameLite"
+            + " where tmz.key.marineId = :marineId"
+            + " and tmz.taxonConceptLite.taxonRank=:taxonRank" + " and tmz.taxonConceptLite.isAccepted=true"
+            + " order by tmz.taxonConceptLite.taxonRank asc, tmz.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("marineId", marineId);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getProtectedAreaRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getProtectedAreaRootConceptsFor(final String protectedArea) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tpa.taxonConceptLite from TaxonProtectedArea tpa"
+            + " inner join fetch tpa.taxonConceptLite.taxonNameLite"
+            + " where tpa.key.protectedId = :protectedId"
+            + " and tpa.taxonConceptLite.taxonRank=:taxonRank" + " and tpa.taxonConceptLite.isAccepted=true"
+            + " order by tpa.taxonConceptLite.taxonRank asc, tpa.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("protectedId", protectedArea);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getEcosystemRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getEcosystemRootConceptsFor(final String ecosystem) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select te.taxonConceptLite from TaxonEcosystem te"
+            + " inner join fetch te.taxonConceptLite.taxonNameLite"
+            + " where te.key.ecosystemId = :ecosystemId"
+            + " and te.taxonConceptLite.taxonRank=:taxonRank" + " and te.taxonConceptLite.isAccepted=true"
+            + " order by te.taxonConceptLite.taxonRank asc, te.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("ecosystemId", ecosystem);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getZonificacionRootConceptsFor(java.lang.String)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getZonificacionRootConceptsFor(final String zonificacion) {
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        // FIXME This query hardcodes the root rank to be
+        // kingdom - not very elegant but the alternative query
+        // select..where parent_concept_id is null was soo slooow
+        Query query =
+          session.createQuery("select tz.taxonConceptLite from TaxonZonificacion tz"
+            + " inner join fetch tz.taxonConceptLite.taxonNameLite"
+            + " where tz.key.zonificacionId = :zonificacionId"
+            + " and tz.taxonConceptLite.taxonRank=:taxonRank" + " and tz.taxonConceptLite.isAccepted=true"
+            + " order by tz.taxonConceptLite.taxonRank asc, tz.taxonConceptLite.taxonNameLite.canonical");
+        query.setParameter("zonificacionId", zonificacion);
+        query.setParameter("taxonRank", TaxonRank.KINGDOM);
+        query.setCacheable(true);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
    * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getDetailedTaxonConceptFor(long)
    */
   public TaxonConcept getDetailedTaxonConceptFor(final long taxonConceptId) {
@@ -650,6 +812,200 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
     });
   }
 
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForCounty(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForCounty(final long taxonConceptId,
+    final String isoCountyCode, final boolean allowUnconfirmed) {
+    if (isoCountyCode == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tct.taxonConceptLite from TaxonCounty tct "
+            + "inner join fetch tct.taxonConceptLite.taxonNameLite");
+        sb.append(" where tct.taxonConceptLite.parentConceptId = :taxonConceptId and tct.taxonConceptLite.isAccepted=true "
+          + "and  tct.key.isoCountyCode =:isoCountyCode ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tct.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tct.taxonConceptLite.taxonRank, tct.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("isoCountyCode", isoCountyCode);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForParamo(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForParamo(final long taxonConceptId,
+    final String complexId, final boolean allowUnconfirmed) {
+    if (complexId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tct.taxonConceptLite from TaxonParamo tct "
+            + "inner join fetch tct.taxonConceptLite.taxonNameLite");
+        sb.append(" where tct.taxonConceptLite.parentConceptId = :taxonConceptId and tct.taxonConceptLite.isAccepted=true "
+          + "and  tct.key.complexId =:complexId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tct.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tct.taxonConceptLite.taxonRank, tct.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("complexId", complexId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForMarineZone(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForMarineZone(final long taxonConceptId,
+    final String marineId, final boolean allowUnconfirmed) {
+    if (marineId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tct.taxonConceptLite from TaxonMarineZone tct "
+            + "inner join fetch tct.taxonConceptLite.taxonNameLite");
+        sb.append(" where tct.taxonConceptLite.parentConceptId = :taxonConceptId and tct.taxonConceptLite.isAccepted=true "
+          + "and  tct.key.marineId =:marineId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tct.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tct.taxonConceptLite.taxonRank, tct.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("marineId", marineId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForProtectedArea(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForProtectedArea(final long taxonConceptId,final String protectedId,
+		   final boolean allowUnconfirmed) {
+    if (protectedId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tpa.taxonConceptLite from TaxonProtectedArea tpa "
+            + "inner join fetch tpa.taxonConceptLite.taxonNameLite");
+        sb.append(" where tpa.taxonConceptLite.parentConceptId = :taxonConceptId and tpa.taxonConceptLite.isAccepted=true "
+          + "and  tpa.key.protectedId =:protectedId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tpa.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tpa.taxonConceptLite.taxonRank, tpa.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("protectedId", protectedId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForEcosystem(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForEcosystem(final long taxonConceptId,final String ecosystemId,
+		   final boolean allowUnconfirmed) {
+    if (ecosystemId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select te.taxonConceptLite from TaxonEcosystem te "
+            + "inner join fetch te.taxonConceptLite.taxonNameLite");
+        sb.append(" where te.taxonConceptLite.parentConceptId = :taxonConceptId and te.taxonConceptLite.isAccepted=true "
+          + "and  te.key.ecosystemId =:ecosystemId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and te.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by te.taxonConceptLite.taxonRank, te.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("ecosystemId", ecosystemId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
+  /**
+   * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getLiteChildConceptsForZonificacion(long)
+   */
+  @SuppressWarnings("unchecked")
+  public List<TaxonConceptLite> getLiteChildConceptsForZonificacion(final long taxonConceptId,final String zonificacionId,
+		   final boolean allowUnconfirmed) {
+    if (zonificacionId == null)
+      return getLiteChildConceptsFor(taxonConceptId, allowUnconfirmed);
+
+    HibernateTemplate template = getHibernateTemplate();
+    return (List<TaxonConceptLite>) template.execute(new HibernateCallback() {
+
+      public Object doInHibernate(Session session) {
+        StringBuffer sb =
+          new StringBuffer("select tz.taxonConceptLite from TaxonZonificacion tz "
+            + "inner join fetch tz.taxonConceptLite.taxonNameLite");
+        sb.append(" where tz.taxonConceptLite.parentConceptId = :taxonConceptId and tz.taxonConceptLite.isAccepted=true "
+          + "and  tz.key.zonificacionId =:zonificacionId ");
+
+        if (!allowUnconfirmed) {
+          sb.append(" and tz.taxonConceptLite.taxonomicPriority<=");
+          sb.append(taxonomicPriorityThreshold);
+        }
+        sb.append("order by tz.taxonConceptLite.taxonRank, tz.taxonConceptLite.taxonNameLite.canonical");
+        Query query = session.createQuery(sb.toString());
+        query.setParameter("taxonConceptId", taxonConceptId);
+        query.setParameter("zonificacionId", zonificacionId);
+        query.setMaxResults(maxChildConcepts);
+        return query.list();
+      }
+    });
+  }
   /**
    * @see org.gbif.portal.dao.taxonomy.TaxonConceptDAO#getNubConceptFor(long)
    */
@@ -1001,5 +1357,27 @@ public class TaxonConceptDAOImpl extends HibernateDaoSupport implements TaxonCon
    */
   public void setMaxChildConcepts(int maxChildConcepts) {
     this.maxChildConcepts = maxChildConcepts;
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<String> getTaxonConceptCounts(){
+	  HibernateTemplate template = getHibernateTemplate();
+	  List<Object[]> taxonCounts = (List<Object[]>)getHibernateTemplate().execute (new HibernateCallback() {
+              public Object doInHibernate(Session session) {
+            	  SQLQuery query = session.createSQLQuery("select taxon_name, count from stats_taxon_concept_counts");
+                  query.setCacheable(true);
+                  query.addScalar("taxon_name", Hibernate.STRING);
+                  query.addScalar("count", Hibernate.INTEGER);
+                  return query.list();
+              }
+          });
+
+      ArrayList<String> taxaC = new ArrayList<String>();  
+      
+      for (Object[] result: taxonCounts) {
+    	  taxaC.add(result[0].toString() + "|" + result[1].toString());
+    	}
+
+      return taxaC;
   }
 }

@@ -15,10 +15,13 @@
 package org.gbif.portal.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.gbif.portal.model.TaxonConcept;
 
 /**
  * A bean to represent a common name in whole or part
@@ -31,26 +34,26 @@ public class CommonName implements Serializable{
 	private static final long serialVersionUID = -3005075738383480628L;
 	
 	protected Long id;
-	protected Long taxonConceptId;
+	protected Set<TaxonConcept> taxonConcepts = new HashSet<TaxonConcept>();
 	protected String name;
 	protected String isoLanguageCode;
-	protected String language;
+	protected String isoCountryCode;
+	protected String transliteration;
 	
 	public CommonName() {		
 	}
 	
-	public CommonName(Long taxonConceptId, String name, String language) {
-		this.taxonConceptId = taxonConceptId;
-		this.name = name;
-		this.language = language;
-	}
-	
-	public CommonName(long id, long taxonConceptId, String name, String isoLanguageCode, String language) {
-		this.id = id;
-		this.taxonConceptId = taxonConceptId;
+	public CommonName(String name, String isoLanguageCode) {
 		this.name = name;
 		this.isoLanguageCode = isoLanguageCode;
-		this.language = language;
+	}
+	
+	public CommonName(long id, String name, String isoLanguageCode, String isoCountryCode, String transliteration) {
+		this.id = id;
+		this.name = name;
+		this.isoLanguageCode = isoLanguageCode;
+		this.isoCountryCode = isoCountryCode;
+		this.transliteration = transliteration;
 	}
 
 	/**
@@ -58,10 +61,10 @@ public class CommonName implements Serializable{
 	 */
 	public String toFullString() {
 		 return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).
-	       append("taxonConceptId", taxonConceptId).
 	       append("name", name).
 	       append("isoLanguageCode", isoLanguageCode).
-	       append("language", language).
+	       append("isoCountryCode", isoCountryCode).
+	       append("transliteration", transliteration).
 	       toString();	
 	}
 	
@@ -73,7 +76,7 @@ public class CommonName implements Serializable{
 	public String toString() {
 		 return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).
 	       append("name", name).
-	       append("language", language).
+	       append("isoLanguageCode", isoLanguageCode).
 	       toString();	
 	}
 	
@@ -86,82 +89,62 @@ public class CommonName implements Serializable{
 		if (target instanceof CommonName) {
 			CommonName targetName = (CommonName) target;
 			if (StringUtils.equals(getName(), targetName.getName())
-				&& StringUtils.equals(getLanguage(), targetName.getLanguage())
-				&& getTaxonConceptId() == targetName.getTaxonConceptId()) {
+				&& StringUtils.equals(getIsoLanguageCode(), targetName.getIsoLanguageCode()))
+			{
 				return true;
 			}
 		}
 		return false;
 	}
 
-	/**
-	 * @return the id
-	 */
 	public Long getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the isoLanguageCode
-	 */
-	public String getIsoLanguageCode() {
-		return isoLanguageCode;
+	public Set<TaxonConcept> getTaxonConcepts() {
+		return taxonConcepts;
 	}
 
-	/**
-	 * @param isoLanguageCode the isoLanguageCode to set
-	 */
-	public void setIsoLanguageCode(String isoLanguageCode) {
-		this.isoLanguageCode = isoLanguageCode;
+	public void setTaxonConcepts(Set<TaxonConcept> taxonConcepts) {
+		this.taxonConcepts = taxonConcepts;
 	}
 
-	/**
-	 * @return the language
-	 */
-	public String getLanguage() {
-		return language;
-	}
-
-	/**
-	 * @param language the language to set
-	 */
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the taxonConceptId
-	 */
-	public Long getTaxonConceptId() {
-		return taxonConceptId;
+	public String getIsoLanguageCode() {
+		return isoLanguageCode;
 	}
 
-	/**
-	 * @param taxonConceptId the taxonConceptId to set
-	 */
-	public void setTaxonConceptId(Long taxonConceptId) {
-		this.taxonConceptId = taxonConceptId;
+	public void setIsoLanguageCode(String isoLanguageCode) {
+		this.isoLanguageCode = isoLanguageCode;
 	}
+
+	public String getIsoCountryCode() {
+		return isoCountryCode;
+	}
+
+	public void setIsoCountryCode(String isoCountryCode) {
+		this.isoCountryCode = isoCountryCode;
+	}
+
+	public String getTransliteration() {
+		return transliteration;
+	}
+
+	public void setTransliteration(String transliteration) {
+		this.transliteration = transliteration;
+	}
+
+	
 
 }

@@ -44,7 +44,7 @@ public class CommonNamesCreatorActivity extends BaseActivity {
 	private static final int COLUMN_NAME_CODE = 0;
 	private static final int COLUMN_NAME = 1;
 	private static final int COLUMN_LANGUAGE = 2;
-	//private static final int COLUMN_COUNTRY = 3;
+	private static final int COLUMN_COUNTRY = 3;
 	
 	protected Map<String, String> languageMap;
 	
@@ -68,7 +68,7 @@ public class CommonNamesCreatorActivity extends BaseActivity {
 				String nameCode = reader.get(COLUMN_NAME_CODE);
 				String name = reader.get(COLUMN_NAME);
 				String language = StringUtils.trimToNull(reader.get(COLUMN_LANGUAGE));
-				//String country = reader.get(COLUMN_COUNTRY);
+				String country = reader.get(COLUMN_COUNTRY);
 				Long taxonConceptId = null;
 
 				try {
@@ -82,7 +82,7 @@ public class CommonNamesCreatorActivity extends BaseActivity {
 					}
 					
 					if (taxonConceptId != null) {
-						CommonName cn = commonNameDAO.getUnique(taxonConceptId, name, language);
+						CommonName cn = commonNameDAO.getUnique(name, language);
 						if (cn == null) {
 							String languageCode = "";
 							if (language!=null) {
@@ -94,9 +94,8 @@ public class CommonNamesCreatorActivity extends BaseActivity {
 
 							cn = new CommonName();
 							cn.setName(name);
-							cn.setLanguage(language);
 							cn.setIsoLanguageCode(languageCode);
-							cn.setTaxonConceptId(taxonConceptId);
+							cn.setIsoCountryCode(country);
 							
 							commonNameDAO.createOrUpdate(cn);
 						}

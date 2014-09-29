@@ -12,6 +12,12 @@
     <mapping resource="org/gbif/portal/model/geospatial/CentiCellDensity.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/Country.hbm.xml"/>
     <mapping resource="net/sibcolombia/portal/model/geospatial/Department.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/County.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/Paramo.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/MarineZone.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/ProtectedArea.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/Ecosystem.hbm.xml"/>
+    <mapping resource="net/sibcolombia/portal/model/geospatial/Zonificacion.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/CountryName.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/geospatial/IPCountry.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/log/LogMessage.hbm.xml"/>
@@ -40,6 +46,7 @@
     <mapping resource="org/gbif/portal/model/resources/Agent.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/resources/DataProviderAgent.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/resources/DataResourceAgent.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/resources/Language.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/RelationshipAssertion.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/RemoteConcept.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonConcept.hbm.xml"/>
@@ -47,6 +54,12 @@
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonConceptLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonCountry.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonDepartment.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonCounty.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonParamo.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonMarineZone.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonProtectedArea.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonEcosystem.hbm.xml"/>
+    <mapping resource="org/gbif/portal/model/taxonomy/TaxonZonificacion.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/TaxonNameLite.hbm.xml"/>
     <mapping resource="org/gbif/portal/model/taxonomy/CommonName.hbm.xml"/>
   </session-factory>

@@ -47,16 +47,15 @@ public class CommonNameSynchroniserActivity extends BaseActivity {
     	Long taxonConceptId = (Long) context.get(getContextKeyTaxonConceptId(), Long.class, false);
     	
     	if (language!=null && commonName!=null && taxonConceptId!=null) {	    	
-			CommonName cn = commonNameDAO.getUnique(taxonConceptId, commonName, language);
+			CommonName cn = commonNameDAO.getUnique(commonName, language);
 			if (cn == null) {
 				cn = new CommonName();
 				cn.setName(commonName);
-				cn.setLanguage(language);
+				cn.setIsoLanguageCode(language);
 				if (isoLanguageCode == null) {
 					isoLanguageCode="";					
 				}
 				cn.setIsoLanguageCode(isoLanguageCode);
-				cn.setTaxonConceptId(taxonConceptId);
 				logger.debug("Creating new common name:" + cn);
 				commonNameDAO.create(cn);
 			} else {

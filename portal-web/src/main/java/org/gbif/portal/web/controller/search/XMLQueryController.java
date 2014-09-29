@@ -117,7 +117,7 @@ public class XMLQueryController extends MultiActionController {
 				if (TaxonRankType.isGenusOrLowerRank(btcDTO.getRank())) {
 					occurrenceCount = occurrenceManager.countOccurrenceRecords(
 							null, null, null, btcDTO.getKey(), null, null,
-							null, null, null, null, (BoundingBoxDTO) null,
+							null, null, null, null, null,null,null,null, null, null, (BoundingBoxDTO) null,
 							(TimePeriodDTO) null, (Date) null, false);
 				}
 				int occurrenceGeoereferencedCount = geospatialManager
@@ -163,7 +163,8 @@ public class XMLQueryController extends MultiActionController {
 		SearchResultsDTO searchResults = null;
 		try {
 			searchResults = occurrenceManager.findOccurrenceRecords(null, null,
-					null, taxonConceptKey, scientificName, null, null, null,
+					null, taxonConceptKey, scientificName, null, null, null, null,null,
+					null,null,null,null,
 					null, null, null, null, null, true, new SearchConstraints(
 							0, 10000));
 			List<OccurrenceRecordDTO> occurrenceRecords = searchResults

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="marine_zone" name="net.sibcolombia.portal.model.geospatial.MarineZone">
+    <id unsaved-value="null" name="mask" column="mask">
+      <generator class="assigned"/>
+    </id>
+    <property name="marineZoneId" column="id"/>
+    <property name="description" column="description"/>
+    <property name="occurrenceCount" column="occurrence_count"/>
+    <property name="speciesCount" column="species_count"/>
+  </class>
+</hibernate-mapping>

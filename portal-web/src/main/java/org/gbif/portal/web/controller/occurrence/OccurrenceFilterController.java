@@ -117,6 +117,24 @@ public class OccurrenceFilterController extends MultiActionController {
   /* Filter for Colombian Departments */
   protected FilterDTO departmentFilter;
 
+  /* Filter for Colombian Counties */
+  protected FilterDTO countyFilter;
+  
+  /* Filter for Colombian Paramos */
+  protected FilterDTO paramoFilter;
+  
+  /* Filter for Colombian Marine Zones */
+  protected FilterDTO marineZoneFilter;
+
+  /* Filter for Colombian Protected Areas */
+  protected FilterDTO protectedAreaFilter;
+  
+  /* Filter for Colombian Ecosystems */
+  protected FilterDTO ecosystemFilter;
+  
+  /* Filter for Colombian Zonificaciones Hidrograficas */
+  protected FilterDTO zonificacionFilter;
+  
   protected FilterDTO regionFilter;
   protected FilterDTO scientificNameFilter;
   protected FilterDTO classificationFilter;
@@ -149,6 +167,12 @@ public class OccurrenceFilterController extends MultiActionController {
   protected String occurrenceFilterResourceCountsView = "occurrenceFilterResourceCounts";
   protected String occurrenceFilterCountryCountsView = "occurrenceFilterCountryCounts";
   protected String occurrenceFilterDepartmentCountsView = "occurrenceFilterDepartmentCounts";
+  protected String occurrenceFilterCountyCountsView = "occurrenceFilterCountyCounts";
+  protected String occurrenceFilterParamoCountsView = "occurrenceFilterParamoCounts";
+  protected String occurrenceFilterMarineZoneCountsView = "occurrenceFilterMarineZoneCounts";
+  protected String occurrenceFilterProtectedAreaCountsView = "occurrenceFilterProtectedAreaCounts";
+  protected String occurrenceFilterEcosystemCountsView = "occurrenceFilterEcosystemsCounts";
+  protected String occurrenceFilterZonificacionCountsView = "occurrenceFilterZonificacionesCounts";
   protected String occurrenceFilterSpeciesCountsView = "occurrenceFilterSpeciesCounts";
   protected String downloadSpreadsheetView = "occurrenceDownloadSpreadsheet";
   protected String downloadXMLView = "occurrenceDownloadXML";
@@ -284,7 +308,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView boundingBoxWithCriteria(HttpServletRequest request, HttpServletResponse response)
-    throws UnsupportedEncodingException {
+    throws Exception, UnsupportedEncodingException {
     CriteriaDTO criteria = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
     CriteriaUtil.fixEncoding(request, criteria);
@@ -357,7 +381,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView downloadSpecies(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
 
     ModelAndView mav =
       getCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.SPECIESCOUNTS",
@@ -399,7 +423,7 @@ public class OccurrenceFilterController extends MultiActionController {
    */
   @SuppressWarnings("unchecked")
   private ModelAndView getCountryCountsView(HttpServletRequest request, HttpServletResponse response,
-    String returnFieldsKey, String viewName, SearchConstraints searchConstraints) throws ServiceException,
+    String returnFieldsKey, String viewName, SearchConstraints searchConstraints) throws Exception, ServiceException,
     UnsupportedEncodingException {
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -450,7 +474,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   private ModelAndView getCountsView(HttpServletRequest request, HttpServletResponse response, String returnFieldsKey,
-    String viewName, SearchConstraints searchConstraints) throws ServiceException, UnsupportedEncodingException {
+    String viewName, SearchConstraints searchConstraints) throws Exception, ServiceException, UnsupportedEncodingException {
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
     request.setCharacterEncoding("ISO-8859-1");
@@ -686,7 +710,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchCountries(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -724,7 +748,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchDepartments(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a taxon filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -752,6 +776,227 @@ public class OccurrenceFilterController extends MultiActionController {
   }
 
   /**
+   * Retrieves the counts against the counties for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchCounties(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getCountyCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getCountyCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterCountyCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfCounties = departmentManager.getTotalCountyCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.COUNTYCOUNTS",
+    occurrenceFilterCountyCountsView, new SearchConstraints(0, totalNoOfCounties));
+  }
+
+  /**
+   * Retrieves the counts against the paramos for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchParamos(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getParamoCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getParamoCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterParamoCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfParamos = departmentManager.getTotalParamoCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS",
+    occurrenceFilterParamoCountsView, new SearchConstraints(0, totalNoOfParamos));
+  }
+
+  /**
+   * Retrieves the counts against the marine zone for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchMarineZones(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getMarineZoneCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getMarineZoneCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterMarineZoneCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfMarineZones = departmentManager.getTotalMarineZoneCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.MARINEZONECOUNTS",
+    occurrenceFilterMarineZoneCountsView, new SearchConstraints(0, totalNoOfMarineZones));
+  }
+  
+  /**
+   * Retrieves the counts against the protected area for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchProtectedAreas(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getProtectedAreaCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getProtectedAreaCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterProtectedAreaCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfProtectedAreas = departmentManager.getTotalProtectedAreaCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PROTECTEDAREACOUNTS",
+    occurrenceFilterProtectedAreaCountsView, new SearchConstraints(0, totalNoOfProtectedAreas));
+  }
+  
+  /**
+   * Retrieves the counts against the ecosystem for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchEcosystems(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getEcosystemCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getEcosystemCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterEcosystemCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfEcosystems = departmentManager.getTotalEcosystemCount();
+    String view;
+    if(criteriaDTO.get(0).getValue() == "1"){
+    	view = "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ECOSYSTEMCOUNTS";
+    }else{
+    	view= "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.PARAMOCOUNTS";
+    }
+    return getCountryCountsView(request, response, view, occurrenceFilterEcosystemCountsView, new SearchConstraints(0, totalNoOfEcosystems));
+  }
+  
+  /**
+   * Retrieves the counts against the zonificacion for this set of criteria
+   * 
+   * @param request
+   * @param response
+   * @return ModelAndView which contains the provider list and counts
+   * @throws UnsupportedEncodingException
+   */
+  public ModelAndView searchZonificaciones(HttpServletRequest request, HttpServletResponse response)
+    throws Exception, ServiceException, UnsupportedEncodingException {
+    // interrogate the criteria - if it only contains a taxon filter then switch
+    CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
+    // fix criteria value
+    request.setCharacterEncoding("ISO-8859-1");
+    CriteriaUtil.fixEncoding(request, criteriaDTO);
+    if (criteriaDTO.size() == 1) {
+      logger.debug("Switching to using service layer method getZonificacionCountsForTaxonConcept");
+      CriterionDTO criterionDTO = criteriaDTO.get(0);
+      FilterDTO filterDTO = FilterUtils.getFilterById(occurrenceFilters.getFilters(), criterionDTO.getSubject());
+      if (filterDTO.getSubject().equals(classificationFilter.getSubject())) {
+        List<CountDTO> counts = taxonomyManager.getZonificacionCountsForTaxonConcept(criterionDTO.getValue());
+        ModelAndView mav = new ModelAndView(occurrenceFilterZonificacionCountsView);
+        mav.addObject(countsModelKey, counts);
+        mav.addObject(resultsModelKey, counts);
+        // add filters
+        mav.addObject(filtersRequestKey, occurrenceFilters.getFilters());
+        mav.addObject(criteriaRequestKey, criteriaDTO);
+        mav.addObject(countsAvailableModelKey, true);
+        return mav;
+      }
+    }
+    int totalNoOfZonificaciones = departmentManager.getTotalZonificacionCount();
+    return getCountryCountsView(request, response, "SERVICE.OCCURRENCE.QUERY.RETURNFIELDS.ZONIFICACIONCOUNTS",
+    occurrenceFilterZonificacionCountsView, new SearchConstraints(0, totalNoOfZonificaciones));
+  }
+  
+  /**
    * Retrieves the counts against the providers for this set of criteria
    * 
    * @param request
@@ -760,7 +1005,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchProviders(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a country filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -808,7 +1053,7 @@ public class OccurrenceFilterController extends MultiActionController {
    * @throws UnsupportedEncodingException
    */
   public ModelAndView searchResources(HttpServletRequest request, HttpServletResponse response)
-    throws ServiceException, UnsupportedEncodingException {
+    throws Exception, ServiceException, UnsupportedEncodingException {
     // interrogate the criteria - if it only contains a country filter then switch
     CriteriaDTO criteriaDTO = CriteriaUtil.getCriteria(request, occurrenceFilters.getFilters());
     // fix criteria value
@@ -1084,7 +1329,49 @@ public class OccurrenceFilterController extends MultiActionController {
   public void setDepartmentFilter(FilterDTO departmentFilter) {
     this.departmentFilter = departmentFilter;
   }
+  
+  /**
+   * @param countyFilter the countyFilter to set
+   */
+  public void setCountyFilter(FilterDTO countyFilter) {
+    this.countyFilter = countyFilter;
+  }
+  
+  /**
+   * @param paramoFilter the paramoFilter to set
+   */
+  public void setParamoFilter(FilterDTO paramoFilter) {
+    this.paramoFilter = paramoFilter;
+  }
 
+  /**
+   * @param marineZoneFilter the marineZoneFilter to set
+   */
+  public void setMarineZoneFilter(FilterDTO marineZoneFilter) {
+    this.marineZoneFilter = marineZoneFilter;
+  }
+  
+  /**
+   * @param protectedAreaFilter the protectedAreaFilter to set
+   */
+  public void setProtectedAreaFilter(FilterDTO protectedAreaFilter) {
+    this.protectedAreaFilter = protectedAreaFilter;
+  }
+  
+  /**
+   * @param ecosystemFilter the ecosystemFilter to set
+   */
+  public void setEcosystemFilter(FilterDTO ecosystemFilter) {
+    this.ecosystemFilter = ecosystemFilter;
+  }
+  
+  /**
+   * @param zonificacionFilter the zonificacionFilter to set
+   */
+  public void setZonificacionFilter(FilterDTO zonificacionFilter) {
+    this.zonificacionFilter = zonificacionFilter;
+  }
+  
   /**
    * @param downloadRedirectPath the downloadRedirectPath to set
    */
@@ -1265,6 +1552,13 @@ public class OccurrenceFilterController extends MultiActionController {
    */
   public void setOccurrenceFilterDepartmentCountsView(String occurrenceFilterDepartmentCountsView) {
     this.occurrenceFilterDepartmentCountsView = occurrenceFilterDepartmentCountsView;
+  }
+  
+  /**
+   * @param occurrenceFilterCountyCountsView the occurrenceFilterCountyCountsView to set
+   */
+  public void setOccurrenceFilterCountyCountsView(String occurrenceFilterCountyCountsView) {
+    this.occurrenceFilterCountyCountsView = occurrenceFilterCountyCountsView;
   }
 
   /**

@@ -1,0 +1,20 @@
+call duplicados();
+call index_2();
+call index_2_1();
+call index_2_1_1();
+call index_2_2();
+call species_tree();
+call genus_tree();
+call family_tree();
+call order_tree();
+call class_tree();
+call phylum_tree();
+call genus_code_verification();
+call family_code_verification();
+call order_code_verification ();
+call class_code_verification();
+call phylum_code_verification();
+call kingdom_code_verification ();
+call generate_common_names();
+
+delete from relationship_assertion where from_concept_id not in (select id from taxon_concept) or to_concept_id not in (select id from taxon_concept);

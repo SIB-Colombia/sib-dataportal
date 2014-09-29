@@ -5,4 +5,7 @@
 <br/>
 <br/>
 <spring:message code="occurrence.commonName.help2"/>
+<br/>
+<br/>
+<spring:message code="occurrence.commonName.help3"/>
 </div>

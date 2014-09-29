@@ -18,12 +18,30 @@
 				<ref bean="scientificNameFilter"/>
 				<ref bean="commonNameFilter"/>
 				<ref bean="classificationFilter"/>
-				<ref bean="isTypeStatusFilter"/>
+				<!--<ref bean="isTypeStatusFilter"/>-->
 				<!-- geospatial filters-->
 				<ref bean="countryFilter"/>
 				
 				<!-- Filter for Colombian Departments (SIB Colombia) -->
 				<ref bean="departmentFilter"/>
+				
+				<!-- Filter for Colombian Counties (SIB Colombia) -->
+				<ref bean="countyFilter"/>
+				
+				<!-- Filter for Colombian Paramos (SIB Colombia) -->
+				<ref bean="paramoFilter"/>
+				
+				<!-- Filter for Colombian Marine zones (SIB Colombia) -->
+				<ref bean="marineZoneFilter"/>
+				
+				<!-- Filter for Colombian Protected Areas (SIB Colombia) -->
+				<ref bean="protectedAreaFilter"/>
+				
+				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
+				<ref bean="ecosystemFilter"/>
+				
+				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
+				<ref bean="zonificacionFilter"/>
 				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
@@ -35,11 +53,11 @@
                 <ref bean="depthFilter"/>
 				<ref bean="georeferencedFilter"/>
 				<ref bean="geoConsistencyFilter"/>
-                <ref bean="geoRegionFilter"/>
+                <!--<ref bean="geoRegionFilter"/>-->
 				<!-- dataset filters-->
 				<ref bean="dataProviderIdFilter"/>
 				<ref bean="dataResourceIdFilter"/>
-				<ref bean="hostCountryCodeFilter"/>
+				<!--<ref bean="hostCountryCodeFilter"/>-->
 				<ref bean="resourceNetworkIdFilter"/>
 				<!-- other details filters -->
 				<ref bean="occurrenceDateFilter"/>
@@ -234,6 +252,107 @@
 	</bean>
 	<!-- End of department filter class to show Colombian Departments (SIB Colombia) select list -->
 	
+	<!-- County filter class to show Colombian Counties (SIB Colombia) select list -->
+	<bean id="countyFilter" parent="baseGeospatialFilter">
+		<property name="id" value="39"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.county"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ISOCOUNTYCODE"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="iso-county-codes"/>
+		<property name="helpView" value="/occurrence/countyHelp.htm"/>
+	</bean>
+	<!-- End of county filter class to show Colombian Counties (SIB Colombia) select list -->
+	
+	<!-- Paramo filter class to show Colombian Paramos (SIB Colombia) select list -->
+	<bean id="paramoFilter" parent="baseGeospatialFilter">
+		<property name="id" value="40"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.paramo"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.COMPLEXID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="complex-ids"/>
+		<property name="helpView" value="/occurrence/paramoHelp.htm"/>
+	</bean>
+	
+	<!-- Marine zone filter class to show Colombian Marine zones (SIB Colombia) select list -->
+	<bean id="marineZoneFilter" parent="baseGeospatialFilter">
+		<property name="id" value="41"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.marineZone"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.MARINEZONEID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="marine-ids"/>
+		<property name="helpView" value="/occurrence/marineZoneHelp.htm"/>
+	</bean>
+	<!-- End of marine zone filter class to show Colombian Marine zones (SIB Colombia) select list -->
+	
+	<!-- Protected area filter class to show Colombian Protected areas (SIB Colombia) select list -->
+	<bean id="protectedAreaFilter" parent="baseGeospatialFilter">
+		<property name="id" value="42"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.protectedArea"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.PROTECTEDAREAID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="protected-ids"/>
+		<property name="helpView" value="/occurrence/protectedAreaHelp.htm"/>
+	</bean>
+	<!-- End of protected area filter class to show Colombian Protected areas (SIB Colombia) select list -->
+	
+	<!-- Ecosystem filter class to show Colombian Ecosystems (SIB Colombia) select list -->
+	<bean id="ecosystemFilter" parent="baseGeospatialFilter">
+		<property name="id" value="43"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.ecosystem"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ECOSYSTEMID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="ecosystem-ids"/>
+		<property name="helpView" value="/occurrence/ecosystemHelp.htm"/>
+	</bean>
+	<!-- End of ecosystem filter class to show Colombian Ecosystems (SIB Colombia) select list -->
+	
+	<!-- Zonificacion hidrografica filter class to show Colombian zonificaciones hidrograficas (SIB Colombia) select list -->
+	<bean id="zonificacionFilter" parent="baseGeospatialFilter">
+		<property name="id" value="44"/>
+		<property name="displayName" value="occurrence.search.filter.geospatial.zonificacion"/>
+		<property name="subject" value="SERVICE.OCCURRENCE.QUERY.SUBJECT.ZONIFICACIONID"/>
+		<property name="predicates">
+			<list>
+				<ref bean="predicateIs"/>
+			</list>
+		</property>
+		<property name="wildcardFriendly" value="true"/>
+		<property name="filterType" value="1"/>
+		<property name="dropDownValues" ref="zonificacion-ids"/>
+		<property name="helpView" value="/occurrence/zonificacionHelp.htm"/>
+	</bean>
+	<!-- End of protected area filter class to show Colombian Protected areas (SIB Colombia) select list -->
+	
 	<!--taxonomic ranks-->
 	<bean id="kingdomFilter" parent="baseTaxonRankFilter">
 		<property name="id" value="6"/>
@@ -380,15 +499,21 @@
 				<entry key="3" value="basis.of.record.living"/>
 				<entry key="4" value="basis.of.record.germplasm"/>
 				<entry key="5" value="basis.of.record.fossil"/>-->
+				<!-- <entry key="12" value="basis.of.record.stillimage"/>
+				<entry key="13" value="basis.of.record.movingimage"/>
+				<entry key="14" value="basis.of.record.soundrecording"/>
+				<entry key="15" value="basis.of.record.otherspecimen"/> -->
+				<entry key="16" value="basis.of.record.occurrence"/>
+				<entry key="17" value="basis.of.record.materialsample"/>
+				<entry key="18" value="basis.of.record.event"/>
+				<entry key="19" value="basis.of.record.location"/>
+				<entry key="20" value="basis.of.record.taxon"/>
 				<entry key="7" value="basis.of.record.preservedspecimen"/>
 				<entry key="8" value="basis.of.record.fossilspecimen"/>
 				<entry key="9" value="basis.of.record.livingspecimen"/>
 				<entry key="10" value="basis.of.record.humanobservation"/>
 				<entry key="11" value="basis.of.record.machineobservation"/>
-				<entry key="12" value="basis.of.record.stillimage"/>
-				<entry key="13" value="basis.of.record.movingimage"/>
-				<entry key="14" value="basis.of.record.soundrecording"/>
-				<entry key="15" value="basis.of.record.otherspecimen"/>
+				<entry key="21" value="basis.of.record.nomenclaturalchecklist"/>
 			</map>
 		</property>
 		<property name="valueType" value="java.lang.Integer"/>

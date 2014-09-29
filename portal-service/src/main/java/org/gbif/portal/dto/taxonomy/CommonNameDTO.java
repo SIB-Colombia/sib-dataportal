@@ -31,6 +31,8 @@ public class CommonNameDTO implements Serializable {
 	private String key;
 	private String name;
 	private String language;
+	private String country;
+	private String transliteration;
 	private String taxonConceptKey;
 	private String taxonName;
 	/**
@@ -93,7 +95,22 @@ public class CommonNameDTO implements Serializable {
 	public void setTaxonName(String taxonName) {
 		this.taxonName = taxonName;
 	}
-
+	
+	public String getCountry() {
+		return country;
+	}
+	
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+	public String getTransliteration() {
+		return transliteration;
+	}
+	
+	public void setTransliteration(String transliteration) {
+		this.transliteration = transliteration;
+	}
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

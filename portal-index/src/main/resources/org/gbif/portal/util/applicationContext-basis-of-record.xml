@@ -16,6 +16,12 @@
 			<entry key="STILLIMAGE" value="1"/>
 			<entry key="MOVINGIMAGE" value="1"/>			
 			<entry key="SOUNDRECORDING" value="1"/>
+			<entry key="OCCURRENCE" value="1"/>
+			<entry key="MATERIALSAMPLE" value="1"/>
+			<entry key="EVENT" value="1"/>
+			<entry key="LOCATION" value="1"/>
+			<entry key="TAXON" value="1"/>
+			<entry key="NOMENCLATURALCHECKLIST" value="1"/>
 			<entry key="O" value="1"/>
 			<entry key="OBS" value="1"/>
 			<entry key="OBS." value="1"/>

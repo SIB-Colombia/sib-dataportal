@@ -54,7 +54,7 @@ public interface DepartmentManager {
    * @return DepartmentDTO holding details of this department, null if there isnt a department for the specified key.
    */
   public DepartmentDTO getDepartmentFor(String departmentKey);
-
+  
   /**
    * Retrieves the department information for the department with the supplied iso department code.
    * 
@@ -76,6 +76,13 @@ public interface DepartmentManager {
   public List<DepartmentDTO> getDepartmentsFor(Character firstChar);
 
   /**
+   * Retrieves the department information for taxon concept counts.
+   * 
+   * @return list of departments
+   */
+  public List<DepartmentDTO> getDepartmentsCountForTaxonConcept();
+  
+  /**
    * SIB Colombia New method
    * Returns a count of the total number of departments
    * 
@@ -83,7 +90,61 @@ public interface DepartmentManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public int getTotalDepartmentCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of counties
+   * 
+   * @return count of the total number of counties
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalCountyCount() throws ServiceException;
 
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of paramos
+   * 
+   * @return count of the total number of paramos
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalParamoCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of marine zones
+   * 
+   * @return count of the total number of marine zones
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalMarineZoneCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of protected areas
+   * 
+   * @return count of the total number of protected areas
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalProtectedAreaCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of ecosystems
+   * 
+   * @return count of the total number of ecosystems
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalEcosystemCount() throws ServiceException;
+  
+  /**
+   * SIB Colombia New method
+   * Returns a count of the total number of protected areas
+   * 
+   * @return count of the total number of zonificaciones hidrograficas
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public int getTotalZonificacionCount() throws ServiceException;
+  
   /**
    * Returns true if the supplied string could be a valid Department Key. This
    * method does not verify a data resource exists for this key, merely that the supplied
