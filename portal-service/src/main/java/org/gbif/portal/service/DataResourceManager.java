@@ -127,6 +127,19 @@ public interface DataResourceManager {
    */
   public SearchResultsDTO findDatasets(String nameStub, boolean fuzzy, boolean anyOccurrence,
       boolean includeCountrySearch, SearchConstraints searchConstraints);
+  
+  /**
+   * Find data resources, providers and resource networks from plots that match the supplied name.
+   * 
+   * @param nameStub
+   * @param fuzzy whether to do a fuzzy name search or not
+   * @param anyOccurrence find matches where supplied stub appears in any part of the resource/provider name
+   * @param searchConstraints the search constraints to use
+   * @return a SearchResultsDTO that contains both DataResourceDTOs and DataProviderDTOs
+   * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
+   */
+  public SearchResultsDTO findDatasetsFromPlots(String nameStub, boolean fuzzy, boolean anyOccurrence,
+      boolean includeCountrySearch, SearchConstraints searchConstraints);
 
   /**
    * Find resource networks that match the following parameters.
@@ -185,7 +198,7 @@ public interface DataResourceManager {
    * @throws ServiceException indicate a failure to retrieve the data due to a network/database connection
    */
   public List<DataResourceDTO> getAllDataResources() throws ServiceException;
-
+  
   /**
    * Returns the Data Provider for the specified key value. Returns null if there is not
    * a Data Provider for the supplied key or if the supplied key is invalid.

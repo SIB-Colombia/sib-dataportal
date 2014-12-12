@@ -92,6 +92,11 @@
 		<load-on-startup>8</load-on-startup>
 	</servlet>
 	<servlet>
+		<servlet-name>plotDispatcherSibColombia</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>19</load-on-startup>
+	</servlet>
+	<servlet>
 		<servlet-name>publishersDispatcherSibColombia</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>9</load-on-startup>
@@ -236,6 +241,14 @@
 	<servlet-mapping>
 		<servlet-name>datasetDispatcherSibColombia</servlet-name>
 		<url-pattern>/conjuntos/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>plotDispatcherSibColombia</servlet-name>
+		<url-pattern>/plots/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>plotDispatcherSibColombia</servlet-name>
+		<url-pattern>/parcelas/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>searchDispatcher</servlet-name>

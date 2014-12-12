@@ -14,6 +14,7 @@
         <a target="_self" href="${pageContext.request.contextPath}/especies/"><spring:message code="taxonomy.intro.foot"/></a>
         <a target="_self" href="http://data.sibcolombia.net/explorador/"><spring:message code="geographic.explorer.records"/></a>
         <a target="_self" href="${pageContext.request.contextPath}/conjuntos/"><spring:message code="datasets.foot"/></a> 
+        <a target="_self" href="${pageContext.request.contextPath}/parcelas/"><spring:message code="datasets.foot"/></a> 
         <a target="_self" href="${pageContext.request.contextPath}/publicadores/"><spring:message code="pusblishers.foot"/></a> 
         <a target="_self" href="${pageContext.request.contextPath}/busqueda/"><spring:message code="advanced.search.foot"/></a>
         <a class="tut_selector" href="#inline_content">¿Cómo usar el portal de datos?</a>

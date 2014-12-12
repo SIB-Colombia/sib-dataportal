@@ -99,9 +99,18 @@ public class DataResource extends BaseObject {
 	protected Set<ResourceRank> resourceRanks;
 	/** Override citation **/
 	protected boolean overrideCitation;
-	
+	/**Indicates if this Data Resource is form a plot**/
+	protected boolean fromPlots;
 	/** the gbif registry uuid**/
 	protected String gbifRUuid; 
+	
+	public boolean isFromPlots() {
+		return fromPlots;
+	}
+
+	public void setFromPlots(boolean fromPlots) {
+		this.fromPlots = fromPlots;
+	}
 
 	public String getGbifRUuid() {
 		return gbifRUuid;

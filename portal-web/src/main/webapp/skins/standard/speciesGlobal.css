@@ -208,10 +208,20 @@ img.standalone {
 /* ---- Top Header ---- */
 
 header.sib { background:#2b7fbc; height:53px; color:white; text-transform:uppercase; min-width: 1050px; position: fixed; width: 100%; z-index: 10000; top: 0px}
-header.sib a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px; padding-right: 4%; }
-header.sib  nav {vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; min-width: 1100px; position: relative; right: 0px; height: 50px; padding-right: 20px; margin: 0 auto;}
+
+header.sib  a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px; padding-right: 4%; }
+header.sib  nav{vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; min-width: 1100px; position: relative; right: 0px; height: 50px; padding-right: 20px; margin: 0 auto;}
 header.sib  nav a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
-header.sib  nav a:hover{ background-color: rgba(255,255,255,0.3); color: #fff !important;}
+header.sib  nav ul{float:left;height:0px;list-style:none;margin:0 31%;padding:0;}
+header.sib  nav li{float:left;padding:0px;text-align:center;}
+header.sib  nav li a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
+header.sib  nav li a:hover, header.sib  nav ul li:hover a{ background-color: rgba(255,255,255,0.3); color: #fff !important;}
+header.sib  nav li ul{background:#2b7fbc;display:none;height:auto;padding:0px;margin:0px;position:absolute;width:130px; z-index:100;border-top:1px solid #fff;}
+header.sib  nav li:hover ul{display:block;}
+header.sib  nav li li{display:block;float:none;margin:0px;padding:0px;width:200px;}
+header.sib  nav li:hover li a {background:none;}
+header.sib  nav li ul a {display:block;height:35px;font-size:12px;font-style:normal;margin:0px;padding:0px 10px 0px 15px;text-align:left;}
+header.sib  nav li ul a:hover, header.sib li ul li:hover a{background:#2580a2; color:#ffffff;text-decoration:none;}
 
 header.sib .top_menu {width: 550px; margin: 0 auto; display: inline;}
 header.sib .logo{

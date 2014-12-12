@@ -1,14 +1,15 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-
-<%--a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a--%>
-<%--<a href="${pageContext.request.contextPath}/countries/" title="<spring:message code='topmenu.countries.title'/>"><spring:message code='topmenu.countries'/></a>--%>
-<a href="${pageContext.request.contextPath}/conjuntos/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a>
-<a href="http://maps.sibcolombia.net/" title="<spring:message code='topmenu.explorer.title'/>"><spring:message code='topmenu.explorer'/></a>
-<a href="${pageContext.request.contextPath}/departamentos/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a>
-<a href="${pageContext.request.contextPath}/publicadores/" title="<spring:message code='topmenu.publishers.title'/>"><spring:message code='topmenu.publishers'/></a>
-<%--<a href="${pageContext.request.contextPath}/busqueda/" title="<spring:message code='topmenu.occurrences.title'/>"><spring:message code='topmenu.occurrences'/></a>--%>
-
+<ul>
+	<%--a href="${pageContext.request.contextPath}/especies/" title="<spring:message code='topmenu.species.title'/>"><spring:message code='topmenu.species'/></a--%>
+	<%--<a href="${pageContext.request.contextPath}/countries/" title="<spring:message code='topmenu.countries.title'/>"><spring:message code='topmenu.countries'/></a>--%>
+	<li><a href="${pageContext.request.contextPath}/conjuntos/" title="<spring:message code='topmenu.datasets.title'/>"><spring:message code='topmenu.datasets'/></a>
+	<ul><li><a href="${pageContext.request.contextPath}/parcelas/" title="<spring:message code='topmenu.plots.title'/>"><spring:message code='topmenu.plots'/></a></li></ul></li>
+	<li><a href="http://maps.sibcolombia.net/" title="<spring:message code='topmenu.explorer.title'/>"><spring:message code='topmenu.explorer'/></a></li>
+	<li><a href="${pageContext.request.contextPath}/departamentos/" title="<spring:message code='topmenu.departments.title'/>"><spring:message code='topmenu.departments'/></a></li>
+	<li><a href="${pageContext.request.contextPath}/publicadores/" title="<spring:message code='topmenu.publishers.title'/>"><spring:message code='topmenu.publishers'/></a></li>
+	<%--<a href="${pageContext.request.contextPath}/busqueda/" title="<spring:message code='topmenu.occurrences.title'/>"><spring:message code='topmenu.occurrences'/></a>--%>
+</ul>
 
 <div class="share_icons">
 	<div id="quickSearch">
@@ -22,3 +23,5 @@
 	 <a href="http://www.youtube.com/user/sibcolombia" target="_blank" ><img src="${pageContext.request.contextPath}/skins/standard/images/ico_youtube.png" /></a>
 
 </div>
+
+

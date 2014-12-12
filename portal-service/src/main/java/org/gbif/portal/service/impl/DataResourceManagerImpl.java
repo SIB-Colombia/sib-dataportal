@@ -301,6 +301,27 @@ public class DataResourceManagerImpl implements DataResourceManager {
 		searchResultsDTO.setResults(resourceDTOList, searchConstraints.getMaxResults());
 		return searchResultsDTO;
 	}
+	
+	/**
+	 * @see org.gbif.portal.service.DataResourceManager#findDatasets(java.lang.String, boolean, org.gbif.portal.dto.util.SearchConstraints)
+	 */
+	@SuppressWarnings("unchecked")
+	public SearchResultsDTO findDatasetsFromPlots(String nameStub, boolean fuzzy, boolean anyOccurrence, boolean includeCountrySearch, SearchConstraints searchConstraints) {
+		List resources = dataResourceDAO.findDataResourcesAndProvidersAndNetworksFromPlots(nameStub, fuzzy, anyOccurrence, includeCountrySearch, searchConstraints.getStartIndex(), searchConstraints.getMaxResults()+1);
+		List resourceDTOList = new ArrayList();
+		for(Object resource: resources){
+			if (resource instanceof DataResource)
+				resourceDTOList.add(dataResourceDTOFactory.createDTO(resource));
+			else if(resource instanceof DataProvider)
+				resourceDTOList.add(dataProviderDTOFactory.createDTO(resource));
+			else if(resource instanceof ResourceNetwork)
+				resourceDTOList.add(resourceNetworkDTOFactory.createDTO(resource));
+		}
+		SearchResultsDTO searchResultsDTO = new SearchResultsDTO();
+		searchResultsDTO.setResults(resourceDTOList, searchConstraints.getMaxResults());
+		return searchResultsDTO;
+	}
+
 
 	/**
 	 * @see org.gbif.portal.service.DataResourceManager#findDataProviders(java.lang.String, boolean, java.lang.String, java.util.Date, org.gbif.portal.dto.util.SearchConstraints)
@@ -326,6 +347,8 @@ public class DataResourceManagerImpl implements DataResourceManager {
 		Long recordCount = dataProviderDAO.countDataProviders(providerName, fuzzy, isoCountryCode, modifiedSince);
 		return recordCount; 
 	}
+	
+	
 
 	/**
 	 * @see org.gbif.portal.service.DataResourceManager#findResourceNetworks(java.lang.String, boolean, java.lang.String, java.util.Date, org.gbif.portal.dto.util.SearchConstraints)

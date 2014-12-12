@@ -65,7 +65,7 @@ public interface DataResourceDAO {
 	 * @return a list of data resources
 	 */
 	public List<DataResource> getDataResourcesWithNonSharedTaxonomies();
-
+	
 	/**
 	 * Retrieve a list of data resources and matching the supplied name 
 	 *
@@ -102,6 +102,19 @@ public interface DataResourceDAO {
 	 * @return a list of DataResource and DataProvider model objects
 	 */
 	public List findDataResourcesAndProvidersAndNetworks(String nameStub, boolean fuzzy, boolean anyOccurrence, boolean includeCountrySearch, int startIndex, int maxResults);
+	
+	/**
+	 * Retrieve a list of data resources and data providers matching 
+     * the supplied name 
+	 *
+	 * @param nameStub the name to search for
+	 * @param fuzzy whether to do a wildcard search
+	 * @param anyOccurrence effectively adds a wildcard at front of method
+	 * @param startIndex the result to start at
+	 * @param maxResults max number of results to return
+	 * @return a list of DataResource and DataProvider model objects
+	 */
+	public List findDataResourcesAndProvidersAndNetworksFromPlots(String nameStub, boolean fuzzy, boolean anyOccurrence, boolean includeCountrySearch, int startIndex, int maxResults);
 
 	/**
 	 * Retrieve a list of data resources belonging to the identified network
@@ -146,7 +159,7 @@ public interface DataResourceDAO {
 	 * @return
 	 */
 	public List<DataResource> getAllDataResources();
-
+	
 	/**
 	 * Retrieves a list of resources with occurrences for this concept.
 	 * 
