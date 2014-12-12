@@ -22,7 +22,7 @@
 			    	
 			    	var name='${fn:escapeXml(dataResource.name)})';
 			    	if((data.title!=undefined)&&(data.title.length!=0)){
-			    		$('#name').append(data.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+			    		$('#name').append(data.title);
 			    	}else if(name.length!=0){
 			    		$('#name').append(name);
 			    	}else {
@@ -31,7 +31,7 @@
 			    	
 			    	var rights='${fn:escapeXml(dataResource.rights)})';
 			    	if((data.rights!=undefined)&&(data.rights.length!=0)){
-			    		$('#rights').append(data.rights.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+			    		$('#rights').append(data.rights);
 			    	}else if(rights.length!=0){
 			    		$('#rights').append(rights);
 			    	}else {
@@ -49,7 +49,7 @@
 			    	
 			    	var descrp='${fn:escapeXml(dataResource.description)}';
 			    	if((data.description!=undefined)&&(data.description.length!=0)){
-			    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+			    		$('#descr').append(data.description); 
 			    	}else if(descrp.length!=0){
 			    		$('#descr').append(descrp);
 			    	}else {
@@ -58,7 +58,7 @@
 			    	
 			    	var citation='${fn:escapeXml(dataResource.citation)})';
 			    	if((data.citation.text!=undefined)&&(data.citation.text!=0)){
-			    		$('#citation').prepend(data.citation.text.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+			    		$('#citation').prepend(data.citation.text);
 			    	}else if(citation.length!=0){
 			    		$('#citation').append(citation);
 			    	}else {
@@ -66,7 +66,7 @@
 			    	}
 			    	var ident='';
 			    	if((data.citation.identifier!=undefined)&&(data.citation.identifier!=0)){
-			    		$('#ident').append(data.citation.identifier.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+			    		$('#ident').append(data.citation.identifier);
 			    	}else if(ident.length!=0){
 			    		$('#ident').append(ident);
 			    	}else {
@@ -75,28 +75,28 @@
 			    	
 			    	var aName='';
 			    	if((data.contacts[0].firstName!=undefined)&&(data.contacts[0].firstName.length!=0)){
-			    		aName=data.contacts[0].firstName.replace(/'/g, "&apos;").replace(/"/g, "&quot;") + ' ' + data.contacts[0].lastName.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aName=data.contacts[0].firstName + ' ' + data.contacts[0].lastName; 
 			    	}else if((('${fn:length(agents)}')>0)&&('${agents[0].agentName}'.length!=0)){
 			    		aName='${fn:escapeXml(agents[0].agentName)}';
 			    	}
 	
 			    	var aAddress='';
 			    	if((data.contacts[0].address!=undefined)&&(data.contacts[0].address.length!=0)){
-			    		aAddress=data.contacts[0].address.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aAddress=data.contacts[0].address; 
 			    	}else if('${agents[0].agentAddress}'.length!=0){
 			    		aAddress='${fn:escapeXml(agents[0].agentAddress)}';
 			    	}
 			    	
 			    	var aEmail='';
 			    	if((data.contacts[0].email!=undefined)&&(data.contacts[0].email.length!=0)){
-			    		aEmail=data.contacts[0].email.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aEmail=data.contacts[0].email; 
 			    	}else if('${agents[0].agentEmail}'.length!=0){
 			    		aEmail='${fn:escapeXml(agents[0].agentEmail)}';
 			    	}
 			    	
 			    	var aTelephone='';
 			    	if((data.contacts[0].phone!=undefined)&&(data.contacts[0].phone.length!=0)){
-			    		aTelephone=data.contacts[0].phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;"); 
+			    		aTelephone=data.contacts[0].phone; 
 			    	}else if('${agents[0].agentTelephone}'.length!=0){
 			    		aTelephone='${fn:escapeXml(agents[0].agentTelephone)}';
 			    	}

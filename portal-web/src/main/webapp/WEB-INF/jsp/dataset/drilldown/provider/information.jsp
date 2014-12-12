@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <script type='text/javascript'>
- var version='0.9';
+ var version='1';
  var url='http://api.gbif.org/v'+version+'/organization/'+'${dataProvider.uuid}';
 
  $(function(){
@@ -15,7 +15,7 @@
 		    
 		    	var name='${fn:escapeXml(dataProvider.name)}';
 		    	if((data.title!=undefined)&&(data.title.length!=0)){
-		    		$('#name').append(data.title.replace(/'/g, "&apos;").replace(/"/g, "&quot;"));
+		    		$('#name').append(data.title);
 		    	}else if(name.length!=0){
 		    		$('#name').append(name);
 		    	}else {
@@ -34,7 +34,7 @@
 		    	
 		    	var ndName='${fn:escapeXml(dataProvider.isoCountryCode)}';
 		    	if((data.country!=undefined)&&(data.country.length!=0)){
-		    		$('#nodeApprover').append(data.country.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    		$('#nodeApprover').append(data.country); 
 		    	}else if(ndName.length!=0){
 		    		$('#nodeApprover').append('${fn:escapeXml(dataProvider.isoCountryCode)}');
 		    	}else {
@@ -44,7 +44,7 @@
 		    	
 		    	var descrp='${fn:escapeXml(dataProvider.description)}';
 		    	if((data.description!=undefined)&&(data.description.length!=0)){
-		    		$('#descr').append(data.description.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    		$('#descr').append(data.description); 
 		    	}else if(descrp.length!=0){
 		    		$('#descr').append(descrp);
 		    	}else {
@@ -53,7 +53,7 @@
 		    	
 		    	var addr='${fn:escapeXml(dataProvider.address)}';
 		    	if((data.address!=undefined)&&(data.address.length!=0)){
-		    		$('#addrs').append(data.address.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    		$('#addrs').append(data.address); 
 		    	}else if(addr.length!=0){
 		    		$('#addrs').append(addr);
 		    	}else {
@@ -75,7 +75,7 @@
 		    	
 		    	var tel='${fn:escapeXml(dataProvider.telephone)}';
 		    	if((data.phone!=undefined)&&(data.phone.length!=0)){
-		    		$('#telph').append(data.phone.replace(/'/g, "&apos;").replace(/"/g, "&quot;")); 
+		    		$('#telph').append(data.phone); 
 		    	}else if(tel.length!=0){
 		    		$('#telph').append(tel);
 		    	}else {
