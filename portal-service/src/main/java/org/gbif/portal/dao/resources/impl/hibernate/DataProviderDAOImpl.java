@@ -109,7 +109,7 @@ public class DataProviderDAOImpl extends HibernateDaoSupport implements DataProv
     List results = (List) template.execute(new HibernateCallback() {
 
       public Object doInHibernate(Session session) {
-        Query query = session.createQuery("from DataProvider order by name");
+        Query query = session.createQuery("from DataProvider where id != 1 order by name");
         return query.list();
       }
     });
