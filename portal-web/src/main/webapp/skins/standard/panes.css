@@ -64,8 +64,8 @@ font-weight: normal;
 #taxonomypane div,
 #geographypane div { background-color:rgba(60,146, 176, 0.8);}
 #taxonomypane,
-#geographypane {background:url("images/especies.jpg") no-repeat top center;}
-#datasetpane {background:url("images/conjuntos.jpg") no-repeat top center;}
+#geographypane {background:url("https://s3.amazonaws.com/sib-resources/images/dataportal/home/especies.jpg") no-repeat top center;}
+#datasetpane {background:url("https://s3.amazonaws.com/sib-resources/images/dataportal/home/conjuntos.jpg") no-repeat top center;}
 #datasetpane span {background-image:url("images/conjuntos_ico.png") , url("images/shadow_top.png"); background-repeat: no-repeat, no-repeat; background-position: 12px 14px, top center;padding:17px 17px 17px 70px;}
 #datasetpane div { background-color:rgba(139, 163, 87, 0.9);}
 /*#geographypane {background:url("images/mapa_stats.jpg") no-repeat top center; width:803px; position: relative;}
@@ -82,7 +82,7 @@ height:100% !important;
 float: right;
 }
 #geographypane div { background-color:rgba(235, 169, 0, 0.8) !important;}*/
-#publisherpane{background:url("images/publicadores.jpg") no-repeat top center;}
+#publisherpane{background:url("https://s3.amazonaws.com/sib-resources/images/dataportal/home/publicadores.jpg") no-repeat top center;}
 #publisherpane span {background:url("images/publicadores_ico.png") no-repeat 10px 10px; padding:17px 17px 17px 70px;}
 #publisherpane div { background:rgba(235, 169, 0, 0.8);}
 .panes_div > div:nth-of-type(1) { background: rgba(0,0,0,0.8) url("images/shadow_top.png") top center no-repeat !important; height:200px; }
