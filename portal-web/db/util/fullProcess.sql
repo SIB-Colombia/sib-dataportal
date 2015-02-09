@@ -3434,15 +3434,15 @@ where dp.id=r.data_provider_id and r.deleted is null);
 -- Query OK, 2083 rows affected, 1200 warnings (2 min 24.52 sec)
 -- Records: 2083  Duplicates: 0  Warnings: 1200
 -- (NULL values in non-null column start-date)
-select concat('Starting temporal_coverage_tag generation: ', now()) as debug;
-delete from temporal_coverage_tag where tag_id=4120;
-insert into temporal_coverage_tag (tag_id, entity_id, start_date, end_date, is_system_generated)
-select 4120, data_resource_id, min(occurrence_date), max(occurrence_date), true 
-from occurrence_record 
-group by data_resource_id;
+-- select concat('Starting temporal_coverage_tag generation: ', now()) as debug;
+-- delete from temporal_coverage_tag where tag_id=4120;
+-- insert into temporal_coverage_tag (tag_id, entity_id, start_date, end_date, is_system_generated)
+-- select 4120, data_resource_id, min(occurrence_date), max(occurrence_date), true 
+-- from occurrence_record 
+-- group by data_resource_id;
 -- remove null or erroneous entries
-delete from temporal_coverage_tag where start_date = '0000-00-00';
-delete from temporal_coverage_tag where start_date < '1700-01-01';
+-- delete from temporal_coverage_tag where start_date = '0000-00-00';
+-- delete from temporal_coverage_tag where start_date < '1700-01-01';
 
 -- bounding box - a bounding box for this dataset
 -- Query OK, 2083 rows affected (2 min 31.25 sec)
@@ -3583,15 +3583,15 @@ group by 2;
 -- ********************************************
 
 -- populate temporary table to assign unique keys to each of the participant nodes available
-truncate table temp_participant_nodes;
-insert into temp_participant_nodes(node_name)
-select distinct(data_provider.gbif_approver) from data_provider where data_provider.gbif_approver!='NULL';
+-- truncate table temp_participant_nodes;
+-- insert into temp_participant_nodes(node_name)
+-- select distinct(data_provider.gbif_approver) from data_provider where data_provider.gbif_approver!='NULL';
 
-/* save stats for the communication portal. Files will be residing on the /tmp/ folder on the machine running process.sql */
+-- save stats for the communication portal. Files will be residing on the /tmp/ folder on the machine running process.sql 
 
-select * from temp_participant_nodes into outfile '/tmp/comm_nodes.txt';
-select dp.id,tpn.id,dp.name, dp.iso_country_code from data_provider dp inner join temp_participant_nodes tpn on dp.gbif_approver = tpn.node_name where dp.deleted is null into outfile '/tmp/comm_dataprovider.txt';
-select dr.id, dp.id, dr.name, dr.occurrence_count, dr.occurrence_coordinate_count from data_resource dr inner join data_provider dp on dr.data_provider_id=dp.id where dp.deleted is null and dr.deleted is null into outfile '/tmp/comm_dataresource.txt';
+-- select * from temp_participant_nodes into outfile '/tmp/comm_nodes.txt';
+-- select dp.id,tpn.id,dp.name, dp.iso_country_code from data_provider dp inner join temp_participant_nodes tpn on dp.gbif_approver = tpn.node_name where dp.deleted is null into outfile '/tmp/comm_dataprovider.txt';
+-- select dr.id, dp.id, dr.name, dr.occurrence_count, dr.occurrence_coordinate_count from data_resource dr inner join data_provider dp on dr.data_provider_id=dp.id where dp.deleted is null and dr.deleted is null into outfile '/tmp/comm_dataresource.txt';
 
 -- ********************************************
 -- ... end of comms portal stats
@@ -3616,8 +3616,11 @@ select concat('Rollover complete: ', now()) as debug;
 
 -- to eliminate possiblity of infinites loops in the taxonomy
 -- ! this already needs to run before doing the taxon processing! --
-/ * update taxon_concept c
-inner join taxon_concept p on c.parent_concept_id=p.id
-set c.parent_concept_id=null
-where p.rank>=c.rank; */
+
+-- ********************************************
+-- update taxon_concept c
+-- inner join taxon_concept p on c.parent_concept_id=p.id
+-- set c.parent_concept_id=null
+-- where p.rank>=c.rank; 
+-- ********************************************
 
