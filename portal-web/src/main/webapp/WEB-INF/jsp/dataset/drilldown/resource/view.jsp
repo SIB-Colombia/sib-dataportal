@@ -81,6 +81,15 @@
 			    	}else {
 			    		$('#metadata').remove();
 			    	}
+			    	
+			    	var doi='';
+			    	if((data.doi!=undefined)&&(data.doi.length!=0)){
+			    		$('#doi').append('<a href="'+data.doi.replace('doi:','http://doi.org/')+'">'+data.doi+'</a>');
+			    	}else if(doi.length!=0){
+			    		$('#doi').append(doi);
+			    	}else {
+			    		$('#doi').remove();
+			    	}
 
 			    	var aName='';
 			    	if((data.contacts[0].firstName!=undefined)&&(data.contacts[0].firstName.length!=0)){

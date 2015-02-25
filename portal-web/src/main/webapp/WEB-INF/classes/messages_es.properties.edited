@@ -157,6 +157,7 @@ dataresource.wizard.submit.search=Use este recurso de datos
 dataset=Recurso
 dataset.accessPointUrl=URL del Punto de Acceso
 dataset.metadata=Metadato
+dataset.doi=DOI
 dataset.classCount=Clases
 dataset.download.taxonomy=Taxonom�a en hoja de c�lculo
 dataset.drilldown.main.title=Recurso de datos

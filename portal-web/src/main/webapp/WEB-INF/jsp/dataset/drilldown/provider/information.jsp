@@ -32,6 +32,15 @@
 		    		$('#webSiteUrl').remove();
 		    	}
 		    	
+		    	var doi='${fn:escapeXml(dataProvider.doi)}';
+		    	if((data.doi!=undefined)&&(data.doi.length!=0)){
+		    		$('#doi').append('<a href="'+data.doi.replace('doi:','http://doi.org/')+'">'+data.doi+'</a>');
+		    	}else if(doi.length!=0){
+		    		$('#doi').append(doi);
+		    	}else {
+		    		$('#doi').remove();
+		    	}
+		    	
 		    	var ndName='${fn:escapeXml(dataProvider.isoCountryCode)}';
 		    	if((data.country!=undefined)&&(data.country.length!=0)){
 		    		$('#nodeApprover').append(data.country); 
@@ -119,6 +128,7 @@
 <p id="nodeApprover"><label><spring:message code="gbif.participant"/>:</label></p>
 <p id="descr"><label><spring:message code="description"/>:</label></p>
 <p id="addrs"><label><spring:message code="address"/>:</label></p>
+<p id="doi"><label><spring:message code="doi"/>:</label></p>
 <c:if test="${not empty dataProvider.uuid}"><p><label><spring:message code="gbif.link"/>:</label><a href="http://www.gbif.org/dataset/${dataProvider.uuid}">http://www.gbif.org/dataset/${dataProvider.uuid}<br></a></p></c:if>
 <c:if test="${not empty dataProvider.isoCountryCode}"><p><label><spring:message code="country" text=""/>:</label><spring:message code="country.${dataProvider.isoCountryCode}" text=""/></p></c:if>
 <!-- <p id="eMail"><label><spring:message code="email"/>:</label></p> -->
