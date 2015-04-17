@@ -37,8 +37,6 @@ public class ClientConfig {
         private static final String XML_DISTRITO = "distrito";
         private static final String XML_SECTOR = "sector";
         private static final String XML_COMMUNICATION_TYPE = "communication_type";
-        public static final String RMI_COMMUNICATION = "RMI";
-        public static final String TCP_COMMUNICATION = "TCP";
         public static final String LOCAL_COMMUNICATION = "LOCAL";
         public static final String HTTP_PROXY_SERVER = "server";
         public static final String HTTP_PROXY_PORT = "port";
@@ -167,7 +165,7 @@ public class ClientConfig {
                 server.setAttribute(XML_COMMUNICATION_TYPE, LOCAL_COMMUNICATION);
 
                 Element shape = new Element("shape");
-                shape.setAttribute(XML_PATH, "/Paramos_100K_2012_wgs84.shp");
+                shape.setAttribute(XML_PATH, "./Paramos_100K_2012_wgs84.shp");
 
                 Element columnCodigo = new Element("column");
                 columnCodigo.setAttribute(XML_NAME, XML_CODIGO);

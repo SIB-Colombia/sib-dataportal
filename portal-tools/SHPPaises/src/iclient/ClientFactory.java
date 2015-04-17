@@ -8,20 +8,21 @@ package iclient;
  */
 public abstract class ClientFactory {
 
-        
-        /**
-         * create an object that provides data to work
-         * @return IWorkManager
-         */
-        public IWorkManager createWorkManager() {
-                return null;
-        }
+	/**
+	 * create an object that provides data to work
+	 * 
+	 * @return IWorkManager
+	 */
+	public IWorkManager createWorkManager() {
+		return null;
+	}
 
-        /**
-         * create an object that receives the worked data
-         * @return IResultManager
-         */
-        public IResultManager createResultManager() {
-                return null;
-        }
+	/**
+	 * create an object that receives the worked data
+	 * 
+	 * @return IResultManager
+	 */
+	public IResultManager createResultManager() {
+		return null;
+	}
 }

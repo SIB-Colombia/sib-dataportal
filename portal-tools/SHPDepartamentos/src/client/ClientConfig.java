@@ -33,8 +33,6 @@ public class ClientConfig {
         private static final String XML_FID = "fid";
         private static final String XML_DEPARTAMEN = "departamen";
         private static final String XML_COMMUNICATION_TYPE = "communication_type";
-        public static final String RMI_COMMUNICATION = "RMI";
-        public static final String TCP_COMMUNICATION = "TCP";
         public static final String LOCAL_COMMUNICATION = "LOCAL";
         public static final String HTTP_PROXY_SERVER = "server";
         public static final String HTTP_PROXY_PORT = "port";
@@ -148,7 +146,7 @@ public class ClientConfig {
                 server.setAttribute(XML_COMMUNICATION_TYPE, LOCAL_COMMUNICATION);
 
                 Element shape = new Element("shape");
-                shape.setAttribute(XML_PATH, "C://Users//PC 2//Desktop//Departamentos_2012//deptos_geodataigac2012_geomagna.shp");
+                shape.setAttribute(XML_PATH, "./deptos_geodataigac2012_geomagna.shp");
 
                 Element columnFid = new Element("column");
                 columnFid.setAttribute(XML_NAME, XML_FID);

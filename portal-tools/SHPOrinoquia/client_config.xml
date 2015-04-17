@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<server ip_addr="localhost" communication_type="LOCAL" />
+	<Proxy>
+		<HttpProxy server="proxy4.ciat.cgiar.org" port="8080" />
+	</Proxy>
+	<work records="10000" />
+	<shape path="C://Users//PC 2//Desktop//proyectosorinoquiaia//proj.shp">
+	</shape>
+</config>
+

@@ -6,14 +6,11 @@ import iserver.IWorkServer;
 import model.Record;
 import server.database.PortalInterface;
 
-
-
 public class WorkServerObject implements IWorkServer {
 
-
-        @Override
-        public List<Record> getWork(String clientName) {
-                return PortalInterface.getInstance().getWork(clientName);
-        }
+	@Override
+	public List<Record> getWork(String clientName) {
+		return PortalInterface.getInstance().getWork(clientName);
+	}
 
 }

@@ -20,5 +20,5 @@ public interface IResultManager {
          * @return false if there were problems during the insertion
          * @throws Exception
          */
-        public boolean insertResult(String clientName,List<Record> data) throws Exception;
+	public boolean insertResult(String clientName,List<Record> data) throws Exception;
 }

@@ -4,21 +4,21 @@ import java.util.List;
 
 import model.Record;
 
-
 /**
  * 
  * A communication interface for deliver data worked
  *
  */
 public interface IResultManager {
-        /**
-         * 
-         * @param clientName
-         *            to identify from where the results came
-         * @param data
-         *            worked to insert
-         * @return false if there were problems during the insertion
-         * @throws Exception
-         */
-        public boolean insertResult(String clientName,List<Record> data) throws Exception;
+	/**
+	 * 
+	 * @param clientName
+	 *            to identify from where the results came
+	 * @param data
+	 *            worked to insert
+	 * @return false if there were problems during the insertion
+	 * @throws Exception
+	 */
+	public boolean insertResult(String clientName, List<Record> data)
+			throws Exception;
 }

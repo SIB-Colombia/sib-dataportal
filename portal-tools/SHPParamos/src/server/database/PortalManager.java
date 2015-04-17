@@ -11,118 +11,130 @@ import server.ServerConfig;
 
 public class PortalManager {
 
-        private Connection conx;
-        private ResultSet rs;
-        /**
-         * @uml.property name="regs"
-         * @uml.associationEnd multiplicity="(0 -1)" ordering="true"
-         *                     inverse="base:model.Record"
-         */
-        private List<Record> regs;
-        private boolean endRecords;
-        private int lastID;
+	private Connection conx;
+	private ResultSet rs;
+	/**
+	 * @uml.property name="regs"
+	 * @uml.associationEnd multiplicity="(0 -1)" ordering="true"
+	 *                     inverse="base:model.Record"
+	 */
+	private List<Record> regs;
+	private boolean endRecords;
+	private int lastID;
 
-        /**
-         * Creates the manager of the database
-         * 
-         * @param conx
-         *            is the connection to the database
-         */
-        public PortalManager(Connection conx) {
-                super();
-                this.conx = conx;
-                this.endRecords = true;
-                this.lastID = 0;
-                this.regs = new LinkedList<Record>();
-        }
+	/**
+	 * Creates the manager of the database
+	 * 
+	 * @param conx
+	 *            is the connection to the database
+	 */
+	public PortalManager(Connection conx) {
+		super();
+		this.conx = conx;
+		this.endRecords = true;
+		this.lastID = 0;
+		this.regs = new LinkedList<Record>();
+	}
 
-        /**
-         * Inserts a list of records that were evaluated as good in the goods table
-         * 
-         * @param recs
-         *            are the records to be insert
-         * @return the number of records inserted.
-         */
-        public int insertGoodRecords(List<Record> recs) {
-        	int result = -1;
-                if (recs != null && recs.size() > 0) {
-                        for (Record rec : recs) {
-                        	StringBuilder query = new StringBuilder();
-	                        query.append("UPDATE " + ServerConfig.getInstance().dbTableGoods);
-	                        if(rec.getParamo()==null){
-	                        	query.append(" SET paramo = null");
-	                        }else{
-	                        	query.append(" SET paramo = (select complex_id from paramo where complex like '" + rec.getParamo() + "' )");
-	                        }
-	                        query.append(" WHERE id = " + rec.getId());
-	                        query.append("; ");
-	                        result = DataBaseManager.makeChange(query.toString(), conx);
-	                        System.out.println(query.toString()+"respuesta:" + result);
-                        }
-                        // return DataBaseManager.makeChange(query.toString(), conx);
-                        return result;
-                }
-                
-                return 0;
-        }
+	/**
+	 * Inserts a list of records that were evaluated as good in the goods table
+	 * 
+	 * @param recs
+	 *            are the records to be insert
+	 * @return the number of records inserted.
+	 */
+	public int insertGoodRecords(List<Record> recs) {
+		int result = -1;
+		if (recs != null && recs.size() > 0) {
+			for (Record rec : recs) {
+				StringBuilder query = new StringBuilder();
+				query.append("UPDATE "
+						+ ServerConfig.getInstance().dbTableGoods);
+				if (rec.getParamo() == null) {
+					query.append(" SET paramo = null");
+				} else {
+					query.append(" SET paramo = (select complex_id from paramo where complex like '"
+							+ rec.getParamo() + "' )");
+				}
+				query.append(" WHERE id = " + rec.getId());
+				query.append("; ");
+				result = DataBaseManager.makeChange(query.toString(), conx);
+				System.out.println(query.toString() + "respuesta:" + result);
+			}
+			// return DataBaseManager.makeChange(query.toString(), conx);
+			return result;
+		}
 
-        /**
-         * Inserts a record that was evaluated as good in the goods table
-         * 
-         * @param rec
-         *            is the record to be insert
-         * @return 1 - if the insertion was succes. 0 - otherwise.
-         */
-        public int insertGoodRecord(Record rec) {
+		return 0;
+	}
 
-        		StringBuilder query = new StringBuilder();
+	/**
+	 * Inserts a record that was evaluated as good in the goods table
+	 * 
+	 * @param rec
+	 *            is the record to be insert
+	 * @return 1 - if the insertion was succes. 0 - otherwise.
+	 */
+	public int insertGoodRecord(Record rec) {
 
-        		 query.append("UPDATE " + ServerConfig.getInstance().dbTableGoods);
-        		 if(rec.getParamo()==null){
-                 	query.append(" SET paramo = null");
-                 }else{
-                 	query.append(" SET paramo = (select complex_id from paramo where lower(trim(complex)) like '" + rec.getParamo().trim().toLowerCase()+ "' )");
-                 }
-        		 query.append(" WHERE id = " + rec.getId());
-                 query.append(" AND CAST(longitude AS DECIMAL) = CAST("+ rec.getLongitude() + " AS DECIMAL)");
-	             query.append(" AND CAST(latitude AS DECIMAL) = CAST("+ rec.getLatitude()+ " AS DECIMAL)");
-                 query.append("; ");
-                   
-                return DataBaseManager.makeChange(query.toString(), conx);
+		StringBuilder query = new StringBuilder();
 
-        }
+		query.append("UPDATE " + ServerConfig.getInstance().dbTableGoods);
+		if (rec.getParamo() == null) {
+			query.append(" SET paramo = null");
+		} else {
+			query.append(" SET paramo = (select complex_id from paramo where lower(trim(complex)) like '"
+					+ rec.getParamo().trim().toLowerCase() + "' )");
+		}
+		query.append(" WHERE id = " + rec.getId());
+		query.append(" AND CAST(longitude AS DECIMAL) = CAST("
+				+ rec.getLongitude() + " AS DECIMAL)");
+		query.append(" AND CAST(latitude AS DECIMAL) = CAST("
+				+ rec.getLatitude() + " AS DECIMAL)");
+		query.append("; ");
 
-        /**
-         * Gets a list of records to work
-         * 
-         * @param numRecords
-         *            to get
-         * @return
-         */
-        public synchronized List<Record> getRecords() {
-                rs = DataBaseManager.makeQuery("select id, latitude, longitude, nub_concept_id, paramo from " + ServerConfig.getInstance().dbTableGoods
-                                + " where id > " + lastID  + " and deleted is null order by id " ,
-                                conx);
+		return DataBaseManager.makeChange(query.toString(), conx);
 
-                endRecords = false;
-                regs.clear();
-                // regs = new LinkedList<Record>();
-                try {
-	                while(rs.next()) {
-	                	regs.add(new Record(rs.getString("paramo"), rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getInt("nub_concept_id"), lastID = rs.getInt("id")));
-	                }
+	}
 
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                rs.getStatement().close();
-                                rs.close();
-                                rs = null;
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        }
-                }
-                return regs;
-        }
+	/**
+	 * Gets a list of records to work
+	 * 
+	 * @param numRecords
+	 *            to get
+	 * @return
+	 */
+	public synchronized List<Record> getRecords() {
+		rs = DataBaseManager
+				.makeQuery(
+						"select id, latitude, longitude, nub_concept_id, paramo from "
+								+ ServerConfig.getInstance().dbTableGoods
+								+ " where id > "
+								+ lastID
+								+ " and deleted is null and latitude is not null and longitude is not null order by id ",
+						conx);
+
+		endRecords = false;
+		regs.clear();
+		// regs = new LinkedList<Record>();
+		try {
+			while (rs.next()) {
+				regs.add(new Record(rs.getString("paramo"), rs
+						.getDouble("latitude"), rs.getDouble("longitude"), rs
+						.getInt("nub_concept_id"), lastID = rs.getInt("id")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.getStatement().close();
+				rs.close();
+				rs = null;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return regs;
+	}
 }

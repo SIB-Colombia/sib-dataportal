@@ -2,7 +2,7 @@
 <config>
   <rmi port="1099" />
   <database name="portal" ip_addr="localhost" port="3306">
-    <user name="server">user</user>
+    <user name="server">root</user>
     <password user="server">password</password>
     <tables>
       <table content="good_records">occurrence_record</table>

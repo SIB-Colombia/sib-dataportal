@@ -11,83 +11,94 @@ import server.ServerConfig;
 
 public class PortalManager {
 
-        private Connection conx;
-        private ResultSet rs;
-        /**
-         * @uml.property name="regs"
-         * @uml.associationEnd multiplicity="(0 -1)" ordering="true"
-         *                     inverse="base:model.Record"
-         */
-        private List<Record> regs;
-        private boolean endRecords;
-        private int lastID;
+	private Connection conx;
+	private ResultSet rs;
+	/**
+	 * @uml.property name="regs"
+	 * @uml.associationEnd multiplicity="(0 -1)" ordering="true"
+	 *                     inverse="base:model.Record"
+	 */
+	private List<Record> regs;
+	private boolean endRecords;
+	private int lastID;
 
-        /**
-         * Creates the manager of the database
-         * 
-         * @param conx
-         *            is the connection to the database
-         */
-        public PortalManager(Connection conx) {
-                super();
-                this.conx = conx;
-                this.endRecords = true;
-                this.lastID = 0;
-                this.regs = new LinkedList<Record>();
-        }
+	/**
+	 * Creates the manager of the database
+	 * 
+	 * @param conx
+	 *            is the connection to the database
+	 */
+	public PortalManager(Connection conx) {
+		super();
+		this.conx = conx;
+		this.endRecords = true;
+		this.lastID = 0;
+		this.regs = new LinkedList<Record>();
+	}
 
-        /**
-         * Inserts a record that was evaluated as good in the goods table
-         * 
-         * @param rec
-         *            is the record to be insert
-         * @return 1 - if the insertion was succes. 0 - otherwise.
-         */
-        public int insertGoodRecord(Record rec) {
-             StringBuilder query = new StringBuilder();
-			 query.append("UPDATE " + ServerConfig.getInstance().dbTableGoods);
-			 if(rec.getIsoCountryCodeCalculated()==null){
-	         	query.append(" SET iso_country_code_calculated = null");
-	         }else{
-	         	query.append(" SET iso_country_code_calculated = (select iso_country_code from country_name where replace(replace(lower(trim(name)),'.',''),'\\'','') like '" + rec.getIsoCountryCodeCalculated().trim().toLowerCase().replace("'", "").replace(".", "") + "' limit 1)");
-	         }
-	         query.append(" WHERE id = " + rec.getId());
-	         query.append("; ");
-	         System.out.println(query.toString());
-	         return DataBaseManager.makeChange(query.toString(), conx);
-        }
+	/**
+	 * Inserts a record that was evaluated as good in the goods table
+	 * 
+	 * @param rec
+	 *            is the record to be insert
+	 * @return 1 - if the insertion was succes. 0 - otherwise.
+	 */
+	public int insertGoodRecord(Record rec) {
+		StringBuilder query = new StringBuilder();
+		query.append("UPDATE " + ServerConfig.getInstance().dbTableGoods);
+		if (rec.getIsoCountryCodeCalculated() == null) {
+			query.append(" SET iso_country_code_calculated = null");
+		} else {
+			query.append(" SET iso_country_code_calculated = (select iso_country_code from country_name where replace(replace(lower(trim(name)),'.',''),'\\'','') like '"
+					+ rec.getIsoCountryCodeCalculated().trim().toLowerCase()
+							.replace("'", "").replace(".", "") + "' limit 1)");
+		}
+		query.append(" WHERE id = " + rec.getId());
+		query.append("; ");
+		return DataBaseManager.makeChange(query.toString(), conx);
+	}
 
-        /**
-         * Gets a list of records to work
-         * 
-         * @param numRecords
-         *            to get
-         * @return
-         */
-        public synchronized List<Record> getRecords() {
-                rs = DataBaseManager.makeQuery("select id,latitude,longitude,nub_concept_id,iso_country_code_calculated from " + ServerConfig.getInstance().dbTableGoods
-                                + " where id > " + lastID  + " order by id " ,
-                                conx);
+	/**
+	 * Gets a list of records to work
+	 * 
+	 * @param numRecords
+	 *            to get
+	 * @return
+	 */
+	public synchronized List<Record> getRecords() {
+		rs = DataBaseManager
+				.makeQuery(
+						"select id,latitude,longitude,nub_concept_id,iso_country_code_calculated from "
+								+ ServerConfig.getInstance().dbTableGoods
+								+ " where id > "
+								+ lastID
+								+ " and deleted is null and latitude is not null and longitude is not null and iso_country_code_calculated is null order by id ",
+						conx);
 
-                endRecords = false;
-                regs.clear();
-                // regs = new LinkedList<Record>();
-                try {
-	                while(rs.next()) {
-	                	regs.add(new Record(rs.getString("iso_country_code_calculated"), rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getInt("nub_concept_id"), lastID = rs.getInt("id")));
-	                }
+		endRecords = false;
+		regs.clear();
+		// regs = new LinkedList<Record>();
+		try {
+			while (rs.next()) {
+				regs.add(new Record(
+						rs.getString("iso_country_code_calculated"), rs
+								.getDouble("latitude"), rs
+								.getDouble("longitude"), rs
+								.getInt("nub_concept_id"), lastID = rs
+								.getInt("id")));
+			}
 
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                rs.getStatement().close();
-                                rs.close();
-                                rs = null;
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        }
-                }
-                return regs;
-        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.getStatement().close();
+				rs.close();
+				rs = null;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return regs;
+	}
 }
