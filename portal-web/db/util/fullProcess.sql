@@ -2884,10 +2884,12 @@ UPDATE stats_taxon_concept_counts st set st.count =
 (SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM taxon_name where canonical like 'Insecta') and data_provider_id = 1 and data_resource_id = 1) and deleted is null) where st.taxon_name like 'Insectos';
 
 select concat('Starting stats taxon concept counts for Actinopterygii and Sarcopterygii: ', now()) as debug;	
-UPDATE stats_taxon_concept_counts st set st.count = 
+/*UPDATE stats_taxon_concept_counts st set st.count = 
 (SELECT SUM(T1.total) FROM(
 SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Actinopterygii') and data_provider_id = 1 and data_resource_id = 1) and deleted is null union all
-SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1) and deleted is null) T1) where st.taxon_name like 'Peces óseos';
+SELECT count(*) FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1) and deleted is null) T1) where st.taxon_name like 'Peces óseos';*/
+UPDATE stats_taxon_concept_counts st set st.count =(SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Actinopterygii') and data_provider_id = 1 and data_resource_id = 1) and deleted is null) where st.taxon_name like 'Peces óseos';
+UPDATE stats_taxon_concept_counts st set st.count = st.count+(SELECT count(*) total FROM occurrence_record where class_concept_id in (SELECT id FROM taxon_concept where taxon_name_id in (SELECT id FROM portal.taxon_name where canonical like 'Sarcopterygii') and data_provider_id = 1 and data_resource_id = 1) and deleted is null) where st.taxon_name like 'Peces óseos';
 
 drop table if exists stats_month_counts;
 
