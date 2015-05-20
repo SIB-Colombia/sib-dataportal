@@ -29,6 +29,7 @@
 						<li> 
 							<c:if test="${viewName!='countryCounts'}"><a href="${pageContext.request.contextPath}/occurrences/searchCountries.htm?<gbif:criteria criteria="${criteria}"/>"></c:if><spring:message code="occurrence.switchto.country.countview"/><c:if test="${viewName!='countryCounts'}"></a></c:if>
 						</li>
+						
 					</ul>
 				</td>
 			</tr>
@@ -39,7 +40,7 @@
 						<li> 
 							<c:if test="${viewName!='resultsDownloadSpreadsheet'}"><a href="${pageContext.request.contextPath}/occurrences/downloadSpreadsheet.htm?<gbif:criteria criteria="${criteria}"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'spreadsheet']);" ></c:if><spring:message code="occurrence.search.filter.action.download.spreadsheet"/><c:if test="${viewName!='resultsDownloadSpreadsheet'}"></a></c:if>
 						</li>
-						<li> 
+						<!--<li> 
 							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=brief&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'DwC']);"><spring:message code="occurrence.record.download.format.darwin.brief" text="Darwin core (limited to 100,000)"/></a>
 						</li>
 						<li> 
@@ -47,11 +48,11 @@
 						</li>
 						<li> 
 							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'species']);"><spring:message code="occurrence.record.download.format.species" text="Species in results"/></a>			
-						</li>  
+						</li>-->
 					</ul>
 				</td>
 			</tr>
-      <tr valign="top">
+      <!-- <tr valign="top">
         <td><b><spring:message code="actions.create" text="Create:"/></b></td>
         <td>  
           <ul class="actionsListInline">
@@ -60,7 +61,7 @@
             </li>
           </ul>
         </td>
-      </tr>		
+      </tr> -->
 		</tbody>
 	</table>
 </div>

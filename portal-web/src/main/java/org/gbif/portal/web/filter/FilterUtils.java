@@ -86,6 +86,52 @@ public class FilterUtils {
 		
 		return sb.toString();
 	}
+	
+	/**
+	 * Creates a description for this query.
+	 * 
+	 * @param filters
+	 * @param criteria
+	 * @param messageSource
+	 * @param locale
+	 * @return
+	 */
+	public static String getQueryDescriptionObjectWithOutMessage(List<FilterDTO> filters, CriteriaDTO criteria, MessageSource messageSource, Locale locale){
+		StringBuffer sb = new StringBuffer();
+		String lastSubject = "";
+		String object;
+		
+		for(CriterionDTO criterionDTO: criteria.getCriteria()){
+			if(sb.length()>0)
+				sb.append(", ");
+			FilterDTO filter = FilterUtils.getFilterById(filters, criterionDTO.getSubject());
+			String displayName = messageSource.getMessage(filter.getDisplayName(), null, locale);
+			
+			if(!lastSubject.equals(criterionDTO.getSubject())){
+				lastSubject = criterionDTO.getSubject();
+				sb.append(displayName);
+				sb.append(' ');
+				PredicateDTO predicate = filter.getPredicates().get(Integer.parseInt(criterionDTO.getPredicate()));
+				String predicateDisplayName = messageSource.getMessage(predicate.getValue(), null, locale);
+				sb.append(predicateDisplayName);
+			} else {
+				sb.append(' ');
+				sb.append(messageSource.getMessage(filterOrPredicate, null, locale));
+			}
+			
+			sb.append(' ');
+			if(displayName.equals("Dataset name")||displayName.equals("Data publisher")||displayName.equals("Classification")){
+				 object = messageSource.getMessage(criterionDTO.getDisplayValue(), null, criterionDTO.getDisplayValue(), locale);
+			}else{
+				 object = criterionDTO.getValue();
+			}
+			
+			sb.append(object);
+		}
+		
+		return sb.toString();
+	}
+
 
 	/**
 	 * Add filter warnings to this request.

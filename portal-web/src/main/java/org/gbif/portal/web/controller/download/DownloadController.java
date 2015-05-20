@@ -233,8 +233,9 @@ public class DownloadController extends MultiActionController {
 	public ModelAndView downloadExpired(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//retrieve file name
 		String fileName = request.getParameter(downloadFileRequestKey);		
-		ModelAndView mav = new ModelAndView(expiredView);
+		ModelAndView mav = new ModelAndView(failedView);
 		mav.addObject("fileName", fileName);
+		addFilePropertiesToRequest(mav, fileName, null);
 		return mav;
 	}	
 	

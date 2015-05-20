@@ -53,7 +53,7 @@
 						<li> 
 							<a href="${pageContext.request.contextPath}/occurrences/downloadSpreadsheet.htm?<gbif:criteria criteria="${criteria}"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'spreadsheet']);" ><spring:message code="occurrence.search.filter.action.download.spreadsheet"/></a>
 						</li>
-						<li> 
+						<!--<li> 
 							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=brief&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'DwC']);" ><spring:message code="occurrence.record.download.format.darwin.brief" text="Darwin core (limited to 100,000)"/></a>
 						</li>
 						<li> 
@@ -61,29 +61,29 @@
 						</li>
 						<li> 
 							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criteria criteria="${criteria}" urlEncode="true"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'species']);" ><spring:message code="occurrence.record.download.format.species" text="Species in results"/></a>			
-						</li> 
+						</li> -->
 					</ul>
 				</td>
 			</tr>
-      <tr valign="top">
-        <th><spring:message code="actions.create" text="Create:"/></th>
-        <td>  
-          <ul class="actionsListInline">
-          <c:choose>
-            <c:when test="${oneClassification}">
-              <li> 
-                <c:if test="${viewName!='nicheModelling'}"><a href="${pageContext.request.contextPath}/occurrences/setupModel.htm?<gbif:criteria criteria="${criteria}"/>"></c:if><spring:message code="occurrence.search.filter.action.create.model" text="Niche Model"/><c:if test="${viewName!='nicheModelling'}"></a></c:if>
-              </li>
-            </c:when>
-            <c:otherwise>
-              <li> 
-                <spring:message code="occurrence.search.filter.action.create.model" text="Niche Model"/> <i><spring:message code="occurrence.search.filter.action.create.model.disable" text="(only available for searches including exactly one classification at genus level or below)"/></i>
-              </li>
-            </c:otherwise>
-          </c:choose>
-          </ul>
-        </td>
-      </tr>
+	       <!-- <tr valign="top">
+	        <th><spring:message code="actions.create" text="Create:"/></th>
+	        <td>  
+	          <ul class="actionsListInline">
+	          <c:choose>
+	            <c:when test="${oneClassification}">
+	              <li> 
+	                <c:if test="${viewName!='nicheModelling'}"><a href="${pageContext.request.contextPath}/occurrences/setupModel.htm?<gbif:criteria criteria="${criteria}"/>"></c:if><spring:message code="occurrence.search.filter.action.create.model" text="Niche Model"/><c:if test="${viewName!='nicheModelling'}"></a></c:if>
+	              </li>
+	            </c:when>
+	            <c:otherwise>
+	              <li> 
+	                <spring:message code="occurrence.search.filter.action.create.model" text="Niche Model"/> <i><spring:message code="occurrence.search.filter.action.create.model.disable" text="(only available for searches including exactly one classification at genus level or below)"/></i>
+	              </li>
+	            </c:otherwise>
+	          </c:choose>
+	          </ul>
+	        </td>
+	      </tr>  -->
 		</tbody>
 	</table>
 </div>

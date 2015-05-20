@@ -13,16 +13,16 @@
 		<spring:message code="description"/>:	
 		${fileDescription} 
 	</p>
-	<p style="max-width: 80px; width: 80px;" >
+	<!-- <p style="max-width: 80px; width: 80px;" >
     <spring:message code="download.original.search" text="Original search"/>: <a href="${pageContext.request.contextPath}${originalUrl}">http://${header.host}${pageContext.request.contextPath}${originalUrl}</a>	
-	</p>
+	</p> -->
 	<p>
 	   <c:set var="emailLink"><a href="mailto:portal@gbif.org">sib+dataportal@humboldt.org.co</a></c:set>
-  	<spring:message code="download.failed.follow.on" arguments="${emailLink}" argumentSeparator="%%%%%%"/>
-  </p>	
-  <p>
-    <a href="${originalUrl}">Click here</a> to return to the original search.  
-  </p>  
+  	   <spring:message code="download.failed.follow.on" arguments="${emailLink}" argumentSeparator="%%%%%%"/>
+    </p>
+    <!-- <p>
+      <a href="${originalUrl}">Click here</a> to return to the original search.  
+    </p>  -->	 
 </c:if>
 </td>
 </tr>

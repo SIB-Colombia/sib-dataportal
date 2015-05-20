@@ -46,6 +46,29 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import org.json.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.entity.ContentType;
+import org.apache.http.protocol.HTTP;
+
+
 /**
  * Controller that supports the download of filter query results in multiple formats.
  * 
@@ -72,6 +95,11 @@ public class FilterDownloadController extends RestController {
   protected String requestedFieldsModelKey = "requestedFields";
   /** The record count to retrieve */
   protected String recordCountRequestKey = "recordCount";
+  /** The g recaptcha response */
+  protected String recaptchaResponse = "g-recaptcha-response";
+  protected String email = "user_email";
+  protected String downloadReasonListKey = "downloadReasonList";
+  protected String googleRecaptchaKey = "googleRecaptchaKey";
   /** Max download overide */
   protected String maxDownloadOverrideRequestKey = "maxDownloadOverride";
   /** The download format - used to chose the FileWriterFactory instance */
@@ -114,81 +142,196 @@ public class FilterDownloadController extends RestController {
   @Override
   public ModelAndView handleRequest(Map<String, String> propertiesMap, HttpServletRequest request,
     HttpServletResponse response) throws Exception {
-
-    // retrieve the request record total
-    int recordCount = ServletRequestUtils.getIntParameter(request, recordCountRequestKey, maxResultsDownload);
-    int maxDownloadOverrideRequestKey =
-      ServletRequestUtils.getIntParameter(request, this.maxDownloadOverrideRequestKey, -1);
-    if (recordCount > maxResultsDownload) {
-      recordCount = maxResultsDownload;
-    }
-    if (maxDownloadOverrideRequestKey != -1) {
-      recordCount = maxDownloadOverrideRequestKey;
-    }
-
-    // retrieve the supplied format
-    String format = request.getParameter(formatRequestKey);
-
-    // unravel the criteria
-    Locale locale = RequestContextUtils.getLocale(request);
+	
+	int statusCodeDatos = 400;
+	String url = "https://www.google.com/recaptcha/api/siteverify";
+	String recaptcha = request.getParameter(recaptchaResponse);
+	// unravel the criteria
+    Locale locale = new Locale("en");
     String criteriaString = request.getParameter(criteriaRequestKey);
-    logger.debug("criteriaString: " + criteriaString);
     CriteriaDTO criteria = CriteriaUtil.getCriteria(criteriaString, filters.getFilters(), locale);
     // fix criteria value
     CriteriaUtil.fixEncoding(request, criteria);
-    List<PropertyStoreTripletDTO> triplets = queryHelper.getTriplets(filters.getFilters(), criteria, request, response);
-
-    // retrieve the download field mappings
-    Map<String, OutputProperty> downloadFieldMappings =
-      (Map<String, OutputProperty>) propertyStore.getProperty(namespace, downloadFieldPSKey);
-
-    // create the output process
-    TripletQuery outputProcess = new TripletQuery();
-    outputProcess.setTriplets(triplets);
-    outputProcess.setMatchAll(matchAll);
-    outputProcess.setSearchConstraints(new SearchConstraints(0, recordCount));
-    TripletQueryManager tqm = format2TripletQueryManager.get(format);
-    outputProcess.setTripletQueryManager(tqm);
-
     // retrieve the query description
-    String queryDescription = FilterUtils.getQueryDescription(filters.getFilters(), criteria, messageSource, locale);
+    String queryDescription = FilterUtils.getQueryDescriptionObjectWithOutMessage(filters.getFilters(), criteria, messageSource, locale);
+    logger.debug("queryDescription: " + queryDescription);
+	
+    try {
+	    String[] parts = queryDescription.split(",");
+	    logger.debug("parts:" + parts.length);
+	    
+	    JSONObject obj1 = new JSONObject();
+	    for(int i = 0;i < parts.length; i++){
+	    	logger.debug("parts: " + parts[i]);
+	    	String[] subparts = new String[100];
+    	    String textName;
+    	    String predicado = "eq";
+    	    JSONArray arr = new JSONArray();
+    	    JSONObject textObject = new JSONObject();
+	    	
+    	    if(parts[i].contains(" includes ")){
+	    		subparts = parts[i].split(" includes ");
+	    		String[] subparts_taxon = subparts[1].split(": ");
+	    		textObject.put("predicate", predicado);
+	    		textObject.put("textName", subparts_taxon[0]);
+	    		textObject.put("textObject",subparts_taxon[1]);
+	    		arr.put(textObject);
+	    		if(i+1<parts.length){
+	    			if(parts[i+1].trim().startsWith("or")){
+    	    			i = i +1;
+    	    			while(parts[i].trim().startsWith("or")){
+    	    				logger.debug("parts: " + parts[i]);
+    	    				JSONObject classification_or = new JSONObject();
+    	    				subparts = parts[i].split("or ");
+    	    				String[] subparts_taxon_or = subparts[1].split(": ");
+    	    				classification_or.put("predicate", predicado);
+    	    				classification_or.put("textName", subparts_taxon_or[0]);
+    	    				classification_or.put("textObject", subparts_taxon_or[1]);
+    	    		    		arr.put(classification_or);
+    	    	    		if(i+1<parts.length){
+    	    	    			if(parts[i+1].trim().startsWith("or")){
+    	    	    				i = i+1;
+    	    	    			}
+    	    	    		}else{
+    	    	    			break;
+    	    	    		}
+    	    	    	}
+	    			}
+	    		}
+	    		obj1.put("taxons",arr); 	
+	    	}else {
+	    		if(parts[i].contains(" is ")){
+    	    		subparts = parts[i].split(" is ");
+	    		}else if (parts[i].contains(" greater than ")){
+    	    		subparts = parts[i].split(" greater than ");
+    	    		predicado = "gt";
+	    		}else if(parts[i].contains(" less than ")){
+    	    		subparts = parts[i].split(" less than ");
+    	    		predicado = "lt";
+	    		}
+	    		textName = subparts[0].replaceAll(" ","").toLowerCase();
+	    		if(textName.equals("stateorprovince")){
+	    			textName = "department";
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",subparts[1]);
+	    		}else if(textName.equals("complex")){
+	    			textName = "paramo";
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",subparts[1]);
+	    		}else if(textName.equals("coordinatestatus")){
+	    			textName = "coordinate";
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",subparts[1]);
+	    		}else if(textName.equals("datasetname")){
+	    			textName = "resource";
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",messageSource.getMessage(subparts[1], null, subparts[1], locale));
+	    			
+	    		}else if(textName.equals("datapublisher")){
+	    			textName = "provider";
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",messageSource.getMessage(subparts[1], null, subparts[1], locale));
+	    			
+	    		}else{
+	    			textObject.put("predicate", predicado);
+    	    		textObject.put("textName", textName);
+    	    		textObject.put("textObject",subparts[1]);
+	    		}
+	    		arr.put(textObject);
+	    		if(i+1<parts.length){
+	    			if(parts[i+1].trim().startsWith("or")){
+    	    			i = i +1;
+    	    			while(parts[i].trim().startsWith("or")){
+    	    				logger.debug("parts: " + parts[i]);
+        	    			JSONObject textObjectOr = new JSONObject();
+        	    			subparts = parts[i].split("or ");
+        	    			textObjectOr.put("predicate", predicado);
+        	    			textObjectOr.put("textName", textName);
+        	    			textObjectOr.put("textObject",subparts[1]);
+            	    		arr.put(textObjectOr);
+            	    		if(i+1<parts.length){
+    	    	    			if(parts[i+1].trim().startsWith("or")){
+    	    	    				i = i + 1;
+    	    	    			}else{
+    	    	    				break;
+    	    	    			}
+    	    	    		}else{
+            	    			break;
+            	    		}
+            	    	}
+	    			}
+	    		}
+	    		logger.debug("arr: " + arr.toString());
+	    		if(textName.charAt(textName.length()-1)=='y'){
+	    			textName = textName.replace("y","ie");
+	    		}
+	    		obj1.put(textName+"s",arr);
+	    	}
+	    }
+	    logger.debug(obj1.toString());
+	    String urlDatos = "http://maps.sibcolombia.net/api/download/occurrences";
+	    HttpClient clientDatos = HttpClientBuilder.create().build();
+	    HttpPost methodDatos = new HttpPost(urlDatos);
+	    
+	    JSONObject obj = new JSONObject();
+	    obj.put("email", request.getParameter(email));
+	    obj.put("reason", request.getParameter(downloadReasonListKey));
+	    obj.put("captchaKey",recaptcha);
+	    obj.put("type", "all");
+	    obj.put("query", obj1);
+	    
+	    StringEntity se = new StringEntity(obj.toString());
+	    se.setContentType("application/json;charset=UTF-8");
+	    methodDatos.setEntity(se);
 
-    // create a list of the requested fields
-    List<Field> requestedFields = new ArrayList<Field>();
+        HttpResponse response_da = clientDatos.execute(methodDatos);
+        HttpEntity entity_da = response_da.getEntity();
+       
+        statusCodeDatos = response_da.getStatusLine().getStatusCode();
+        logger.debug(statusCodeDatos);
 
-    if (request.getParameter(allFieldsRequestKey) != null) {
-      logger.debug("All fields requested..");
-      requestedFields.addAll(downloadFields);
-      logger.debug("Requested fields: " + requestedFields.toString());
-    } else {
-      for (Field field : downloadFields) {
-        if (request.getParameter(field.getFieldName()) != null)
-          requestedFields.add(field);
-      }
+    }catch (Exception e) {
+        e.printStackTrace();
+    }finally{
+    	if(statusCodeDatos==200){
+        	// search id
+        	String searchId = request.getParameter(searchIdRequestKey);
+        	String downloadFile =request.getParameter(email);
+        	  
+        	
+        	String filenameWithExt = FilenameUtils.removeExtension(downloadFile);
+        	
+        	String originalUrl = downloadFile;
+        	
+        	DownloadUtils.writeDownloadToDescriptor(request, filenameWithExt, originalUrl, downloadFileType, queryDescription,
+        	  displayTimeTaken, null);
+        	// redirect to download preparing page
+        	ModelAndView mav =
+        	  new ModelAndView(new RedirectView("/download/preparingDownload.htm?downloadFile=" + downloadFile, true));
+        	return mav;
+        }else{
+        	// search id
+        	String searchId = request.getParameter(searchIdRequestKey);
+        	String downloadFile =request.getParameter(email);
+        	  
+        	
+        	String filenameWithExt = FilenameUtils.removeExtension(downloadFile);
+        	
+        	String originalUrl = downloadFile;
+        	
+        	DownloadUtils.writeDownloadToDescriptor(request, filenameWithExt, originalUrl, downloadFileType, queryDescription,
+        	  displayTimeTaken, null);
+        	// redirect to download preparing page
+        	ModelAndView mav =
+        	  new ModelAndView(new RedirectView("/download/downloadExpired.htm?downloadFile=" + downloadFile, true));
+        	return mav;
+        }
     }
-
-    // get the file writer for the chosen format
-    FileWriterFactory fwFactory = format2FileWriterFactories.get(format);
-    if (fwFactory == null)
-      return redirectToDefaultView();
-
-    // search id
-    String searchId = request.getParameter(searchIdRequestKey);
-    String downloadFile =
-      DownloadUtils.startFileWriter(request, response, requestedFields, downloadFieldMappings, outputProcess, null,
-        queryDescription, fwFactory, downloadFilenamePrefix, searchId, zipped);
-
-    String filenameWithExt = FilenameUtils.removeExtension(downloadFile);
-
-    String criteriaUrl = CriteriaUtil.getUrl(criteria);
-    String originalUrl = searchUrl + criteriaUrl;
-
-    DownloadUtils.writeDownloadToDescriptor(request, filenameWithExt, originalUrl, downloadFileType, queryDescription,
-      displayTimeTaken, null);
-    // redirect to download preparing page
-    ModelAndView mav =
-      new ModelAndView(new RedirectView("/download/preparingDownload.htm?downloadFile=" + downloadFile, true));
-    return mav;
   }
 
   /**

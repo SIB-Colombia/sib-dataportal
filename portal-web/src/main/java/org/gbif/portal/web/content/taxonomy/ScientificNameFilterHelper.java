@@ -126,7 +126,8 @@ public class ScientificNameFilterHelper implements FilterHelper {
 							String tripletSubject = rankToTripletSubjectMappings.get(concept.getRank());
 							
 							if(tripletSubject!=null){
-								PropertyStoreTripletDTO psDTO = new PropertyStoreTripletDTO(scientificNameTriplet.getNamespace(), tripletSubject, equalsPredicate, new Long(concept.getKey()));
+								//PropertyStoreTripletDTO psDTO = new PropertyStoreTripletDTO(scientificNameTriplet.getNamespace(), tripletSubject, equalsPredicate, new Long(concept.getKey()));
+								PropertyStoreTripletDTO psDTO = new PropertyStoreTripletDTO(scientificNameTriplet.getNamespace(), "SERVICE.OCCURRENCE.QUERY.SUBJECT.NUBCONCEPTID" , equalsPredicate, new Long(concept.getKey()));
 								if(logger.isDebugEnabled()){
 									logger.debug("Adding triplet: "+psDTO);
 								}

@@ -212,7 +212,8 @@ header.sib { background:#2b7fbc; height:53px; color:white; text-transform:upperc
 header.sib  a{ color:white; padding:0px; display:inline-block; vertical-align:top; margin:0 10px; padding-right: 4%; }
 header.sib  nav{vertical-align:top; text-align:center; line-height:1em; width: 100%; max-width: 1400px; min-width: 1100px; position: relative; right: 0px; height: 50px; padding-right: 20px; margin: 0 auto;}
 header.sib  nav a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
-header.sib  nav ul{float:left;height:0px;list-style:none;margin:0 31%;padding:0;}
+/*header.sib  nav ul{float:left;height:0px;list-style:none;margin:0 31%;padding:0;}*/
+header.sib  nav ul{float:left;height:0px;list-style:none;margin:0 25%;padding:0;}
 header.sib  nav li{float:left;padding:0px;text-align:center;}
 header.sib  nav li a{ max-width:130px; padding:12px; margin:0px; height: 53px;}
 header.sib  nav li a:hover, header.sib  nav ul li:hover a{ background-color: rgba(255,255,255,0.3); color: #fff !important;}

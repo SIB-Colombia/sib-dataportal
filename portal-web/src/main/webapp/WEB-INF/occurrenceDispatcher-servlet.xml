@@ -791,7 +791,7 @@
     <property name="propertyStore" ref="servicePropertyStore" />
     <property name="searchUrl" value="/occurrences/search.htm?" />
     <property name="downloadFileType" value="download.file.type.occurrences" />
-    <property name="format2TripletQueryManager">
+    <!-- <property name="format2TripletQueryManager">
       <map>
         <entry key="tsv">
           <ref bean="tripletFullDetailedOccurrenceManager" />
@@ -907,7 +907,7 @@
           </bean>
         </entry>
       </map>
-    </property>
+    </property>-->
   </bean>
 
   <!-- Controller for simple occurrence searching with JSON/XML responses -->
