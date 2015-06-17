@@ -1,4 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
+
 <h4><spring:message code="occurrence.record.download.spreadsheet.title"/></h4>
 
 <tiles:insert page="downloadHelp.jsp"/>
@@ -8,6 +9,7 @@
 
 <form method="get" action="${pageContext.request.contextPath}/occurrence/startDownload.htm">
 
+	
 	<input type="hidden" name="criteria" value="<gbif:criteria criteria="${criteria}"/>"/>
 	<input type="hidden" name="searchId" value="${searchId}"/>
 	<input type="hidden" name="format" value="csv" />
@@ -32,7 +34,15 @@
 		<option value = "Testing"><spring:message code="download.reasonList.testing"/></option>
 	</select>
 	<br><br>
-	<div class="g-recaptcha" data-sitekey="6LdwrAUTAAAAAL7SMgkNMSjvdiMxS0YwaZ8AcSYE"></div>
+	<script src='https://www.google.com/recaptcha/api/challenge?k=6LdwrAUTAAAAAL7SMgkNMSjvdiMxS0YwaZ8AcSYE'></script>
+    <noscript>
+	   <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LdwrAUTAAAAAL7SMgkNMSjvdiMxS0YwaZ8AcSYE"
+	        height="300" width="500" frameborder="0"></iframe><br>
+	   <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+	   </textarea>
+	   <input type="hidden" name="recaptcha_response_field"
+	        value="manual_challenge">
+	 </noscript>
 	
 	<label id="message_captcha" class="textbox-label"> * Por favor complete todos los campos para iniciar la descarga. </label> 
 	<input id="downloadNow" type="submit" value="<spring:message code="download.now"/>" onclick="return confirmEmail();" />

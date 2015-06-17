@@ -68,7 +68,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.entity.ContentType;
 import org.apache.http.protocol.HTTP;
 
-
 /**
  * Controller that supports the download of filter query results in multiple formats.
  * 
@@ -96,7 +95,9 @@ public class FilterDownloadController extends RestController {
   /** The record count to retrieve */
   protected String recordCountRequestKey = "recordCount";
   /** The g recaptcha response */
-  protected String recaptchaResponse = "g-recaptcha-response";
+  protected String recaptchaResponse = "recaptcha_response_field";
+  protected String recaptchaChallengeResponse = "recaptcha_challenge_field";
+  
   protected String email = "user_email";
   protected String downloadReasonListKey = "downloadReasonList";
   protected String googleRecaptchaKey = "googleRecaptchaKey";
@@ -144,8 +145,8 @@ public class FilterDownloadController extends RestController {
     HttpServletResponse response) throws Exception {
 	
 	int statusCodeDatos = 400;
-	String url = "https://www.google.com/recaptcha/api/siteverify";
 	String recaptcha = request.getParameter(recaptchaResponse);
+	String challenge = request.getParameter(recaptchaChallengeResponse);
 	// unravel the criteria
     Locale locale = new Locale("en");
     String criteriaString = request.getParameter(criteriaRequestKey);
@@ -229,14 +230,12 @@ public class FilterDownloadController extends RestController {
 	    			textName = "resource";
 	    			textObject.put("predicate", predicado);
     	    		textObject.put("textName", textName);
-    	    		textObject.put("textObject",messageSource.getMessage(subparts[1], null, subparts[1], locale));
-	    			
+    	    		textObject.put("textObject", new String(messageSource.getMessage(subparts[1], null, subparts[1], locale).getBytes("UTF-8"), "UTF-8"));
 	    		}else if(textName.equals("datapublisher")){
 	    			textName = "provider";
 	    			textObject.put("predicate", predicado);
     	    		textObject.put("textName", textName);
-    	    		textObject.put("textObject",messageSource.getMessage(subparts[1], null, subparts[1], locale));
-	    			
+    	    		textObject.put("textObject", new String(messageSource.getMessage(subparts[1], null, subparts[1], locale).getBytes("UTF-8"), "UTF-8"));
 	    		}else{
 	    			textObject.put("predicate", predicado);
     	    		textObject.put("textName", textName);
@@ -281,12 +280,14 @@ public class FilterDownloadController extends RestController {
 	    JSONObject obj = new JSONObject();
 	    obj.put("email", request.getParameter(email));
 	    obj.put("reason", request.getParameter(downloadReasonListKey));
-	    obj.put("captchaKey",recaptcha);
+	    obj.put("response",recaptcha);
+	    obj.put("challenge",challenge);
 	    obj.put("type", "all");
-	    obj.put("query", obj1);
+	    obj.put("date", System.currentTimeMillis() / 1000L );
+	    obj.put("query",obj1);
 	    
-	    StringEntity se = new StringEntity(obj.toString());
-	    se.setContentType("application/json;charset=UTF-8");
+	    StringEntity se = new StringEntity(obj.toString(),  ContentType.APPLICATION_JSON);
+	   
 	    methodDatos.setEntity(se);
 
         HttpResponse response_da = clientDatos.execute(methodDatos);
