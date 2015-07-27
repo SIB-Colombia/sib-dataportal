@@ -30,7 +30,6 @@
 		<option value = "Other"><spring:message code="download.reasonList.other"/></option>
 		<option value = "Ecological research"><spring:message code="download.reasonList.ecological"/></option>
 		<option value = "Systematic research"><spring:message code="download.reasonList.systematic"/></option>
-		<option value = "Other scientific research"><spring:message code="download.reasonList.otherScientific"/></option>
 		<option value = "Testing"><spring:message code="download.reasonList.testing"/></option>
 	</select>
 	<br><br>
