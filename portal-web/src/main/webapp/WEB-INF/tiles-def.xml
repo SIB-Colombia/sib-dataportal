@@ -336,7 +336,7 @@
 		<put name="searchHelp" value="taxonomy.search.filter.pleaseadd"/>		
 		<put name="constructedFilter" value="/WEB-INF/jsp/filters/constructedFilters.jsp"/>
 		<put name="filterEditor" value="/WEB-INF/jsp/filters/filterEditor.jsp"/>
-		<put name="actions" value="/WEB-INF/jsp/taxonomy/actions.jsp"/>
+		<put name="actions" value=""/>
 		<put name="results" value="/WEB-INF/jsp/taxonomy/pagingResults.jsp"/>
 		<put name="filterAction" value="/species/search.htm"/>				
 		<put name="filterHelp" value="/WEB-INF/jsp/taxonomy/filterHelp.jsp"/>		

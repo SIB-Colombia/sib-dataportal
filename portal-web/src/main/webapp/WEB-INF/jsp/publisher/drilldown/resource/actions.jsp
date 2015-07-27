@@ -45,7 +45,7 @@
 						</li>	
 					</ul>
 					</c:if>	
-					<ul class="actionsListInline">
+					<!--  <ul class="actionsListInline">
 						<c:if test="${dataResource.occurrenceCount>0}">
 						<li>
 							<a href="${pageContext.request.contextPath}/occurrences/downloadResults.htm?format=species&criteria=<gbif:criterion subject="24" predicate="0" value="${dataResource.key}" index="0" urlEncode="true"/>"><spring:message code="dataset.list.species.with.occurrences"/></a>
@@ -54,7 +54,7 @@
 						<li>
 							<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="1" predicate="0" value="${dataResource.key}" index="0"/>"><spring:message code="dataset.download.taxonomy"/></a>
 						</li>					
-					</ul>
+					</ul>-->
 				</td>
 			</tr>	
 			<tr>
