@@ -54,6 +54,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -164,6 +165,30 @@ public class FilterDownloadController extends RestController {
 	    JSONObject obj1 = new JSONObject();
 	    for(int i = 0;i < parts.length; i++){
 	    	logger.debug("parts: " + parts[i]);
+	    	for(int j = i+1;j < parts.length; j++){
+	    		if(!(parts[j].contains(" includes ")||parts[j].contains("or ")||parts[j].contains("is ")||parts[j].contains(" greater than ")||parts[j].contains(" less than "))){
+		    		parts[j] = parts[i].concat(",".concat(parts[j]));
+		    		i = j;
+		    	}else{
+		    		break;
+		    	}
+	    	}
+	    	logger.debug("parts after for: " + parts[i]);
+	    	if(parts[i].contains("(")){
+	    		String[] subparts_1 = new String[100];
+	    		subparts_1 = parts[i].split("\\(");
+	    		parts[i] = subparts_1[0].trim();
+	    		if(subparts_1.length>2){
+	    			for(int j=1;j<(subparts_1.length)-1;j++){
+	    				if(subparts_1[j].contains(")")){
+			    			parts[i] = parts[i].concat(" (".concat(subparts_1[j]));
+			    			parts[i] = parts[i].trim();
+	    				}
+	    			}
+	    		}
+	    	}
+	    	logger.debug("parts after if: " + parts[i]);
+	    	
 	    	String[] subparts = new String[100];
     	    String textName;
     	    String predicado = "eq";
@@ -236,17 +261,58 @@ public class FilterDownloadController extends RestController {
 	    			textObject.put("predicate", predicado);
     	    		textObject.put("textName", textName);
     	    		textObject.put("textObject", new String(messageSource.getMessage(subparts[1], null, subparts[1], locale).getBytes("UTF-8"), "UTF-8"));
+	    		}else if(textName.equals("boundingbox")){
+	    			JSONObject textObject1 = new JSONObject();
+	    			JSONObject textObject2 = new JSONObject();
+	    			JSONObject textObject3 = new JSONObject();
+	    			textName = "poligonalCoordinate";
+	    			String[] subparts_1 = new String[100];
+		    		subparts_1 = subparts[1].split(",");
+	    			String minLat = (subparts_1[1].contains("S")?("-").concat(subparts_1[1].substring(0,subparts_1[1].length()-1)):subparts_1[1].substring(0,subparts_1[1].length()-1));
+	    			String minLong = (subparts_1[0].contains("W")?("-").concat(subparts_1[0].substring(0,subparts_1[0].length()-1)):subparts_1[0].substring(0,subparts_1[0].length()-1));
+	    			String maxLat = (subparts_1[3].contains("S")?("-").concat(subparts_1[3].substring(0,subparts_1[3].length()-1)):subparts_1[3].substring(0,subparts_1[3].length()-1));
+	    			String maxLong = (subparts_1[2].contains("W")?("-").concat(subparts_1[2].substring(0,subparts_1[2].length()-1)):subparts_1[2].substring(0,subparts_1[2].length()-1));
+	    			textObject.put("lat",minLat);
+	    			textObject.put("lng",minLong);
+	    			textObject1.put("lat",maxLat);
+	    			textObject1.put("lng",minLong);
+	    			textObject2.put("lat",maxLat);
+	    			textObject2.put("lng",maxLong);
+	    			textObject3.put("lat",minLat);
+	    			textObject3.put("lng",maxLong);
+	    			arr.put(textObject);
+	    			arr.put(textObject1);
+	    			arr.put(textObject2);
+	    			arr.put(textObject3);
 	    		}else{
 	    			textObject.put("predicate", predicado);
     	    		textObject.put("textName", textName);
     	    		textObject.put("textObject",subparts[1]);
 	    		}
-	    		arr.put(textObject);
+	    		if(!textName.equals("poligonalCoordinate")){
+	    			arr.put(textObject);
+	    		}
+	    		
 	    		if(i+1<parts.length){
 	    			if(parts[i+1].trim().startsWith("or")){
     	    			i = i +1;
     	    			while(parts[i].trim().startsWith("or")){
     	    				logger.debug("parts: " + parts[i]);
+    	    				logger.debug("parts after for: " + parts[i]);
+    	    		    	if(parts[i].contains("(")){
+    	    		    		String[] subparts_1 = new String[100];
+    	    		    		subparts_1 = parts[i].split("\\(");
+    	    		    		parts[i] = subparts_1[0].trim();
+    	    		    		if(subparts_1.length>2){
+    	    		    			for(int j=1;j<(subparts_1.length)-1;j++){
+    	    		    				if(subparts_1[j].contains(")")){
+    	    				    			parts[i] = parts[i].concat(" (".concat(subparts_1[j]));
+    	    				    			parts[i] = parts[i].trim();
+    	    		    				}
+    	    		    			}
+    	    		    		}
+    	    		    	}
+    	    		    	logger.debug("parts after if: " + parts[i]);
         	    			JSONObject textObjectOr = new JSONObject();
         	    			subparts = parts[i].split("or ");
         	    			textObjectOr.put("predicate", predicado);
@@ -277,15 +343,23 @@ public class FilterDownloadController extends RestController {
 	    HttpClient clientDatos = HttpClientBuilder.create().build();
 	    HttpPost methodDatos = new HttpPost(urlDatos);
 	    
+	    String ipAddress  = request.getHeader("X-FORWARDED-FOR");
+	    if(ipAddress == null)
+	    {
+	      ipAddress = request.getRemoteAddr();
+	    }
+	    
+	    logger.debug("ipsource: " + ipAddress);
 	    JSONObject obj = new JSONObject();
 	    obj.put("email", request.getParameter(email));
 	    obj.put("reason", request.getParameter(downloadReasonListKey));
 	    obj.put("response",recaptcha);
 	    obj.put("challenge",challenge);
 	    obj.put("type", "all");
+	    obj.put("ipsource", ipAddress);
 	    obj.put("date", System.currentTimeMillis() / 1000L );
 	    obj.put("query",obj1);
-	    
+    
 	    StringEntity se = new StringEntity(obj.toString(),  ContentType.APPLICATION_JSON);
 	   
 	    methodDatos.setEntity(se);
