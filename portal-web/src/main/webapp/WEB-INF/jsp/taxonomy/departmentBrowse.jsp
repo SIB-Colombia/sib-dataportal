@@ -41,12 +41,16 @@
 							<td><b><spring:message code="actions.download"/></b></td>
 							<td>	
 								<ul class="actionsListInline">
-									<li>
+									<li> 
+										<a href="${pageContext.request.contextPath}/occurrences/downloadSpreadsheet.htm?<gbif:criterion subject="38" predicate="0" value="${department.isoDepartmentCode}"/>" onclick="_gaq.push(['_trackEvent', 'occurrences', 'download', 'spreadsheet']);" ><spring:message code="occurrence.search.filter.action.download.spreadsheet"/></a>
+									</li>
+									<!-- <li>
 										<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>&<gbif:criterion subject="9" predicate="0" value="7000" index="1"/>"><spring:message code="taxonomy.browser.species.recorded.in"/></a>						
 									</li>						
 									<li>
 										<a href="${pageContext.request.contextPath}/species/downloadSpreadsheet.htm?<gbif:criterion subject="13" predicate="0" value="${department.isoDepartmentCode}"/>"><spring:message code="taxonomy.browser.taxa.recorded"/></a>						
-									</li>						
+									</li>
+									 -->						
 								</ul>
 							</td>
 						</tr>

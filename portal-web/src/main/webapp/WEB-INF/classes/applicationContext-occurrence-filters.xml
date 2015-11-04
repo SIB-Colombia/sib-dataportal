@@ -35,13 +35,13 @@
 				<ref bean="marineZoneFilter"/>
 				
 				<!-- Filter for Colombian Protected Areas (SIB Colombia) -->
-				<ref bean="protectedAreaFilter"/>
+				<!--<ref bean="protectedAreaFilter"/>-->
 				
 				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
-				<ref bean="ecosystemFilter"/>
+				<!--<ref bean="ecosystemFilter"/> -->
 				
 				<!-- Filter for Colombian Ecosystems (SIB Colombia) -->
-				<ref bean="zonificacionFilter"/>
+				<!--<ref bean="zonificacionFilter"/> -->
 				
 				<!-- Disabled by SIB Colombia -->
 				<!-- <ref bean="regionFilter"/> -->
@@ -52,7 +52,8 @@
                 <ref bean="altitudeFilter"/>
                 <ref bean="depthFilter"/>
 				<ref bean="georeferencedFilter"/>
-				<ref bean="geoConsistencyFilter"/>
+				<!-- Disabled by SIB Colombia -->
+				<!--<ref bean="geoConsistencyFilter"/>-->
                 <!--<ref bean="geoRegionFilter"/>-->
 				<!-- dataset filters-->
 				<ref bean="dataProviderIdFilter"/>
@@ -67,8 +68,10 @@
 				<ref bean="institutionCodeFilter"/>
 				<ref bean="collectionCodeFilter"/>
 				<ref bean="identifierFilter"/>
-				<ref bean="basisOfRecordFilter"/>
-				<ref bean="imageURLFilter"/>
+				<!-- Disabled by SIB Colombia -->
+				<!--<ref bean="basisOfRecordFilter"/>-->
+				<!-- Disabled by SIB Colombia -->
+				<!--<ref bean="imageURLFilter"/>-->
 				<!--ref bean="restrictionsFilter"/-->
 			</list>
 		</property>

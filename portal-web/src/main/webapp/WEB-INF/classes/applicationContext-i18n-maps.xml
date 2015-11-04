@@ -1471,7 +1471,7 @@
 	</util:map>
 	
 	<util:map id="complex-ids">
-		<entry key= 'CUA' value='paramo.any'/>
+		<!--<entry key= 'CUA' value='paramo.any'/>-->
 		<entry key= 'ALM' value='paramo.almorzadero'/>
 		<entry key= 'ACB' value='paramo.altiplano_cundiboyacense'/>
 		<entry key= 'BMR' value='paramo.belmira'/>
