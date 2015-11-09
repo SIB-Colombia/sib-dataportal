@@ -123,3 +123,4 @@ Icon
 
 # Sublime project files
 portal-web/src/main/webapp/dataportal.sublime-project
+portal-web/src/main/webapp/WEB-INF/classes/portal.properties

@@ -174,7 +174,7 @@
 	</h2>
 	<h3 style="font-size: 1.1em">
 		<spring:message code="dataset.providedby"/> 
-		<a href="${pageContext.request.contextPath}/datasets/provider/${dataProvider.key}">${dataProvider.name}</a>
+		<a href="${pageContext.request.contextPath}/publicadores/provider/${dataProvider.key}">${dataProvider.name}</a>
 	</h3>
 </div>
 

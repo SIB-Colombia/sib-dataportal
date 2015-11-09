@@ -1512,7 +1512,7 @@
 	</util:map>
 	<util:map id="marine-ids">
 		<!--<entry key= 'CUA' value='marineZone.any'/>-->
-		<entry key= 'emergido' value='marineZone.emergido'/>
+		<!--<entry key= 'emergido' value='marineZone.emergido'/>-->
 		<entry key= 'cBjoN' value='marineZone.cayo_bajo_nuevo'/>
 		<entry key= 'cSerr' value='marineZone.cayo_serranilla'/>
 		<!--<entry key= 'inside' value='marineZone.revisar_limites'/>-->
